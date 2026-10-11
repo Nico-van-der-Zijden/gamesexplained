@@ -19,12 +19,12 @@
    [
     0,
     4095,
-    "runtime: the only RAM the Ultimax configuration shows. Zero page, stack, $0200-$03FF and the screen hold variables, the software stack, sprite 0's shape and the screen, all built by the cartridge's code; nothing of the game is loaded there"
+    "runtime: the RAM the game uses (zero page, the stack, the globals and software stack at $0200-$03FF, sprite 0's shape at $03C0 and the screen at $0400), all written by the cartridge's own code; nothing of the game is loaded there"
    ],
    [
     4096,
     57343,
-    "not mapped: in the Ultimax configuration $1000-$CFFF is open bus for the processor, and $D000-$DFFF is I/O; nothing of the game is there"
+    "not the game's: no instruction of the cartridge reads or writes $0800-$CFFF except the operands of five BIT instructions used to skip a byte and an unreachable JMP $7000, and $D000-$DFFF is the I/O chips"
    ]
   ],
   "extra": []
@@ -4302,7 +4302,7 @@
   {
    "address": 10,
    "type": "line",
-   "text": "The arithmetic routines' result bytes: mul8 leaves the product's high byte here, div8 its quotient's companion; $0A-$10 are their work bytes."
+   "text": "The arithmetic routines' result and work bytes: mul8 leaves the product's high byte here; div8 uses $0B (remainder), $0C (quotient), $0D and $0E. mul8 and div8 use $0A-$0E only; $0F is print_char's character, and $10 is written only by div16, which nothing calls."
   },
   {
    "address": 12,
@@ -4572,7 +4572,7 @@
   {
    "address": 540,
    "type": "line",
-   "text": "The random 1-3 taken off the first speed-up's count."
+   "text": "The random number taken off the count of balloons to the next speed-up: 1-3 at the start of a jump (new_jump), 1-2 at each speed-up after (pop_balloons). launch also reads it, in the launch speed's growing term."
   },
   {
    "address": 541,
@@ -4602,7 +4602,7 @@
   {
    "address": 569,
    "type": "line",
-   "text": "The speed level after each level: 1, 1, 2 ($0239-$023B); $023C-$023E the balloons to pop at each level before the next: 3, 10, 50."
+   "text": "The speed level that follows each level: 1, 2, 1 ($0239-$023B), so the speed climbs 0, 1, 2 and then alternates between 1 and 2; $023C-$023E the balloons to pop at each level before the next: 3, 10, 50."
   },
   {
    "address": 575,
@@ -4647,17 +4647,17 @@
   {
    "address": 57476,
    "type": "line",
-   "text": "Unsigned 8-bit divide of A by X; returns the quotient in A and the remainder in X and $0B. A divisor of zero falls through to div_by_zero. Every call in the game divides by a constant (6 at $E733 and $E744, 10 inside print_byte), so the error path never runs."
+   "text": "Unsigned 8-bit divide of A by X; returns the quotient in A (and $0C) and the remainder in X and $0B. A divisor of zero goes to div_by_zero. Its two calls (at $E733 and $E744) divide by 6; print_byte enters at div8_nonzero instead, and nothing calls print_byte, so the error path never runs."
   },
   {
    "address": 57478,
    "type": "line",
-   "text": "div8's divide proper, entered here by print_byte with the divisor already in X and the dividend in $0E: shifts the divisor up to the top bit and subtracts it down again, building the quotient in $0C and leaving the remainder in A, X and $0B."
+   "text": "div8's divide proper, entered here by print_byte (which nothing calls) with the divisor in X and the dividend in $0E: shifts the divisor up to the top bit and subtracts it down again, building the quotient in $0C; returns the quotient in A and the remainder in X and $0B."
   },
   {
    "address": 57517,
    "type": "line",
-   "text": "The runtime's division-by-zero error: selects output device $08 = A (0 here, so device 0) and prints \"ERR DIV0\" through the inline-string printer, then jumps to $7000. Nothing in the game divides by zero, and on this cartridge $7000 is not mapped (the Ultimax configuration leaves $1000-$7FFF open), so this is a leftover of the language's runtime, never run."
+   "text": "The runtime's division-by-zero error: selects output device $08 = A (0 here, so device 0) and prints \"ERR DIV0\" through the inline-string printer, then jumps to $7000. Nothing in the game divides by zero, and the cartridge has nothing at $7000, so this is a leftover of the language's runtime, never run."
   },
   {
    "address": 57522,
@@ -4667,7 +4667,7 @@
   {
    "address": 57532,
    "type": "line",
-   "text": "The division error's exit: JMP $7000, into memory the cartridge does not map, so a division by zero would leave the program running into open bus. Never reached."
+   "text": "The division error's exit: JMP $7000, an address where the cartridge has no code and the game keeps nothing. Never reached."
   },
   {
    "address": 57535,
@@ -4722,7 +4722,7 @@
   {
    "address": 57731,
    "type": "line",
-   "text": "Output device 0: JMP $FFD2, the KERNAL's CHROUT on a machine with a KERNAL. On this cartridge $FFD2 holds a table byte (pow10_lo), not code, so device 0 cannot work here; the game never selects it."
+   "text": "Output device 0: JMP $FFD2, the KERNAL's CHROUT on a machine with a KERNAL. On this cartridge $FFD2 holds a table byte (pow10_ten), not code, so device 0 cannot work here; the game never selects it."
   },
   {
    "address": 57734,
@@ -4747,7 +4747,7 @@
   {
    "address": 57821,
    "type": "line",
-   "text": "Runtime 16-bit divide that nothing in the game calls: divides the first argument by the second (a zero divisor goes to div_by_zero), quotient in $0C/$0D, remainder in $0E/$0A, also kept in $10 and $0B."
+   "text": "Runtime 16-bit divide that nothing in the game calls. Its first instruction is the call to the division error (JSR div_by_zero), reached when the divisor is zero; the divide starts at $E1E0 and divides the first argument by the second, returning the quotient in A and $0A (low and high, also $0C/$0D) and the remainder in $0E/$0B (low) and $10 (high)."
   },
   {
    "address": 57899,
@@ -4757,7 +4757,7 @@
   {
    "address": 57902,
    "type": "line",
-   "text": "The screen output device (device 1): writes the character in A at the text cursor, column $17 and row $18, with colour $13, and moves the cursor on. The cursor-control codes in cursor_codes ($E280) go to their handlers through cursor_handlers; any other code is turned into a screen code by petscii_to_screen and stored in screen memory at $0400 and colour memory at $D800 through row_address. The cursor wraps at column 40 to the next row and from row 25 to row 0. Saves A, X and Y."
+   "text": "The screen output device (device 1): writes the character in A at the text cursor, column $17 and row $18, with colour $13, and moves the cursor on. The cursor-control codes in cursor_codes ($E280) go to their handlers through cursor_handlers; any other code is turned into a screen code by petscii_to_screen and stored in screen memory at $0400 and colour memory at $D800 through row_address. The cursor wraps from column 39 to the next row and from row 24 to row 0. Saves A, X and Y."
   },
   {
    "address": 57942,
@@ -4872,7 +4872,7 @@
   {
    "address": 58308,
    "type": "line",
-   "text": "After a game: for player 0 and then 1, a 16-bit score greater than the high score ($0211/$0212) replaces it, so the later of two equal scores does not count again. Then back to the title (main at $E34F, skipping init_tables)."
+   "text": "After a game: player 1's 16-bit score, then player 2's, replaces the high score ($0211/$0212) when it is greater (an equal score does not). Then back to the title (main at $E34F, skipping init_tables)."
   },
   {
    "address": 58430,
@@ -4882,17 +4882,17 @@
   {
    "address": 58436,
    "type": "line",
-   "text": "Fills the game's constant tables in the global frame, once at power-on. Per landing zone 0-3: the launch speed across, $0229-$022C high and $022D-$0230 low (2.5, 1.5, 1.75 and -2 pixels a tick; $0230 is left 0), and the base launch speed upward, $0231-$0234 high and $0235-$0238 low (6, 6.375, 6.16, 5.5). Per speed level 0-2: gravity low bytes $0226-$0228 = 3, 11, 27 (256ths of a pixel a tick, per tick; the high bytes $0223-$0225 are left 0), the next level $0239-$023B = 1, 1, 2, and the balloons to pop before the next speed-up $023C-$023E = 3, 10, 50. The bonus for clearing each row, $0241-$0243 = 100, 50, 20 (in tens of points: 1000, 500, 200)."
+   "text": "Fills the game's constant tables in the global frame, once at power-on. Per landing zone 0-3: the launch speed across, $0229-$022C high and $022D-$0230 low (2.5, 1.5, 1.75 and -2 pixels a tick; $0230 is left 0), and the base launch speed upward, $0231-$0234 high and $0235-$0238 low (6, 6.375, 6.16, 5.5). Per speed level 0-2: gravity low bytes $0226-$0228 = 3, 11, 27 (256ths of a pixel a tick, per tick; the high bytes $0223-$0225 are left 0), the level after each, $0239-$023B = 1, 2, 1, and the balloons to pop before leaving it, $023C-$023E = 3, 10, 50. The bonus for clearing each row, $0241-$0243 = 100, 50, 20 (in tens of points: 1000, 500, 200)."
   },
   {
    "address": 58570,
    "type": "line",
-   "text": "Sets up the playfield and both players for a game (or the attract mode when $0213 is 0). Draws the walls, platforms, status line and balloons (machine-code routine 7, with A = $0213); gives player 2 (only when $0210 says two players) and then player 1 five jumps each and clears their bonus flags ($023F/$0240 = $FF), showing each score; leaves player 1 ($020D = 0) to start, the see-saw tilted to the left ($020E = 0) and white text. In a game, also shows the clown in its landing pose in the middle (routine 14, frame 4 at 155, 150) and plays tune 0, the start tune (routine 15)."
+   "text": "Sets up the playfield and both players for a game (or the attract mode when $0213 is 0). Draws the walls, platforms, status line and balloons (machine-code routine 7, with A = $0213); gives player 2 (only when $0210 says two players) and then player 1 five jumps each and sets their bonus flags ($023F/$0240 = $FF), showing each score in a game (show_score prints nothing in the attract mode); leaves player 1 ($020D = 0) to start, the see-saw tilted to the left ($020E = 0) and white text. In a game, also shows the clown in its landing pose in the middle (routine 14, frame 4 at 155, 150) and plays tune 0, the start tune (routine 15)."
   },
   {
    "address": 58714,
    "type": "line",
-   "text": "Puts the current player's clown on a platform and plays its run and leap. Clears the jump's state (speed level $0209, bounce count $021B, fall flag $0216, speeds); picks a platform at random: x = 16 + 7 x random(2), so 23 (with the ninth bit set, 279: the right-hand platforms) or 30 (the left), and y = 81 + 32 x random(2), 113 or 145 (upper or lower); starts with 60/256 of a pixel a tick down and across, turned towards the middle on the right. Shows the score, reads the see-saw, sets the pops needed for the first speed-up ($020A = 3 - random(3)) and the first level's gravity. In a two-player game it swaps in this player's balloons (routine 6). Then the clown runs and leaps from the platform (routine 8), showing \"PLAYER n\" and, when the player's bonus flag is clear, \"BONUS PLAY\"; the bonus flag is then set again."
+   "text": "Puts the current player's clown on a platform and plays its run and leap. Clears the jump's state (speed level $0209, bounce count $021B, fall flag $0216, speeds); picks a platform at random: x = 16 + 7 x random(2), so 23 (with the ninth bit set, 279: the right-hand platforms) or 30 (the left), and y = 81 + 32 x random(2), 113 or 145 (upper or lower); starts with 60/256 of a pixel a tick down and across, turned towards the middle on the right. Shows the score, reads the see-saw, sets the pops needed for the first speed-up ($020A = 3 - random(3)) and the first level's gravity. In a two-player game, when the player's bonus flag is set (no bonus play pending), it swaps in this player's balloons (routine 6). Then the clown runs and leaps from the platform (routine 8); in a game it shows \"PLAYER n\" and, when the bonus flag is clear, \"BONUS PLAY\" (in the attract mode, no text). The bonus flag is then set again."
   },
   {
    "address": 58940,
@@ -4912,7 +4912,7 @@
   {
    "address": 59561,
    "type": "line",
-   "text": "While the clown is up, calls routine 0 with the frame flag (falling and below y 150: the landing pose), x and y; it draws the clown and returns the highest character code the clown's pixels touch in $20, the points of the balloons it popped in $21, how many in $22, and which rows are now empty in $23-$25."
+   "text": "While the clown is up, calls routine 0 with the frame flag (falling and below y 150: the landing pose), x and y; it draws the clown and returns in $20 the highest code below $5A among the cells the clown's pixels touch, or $60 when any of them is a balloon (codes $5A-$5F are ignored), the points of the balloons it popped in $21, how many in $22, and which rows are now empty in $23-$25."
   },
   {
    "address": 59625,
@@ -4922,7 +4922,7 @@
   {
    "address": 59832,
    "type": "line",
-   "text": "The clown popped peek(2) balloons this tick. If it has bounced on the see-saw since the last speed-up, they count towards the next: at zero ($020A), the speed level moves to the next in $0239-$023B and the count restarts from $023C-$023E less random(2), and the bounce count resets. An odd number of balloons popped in one tick reverses both speeds (the clown is knocked back); an even number lets it pass through. The speed across then changes by random(90) - 45 256ths. Then, for each row the pops emptied (peek(3+row)) in a game: the top row also gives the bonus jumper if the player has none (\"BONUS JUMP\", tune 0; the bonus flag $023F/$0240 cleared, so the next fall costs no jump); every row shows its bonus (routine 16, \"BONUS 1000\", \"0500\" or \"0200\" with tune 1), stops a rising clown climbing (its upward speed's high byte zeroed) and scores the row's bonus from $0241-$0243. Last, the popped balloons' points (peek(1)) are added to the score."
+   "text": "The clown popped peek(2) balloons this tick. If it has bounced on the see-saw since the last speed-up, they count towards the next: when the count ($020A) goes below zero, the speed level moves to the next in $0239-$023B (0 to 1, 1 to 2, 2 back to 1) and the count restarts from that level's $023C-$023E less random(2), and the bounce count resets. An odd number of balloons popped in one tick reverses both speeds (the clown is knocked back); an even number lets it pass through. The speed across then changes by random(90) - 45 256ths. Then, for each row the pops emptied (peek(3+row)) in a game: the top row also gives the bonus jumper if the player has none (\"BONUS JUMP\", tune 0; the bonus flag $023F/$0240 cleared, so the next fall costs no jump); every row shows its bonus (routine 16, \"BONUS 1000\", \"0500\" or \"0200\" with tune 1), stops a rising clown climbing (its upward speed's high byte zeroed) and scores the row's bonus from $0241-$0243. Last, the popped balloons' points (peek(1)) are added to the score."
   },
   {
    "address": 60161,
@@ -4932,7 +4932,7 @@
   {
    "address": 60237,
    "type": "line",
-   "text": "The flight of one jump, each pass one tick: read the see-saw (update_seesaw), scroll the balloons (routine 9), advance the sound (routine 13), move the clown (move_clown) and wait for the tick (routine 2), until the clown is down ($0216). Then, at column 12, row 14, the falling clown's animation (routine 18), which in a game also shows \"HIGH SCORE\" and the high score and plays tune 2. Unless the bonus flag says this fall is free, the player loses a jump. In a two-player game where player 2 still has jumps: if player 1 has none, \"GAME OVER PLAYER 1\" at column 11, row 15 and a pause of 255 ticks; and the turn passes to the other player, whether or not that player has jumps left."
+   "text": "The flight of one jump, each pass one tick: read the see-saw (update_seesaw), scroll the balloons (routine 9), advance the sound (routine 13), move the clown (move_clown) and wait for the tick (routine 2), until the clown is down ($0216). Then, at column 12, row 14, the falling clown's animation (routine 18), which in a game also shows \"HIGH SCORE\" and the high score and plays tune 2. A free fall (the bonus flag clear) ends there: no jump lost, and the same player goes again. Otherwise the player loses a jump, and in a two-player game where player 2 still has jumps: if player 1 has none, \"GAME OVER PLAYER 1\" at column 11, row 15 and a pause of 255 ticks; and the turn passes to the other player, whether or not that player has jumps left."
   },
   {
    "address": 60435,
@@ -4987,7 +4987,7 @@
   {
    "address": 61072,
    "type": "line",
-   "text": "Compiled procedure delay(n): waits n ticks, calling the tick routine (routine 2) n times. Called with 255 (about 2.6 seconds) after each \"GAME OVER\"."
+   "text": "Compiled procedure delay(n): waits n ticks, calling the tick routine (routine 2) n times. Called with 255 (about 2.7 seconds at the measured 95 ticks a second) after \"GAME OVER\" and after \"GAME OVER PLAYER 1\"."
   },
   {
    "address": 61116,

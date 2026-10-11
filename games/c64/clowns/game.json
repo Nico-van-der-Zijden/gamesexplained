@@ -24,6 +24,9 @@
   "step_models": {
     "50-coverage": [
       "claude-opus-5-5"
+    ],
+    "60-verify": [
+      "claude-opus-5-5"
     ]
   },
   "kit_version": "0.0.154",
@@ -37,12 +40,12 @@
       [
         "$0000",
         "$0FFF",
-        "runtime: the only RAM the Ultimax configuration shows. Zero page, stack, $0200-$03FF and the screen hold variables, the software stack, sprite 0's shape and the screen, all built by the cartridge's code; nothing of the game is loaded there"
+        "runtime: the RAM the game uses (zero page, the stack, the globals and software stack at $0200-$03FF, sprite 0's shape at $03C0 and the screen at $0400), all written by the cartridge's own code; nothing of the game is loaded there"
       ],
       [
         "$1000",
         "$DFFF",
-        "not mapped: in the Ultimax configuration $1000-$CFFF is open bus for the processor, and $D000-$DFFF is I/O; nothing of the game is there"
+        "not the game's: no instruction of the cartridge reads or writes $0800-$CFFF except the operands of five BIT instructions used to skip a byte and an unreachable JMP $7000, and $D000-$DFFF is the I/O chips"
       ]
     ],
     "extra": [],
