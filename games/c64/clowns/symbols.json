@@ -1,0 +1,25 @@
+{
+ "schema": 1,
+ "platform": "c64",
+ "game": "clowns",
+ "build": "",
+ "source": "new_game.py",
+ "regions": {
+  "exclude": [
+   [
+    256,
+    511,
+    "stack"
+   ],
+   [
+    53248,
+    57343,
+    "I/O and colour RAM"
+   ]
+  ],
+  "extra": []
+ },
+ "blocks": [],
+ "symbols": [],
+ "comments": []
+}
