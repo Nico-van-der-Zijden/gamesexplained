@@ -128,7 +128,7 @@ def capture(out, shot=None):
         cpu0 = list(m.read(0, 2, "cpu"))
         charrom = m.read(0xD000, 0x1000, "rom")      # for this machine's own checks; trim drops it
         ultimax = m.ultimax()                        # the cartridge's, which a page may embed
-        ranges =[(0xD000, 0xD3FF, "vic"), (0xDD00, 0xDDFF, "cia2")] + \
+        ranges = [(0xD000, 0xD3FF, "vic"), (0xDD00, 0xDDFF, "cia2")] + \
                  [(b * 0x4000 + s * 0x400 + 0x3F8, b * 0x4000 + s * 0x400 + 0x3FF, "pointers")
                   for b in range(4) for s in range(16)]
         for lo, hi, what in ranges:
