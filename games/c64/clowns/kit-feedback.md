@@ -21,6 +21,7 @@ time, operating system and tool versions.
 - `kit/skills/c64/c64-reference`: a section "Ultimax cartridges" with what was measured: the processor's and the video chip's view, the listing from the `.crt`, the state call's answer and the code map. Lesson: `kit/lessons/2026-10-12-clowns.md`.
 - `kit/INSTALL.md`, "Browser checks": Windows' own Edge, run headless from Windows against the site served from WSL, as a page check that installs nothing. Why: WSL had no browser, and this was how this run saw its page.
 - `kit/lessons/2026-10-12-clowns.md`: this run's entry.
+- `kit/c64/lockstep.js`: a `{ cp }` yielded twice running now counts as two arrivals; only a place named by `{ cycles, at }` and then again as a checkpoint is one. Why: Clowns has no interrupts and one clock routine that every loop calls, so its port yields the same checkpoint (`$F717`) once a tick, and the old rule swallowed every other tick: the lockstep reported the port a tick ahead on its second pass. `kit/c64/test_lockstep.js` passes unchanged, and `games/c64/clowns/test_play.js` (60,000 ticks, identical) exercises the new case.
 
 ## Candidates
 
