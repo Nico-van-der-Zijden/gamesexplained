@@ -18,9 +18,6 @@ Ideas for follow-ups:
 
 - A Play tab: the physics, the see-saw zones and the collision test are
   ported or tabled already; a paddle on the mouse would make it playable.
-- A Sound section with the bounce, the pop and the falling whistle, ported
-  from `sound_tick` (`$F36B`) and played through the site's SID model.
-- A stepper for one jump: the launch speeds by zone and level, with the
-  random parts and the growth, drawn as an arc.
-- Compare the 1983 disk version (the C64-Wiki says it takes a joystick)
-  with this cartridge.
+- A disk version that takes a joystick, which the C64-Wiki mentions: not found. The c64.com
+  disk checked on 12 October 2026 carries this cartridge's 8 KB unchanged behind a loader that
+  copies it to $E000 and $2000; no disk release by Commodore was found.

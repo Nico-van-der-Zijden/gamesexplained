@@ -78,8 +78,18 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
   <p>The sound effects use the other two voices. Voice 2 plays the bounce, a pulse whose pitch falls for 32 ticks, and the whistle of a falling clown, 48 ticks of pitches from a table (<code>$FFA3</code>). Voice 3 pops a balloon with one tick of noise. The title screen's demonstration is silent: its volume is 0.</p>
 </section>
 
+<section id="sound">
+  <p class="fig">03 · The sound effects</p>
+  <h2 class="t">Sound: a falling bounce, a pop of noise and a whistle</h2>
+  <p class="lede">Three effects, on the two voices the tunes leave free, each moved on once a tick by one routine.</p>
+  <div class="plate"><div id="cl-sfx"></div>
+  <p class="cap"><b>A port of the effects</b>, the three routines that start them and <code>sound_tick</code> (<code>$F36B</code>) that moves them on, played through the site's model of the SID once a tick. <code>test_sound.js</code> holds it against the game's own code, write for write.</p></div>
+  <p>The bounce (<code>$F33B</code>) starts voice 2 as a pulse with no attack, sustained at half volume, and lets the gate go on the next tick; for 32 ticks its pitch falls a step a tick, from <code>$023E</code> to <code>$0200</code>, while the note fades over a release of about three quarters of a second. The pop (<code>$F34E</code>) gates voice 3's noise for a single tick. The falling clown's whistle (<code>$F358</code>) opens voice 2 with a slow attack and walks through 24 pitches from a table (<code>$FFA3</code>), two ticks each, from the end of the table back to its start, and closes the gate on the last.</p>
+  <p>The routine that moves them on runs only one effect on voice 2 at a time: while a bounce is sounding, a whistle started meanwhile waits. Nothing plays in the title screen's demonstration, where the routines that start an effect see the sound flag off and return.</p>
+</section>
+
 <section id="frame">
-  <p class="fig">03 · One frame, rebuilt from memory</p>
+  <p class="fig">04 · One frame, rebuilt from memory</p>
   <h2 class="t">The font and the see-saw come straight from the cartridge</h2>
   <p class="lede">The screen below is drawn by this page from the game's memory and its ROM, not from a screenshot.</p>
   <div class="plate"><div class="cl-row"><button class="cl-btn" id="cl-f1" aria-pressed="true">With the cartridge</button><button class="cl-btn" id="cl-f0" aria-pressed="false">RAM only</button></div>
@@ -90,7 +100,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="twoplayer">
-  <p class="fig">04 · Two players</p>
+  <p class="fig">05 · Two players</p>
   <h2 class="t">Bug: player 1 comes back with 255 jumps</h2>
   <p class="lede">In a two-player game where player 1 runs out of jumps first, player 1 keeps getting turns, and the first fall takes the jump counter from 0 to 255.</p>
   <div class="plate"><div class="cl-row"><button class="cl-btn" id="cl-bp">Previous fall</button><button class="cl-btn" id="cl-bn">Next fall</button><span class="cl-out" id="cl-bs"></span></div>
@@ -102,13 +112,15 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="seesaw">
-  <p class="fig">05 · The see-saw</p>
+  <p class="fig">06 · The see-saw</p>
   <h2 class="t">Where the clown lands decides how the other one flies</h2>
   <p class="lede">Only the 24 pixels at the raised end catch a clown, in four zones of six pixels, and each zone throws differently.</p>
   <div class="plate"><div class="cl-row"><label>Zone</label><span id="cl-zones"></span><label>Speed level</label><span id="cl-levels"></span></div>
   <canvas class="cl-cv" id="cl-saw"></canvas>
   <p class="cl-out" id="cl-sawout"></p>
-  <p class="cap"><b>The see-saw's sprites</b> (<code>$FBC0</code>), left end down, with the window marked over the raised end: the 24 positions of the clown's left edge, 21 to 44 pixels right of the see-saw's x, that catch it, in four zones. The speeds come from the tables <code>init_tables</code> fills at power-on (<code>$E444</code>), before the random parts and the growth described below.</p></div>
+  <div class="cl-row" style="margin-top:14px"><label>Balloons popped and bounces made at this level <input type="range" id="cl-k" min="0" max="40" value="0"></label><span class="cl-out" id="cl-kv"></span></div>
+  <canvas class="cl-cv" id="cl-arc"></canvas>
+  <p class="cap"><b>Below, 24 throws from the chosen zone</b>, each with its own random draws, flown by a port of the game's flight (<code>$E63C</code>) with nothing in the way, until a clown reaches the ceiling or comes back down; the dots are the balloon rows' height. <code>test_flight.js</code> holds the port against the game's own code: 320,389 ticks and 1,955 launches, every variable the same. <b>Above, the see-saw's sprites</b> (<code>$FBC0</code>), left end down, with the window marked over the raised end: the 24 positions of the clown's left edge, 21 to 44 pixels right of the see-saw's x, that catch it, in four zones. The speeds come from the tables <code>init_tables</code> fills at power-on (<code>$E444</code>), before the random parts and the growth described below.</p></div>
   <p>A clown falling at y 176 or lower is caught if its x is in the window (<code>$E6C2</code>); once it passes y 184 it is down. The zone picks the other clown's launch from two tables, across and up, and the launch then grows with the jump: a term proportional to the balloons popped and the bounces made at this speed level, times 16 to 26, is added to the upward speed. At speed level 0 both speeds are halved twice, at level 1 once, and the upward speed is never more than 6 pixels a tick.</p>
   <p>The thrown clown leaves from the other end of the see-saw, which then tilts the other way, so the window is always over the end where the last clown stood.</p>
   <table class="cl-t"><thead><tr><th>Speed level</th><th>Gravity, per tick</th><th>Next level</th><th>Balloons to the next</th></tr></thead><tbody id="cl-lvt"></tbody></table>
@@ -116,7 +128,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="collide">
-  <p class="fig">06 · Collisions</p>
+  <p class="fig">07 · Collisions</p>
   <h2 class="t">Every collision is tested pixel by pixel against the font</h2>
   <p class="lede">The walls, the ceiling, the platforms and the balloons are all characters. The game works out which of them the clown's pixels touch, without the video chip's collision registers.</p>
   <div class="plate"><div class="cl-row"><label>x <input type="range" id="cl-cx" min="0" max="72" value="22"></label><label>y <input type="range" id="cl-cy" min="0" max="44" value="8"></label><label>Frame <select id="cl-cf"></select></label></div>
@@ -128,7 +140,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="balloons">
-  <p class="fig">07 · The balloons</p>
+  <p class="fig">08 · The balloons</p>
   <h2 class="t">Eight copies of every balloon move the rows one pixel at a time</h2>
   <p class="lede">The rows scroll smoothly in a text screen without touching the video chip's scroll register.</p>
   <div class="plate"><div class="cl-row"><button class="cl-btn" id="cl-bal" aria-pressed="true">Scroll</button></div>
@@ -139,7 +151,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="score">
-  <p class="fig">08 · The score</p>
+  <p class="fig">09 · The score</p>
   <h2 class="t">The score is kept in tens, and the last 0 is a sixth digit that can never be anything else</h2>
   <p class="lede">The status line shows six digits, but the variable behind them counts tens of points.</p>
   <div class="plate"><div class="cl-row"><label>Score variable <input type="number" id="cl-sv" min="0" max="65535" value="77"></label></div>
@@ -151,7 +163,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="paddle">
-  <p class="fig">09 · Controls</p>
+  <p class="fig">10 · Controls</p>
   <h2 class="t">The see-saw trails the paddle by a quarter each tick</h2>
   <p class="lede">The see-saw does not jump to where the paddle points. Each tick it moves a quarter of the way there.</p>
   <div class="plate"><div class="cl-row"><label>Paddle reading <input type="range" id="cl-pr" min="0" max="255" value="40"></label><span class="cl-out" id="cl-pout"></span></div>
@@ -161,7 +173,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="build">
-  <p class="fig">10 · How the program is built</p>
+  <p class="fig">11 · How the program is built</p>
   <h2 class="t">Half the cartridge is compiled code that calls machine code by number</h2>
   <p class="lede">The game's rules are a program compiled from a high-level language. The drawing, the input and the sound are 25 routines of hand-written machine code.</p>
   <div class="plate"><table class="cl-t"><thead><tr><th>Number</th><th>Routine</th><th>What it does</th></tr></thead><tbody id="cl-mlt"></tbody></table>
@@ -172,7 +184,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="timing">
-  <p class="fig">11 · Timing</p>
+  <p class="fig">12 · Timing</p>
   <h2 class="t">No interrupts: a CIA timer is the game's clock</h2>
   <p class="lede">The game never enables interrupts and never waits for the video frame.</p>
   <p>The interrupt vectors point at a lone return instruction (<code>$F765</code>), and nothing reads the raster register. Instead, the clock routine (<code>$F711</code>) waits for CIA 1's timer A, loaded with 10,000 cycles and set to run once, to run out, then starts it again. Every loop of the game calls it once a pass. Measured in VICE, play ran 1.90 ticks a frame on a PAL machine, about 95 a second; 10,000 cycles alone would give 98.5. The timer counts the processor's clock, so an NTSC machine runs the game about 4 % faster.</p>
@@ -187,7 +199,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="quirks">
-  <p class="fig">12 · Quirks</p>
+  <p class="fig">13 · Quirks</p>
   <h2 class="t">Small slips on the screen</h2>
   <p class="lede">Three places where the text on the screen is not what the bytes were meant to say.</p>
   <ul>
@@ -237,6 +249,110 @@ function createDriver(data) {
   return d;
 }
 // end of createDriver
+</script>
+<script>
+/* clowns-sound */
+// The sound effects: sound_bounce ($F33B), sound_pop ($F34E) and sound_fall ($F358) start one, as
+// init(0), init(1) and init(2), and sound_tick ($F36B) runs once a tick, as play(). The game plays
+// them only when its sound is on ($4F), as it is in a game. data: pitches ($FFA3-$FFD2) and sid, the
+// 22 bytes the cold start writes to $D400-$D415 ($F74C).
+function createEffects(data) {
+  const sid = new Uint8Array(25);
+  for (let i = 0; i < 22; i++) sid[i] = data.sid[i];
+  sid[24] = 0x1F;
+  let bounce = 0, fall = 0, tail = 0, start = [];
+  const set = (w, r, v) => { sid[r] = v; w.push(r, v); };
+  const d = {
+    sid, writes: [],
+    init(n) {
+      start = [];
+      if (n === 0) { bounce = 0x20; set(start, 12, 0x00); set(start, 11, 0x41); }
+      else if (n === 1) set(start, 18, 0x81);
+      else { fall = 0x30; set(start, 12, 0xA0); set(start, 11, 0x41); }
+      tail = 50;                                  // ticks to let the release ring out
+    },
+    stop() { bounce = fall = tail = 0; },
+    playing: () => bounce > 0 || fall > 0 || tail > 0,
+    voice: (v) => v === 1 ? { t: bounce ? 'bounce ' + bounce : fall ? 'fall ' + fall : '' } : {},
+    play() {
+      const w = d.writes = start; start = [];
+      set(w, 18, 0x80);                           // voice 3's gate released
+      if (bounce) {
+        bounce--;
+        set(w, 7, (bounce << 1) & 255); set(w, 8, 2); set(w, 11, 0x40);
+      } else if (fall) {
+        fall--;
+        const x = fall & 0xFE, lo = data.pitches[x], hi = data.pitches[x + 1];
+        set(w, 7, lo); set(w, 8, hi);
+        if (!hi) set(w, 11, 0x40);
+      } else if (tail) tail--;
+    },
+  };
+  return d;
+}
+// end of createEffects
+</script>
+<script>
+/* clowns-flight */
+// The flying clown's physics: random ($E03A), one tick of move_clown ($E63C) without the drawing
+// and the collisions it calls, the see-saw's landing test and launch ($E6C2-$E897), the fall test
+// ($E898). s holds the game's variables by name, each the byte or bytes the game keeps:
+// seed ($11/$12, 16 bits), x ($0200-$0202, 24 bits), y ($0203/$0204, 16 bits), dx ($0205/$0206) and
+// dy ($0207/$0208) as 16-bit words, level ($0209), toGo ($020A), right ($020B), falling ($020C),
+// tilt ($020E), saw ($020F), down ($0216), grav ($0219/$021A), bounces ($021B), rnd ($021C), and
+// T, the tables init_tables ($E444) fills. Returns 'launch', 'down' or ''.
+function clownRandom(s, n) {
+  s.seed = (s.seed * 125 + 1) & 0xFFFF;
+  return ((n * (s.seed >> 8)) >> 8) + 1 & 255;
+}
+function clownTick(s) {
+  const T = s.T;
+  // x += dx, sign-extended to 24 bits; y += dy; the direction flags; dy += gravity
+  const dxs = s.dx & 0x8000 ? s.dx - 0x10000 : s.dx;
+  s.x = (s.x + dxs) & 0xFFFFFF;
+  s.y = (s.y + s.dy) & 0xFFFF;
+  s.right = (s.dx >> 8) < 0x80 ? 0xFF : 0;
+  s.falling = (s.dy >> 8) < 0x80 ? 0xFF : 0;
+  s.dy = (s.dy + s.grav) & 0xFFFF;
+  const y = s.y >> 8;
+  if (!(y >= 0xB0 && s.falling)) return '';
+  // the landing window: from the see-saw's x, 21 pixels on (tilt 0) or 6 back (tilt $FF)
+  let off = ((s.x >> 8) - s.saw) & 0xFFFF;
+  off = (s.tilt ? off + 6 : off - 21) & 0xFFFF;
+  if (off >> 8 || (off & 255) >= 24) {
+    s.down = y >= 0xB9 ? 0xFF : 0;
+    return s.down ? 'down' : '';
+  }
+  const lo = off & 255, zone = s.tilt ? (lo / 6 | 0) : (3 - (lo / 6 | 0)) & 255;
+  // the throw across: the zone's word, with random(45) added to the low byte alone
+  const r45 = clownRandom(s, 45);
+  s.dx = T.dxHi[zone] << 8 | ((r45 + T.dxLo[zone]) & 255);
+  // the throw up: the zone's base plus k times 15 + random(11), keeping bit 0 of the product's
+  // high byte, then negated
+  const k = (T.pops[s.level] + (s.level === 0 ? 3 : 0) - s.toGo + s.bounces - s.rnd) & 255;
+  const p = k * ((clownRandom(s, 11) + 15) & 255);
+  const sumLo = (p & 255) + T.dyLo[zone];
+  s.dy = ((((p >> 8) & 1) + T.dyHi[zone] + (sumLo >> 8)) & 255) << 8 | (sumLo & 255);
+  s.dy = (0x10000 - s.dy) & 0xFFFF;
+  for (let i = 1; i <= 2 - s.level; i++) {   // halved twice at level 0, once at level 1
+    const dhi = s.dx >> 8, dlo = s.dx & 255;
+    const nh = (dhi >> 1) | (dhi & 0x80), nl = (dlo >> 1) | ((dhi & 1) << 7);
+    s.dx = nh << 8 | nl;
+    const yhi = s.dy >> 8, ylo = s.dy & 255;
+    s.dy = ((yhi >> 1) | 0x80) << 8 | ((ylo >> 1) | ((yhi & 1) << 7));
+  }
+  if ((s.dy >> 8) < 0xFA) s.dy = 0xFA00 | (s.dy & 255);    // the cap on the speed up
+  // the other clown starts from the see-saw's far end, at y 176, moving away from the end it was on
+  const nx = (s.tilt & 1) * 37 + s.saw;
+  s.x = (nx >> 8 & 1) << 16 | (nx & 255) << 8 | (s.x & 255);
+  if (s.tilt) s.dx = (0x10000 - s.dx) & 0xFFFF;
+  s.y = 0xB0 << 8 | (s.y & 255);
+  s.tilt ^= 0xFF;
+  s.bounces = (s.bounces + 1) & 255;
+  s.grav = T.grav[s.level];
+  return 'launch';
+}
+// end of clownTick
 </script>
 <script>
 /* clowns-collide */
@@ -334,7 +450,13 @@ else C64.load('listing.json').then((D) => {
       tunes: ['Tune 0: a game starts, a bonus jump', 'Tune 1: a row bonus', 'Tune 2: a fall'],
       rows: [{ k: 'Note at', f: (v) => v.at ? hex(v.at) : '-' }],
     });
-  } else missing($('cl-sid'));
+    C64Sid.mount($('cl-sfx'), {
+      driver: createEffects, period: 10001,
+      data: { pitches: Array.from(D.bytes(0xFFA3, 0x30)), sid: Array.from(D.bytes(0xF74C, 22)) },
+      tunes: ['The bounce', 'A pop', 'The falling whistle'],
+      rows: [{ k: 'Voice 2', f: (v) => v.t || '-' }],
+    });
+  } else { missing($('cl-sid')); missing($('cl-sfx')); }
 
   // ---- 03 the frame
   const withRom = Object.assign({}, FRAME, { ultimax: btoa(String.fromCharCode(...D.bytes(0xF000, 0x1000))) });
@@ -379,7 +501,7 @@ else C64.load('listing.json').then((D) => {
   const Z = {   // init_tables ($E444): $0229-$0230 across, $0231-$0238 up, 256ths of a pixel a tick
     dx: [0x0280, 0x0180, 0x01C0, -0x0200], dy: [0x0600, 0x0660, 0x0628, 0x0580] };
   const LV = { g: [3, 11, 27], next: [1, 2, 1], pops: [3, 10, 50] };
-  let zone = 0, lvl = 2;
+  let zone = 1, lvl = 0;
   const pick = (el, n, label, get, set) => { for (let i = 0; i < n; i++) { const b = document.createElement('button'); b.className = 'cl-btn'; b.textContent = label(i); b.onclick = () => { set(i); saw(); }; el.appendChild(b); } };
   pick($('cl-zones'), 4, (i) => String(i), () => zone, (i) => { zone = i; });
   pick($('cl-levels'), 3, (i) => String(i), () => lvl, (i) => { lvl = i; });
@@ -400,7 +522,40 @@ else C64.load('listing.json').then((D) => {
     Array.from($('cl-levels').children).forEach((b, i) => b.setAttribute('aria-pressed', i === lvl));
     const half = 2 - lvl, f = (v) => (v / 256 / Math.pow(2, half)).toFixed(2);
     $('cl-sawout').textContent = 'Zone ' + zone + ' at level ' + lvl + ': ' + f(Z.dx[zone]) + ' across and ' + f(Z.dy[zone]) + ' up, in pixels a tick, before the random part, the growth and the cap';
+    arcs();
   };
+  // 24 throws from the zone: the falling clown lands in it, the see-saw (left end down, at x 120)
+  // throws the other, and the port flies it until it nears the ceiling or comes down
+  const TT = { dxHi: [2, 1, 1, 0xFE], dxLo: [0x80, 0x80, 0xC0, 0], dyHi: [6, 6, 6, 5], dyLo: [0, 0x60, 0x28, 0x80],
+    pops: [3, 10, 50], grav: [3, 11, 27] };
+  function arcs() {
+    const k = +$('cl-k').value, sc = 2, ctx = C64.canvas($('cl-arc'), 320 * sc, 200 * sc);
+    $('cl-kv').textContent = k;
+    ctx.fillStyle = PAL[0]; ctx.fillRect(0, 0, 320 * sc, 200 * sc);
+    ctx.fillStyle = PAL[3]; ctx.fillRect(16 * sc, 8 * sc, 288 * sc, 7 * sc);          // the ceiling, row 1
+    for (const [r, c] of [[3, 6], [5, 5], [7, 7]]) { ctx.fillStyle = PAL[c]; for (let x = 20; x < 300; x += 24) ctx.fillRect(x * sc, (r * 8 + 3) * sc, 6 * sc, 3 * sc); }
+    const saw = 120;
+    C64.drawSprite(ctx, mem.subarray(0xFBC0, 0xFBFF), saw * sc, (176 - 13) * sc, sc, PAL[1]);
+    C64.drawSprite(ctx, mem.subarray(0xFC00, 0xFC3F), (saw + 24) * sc, (176 - 13) * sc, sc, PAL[1]);
+    ctx.fillStyle = 'rgba(237,241,113,.7)';
+    ctx.fillRect((saw + 21 + 6 * (3 - zone)) * sc, 190 * sc, 6 * sc, 3 * sc);
+    for (let n = 0; n < 24; n++) {
+      const pops = TT.pops[lvl] + (lvl === 0 ? 3 : 0);
+      const s = { T: TT, seed: (n * 2654435761 >>> 7) & 0xFFFF, x: (saw + 21 + 6 * (3 - zone) + 3) << 8, y: 0xAF80, dx: 0, dy: 0x0100,
+        level: lvl, toGo: pops - 1, bounces: k, rnd: 1, tilt: 0, saw, down: 0, grav: TT.grav[lvl] };
+      if (clownTick(s) !== 'launch' && clownTick(s) !== 'launch') continue;
+      ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 1; ctx.beginPath();
+      ctx.moveTo((s.x >> 8 & 511) * sc + 8 * sc, (s.y >> 8) * sc);
+      for (let t = 0; t < 600; t++) {
+        const r = clownTick(s), y = s.y >> 8;
+        if (r === 'launch' || y < 16 || s.down) break;
+        ctx.lineTo((s.x >> 8 & 511) * sc + 8 * sc, y * sc);
+        if (s.falling && y >= 176) break;
+      }
+      ctx.stroke();
+    }
+  }
+  $('cl-k').oninput = arcs;
   saw();
 
   // ---- 06 collisions
