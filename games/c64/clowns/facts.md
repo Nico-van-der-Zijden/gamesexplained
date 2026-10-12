@@ -214,7 +214,7 @@ When player 2 runs out first, player 1 plays on alone, as intended.
 | `column_balloon` | `$FE69` | which balloon covers each of 36 columns; its first nine entries are also the probe cells' column offsets |
 | `playfield_layout` | `$FE8D` | nine five-byte records: column, row, count, character, step |
 | `status_line` | `$FEC0` | row 0 in reversed glyphs |
-| text | `$FEE8`-`$FF16` | "BONUS PLAYER" (only "BONUS PLAY" is ever shown), "BONUS JUMP", "100502", "HIGH SCORE", "GAME OVER" |
+| text | `$FEE8`-`$FF16` | "BONUS PLAY" and "PLAYER" sharing their letters as "BONUS PLAYER", "BONUS JUMP", "100502", "HIGH SCORE", "GAME OVER" |
 | `tune_notes`, `tune_lengths`, `tune_start` | `$FF17`, `$FF73`, `$FFA0` | three tunes |
 | `fall_pitches` | `$FFA3` | 24 pitch words; its last three bytes are also `pow10`'s first three |
 | `pow10` | `$FFD0`/`$FFD5` | divisors 4,115, 1, 10, 100, 1,000, 10,000 as overlapping low and high tables |

@@ -17,6 +17,11 @@
     "I/O and colour RAM"
    ],
    [
+    1024,
+    2047,
+    "screen RAM"
+   ],
+   [
     0,
     4095,
     "runtime: the RAM the game uses (zero page, the stack, the globals and software stack at $0200-$03FF, sprite 0's shape at $03C0 and the screen at $0400), all written by the cartridge's own code; nothing of the game is loaded there"
@@ -27,7 +32,13 @@
     "not the game's: no instruction of the cartridge reads or writes $0800-$CFFF except the operands of five BIT instructions used to skip a byte and an unreachable JMP $7000, and $D000-$DFFF is the I/O chips"
    ]
   ],
-  "extra": []
+  "extra": [
+   [
+    63488,
+    65535,
+    "character set"
+   ]
+  ]
  },
  "blocks": [
   {
@@ -4171,7 +4182,7 @@
   },
   {
    "address": 65256,
-   "name": "bonus_player_text",
+   "name": "bonus_play_text",
    "type": "Field",
    "kind": "user"
   },
@@ -5177,7 +5188,7 @@
   {
    "address": 62862,
    "type": "line",
-   "text": "Routine 8: the clown's run along its platform and leap, before the physics takes over. A = flags (bit 7: attract mode; bit 6: this player has a bonus jumper; bit 0: player 2), X = 0 for the left platforms or 1 for the right, Y = the platform's y. In a game, shows \"BONUS PLAY\" (the first ten letters of bonus_player_text) at row 17, column 15, when bit 6 is set, and \"PLAYER 1\" or \"PLAYER 2\" at row 15, column 16. Clears $2E-$4C. The clown runs 13 pixels towards the middle in 13 steps of 10 ticks, from x 17 on the left or 293 on the right, alternating two running frames (7 and 8, or 9 and 10 facing left), while the balloons scroll and the see-saw follows the paddle (in the attract mode, \"GAME OVER\" blinks instead). Then clears the \"PLAYER\" text."
+   "text": "Routine 8: the clown's run along its platform and leap, before the physics takes over. A = flags (bit 7: attract mode; bit 6: this player has a bonus jumper; bit 0: player 2), X = 0 for the left platforms or 1 for the right, Y = the platform's y. In a game, shows \"BONUS PLAY\" (the first ten letters of bonus_play_text) at row 17, column 15, when bit 6 is set, and \"PLAYER 1\" or \"PLAYER 2\" at row 15, column 16. Clears $2E-$4C. The clown runs 13 pixels towards the middle in 13 steps of 10 ticks, from x 17 on the left or 293 on the right, alternating two running frames (7 and 8, or 9 and 10 facing left), while the balloons scroll and the see-saw follows the paddle (in the attract mode, \"GAME OVER\" blinks instead). Then clears the \"PLAYER\" text."
   },
   {
    "address": 63028,
@@ -5367,12 +5378,12 @@
   {
    "address": 65256,
    "type": "line",
-   "text": "\"BONUS PLAYER\" in screen codes. platform_run copies only its first ten, so the screen shows \"BONUS PLAY\"; its last six letters are player_text."
+   "text": "\"BONUS PLAY\" and \"PLAYER\" stored as one text, \"BONUS PLAYER\", in screen codes: platform_run shows its first ten letters as \"BONUS PLAY\" and its last six as \"PLAYER\" (player_text), so the two share four letters and the ROM saves six bytes."
   },
   {
    "address": 65262,
    "type": "line",
-   "text": "\"PLAYER\" in screen codes: the last six letters of bonus_player_text, shown by platform_run before the player's number."
+   "text": "\"PLAYER\" in screen codes: the last six letters of bonus_play_text, shown by platform_run before the player's number."
   },
   {
    "address": 65268,

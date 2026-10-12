@@ -201,14 +201,14 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
   </tbody></table>
 </section>
 
-<section id="quirks">
-  <p class="fig">13 · Quirks</p>
-  <h2 class="t">Small slips on the screen</h2>
-  <p class="lede">Three places where the text on the screen is not what the bytes were meant to say.</p>
+<section id="text">
+  <p class="fig">13 · The text</p>
+  <h2 class="t">Text packed into the ROM</h2>
+  <p class="lede">The game's few words are stored to take as few bytes as the 8 KB cartridge allows.</p>
   <ul>
-    <li><b>"BONUS PLAY".</b> After a bonus jump, the next turn is announced with the first ten letters of "BONUS PLAYER" (<code>$FEE8</code>); the last six letters are shared with "PLAYER" (<code>$FEEE</code>), and the routine that prints them copies ten.</li>
-    <li><b>"BONUS 0500".</b> The row bonuses are printed from two stored digits, "10", "05" and "02" (<code>$FEFE</code>), followed by "00", so the green row's bonus shows with a leading zero.</li>
-    <li><b>A copyright sign for "(".</b> The copyright line is stored as "(1982 BALLY/MIDWAY (1982 COMMODORE"; the game's font draws character 40, the "(", as a ringed C (<code>$F940</code>).</li>
+    <li><b>"BONUS PLAY" and "PLAYER" share their letters.</b> The ROM holds one text, "BONUS PLAYER" (<code>$FEE8</code>). Before a free turn, the routine that announces a jump shows its first ten letters, "BONUS PLAY", and for every jump it shows the last six, "PLAYER" (<code>$FEEE</code>), before the player's number. Stored apart, the two would take six bytes more.</li>
+    <li><b>Every bonus is printed by the same few instructions.</b> The bonuses are stored as two digits each, "10", "05" and "02" (<code>$FEFE</code>), and the routine that shows them adds "00", so all three come out four digits wide at the same place: "BONUS 1000", "BONUS 0500" and "BONUS 0200".</li>
+    <li><b>The copyright sign is the "(" key.</b> The C64's character set has no copyright sign, and the game brings its own font, so it draws one in the place of "(" (character 40, <code>$F940</code>), a character it never needs otherwise. The copyright line is stored as "(1982 BALLY/MIDWAY (1982 COMMODORE".</li>
   </ul>
 </section>
 
