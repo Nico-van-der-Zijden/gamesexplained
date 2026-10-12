@@ -1,0 +1,102 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+
+.rd-shot{display:block;width:100%;max-width:768px;height:auto;image-rendering:pixelated;margin:0 auto;border-radius:4px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+table.t{border-collapse:collapse;width:100%;font-size:15px}
+table.t td,table.t th{border-bottom:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
+table.t th{font-weight:700;color:var(--ink-soft)}
+</style>
+
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">Commodore 64 · 1989 · Firebird</p>
+  <h1>Rick Dangerous</h1>
+  <p class="sub">Core Design's platform game of traps, sticks and dynamite. Its Hall of Fame keeps a cheat behind the name BBOOIINNGG, refuses eleven rude words, and at power-on can slip NOBBY or JEZEBEL into the table by itself.</p>
+</header>
+<main class="wrap">
+<section>
+  <p class="fig">01 · In play</p>
+  <h2 class="t">Six of everything</h2>
+  <p>Rick starts each level with six bullets and six sticks of dynamite, and the game with six lives. The panel above the cave draws them as rows of bullets, red sticks and hats, beside a six-digit score. The bullets and the dynamite go back to six after every life lost, as well as at the start of each level. The lives do not.</p>
+  <div class="plate"><img class="rd-shot" src="reference/level1-start.png" alt="Rick at the left of a grey stone cave crossed by blue water, below a panel with the score, six bullets, six sticks of dynamite, and six hats"><p class="cap">The first room, a moment after the start. The counters are at <code>$2D32</code> (bullets), <code>$2D33</code> (dynamite), and <code>$2D34</code> (lives).</p></div>
+</section>
+<section>
+  <p class="fig">02 · Secret</p>
+  <h2 class="t">Secret: the name BBOOIINNGG turns on a cheat</h2>
+  <p>A score good enough for the Hall of Fame lets the player spell a name of up to ten letters with the joystick, pressing fire for each. The routine at <code>$2146</code> then compares the name, letter by letter, with two words kept at <code>$21B8</code>: FLUFOMATIC and BBOOIINNGG. BBOOIINNGG sets a flag at <code>$53</code>, and from then on the main loop listens for two keys.</p>
+  <table class="t"><tr><th>Key</th><th>With the flag set</th></tr>
+  <tr><td>2</td><td>bullets, dynamite, and lives back to six</td></tr>
+  <tr><td>C=</td><td>straight to the next level's story screen</td></tr></table>
+  <p>Both keys sit on keyboard row 7, the only row the game ever selects, and the same lines carry the joystick in port 1. With the flag set, pushing a stick in port 1 to the right refills the counters as well. FLUFOMATIC sets a second flag, at <code>$37</code>, whose effect has not been found.</p>
+</section>
+<section>
+  <p class="fig">03 · The Hall of Fame</p>
+  <h2 class="t">Eleven words the Hall of Fame refuses</h2>
+  <p>As soon as a name is finished, and before the cheat words are compared, the routine at <code>$2103</code> looks through it for any of eleven four-letter words stored at <code>$2181</code>. They run from the obvious ones to BOLL, ARSE, and BROS. A name that contains one goes into the table as SNIGGER.</p>
+  <div class="plate"><img class="rd-shot" src="reference/hall-of-fame.png" alt="HALL OF FAME in orange capitals above eight names with scores from 8000 down to 1000"><p class="cap">The Hall of Fame the game starts on. The names are stored column by column at <code>$2318</code>: the first letters of all eight names, then the second letters, and so on.</p></div>
+</section>
+<section>
+  <p class="fig">04 · Secret</p>
+  <h2 class="t">Secret: the Hall of Fame can change at power-on</h2>
+  <p>Once, as the game starts, the routine at <code>$226A</code> reads the raster line the video chip is drawing and uses it as a random number. When the line's top bit is set, the routine copies NOBBY or JEZEBEL, both kept at <code>$2368</code>, over one of the names in the table. Which name goes, and which replaces it, depends on where the beam was at that instant, so two boots of the same tape can open on different Halls of Fame.</p>
+</section>
+<section>
+  <p class="fig">05 · Controls</p>
+  <h2 class="t">The quit key is ←</h2>
+  <p>The manual says the up-arrow key quits to the start. In the game, ↑ does nothing during play. The key the main loop tests, at <code>$0A95</code>, is ←, the arrow at the top left of the keyboard: pressing it ends the game with GAME OVER.</p>
+</section>
+<section>
+  <p class="fig">06 · The story</p>
+  <h2 class="t">The ending is in memory from the first room</h2>
+  <p>The tape loads once. The text for all five story screens, one before each level and one for the ending, sits together at <code>$AD00</code> while the first level is played.</p>
+  <div class="plate pair"><img class="rd-shot" src="reference/title.png" alt="Title screen: RICK DANGEROUS in orange above Rick in a film-strip frame, with the Firebird and Core Design logos below"><img class="rd-shot" src="reference/story-south-america.png" alt="SOUTH AMERICA 1945: a picture of the jungle in a film-strip frame above the story of Rick's crash landing among the Goolus"><p class="cap" style="grid-column:1/-1">The title screen, and the story screen before level one.</p></div>
+  <table class="t"><tr><th>Heading</th><th>The story</th></tr>
+  <tr><td>South America 1945</td><td>Rick crash-lands over the Amazon, among the Goolu tribe</td></tr>
+  <tr><td>Egypt, sometime later</td><td>he is to recover the Jewel of Ankhel from fanatics in the pyramids</td></tr>
+  <tr><td>Europe, later that week</td><td>he is to rescue Allied prisoners from Schwarzendumpf Castle</td></tr>
+  <tr><td>Europe, even later</td><td>he infiltrates the secret missile base that is to attack London</td></tr>
+  <tr><td>London, much, much later</td><td>he comes home, while the starships of the Barfian Empire are poised to invade the Earth</td></tr></table>
+</section>
+<section>
+  <p class="fig">07 · Scope</p>
+  <h2 class="t">What has been read</h2>
+  <p>The Source tab shows the program as it stands in the first room of level one. Its start-up, the main loop, the Hall of Fame's routines, and the raster interrupt are described there. The rooms, the traps, the enemies, and the music are not described.</p>
+</section>
+</main>
+
+<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>

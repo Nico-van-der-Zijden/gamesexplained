@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "platform": "c64",
+  "slug": "rick-dangerous",
+  "title": "Rick Dangerous",
+  "year": 1989,
+  "publisher": "Firebird",
+  "developer": "Core Design",
+  "title_image": "reference/title.png",
+  "build": "PAL cassette, Firebird 1989, analysed in play on level one",
+  "tier": "bronze",
+  "coverage_percent": 10.5,
+  "copy": "agent-draft",
+  "steward": "",
+  "credits": [
+    {
+      "by": "Stuart Gregg",
+      "role": "programming"
+    },
+    {
+      "by": "Dave Pridmore",
+      "role": "music"
+    },
+    {
+      "by": "Simon Phipps",
+      "role": "design"
+    }
+  ],
+  "tools": {
+    "host": "Linux 6.18 x86_64 (WSL2) on Windows 11, Ubuntu 26.04.1, Intel Core i7-3770, eight threads, display through WSLg",
+    "emulator": "own build of github.com/barryw/vice-mcp, release v3.13.2, commit 1e83aab134, built with tools.py get-vice build; driven through kit/c64/vice.py; check-emulator 57 of 57",
+    "disassembler": "regenerator2000 0.9.20",
+    "publication": "Python 3; symbols_export.py and listing.py"
+  },
+  "model": "claude-opus-5-5",
+  "step_models": {
+    "10-orient": ["claude-opus-5-5"],
+    "20-features": ["claude-opus-5-5"],
+    "40-sweep": ["claude-opus-5-5"]
+  },
+  "kit_version": "0.0.155",
+  "created": "2026-10-12",
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": [],
+  "links": {
+    "wiki": {
+      "title": "Rick Dangerous – C64-Wiki",
+      "url": "https://www.c64-wiki.com/wiki/Rick_Dangerous"
+    },
+    "manual": {
+      "title": "Rick Dangerous manual (scan)",
+      "url": "https://api.regvault.org/api/v1/game/c64/e0cb9e399fed0aecee772be39481c5ea/manual"
+    }
+  }
+}
