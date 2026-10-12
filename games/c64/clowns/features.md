@@ -13,13 +13,12 @@ Sources:
   Electronics Ltd.), scan at https://www.mocagh.org/forsale/clowns-manual.pdf,
   read from its OCR text layer on 11 October 2026. Cited as "manual".
 - C64-Wiki, "Clowns", https://www.c64-wiki.com/wiki/Clowns, read
-  11 October 2026. Cited as "wiki". Its screenshots, two animations and
-  the box cover are saved in `reference/c64wiki-*`.
+  11 October 2026. Cited as "wiki".
 - Wikipedia, "Clowns (video game)",
   https://en.wikipedia.org/wiki/Clowns_(video_game), read 11 October 2026:
   the arcade original (Midway, 1978); nothing specific to the C64 cartridge.
 - The game's own screens, in VICE, 11 October 2026 (`reference/title.png`,
-  `title-players.png`, `player1-start.png`, `play.png`).
+  `reference/player1-start.png`).
 
 Release year: the title screen says ©1982 (Bally/Midway and Commodore);
 the manual's copyright is 1983; the wiki gives 1982.
@@ -44,7 +43,7 @@ the manual's copyright is 1983; the wiki gives 1982.
 | Player 1 and player 2 scores in the top line (screens) | live | `show_status_number`; one jump count, the current player's |
 | Sounds: bounce and balloon pop; short tunes when a row is cleared, when a game starts and on a fall; no background music (wiki) | confirmed | `sound_bounce`, `sound_pop`, `sound_fall`, `play_tune` tunes 0-2; silent in the attract mode |
 | The clown "bounces his partner to the top of the center ring" (manual) | differs | no ring: every character (0-119) and sprite shape in the ROM is accounted for (`font`, `balloon_glyphs`, `seesaw_sprites`, `clown_shapes`) and none draws one; the playfield is walls, a ceiling, four platforms and the balloons (`playfield_layout`) |
-| An attract mode: the clowns play on their own on the title screen (screens) | live | `attract_loop`: the program steers the see-saw towards the clown |
+| An attract mode: the clowns play on their own on the title screen (screens) | live | `attract_loop`: the program steers the see-saw towards the clown; `reference/title.png` |
 
 ## Beyond the documentation
 

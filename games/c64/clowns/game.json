@@ -6,13 +6,22 @@
   "year": 1982,
   "publisher": "Commodore",
   "developer": "",
-  "title_image": "",
+  "title_image": "reference/title.png",
   "build": "8 KB Ultimax cartridge (CRT name \"Clowns\", hardware type 0, EXROM 1, GAME 0, ROM at $E000-$FFFF); ROM SHA-1 ffebfc19263dc50d3a808135dbe88567617af6b8",
   "tier": "none",
   "coverage_percent": null,
   "copy": "agent-draft",
   "steward": "",
-  "credits": [],
+  "credits": [
+    {
+      "by": "Bally/Midway",
+      "role": "the arcade original (©1982 Bally/Midway on the title screen)"
+    },
+    {
+      "by": "Commodore",
+      "role": "publisher (©1982 Commodore on the title screen)"
+    }
+  ],
   "tools": {
     "emulator": "own build of github.com/barryw/vice-mcp, release v3.13.2, commit 1e83aab134 (VICE x64sc, PAL)",
     "disassembler": "regenerator2000 0.9.20",
@@ -32,8 +41,8 @@
   "kit_version": "0.0.154",
   "created": "2026-10-11",
   "video": {
-    "screen": "",
-    "charset": ""
+    "screen": "$0400",
+    "charset": "$F800"
   },
   "coverage": {
     "exclude": [
@@ -55,12 +64,12 @@
   "regions": [],
   "links": {
     "wiki": {
-      "title": "",
-      "url": ""
+      "title": "Clowns",
+      "url": "https://www.c64-wiki.com/wiki/Clowns"
     },
     "manual": {
-      "title": "",
-      "url": ""
+      "title": "Clowns instruction leaflet (Commodore, 1983)",
+      "url": "https://www.mocagh.org/forsale/clowns-manual.pdf"
     }
   }
 }
