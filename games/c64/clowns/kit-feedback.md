@@ -7,34 +7,37 @@ time, operating system and tool versions.
 
 ## Skill text that changed what I did
 
-<up to five lines, the one that mattered most first, each written as
-- `<skill folder>`: "<words copied exactly from the passage>": what you did, or did not do, because of it
-or the one line "None." (80-retro, step 1). check_docs.py fails while this placeholder is here.>
+- `60-verify`: "Draw a random sample of about 60": the checker found 9 of 60 comments wrong, among them a speed table read as 1, 1, 2 where it is 1, 2, 1, which `facts.md` had repeated.
+- `30-text`: "First rule out an offset": the search on letter differences found every string in plain PETSCII after the calls that print them, where the screen-code sweep had found none.
+- `50-coverage`: "Inline parameters: the reason a flow disassembler stalls": the five bad opcodes the first trace stopped at were the strings after `JSR $E0F5`, and skipping them let the trace through.
+- `tool-regen2000`: "Where the game banks the KERNAL out and keeps its own code or data at one of those addresses, that name is wrong": the export named two bytes of the score printer's table `KERNAL_CHROUT` and `KERNAL_LOAD`, and they got names of their own.
+- `50-coverage`: "Know how far a description reaches": the last 27 bytes of the tune table were outside the count behind an unnamed symbol's 64-byte reach, and naming it brought them in.
 
 ## What was changed in the kit
 
-<one line per change: the file and what it now says. For a change that
-carries a lesson, name its file in `kit/lessons/` and stop there: the
-lesson is told once, in that file. Any other change (a script, a path,
-the site) says why here. Text added to a core skill also names the other
-game folder where it would have mattered, as games/<platform>/<slug>
-(80-retro, step 3).>
+- `kit/c64/frame.py`: `Machine.vic()` reads the video chip through the `io` bank when `vice_vicii_get_state` disagrees with it about the raster line, and `capture` records an Ultimax cartridge's top 4 KB as the frame's `ultimax`. Why: with the cartridge attached the state call returned the RAM's power-on pattern and line 256, and every capture failed with "the samples disagree about the beam's position".
+- `site/lib/c64.js`: `renderFrame` reads `$3000`-`$3FFF` of the video chip's bank from `F.ultimax` when the frame has one. Why: the game's font and see-saw sprites are fetched from the cartridge; with this, the drawing matched the emulator's picture in all 104,448 pixels.
+- `kit/c64/test_frame_ultimax.py`: tests both, with no emulator: the raster fallback on a fake machine, and a glyph that only `F.ultimax` holds.
+- `kit/skills/c64/c64-reference`: a section "Ultimax cartridges" with what was measured: the processor's and the video chip's view, the listing from the `.crt`, the state call's answer and the code map. Lesson: `kit/lessons/2026-10-12-clowns.md`.
+- `kit/INSTALL.md`, "Browser checks": Windows' own Edge, run headless from Windows against the site served from WSL, as a page check that installs nothing. Why: WSL had no browser, and this was how this run saw its page.
+- `kit/lessons/2026-10-12-clowns.md`: this run's entry.
 
 ## Candidates
 
-<a silent failure no other game could be named for (80-retro, step 3),
-one paragraph each: what went wrong unnoticed, how it was caught, and
-what the skill would say. The next run that meets it makes the edit.
-"None." if there were none.>
+- **A mechanic tested by poking its state can miss the path that fires it.** Emptying a balloon row by writing its flags gave no bonus and looked like a broken claim; the bonus is checked only inside the routine that runs after a balloon is popped, and the row was refilled silently. Placing the clown on the last balloon made the game pop it, and the bonus came. `60-verify`'s "Prove reachability with inputs, not pokes" is about the other direction (a poke proving too much); this is a poke proving too little. The next run that meets it in another game could add the case there.
 
 ## Maintainer asks
 
-<one bullet per ask. Filed: "- #123: the ask in one line". Not filed (no
-yes, or no way to reach the repository): "- **The ask, in one line.** The
-problem, what it cost, what to change and where", which the repository
-files when the pull request merges. Prose around the bullets is free;
-check_docs.py checks the bullets.>
+The contributor opens the pull request, so these are written in full for the repository to file when it merges.
+
+- **Give the emulator tools a paddle input.** vice-mcp v3.13.2 has no tool for the paddles, so a paddle game cannot be steered: this run stopped the game after it read `$D419` and set the value in A, at about ten ticks a second, and wrote an autopilot on top of that to record a code map. A `vice_paddle_set` tool upstream (barryw/vice-mcp), or a helper in `kit/c64/vice.py` that does what this run did, would make it routine; `tool-vice-mcp` would then document it beside the joystick.
+- **Report `vice_vicii_get_state` returning RAM with an Ultimax cartridge attached.** With an 8 KB Ultimax cartridge in VICE x64sc 3.13.2 (vice-mcp own build, commit 1e83aab134), the call gave `FF FF 00 00 ...` for every register and raster line 256 throughout, while `vice_memory_read` of `$D000` in the `io` bank was right. `frame.py` now works round it; other callers of the state (`frame.py dma`, `test`) would still be misled. An issue upstream at barryw/vice-mcp, with the run's case, is the fix.
+- **Let a game branch pass `check_docs.py` before the retrospective.** Every commit of this run before step 80 failed `check_docs.py` on `kit-feedback.md`'s template placeholder alone, so "run the three checks before every commit" printed FAILED at every step, and a real failure would have been easy to miss among them. A placeholder could be allowed until the game's `tier` is set, or the template could start with "None." lines the retrospective replaces.
 
 ## What cost the most time
 
-<one sentence: the single change to the kit that would have saved the most time>
+A section in `c64-reference` on Ultimax cartridges would have saved the most: the frame recorder's failure and its cause, the video chip reading the ROM, and where the listing comes from all had to be found from nothing.
+
+## Operating system and tools
+
+Windows 11 Pro with WSL2, Ubuntu 26.04.1; the emulator is a source build of vice-mcp v3.13.2 (commit 1e83aab134), which passed all 57 checks on 11 October 2026; regenerator2000 0.9.20; node 24.21.0 and Python 3.14.4 in WSL. `wsl.exe` re-parses its command line, so `$` and parentheses in an inline command reached bash mangled; scripts in a file, run with `bash <file>`, were reliable.
