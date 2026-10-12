@@ -34,6 +34,9 @@ h2.t{font-size:var(--h2);margin-bottom:12px}
 .cap b{color:var(--ink);font-weight:700}
 code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
 .cl-pics{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cl-box{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:start}
+.cl-box img{width:100%;border-radius:4px;display:block}
+.cl-box th{width:30%}
 .cl-pics img{width:100%;image-rendering:pixelated;border-radius:4px;display:block}
 .cl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;font-size:15px}
 .cl-row label{font-family:var(--fm);font-size:13px;color:var(--ink-soft)}
@@ -46,7 +49,7 @@ table.cl-t th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-tra
 table.cl-t td.n{font-family:var(--fm);font-size:14px}
 .cl-out{font-family:var(--fm);font-size:14px;color:var(--ink-soft);min-height:1.4em}
 .cl-miss{font-size:14px;color:var(--coral)}
-@media (max-width:700px){:root{--gx:16px;--h1:36px}.cl-pics{grid-template-columns:1fr}}
+@media (max-width:700px){:root{--gx:16px;--h1:36px}.cl-pics,.cl-box{grid-template-columns:1fr}}
 </style>
 <!-- tabs -->
 <header class="hero">
@@ -67,8 +70,28 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
   <p>The cartridge needs paddles in control port 1; the joystick does nothing. F1 starts a game, and F3 at the menu makes it two players.</p>
 </section>
 
+<section id="cartridge">
+  <p class="fig">02 · The cartridge</p>
+  <h2 class="t">Written for the MAX Machine, a C64 with 2 KB of RAM and no operating system</h2>
+  <p class="lede">Clowns was a cartridge for Commodore's MAX Machine, sold in Japan in 1982, and the same 8 KB plug into a C64 and run there unchanged.</p>
+  <div class="plate"><div class="cl-box"><img src="reference/box-front.png" alt="The front of the Commodore 64 box: CLOWNS, a special home version of the Bally Midway arcade game, with a painting of clowns, a see-saw and balloons">
+  <table class="cl-t"><tbody>
+    <tr><th>Publisher</th><td>Commodore</td></tr>
+    <tr><th>Arcade original</th><td>Midway, 1978 (the title screen says &copy;1982 Bally/Midway)</td></tr>
+    <tr><th>MAX Machine</th><td>cartridge 3509, ROM chip 325356-01, 8 KB, Japan, 1982</td></tr>
+    <tr><th>Commodore 64</th><td>cartridge C-64606, USA and Canada; the box says &copy;1981, the title screen &copy;1982, the manual &copy;1983</td></tr>
+    <tr><th>VIC-20</th><td>a cartridge of its own, 1982</td></tr>
+    <tr><th>Programming, graphics, sound</th><td>not known: no names on the screen, the box, the manual or in the ROM, and the catalogues (C64-Wiki, GameBase64, the Centre for Computing History) name only Commodore. Wikipedia's list of MAX Machine software files it under Commodore Japan.</td></tr>
+  </tbody></table></div>
+  <p class="cap"><b>The front of the Commodore 64 box</b> (scan from <a href="https://elisoftware.org/wiki/Clowns_(C64,_Cartridge)_Commodore_International_-_1981_USA,_Canada_Release">Eli's Software Encyclopedia</a>, read 12 October 2026), "A special home version of the Bally Midway arcade game". Part numbers from the <a href="https://www.c64-wiki.com/wiki/Commodore_MAX_Machine">C64-Wiki's MAX Machine page</a> and Eli's; years from those, <a href="https://en.wikipedia.org/wiki/Clowns_(video_game)">Wikipedia</a> and the game itself. Whether this ROM image was read from a Japanese MAX cartridge or an American C64 one is not known; its text is in English.</p></div>
+  <p>The MAX Machine, presented in Tokyo as the VICKIE and planned as the Ultimax in America and the VC-10 in Germany, went on sale in Japan in November 1982 for &yen;34,800 and was soon withdrawn. Inside it are the C64's processor, a version of its video chip and its SID, with 2 KB of RAM and no ROM of its own: no BASIC and no operating system. Switched on with no cartridge, it shows a blank screen. Everything a game needs, from the start-up code to the font, is on the cartridge, and the machine runs it from there (<a href="https://en.wikipedia.org/wiki/Commodore_MAX_Machine">Wikipedia</a>, <a href="https://www.c64-wiki.com/wiki/Commodore_MAX_Machine">C64-Wiki</a>, read 12 October 2026).</p>
+  <p>A C64 runs those cartridges too. A cartridge that holds one line of the expansion port low and leaves the other high switches a C64 into the same arrangement, the Ultimax configuration: its own BASIC and operating system disappear, the cartridge sits where the operating system was, and the video chip sees the cartridge's top 4 KB. That is why this C64 cartridge looks the way it does, with no loader, its own reset vector, and a font read straight from the ROM (section 05).</p>
+  <p>Clowns keeps to the MAX's 2 KB. Run on the kit's model of a C64 for 30,000 frames from power-on, through the title's demonstration, the menu and a game, it never read or wrote a byte of RAM above <code>$07FF</code>: its variables, the stack of the compiled program, the flying clown's sprite and the screen all fit in <code>$0000</code>-<code>$07FF</code>.</p>
+  <p>The C-64 instruction leaflet (<a href="https://www.mocagh.org/forsale/clowns-manual.pdf">scan</a>) is one page of rules: switch the computer off before plugging the cartridge in, plug a paddle into port 1, press F1 for one player or F3 for two, and use the see-saw "to bounce his partner to the top of the center ring", a ring this version does not have. It lists the points: 20, 50 and 100 for yellow, green and dark blue balloons, 10 for each bounce, bonuses of 200, 500 and 1,000 for clearing a row, and "1 Bonus Jumper" for the dark blue row.</p>
+</section>
+
 <section id="music">
-  <p class="fig">02 · The tunes</p>
+  <p class="fig">03 · The tunes</p>
   <h2 class="t">Music: three tunes on one voice</h2>
   <p class="lede">The game has three short tunes and no music during play. Each stops the game until it ends.</p>
   <div class="plate"><div id="cl-sid"></div>
@@ -79,7 +102,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="sound">
-  <p class="fig">03 · The sound effects</p>
+  <p class="fig">04 · The sound effects</p>
   <h2 class="t">Sound: a falling bounce, a pop of noise and a whistle</h2>
   <p class="lede">Three effects, on the two voices the tunes leave free, each moved on once a tick by one routine.</p>
   <div class="plate"><div id="cl-sfx"></div>
@@ -89,7 +112,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="frame">
-  <p class="fig">04 · One frame, rebuilt from memory</p>
+  <p class="fig">05 · One frame, rebuilt from memory</p>
   <h2 class="t">The screen's letters and the see-saw are drawn straight from the cartridge</h2>
   <p class="lede">On a C64 the video chip draws every letter and sprite from shapes in memory. Clowns lets it read most of those shapes from the cartridge itself.</p>
   <div class="plate"><div class="cl-row"><button class="cl-btn" id="cl-f1" aria-pressed="true">With the cartridge</button><button class="cl-btn" id="cl-f0" aria-pressed="false">RAM only</button></div>
@@ -101,7 +124,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="twoplayer">
-  <p class="fig">05 · Two players</p>
+  <p class="fig">06 · Two players</p>
   <h2 class="t">Bug: player 1 comes back with 255 jumps</h2>
   <p class="lede">In a two-player game where player 1 runs out of jumps first, player 1 keeps getting turns, and the first fall takes the jump counter from 0 to 255.</p>
   <div class="plate"><div class="cl-row"><button class="cl-btn" id="cl-bp">Previous fall</button><button class="cl-btn" id="cl-bn">Next fall</button><span class="cl-out" id="cl-bs"></span></div>
@@ -113,7 +136,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="seesaw">
-  <p class="fig">06 · The see-saw</p>
+  <p class="fig">07 · The see-saw</p>
   <h2 class="t">Where the clown lands decides how the other one flies</h2>
   <p class="lede">Only the 24 pixels at the raised end catch a clown, in four zones of six pixels, and each zone throws differently.</p>
   <div class="plate"><div class="cl-row"><label>Zone</label><span id="cl-zones"></span><label>Speed level</label><span id="cl-levels"></span></div>
@@ -131,7 +154,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="collide">
-  <p class="fig">07 · Collisions</p>
+  <p class="fig">08 · Collisions</p>
   <h2 class="t">Every collision is tested pixel by pixel against the font</h2>
   <p class="lede">The walls, the ceiling, the platforms and the balloons are all characters. The game works out which of them the clown's pixels touch, without the video chip's collision registers.</p>
   <div class="plate"><div class="cl-row"><label>x <input type="range" id="cl-cx" min="0" max="72" value="22"></label><label>y <input type="range" id="cl-cy" min="0" max="44" value="8"></label><label>Frame <select id="cl-cf"></select></label></div>
@@ -144,7 +167,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="balloons">
-  <p class="fig">08 · The balloons</p>
+  <p class="fig">09 · The balloons</p>
   <h2 class="t">The balloons scroll a pixel at a time by swapping between eight drawings of each balloon</h2>
   <p class="lede">The screen is a grid of 8 by 8 pixel cells, so writing a balloon one cell further along would move it eight pixels at a jump. The game moves it one pixel at a time without moving anything on the screen.</p>
   <div class="plate"><div class="cl-row"><label>Position, in pixels <input type="range" id="cl-bpos" min="0" max="23" value="0"></label><span class="cl-out" id="cl-bposo"></span></div>
@@ -160,7 +183,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="score">
-  <p class="fig">09 · The score</p>
+  <p class="fig">10 · The score</p>
   <h2 class="t">The score is kept in tens, and the last 0 is a sixth digit that can never be anything else</h2>
   <p class="lede">The status line shows six digits, but the variable behind them counts tens of points.</p>
   <div class="plate"><div class="cl-row"><label>Score variable <input type="number" id="cl-sv" min="0" max="65535" value="77"></label></div>
@@ -172,7 +195,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="paddle">
-  <p class="fig">10 · Controls</p>
+  <p class="fig">11 · Controls</p>
   <h2 class="t">The see-saw trails the paddle by a quarter each tick</h2>
   <p class="lede">The see-saw does not jump to where the paddle points. Each tick it moves a quarter of the way there.</p>
   <div class="plate"><div class="cl-row"><label>Paddle reading <input type="range" id="cl-pr" min="0" max="255" value="40"></label><span class="cl-out" id="cl-pout"></span></div>
@@ -182,7 +205,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="build">
-  <p class="fig">11 · How the program is built</p>
+  <p class="fig">12 · How the program is built</p>
   <h2 class="t">Half the cartridge is compiled code that calls machine code by number</h2>
   <p class="lede">The game's rules are a program compiled from a high-level language. The drawing, the input and the sound are 25 routines of hand-written machine code.</p>
   <div class="plate"><table class="cl-t"><thead><tr><th>Number</th><th>Routine</th><th>What it does</th></tr></thead><tbody id="cl-mlt"></tbody></table>
@@ -193,7 +216,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="timing">
-  <p class="fig">12 · Timing</p>
+  <p class="fig">13 · Timing</p>
   <h2 class="t">No interrupts: a CIA timer is the game's clock</h2>
   <p class="lede">The game never enables interrupts and never waits for the video frame.</p>
   <p>The interrupt vectors point at a lone return instruction (<code>$F765</code>), and nothing reads the raster register. Instead, the clock routine (<code>$F711</code>) waits for CIA 1's timer A, loaded with 10,000 cycles and set to run once, to run out, then starts it again. Every loop of the game calls it once a pass. Measured in VICE, play ran 1.90 ticks a frame on a PAL machine, about 95 a second; 10,000 cycles alone would give 98.5. The timer counts the processor's clock, so an NTSC machine runs the game about 4 % faster.</p>
@@ -208,7 +231,7 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
 </section>
 
 <section id="text">
-  <p class="fig">13 · The text</p>
+  <p class="fig">14 · The text</p>
   <h2 class="t">Text packed into the ROM</h2>
   <p class="lede">The game's few words are stored to take as few bytes as the 8 KB cartridge allows.</p>
   <ul>

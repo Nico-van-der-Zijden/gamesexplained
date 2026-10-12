@@ -41,6 +41,12 @@ Two places look patched after compilation: `read_paddle_seesaw` calls
 instruction after the copyright string is a one-byte `TAY` (`$ED4A`) where
 every other call is set up with `LDY #`. Neither changes what the game does.
 
+Run on the kit's C64 (`kit/c64/machine.js`) for 30,000 frames from power-on, through the
+title's demonstration, the menu and a game, once with `$0800`-`$DFFF` filled with `$00` and once
+with `$FF`: neither fill changed, and `$0000`-`$07FF` ended the same in both. The game uses no RAM
+above `$07FF`, the 2 KB the MAX Machine has (C64-Wiki, "Commodore MAX Machine", read 12 October
+2026).
+
 ## Memory layout
 
 | Thing | Where |
