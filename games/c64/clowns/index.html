@@ -35,6 +35,8 @@ h2.t{font-size:var(--h2);margin-bottom:12px}
 code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
 .cl-pics{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .cl-box{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:start}
+.cl-code{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cl-code pre{color:var(--ink);font-family:var(--fm);font-size:13.5px;line-height:1.5;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:6px;padding:12px 14px;margin:0;overflow-x:auto}
 .cl-box img{width:100%;border-radius:4px;display:block}
 .cl-box th{width:30%}
 .cl-pics img{width:100%;image-rendering:pixelated;border-radius:4px;display:block}
@@ -49,7 +51,7 @@ table.cl-t th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-tra
 table.cl-t td.n{font-family:var(--fm);font-size:14px}
 .cl-out{font-family:var(--fm);font-size:14px;color:var(--ink-soft);min-height:1.4em}
 .cl-miss{font-size:14px;color:var(--coral)}
-@media (max-width:700px){:root{--gx:16px;--h1:36px}.cl-pics,.cl-box{grid-template-columns:1fr}}
+@media (max-width:700px){:root{--gx:16px;--h1:36px}.cl-pics,.cl-box,.cl-code{grid-template-columns:1fr}}
 </style>
 <!-- tabs -->
 <header class="hero">
@@ -208,11 +210,28 @@ table.cl-t td.n{font-family:var(--fm);font-size:14px}
   <p class="fig">12 · How the program is built</p>
   <h2 class="t">Half the cartridge is compiled code that calls machine code by number</h2>
   <p class="lede">The game's rules are a program compiled from a high-level language. The drawing, the input and the sound are 25 routines of hand-written machine code.</p>
+  <p>Every byte on the cartridge is machine code: the C64's processor runs nothing else. What differs is how the programmers made it. The library of routines at <code>$F000</code>-<code>$F7FF</code>, which draws, tests collisions, scrolls and plays sound, was written in assembly, one processor instruction at a time by hand, and it shows: short, fast, and full of tricks such as an instruction hidden inside another's operand so that two routines can share their code (<code>$F1A6</code>). The game's rules at <code>$E000</code>-<code>$EFFF</code>, the title, the menu, the physics and the scoring, were written in a language closer to English, with lines like "while either player has jumps left", and a compiler turned them into machine code. A compiler of that time builds everything from the same few templates, and the templates show.</p>
+  <div class="plate"><div class="cl-code">
+  <div><p class="fig">What the compiler made, <code>$E386</code></p><pre>LDA $0221   ; player 1's jumps
+ORA $0222   ; or player 2's
+CMP #$00    ; is the sum 0?
+BEQ +4
+LDA #$00    ; no: "false"
+BEQ +2
+LDA #$FF    ; yes: "true"
+BEQ $E37C   ; false: another jump</pre></div>
+  <div><p class="fig">What a programmer would write</p><pre>LDA $0221   ; player 1's jumps
+ORA $0222   ; or player 2's
+BNE $E37C   ; any left: another jump</pre></div>
+  </div>
+  <p class="cap"><b>The main loop's test "does either player have jumps left?"</b>, as the cartridge holds it and as it would be written by hand. The compiler first turns the comparison into a value, <code>$00</code> for false or <code>$FF</code> for true, and then tests that value; every comparison in the compiled half is built the same way.</p></div>
+  <p>The other marks of the compiler: every procedure starts and ends with the same pair of calls, which keep a stack of their own for its arguments (<code>$E00C</code>, <code>$E020</code>); text is printed from bytes placed right after a call; and a standard library is linked in whole, routines the game never uses among it, such as 16-bit multiply and divide and an error message, "ERR DIV0".</p>
+
   <div class="plate"><table class="cl-t"><thead><tr><th>Number</th><th>Routine</th><th>What it does</th></tr></thead><tbody id="cl-mlt"></tbody></table>
   <p class="cap"><b>The routine table at <code>$F000</code></b>, read from the Source tab's bytes, with each routine's name from the listing. The compiled program never asks for numbers 3, 11 and 12.</p></div>
-  <p>The compiled half, <code>$E000</code>-<code>$EFFF</code>, has the marks of a compiler. Every procedure begins with a call that opens a frame on a stack of its own (<code>$E00C</code>) and ends with a jump that closes it (<code>$E020</code>); arguments are written just past the caller's frame. The main program's frame, <code>$0200</code>-<code>$0243</code>, holds every global variable. Truth values are <code>$00</code> and <code>$FF</code>, built with the same few instructions every time, and text is printed by a call with the string right after it.</p>
+  <p>In detail: every procedure begins with a call that opens a frame on the compiled program's own stack (<code>$E00C</code>) and ends with a jump that closes it (<code>$E020</code>); arguments are written just past the caller's frame, and the main program's frame, <code>$0200</code>-<code>$0243</code>, holds every global variable.</p>
   <p>To reach the machine code, the compiled program calls one procedure (<code>$EB01</code>) with a number and three values. The procedure looks the number up in the table above and calls the routine with the values in the processor's three registers; results come back in zero page, where a function reads them. Which language and compiler produced the code is not known.</p>
-  <p>The compiler brought its library along, some of it unused here: a 16-bit multiply and divide, a routine to print a byte in decimal, and a division-by-zero error that prints "ERR DIV0" and jumps to <code>$7000</code>, where the cartridge has nothing. The printing library also has an output device that jumps to <code>$FFD2</code>, the KERNAL's routine for printing a character. On this cartridge that address is a byte of the score printer's table. The game only ever prints to the screen through its own routine.</p>
+  <p>The unused part of the library also holds a routine to print a byte in decimal, and the division-by-zero error jumps to <code>$7000</code>, where the cartridge has nothing. The printing library also has an output device that jumps to <code>$FFD2</code>, the KERNAL's routine for printing a character. On this cartridge that address is a byte of the score printer's table. The game only ever prints to the screen through its own routine.</p>
 </section>
 
 <section id="timing">
