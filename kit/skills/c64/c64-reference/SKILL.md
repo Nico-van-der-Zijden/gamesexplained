@@ -312,39 +312,6 @@ through `$8000` before doing them, and the loader runs under a KERNAL that
 has already booted. Annotate the cartridge entry as well as the loader's;
 the difference between them says what the machine state is on arrival.
 
-## Ultimax cartridges
-
-A `.crt` whose header holds GAME low and EXROM high (byte `$19` = 0,
-byte `$18` = 1) is an **Ultimax** cartridge, the configuration of
-Commodore's MAX Machine games. `kit/c64/crt.py <file.crt>` prints the
-lines. Measured in VICE x64sc 3.13.2 with an 8 KB one at `$E000`-`$FFFF`
-(11 October 2026):
-
-- **The processor sees the cartridge in place of the KERNAL** (with `$01`
-  at `$17` after the reset and `$E5` as the game set it): the reset, IRQ and NMI vectors at `$FFFA` are the
-  cartridge's, and the KERNAL never runs, so the game sets up the chips
-  itself. VICE's `cpu` and `cart` banks read the ROM at `$E000`; its `ram`
-  bank reads the RAM beneath, which holds the power-on pattern.
-- **The program is in the `.crt`, not the snapshot.** A snapshot's RAM image
-  holds the RAM beneath the cartridge. A cartridge of one bank in a game
-  folder with no parts is its own image: `tools.py r2000 <game>/work/<file>.crt`
-  starts the disassembler on it, and `listing.py <game> <game>/work/<file>.crt`
-  builds the listing from it. The RAM the game uses is runtime state, for
-  `coverage.exclude`.
-- **The video chip sees the top 4 KB of the cartridge at `$3000`-`$3FFF`**
-  of its bank, so a character set or sprite pointed there is read from the
-  ROM at `$F000`-`$FFFF` (a frame drawn that way matched the emulator's
-  picture to the pixel). `kit/c64/frame.py capture` records those 4 KB as
-  the frame's `ultimax` and `C64.renderFrame` draws from them; a page may
-  embed them, as the game's own bytes. Where the character ROM shows the
-  chip in this configuration was not measured.
-- **`vice_vicii_get_state` answers with RAM** while such a cartridge is
-  attached: the power-on pattern for every register and line 256
-  throughout. Read the video chip through the `io` bank instead
-  (`frame.py`'s `vic()` does).
-- **The executed-address record marks the cartridge's instructions as RAM
-  execute**, so `kit/c64/codemap.py dump` keeps them without `--under-rom`.
-
 ## Bank-switched cartridges
 
 A `.crt` file is the cartridge as VICE attaches it: a 64-byte header
