@@ -5,104 +5,207 @@ understanding developed lives in `agent-history.md`. Every fact names
 the routine or table it comes from. Unless marked *live*, a fact comes
 from reading the code in the snapshot named in `orientation.md`.
 
-This is a Bronze run: the facts below come from the sweeps and from the
-few routines read around them, not from a full reading of the program.
-
 ## Build
 
 The Firebird cassette, `Rick Dangerous (1989)(Firebird).tap` (SHA-1 in
 `orientation.md`), analysed from `work/play-level1.vsf`. No build or
-version string was found in memory.
+version string was found in memory. The multiplexer's buffers at
+`$3963`-`$3973` hold, before the first frame overwrites them, the ASCII
+`RICK_MASK,Y`, a line break, `!124`, a tab and `S`: a fragment of the
+game's own assembler source, left on the developers' machine and saved
+with the game.
 
 ## Memory layout
 
 | Thing | Where |
 |---|---|
 | Start-up, the loader's hand-over | `$0810` |
-| Title loop | `$087B` |
-| Level set-up | `$0924` |
 | Main loop | `$0A0A` |
-| Losing a life | `$0AAA` |
-| Hall of Fame names, column by column | `$2318`-`$2367` |
-| Bullets, dynamite, lives | `$2D32`, `$2D33`, `$2D34` |
-| Raster interrupt | `$3A0D` |
-| Story screens' text, ASCII | `$AD00`-`$B253` |
-| Screens | `$C000`, `$C400` |
+| Rick's movement and actions | `$0B2A`-`$0E63` |
+| Sprite images built in software | `$0F83`-`$1177` |
+| Enemies | `$11AB`-`$1677` |
+| Level and room changes | `$17B7`-`$1966` |
+| Objects: boxes, treasure, traps, bonus | `$1990`-`$1D43` |
+| Title, story, Hall of Fame, name entry | `$1DCA`-`$2A16` |
+| Gun, stick and dynamite | `$2A17`-`$2CCD` |
+| Room drawing and vertical scrolling | `$2DA0`-`$3558` |
+| Sprite multiplexer | `$3559`-`$38CF` |
+| Raster interrupt and its lists | `$39D3`-`$3C09` |
+| Objects entering the view | `$3C0A`-`$3ED2` |
+| Tile tests | `$3F04`-`$4013` |
+| Sound effects and footsteps | `$498C`-`$4F85` |
+| Music player | `$5042`-`$5730` |
+| Music data (headers, patterns, track lists, instruments) | `$5732`-`$5F8D` |
+| Sound effect definitions | `$61C0`-`$65FF` |
+| Enemy frames, ten for each level | `$6600`-`$6FFF` |
+| Second tile set; story character set | `$7000`-`$77FF`; `$7800`-`$7FFF` |
+| Tile colours (two sets); 256 blocks of 4 x 4 tiles | `$8000`-`$81FF`; `$8200`-`$91FF` |
+| Level maps; object lists | `$9200`-`$A5BF`; `$A5C0`-`$ACDB` |
+| Story texts | `$AD00`-`$B253` |
+| Block addresses; frame colours; object arrays; type tables | `$B300`-`$B4FF`; `$B4D0`-`$B57F`; `$B580`-`$B67F`; `$B680`-`$B9FF` |
+| Collision map (runtime) | `$BA00`-`$BFB3` |
+| Screens (runtime) | `$C000`, `$C400` |
+| Sprite image buffers (runtime) | `$C800`-`$C97F`, `$CA00`-`$CB7F` |
+| Play tile set, under the I/O area | `$D000`-`$D7FF` |
+| Sprite frames | `$C980`-`$C9FF`, `$CB80`-`$CFFF`, `$D800`-`$E3FF`, `$E900`-`$F7FF` |
+| Enemy frames of the level (runtime) | `$E400`-`$E8FF` |
+| Text and panel font | `$F800`-`$FFFF` |
 
 ## Timing
 
 - The main loop at `$0A0A` waits until bit 0 of the frame counter `$07` is
-  clear, so a step of play happens every second frame: 25 a second on
-  PAL. `$07` is counted by the raster handler through `$39F3`.
+  clear: a step of play every second frame, 25 a second on PAL (*live*:
+  over 300 frames the frame's last handler `$3A68` ran 284 times and the
+  main step `$0A0F` 141 times).
+- The room bonus loses 10 points after 38 main-loop steps and then every 26 (`$0ECF`).
 
 ## Controls
 
-- Joystick on control port 2: fire leaves the Hall of Fame, the title and
-  the story screen (*live*; `$26DA` waits for bit 4 of `$DC00`).
-- The game never writes `$DC00`. The start-up makes all of port A outputs
-  (`$DC02` = `$FF` at `$081A`), and the port reads `$7F` in play (*live*),
-  so the main loop's reads of `$DC01` see keyboard row 7: ← in bit 1, 2 in
-  bit 3, C= in bit 5. Joystick port 1 shares those lines: right is bit 3
-  and down is bit 1.
-- ← ends the game: `$0A95` returns from the main loop when bit 1 of
-  `$DC01` is low, and GAME OVER shows (*live*, 12 October 2026). The manual
-  and C64-Wiki give ↑ for this; ↑ (row 6, column 6) did nothing in play
-  (*live*).
+- Joystick on control port 2 (`$4014`). Up jumps (speed -5.5 pixels a
+  step, sound 7) or climbs on a ladder; down crouches or climbs down; down
+  with a direction crawls. Fire with up shoots, needing the stick let go
+  between shots (`$4E`); fire with down lays dynamite; fire with left or
+  right jabs with the stick (`$0C92`).
+- The game never writes `$DC00`; the port reads `$7F`, so its tests of
+  `$DC01` see keyboard row 7 and joystick port 1 together (*live*): ← and
+  port 1 down end the game (`$0A95`), Run/Stop pauses (`$40E0`), and with
+  the cheat on, 2 or port 1 right refills and C= skips a level.
+- *Live*: pushing a joystick in port 1 down during play goes to GAME OVER,
+  with no flag needed. The manual's ↑ for quitting does nothing.
+- *Live*: Run/Stop stops the main loop (0 steps in 100 frames, `$4106` set)
+  until it is pressed again.
 
 ## Graphics
 
-- One frame of play (`work/frame-play.json`) sets `$D018` = `$05` on
-  raster line 66 and `$0F` on line 265; the panel at the top uses a
-  different character set from the play area.
+- Video bank 3. The play area uses the tile set at `$D000` (`$D018` =
+  `$04` from line `$41`, `$3A43`); the score panel and the text screens use
+  the font at `$F800` (`$D018` = `$0F` and `$0E`).
+- A raster interrupt (`$3A0D`) works through lists of handler numbers
+  (`$3B95`); the handlers' lines and addresses are tables
+  (`$3BD7`, `$3BE8`, `$3BF9`), and each state of the game points `$02` at
+  its own list.
+- Sprites: Rick is two hardware sprites (0 and 1); a multiplexer
+  (`$3559`) sorts the other objects by Y and reuses sprites 2 to 5 lower
+  down the screen for up to four more than the six it has.
+- Rick, the dynamite and the enemies in slots 9 to 11 are drawn in
+  software (`$0F83`): each frame's 64 bytes are ANDed with a mask built
+  from the foreground bit of the tiles behind the sprite (`$1052`), so the
+  scenery in front hides them. The images go to two sets of buffers by
+  turns (`$C800`, `$CA00`).
+- The bullet is a character, not a sprite: `$2ABA` draws character `$FE`
+  or `$FF` in white, saving and restoring what it covers, a screen cell
+  (eight pixels) a step.
+- Rooms are built from 256 blocks of 4 x 4 tiles (`$8200`), eight blocks
+  to a map row. Each tile's colour comes from a table (`$8000`), and its
+  behaviour from its code alone: eight thresholds (`$38`-`$3F`, `$4081`)
+  divide the codes into eight kinds: background, ladders, deadly tiles
+  (flag 4; the main loop kills Rick on one, `$0A23`), scenery in front of
+  the sprites, platforms in front (flag `$10`: stood on unless rising, `$3F04`, and stopping a climb), floors,
+  solid walls in front, and the tops of ladders (flag `$80`, climbed down
+  through with the stick held down, `$0C38`).
+- The view scrolls two map rows (64 pixels) at a time, as eight one-row
+  shifts, when Rick nears the top or bottom (`$3018`, `$30A3`), each shift
+  built on the hidden screen while the other is shown, the colour RAM
+  copied at the moment of the swap (`$32B0`, `$34C6`).
+- The level's enemies are drawn facing right only; `$16D3` makes their
+  left-facing frames at each level's start by reversing each row's bytes
+  and each byte's pixel pairs.
 - The game never reads the sprite collision registers `$D01E` and
-  `$D01F` (register census): collisions are worked out in software.
+  `$D01F`: every hit is a box test in software (`$1C33`, `$1C73`,
+  `$1C84`, `$1D2C`).
 
 ## Mechanics
 
-- Rick has six lives, set at `$08C0` and shown as hats; `$0AE9` takes one
-  away, and at zero the game is over (*live*: six hats at the start of
-  level one, `$2D34` = 6).
-- Bullets and dynamite go back to six at every level start and after
-  every life lost: `$09F6` writes 6 to `$2D32` and `$2D33`, and `$0B27`
-  returns there after a death.
-- **Hall of Fame cheat.** A name entered as BBOOIINNGG (compared at
-  `$2155` with the ten bytes at `$21C2`) sets `$53`. With `$53` set, the
-  2 key (or joystick port 1 right) fills bullets, dynamite and lives to
-  six (`$0A6D`), and C= jumps to the next level's set-up at `$0924`
-  (`$0A87`). Both *live* with `$53` poked to `$FF`, 12 October 2026; the
-  name itself was not typed in.
-- A name entered as FLUFOMATIC (`$2146`, the ten bytes at `$21B8`) sets
-  `$37`. What `$37` does is open.
-- **Name filter.** `$2103` searches the entered name for any of eleven
-  four-letter words in the list at `$2181` (FUCK CUNT PISS SHIT CRAP FART
-  WANK BAST BOLL ARSE BROS) and replaces a name that holds one with
-  SNIGGER (`$21AE`).
-- **Hall of Fame prank.** At power-on, `$226A` takes the raster line
-  `$D012` as a random number. When its top bit is set, it copies NOBBY or
-  JEZEBEL (`$2368`) over one of the Hall of Fame names, so the table can
-  differ from one boot to the next.
+- Six lives (`$2D34`, set at `$08C0` in the title loop before every game, *live*: a game after GAME OVER starts with six); bullets and dynamite (`$2D32`,
+  `$2D33`) go back to six at every level start and after every death
+  (`$09F6`).
+- Rick restarts after a death where he entered the room (`$40AA` saves it
+  on entry, `lose_life` restores it).
+- Enemies (types 4-15, `$11AB`) walk towards Rick's column, climb when he
+  is above or below (kind 2), turn at walls, and die to a bullet or the
+  dynamite for 50 points; the stick stuns them for 25 steps.
+- Traps (types 24-70, `$1A72`; 67-70 reach it through the overlap of the two handler tables) each name what sets them off in four bits
+  of their flags: Rick inside the zone, the stick, a bullet, an explosion.
+  Set off, a trap plays its sound and runs a movement script of
+  (count, X step, Y step) records; bit 3 makes one deadly while it runs and bit 2 while it waits; some
+  give 1000 points and go when they end.
+- Boxes of dynamite and bullets refill to six when touched; shot or
+  jabbed they explode instead (`$19C6`, `$19FA`). A treasure gives 500
+  points (`$1A5F`).
+- A room bonus starts at 2000 when Rick touches its start object and
+  falls by 10 while he runs to its goal, which pays what is left
+  (`$1BCA`, `$1BE7`).
+- Objects taken or killed stay gone for the rest of the level (bit 7 of
+  their record); after a death only the boxes of dynamite and bullets come
+  back (`$3E1B`); at a level's start everything does (`$3DE9`).
+- Scoring is BCD in `$42`-`$44`: `$2D3D` adds to the tens and units,
+  `$2D36` to the hundreds.
+
+## Bugs
+
+- The multiplexer loses the ninth X bit of its third and fourth reused
+  sprites. The sorting code chains the bits from `$3978` to `$397A` and
+  `$397B`, then writes the next two to `$3980` (`$368B`) and `$3981`
+  (`$36B6`) instead of `$397C` and `$397D`; `sprites_place` then copies
+  `$397C` and `$397D`, which nothing writes, over `$3980` and `$3981`
+  (`$3725`-`$372E`) before `$387D` reads them. An object shown on reused
+  sprite 4 or 5 to the right of X = 255 is drawn at X - 256. Traced
+  (`opcodes.py --refs`: no instruction writes `$397C` or `$397D`), not
+  seen in play.
+
+## Hall of Fame
+
+- `$21CC` places a new score among the eight; the name is picked letter by
+  letter from a grid with the stick (`$1F8C`), ten letters at most.
+- A name containing any of eleven four-letter words (`$2181`) becomes
+  SNIGGER (`$2103`).
+- BBOOIINNGG sets `$53`, the cheat keys. FLUFOMATIC sets `$37`, which turns
+  the title screen into a level select (*live*: SELECT LEVEL, 1. SOUTH
+  AMERICA, 2. EGYPT, 3. SCHWARZENDUMPF CASTLE, 4. MISSILE BASE, listing the
+  levels up to the furthest reached, `$51`). A game started from the
+  select skips the ending screen (`$23A0`).
+- At power-on `$226A` may copy NOBBY or JEZEBEL over a name, chosen by
+  the raster line.
+
+## Levels
+
+- Four levels, 34 room records (`$46AD`, seven bytes each: graphics set,
+  map address, exit list, object list); the first 13 use the first tile
+  set, the rest the second, swapped in under the I/O area by `$1911`.
+- Leaving a room left or right follows its exit list (`$186F`); an exit to
+  room zero ends the level. Each level's story screen comes first
+  (`$23A0`), and after level 4 the ending, LONDON, MUCH, MUCH LATER, then
+  GAME OVER (*live*).
 
 ## Data tables
 
-- `$2318`-`$2367`: the eight Hall of Fame names, ten letters each, stored
-  column by column: byte 8 × i + n is letter i of name n. `@` is a space.
-  The top name reads DANGERSTU in memory and "DANGERSIU" on screen
-  (`reference/hall-of-fame.png`); why the T draws as an I is open.
-- `$AD00`-`$B253`: the five story screens in ASCII, `@` as padding and
-  `~` between paragraphs: SOUTH AMERICA 1945, EGYPT, SOMETIME LATER,
-  EUROPE, LATER THAT WEEK, EUROPE, EVEN LATER and LONDON, MUCH, MUCH LATER.
-  The last is the ending: Rick comes home, "BUT, MEANWHILE, IN SPACE, THE
-  MASSED STARSHIPS OF THE BARFIAN EMPIRE ARE POISED TO INVADE THE EARTH."
-- `$2763`: GAME OVER, ASCII.
+- `$2318`-`$2367`: the Hall of Fame names, column by column; `$2300`-`$2317`
+  their scores, three BCD bytes each.
+- `$AD00`-`$B253`: the five story texts in ASCII.
+- `$B680`-`$B9FF`: seven tables of 128 bytes, one entry per object type
+  (hit box, frame list, movement script, kind). At start-up `$4108`
+  copies 128 seven-byte records from `$C000`-`$C379` into them; the JSR
+  at `$0864` that calls it is then turned into an LDA, so it runs once.
 
 ## Sound
 
-Register census: voices 1 and 2 have their frequency, pulse width and
-control written at fixed addresses (`$4BDD`-`$4C3D`); voice 3's frequency,
-control, attack/decay and sustain/release at `$4F5C`-`$4F6E`; the filter
-cutoff at `$4BC0`/`$4BD3` and the volume at `$4998`. The start-up clears
-all three voices with indexed writes at `$08F3`-`$08F9`. Envelopes for
-voices 1 and 2 must come from an indexed write such as `$4990`; open.
+- Three systems: a two-voice effect player (`$499C`-`$4E02`, 17 effects of
+  64 bytes from `$61C0`), Rick's footstep (`$4F50`, a burst of noise on
+  voice 3 for five frames, started at most every eight while he moves), and a three-voice music player
+  (`$5042`-`$5730`). A tune silences the effects and footsteps.
+- Seven tunes (headers at `$5732`): 0 to 3 the story screens of the four
+  levels, 4 the ending, 5 the title and Hall of Fame (`$4F78` restarts it
+  when it ends), 6 game over. Tunes 5 and 6 use two voices.
+
+## Unused code
+
+- `$1CB1`-`$1CE7`: a box test like `$1C33` that nothing calls.
+- `$2524`-`$253A`: a block-swap loop that nothing calls.
+- `$414E`-`$4163`: a routine that writes A as eight binary digits; nothing
+  calls it.
+- Holding SPACE (or fire on joystick port 1) while a room is built copies
+  the map rows above the view onto the bottom of the play area
+  (`$2FD5`); *live*, the bottom rows differed with SPACE held.
 
 ## Register census
 
@@ -122,30 +225,51 @@ October 2026. An indexed or indirect write elsewhere would not show here.
 | `$D01C`, `$D025`, `$D026` | `$0926`-`$28E7` | sprite multicolour |
 | `$D020`, `$D021`-`$D023` | `$08A3`-`$2610` | border and background colours |
 | `$D027`-`$D02E` | `$1DD7`-`$37F7` | sprite colours |
-| `$D400`-`$D418` | see Sound | sound |
+| `$D400`-`$D418` | `$4990`-`$56D7` | sound |
 | `$D800`+ | `$088C`-`$0990` | colour RAM |
 | `$DC00` | read only | joystick port 2 |
 | `$DC01` | read | keyboard row 7, joystick port 1 |
 | `$DC02`, `$DC03`, `$DC0D` | `$081A`, `$081E`, `$39DA` | port directions; CIA 1 interrupts off |
+| `$DC04`-`$DC07` | read at `$403F` | timer values mixed into the random number |
 | `$DD00`, `$DD02` | `$0847`-`$0854` | video bank 3 |
 | `$D01E`, `$D01F` | never | collisions in software |
 
 ## The listing's error rate
 
-Not measured: a Bronze run has no verify step.
+The first sample, seed 20261013, 45 of the hand-written comments and 20 of
+the generated ones, had 11 of 45 and 2 of 20 wrong: callers and the screen
+a routine serves (the sprite paths described as the title's when only the
+story screens call them), counts, and addresses one off. Those were
+corrected, and two checkers then audited all 582 hand-written comments,
+correcting 116. The second sample, seed 20261014, drawn after that from
+568 hand-written and 793 generated comments, had 1 of 45 hand-written
+wrong (`$47` described as a count of steps on the ground; it is a flag),
+2 %, with a 95 % interval of 0.4 % to 12 %. It had 6 of 20 generated
+wrong, 30 % (10 % to 48 %): two addresses in the enemy-mirroring routine's
+comment, and five comments from one template that named the nearest label
+before an address as the table holding it, or the nearest routine before
+an instruction as the one running it. All seven were corrected, the
+template's 321 comments were rewritten to place an address only in an
+excluded runtime area or a typed data block that holds it and to name a
+routine only when the code runs straight from its entry to the
+instruction, and 25 of the self-modified-code comments lost a routine name
+for the same reason. Over the whole second sample, 7 of 65, 11 % (5 % to
+21 %).
 
 ## Live tests
 
-All on 12 October 2026, from `work/play-level1.vsf` (`work/cheat.py`,
-`work/keys.py`):
+All from `work/play-level1.vsf` unless named, scripts in `work/`.
 
 | Test | Result |
 |---|---|
-| `$53` = 0, joystick port 1 right for 10 frames | counters unchanged |
-| `$53` = `$FF`, joystick port 1 right | bullets, dynamite, lives all 6 |
-| `$53` = `$FF`, key 2 for 25 frames | all 6 |
-| `$53` = 0, key 2 | unchanged |
-| `$53` = `$FF`, C= | story screen EGYPT, SOMETIME LATER |
-| `$53` = 0, C= | nothing |
+| `$53` = `$FF`, joystick port 1 right, or key 2 | bullets, dynamite, lives all 6 |
+| `$53` = `$FF`, C= | the next level's story screen |
 | `$53` = 0, ← | GAME OVER |
 | `$53` = 0, ↑ | nothing |
+| `$53` = 0, joystick port 1 down | GAME OVER (`live3.py`) |
+| Run/Stop, then again | 0 main steps in 100 frames, then 50 (`live2.py`) |
+| Checkpoints on `$0A0F` and `$3A68` for 300 frames | 141 and 284 hits: a step every second frame (`live1.py`) |
+| `$37` = `$FF`, `$51` = 3 on the Hall of Fame, fire | the level select with four levels (`live1.py`, `rd-hof.vsf`) |
+| `$53` set, `$30` = 2, C= twice | EUROPE, EVEN LATER, then the ending and GAME OVER |
+| Fire and up, fire and down, up, against no input | a bullet taken and flying; a stick taken and its fuse burning; Y 139 to 128 (`live4.py`) |
+| SPACE held while the next room is built | the bottom rows differ from a build without it (`live2.py`) |

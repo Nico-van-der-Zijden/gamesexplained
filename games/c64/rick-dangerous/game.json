@@ -8,7 +8,7 @@
   "developer": "Core Design",
   "title_image": "reference/title.png",
   "build": "PAL cassette, Firebird 1989, analysed in play on level one",
-  "tier": "bronze",
+  "tier": "silver",
   "coverage_percent": 100.0,
   "copy": "agent-draft",
   "steward": "",
@@ -44,6 +44,15 @@
       "claude-opus-5-5"
     ],
     "50-coverage": [
+      "claude-opus-5-5"
+    ],
+    "60-verify": [
+      "claude-opus-5-5"
+    ],
+    "70-minisite": [
+      "claude-opus-5-5"
+    ],
+    "80-retro": [
       "claude-opus-5-5"
     ]
   },
@@ -98,7 +107,7 @@
       [
         "$E400",
         "$E8FF",
-        "runtime: the enemies' left-facing frames, mirrored for each level by $16D3"
+        "runtime: the twenty enemy frames $90-$A3, copied and mirrored for each level by $16D3"
       ]
     ],
     "extra": [],
@@ -106,7 +115,7 @@
       [
         "$D000",
         "$DFFF",
-        "the RAM under the I/O area: in video bank 3 the video chip reads the score panel's character set and sprite frames from it, and $1911 swaps tile graphics in and out with the I/O banked out"
+        "the RAM under the I/O area: in video bank 3 the video chip reads the play tile set ($D000-$D7FF) and sprite frames $60-$7F ($D800-$DFFF) from it, and $1911 swaps tile graphics in and out with the I/O banked out"
       ]
     ]
   },

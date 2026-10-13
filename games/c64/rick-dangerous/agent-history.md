@@ -38,3 +38,48 @@ where the manual says ↑.
 The first draft of the page said the name was typed; the name-entry code
 at `$208A` shows it is picked letter by letter with the joystick, and the
 page was corrected before the commit.
+
+## 13 October 2026, to Silver (claude-opus-5-5)
+
+The executed-address map came from a tour of the game driven by a script:
+the title, the story screens, every control, the four levels through the
+cheat, game over and the name entry. It added 3.2 KB of code the static
+trace had not reached, most of it behind operands written at run time: the
+object handlers' split tables at `$1D40`/`$1D83`, the stick dispatch at
+`$0E64`, the raster handlers' tables and the music's command table at
+`$5226`. Four of the map's instructions, `$E5CD`-`$E5D4`, were the KERNAL's
+keyboard wait from before the game banked the KERNAL out; they were taken
+out of `codemap.json` by hand and the kit's `codemap.py` now names such
+addresses.
+
+Coverage was written in batches of annotation files (`work/ann-10` to
+`ann-32`): the routines by hand, then generated descriptions for the
+self-modified operands, the object arrays' fields and the tracer's symbols
+inside described tables. A binary printer was first decoded from `$4150`,
+two bytes into its first instruction; it starts at `$414E`.
+
+The first verify sample (seed 20261013) found 11 of 45 hand-written and 2
+of 20 generated comments wrong. The commonest wrong belief was the sound
+effects' working memory, laid out in the head as two definitions back to
+back when the code keeps state and definition per voice; the next was the
+sprite paths, written up as the title screen's from their name when their
+only caller is the story screen. Each belief was searched for across the
+listing and corrected, about 70 comments in all, and the whole listing was
+then audited in two halves by fresh agents.
+
+Reading the tile tests for the page's overlay corrected one more: the tile
+flag `$80`, first written up as deadly, marks the top of a ladder; `$04` is
+the deadly one.
+
+The music player on the page runs the game's own code on a small 6502 core
+written for it; it matched the kit's simulator on all 117,097 SID writes of
+the seven tunes at its first run.
+
+After the audit a second sample (seed 20261014) went to a fresh checker.
+The hand-written comments were nearly clean, 1 of 45; the generated ones
+were not, 6 of 20, five of them from the script that described bare
+symbols by the nearest label before them. That script's comments were all
+rewritten with a stricter rule, and the self-modified-code comments, which
+named their routine the same way, were checked by the same test. The bug
+in the multiplexer's ninth X bits, which the audit had noticed, was traced
+before it went into `facts.md`: nothing writes `$397C` or `$397D`.

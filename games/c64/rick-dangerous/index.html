@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}}</title>
+<title>Rick Dangerous</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -33,70 +33,428 @@ h2.t{font-size:var(--h2);margin-bottom:12px}
 .cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
 .cap b{color:var(--ink);font-weight:700}
 code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
-
 .rd-shot{display:block;width:100%;max-width:768px;height:auto;image-rendering:pixelated;margin:0 auto;border-radius:4px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:640px){.pair{grid-template-columns:1fr}}
-table.t{border-collapse:collapse;width:100%;font-size:15px}
-table.t td,table.t th{border-bottom:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
-table.t th{font-weight:700;color:var(--ink-soft)}
+.rd-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.rd-pair{grid-template-columns:1fr} :root{--gx:16px}}
+table.rd-tab{border-collapse:collapse;width:100%;font-size:15px}
+table.rd-tab td,table.rd-tab th{border-bottom:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
+table.rd-tab th{font-weight:700;color:var(--ink-soft)}
+table.rd-tab td.rd-n{text-align:right;font-family:var(--fm)}
+.rd-stack{position:relative;max-width:768px;margin:0 auto}
+.rd-stack canvas{display:block;width:100%;height:auto;image-rendering:pixelated}
+.rd-stack canvas.rd-over{position:absolute;left:0;top:0}
+.rd-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0}
+.rd-ctl button,.rd-ctl label{font:inherit;font-size:14px}
+.rd-ctl button{border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:4px 10px;cursor:pointer}
+.rd-ctl button[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink)}
+.rd-key{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;margin-top:10px}
+.rd-key span{display:inline-flex;align-items:center;gap:6px}
+.rd-key i{display:inline-block;width:14px;height:14px;border-radius:3px}
+.rd-name{font-family:var(--fm);font-size:20px;letter-spacing:.12em;text-transform:uppercase;width:12ch;padding:4px 8px;border:1px solid var(--line);border-radius:6px}
+.rd-out{font-family:var(--fm);font-size:15px;margin-top:12px;min-height:3em}
+.rd-out b{font-size:18px;letter-spacing:.1em}
+.rd-try{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.rd-try button{font-family:var(--fm);font-size:13px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:2px 8px;cursor:pointer}
 </style>
-
 <!-- tabs -->
 <header class="hero">
   <p class="eyebrow">Commodore 64 · 1989 · Firebird</p>
   <h1>Rick Dangerous</h1>
-  <p class="sub">Core Design's platform game of traps, sticks and dynamite. Its Hall of Fame keeps a cheat behind the name BBOOIINNGG, refuses eleven rude words, and at power-on can slip NOBBY or JEZEBEL into the table by itself.</p>
+  <p class="sub">Core Design's platform game of traps, sticks and dynamite. Its Hall of Fame hides two names that change the game: one turns on a cheat and the other a level select.</p>
 </header>
 <main class="wrap">
+
 <section>
-  <p class="fig">01 · In play</p>
-  <h2 class="t">Six of everything</h2>
-  <p>Rick starts each level with six bullets and six sticks of dynamite, and the game with six lives. The panel above the cave draws them as rows of bullets, red sticks and hats, beside a six-digit score. The bullets and the dynamite go back to six after every life lost, as well as at the start of each level. The lives do not.</p>
-  <div class="plate"><img class="rd-shot" src="reference/level1-start.png" alt="Rick at the left of a grey stone cave crossed by blue water, below a panel with the score, six bullets, six sticks of dynamite, and six hats"><p class="cap">The first room, a moment after the start. The counters are at <code>$2D32</code> (bullets), <code>$2D33</code> (dynamite), and <code>$2D34</code> (lives).</p></div>
+  <p class="fig">01 · The game</p>
+  <h2 class="t">An explorer in 1945</h2>
+  <p>Rick Dangerous is an explorer in 1945, crashed in the Amazon among the Goolu tribe. The game takes him through four places: a cave in South America, a pyramid in Egypt, Schwarzendumpf Castle in Europe, and a secret missile base aimed at London. Each is a single tall map of rooms, which Rick crosses by walking, jumping, climbing and crawling.</p>
+  <p>Almost everything in a room can kill him: the tribesmen and guards who walk the rooms, and above all the traps, which the manual declines to explain. Rick carries a pistol, a stick for jabbing, and dynamite, and he starts with six lives, six bullets and six sticks. A touch from an enemy or a trap costs a life, and he starts again where he entered the room.</p>
+  <div class="plate rd-pair"><img class="rd-shot" src="reference/title.png" alt="The title screen: RICK DANGEROUS in orange above Rick in a film-strip frame, with the Firebird and Core Design logos"><img class="rd-shot" src="reference/level1-start.png" alt="The first room: Rick at the left of a grey stone cave crossed by blue water, below the score panel"><p class="cap" style="grid-column:1/-1">The title screen, and the first room of the cave. The panel shows the score, the bullets, the dynamite and the lives as hats.</p></div>
 </section>
+
 <section>
-  <p class="fig">02 · Secret</p>
-  <h2 class="t">Secret: the name BBOOIINNGG turns on a cheat</h2>
-  <p>A score good enough for the Hall of Fame lets the player spell a name of up to ten letters with the joystick, pressing fire for each. The routine at <code>$2146</code> then compares the name, letter by letter, with two words kept at <code>$21B8</code>: FLUFOMATIC and BBOOIINNGG. BBOOIINNGG sets a flag at <code>$53</code>, and from then on the main loop listens for two keys.</p>
-  <table class="t"><tr><th>Key</th><th>With the flag set</th></tr>
-  <tr><td>2</td><td>bullets, dynamite, and lives back to six</td></tr>
-  <tr><td>C=</td><td>straight to the next level's story screen</td></tr></table>
-  <p>Both keys sit on keyboard row 7, the only row the game ever selects, and the same lines carry the joystick in port 1. With the flag set, pushing a stick in port 1 to the right refills the counters as well. FLUFOMATIC sets a second flag, at <code>$37</code>, whose effect has not been found.</p>
+  <p class="fig">02 · One frame</p>
+  <h2 class="t">What the game sees in a room</h2>
+  <p>The picture below is drawn by this page from the memory of one frame of play, recorded in the emulator: the screen, the character set and the video chip's registers as they change during the frame. Every one of its 104,448 pixels matches the emulator's own picture.</p>
+  <div class="plate"><div class="rd-stack"><canvas id="rd-frame"></canvas><canvas id="rd-over" class="rd-over"></canvas></div>
+    <div class="rd-ctl"><button type="button" id="rd-overbtn" aria-pressed="false">Show what each tile is</button></div>
+    <div class="rd-key" id="rd-key" hidden></div>
+    <p class="cap">Drawn by the site's C64 renderer from the recorded frame, pixel for pixel the emulator's picture. The overlay takes each tile's code from the screen and looks it up the way <code>$4081</code> does, with the eight codes of graphics set 0 from <code>$185B</code>.</p></div>
+  <p>The room is made of characters, and the game decides what each one is by its code alone. Eight codes in zero page (<code>$38</code>-<code>$3F</code>, copied from <code>$185B</code> for each graphics set) mark where each kind begins: background first, then ladders, deadly tiles, scenery that stands in front of Rick, platforms, floors, solid walls, and the tops of ladders. <code>$4081</code> turns those eight numbers into a table of 256 flags at <code>$0600</code>, and every collision test reads it. The tile graphics only have to be kept in that order.</p>
 </section>
+
 <section>
-  <p class="fig">03 · The Hall of Fame</p>
-  <h2 class="t">Eleven words the Hall of Fame refuses</h2>
-  <p>As soon as a name is finished, and before the cheat words are compared, the routine at <code>$2103</code> looks through it for any of eleven four-letter words stored at <code>$2181</code>. They run from the obvious ones to BOLL, ARSE, and BROS. A name that contains one goes into the table as SNIGGER.</p>
-  <div class="plate"><img class="rd-shot" src="reference/hall-of-fame.png" alt="HALL OF FAME in orange capitals above eight names with scores from 8000 down to 1000"><p class="cap">The Hall of Fame the game starts on. The names are stored column by column at <code>$2318</code>: the first letters of all eight names, then the second letters, and so on.</p></div>
+  <p class="fig">03 · Secret</p>
+  <h2 class="t">Secret: two names change the game</h2>
+  <p>A score good enough for the Hall of Fame lets the player spell a name of up to ten letters with the joystick. The routine at <code>$2146</code> then compares the name with two words kept at <code>$21B8</code>. BBOOIINNGG turns on two cheat keys (<code>$53</code>): 2 fills the bullets, the dynamite and the lives back to six, and C= jumps to the next level. FLUFOMATIC (<code>$37</code>) turns the title screen into a level select, offering every level reached so far (<code>$51</code>).</p>
+  <div class="plate rd-pair"><img class="rd-shot" src="reference/level-select.png" alt="The title screen with SELECT LEVEL and four levels listed: South America, Egypt, Schwarzendumpf Castle, Missile Base"><div>
+    <p style="margin-top:0">Before either check, <code>$2103</code> looks for eleven rude words in the name and writes SNIGGER over any name that holds one. The search is looser than it looks: it takes each word's letters in order anywhere in the first seven letters, with other letters between them. Type a name to see what the Hall of Fame keeps.</p>
+    <input class="rd-name" id="rd-name" maxlength="10" value="SHIFT" aria-label="A name for the Hall of Fame">
+    <div class="rd-try" id="rd-try"></div>
+    <div class="rd-out" id="rd-out"></div></div>
+    <p class="cap" style="grid-column:1/-1">The level select, after FLUFOMATIC, with all four levels reached. The name box runs a port of <code>$2103</code> and <code>$2146</code>, checked against the game's own routines on 3,000 names in the kit's 6502 simulator (<code>test_names.js</code>).</p></div>
+  <p>The level select has one more condition. A game started from it does not show the ending: <code>$23A0</code> skips the story screen for the fifth "level" when the start was chosen (<code>$52</code>). A player who took the shortcut finishes on GAME OVER.</p>
 </section>
+
 <section>
-  <p class="fig">04 · Secret</p>
+  <p class="fig">04 · Music</p>
+  <h2 class="t">Music: seven tunes by Dave Pridmore</h2>
+  <p>A tune plays on each story screen before a level, on the ending, on the title and Hall of Fame, and on GAME OVER. None plays during play: while a tune runs, the sound effects and Rick's footsteps are silent (<code>$4F86</code>).</p>
+  <div class="plate"><div id="rd-music"></div>
+    <p class="cap">The game's own music player, its code (<code>$5042</code>-<code>$5730</code>) and the tunes' data (<code>$5732</code>-<code>$5F8D</code>) as the listing holds them, run on a small 6502 core in this page once a frame, through the site's model of the SID. <code>test_music.js</code> compares every SID write of every frame of all seven tunes with the same code run in the kit's simulator: 117,097 writes. The tunes do not use the filter.</p></div>
+  <p>Each tune has a header of three addresses at <code>$5732</code>, one track list a voice. A track list is a run of pattern numbers with a few commands mixed in (transpose, repeat, change an instrument); a pattern is notes and their lengths, rests, and changes of instrument, arpeggio and slide. Tunes 5 and 6 leave voice 3 alone.</p>
+</section>
+
+<section>
+  <p class="fig">05 · The rooms</p>
+  <h2 class="t">Each level is one tall map</h2>
+  <p>A level is a column of map rows, eight bytes each, from <code>$9200</code> to <code>$A5BF</code>. Each byte is the number of a block, and each of the 256 blocks at <code>$8200</code> is four rows of four tiles. So a map row is 32 tiles across, the width of the play area, and four tiles deep. The screen shows six map rows; when Rick climbs near the top or the bottom, the view scrolls two map rows (64 pixels) as eight shifts of one row (<code>$3018</code>, <code>$30A3</code>), each built on the hidden screen and swapped in.</p>
+  <p>The Maps tab draws all four levels from these bytes. Levels 1 and 2 use one tile set and levels 3 and 4 another; <code>$1911</code> swaps them, exchanging 2 KB of graphics between <code>$7000</code> and the RAM under the I/O chips.</p>
+</section>
+
+<section>
+  <p class="fig">06 · Traps</p>
+  <h2 class="t">Every trap says what sets it off</h2>
+  <p>Each object in a room has a record of five bytes in the object lists (<code>$A5C0</code>): where it is, its type, and a byte of flags. For a trap, four of the flags say what sets it off: Rick walking into its zone, the stick, a bullet, or an explosion (<code>$1A72</code>). One more makes it deadly to touch while it moves and another while it waits, and one pays 1000 points and removes it when its movement ends.</p>
+  <div class="plate"><table class="rd-tab" id="rd-traps"></table>
+    <p class="cap">Counted by this page from the object lists in the listing: the records of types 24 to 70, the traps, in the rooms of each level.</p></div>
+  <p>That is why the manual warns that the gun is often a trigger rather than a weapon. A trap with only the bullet flag goes off at nothing but a shot.</p>
+</section>
+
+<section>
+  <p class="fig">07 · Sprites</p>
+  <h2 class="t">Rick walks behind the scenery</h2>
+  <p>A C64 sprite can be set behind the background, but then it is behind every foreground pixel on the screen at once, and Rick has to pass behind some tiles and in front of others. So Rick Dangerous builds his picture again every frame (<code>$0F83</code>): it takes his 64-byte frame and ANDs it with a mask made from the tiles behind him (<code>$1052</code>), clearing every pixel where a tile of the "in front" kind stands. The dynamite and up to three enemies get the same treatment. The finished pictures go into one of two sets of buffers, <code>$C800</code> or <code>$CA00</code>, by turns, so the video chip never shows a half-drawn one.</p>
+  <p>The rest of the objects share six hardware sprites. <code>$3559</code> sorts them by height every frame and, when there are more than six, moves sprites 2 to 5 down the screen during the frame to show up to four more. The bullet is not a sprite at all: <code>$2ABA</code> writes a character into the screen, keeping the one it covers, and moves it eight pixels a step.</p>
+</section>
+
+<section>
+  <p class="fig">08 · Controls</p>
+  <h2 class="t">Secret: a second joystick can end the game</h2>
+  <p>The manual gives the up-arrow key for quitting. The game reads ← instead: <code>$0A95</code> tests one bit of the keyboard, and pressing ← ends the game. That bit is shared with joystick port 1, because the game never changes which keyboard row it reads (<code>$DC00</code> stays at <code>$7F</code>). A joystick left in port 1 and pushed down ends the game too, and pushed right it is the cheat's 2 key.</p>
+  <p>Run/Stop, on the same keyboard row, pauses the game until it is pressed again (<code>$40E0</code>).</p>
+</section>
+
+<section>
+  <p class="fig">09 · The Hall of Fame</p>
   <h2 class="t">Secret: the Hall of Fame can change at power-on</h2>
-  <p>Once, as the game starts, the routine at <code>$226A</code> reads the raster line the video chip is drawing and uses it as a random number. When the line's top bit is set, the routine copies NOBBY or JEZEBEL, both kept at <code>$2368</code>, over one of the names in the table. Which name goes, and which replaces it, depends on where the beam was at that instant, so two boots of the same tape can open on different Halls of Fame.</p>
+  <p>At power-on, <code>$226A</code> reads the line the video chip is drawing and uses it as a random number. When the line's top bit is set and its three low bits are not all zero, about seven times in sixteen, it copies NOBBY or JEZEBEL (<code>$2368</code>) over one of the first seven names. The names are stored column by column (<code>$2318</code>): the first letters of all eight names, then the second letters, and so on.</p>
+  <div class="plate"><img class="rd-shot" src="reference/hall-of-fame.png" alt="HALL OF FAME in orange capitals above eight names with scores from 8000 down to 1000"><p class="cap">The Hall of Fame the game starts on. JEZEBEL is one of the two names <code>$226A</code> can add.</p></div>
 </section>
+
 <section>
-  <p class="fig">05 · Controls</p>
-  <h2 class="t">The quit key is ←</h2>
-  <p>The manual says the up-arrow key quits to the start. In the game, ↑ does nothing during play. The key the main loop tests, at <code>$0A95</code>, is ←, the arrow at the top left of the keyboard: pressing it ends the game with GAME OVER.</p>
+  <p class="fig">10 · Leftovers</p>
+  <h2 class="t">A line of the source code, loaded with the game</h2>
+  <p>The sprite multiplexer's buffers at <code>$3963</code> are overwritten in the first frame, but before that they hold plain text: RICK_MASK,Y, a line break, !124, a tab and S. It is a fragment of the game's own assembler source, left in memory on the developers' machine when the game was saved.</p>
+  <p>Other things the finished game never uses are still in it: a collision test nothing calls (<code>$1CB1</code>), a memory swap (<code>$2524</code>), and a routine that writes a byte as eight binary digits (<code>$414E</code>). Holding SPACE while a room is built copies the map rows above the screen over its bottom eight rows (<code>$2FD5</code>). The start-up calls <code>$4108</code> once to build the object-type tables and then writes an LDA over its own JSR (<code>$0864</code>), so the call never happens again.</p>
 </section>
+
 <section>
-  <p class="fig">06 · The story</p>
-  <h2 class="t">The ending is in memory from the first room</h2>
-  <p>The tape loads once. The text for all five story screens, one before each level and one for the ending, sits together at <code>$AD00</code> while the first level is played.</p>
-  <div class="plate pair"><img class="rd-shot" src="reference/title.png" alt="Title screen: RICK DANGEROUS in orange above Rick in a film-strip frame, with the Firebird and Core Design logos below"><img class="rd-shot" src="reference/story-south-america.png" alt="SOUTH AMERICA 1945: a picture of the jungle in a film-strip frame above the story of Rick's crash landing among the Goolus"><p class="cap" style="grid-column:1/-1">The title screen, and the story screen before level one.</p></div>
-  <table class="t"><tr><th>Heading</th><th>The story</th></tr>
-  <tr><td>South America 1945</td><td>Rick crash-lands over the Amazon, among the Goolu tribe</td></tr>
-  <tr><td>Egypt, sometime later</td><td>he is to recover the Jewel of Ankhel from fanatics in the pyramids</td></tr>
-  <tr><td>Europe, later that week</td><td>he is to rescue Allied prisoners from Schwarzendumpf Castle</td></tr>
-  <tr><td>Europe, even later</td><td>he infiltrates the secret missile base that is to attack London</td></tr>
-  <tr><td>London, much, much later</td><td>he comes home, while the starships of the Barfian Empire are poised to invade the Earth</td></tr></table>
-</section>
-<section>
-  <p class="fig">07 · Scope</p>
-  <h2 class="t">What has been read</h2>
-  <p>The Source tab shows the program as it stands in the first room of level one. Its start-up, the main loop, the Hall of Fame's routines, and the raster interrupt are described there. The rooms, the traps, the enemies, and the music are not described.</p>
+  <p class="fig">11 · The tape</p>
+  <h2 class="t">One load</h2>
+  <p>The cassette loads once. A turbo loader puts up NOW LOADING ... RICK DANGEROUS and reads the whole game into memory, all four levels, the ending's text and every tune; nothing is loaded again. The game's first instruction is at <code>$0810</code>.</p>
 </section>
 </main>
-
 <footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>
+<script src="../../lib/c64.js"></script>
+<script src="../../lib/sid.js"></script>
+<script>
+/* rd-names */
+// The Hall of Fame's checks on a new name: $2103 (the rude words) and $2146 (the two code words).
+// name: up to ten character codes as the name entry leaves them on screen at $C306 ($41-$5A
+// letters, $2E the full stop, $00 a space, $3B an unused place); after: the 246 screen bytes that
+// follow, which $2139 can read (see below). Returns the ten codes kept, and the two flags.
+function hofCheck(name, after) {
+  const RUDE = 'FUCKCUNTPISSSHITCRAPFARTWANKBASTBOLLARSEBROS';
+  const s = new Uint8Array(256);
+  for (let i = 0; i < 10; i++) s[i] = name[i] === undefined ? 0x3B : name[i];
+  for (let i = 10; i < 256; i++) s[i] = after ? after[i - 10] : 0;
+  // $2139: look for code a from position y on; stops after looking at position 6, or, when the
+  // search starts at 7 or later, only when y wraps round to 7: then it reads the whole 256 bytes
+  function find(a, y) {
+    for (;;) {
+      if (s[y] === a) return { found: true, y: (y + 1) & 0xFF };
+      y = (y + 1) & 0xFF;
+      if (y === 7) return { found: false, y };
+    }
+  }
+  let rude = false;
+  for (let w = 0; w < RUDE.length && !rude; w += 4) {      // $2103: four letters a word
+    let y = 0, ok = true;
+    for (let k = 0; k < 4 && ok; k++) {
+      const r = find(RUDE.charCodeAt(w + k), y);
+      ok = r.found; y = r.y;
+    }
+    if (ok) rude = true;
+  }
+  if (rude) { const t = 'SNIGGER@@@'; for (let i = 0; i < 10; i++) s[i] = t.charCodeAt(i); }
+  const is = (word) => { for (let i = 0; i < 10; i++) if (s[i] !== word.charCodeAt(i)) return false; return true; };
+  return { name: Array.from(s.slice(0, 10)), select: is('FLUFOMATIC'), cheat: is('BBOOIINNGG'), rude };
+}
+// end of hofCheck
+
+/* rd-music */
+// The game's own music player, run on a small 6502 core: the bytes $4FCC-$5F8D (the player's
+// variables, its code at $5042-$5730 and the tunes' data) as the game loads them, and zero page
+// $A0-$A5. init(t) calls tune_start ($567D) with A = t, as play_tune ($4FC6) does; play() calls
+// tune_play ($5042) once, as the raster interrupt does each frame. A read of the SID returns the
+// last value written to it (the bus), and a read-modify-write on a SID register writes the old
+// value back before the new one, as the chip sees it. Documented opcodes only: the player uses no
+// others.
+function createDriver(D) {
+  'use strict';
+  const m = new Uint8Array(0x10000);
+  for (let i = 0; i < D.hex.length / 2; i++) m[D.base + i] = parseInt(D.hex.substr(2 * i, 2), 16);
+  const sid = new Uint8Array(25);
+  let writes = [], bus = 0;
+  let a = 0, x = 0, y = 0, sp = 0xFF, pc = 0, c = 0, z = 0, n = 0, v = 0, d = 0;
+  const isSid = (ad) => ad >= 0xD400 && ad <= 0xD41F;
+  const rd = (ad) => (isSid(ad) ? bus : m[ad]);
+  function wr(ad, val) {
+    val &= 0xFF;
+    if (isSid(ad)) { const r = (ad - 0xD400) & 31; if (r < 25) { sid[r] = val; writes.push(r, val); } bus = val; }
+    else m[ad] = val;
+  }
+  const nz = (val) => { n = (val >> 7) & 1; z = val === 0 ? 1 : 0; return val; };
+  const fetch = () => { const b = m[pc]; pc = (pc + 1) & 0xFFFF; return b; };
+  const word = () => { const lo = fetch(); return lo | (fetch() << 8); };
+  const push = (val) => { m[0x100 | sp] = val; sp = (sp - 1) & 0xFF; };
+  const pull = () => { sp = (sp + 1) & 0xFF; return m[0x100 | sp]; };
+  const zpw = (zp) => m[zp & 0xFF] | (m[(zp + 1) & 0xFF] << 8);
+  function addr(mode) {
+    switch (mode) {
+      case 0: return -1;
+      case 1: return fetch();
+      case 2: return (fetch() + x) & 0xFF;
+      case 3: return (fetch() + y) & 0xFF;
+      case 4: return word();
+      case 5: return (word() + x) & 0xFFFF;
+      case 6: return (word() + y) & 0xFFFF;
+      case 7: return zpw(fetch() + x);
+      case 8: return (zpw(fetch()) + y) & 0xFFFF;
+    }
+  }
+  const val = (mode) => (mode === 0 ? fetch() : rd(addr(mode)));
+  function adc(b) {
+    if (d) {
+      let lo = (a & 15) + (b & 15) + c, hi = (a >> 4) + (b >> 4);
+      if (lo > 9) { lo += 6; hi++; }
+      z = ((a + b + c) & 0xFF) === 0 ? 1 : 0;
+      n = (hi << 4 >> 7) & 1; v = (~(a ^ b) & (a ^ (hi << 4)) & 0x80) ? 1 : 0;
+      if (hi > 9) hi += 6;
+      c = hi > 15 ? 1 : 0; a = ((hi << 4) | (lo & 15)) & 0xFF;
+    } else {
+      const r = a + b + c;
+      v = (~(a ^ b) & (a ^ r) & 0x80) ? 1 : 0; c = r > 0xFF ? 1 : 0; a = nz(r & 0xFF);
+    }
+  }
+  function sbc(b) {
+    if (d) {
+      const r = a - b - (1 - c);
+      let lo = (a & 15) - (b & 15) - (1 - c), hi = (a >> 4) - (b >> 4);
+      if (lo < 0) { lo -= 6; hi--; }
+      if (hi < 0) hi -= 6;
+      v = ((a ^ b) & (a ^ r) & 0x80) ? 1 : 0; c = r >= 0 ? 1 : 0; nz(r & 0xFF);
+      a = ((hi << 4) | (lo & 15)) & 0xFF;
+    } else adc(b ^ 0xFF);
+  }
+  const cmp = (r, b) => { c = r >= b ? 1 : 0; nz((r - b) & 0xFF); };
+  function rmw(mode, f) {
+    if (mode === -1) { a = f(a); return; }
+    const ad = addr(mode), old = rd(ad);
+    if (isSid(ad)) wr(ad, old);
+    wr(ad, f(old));
+  }
+  const asl = (b) => { c = (b >> 7) & 1; return nz((b << 1) & 0xFF); };
+  const lsr = (b) => { c = b & 1; return nz(b >> 1); };
+  const rol = (b) => { const o = c; c = (b >> 7) & 1; return nz(((b << 1) | o) & 0xFF); };
+  const ror = (b) => { const o = c; c = b & 1; return nz((b >> 1) | (o << 7)); };
+  const branch = (cond) => { const o = fetch(); if (cond) pc = (pc + (o < 128 ? o : o - 256)) & 0xFFFF; };
+  const M1 = [7, 1, 0, 4, 8, 2, 6, 5];
+  const M2 = [0, 1, -1, 4, null, 2, null, 5];
+  function step() {
+    const op = fetch();
+    switch (op) {
+      case 0x00: throw new Error('BRK at ' + ((pc - 1) & 0xFFFF).toString(16));
+      case 0x20: { const t = word(); const r = (pc - 1) & 0xFFFF; push(r >> 8); push(r & 0xFF); pc = t; return; }
+      case 0x60: { const lo = pull(); pc = ((lo | (pull() << 8)) + 1) & 0xFFFF; return; }
+      case 0x4C: pc = word(); return;
+      case 0x6C: { const p = word(); pc = m[p] | (m[(p & 0xFF00) | ((p + 1) & 0xFF)] << 8); return; }
+      case 0x08: push((n << 7) | (v << 6) | 0x30 | (d << 3) | 4 | (z << 1) | c); return;
+      case 0x28: { const p = pull(); n = (p >> 7) & 1; v = (p >> 6) & 1; d = (p >> 3) & 1; z = (p >> 1) & 1; c = p & 1; return; }
+      case 0x48: push(a); return;
+      case 0x68: a = nz(pull()); return;
+      case 0x18: c = 0; return; case 0x38: c = 1; return;
+      case 0x58: case 0x78: return;
+      case 0xB8: v = 0; return; case 0xD8: d = 0; return; case 0xF8: d = 1; return;
+      case 0xEA: return;
+      case 0xAA: x = nz(a); return; case 0x8A: a = nz(x); return;
+      case 0xA8: y = nz(a); return; case 0x98: a = nz(y); return;
+      case 0xBA: x = nz(sp); return; case 0x9A: sp = x; return;
+      case 0xE8: x = nz((x + 1) & 0xFF); return; case 0xCA: x = nz((x - 1) & 0xFF); return;
+      case 0xC8: y = nz((y + 1) & 0xFF); return; case 0x88: y = nz((y - 1) & 0xFF); return;
+      case 0x10: return branch(!n); case 0x30: return branch(n);
+      case 0x50: return branch(!v); case 0x70: return branch(v);
+      case 0x90: return branch(!c); case 0xB0: return branch(c);
+      case 0xD0: return branch(!z); case 0xF0: return branch(z);
+      case 0x24: case 0x2C: { const b = rd(op === 0x24 ? fetch() : word()); z = (a & b) === 0 ? 1 : 0; n = (b >> 7) & 1; v = (b >> 6) & 1; return; }
+    }
+    const aaa = op >> 5, bbb = (op >> 2) & 7, cc = op & 3;
+    if (cc === 1) {
+      const mode = M1[bbb];
+      switch (aaa) {
+        case 0: a = nz(a | val(mode)); return;
+        case 1: a = nz(a & val(mode)); return;
+        case 2: a = nz(a ^ val(mode)); return;
+        case 3: adc(val(mode)); return;
+        case 4: wr(addr(mode), a); return;
+        case 5: a = nz(val(mode)); return;
+        case 6: cmp(a, val(mode)); return;
+        case 7: sbc(val(mode)); return;
+      }
+    }
+    if (cc === 2) {
+      let mode = M2[bbb];
+      if (aaa === 4 || aaa === 5) { if (bbb === 5) mode = 3; if (bbb === 7) mode = 6; }
+      switch (aaa) {
+        case 0: return rmw(mode, asl);
+        case 1: return rmw(mode, rol);
+        case 2: return rmw(mode, lsr);
+        case 3: return rmw(mode, ror);
+        case 4: wr(addr(mode), x); return;
+        case 5: x = nz(mode === -1 ? 0 : (bbb === 0 ? fetch() : val(mode))); return;
+        case 6: return rmw(mode, (b) => nz((b - 1) & 0xFF));
+        case 7: return rmw(mode, (b) => nz((b + 1) & 0xFF));
+      }
+    }
+    if (cc === 0) {
+      const mode = [0, 1, null, 4, null, 2, null, 5][bbb];
+      switch (aaa) {
+        case 4: wr(addr(mode), y); return;
+        case 5: y = nz(val(mode)); return;
+        case 6: cmp(y, val(mode)); return;
+        case 7: cmp(x, val(mode)); return;
+      }
+    }
+    throw new Error('opcode ' + op.toString(16) + ' at ' + ((pc - 1) & 0xFFFF).toString(16));
+  }
+  function call(entry, acc) {
+    a = acc & 0xFF; sp = 0xFD; m[0x1FF] = 0xFF; m[0x1FE] = 0xFE;
+    pc = entry;
+    for (let k = 0; k < 200000 && pc !== 0xFFFF; k++) step();
+  }
+  return {
+    sid, m,
+    get writes() { return writes; },
+    init(t) { writes = []; call(0x567D, t); },
+    stop() { m[0x4FCC] = 0; },
+    play() { writes = []; if (m[0x4FCC]) call(0x5042, 0); },
+    playing() { return m[0x4FCC] !== 0; },
+    voice(k) { return { note: m[0x503E + k] }; },
+  };
+}
+// end of createDriver
+
+/* rd-tiles */
+// What a tile code is, as $4081 builds the table at $0600: eight thresholds (the first code of each
+// range) and the flags of each range, from the last; codes $FE and $FF get none.
+const RD_KINDS = [
+  { f: 0x01, k: 'background', c: 'rgba(0,0,0,0)' },
+  { f: 0x02, k: 'ladder', c: 'rgba(60,200,80,.55)' },
+  { f: 0x04, k: 'deadly', c: 'rgba(230,40,40,.7)' },
+  { f: 0x08, k: 'in front of Rick', c: 'rgba(70,110,255,.5)' },
+  { f: 0x18, k: 'platform in front', c: 'rgba(150,80,255,.55)' },
+  { f: 0x60, k: 'floor and wall', c: 'rgba(255,200,0,.6)' },
+  { f: 0x48, k: 'wall in front', c: 'rgba(255,120,0,.6)' },
+  { f: 0x82, k: 'top of a ladder', c: 'rgba(0,230,230,.7)' },
+];
+function tileKind(code, T) {
+  if (code > 0xFD) return -1;
+  let k = -1;
+  for (let i = 0; i < 8; i++) if (code >= T[i]) k = i;
+  return k;
+}
+// end of tileKind
+</script>
+<script>
+(async function () {
+  const F = {"schema":1,"standard":"PAL","lines":312,"cycles":63,"about":"","vic":[72,133,72,133,64,125,56,133,88,249,184,249,152,249,168,249,0,27,0,0,0,255,216,0,15,118,241,0,254,0,15,3,240,240,251,252,243,251,250,240,248,240,240,241,251,251,248],"cia2":[148,63],"cpu":[47,37],"writes":[[66,38,53272,5],[258,31,50168,40],[258,35,51192,40],[258,49,50169,41],[258,53,51193,41],[265,35,53272,15]],"colour":"AQEBAQgBAQEBAQEICAcHBwcHBwgIAgICAgICCAgHBwcHBwcIAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQEBAQEBAQEJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQEBAQEBAQEJCQkJCQkBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEBAQEBAQEBCQkJCQkBAQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBAQEBAQEBAQkJCQEBBgYGAQEBAQEBAQEBAQEBAQEBAQEBAQEJCQkJAQEBAQEBAQEJAQEBBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGCQkJCQEBAQEBAQEBCQEGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgkJCQkBAQEBAQEBAQkJCQYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYJCQkJAQEBAQEBAQEJCQkJDw8PDw8PDw8PDw8PCQkJCQkJCQkBBgYGCQkJCQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQYGBgkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEGBgYJCQkJAQEBAQEBAQEJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBBgYGCQkJCQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQYGBgkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEGBgYJCQkJAQEBAQEBAQEJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBBgYGCQkJCQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQYGBgkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEGBgYJCQkJAQEBAQEBAQEJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkBBgYGCQkJCQEBAQEBAQEBCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQYGBgkJCQkBAQEBAQEBAQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQEGBgYJCQkJAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==","ram":[{"a":49152,"b":"AAAAAAAwMDAwMDAAAAEBAQEBAQAAAgICAgICAAADAwMDAwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA29zb3Nvc29zb3Nvc29zb3Nvc29zb3Nvc29zb3Nvc29wAAAAAAAAAANna2drZ2tna2drZ2tna2drZ2tna2drZ2tna2drZ2tnaAAAAAAAAAADb3Nvc29zb3Nvc29zb3Nvc29zb3Nvc29zb3Nvc29zb3AAAAAAAAAAA2drZ2tna2fHZ2tna7fDv7tna2drZ2tna2drZ2tna2doAAAAAAAAAANvc7/Db8+3u29zb3PHt7vPb3O/w29zb3Nvc29zb3O/wAAAAAAAAAADx7e7x7/AAAPLw2fPv7vHx8e3u8dnt7u/u7fDa8e3u8QAAAAAAAAAA7e7v8PMAAEjt7u/w8fPt8O3u7/Dx3O3u7e7v8O3u7/AAAAAAAAAAAPM3OAAAOjs8AAAAAAAAAAAAAAAAAAAAAAAAAADt7tnaAAAAAAAAAADzAAAAPT4/QD0+P0A9Pj9APT4/QD0+P0A9Pj9A8e/w3AAAAAAAAAAA8wBDREFCQ0RBQkNEQUJDREFCQ0RBQkNEQUJDRO/y7toAAAAAAAAAAPM1NkhFRkdIRUZHSEVGR0hFRkdIRUZHSEVGR0jz8/HcAAAAAAAAAADt7tna1dbV1tXW1dbV1tXW2e/y7u3w7+4AOjs87e7Z2gAAAAAAAAAA8fPb3NfY19jX2NfY19jX2Nvv8PHx7e7zAD4/QPHv8NwAAAAAAAAAAO7t7trZ2tna2drZ2tna2drZ2vPz7+7x8QBCQ0Tv8u7aAAAAAAAAAADt7tvc29zb3Nvc29zb3Nvc2/Hb7/Hz7fAARkdI8/Px3AAAAAAAAAAA7e7Z2tna2drZ2tna2drZ2tna2drZ7/LuADo7PPHv7vEAAAAAAAAAAPHv8Nzb3Nvc29zb3Nvc29zb3Nvc2+/w8QA+P0Dz8/LyAAAAAAAAAADv8u7a2drZ2tna2drZ2tna2drZ2tna8/MAQkNE7e7t8AAAAAAAAAAA8/Px3Nvc29zb3Nvc29zb3Nvc29zb8dvvAEZHSPHv7vMAAAAAAAAAAO3w7+7Z2tna2drZ2tna2drZ2tna2drZ2gA6Ozzt7tnaAAAAAAAAAADx7e7z29zb3Nvc7/Db3Nvc29zb3Nvc7/AAPj9A8e/w3AAAAAAAAAAA7+7x8dna2drx7e7x2e3u7+7t8Nrx7e7xAEJDRO/y7toAAAAAAAAAAPHz7fDb3Nvc7e7v8PHc7e7t7u/w7e7v8ABGR0jz8/HcAAAAAA=="},{"a":50168,"b":"ICGrq6urq6s="},{"a":51200,"b":"AIAAAf8AAyyAAhBAH//4IAAEH//4BAhABCfAB5CABN5ACFxACECACHuADMCACCEABD4AA8QAAUQAAUIAAUEA"},{"a":51264,"b":"AAAAAAAAAKoAAqqAAAAAKqqoAAAAA//AA/8AAP8AAj/ACr/ACr8ACoQACqoAD+oAA8AAABQAAFQAAFQAAFUA"},{"a":53248,"b":"AAAAAAAAAAA="},{"a":53672,"b":"AAAAABBkteYAAABAgJTZnZ/b2taGQQEBn9va1oZBAQE="},{"a":53712,"b":"HBkREBACIiCABAQGBwMBIYNDAUHBQQMDBASEhMDAgIAgIEBAoMDgwGFgYHExYcGBg4ODgQEBERACAgQMDBwejKBAgUMDQwMDgoCEgIjIwMAgIGBw+PDg8IaGgoDExMTgASAgJGBycDjA4GBgICAgAeFBISMDI4GR"},{"a":54952,"b":"///77prlkAX/++77qqllBkpObn8/LoqaC09LmpaRkECWRih5KVmEkIh5Pbi0ZlYLmk5ufz8umpoPT0ualpGRQg=="},{"a":55144,"b":"//rq6urqqlW5qampqamlVf/66uqq6qlVtZGGkpGpZBH56enp5emllfWl5qamlqZV/umpVf7ppZU="},{"a":60096,"b":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"a":63488,"b":"AAAAAAAAAAA4bHR0dHQA+mCQJDQ0NDQ0ADR6foH/PAA="},{"a":63872,"b":"AD5jY2NjYz4="},{"a":65535,"b":"Og=="}],"capture":{"phase_cycles_uncertain":0,"frame_cycles":19653,"frame_ended_on_line":0,"picture_lines_low":0,"writes_account_for_end_state":true,"ram_bytes_changed_during_frame":37,"colour_cells_changed_during_frame":0}};
+  // the frame
+  const cv = document.getElementById('rd-frame'), over = document.getElementById('rd-over');
+  let L = null;
+  try { L = await C64.load('listing.json'); } catch (e) { /* the widgets that read the listing say so below */ }
+  if (window.C64) {
+    const r = C64.drawFrame(cv, F, 2);
+    over.width = cv.width; over.height = cv.height;
+    const screen = Uint8Array.from(atob(F.ram[0].b), (ch) => ch.charCodeAt(0));
+    const T = L ? Array.from(L.bytes(0x185B, 8)) : [0x00, 0x4D, 0x5B, 0x5F, 0xB6, 0xBE, 0xC1, 0xFC];
+    const ctx = over.getContext('2d');
+    const btn = document.getElementById('rd-overbtn'), key = document.getElementById('rd-key');
+    key.innerHTML = RD_KINDS.slice(1).map((k) => `<span><i style="background:${k.c}"></i>${k.k}</span>`).join('');
+    // the screen's top-left in the picture: 32 pixels of border on the left, 35 lines on top
+    const X0 = 32 * 2, Y0 = 35 * 2;
+    btn.addEventListener('click', () => {
+      const on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', String(on)); key.hidden = !on;
+      ctx.clearRect(0, 0, over.width, over.height);
+      if (!on) return;
+      for (let row = 1; row < 25; row++) for (let col = 0; col < 40; col++) {
+        const k = tileKind(screen[row * 40 + col], T);
+        if (k < 1) continue;
+        ctx.fillStyle = RD_KINDS[k].c;
+        ctx.fillRect(X0 + col * 16, Y0 + row * 16, 16, 16);
+      }
+    });
+    if (location.hash === '#tiles') btn.click();
+  }
+  // the Hall of Fame name box
+  const inp = document.getElementById('rd-name'), out = document.getElementById('rd-out');
+  const codes = (s) => Array.from(s.toUpperCase()).filter((ch) => /[A-Z. ]/.test(ch)).slice(0, 10)
+    .map((ch) => (ch === ' ' ? 0 : ch.charCodeAt(0)));
+  const show = (cs) => cs.map((b) => (b >= 0x41 && b <= 0x5A ? String.fromCharCode(b) : b === 0x2E ? '.' : ' ')).join('').replace(/@/g, ' ').trimEnd();
+  function check() {
+    const r = hofCheck(codes(inp.value));
+    const kept = show(r.name.map((b) => (b === 0x3B ? 0 : b === 0x40 ? 0 : b)));
+    out.innerHTML = `Kept as <b>${kept || '(nothing)'}</b>` + (r.rude ? ' (a rude word was found)' : '') +
+      (r.cheat ? '<br>Cheat keys on: 2 refills, C= skips a level.' : '') + (r.select ? '<br>The title screen will offer the level select.' : '');
+  }
+  inp.addEventListener('input', check);
+  document.getElementById('rd-try').innerHTML = ['SHIFT', 'ARSENAL', 'BROTHERS', 'SHIRT', 'BBOOIINNGG', 'FLUFOMATIC', 'RICK'].map((w) => `<button type="button">${w}</button>`).join('');
+  document.getElementById('rd-try').addEventListener('click', (e) => { if (e.target.tagName === 'BUTTON') { inp.value = e.target.textContent; check(); } });
+  check();
+  // the music
+  const mus = document.getElementById('rd-music');
+  if (!window.C64Sid || !L) mus.textContent = 'The player needs the site\'s sid.js and the listing: open this page from the built site.';
+  else {
+    const hex = Array.from(L.bytes(0x4FCC, 0x5F8E - 0x4FCC), (b) => b.toString(16).padStart(2, '0')).join('');
+    C64Sid.mount(mus, { driver: createDriver, data: { base: 0x4FCC, hex },
+      tunes: ['South America', 'Egypt', 'Schwarzendumpf Castle', 'Missile base', 'The ending', 'Title and Hall of Fame', 'Game over'] });
+  }
+  // the traps, counted from the object lists
+  const tab = document.getElementById('rd-traps');
+  if (!L) tab.innerHTML = '<tr><td>Needs the listing: open this page from the built site.</td></tr>';
+  else {
+    const ram = L.ram, levelOf = [];
+    const firstRoom = [0, 1, 2, 3].map((l) => (ram[0x1980 + l] | ram[0x1984 + l] << 8));
+    const counts = [0, 1, 2, 3].map(() => ({ n: 0, rick: 0, stick: 0, bullet: 0, blast: 0, deadly: 0, rest: 0, points: 0 }));
+    for (let room = 0; room < 34; room++) {
+      const rec = 0x46AD + 7 * room;
+      let lv = 0; for (let l = 0; l < 4; l++) if (rec >= firstRoom[l]) lv = l;
+      let p = ram[rec + 5] | ram[rec + 6] << 8;
+      while (ram[p] !== 0xFF && p < 0xACDC) {
+        const type = ram[p + 1] & 0x7F, fl = ram[p + 2];
+        if (type >= 24 && type <= 70) {
+          const c = counts[lv]; c.n++;
+          if (fl & 0x80) c.rick++; if (fl & 0x40) c.stick++; if (fl & 0x20) c.bullet++; if (fl & 0x10) c.blast++;
+          if (fl & 0x08) c.deadly++; if (fl & 0x04) c.rest++; if (fl & 0x01) c.points++;
+        }
+        p += 5;
+      }
+    }
+    const names = ['South America', 'Egypt', 'Schwarzendumpf Castle', 'Missile base'];
+    const cols = [['n', 'Traps'], ['rick', 'Rick walks in'], ['stick', 'The stick'], ['bullet', 'A bullet'], ['blast', 'An explosion'], ['deadly', 'Deadly while moving'], ['rest', 'Deadly at rest'], ['points', '1000 points']];
+    tab.innerHTML = '<tr><th>Level</th>' + cols.map((c) => `<th>${c[1]}</th>`).join('') + '</tr>' +
+      counts.map((c, i) => `<tr><td>${names[i]}</td>` + cols.map((k) => `<td class="rd-n">${c[k[0]]}</td>`).join('') + '</tr>').join('');
+  }
+})();
+</script>
