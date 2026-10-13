@@ -9,7 +9,7 @@
   "title_image": "reference/title.png",
   "build": "PAL cassette, Firebird 1989, analysed in play on level one",
   "tier": "bronze",
-  "coverage_percent": 10.5,
+  "coverage_percent": 100.0,
   "copy": "agent-draft",
   "steward": "",
   "credits": [
@@ -34,9 +34,18 @@
   },
   "model": "claude-opus-5-5",
   "step_models": {
-    "10-orient": ["claude-opus-5-5"],
-    "20-features": ["claude-opus-5-5"],
-    "40-sweep": ["claude-opus-5-5"]
+    "10-orient": [
+      "claude-opus-5-5"
+    ],
+    "20-features": [
+      "claude-opus-5-5"
+    ],
+    "40-sweep": [
+      "claude-opus-5-5"
+    ],
+    "50-coverage": [
+      "claude-opus-5-5"
+    ]
   },
   "kit_version": "0.0.155",
   "created": "2026-10-12",
@@ -45,9 +54,61 @@
     "charset": ""
   },
   "coverage": {
-    "exclude": [],
+    "exclude": [
+      [
+        "$0400",
+        "$047F",
+        "runtime: the staging buffer one decoded map row (four rows of 32 tiles) passes through ($2D55, $2EB3)"
+      ],
+      [
+        "$0480",
+        "$05FF",
+        "runtime: the 63-byte sprite mask $1111 fills for each object drawn, and its spare"
+      ],
+      [
+        "$0600",
+        "$06FF",
+        "runtime: the tile property table, rebuilt for each room's graphics set by $4081"
+      ],
+      [
+        "$0700",
+        "$07FF",
+        "the end of the KERNAL text screen at $0400 as the loader left it (spaces) and its sprite pointers; the game never reads it"
+      ],
+      [
+        "$BA00",
+        "$BFB3",
+        "runtime: the room's collision map, 32 tiles to a row, rebuilt by $2EDC on every room change and scroll"
+      ],
+      [
+        "$C000",
+        "$C7FF",
+        "runtime: the two screens, drawn by the game"
+      ],
+      [
+        "$C800",
+        "$C97F",
+        "runtime: the first set of sprite images the game builds each frame ($0F83)"
+      ],
+      [
+        "$CA00",
+        "$CB7F",
+        "runtime: the second set of sprite images, used on alternate frames"
+      ],
+      [
+        "$E400",
+        "$E8FF",
+        "runtime: the enemies' left-facing frames, mirrored for each level by $16D3"
+      ]
+    ],
     "extra": [],
-    "include": []
+    "include": [
+      [
+        "$D000",
+        "$DFFF",
+        "the RAM under the I/O area: in video bank 3 the video chip reads the score panel's character set and sprite frames from it, and $1911 swaps tile graphics in and out with the I/O banked out"
+      ]
+    ]
   },
   "io": [],
   "regions": [],
