@@ -12668,12 +12668,12 @@
   {
    "address": 2473,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0B27 reads it."
+   "text": "An address the code names directly: the JMP at $0B27 jumps to it."
   },
   {
    "address": 2564,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0A9D reads it."
+   "text": "An address the code names directly: the JMP at $0A9D jumps to it."
   },
   {
    "address": 2570,
@@ -12683,12 +12683,12 @@
   {
    "address": 2628,
    "type": "line",
-   "text": "An address the code names directly: main_loop reads it at $0A3A."
+   "text": "An address the code names directly: main_loop jumps to it at $0A3A."
   },
   {
    "address": 2648,
    "type": "line",
-   "text": "An address the code names directly: j_0A44 reads it at $0A4E."
+   "text": "An address the code names directly: j_0A44 jumps to it at $0A4E."
   },
   {
    "address": 2669,
@@ -12713,12 +12713,12 @@
   {
    "address": 3176,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0BE4 reads it."
+   "text": "An address the code names directly: the JMP at $0BE4 jumps to it."
   },
   {
    "address": 3186,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0BE1 reads it."
+   "text": "An address the code names directly: the JMP at $0BE1 jumps to it."
   },
   {
    "address": 3218,
@@ -12728,17 +12728,17 @@
   {
    "address": 3365,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0CC8 reads it."
+   "text": "An address the code names directly: the JMP at $0CC8 jumps to it."
   },
   {
    "address": 3434,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0CBD reads it."
+   "text": "An address the code names directly: the JMP at $0CBD jumps to it."
   },
   {
    "address": 3478,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $0D0E reads it (and 2 more)."
+   "text": "An address the code names directly: the JMP at $0D0E jumps to it (and 2 more)."
   },
   {
    "address": 3485,
@@ -12748,7 +12748,7 @@
   {
    "address": 3591,
    "type": "line",
-   "text": "An address the code names directly: rick_climb reads it at $0DEE."
+   "text": "An address the code names directly: rick_climb jumps to it at $0DEE."
   },
   {
    "address": 3684,
@@ -12788,7 +12788,7 @@
   {
    "address": 3758,
    "type": "line",
-   "text": "An address the code names directly: stick_dispatch reads it at $0E71."
+   "text": "An address the code names directly: stick_dispatch jumps to it at $0E71."
   },
   {
    "address": 3759,
@@ -13108,27 +13108,27 @@
   {
    "address": 4860,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $12C3 reads it."
+   "text": "An address the code names directly: the JMP at $12C3 jumps to it."
   },
   {
    "address": 4901,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $126D reads it."
+   "text": "An address the code names directly: the JMP at $126D jumps to it."
   },
   {
    "address": 5293,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $1382 reads it (and 2 more)."
+   "text": "An address the code names directly: the JMP at $1382 jumps to it (and 2 more)."
   },
   {
    "address": 5296,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $1217 reads it."
+   "text": "An address the code names directly: the JMP at $1217 jumps to it."
   },
   {
    "address": 5299,
    "type": "line",
-   "text": "An address the code names directly: j_12FC reads it at $1322."
+   "text": "An address the code names directly: j_12FC jumps to it at $1322."
   },
   {
    "address": 5308,
@@ -13188,7 +13188,7 @@
   {
    "address": 5481,
    "type": "line",
-   "text": "An address the code names directly: enemy_dir_step reads it at $1558."
+   "text": "An address the code names directly: enemy_dir_step jumps to it at $1558."
   },
   {
    "address": 5482,
@@ -13253,7 +13253,7 @@
   {
    "address": 5698,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $15B2 reads it."
+   "text": "An address the code names directly: the JMP at $15B2 jumps to it."
   },
   {
    "address": 5747,
@@ -13583,7 +13583,7 @@
   {
    "address": 6721,
    "type": "line",
-   "text": "An address the code names directly: box_dynamite reads it at $19E9 (and 1 more)."
+   "text": "An address the code names directly: box_dynamite jumps to it at $19E9 (and 1 more)."
   },
   {
    "address": 6751,
@@ -13598,7 +13598,7 @@
   {
    "address": 6849,
    "type": "line",
-   "text": "An address the code names directly: trap reads it at $1A7C."
+   "text": "An address the code names directly: trap jumps to it at $1A7C."
   },
   {
    "address": 6863,
@@ -13608,7 +13608,7 @@
   {
    "address": 6951,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $1BC6 reads it."
+   "text": "An address the code names directly: the JMP at $1BC6 jumps to it."
   },
   {
    "address": 7030,
@@ -13838,12 +13838,12 @@
   {
    "address": 8187,
    "type": "line",
-   "text": "An address the code names directly: b_2077 reads it at $2087."
+   "text": "An address the code names directly: b_2077 jumps to it at $2087."
   },
   {
    "address": 8311,
    "type": "line",
-   "text": "An address the code names directly: name_letter reads it at $20B7."
+   "text": "An address the code names directly: name_letter jumps to it at $20B7."
   },
   {
    "address": 8330,
@@ -14148,12 +14148,12 @@
   {
    "address": 9379,
    "type": "line",
-   "text": "An address the code names directly: j_24C2 reads it at $24D8."
+   "text": "An address the code names directly: j_24C2 jumps to it at $24D8."
   },
   {
    "address": 9410,
    "type": "line",
-   "text": "An address the code names directly: story_text reads it at $24A0."
+   "text": "An address the code names directly: story_text jumps to it at $24A0."
   },
   {
    "address": 9436,
@@ -14358,7 +14358,7 @@
   {
    "address": 10281,
    "type": "line",
-   "text": "An address the code names directly: j_2829 reads it at $2859."
+   "text": "An address the code names directly: j_2829 jumps to it at $2859."
   },
   {
    "address": 10340,
@@ -14693,7 +14693,7 @@
   {
    "address": 11593,
    "type": "line",
-   "text": "An address the code names directly: add_hundreds reads it at $2D3A."
+   "text": "An address the code names directly: add_hundreds jumps to it at $2D3A."
   },
   {
    "address": 11605,
@@ -14788,7 +14788,7 @@
   {
    "address": 11998,
    "type": "line",
-   "text": "An address the code names directly: j_2EDE reads it at $2F71."
+   "text": "An address the code names directly: j_2EDE jumps to it at $2F71."
   },
   {
    "address": 12312,
@@ -14838,7 +14838,7 @@
   {
    "address": 12638,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $31F8 reads it."
+   "text": "An address the code names directly: the JMP at $31F8 jumps to it."
   },
   {
    "address": 12784,
@@ -14858,7 +14858,7 @@
   {
    "address": 12818,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $32AC reads it."
+   "text": "An address the code names directly: the JMP at $32AC jumps to it."
   },
   {
    "address": 12964,
@@ -14873,7 +14873,7 @@
   {
    "address": 12978,
    "type": "line",
-   "text": "An address the code names directly: j_32B2 reads it at $333F."
+   "text": "An address the code names directly: j_32B2 jumps to it at $333F."
   },
   {
    "address": 13123,
@@ -14883,7 +14883,7 @@
   {
    "address": 13172,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $340E reads it."
+   "text": "An address the code names directly: the JMP at $340E jumps to it."
   },
   {
    "address": 13311,
@@ -14903,7 +14903,7 @@
   {
    "address": 13352,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $34C2 reads it."
+   "text": "An address the code names directly: the JMP at $34C2 jumps to it."
   },
   {
    "address": 13491,
@@ -14918,7 +14918,7 @@
   {
    "address": 13512,
    "type": "line",
-   "text": "An address the code names directly: j_34C8 reads it at $3555."
+   "text": "An address the code names directly: j_34C8 jumps to it at $3555."
   },
   {
    "address": 13657,
@@ -15633,7 +15633,7 @@
   {
    "address": 15450,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $3CC4 reads it."
+   "text": "An address the code names directly: the JMP at $3CC4 jumps to it."
   },
   {
    "address": 15532,
@@ -16093,12 +16093,12 @@
   {
    "address": 19209,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $49AC reads it."
+   "text": "An address the code names directly: the JMP at $49AC jumps to it."
   },
   {
    "address": 19340,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $4B2D reads it (and 2 more)."
+   "text": "An address the code names directly: the JMP at $4B2D jumps to it (and 2 more)."
   },
   {
    "address": 19521,
@@ -16128,7 +16128,7 @@
   {
    "address": 19714,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $4CA3 reads it (and 2 more)."
+   "text": "An address the code names directly: the JMP at $4CA3 jumps to it (and 2 more)."
   },
   {
    "address": 19744,
@@ -16153,7 +16153,7 @@
   {
    "address": 19835,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $4D47 reads it (and 1 more)."
+   "text": "An address the code names directly: the JMP at $4D47 jumps to it (and 1 more)."
   },
   {
    "address": 19880,
@@ -16178,7 +16178,7 @@
   {
    "address": 19945,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $4DC2 reads it (and 1 more)."
+   "text": "An address the code names directly: the JMP at $4DC2 jumps to it (and 1 more)."
   },
   {
    "address": 19963,
@@ -16943,17 +16943,17 @@
   {
    "address": 20935,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $524B reads it (and 3 more)."
+   "text": "An address the code names directly: the JMP at $524B jumps to it (and 3 more)."
   },
   {
    "address": 20958,
    "type": "line",
-   "text": "An address the code names directly: b_51C7 reads it at $51D0 (and 1 more)."
+   "text": "An address the code names directly: b_51C7 jumps to it at $51D0 (and 1 more)."
   },
   {
    "address": 20977,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $56E4 reads it (and 3 more)."
+   "text": "An address the code names directly: the JMP at $56E4 jumps to it (and 3 more)."
   },
   {
    "address": 20981,
@@ -17013,52 +17013,52 @@
   {
    "address": 21276,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $5250 reads it."
+   "text": "An address the code names directly: the JMP at $5250 jumps to it."
   },
   {
    "address": 21345,
    "type": "line",
-   "text": "An address the code names directly: j_531C reads it at $5353 (and 1 more)."
+   "text": "An address the code names directly: j_531C jumps to it at $5353 (and 1 more)."
   },
   {
    "address": 21467,
    "type": "line",
-   "text": "An address the code names directly: tune_voice_step reads it at $51B8."
+   "text": "An address the code names directly: tune_voice_step jumps to it at $51B8."
   },
   {
    "address": 21587,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $5411 reads it (and 1 more)."
+   "text": "An address the code names directly: the JMP at $5411 jumps to it (and 1 more)."
   },
   {
    "address": 21603,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $54E6 reads it (and 1 more)."
+   "text": "An address the code names directly: the JMP at $54E6 jumps to it (and 1 more)."
   },
   {
    "address": 21654,
    "type": "line",
-   "text": "An address the code names directly: b_5496 reads it at $54CA (and 1 more)."
+   "text": "An address the code names directly: b_5496 jumps to it at $54CA (and 1 more)."
   },
   {
    "address": 21753,
    "type": "line",
-   "text": "An address the code names directly: j_5453 reads it at $5458 (and 2 more)."
+   "text": "An address the code names directly: j_5453 jumps to it at $5458 (and 2 more)."
   },
   {
    "address": 21864,
    "type": "line",
-   "text": "An address the code names directly: the JMP at $5549 reads it."
+   "text": "An address the code names directly: the JMP at $5549 jumps to it."
   },
   {
    "address": 21896,
    "type": "line",
-   "text": "An address the code names directly: j_54F9 reads it at $54FE (and 1 more)."
+   "text": "An address the code names directly: j_54F9 jumps to it at $54FE (and 1 more)."
   },
   {
    "address": 22140,
    "type": "line",
-   "text": "An address the code names directly: j_5588 reads it at $55E4 (and 2 more)."
+   "text": "An address the code names directly: j_5588 jumps to it at $55E4 (and 2 more)."
   },
   {
    "address": 22141,

@@ -58,6 +58,20 @@ with the game.
   over 300 frames the frame's last handler `$3A68` ran 284 times and the
   main step `$0A0F` 141 times).
 - The room bonus loses 10 points after 38 main-loop steps and then every 26 (`$0ECF`).
+- In play the raster list is `$3B9D` plus `$3A42` (0, 2 or 5, set by the
+  sort at `$3559`): line 63 (`$3A43`: the tiles' character set from line
+  65, sprite frames, the music and effects at `$4F86`), up to two split
+  lines that move with the objects (`$3831`, `$387D`: the bottom of the
+  second and of the fourth sprite in height order, Y + 21, plus 3 when the
+  two are equal), and line 240 (`$3A68`: sort, place, count the frame).
+  The upward scroll uses `$3BA7` (lines 64 and 249, `$3AAB`, `$3AFE`), the
+  downward one the handlers at `$3B20` and `$3B73`.
+- A scroll takes 16 frames (`$15` from 15 down): the screen shown changes
+  every second frame (`$3AE8`: `$C000`, `$C000`, `$C400`, `$C400` by
+  `$15` AND 3), the top handler alternately lets the main program draw the
+  next shift (`$27`) and moves the objects eight pixels (`$3E55`), and the
+  bottom handler copies the colour RAM a row on in every second frame. The
+  main loop does nothing else meanwhile (`$3026`).
 
 ## Controls
 
@@ -100,9 +114,13 @@ with the game.
   behaviour from its code alone: eight thresholds (`$38`-`$3F`, `$4081`)
   divide the codes into eight kinds: background, ladders, deadly tiles
   (flag 4; the main loop kills Rick on one, `$0A23`), scenery in front of
-  the sprites, platforms in front (flag `$10`: stood on unless rising, `$3F04`, and stopping a climb), floors,
-  solid walls in front, and the tops of ladders (flag `$80`, climbed down
-  through with the stick held down, `$0C38`).
+  the sprites, platforms in front (flag `$10`: stood on unless rising, `$3F04`, and stopping a climb), springy
+  floors (flags `$60`), floors and walls (flags `$48`), and the tops of
+  ladders (flag `$80`, climbed down through with the stick held down,
+  `$0C38`). The springy kind is codes `$BE`-`$C0` of the first tile set
+  and `$D8` of the second; the maps hold 24 such tiles in one row of
+  Egypt (map row 86 of level 2) and 4 in Schwarzendumpf Castle (map row
+  51 of level 3), none in levels 1 and 4 (counted from the maps).
 - The view scrolls two map rows (64 pixels) at a time, as eight one-row
   shifts, when Rick nears the top or bottom (`$3018`, `$30A3`), each shift
   built on the hidden screen while the other is shown, the colour RAM
@@ -119,6 +137,16 @@ with the game.
 - Six lives (`$2D34`, set at `$08C0` in the title loop before every game, *live*: a game after GAME OVER starts with six); bullets and dynamite (`$2D32`,
   `$2D33`) go back to six at every level start and after every death
   (`$09F6`).
+- Rick's movement (`$0B2A`): two pixels a step left or right; a vertical
+  speed in 256ths (`$39B5`, `$39A9`) to which each step adds half a pixel,
+  up to 8; a jump starts at -5.5 (`$0D2D`), 33 pixels up in 11 steps. A
+  blocked move is tried without its sideways part; a ceiling turns the
+  speed to +0.5, a floor lands him with speed 1 (`$0C20`). On a springy
+  floor (flag `$20`) a landing sends him back up at the speed he fell less
+  about one pixel (`$0BFE`), or at -8 with up held (`$0BED`, 68 pixels);
+  a speed of exactly 1 counts as standing. `test_move.js` holds the page's
+  port to the game's code on both floors; the bounce has not been watched
+  in play.
 - Rick restarts after a death where he entered the room (`$40AA` saves it
   on entry, `lose_life` restores it).
 - Enemies (types 4-15, `$11AB`) walk towards Rick's column, climb when he
@@ -129,6 +157,16 @@ with the game.
   Set off, a trap plays its sound and runs a movement script of
   (count, X step, Y step) records; bit 3 makes one deadly while it runs and bit 2 while it waits; some
   give 1000 points and go when they end.
+- A trap's script (type tables `$B880`/`$B900`) is read from its second
+  byte in records of three, count, X step and Y step, ended by `$FF`; its
+  frames change every fourth step, a `$FF` going back to the second frame
+  (`$1ACF`). A step to X under 4 or from `$E6`, or to Y outside 0-`$13F`,
+  ends the run early (`$1B8C`-`$1BC6`). `test_trap.js` holds the page's
+  port to the game's code for all 47 trap types.
+- The boulder of the first room is trap type 42 (script `$44B6`, nine
+  records), object 5 in the play snapshot at X 0, Y 139, blank at rest.
+  Its script ends at step 205, at X 40, when its third drop would take it
+  below Y `$13F`.
 - Boxes of dynamite and bullets refill to six when touched; shot or
   jabbed they explode instead (`$19C6`, `$19FA`). A treasure gives 500
   points (`$1A5F`).
@@ -254,7 +292,9 @@ excluded runtime area or a typed data block that holds it and to name a
 routine only when the code runs straight from its entry to the
 instruction, and 25 of the self-modified-code comments lost a routine name
 for the same reason. Over the whole second sample, 7 of 65, 11 % (5 % to
-21 %).
+21 %). The rewritten template was then found to say "reads" for a JMP or
+JSR that names a code address; its 53 such comments were corrected to
+"jumps to" and "calls".
 
 ## Live tests
 

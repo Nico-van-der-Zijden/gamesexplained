@@ -17,7 +17,9 @@ tab. The copy is `agent-draft`.
 
 ## Open
 
-- Which trap in the first room is the boulder of the manual's drawing.
+- The springy floor's bounce (`$0BFE`) and the lost ninth X bit of reused
+  sprites 4 and 5 were read from the code and run in the simulator, not
+  watched in play.
 - The tape's blocks, decoded and mapped onto memory (`10-orient`, step 7).
 - Boxes of dynamite and bullets coming back after a death (`$3E1B`) was
   read from the code, not watched.
@@ -28,5 +30,5 @@ tab. The copy is `agent-draft`.
   BBOOIINNGG with the stick as the game makes the player do.
 - The rooms on the Maps tab with their objects placed from the object
   lists, the traps marked by what sets them off.
-- The scroll, step by step: the two screens and the colour copy.
 - The software masking of Rick's sprite, as a stepper over one frame.
+- Every trap's script animated, not only the boulder's.

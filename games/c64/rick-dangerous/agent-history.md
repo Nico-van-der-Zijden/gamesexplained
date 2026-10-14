@@ -83,3 +83,15 @@ rewritten with a stricter rule, and the self-modified-code comments, which
 named their routine the same way, were checked by the same test. The bug
 in the multiplexer's ninth X bits, which the audit had noticed, was traced
 before it went into `facts.md`: nothing writes `$397C` or `$397D`.
+
+The contributor found the first Silver page thin on how the game works, so
+six sections were added: the raster lists and the main loop's beat, Rick's
+movement, the springy floor, the scroll, the boulder's script, and the
+multiplexer with its lost ninth bit. Each widget is a port held to the
+game's own code in the simulator (`test_move.js`, `test_trap.js`,
+`test_mux.js`). The movement port at first disagreed past X = `$E6`, where
+the main loop would already have changed rooms; the test keeps the stick
+inside the room. Running `move_rick` showed the tile flag `$60`, labelled
+"floor and wall" on the overlay, to be a springy floor found in only two
+rows of the maps, and the common floor to be `$48`; the labels were
+corrected. The trap scripts answered which trap is the manual's boulder.
