@@ -128,6 +128,32 @@ with the game.
 - The level's enemies are drawn facing right only; `$16D3` makes their
   left-facing frames at each level's start by reversing each row's bytes
   and each byte's pixel pairs.
+- The play screen: row 0 the score panel in the font, rows 2-24 the play
+  area in tile columns 4-35, character 0 to either side. A view is six map
+  rows, 24 tile rows; the screen shows the last 23, the first kept at
+  `$BFA0` for the scroll (`$2DA0`; the recorded frame's rows 2-24 equal the
+  decoded map rows from `$9220`).
+- Rick is a pair of frames, F on sprite 0 (hires, colour 0, `$B5A4`) and
+  F+1 on sprite 1 (multicolour, colour 8, `$B5A5`), from `$EB00` and
+  `$EB40` for `$AC` (`$0FBC`); `$D01C` = `$FE`. His frames are `$AC`-`$DF`,
+  the left-facing ones `$18` after the right; climbing alternates `$C2` and
+  `$DA`, its left twin (`$4330`). The story screens' figures are pairs too
+  (`$26B1`). The two shared sprite colours are set once, `$D025` = 11
+  (`$0936`) and `$D026` = 10 (`$08D2`).
+- `$16D3` puts the level's ten enemy frames at `$90`, `$92`, ... `$A2`, each
+  followed by its mirror image, and colours them from `$1780` and `$1784`
+  indexed by the level number `$30` (X, which picks the frames, holds the
+  same, `$243C`). `test_mirror.js` holds the page's port to it.
+- The maps use 253 of the 256 blocks (none uses `$D1`, `$FA`, `$FC`): 121
+  in levels 1-2 and 132 in levels 3-4. No block in those maps holds 7 codes
+  of the first tile set (`$69`, `$CC`, `$CF`, `$D0`, `$D4`, and the bullet's
+  `$FE`, `$FF`, which `$2ABA` draws) or 26 of the second (counted from the
+  maps).
+- `$B400`-`$B4FF`, the blocks' address high bytes, and the frame colour
+  table at `$B4D0` share 48 bytes; no frame list names a frame below `$30`.
+- Every sprite frame in the bank is named by a frame list or a constant of
+  the code; frames `$40`-`$5F` and `$E0`-`$FF` would be the tile set and the
+  font.
 - The game never reads the sprite collision registers `$D01E` and
   `$D01F`: every hit is a box test in software (`$1C33`, `$1C73`,
   `$1C84`, `$1D2C`).

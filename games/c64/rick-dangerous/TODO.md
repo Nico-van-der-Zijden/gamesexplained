@@ -32,3 +32,5 @@ tab. The copy is `agent-draft`.
   lists, the traps marked by what sets them off.
 - The software masking of Rick's sprite, as a stepper over one frame.
 - Every trap's script animated, not only the boulder's.
+- The story screens' pictures drawn in their own colours on the Graphics
+  tab (the story set is shown in one colour).

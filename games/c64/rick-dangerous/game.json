@@ -130,5 +130,27 @@
       "title": "Rick Dangerous manual (scan)",
       "url": "https://api.regvault.org/api/v1/game/c64/e0cb9e399fed0aecee772be39481c5ea/manual"
     }
-  }
+  },
+  "tabs": [
+    [
+      "index.html",
+      "How it works"
+    ],
+    [
+      "source.html",
+      "Source code"
+    ],
+    [
+      "graphics.html",
+      "Graphics"
+    ],
+    [
+      "levels.html",
+      "Maps / levels"
+    ],
+    [
+      "about.html",
+      "About"
+    ]
+  ]
 }
