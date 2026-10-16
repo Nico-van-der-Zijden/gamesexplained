@@ -13,7 +13,6 @@ of an audit, worked in `60-verify`.
 
 ## Skill text that changed what I did
 
-- `60-verify`: "If the first sample is bad, audit the whole listing before the page is published": the sample found 11 of 45 hand-written comments wrong, so two agents audited all 582 before the page went out, rather than the sample's 13 being corrected alone.
 - `50-coverage`: "Find what writes the operand, parse every table it reads": the object handlers ($1D40/$1D83), the trap scripts' dispatch and the music's track commands ($5226) were all reached only through operands written at run time, and each table was parsed and traced.
 - `40-sweep`: "Decode the whole image as screen codes (and again as the system's text encoding)": the screen-code pass found nothing; the second pass found the story texts, the rude-word list and both code names.
 - `70-minisite`: "The game's own driver run on a 6502 core inside `createDriver` counts as a port": the player runs the game's 1.7 KB music player on a small core in the page, checked write for write against the simulator, rather than a hand port of it.

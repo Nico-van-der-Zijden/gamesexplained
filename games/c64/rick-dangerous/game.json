@@ -56,6 +56,14 @@
       "claude-opus-5-5"
     ]
   },
+  "accuracy": [
+    {"step": "research", "web": true, "models": ["claude-opus-5-5"]},
+    {"step": "annotate", "models": ["claude-opus-5-5"]},
+    {"step": "sample", "size": 65, "wrong": 13, "fixed": 13, "seed": 20261013, "models": ["claude-opus-5-5"], "note": "45 hand-written and 20 generated comments; about 70 comments that shared their beliefs corrected with them"},
+    {"step": "audit", "checked": 582, "fixed": 116, "models": ["claude-opus-5-5"], "note": "every hand-written comment, in two halves by two fresh checkers; the generated comments were not audited"},
+    {"step": "sample", "size": 65, "wrong": 7, "fixed": 7, "seed": 20261014, "models": ["claude-opus-5-5"], "note": "45 hand-written comments with 1 wrong and 20 generated with 6 wrong, five of them from one template"},
+    {"step": "audit", "checked": 346, "of": 1361, "fixed": 346, "models": ["claude-opus-5-5"], "note": "partial: that template's 321 comments rewritten to a stricter rule, and 25 self-modified-code comments that named their routine the same way"}
+  ],
   "kit_version": "0.0.155",
   "created": "2026-10-12",
   "video": {
