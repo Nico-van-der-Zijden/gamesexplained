@@ -6921,6 +6921,12 @@
    "kind": "auto"
   },
   {
+   "address": 18452,
+   "name": "line_offset_unpack_b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 18512,
    "name": "line_offset_lo_b",
    "type": "UserDefined",
@@ -8763,6 +8769,12 @@
    "kind": "auto"
   },
   {
+   "address": 50186,
+   "name": "frames_2b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 51184,
    "name": "frames_3",
    "type": "UserDefined",
@@ -9207,6 +9219,12 @@
    "kind": "auto"
   },
   {
+   "address": 58673,
+   "name": "terrain_packed_0b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 58792,
    "name": "terrain_packed_1",
    "type": "UserDefined",
@@ -9263,6 +9281,12 @@
   {
    "address": 63739,
    "name": "objects_b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 64000,
+   "name": "objects_last",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -12633,6 +12657,11 @@
    "text": "entry 0 of line_offset_unpack's table and a variable of the level's unpacker: $E0F5 sets it to 0 for the rearranging loop and $E136 puts back the 3 the table holds"
   },
   {
+   "address": 18452,
+   "type": "line",
+   "text": "line_offset_lo's entries 4 to $4F, $4814-$484F, which the level's unpacker also reads through $4810"
+  },
+  {
    "address": 18512,
    "type": "line",
    "text": "line_offset_lo from line $50 on, $4850-$48B7"
@@ -13743,6 +13772,11 @@
    "text": "the end sequence's entry, where to_ending ($CD5B) jumps once IC is in; in this part's memory the bytes are animation frames"
   },
   {
+   "address": 50186,
+   "type": "line",
+   "text": "the lemmings' animation frames, $C40A-$C7EF, after the end sequence's entry label at $C400"
+  },
+  {
    "address": 51184,
    "type": "line",
    "text": "the lemmings' animation frames, $C7F0-$CB0F, the last"
@@ -14023,6 +14057,11 @@
    "text": "named by the JSR at $08AA, a call to the KERNAL's screen editor set-up with the ROM in view; the RAM here holds the packed terrain"
   },
   {
+   "address": 58673,
+   "type": "line",
+   "text": "the packed terrain stream, $E531-$E5A7"
+  },
+  {
    "address": 58792,
    "type": "line",
    "text": "the packed terrain stream, $E5A8-$E9A7"
@@ -14066,6 +14105,11 @@
    "address": 63739,
    "type": "line",
    "text": "the level's object tables and data, $F8FB-$F9F4"
+  },
+  {
+   "address": 64000,
+   "type": "line",
+   "text": "the last byte of the level's object area before level 1's file's tail at $FA01"
   },
   {
    "address": 64001,

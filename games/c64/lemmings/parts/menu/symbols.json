@@ -119,43 +119,23 @@
  "blocks": [
   {
    "start": 16384,
-   "end": 18255,
+   "end": 24383,
+   "type": "Byte"
+  },
+  {
+   "start": 24384,
+   "end": 24575,
    "type": "Undefined"
   },
   {
-   "start": 18256,
-   "end": 18297,
-   "type": "Code"
-  },
-  {
-   "start": 18298,
-   "end": 18377,
-   "type": "Undefined"
-  },
-  {
-   "start": 18378,
-   "end": 18401,
-   "type": "Code"
-  },
-  {
-   "start": 18402,
-   "end": 20479,
-   "type": "Undefined"
-  },
-  {
-   "start": 20480,
-   "end": 20501,
-   "type": "Code"
-  },
-  {
-   "start": 20502,
+   "start": 24576,
    "end": 27823,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 32768,
    "end": 37199,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 37200,
@@ -204,8 +184,13 @@
   },
   {
    "start": 38257,
-   "end": 39656,
+   "end": 38416,
    "type": "Undefined"
+  },
+  {
+   "start": 38417,
+   "end": 39656,
+   "type": "Byte"
   },
   {
    "start": 39657,
@@ -305,21 +290,57 @@
   {
    "start": 41984,
    "end": 46079,
-   "type": "Undefined"
+   "type": "Byte"
   }
  ],
  "symbols": [
   {
-   "address": 18378,
-   "name": "b_47CA",
-   "type": "Branch",
-   "kind": "auto"
+   "address": 16384,
+   "name": "title_bitmap_0",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 17408,
+   "name": "title_bitmap_1",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 18432,
+   "name": "title_bitmap_2",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 19456,
+   "name": "title_bitmap_3",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 20480,
+   "name": "title_bitmap_4",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 21504,
+   "name": "title_bitmap_5",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 22528,
+   "name": "title_bitmap_6",
+   "type": "Field",
+   "kind": "user"
   },
   {
    "address": 23104,
-   "name": "a_5A40",
+   "name": "scroller_start",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23113,
@@ -328,136 +349,184 @@
    "kind": "user"
   },
   {
+   "address": 23552,
+   "name": "title_bitmap_7",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 24384,
+   "name": "scroller_text_end",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 24576,
-   "name": "f_6000",
+   "name": "title_screen_colours",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24832,
-   "name": "f_6100",
+   "name": "title_colours_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25088,
-   "name": "f_6200",
+   "name": "title_colours_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25344,
-   "name": "f_6300",
+   "name": "title_colours_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25416,
-   "name": "f_6348",
+   "name": "scroller_row_top",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25456,
-   "name": "f_6370",
+   "name": "scroller_row",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25457,
-   "name": "f_6371",
+   "name": "scroller_row_src",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25495,
-   "name": "a_6397",
+   "name": "scroller_new",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25496,
-   "name": "f_6398",
+   "name": "scroller_row_low",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25497,
-   "name": "f_6399",
+   "name": "scroller_row_low_src",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25535,
-   "name": "a_63BF",
+   "name": "scroller_new_low",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25536,
-   "name": "f_63C0",
+   "name": "scroller_row_below",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25592,
-   "name": "f_63F8",
+   "name": "sprite_ptrs_menu",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 25600,
+   "name": "menu_font",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 25856,
-   "name": "f_6500",
+   "name": "picture_sprites",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 26624,
+   "name": "menu_font_1",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 27648,
+   "name": "menu_tail",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32768,
+   "name": "icon_gfx",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 33792,
+   "name": "icon_graphics_1",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 34816,
+   "name": "icon_graphics_2",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 35200,
-   "name": "f_8980",
+   "name": "title_colours_src",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35456,
-   "name": "f_8A80",
+   "name": "title_colours_src_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35712,
-   "name": "f_8B80",
+   "name": "title_colours_src_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35968,
-   "name": "f_8C80",
+   "name": "title_colours_src_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36200,
-   "name": "f_8D68",
+   "name": "title_colour_ram",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36456,
-   "name": "f_8E68",
+   "name": "title_colour_ram_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36712,
-   "name": "f_8F68",
+   "name": "title_colour_ram_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36968,
-   "name": "f_9068",
+   "name": "title_colour_ram_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37200,
@@ -467,9 +536,9 @@
   },
   {
    "address": 37269,
-   "name": "b_9195",
+   "name": "title_screen",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37316,
@@ -527,9 +596,9 @@
   },
   {
    "address": 37453,
-   "name": "s_924D",
+   "name": "leave_menu",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37471,
@@ -574,6 +643,12 @@
    "kind": "auto"
   },
   {
+   "address": 37580,
+   "name": "irq_scroller",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 37605,
    "name": "b_92E5",
    "type": "Branch",
@@ -599,9 +674,9 @@
   },
   {
    "address": 37677,
-   "name": "s_932D",
+   "name": "level_to_menu",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37683,
@@ -611,27 +686,27 @@
   },
   {
    "address": 37699,
-   "name": "a_9343",
+   "name": "code_addr",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37700,
-   "name": "a_9344",
+   "name": "code_addr_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37701,
-   "name": "f_9345",
+   "name": "rating_first",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37705,
-   "name": "s_9349",
+   "name": "menu_to_level",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37777,
@@ -647,33 +722,33 @@
   },
   {
    "address": 37795,
-   "name": "s_93A3",
+   "name": "toggle_music",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37803,
-   "name": "s_93AB",
+   "name": "music_icon",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37819,
-   "name": "a_93BB",
+   "name": "scroller_on",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37821,
-   "name": "a_93BD",
+   "name": "scroller_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37822,
-   "name": "s_93BE",
+   "name": "scroll_text",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37838,
@@ -731,21 +806,21 @@
   },
   {
    "address": 37930,
-   "name": "a_942A",
+   "name": "scroller_pause",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37931,
-   "name": "a_942B",
+   "name": "scroller_fine",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37932,
-   "name": "s_942C",
+   "name": "scroller_init",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37952,
@@ -755,9 +830,9 @@
   },
   {
    "address": 37995,
-   "name": "s_946B",
+   "name": "bar_colours",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37997,
@@ -767,9 +842,9 @@
   },
   {
    "address": 38009,
-   "name": "s_9479",
+   "name": "title_colours",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38011,
@@ -779,63 +854,63 @@
   },
   {
    "address": 38062,
-   "name": "s_94AE",
+   "name": "screen_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38094,
-   "name": "a_94CE",
+   "name": "music_icon_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38095,
-   "name": "a_94CF",
+   "name": "player_icon_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38096,
-   "name": "a_94D0",
+   "name": "rating_icon_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38097,
-   "name": "a_94D1",
+   "name": "icon_pos",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38098,
-   "name": "a_94D2",
+   "name": "icon_cell",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38099,
-   "name": "a_94D3",
+   "name": "icon_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38100,
-   "name": "f_94D4",
+   "name": "icon_graphics",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38108,
-   "name": "f_94DC",
+   "name": "icon_cells",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38116,
-   "name": "s_94E4",
+   "name": "draw_icon",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38130,
@@ -851,9 +926,9 @@
   },
   {
    "address": 38152,
-   "name": "s_9508",
+   "name": "draw_icon_row",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38220,
@@ -869,75 +944,81 @@
   },
   {
    "address": 38257,
-   "name": "f_9571",
+   "name": "icon_bitmap_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38297,
-   "name": "f_9599",
+   "name": "icon_bitmap_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38337,
-   "name": "f_95C1",
+   "name": "icon_screen_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38377,
-   "name": "f_95E9",
+   "name": "icon_screen_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38417,
-   "name": "f_9611",
+   "name": "icon_rows_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38418,
-   "name": "f_9612",
+   "name": "icon_rows_lo_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38419,
-   "name": "f_9613",
+   "name": "icon_rows_lo_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38537,
-   "name": "f_9689",
+   "name": "icon_rows_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38538,
-   "name": "f_968A",
+   "name": "icon_rows_hi_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38539,
-   "name": "f_968B",
+   "name": "icon_rows_hi_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 38657,
+   "name": "access_codes",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 39270,
-   "name": "f_9966",
-   "type": "Field",
-   "kind": "auto"
+   "name": "access_codes_b",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 39657,
-   "name": "s_9AE9",
+   "name": "clear_bars",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39660,
@@ -947,9 +1028,9 @@
   },
   {
    "address": 39667,
-   "name": "s_9AF3",
+   "name": "text_screen",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39672,
@@ -959,9 +1040,9 @@
   },
   {
    "address": 39709,
-   "name": "s_9B1D",
+   "name": "enter_access_code",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39724,
@@ -1001,33 +1082,33 @@
   },
   {
    "address": 39850,
-   "name": "s_9BAA",
+   "name": "wait_frames_menu",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39864,
-   "name": "f_9BB8",
+   "name": "typed_access_code",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39874,
-   "name": "a_9BC2",
+   "name": "menu_level",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39875,
-   "name": "a_9BC3",
+   "name": "menu_rating",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39876,
-   "name": "s_9BC4",
+   "name": "find_access_code",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39878,
@@ -1079,9 +1160,9 @@
   },
   {
    "address": 39987,
-   "name": "j_9C33",
+   "name": "code_found",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40013,
@@ -1097,27 +1178,27 @@
   },
   {
    "address": 40059,
-   "name": "f_9C7B",
+   "name": "rating_text_offset",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40063,
-   "name": "a_9C7F",
+   "name": "text_mode",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40064,
-   "name": "a_9C80",
+   "name": "frame_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40065,
-   "name": "s_9C81",
+   "name": "blink_cursor",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40087,
@@ -1127,9 +1208,9 @@
   },
   {
    "address": 40088,
-   "name": "s_9C98",
+   "name": "blink_cursor_digits",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40110,
@@ -1139,33 +1220,33 @@
   },
   {
    "address": 40111,
-   "name": "a_9CAF",
+   "name": "blink_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40112,
-   "name": "a_9CB0",
+   "name": "entry_pos",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40113,
-   "name": "a_9CB1",
+   "name": "cursor_chars",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40115,
-   "name": "a_9CB3",
+   "name": "line_list_pos",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40116,
-   "name": "s_9CB4",
+   "name": "print_lines",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40119,
@@ -1181,57 +1262,57 @@
   },
   {
    "address": 40142,
-   "name": "f_9CCE",
+   "name": "screen_lines",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40144,
-   "name": "a_9CD0",
+   "name": "result_lines",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40145,
-   "name": "a_9CD1",
+   "name": "result_line_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40148,
-   "name": "a_9CD4",
+   "name": "sheet_lines",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40149,
-   "name": "a_9CD5",
+   "name": "sheet_line_b",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40150,
-   "name": "a_9CD6",
+   "name": "line_number_m",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40151,
-   "name": "a_9CD7",
+   "name": "line_column_m",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40152,
-   "name": "a_9CD8",
+   "name": "line_pos_m",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40153,
-   "name": "s_9CD9",
+   "name": "print_menu_line",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40188,
@@ -1259,75 +1340,75 @@
   },
   {
    "address": 40242,
-   "name": "f_9D32",
+   "name": "level_tens_text",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40267,
-   "name": "f_9D4B",
+   "name": "level_units_text",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40292,
-   "name": "f_9D64",
+   "name": "rating_texts",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40316,
-   "name": "f_9D7C",
+   "name": "menu_font_map",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40372,
-   "name": "f_9DB4",
+   "name": "menu_lines",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40411,
-   "name": "f_9DDB",
+   "name": "line_addr_lo_m",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40422,
-   "name": "f_9DE6",
+   "name": "line_addr_hi_m",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40462,
-   "name": "f_9E0E",
+   "name": "access_code_typed",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40509,
-   "name": "a_9E3D",
+   "name": "code_level_text",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40510,
-   "name": "a_9E3E",
+   "name": "code_rating_digit",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40523,
-   "name": "f_9E4B",
+   "name": "code_rating_text",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40550,
-   "name": "f_9E66",
+   "name": "question_ordinal",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40607,
@@ -1336,10 +1417,16 @@
    "kind": "user"
   },
   {
+   "address": 40671,
+   "name": "menu_texts_tail",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 40694,
-   "name": "s_9EF6",
+   "name": "choose_question",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40704,
@@ -1397,39 +1484,51 @@
   },
   {
    "address": 40842,
-   "name": "a_9F8A",
+   "name": "question_page",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40843,
-   "name": "a_9F8B",
+   "name": "question_line",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 40907,
+   "name": "menu_vars_tail",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 40924,
-   "name": "f_9FDC",
+   "name": "bar_colours_src",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40956,
-   "name": "f_9FFC",
+   "name": "ordinals",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 40960,
+   "name": "ordinals_tail",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 41072,
-   "name": "f_A070",
+   "name": "page_first_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41088,
-   "name": "f_A080",
+   "name": "page_first_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41104,
@@ -1439,9 +1538,9 @@
   },
   {
    "address": 41105,
-   "name": "a_A091",
+   "name": "code_value_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41106,
@@ -1451,15 +1550,15 @@
   },
   {
    "address": 41107,
-   "name": "a_A093",
+   "name": "code_expected_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41108,
-   "name": "a_A094",
+   "name": "code_carry",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41109,
@@ -1469,15 +1568,15 @@
   },
   {
    "address": 41114,
-   "name": "f_A09A",
+   "name": "decimal_weights_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41119,
-   "name": "a_A09F",
+   "name": "digit_index",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41120,
@@ -1511,9 +1610,9 @@
   },
   {
    "address": 41176,
-   "name": "s_A0D8",
+   "name": "code_sheet",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41183,
@@ -1583,9 +1682,9 @@
   },
   {
    "address": 41423,
-   "name": "s_A1CF",
+   "name": "show_page_picture",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41431,
@@ -1607,69 +1706,69 @@
   },
   {
    "address": 41493,
-   "name": "f_A215",
+   "name": "picture_x",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41497,
-   "name": "f_A219",
+   "name": "picture_y",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41501,
-   "name": "s_A21D",
+   "name": "menu_row_ptrs",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41540,
-   "name": "f_A244",
+   "name": "menu_rows_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41541,
-   "name": "f_A245",
+   "name": "menu_rows_lo_next",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41565,
-   "name": "f_A25D",
+   "name": "menu_rows_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41566,
-   "name": "f_A25E",
+   "name": "menu_rows_hi_next",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41590,
-   "name": "a_A276",
+   "name": "porta_saved",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41591,
-   "name": "a_A277",
+   "name": "mouse_present",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41592,
-   "name": "a_A278",
+   "name": "mouse_debounce",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41593,
-   "name": "s_A279",
+   "name": "mouse_test",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41632,
@@ -1685,32 +1784,684 @@
   },
   {
    "address": 41984,
-   "name": "f_A400",
+   "name": "page_pictures",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
-   "address": 43757,
-   "name": "f_AAED",
-   "type": "Field",
-   "kind": "auto"
+   "address": 43008,
+   "name": "page_pictures_4",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 44032,
+   "name": "page_pictures_8",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 45056,
+   "name": "page_pictures_12",
+   "type": "UserDefined",
+   "kind": "user"
   }
  ],
  "comments": [
+  {
+   "address": 16384,
+   "type": "line",
+   "text": "the title picture, a multicolour bitmap shown at $4000 with its colours at $6000 (the file CA): the Lemmings logo and five lemmings holding the menu's signs; $4000-$43FF"
+  },
+  {
+   "address": 17408,
+   "type": "line",
+   "text": "the title picture's bitmap, $4400-$47FF"
+  },
+  {
+   "address": 18256,
+   "type": "line",
+   "text": "the intro's entry, where the loader's $CD2D jumps once IA and IB are in; in the menu's memory the bytes are the title picture's"
+  },
+  {
+   "address": 18432,
+   "type": "line",
+   "text": "the title picture's bitmap, $4800-$4BFF"
+  },
+  {
+   "address": 19456,
+   "type": "line",
+   "text": "the title picture's bitmap, $4C00-$4FFF"
+  },
+  {
+   "address": 20480,
+   "type": "line",
+   "text": "the title picture's bitmap, $5000-$53FF; the game loop calls $5000 once the game's files are in, so here it is only picture"
+  },
+  {
+   "address": 21504,
+   "type": "line",
+   "text": "the title picture's bitmap, $5400-$57FF"
+  },
+  {
+   "address": 22528,
+   "type": "line",
+   "text": "the title picture's bitmap, $5800-$5A3F"
+  },
+  {
+   "address": 23104,
+   "type": "line",
+   "text": "the scroller's text, from the blanks before \"Lemmings by DMA Design\""
+  },
   {
    "address": 23113,
    "type": "line",
    "text": "the title scroller's text, mixed-case screen codes: credits, then hints and a disclaimer"
   },
   {
+   "address": 23552,
+   "type": "line",
+   "text": "the title picture's bitmap, $5C00-$5F3F (the scroller's text runs to $5F8F, inside the picture's area: the rows the scroller covers)"
+  },
+  {
+   "address": 24384,
+   "type": "line",
+   "text": "the scroller's text from $5F40 to its $FF at $5FE1, past the end of the title's bitmap"
+  },
+  {
+   "address": 24576,
+   "type": "line",
+   "text": "the title picture's screen colours at $6000-$63FF, copied in by $9479 from $8980; the rest of the file CA follows: the scroller's font from $6800"
+  },
+  {
+   "address": 24832,
+   "type": "line",
+   "text": "the screen colours, $6100-$61FF"
+  },
+  {
+   "address": 25088,
+   "type": "line",
+   "text": "the screen colours, $6200-$62FF"
+  },
+  {
+   "address": 25344,
+   "type": "line",
+   "text": "the screen colours, $6300-$63FF; rows 21 and 22 ($6348, $6370, $6398, $63C0) are the scroller's text and its lower half"
+  },
+  {
+   "address": 25416,
+   "type": "line",
+   "text": "the row above the scroller, filled with character $49 by $942C"
+  },
+  {
+   "address": 25456,
+   "type": "line",
+   "text": "the scroller's top row of characters ($6370-$6397), shifted left a cell at a time"
+  },
+  {
+   "address": 25457,
+   "type": "line",
+   "text": "the scroller's top row from its second cell, read by the shift"
+  },
+  {
+   "address": 25495,
+   "type": "line",
+   "text": "the cell where the next character of the scroller comes in"
+  },
+  {
+   "address": 25496,
+   "type": "line",
+   "text": "the scroller's lower row ($6398-$63BF)"
+  },
+  {
+   "address": 25497,
+   "type": "line",
+   "text": "the lower row from its second cell"
+  },
+  {
+   "address": 25535,
+   "type": "line",
+   "text": "the cell where the next character's lower half comes in"
+  },
+  {
+   "address": 25536,
+   "type": "line",
+   "text": "the row under the scroller, filled with character $94"
+  },
+  {
+   "address": 25592,
+   "type": "line",
+   "text": "the sprite pointers of the screen at $6000: the code sheet's picture uses four, $94-$97"
+  },
+  {
+   "address": 25600,
+   "type": "line",
+   "text": "the menu's and the scroller's character set, $6400-$67FF"
+  },
+  {
+   "address": 25856,
+   "type": "line",
+   "text": "where the code sheet's picture goes: four sprites of 64 bytes, $6500-$65FF, copied from $A400 by page"
+  },
+  {
+   "address": 26624,
+   "type": "line",
+   "text": "the menu's character set, continued, $6800-$6BFF"
+  },
+  {
+   "address": 27648,
+   "type": "line",
+   "text": "the end of the file CA, $6C00-$6CAF: the colour bar table at $6CCE lies just past it"
+  },
+  {
+   "address": 32768,
+   "type": "line",
+   "text": "the title's five icons in every state (1 PLAYER with a joystick or a mouse, INTRO, NEW LEVEL, the note or FX, the four ratings) as bitmap rows of 48 bytes, $8000-$83FF"
+  },
+  {
+   "address": 33792,
+   "type": "line",
+   "text": "the icon graphics, $8400-$87FF"
+  },
+  {
+   "address": 34816,
+   "type": "line",
+   "text": "the icon graphics, $8800-$897F"
+  },
+  {
+   "address": 35200,
+   "type": "line",
+   "text": "the title picture's screen colours as they are kept, copied to $6000 by $9479: $8980-$8A7F"
+  },
+  {
+   "address": 35456,
+   "type": "line",
+   "text": "the screen colours, $8A80-$8B7F"
+  },
+  {
+   "address": 35712,
+   "type": "line",
+   "text": "the screen colours, $8B80-$8C7F"
+  },
+  {
+   "address": 35968,
+   "type": "line",
+   "text": "the screen colours, $8C80-$8D67"
+  },
+  {
+   "address": 36200,
+   "type": "line",
+   "text": "the title picture's colour RAM values, copied to $D800 by $9479: $8D68-$8E67"
+  },
+  {
+   "address": 36456,
+   "type": "line",
+   "text": "the colour RAM values, $8E68-$8F67"
+  },
+  {
+   "address": 36712,
+   "type": "line",
+   "text": "the colour RAM values, $8F68-$9067"
+  },
+  {
+   "address": 36968,
+   "type": "line",
+   "text": "the colour RAM values, $9068-$9167, the last of them up to the menu's code"
+  },
+  {
    "address": 37200,
    "type": "line",
-   "text": "the loader jumps here once the menu's files are in (JMP $9150 in the loader at $CD53)"
+   "text": "the menu, from the loader ($CD53): the title's interrupt at $9273 on line $2D, the level's rating and number from $CB48 ($932D), the screen set up ($94AE), the mouse test ($A279); the code sheet the first time only ($A0D8, then $CB5E is set so CC is not loaded again); then the title ($9195)"
+  },
+  {
+   "address": 37269,
+   "type": "line",
+   "text": "draws the title: colour bars ($9AE9, $946B), the picture's colours ($9479), the icons for music or sound effects ($93AB) and the rating ($94E4), the scroller ($942C); then reads keys with GETIN: 1 starts the game, 2 the intro, 3 the access code, 4 music or effects, cursor up and down the rating. A change in the mouse test redraws the 1 PLAYER icon for mouse or joystick"
+  },
+  {
+   "address": 37453,
+   "type": "line",
+   "text": "screen off, the KERNAL's interrupt and video chip registers back, the keyboard and screen as devices, then the KERNAL's $FF5E"
   },
   {
    "address": 37491,
    "type": "line",
-   "text": "raster interrupt of the code sheet and title screen ($0314)"
+   "text": "the title's raster interrupt from line $2D: the mouse test, a frame count ($9C80, by $10), and on a text screen ($9C7F) the colour bars behind each line ($6CCE); on the title, hands over to $92CC on line $DA"
+  },
+  {
+   "address": 37580,
+   "type": "line",
+   "text": "the title's bottom band: text mode with the scroller's characters ($D018 $8A, $D016 from the scroll's fine position $942B), the colour bars, then at line $FD back to the bitmap ($D011 $3B, $D018 $80) and the interrupt at $9273; moves the scroller ($93BE)"
+  },
+  {
+   "address": 37677,
+   "type": "line",
+   "text": "splits the level number at $CB48 into the rating ($9BC3, by 25s) and the level within it ($9BC2)"
+  },
+  {
+   "address": 37699,
+   "type": "line",
+   "text": "the address of the chosen level's access code in the table ($9343/$9344, level times 10 plus $9701)"
+  },
+  {
+   "address": 37700,
+   "type": "line",
+   "text": "the high byte of the access code's address"
+  },
+  {
+   "address": 37701,
+   "type": "line",
+   "text": "the first level number of each rating: 0, 25, 50, 75"
+  },
+  {
+   "address": 37705,
+   "type": "line",
+   "text": "sets $CB48 from the rating and level chosen, and copies that level's access code from the table at $9701 into $CB49, each letter decoded with the one before it (the EOR's operand at $9394 holds it, cleared for each code)"
+  },
+  {
+   "address": 37780,
+   "type": "line",
+   "text": "the operand of the EOR at $9393, rewritten as the game runs, by $938E, $9395"
+  },
+  {
+   "address": 37795,
+   "type": "line",
+   "text": "key 4: flips music and sound effects ($CB47 bit 7) and redraws its icon"
+  },
+  {
+   "address": 37803,
+   "type": "line",
+   "text": "draws the icon for music (a note) or sound effects (FX)"
+  },
+  {
+   "address": 37819,
+   "type": "line",
+   "text": "bit 7 set while the scroller runs"
+  },
+  {
+   "address": 37821,
+   "type": "line",
+   "text": "characters scrolled since the last pause"
+  },
+  {
+   "address": 37822,
+   "type": "line",
+   "text": "moves the scroller two pixels a frame: when a character has gone, shifts the two text rows left a cell and adds the next character of the text at $5A40 (two characters, the lower $4B on); $FF in the text starts it again; a pause of 100 frames every 40 characters"
+  },
+  {
+   "address": 37865,
+   "type": "line",
+   "text": "the low byte of the LDX at $93E8, rewritten as the game runs, by $93F3, $9408, $9430"
+  },
+  {
+   "address": 37866,
+   "type": "line",
+   "text": "the high byte of the LDX at $93E8, rewritten as the game runs, by $93F6, $940D, $9433"
+  },
+  {
+   "address": 37930,
+   "type": "line",
+   "text": "frames left of the scroller's pause"
+  },
+  {
+   "address": 37931,
+   "type": "line",
+   "text": "the scroller's fine position, written to $D016 by $92CC"
+  },
+  {
+   "address": 37932,
+   "type": "line",
+   "text": "clears the scroller's two rows and their colours and starts it at the text's beginning"
+  },
+  {
+   "address": 37995,
+   "type": "line",
+   "text": "copies the title's colour bars from $9FEC into $6DB0"
+  },
+  {
+   "address": 38009,
+   "type": "line",
+   "text": "copies the picture's screen colours ($8980-$8D67) to $6000-$63FF and its colour RAM ($8D68-$9067) to $D800-$DBFF, then sets the screen up ($94AE)"
+  },
+  {
+   "address": 38062,
+   "type": "line",
+   "text": "picks the code sheet's question ($9EF6), video bank 1, sprites off, the bitmap at $4000 with its colours at $6000, black border and background"
+  },
+  {
+   "address": 38094,
+   "type": "line",
+   "text": "0 for sound effects, 1 for music"
+  },
+  {
+   "address": 38095,
+   "type": "line",
+   "text": "the 1 PLAYER icon: 2 with a mouse, 3 with the joystick"
+  },
+  {
+   "address": 38096,
+   "type": "line",
+   "text": "the rating icon: 4 to 7 for Fun, Tricky, Taxing and Mayhem"
+  },
+  {
+   "address": 38097,
+   "type": "line",
+   "text": "working bytes of the icon drawing: the graphics' index ($94D1), the cell ($94D2), the row ($94D3)"
+  },
+  {
+   "address": 38098,
+   "type": "line",
+   "text": "the screen cell of the icon row being drawn"
+  },
+  {
+   "address": 38099,
+   "type": "line",
+   "text": "the icon's row being drawn, 0-4"
+  },
+  {
+   "address": 38100,
+   "type": "line",
+   "text": "for each icon picture, the index of its first row in the graphics tables"
+  },
+  {
+   "address": 38108,
+   "type": "line",
+   "text": "for each icon picture, the first of its five rows on the screen"
+  },
+  {
+   "address": 38116,
+   "type": "line",
+   "text": "draws icon picture X in five rows of 48 bitmap bytes and 6 colour bytes each, from line $B2 of the frame"
+  },
+  {
+   "address": 38152,
+   "type": "line",
+   "text": "one row of an icon: 48 bitmap bytes from $9611 and the colours from $968B, to the bitmap and screen addresses from $9571-$95E9"
+  },
+  {
+   "address": 38257,
+   "type": "line",
+   "text": "the icon rows' bitmap addresses, low bytes"
+  },
+  {
+   "address": 38297,
+   "type": "line",
+   "text": "their high bytes"
+  },
+  {
+   "address": 38337,
+   "type": "line",
+   "text": "the icon rows' screen addresses, low bytes (colour RAM's the same, $78 pages on)"
+  },
+  {
+   "address": 38377,
+   "type": "line",
+   "text": "the icon rows' screen addresses, high bytes (40)"
+  },
+  {
+   "address": 38417,
+   "type": "line",
+   "text": "the low bytes of the icon graphics' rows, three tables a row apart"
+  },
+  {
+   "address": 38418,
+   "type": "line",
+   "text": "icon_rows_lo from its second entry, read for the row's second third"
+  },
+  {
+   "address": 38419,
+   "type": "line",
+   "text": "icon_rows_lo from its third entry, read for the row's last third"
+  },
+  {
+   "address": 38537,
+   "type": "line",
+   "text": "the high bytes of the same"
+  },
+  {
+   "address": 38538,
+   "type": "line",
+   "text": "icon_rows_hi from its second entry"
+  },
+  {
+   "address": 38539,
+   "type": "line",
+   "text": "icon_rows_hi from its third entry"
+  },
+  {
+   "address": 38657,
+   "type": "line",
+   "text": "the access codes of all 100 levels, ten letters each, every letter EOR the one before it within its code: Fun 1 to Mayhem 25"
+  },
+  {
+   "address": 39270,
+   "type": "line",
+   "text": "the access codes, continued: from Tricky 18 on"
+  },
+  {
+   "address": 39657,
+   "type": "line",
+   "text": "clears the colour bar table at $6D00"
+  },
+  {
+   "address": 39667,
+   "type": "line",
+   "text": "clears the screen at $6000 to character $46 and colour RAM, and marks a text screen ($9C7F) so the interrupt draws the colour bars"
+  },
+  {
+   "address": 39709,
+   "type": "line",
+   "text": "key 3: \"Enter the access code\": reads up to ten letters with GETIN (DEL takes one back), then looks the code up ($9BC4) and shows the result for 20 frames: the level and rating, or a refusal"
+  },
+  {
+   "address": 39774,
+   "type": "line",
+   "text": "the BNE of the access code's entry; named as the base of the STA at $9BC9, which indexes from it by $5A to reach typed_access_code at $9BB8"
+  },
+  {
+   "address": 39850,
+   "type": "line",
+   "text": "waits Y frames by the interrupt's count at $9C80"
+  },
+  {
+   "address": 39864,
+   "type": "line",
+   "text": "the ten letters typed at \"Enter the access code\""
+  },
+  {
+   "address": 39874,
+   "type": "line",
+   "text": "the level within the rating chosen at the menu (0-24)"
+  },
+  {
+   "address": 39875,
+   "type": "line",
+   "text": "the rating chosen at the menu (0-3)"
+  },
+  {
+   "address": 39876,
+   "type": "line",
+   "text": "compares the typed code with every level's code in the table, decoding each as $9349 does. A match with level 1's own code, WANNABFREE, turns the cheat on ($CB61 = $80) and shows \"Cheatmode Activated\" (line $0B); any other match sets the rating and level and shows \"Code for Level N, Rating\"; no match shows message 3"
+  },
+  {
+   "address": 39915,
+   "type": "line",
+   "text": "the low byte of the LDA at $9BEA, rewritten as the game runs, by $9BD3, $9C05"
+  },
+  {
+   "address": 39916,
+   "type": "line",
+   "text": "the high byte of the LDA at $9BEA, rewritten as the game runs, by $9BD8, $9C0D"
+  },
+  {
+   "address": 39918,
+   "type": "line",
+   "text": "the operand of the EOR at $9BED, rewritten as the game runs, by $9BE7, $9BF4"
+  },
+  {
+   "address": 39987,
+   "type": "line",
+   "text": "the code was found: level 1's turns on the cheat (giving up a level then counts as 100 % saved); others set the menu's rating and level and the result's texts"
+  },
+  {
+   "address": 40059,
+   "type": "line",
+   "text": "each rating's offset in the rating names at $9D64"
+  },
+  {
+   "address": 40063,
+   "type": "line",
+   "text": "bit 7 set while a text screen (the code sheet, the access code) is shown"
+  },
+  {
+   "address": 40064,
+   "type": "line",
+   "text": "bit 7 set by the interrupt each frame; the loops wait on it"
+  },
+  {
+   "address": 40065,
+   "type": "line",
+   "text": "blinks the cursor of the access code's entry at the next letter"
+  },
+  {
+   "address": 40088,
+   "type": "line",
+   "text": "the same for the code sheet's digits"
+  },
+  {
+   "address": 40111,
+   "type": "line",
+   "text": "which of the two cursor characters shows"
+  },
+  {
+   "address": 40112,
+   "type": "line",
+   "text": "how many letters or digits have been typed"
+  },
+  {
+   "address": 40113,
+   "type": "line",
+   "text": "the cursor's two characters, and the empty slot's"
+  },
+  {
+   "address": 40115,
+   "type": "line",
+   "text": "the position in the list of lines being printed"
+  },
+  {
+   "address": 40116,
+   "type": "line",
+   "text": "prints the lines listed from $9CCE+X up to four, 0 for none"
+  },
+  {
+   "address": 40142,
+   "type": "line",
+   "text": "the lines of the menu's text screens, four to a screen"
+  },
+  {
+   "address": 40144,
+   "type": "line",
+   "text": "the two lines of the access code's result ($9CD0/$9CD1)"
+  },
+  {
+   "address": 40145,
+   "type": "line",
+   "text": "the second of them"
+  },
+  {
+   "address": 40148,
+   "type": "line",
+   "text": "the two lines of the code sheet's result ($9CD4/$9CD5)"
+  },
+  {
+   "address": 40149,
+   "type": "line",
+   "text": "the second line of the code sheet's result"
+  },
+  {
+   "address": 40150,
+   "type": "line",
+   "text": "the line being printed"
+  },
+  {
+   "address": 40151,
+   "type": "line",
+   "text": "the column the next character goes to"
+  },
+  {
+   "address": 40152,
+   "type": "line",
+   "text": "the position in the line's text"
+  },
+  {
+   "address": 40153,
+   "type": "line",
+   "text": "prints line X of the menu's texts: its row from $9DDB/$9DE6, its colour bar from $9F7C, then its characters through $9D7C (each letter two characters, the lower $4B further on)"
+  },
+  {
+   "address": 40188,
+   "type": "line",
+   "text": "the operand of the LDX at $9CFB, rewritten as the game runs, by $9CEE"
+  },
+  {
+   "address": 40242,
+   "type": "line",
+   "text": "the level number's tens digit as text, by level 0-24"
+  },
+  {
+   "address": 40267,
+   "type": "line",
+   "text": "the units digit"
+  },
+  {
+   "address": 40292,
+   "type": "line",
+   "text": "the ratings' names: FUN, TRICKY, TAXING, MAYHEM, six characters each"
+  },
+  {
+   "address": 40316,
+   "type": "line",
+   "text": "maps a text character to the menu font's character"
+  },
+  {
+   "address": 40372,
+   "type": "line",
+   "text": "the menu's text lines: row, column, colour bar, then the characters, $FF ending each"
+  },
+  {
+   "address": 40411,
+   "type": "line",
+   "text": "the low bytes of the menu lines' addresses"
+  },
+  {
+   "address": 40422,
+   "type": "line",
+   "text": "the menu lines' addresses, high bytes (11)"
+  },
+  {
+   "address": 40462,
+   "type": "line",
+   "text": "the access code's ten letters as they are typed"
+  },
+  {
+   "address": 40509,
+   "type": "line",
+   "text": "the level's number in \"Code for Level N\""
+  },
+  {
+   "address": 40510,
+   "type": "line",
+   "text": "the level number's units digit in \"Code for Level N\""
+  },
+  {
+   "address": 40523,
+   "type": "line",
+   "text": "the rating's name in the result"
+  },
+  {
+   "address": 40550,
+   "type": "line",
+   "text": "the code sheet's \"6th\": the ordinal written into the question"
   },
   {
    "address": 40607,
@@ -1718,9 +2469,79 @@
    "text": "the digits typed at the code sheet, as PETSCII, five of them"
   },
   {
+   "address": 40671,
+   "type": "line",
+   "text": "the end of the menu's text lines, $9EDF-$9EF4: \"Check your manual and try again !\""
+  },
+  {
+   "address": 40694,
+   "type": "line",
+   "text": "chooses the code sheet's question: mixes the raster line read over 256 loops into two numbers, a page (0-15, one of the manual's sixteen pictures) and a line (0-19); the answer is the page's first number ($A070/$A080) plus 23,171 for each line, less 56,831 when it passes it ($A092)"
+  },
+  {
+   "address": 40828,
+   "type": "line",
+   "text": "the LDA of the expected number's reduction; also the base the line printer indexes into for the colour bars ($9D02)"
+  },
+  {
+   "address": 40829,
+   "type": "line",
+   "text": "the operand of the LDA at $9F7C, rewritten as the game runs, by $9F6F"
+  },
+  {
+   "address": 40834,
+   "type": "line",
+   "text": "the operand of the LDA at $9F81, rewritten as the game runs, by $9F67"
+  },
+  {
+   "address": 40842,
+   "type": "line",
+   "text": "the code sheet's page, 0-15"
+  },
+  {
+   "address": 40843,
+   "type": "line",
+   "text": "the code sheet's line, 0-19"
+  },
+  {
+   "address": 40907,
+   "type": "line",
+   "text": "bytes after question_line up to the colour bar source, $9FCB-$9FDB; not named by any instruction"
+  },
+  {
+   "address": 40924,
+   "type": "line",
+   "text": "the colour bar for the title, copied by $946B"
+  },
+  {
+   "address": 40956,
+   "type": "line",
+   "text": "the ordinals for the question, four characters each: 1st, 2nd, 3rd ... 20th"
+  },
+  {
+   "address": 40960,
+   "type": "line",
+   "text": "the ordinals from \"13th\" to \"20th\", $A000-$A06F, and the bytes up to the page numbers"
+  },
+  {
+   "address": 41072,
+   "type": "line",
+   "text": "the first number on each of the manual's sixteen code pages, low bytes: 14773, 31433, 48093, 7922 ... 37349"
+  },
+  {
+   "address": 41088,
+   "type": "line",
+   "text": "the first numbers of the code pages, high bytes (16)"
+  },
+  {
    "address": 41104,
    "type": "line",
    "text": "the typed code as a 16-bit number, low byte first"
+  },
+  {
+   "address": 41105,
+   "type": "line",
+   "text": "the typed number's high byte"
   },
   {
    "address": 41106,
@@ -1728,14 +2549,39 @@
    "text": "the number the code sheet wants, low byte first"
   },
   {
+   "address": 41107,
+   "type": "line",
+   "text": "the expected number's high byte"
+  },
+  {
+   "address": 41108,
+   "type": "line",
+   "text": "a third byte for the sum while the expected number is worked out"
+  },
+  {
    "address": 41109,
    "type": "line",
    "text": "1, 10, 100, 1000, 10000 as low bytes here and high bytes at $A09A"
   },
   {
+   "address": 41114,
+   "type": "line",
+   "text": "the decimal weights' high bytes"
+  },
+  {
+   "address": 41119,
+   "type": "line",
+   "text": "the digit being added"
+  },
+  {
    "address": 41120,
    "type": "line",
    "text": "adds each typed digit times its decimal weight into $A090/$A091"
+  },
+  {
+   "address": 41176,
+   "type": "line",
+   "text": "the code sheet: the question with its ordinal ($9FFC), the page's lemming picture ($A1CF), then the digits ($A128), checked by $A1AC; a wrong code says so for 30 frames and asks again"
   },
   {
    "address": 41256,
@@ -1751,6 +2597,96 @@
    "address": 41388,
    "type": "line",
    "text": "compares $A090/$A091 with $A092/$A093; A=0 when equal, $80 otherwise"
+  },
+  {
+   "address": 41423,
+   "type": "line",
+   "text": "puts the picture of page A on the screen: copies its 256 bytes from $A400 + A x 256 to $6500 and shows them as four sprites ($94-$97), white, two by two"
+  },
+  {
+   "address": 41433,
+   "type": "line",
+   "text": "the high byte of the LDA at $A1D7, rewritten as the game runs, by $A1D2"
+  },
+  {
+   "address": 41493,
+   "type": "line",
+   "text": "the four sprites' X positions"
+  },
+  {
+   "address": 41497,
+   "type": "line",
+   "text": "their Y positions"
+  },
+  {
+   "address": 41501,
+   "type": "line",
+   "text": "the screen and colour RAM pointers for menu text row X ($D9-$E0)"
+  },
+  {
+   "address": 41540,
+   "type": "line",
+   "text": "the low bytes of the text screen's rows"
+  },
+  {
+   "address": 41541,
+   "type": "line",
+   "text": "menu_rows_lo from its second entry: the next row"
+  },
+  {
+   "address": 41565,
+   "type": "line",
+   "text": "the text screen's rows, high bytes ($60-$63)"
+  },
+  {
+   "address": 41566,
+   "type": "line",
+   "text": "menu_rows_hi from its second entry"
+  },
+  {
+   "address": 41590,
+   "type": "line",
+   "text": "$DC00 as it was before the mouse test"
+  },
+  {
+   "address": 41591,
+   "type": "line",
+   "text": "$80 when the mouse test sees a mouse"
+  },
+  {
+   "address": 41592,
+   "type": "line",
+   "text": "how many frames of no mouse before it counts as gone"
+  },
+  {
+   "address": 41593,
+   "type": "line",
+   "text": "selects control port 2's paddle lines and reads $D419 and $D41A: a 1351 mouse in proportional mode returns other values than the $FF both read with nothing there"
+  },
+  {
+   "address": 41984,
+   "type": "line",
+   "text": "the code sheet's sixteen lemming pictures, one for each page of codes in the manual, 256 bytes each as four sprites of 64 ($A400-$B3FF, the file CC)"
+  },
+  {
+   "address": 43008,
+   "type": "line",
+   "text": "the code sheet's pictures, pages 4-7, $A800-$ABFF"
+  },
+  {
+   "address": 43757,
+   "type": "line",
+   "text": "named by a trace through bytes that are not code; part of page 6's picture"
+  },
+  {
+   "address": 44032,
+   "type": "line",
+   "text": "the code sheet's pictures, pages 8-11, $AC00-$AFFF"
+  },
+  {
+   "address": 45056,
+   "type": "line",
+   "text": "the code sheet's pictures, pages 12-15, $B000-$B3FF"
   }
  ]
 }
