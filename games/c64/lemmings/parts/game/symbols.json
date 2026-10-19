@@ -259,11 +259,16 @@
   },
   {
    "start": 16384,
-   "end": 18431,
+   "end": 18255,
    "type": "Undefined"
   },
   {
-   "start": 18432,
+   "start": 18256,
+   "end": 18451,
+   "type": "Code"
+  },
+  {
+   "start": 18452,
    "end": 18663,
    "type": "Byte"
   },
@@ -359,6 +364,16 @@
   },
   {
    "start": 25776,
+   "end": 26383,
+   "type": "Undefined"
+  },
+  {
+   "start": 26384,
+   "end": 26388,
+   "type": "Code"
+  },
+  {
+   "start": 26389,
    "end": 26623,
    "type": "Undefined"
   },
@@ -389,11 +404,31 @@
   },
   {
    "start": 33792,
+   "end": 37199,
+   "type": "Undefined"
+  },
+  {
+   "start": 37200,
+   "end": 37262,
+   "type": "Code"
+  },
+  {
+   "start": 37263,
    "end": 46079,
    "type": "Undefined"
   },
   {
    "start": 46080,
+   "end": 50175,
+   "type": "Byte"
+  },
+  {
+   "start": 50176,
+   "end": 50185,
+   "type": "Code"
+  },
+  {
+   "start": 50186,
    "end": 51983,
    "type": "Byte"
   },
@@ -419,6 +454,16 @@
   },
   {
    "start": 57768,
+   "end": 58650,
+   "type": "Byte"
+  },
+  {
+   "start": 58651,
+   "end": 58672,
+   "type": "Undefined"
+  },
+  {
+   "start": 58673,
    "end": 63999,
    "type": "Byte"
   },
@@ -434,6 +479,16 @@
   },
   {
    "start": 64045,
+   "end": 64930,
+   "type": "Undefined"
+  },
+  {
+   "start": 64931,
+   "end": 64961,
+   "type": "Code"
+  },
+  {
+   "start": 64962,
    "end": 65529,
    "type": "Undefined"
   }
@@ -6848,6 +6903,12 @@
    "kind": "auto"
   },
   {
+   "address": 18256,
+   "name": "j_4750",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
    "address": 18432,
    "name": "line_offset_lo",
    "type": "Field",
@@ -8027,6 +8088,12 @@
    "address": 26368,
    "name": "f_6700",
    "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 26384,
+   "name": "s_6710",
+   "type": "Subroutine",
    "kind": "auto"
   },
   {
@@ -13493,7 +13560,7 @@
   {
    "address": 36864,
    "type": "line",
-   "text": "the level's terrain shapes, $9000-$93FF (the loader's boot reads a header at $9000-$9007 before any level is here)"
+   "text": "the level's terrain shapes, $9000-$93FF; between levels the briefing's stash is unpacked through here ($CBD2), so $9000-$9007 are also its header"
   },
   {
    "address": 36865,
@@ -13528,12 +13595,17 @@
   {
    "address": 36871,
    "type": "line",
-   "text": "the last byte of the header the loader's boot unpack reads at $9000 ($CC62); in this snapshot it is terrain"
+   "text": "the last byte of the stash's header when it is at $9000 ($CC62); in this snapshot it is terrain"
   },
   {
    "address": 36935,
    "type": "line",
    "text": "the level's terrain shapes, $9047-$9148"
+  },
+  {
+   "address": 37200,
+   "type": "line",
+   "text": "the menu's entry, where to_menu ($CD53) jumps once the menu's files are in; in this part's memory the bytes are terrain"
   },
   {
    "address": 37263,
@@ -13568,7 +13640,7 @@
   {
    "address": 40704,
    "type": "line",
-   "text": "$CBD2 copies the level's file area, $E000-$EEFF, to $9F00-$ADFF after each level, with every ROM out of view ($01 = $10); what reads the copy is open. In this snapshot the bytes are terrain"
+   "text": "the address the STA at $CBF8 holds in this snapshot; $CBEB rewrites its high byte to $90 before the copy runs, so nothing is written here. The bytes are terrain"
   },
   {
    "address": 40841,
@@ -13664,6 +13736,11 @@
    "address": 50160,
    "type": "line",
    "text": "the lemmings' animation frames, $C3F0-$C7EF"
+  },
+  {
+   "address": 50176,
+   "type": "line",
+   "text": "the end sequence's entry, where to_ending ($CD5B) jumps once IC is in; in this part's memory the bytes are animation frames"
   },
   {
    "address": 51184,

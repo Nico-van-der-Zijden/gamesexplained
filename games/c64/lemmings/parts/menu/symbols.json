@@ -19,18 +19,43 @@
    ],
    [
     0,
-    13823,
+    2048,
+    "Resident: the loader and the variables"
+   ],
+   [
+    2049,
+    16383,
+    "The game"
+   ],
+   [
+    27824,
+    32767,
+    "The game"
+   ],
+   [
+    41649,
+    41983,
     "The game"
    ],
    [
     46080,
-    57343,
+    51999,
     "The game"
    ],
    [
-    64000,
-    65535,
+    52000,
+    57343,
+    "Resident: the loader and the variables"
+   ],
+   [
+    57344,
+    65529,
     "The game"
+   ],
+   [
+    65530,
+    65535,
+    "Resident: the loader and the variables"
    ]
   ],
   "extra": [],
@@ -51,24 +76,49 @@
   "elsewhere": [
    [
     0,
-    13823,
+    2048,
+    "Resident: the loader and the variables"
+   ],
+   [
+    2049,
+    16383,
+    "The game"
+   ],
+   [
+    27824,
+    32767,
+    "The game"
+   ],
+   [
+    41649,
+    41983,
     "The game"
    ],
    [
     46080,
-    57343,
+    51999,
     "The game"
    ],
    [
-    64000,
-    65535,
+    52000,
+    57343,
+    "Resident: the loader and the variables"
+   ],
+   [
+    57344,
+    65529,
     "The game"
+   ],
+   [
+    65530,
+    65535,
+    "Resident: the loader and the variables"
    ]
   ]
  },
  "blocks": [
   {
-   "start": 13824,
+   "start": 16384,
    "end": 18255,
    "type": "Undefined"
   },
@@ -99,21 +149,16 @@
   },
   {
    "start": 20502,
+   "end": 27823,
+   "type": "Undefined"
+  },
+  {
+   "start": 32768,
    "end": 37199,
    "type": "Undefined"
   },
   {
    "start": 37200,
-   "end": 37490,
-   "type": "Code"
-  },
-  {
-   "start": 37491,
-   "end": 37676,
-   "type": "Undefined"
-  },
-  {
-   "start": 37677,
    "end": 37698,
    "type": "Code"
   },
@@ -129,6 +174,16 @@
   },
   {
    "start": 37819,
+   "end": 37821,
+   "type": "Undefined"
+  },
+  {
+   "start": 37822,
+   "end": 37929,
+   "type": "Code"
+  },
+  {
+   "start": 37930,
    "end": 37931,
    "type": "Undefined"
   },
@@ -248,381 +303,12 @@
    "type": "Code"
   },
   {
-   "start": 41649,
+   "start": 41984,
    "end": 46079,
-   "type": "Undefined"
-  },
-  {
-   "start": 57344,
-   "end": 58650,
-   "type": "Undefined"
-  },
-  {
-   "start": 58651,
-   "end": 58666,
-   "type": "Code"
-  },
-  {
-   "start": 58667,
-   "end": 63999,
    "type": "Undefined"
   }
  ],
  "symbols": [
-  {
-   "address": 15360,
-   "name": "f_3C00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 15660,
-   "name": "f_3D2C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 15872,
-   "name": "f_3E00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 15880,
-   "name": "f_3E08",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 15960,
-   "name": "f_3E58",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16364,
-   "name": "f_3FEC",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16384,
-   "name": "f_4000",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16433,
-   "name": "f_4031",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16473,
-   "name": "f_4059",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16513,
-   "name": "f_4081",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16553,
-   "name": "f_40A9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16593,
-   "name": "f_40D1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16633,
-   "name": "f_40F9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16640,
-   "name": "f_4100",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16673,
-   "name": "f_4121",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16713,
-   "name": "f_4149",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16753,
-   "name": "f_4171",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16793,
-   "name": "f_4199",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16833,
-   "name": "f_41C1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16873,
-   "name": "f_41E9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16896,
-   "name": "f_4200",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16913,
-   "name": "f_4211",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16953,
-   "name": "f_4239",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16968,
-   "name": "f_4248",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 16993,
-   "name": "f_4261",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17033,
-   "name": "f_4289",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17073,
-   "name": "f_42B1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17113,
-   "name": "f_42D9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17153,
-   "name": "f_4301",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17193,
-   "name": "f_4329",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17224,
-   "name": "f_4348",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17264,
-   "name": "f_4370",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17265,
-   "name": "f_4371",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17400,
-   "name": "f_43F8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17408,
-   "name": "f_4400",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17457,
-   "name": "f_4431",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17497,
-   "name": "f_4459",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17537,
-   "name": "f_4481",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17577,
-   "name": "f_44A9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17617,
-   "name": "f_44D1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17657,
-   "name": "f_44F9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17664,
-   "name": "f_4500",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17697,
-   "name": "f_4521",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17737,
-   "name": "f_4549",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17777,
-   "name": "f_4571",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17817,
-   "name": "f_4599",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17857,
-   "name": "f_45C1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17897,
-   "name": "f_45E9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17920,
-   "name": "f_4600",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17937,
-   "name": "f_4611",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 17977,
-   "name": "f_4639",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18017,
-   "name": "f_4661",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18057,
-   "name": "f_4689",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18097,
-   "name": "f_46B1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18137,
-   "name": "f_46D9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18176,
-   "name": "f_4700",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18177,
-   "name": "f_4701",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18217,
-   "name": "f_4729",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18256,
-   "name": "j_4750",
-   "type": "Jump",
-   "kind": "auto"
-  },
   {
    "address": 18378,
    "name": "b_47CA",
@@ -630,243 +316,9 @@
    "kind": "auto"
   },
   {
-   "address": 18432,
-   "name": "f_4800",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18628,
-   "name": "f_48C4",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18644,
-   "name": "f_48D4",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18664,
-   "name": "f_48E8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18688,
-   "name": "f_4900",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18884,
-   "name": "f_49C4",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18890,
-   "name": "f_49CA",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18909,
-   "name": "f_49DD",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18915,
-   "name": "f_49E3",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 18944,
-   "name": "f_4A00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19264,
-   "name": "f_4B40",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19384,
-   "name": "f_4BB8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19409,
-   "name": "f_4BD1",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19456,
-   "name": "f_4C00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19776,
-   "name": "f_4D40",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19784,
-   "name": "f_4D48",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19792,
-   "name": "f_4D50",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19808,
-   "name": "f_4D60",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19828,
-   "name": "f_4D74",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19848,
-   "name": "f_4D88",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19867,
-   "name": "f_4D9B",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19962,
-   "name": "f_4DFA",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 19968,
-   "name": "f_4E00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20288,
-   "name": "f_4F40",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20408,
-   "name": "f_4FB8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20432,
-   "name": "f_4FD0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20456,
-   "name": "f_4FE8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20480,
-   "name": "f_5000",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 20483,
-   "name": "s_5003",
-   "type": "Subroutine",
-   "kind": "auto"
-  },
-  {
-   "address": 20486,
-   "name": "s_5006",
-   "type": "Subroutine",
-   "kind": "auto"
-  },
-  {
-   "address": 20489,
-   "name": "s_5009",
-   "type": "Subroutine",
-   "kind": "auto"
-  },
-  {
-   "address": 22432,
-   "name": "f_57A0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22440,
-   "name": "f_57A8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22448,
-   "name": "f_57B0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22456,
-   "name": "f_57B8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22464,
-   "name": "f_57C0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22472,
-   "name": "f_57C8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22480,
-   "name": "f_57D0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22488,
-   "name": "f_57D8",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 22528,
-   "name": "f_5800",
-   "type": "Field",
+   "address": 23104,
+   "name": "a_5A40",
+   "type": "AbsoluteAddress",
    "kind": "auto"
   },
   {
@@ -882,44 +334,8 @@
    "kind": "auto"
   },
   {
-   "address": 24640,
-   "name": "f_6040",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 24704,
-   "name": "f_6080",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 24768,
-   "name": "f_60C0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
    "address": 24832,
    "name": "f_6100",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 24896,
-   "name": "f_6140",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 24960,
-   "name": "f_6180",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 25024,
-   "name": "f_61C0",
    "type": "Field",
    "kind": "auto"
   },
@@ -948,9 +364,33 @@
    "kind": "auto"
   },
   {
+   "address": 25457,
+   "name": "f_6371",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 25495,
+   "name": "a_6397",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
    "address": 25496,
    "name": "f_6398",
    "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 25497,
+   "name": "f_6399",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 25535,
+   "name": "a_63BF",
+   "type": "AbsoluteAddress",
    "kind": "auto"
   },
   {
@@ -968,138 +408,6 @@
   {
    "address": 25856,
    "name": "f_6500",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 27904,
-   "name": "f_6D00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 28064,
-   "name": "f_6DA0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 28800,
-   "name": "f_7080",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 28928,
-   "name": "f_7100",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29040,
-   "name": "f_7170",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29056,
-   "name": "f_7180",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29184,
-   "name": "f_7200",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29312,
-   "name": "f_7280",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29440,
-   "name": "f_7300",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29568,
-   "name": "f_7380",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 29888,
-   "name": "f_74C0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 30144,
-   "name": "f_75C0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 30698,
-   "name": "f_77EA",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 30708,
-   "name": "f_77F4",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 31504,
-   "name": "f_7B10",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 31536,
-   "name": "f_7B30",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32024,
-   "name": "f_7D18",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32144,
-   "name": "f_7D90",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32145,
-   "name": "f_7D91",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32256,
-   "name": "f_7E00",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32336,
-   "name": "f_7E50",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 32768,
-   "name": "f_8000",
    "type": "Field",
    "kind": "auto"
   },
@@ -1143,54 +451,6 @@
    "address": 36712,
    "name": "f_8F68",
    "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 36864,
-   "name": "a_9000",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36865,
-   "name": "a_9001",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36866,
-   "name": "a_9002",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36867,
-   "name": "a_9003",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36868,
-   "name": "a_9004",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36869,
-   "name": "a_9005",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36870,
-   "name": "a_9006",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36871,
-   "name": "a_9007",
-   "type": "AbsoluteAddress",
    "kind": "auto"
   },
   {
@@ -1284,6 +544,60 @@
    "kind": "user"
   },
   {
+   "address": 37530,
+   "name": "b_929A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37535,
+   "name": "b_929F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37541,
+   "name": "b_92A5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37556,
+   "name": "b_92B4",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37571,
+   "name": "b_92C3",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37605,
+   "name": "b_92E5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37610,
+   "name": "b_92EA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37616,
+   "name": "b_92F0",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37630,
+   "name": "b_92FE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
    "address": 37677,
    "name": "s_932D",
    "type": "Subroutine",
@@ -1344,9 +658,33 @@
    "kind": "auto"
   },
   {
+   "address": 37819,
+   "name": "a_93BB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
    "address": 37821,
    "name": "a_93BD",
    "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 37822,
+   "name": "s_93BE",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 37838,
+   "name": "b_93CE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37847,
+   "name": "b_93D7",
+   "type": "Branch",
    "kind": "auto"
   },
   {
@@ -1359,6 +697,36 @@
    "address": 37866,
    "name": "a_93EA",
    "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 37884,
+   "name": "b_93FC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37904,
+   "name": "b_9410",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37924,
+   "name": "b_9424",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37926,
+   "name": "b_9426",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 37929,
+   "name": "r_9429",
+   "type": "Return",
    "kind": "auto"
   },
   {
@@ -2324,264 +1692,6 @@
   {
    "address": 43757,
    "name": "f_AAED",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57344,
-   "name": "f_E000",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57401,
-   "name": "a_E039",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57404,
-   "name": "a_E03C",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57409,
-   "name": "f_E041",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57412,
-   "name": "f_E044",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57420,
-   "name": "f_E04C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57428,
-   "name": "a_E054",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57429,
-   "name": "a_E055",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57436,
-   "name": "f_E05C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57440,
-   "name": "f_E060",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57444,
-   "name": "f_E064",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57448,
-   "name": "f_E068",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57452,
-   "name": "a_E06C",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57453,
-   "name": "a_E06D",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57454,
-   "name": "f_E06E",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57461,
-   "name": "f_E075",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57462,
-   "name": "f_E076",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57463,
-   "name": "f_E077",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57466,
-   "name": "a_E07A",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57467,
-   "name": "a_E07B",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57468,
-   "name": "a_E07C",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57469,
-   "name": "a_E07D",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57470,
-   "name": "a_E07E",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57471,
-   "name": "a_E07F",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57472,
-   "name": "f_E080",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57474,
-   "name": "f_E082",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57476,
-   "name": "f_E084",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57478,
-   "name": "f_E086",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57480,
-   "name": "f_E088",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57482,
-   "name": "f_E08A",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57484,
-   "name": "f_E08C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57486,
-   "name": "a_E08E",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57487,
-   "name": "a_E08F",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 57488,
-   "name": "f_E090",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 57490,
-   "name": "f_E092",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 58121,
-   "name": "a_E309",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 58125,
-   "name": "a_E30D",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 58377,
-   "name": "a_E409",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 58651,
-   "name": "s_E51B",
-   "type": "Subroutine",
-   "kind": "auto"
-  },
-  {
-   "address": 60601,
-   "name": "f_ECB9",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 60619,
-   "name": "f_ECCB",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 61115,
-   "name": "a_EEBB",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 63446,
-   "name": "f_F7D6",
    "type": "Field",
    "kind": "auto"
   }

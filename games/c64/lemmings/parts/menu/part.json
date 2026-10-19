@@ -1,7 +1,7 @@
 {
   "title": "Intro, code sheet and title menu",
-  "order": 1,
-  "over": "resident",
+  "order": 2,
+  "over": "game",
   "ranges": [
     [
       "$4000",
@@ -14,10 +14,6 @@
     [
       "$A400",
       "$B3FF"
-    ],
-    [
-      "$E000",
-      "$F9FF"
     ]
   ],
   "video": {

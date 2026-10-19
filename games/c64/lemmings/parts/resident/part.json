@@ -8,7 +8,13 @@
   "coverage": {
     "exclude": [],
     "extra": [],
-    "include": []
+    "include": [
+      [
+        "$D000",
+        "$DFFF",
+        "the RAM under the I/O area: the tail of tune_codes and the briefing's packed stash"
+      ]
+    ]
   },
   "io": [],
   "regions": []

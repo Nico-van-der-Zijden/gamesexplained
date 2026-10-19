@@ -13,19 +13,14 @@
     "stack"
    ],
    [
-    53248,
-    57343,
-    "I/O and colour RAM"
-   ],
-   [
     2049,
-    51999,
-    "3 parts: The end sequence, The game, Intro, code sheet and title menu"
+    52023,
+    "4 parts: The end sequence, The game, The intro and others"
    ],
    [
     57344,
     65529,
-    "2 parts: Intro, code sheet and title menu, The game"
+    "2 parts: The intro, The game"
    ]
   ],
   "extra": [],
@@ -46,13 +41,13 @@
   "elsewhere": [
    [
     2049,
-    51999,
-    "3 parts: The end sequence, The game, Intro, code sheet and title menu"
+    52023,
+    "4 parts: The end sequence, The game, The intro and others"
    ],
    [
     57344,
     65529,
-    "2 parts: Intro, code sheet and title menu, The game"
+    "2 parts: The intro, The game"
    ]
   ]
  },
@@ -73,32 +68,17 @@
    "type": "Undefined"
   },
   {
-   "start": 52000,
-   "end": 52023,
-   "type": "Byte"
-  },
-  {
    "start": 52024,
-   "end": 52128,
+   "end": 52064,
    "type": "Undefined"
   },
   {
-   "start": 52129,
-   "end": 52137,
+   "start": 52065,
+   "end": 52071,
    "type": "Byte"
   },
   {
-   "start": 52138,
-   "end": 52143,
-   "type": "Code"
-  },
-  {
-   "start": 52144,
-   "end": 52153,
-   "type": "Byte"
-  },
-  {
-   "start": 52154,
+   "start": 52072,
    "end": 52176,
    "type": "Code"
   },
@@ -119,46 +99,6 @@
   },
   {
    "start": 52256,
-   "end": 52258,
-   "type": "Code"
-  },
-  {
-   "start": 52259,
-   "end": 52261,
-   "type": "Undefined"
-  },
-  {
-   "start": 52262,
-   "end": 52267,
-   "type": "Code"
-  },
-  {
-   "start": 52268,
-   "end": 52273,
-   "type": "Undefined"
-  },
-  {
-   "start": 52274,
-   "end": 52514,
-   "type": "Code"
-  },
-  {
-   "start": 52515,
-   "end": 52527,
-   "type": "Undefined"
-  },
-  {
-   "start": 52528,
-   "end": 52573,
-   "type": "Code"
-  },
-  {
-   "start": 52574,
-   "end": 52592,
-   "type": "Undefined"
-  },
-  {
-   "start": 52593,
    "end": 52700,
    "type": "Code"
   },
@@ -1455,12 +1395,6 @@
    "kind": "auto"
   },
   {
-   "address": 52000,
-   "name": "loader_vars_pre",
-   "type": "UserDefined",
-   "kind": "user"
-  },
-  {
    "address": 52024,
    "name": "mouse_found",
    "type": "AbsoluteAddress",
@@ -1587,6 +1521,36 @@
    "kind": "user"
   },
   {
+   "address": 52072,
+   "name": "resident_vectors",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52084,
+   "name": "boot_sequence",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52116,
+   "name": "to_intro",
+   "type": "Branch",
+   "kind": "user"
+  },
+  {
+   "address": 52122,
+   "name": "fresh_start",
+   "type": "Jump",
+   "kind": "user"
+  },
+  {
+   "address": 52126,
+   "name": "b_CB9E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
    "address": 52129,
    "name": "test_flag_tail",
    "type": "UserDefined",
@@ -1600,7 +1564,7 @@
   },
   {
    "address": 52144,
-   "name": "loop_gap",
+   "name": "menu_choice",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -1609,6 +1573,12 @@
    "name": "next_level",
    "type": "Branch",
    "kind": "user"
+  },
+  {
+   "address": 52160,
+   "name": "j_CBC0",
+   "type": "Jump",
+   "kind": "auto"
   },
   {
    "address": 52174,
@@ -1624,7 +1594,7 @@
   },
   {
    "address": 52178,
-   "name": "keep_level",
+   "name": "restore_briefing",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -1873,6 +1843,12 @@
    "name": "load_pb",
    "type": "UserDefined",
    "kind": "user"
+  },
+  {
+   "address": 52589,
+   "name": "b_CD6D",
+   "type": "Branch",
+   "kind": "auto"
   },
   {
    "address": 52593,
@@ -2175,6 +2151,24 @@
    "kind": "user"
   },
   {
+   "address": 53248,
+   "name": "tune_codes_tail",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 53504,
+   "name": "briefing_stash",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 54528,
+   "name": "briefing_stash_1",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 54581,
    "name": "text_templates",
    "type": "UserDefined",
@@ -2187,10 +2181,22 @@
    "kind": "auto"
   },
   {
+   "address": 55360,
+   "name": "briefing_stash_1b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 55552,
-   "name": "f_D900",
+   "name": "briefing_stash_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 55616,
+   "name": "briefing_stash_2b",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 55808,
@@ -2199,10 +2205,22 @@
    "kind": "auto"
   },
   {
+   "address": 55872,
+   "name": "briefing_stash_2c",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 55880,
    "name": "f_DA48",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 55944,
+   "name": "briefing_stash_2d",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 56064,
@@ -2233,6 +2251,18 @@
    "name": "f_DB74",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 56244,
+   "name": "briefing_stash_3b",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 56576,
+   "name": "briefing_stash_3",
+   "type": "UserDefined",
+   "kind": "user"
   }
  ],
  "comments": [
@@ -2500,6 +2530,11 @@
    "address": 90,
    "type": "line",
    "text": "voice 0's repeats left of a $FB block (1 and 2 at $5B, $5C)"
+  },
+  {
+   "address": 93,
+   "type": "line",
+   "text": "voice 0's repeats left of a $FB block ends at $5A; $5D and $5E are named by no instruction"
   },
   {
    "address": 153,
@@ -3282,11 +3317,6 @@
    "text": "named only as the operand of the BIT at $261A (the skip idiom); the bytes are graphics_codes'"
   },
   {
-   "address": 52000,
-   "type": "line",
-   "text": "24 bytes before the loader's variables at $CB38; not named by any instruction, and what they are is open"
-  },
-  {
    "address": 52024,
    "type": "line",
    "text": "bit 7 set when a 1351 mouse was found at boot; play then reads it instead of the joystick"
@@ -3389,12 +3419,32 @@
   {
    "address": 52065,
    "type": "line",
-   "text": "when bit 7 is set, ending a level ($0EB5) counts every lemming as saved, 100 %"
+   "text": "when bit 7 is set, ending a level ($0EB5) counts every lemming as saved, 100 %; with the next six bytes, flags no instruction but $0ED3 names"
+  },
+  {
+   "address": 52072,
+   "type": "line",
+   "text": "the resident part's own entry points: $CB68 and $CB71 a fresh start ($CB9A), $CB6B from the menu ($CBB0), $CB6E back into the game loop ($CBC0), and the boot sequence at $CB74"
+  },
+  {
+   "address": 52084,
+   "type": "line",
+   "text": "the boot file's last step: points the NMI at an RTI ($CC0F), then for each of the two loading pictures restores the briefing ($CBD2), loads it (codes $6C and $6D: ID and IE) and shows it ($6710); then loads the intro ($CC23: IA and IB, then $4750)"
+  },
+  {
+   "address": 52116,
+   "type": "line",
+   "text": "restores the briefing code and loads the intro ($CC23)"
+  },
+  {
+   "address": 52122,
+   "type": "line",
+   "text": "forgets which files are in memory ($CB53-$CB5D = $FF), loads PA, the play engine ($CC2C), and goes to the menu ($CC26)"
   },
   {
    "address": 52129,
    "type": "line",
-   "text": "the bytes after test_flag up to the top level's code; not named by any instruction"
+   "text": "inside fresh_start: the loop's DEX"
   },
   {
    "address": 52138,
@@ -3404,7 +3454,7 @@
   {
    "address": 52144,
    "type": "line",
-   "text": "ten bytes inside the top level's code that no path reaches: between $CBAD's JMP and $CBBA"
+   "text": "from the menu (Y from it): Y not 0 replays the intro ($CB94); 0 starts the game: PB in ($CC2F), then the game loop at $CBBA"
   },
   {
    "address": 52154,
@@ -3419,17 +3469,17 @@
   {
    "address": 52178,
    "type": "line",
-   "text": "copies the level's file area, $E000-$EEFF, to $9F00-$ADFF with every ROM out of view, rebuilds the file-code tables ($CF71), and gives the RAM under the ROMs back"
+   "text": "before each load: screen off; with every ROM and the I/O area out of view ($01 = $10) rebuilds the file-code tables ($CF71) and copies 15 pages from $D100-$DFFF, a packed copy of the briefing and end-screen code kept in the RAM under the I/O area, to $9000-$9EFF; then unpacks it ($CC20) into $5000-$64AF, where play's character sets had overwritten it"
   },
   {
    "address": 52215,
    "type": "line",
-   "text": "the high byte of the LDA at $CBF5, stepped page by page by $CBFE"
+   "text": "the high byte of the LDA at $CBF5, set to $D1 by $CBE8 and stepped page by page by $CBFE: the stash under the I/O area"
   },
   {
    "address": 52218,
    "type": "line",
-   "text": "the high byte of the STA at $CBF8, stepped by $CC01"
+   "text": "the high byte of the STA at $CBF8, set to $90 by $CBEB and stepped by $CC01"
   },
   {
    "address": 52256,
@@ -3479,7 +3529,7 @@
   {
    "address": 52283,
    "type": "line",
-   "text": "reads an eight-byte header at $9000 into zero page $02-$0D"
+   "text": "unpacks the briefing's stash once it is at $9000: reads its eight-byte header (the copy's address $5636, the output $5000, the end $64B0 and the literal count), copies the stream from $9008 to $5636, then unpacks it ($CC8D)"
   },
   {
    "address": 52365,
@@ -3677,9 +3727,99 @@
    "text": "the tune file for each level: the letter of its S file (0 is SA), 100 entries; copied to $0700"
   },
   {
+   "address": 53248,
+   "type": "line",
+   "text": "the end of tune_codes, $D000-$D0F0, under the I/O area: $CF71 reads it with the area out of view"
+  },
+  {
+   "address": 53504,
+   "type": "line",
+   "text": "the briefing and end-screen code, packed, kept in the RAM under the I/O area ($D100-$DFFF): its header says copy to $5636 and unpack into $5000-$64AF; $CBD2 restores it before every load"
+  },
+  {
+   "address": 54528,
+   "type": "line",
+   "text": "the briefing stash, $D500-$D8FF"
+  },
+  {
    "address": 54581,
    "type": "line",
    "text": "briefing and end-of-level messages as screen codes, with XX where numbers go; a copy filled in for the current level lies at $5444"
+  },
+  {
+   "address": 55296,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from the play screen's writes to colour RAM at this address ($0FC5), which reach the I/O area, not this RAM"
+  },
+  {
+   "address": 55360,
+   "type": "line",
+   "text": "the briefing stash, $D840-$D8FF"
+  },
+  {
+   "address": 55552,
+   "type": "line",
+   "text": "the briefing stash, $D900-$DCFF"
+  },
+  {
+   "address": 55616,
+   "type": "line",
+   "text": "the briefing stash, $D940-$D9FF"
+  },
+  {
+   "address": 55808,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($0FCB)"
+  },
+  {
+   "address": 55872,
+   "type": "line",
+   "text": "the briefing stash, $DA40-$DA47"
+  },
+  {
+   "address": 55880,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($0FCE)"
+  },
+  {
+   "address": 55944,
+   "type": "line",
+   "text": "the briefing stash, $DA88-$DAFF"
+  },
+  {
+   "address": 56064,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($54DE)"
+  },
+  {
+   "address": 56136,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($11CB)"
+  },
+  {
+   "address": 56176,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($11BC)"
+  },
+  {
+   "address": 56179,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($11DA)"
+  },
+  {
+   "address": 56180,
+   "type": "line",
+   "text": "a byte of the briefing stash; the label comes from writes to colour RAM ($11DD)"
+  },
+  {
+   "address": 56244,
+   "type": "line",
+   "text": "the briefing stash, $DBB4-$DCFF"
+  },
+  {
+   "address": 56576,
+   "type": "line",
+   "text": "the briefing stash, $DD00-$DFFF"
   }
  ]
 }
