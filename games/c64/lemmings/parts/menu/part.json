@@ -1,0 +1,26 @@
+{
+  "title": "Intro, code sheet and title menu",
+  "order": 1,
+  "over": "game",
+  "ranges": [
+    [
+      "$3600",
+      "$B3FF"
+    ],
+    [
+      "$E000",
+      "$F9FF"
+    ]
+  ],
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}

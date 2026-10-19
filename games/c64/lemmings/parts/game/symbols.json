@@ -1,0 +1,2546 @@
+{
+ "schema": 1,
+ "platform": "c64",
+ "game": "lemmings",
+ "part": "game",
+ "build": "PAL disk release, three disks (Psygnosis 1994); the boot disk unpatched, analysed at the title and at level 1 of Fun",
+ "source": "regenerator2000 live",
+ "regions": {
+  "exclude": [
+   [
+    256,
+    511,
+    "stack"
+   ],
+   [
+    53248,
+    57343,
+    "I/O and colour RAM"
+   ],
+   [
+    13824,
+    46079,
+    "Intro, code sheet and title menu"
+   ],
+   [
+    57344,
+    63999,
+    "Intro, code sheet and title menu"
+   ]
+  ],
+  "extra": [],
+  "edges": [
+   0,
+   256,
+   512,
+   1024,
+   2048,
+   4096,
+   16384,
+   32768,
+   40960,
+   49152,
+   53248,
+   57344
+  ],
+  "elsewhere": [
+   [
+    13824,
+    46079,
+    "Intro, code sheet and title menu"
+   ],
+   [
+    57344,
+    63999,
+    "Intro, code sheet and title menu"
+   ]
+  ]
+ },
+ "blocks": [
+  {
+   "start": 0,
+   "end": 12,
+   "type": "Code"
+  },
+  {
+   "start": 13,
+   "end": 2281,
+   "type": "Undefined"
+  },
+  {
+   "start": 2282,
+   "end": 2356,
+   "type": "Code"
+  },
+  {
+   "start": 2357,
+   "end": 2456,
+   "type": "Undefined"
+  },
+  {
+   "start": 2457,
+   "end": 2510,
+   "type": "Code"
+  },
+  {
+   "start": 2511,
+   "end": 2649,
+   "type": "Undefined"
+  },
+  {
+   "start": 2650,
+   "end": 2901,
+   "type": "Code"
+  },
+  {
+   "start": 2902,
+   "end": 2930,
+   "type": "Undefined"
+  },
+  {
+   "start": 2931,
+   "end": 3036,
+   "type": "Code"
+  },
+  {
+   "start": 3037,
+   "end": 3294,
+   "type": "Undefined"
+  },
+  {
+   "start": 3295,
+   "end": 3330,
+   "type": "Code"
+  },
+  {
+   "start": 3331,
+   "end": 3764,
+   "type": "Undefined"
+  },
+  {
+   "start": 3765,
+   "end": 3816,
+   "type": "Code"
+  },
+  {
+   "start": 3817,
+   "end": 3905,
+   "type": "Undefined"
+  },
+  {
+   "start": 3906,
+   "end": 4006,
+   "type": "Code"
+  },
+  {
+   "start": 4007,
+   "end": 5435,
+   "type": "Undefined"
+  },
+  {
+   "start": 5436,
+   "end": 5455,
+   "type": "Code"
+  },
+  {
+   "start": 5456,
+   "end": 5479,
+   "type": "Undefined"
+  },
+  {
+   "start": 5480,
+   "end": 5518,
+   "type": "Code"
+  },
+  {
+   "start": 5519,
+   "end": 5842,
+   "type": "Undefined"
+  },
+  {
+   "start": 5843,
+   "end": 6817,
+   "type": "Code"
+  },
+  {
+   "start": 6818,
+   "end": 12293,
+   "type": "Undefined"
+  },
+  {
+   "start": 12294,
+   "end": 12296,
+   "type": "Code"
+  },
+  {
+   "start": 12297,
+   "end": 12500,
+   "type": "Undefined"
+  },
+  {
+   "start": 12501,
+   "end": 13701,
+   "type": "Code"
+  },
+  {
+   "start": 13702,
+   "end": 13823,
+   "type": "Undefined"
+  },
+  {
+   "start": 46080,
+   "end": 57343,
+   "type": "Undefined"
+  },
+  {
+   "start": 64000,
+   "end": 65464,
+   "type": "Undefined"
+  },
+  {
+   "start": 65465,
+   "end": 65491,
+   "type": "Code"
+  },
+  {
+   "start": 65492,
+   "end": 65535,
+   "type": "Undefined"
+  }
+ ],
+ "symbols": [
+  {
+   "address": 0,
+   "name": "start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 5,
+   "name": "zpa_05",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 9,
+   "name": "zpa_09",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 13,
+   "name": "zpa_0D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 40,
+   "name": "zpa_28",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 41,
+   "name": "zpa_29",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52,
+   "name": "zpa_34",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53,
+   "name": "zpa_35",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 54,
+   "name": "zpp_36",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 55,
+   "name": "zpa_37",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 64,
+   "name": "zpf_40",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 67,
+   "name": "zpf_43",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 70,
+   "name": "zpf_46",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 73,
+   "name": "zpa_49",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 74,
+   "name": "zpa_4A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 75,
+   "name": "zpf_4B",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 78,
+   "name": "zpf_4E",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 81,
+   "name": "zpf_51",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 84,
+   "name": "zpf_54",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 87,
+   "name": "zpf_57",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 90,
+   "name": "zpf_5A",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 169,
+   "name": "a_00A9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 174,
+   "name": "zpa_AE",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 175,
+   "name": "zpa_AF",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 182,
+   "name": "zpa_B6",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 183,
+   "name": "zpa_B7",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 184,
+   "name": "zpa_B8",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 185,
+   "name": "zpa_B9",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 226,
+   "name": "zpa_E2",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 228,
+   "name": "zpa_E4",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 229,
+   "name": "zpa_E5",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1024,
+   "name": "a_0400",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1025,
+   "name": "a_0401",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1026,
+   "name": "f_0402",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1027,
+   "name": "a_0403",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1028,
+   "name": "a_0404",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1029,
+   "name": "a_0405",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1030,
+   "name": "a_0406",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1031,
+   "name": "a_0407",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1032,
+   "name": "a_0408",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1033,
+   "name": "a_0409",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1034,
+   "name": "a_040A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1035,
+   "name": "a_040B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1036,
+   "name": "a_040C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1037,
+   "name": "a_040D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1038,
+   "name": "a_040E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1039,
+   "name": "a_040F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1043,
+   "name": "f_0413",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1051,
+   "name": "a_041B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1052,
+   "name": "a_041C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1053,
+   "name": "a_041D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1055,
+   "name": "a_041F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1057,
+   "name": "a_0421",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1400,
+   "name": "a_0578",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1403,
+   "name": "a_057B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1407,
+   "name": "a_057F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1408,
+   "name": "a_0580",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1409,
+   "name": "a_0581",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1410,
+   "name": "a_0582",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1411,
+   "name": "a_0583",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1413,
+   "name": "a_0585",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1414,
+   "name": "a_0586",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1416,
+   "name": "a_0588",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1417,
+   "name": "a_0589",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1418,
+   "name": "a_058A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1419,
+   "name": "a_058B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1420,
+   "name": "a_058C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1421,
+   "name": "a_058D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1422,
+   "name": "a_058E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1424,
+   "name": "a_0590",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1425,
+   "name": "a_0591",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1426,
+   "name": "a_0592",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1427,
+   "name": "a_0593",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1428,
+   "name": "a_0594",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1461,
+   "name": "a_05B5",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1462,
+   "name": "a_05B6",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1463,
+   "name": "a_05B7",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1465,
+   "name": "a_05B9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1466,
+   "name": "a_05BA",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1467,
+   "name": "a_05BB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1468,
+   "name": "a_05BC",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1469,
+   "name": "a_05BD",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1470,
+   "name": "a_05BE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1472,
+   "name": "a_05C0",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1474,
+   "name": "a_05C2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1475,
+   "name": "a_05C3",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1476,
+   "name": "a_05C4",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1480,
+   "name": "f_05C8",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1489,
+   "name": "a_05D1",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1490,
+   "name": "f_05D2",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1499,
+   "name": "a_05DB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1756,
+   "name": "a_06DC",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1757,
+   "name": "a_06DD",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1758,
+   "name": "a_06DE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2282,
+   "name": "irq_band",
+   "type": "Jump",
+   "kind": "user"
+  },
+  {
+   "address": 2326,
+   "name": "b_0916",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2334,
+   "name": "b_091E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2342,
+   "name": "b_0926",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2374,
+   "name": "a_0946",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2377,
+   "name": "a_0949",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2380,
+   "name": "a_094C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2383,
+   "name": "a_094F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2401,
+   "name": "a_0961",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2404,
+   "name": "a_0964",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2407,
+   "name": "a_0967",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2410,
+   "name": "a_096A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2428,
+   "name": "a_097C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2431,
+   "name": "a_097F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2434,
+   "name": "a_0982",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2437,
+   "name": "a_0985",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2457,
+   "name": "j_0999",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 2468,
+   "name": "b_09A4",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2503,
+   "name": "irq_play",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 2509,
+   "name": "a_09CD",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2510,
+   "name": "a_09CE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2511,
+   "name": "a_09CF",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2512,
+   "name": "a_09D0",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2513,
+   "name": "f_09D1",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 2530,
+   "name": "f_09E2",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 2547,
+   "name": "f_09F3",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 2650,
+   "name": "s_0A5A",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 2662,
+   "name": "b_0A66",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2679,
+   "name": "b_0A77",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2701,
+   "name": "b_0A8D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2734,
+   "name": "b_0AAE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2740,
+   "name": "s_0AB4",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 2749,
+   "name": "b_0ABD",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2791,
+   "name": "b_0AE7",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2804,
+   "name": "r_0AF4",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 2805,
+   "name": "b_0AF5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2813,
+   "name": "b_0AFD",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2842,
+   "name": "b_0B1A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2870,
+   "name": "b_0B36",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2876,
+   "name": "s_0B3C",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 2884,
+   "name": "b_0B44",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2893,
+   "name": "b_0B4D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2902,
+   "name": "nmi_rti",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 2903,
+   "name": "set_raster_irq",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 2931,
+   "name": "s_0B73",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 2952,
+   "name": "b_0B88",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2953,
+   "name": "a_0B89",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2971,
+   "name": "b_0B9B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 2982,
+   "name": "a_0BA6",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 3001,
+   "name": "b_0BB9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 3026,
+   "name": "b_0BD2",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 3033,
+   "name": "b_0BD9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 3295,
+   "name": "s_0CDF",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 3337,
+   "name": "a_0D09",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 3676,
+   "name": "main_loop",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 3679,
+   "name": "wait_frame",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 3765,
+   "name": "j_0EB5",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 3816,
+   "name": "r_0EE8",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 3906,
+   "name": "s_0F42",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 4096,
+   "name": "f_1000",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 4935,
+   "name": "f_1347",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 4937,
+   "name": "f_1349",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 4939,
+   "name": "f_134B",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 4941,
+   "name": "f_134D",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 4943,
+   "name": "f_134F",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 5436,
+   "name": "j_153C",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 5480,
+   "name": "j_1568",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 5497,
+   "name": "b_1579",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5843,
+   "name": "s_16D3",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 5857,
+   "name": "b_16E1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5860,
+   "name": "j_16E4",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 5886,
+   "name": "b_16FE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5891,
+   "name": "r_1703",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 5892,
+   "name": "read_paddle_x",
+   "type": "Subroutine",
+   "kind": "user"
+  },
+  {
+   "address": 5941,
+   "name": "s_1735",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 5954,
+   "name": "b_1742",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5962,
+   "name": "b_174A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5969,
+   "name": "s_1751",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 5982,
+   "name": "b_175E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5987,
+   "name": "b_1763",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 5992,
+   "name": "s_1768",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 6018,
+   "name": "b_1782",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6034,
+   "name": "b_1792",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6037,
+   "name": "s_1795",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 6062,
+   "name": "b_17AE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6076,
+   "name": "b_17BC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6079,
+   "name": "s_17BF",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 6091,
+   "name": "s_17CB",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 6124,
+   "name": "b_17EC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6127,
+   "name": "b_17EF",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6160,
+   "name": "j_1810",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6184,
+   "name": "b_1828",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6187,
+   "name": "b_182B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6195,
+   "name": "b_1833",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6205,
+   "name": "j_183D",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6218,
+   "name": "b_184A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6247,
+   "name": "j_1867",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6296,
+   "name": "b_1898",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6299,
+   "name": "b_189B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6335,
+   "name": "j_18BF",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6359,
+   "name": "b_18D7",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6362,
+   "name": "j_18DA",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6370,
+   "name": "b_18E2",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6380,
+   "name": "r_18EC",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 6381,
+   "name": "j_18ED",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 6418,
+   "name": "b_1912",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6422,
+   "name": "s_1916",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 6590,
+   "name": "a_19BE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6591,
+   "name": "a_19BF",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6621,
+   "name": "b_19DD",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6632,
+   "name": "a_19E8",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6650,
+   "name": "b_19FA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6661,
+   "name": "a_1A05",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6683,
+   "name": "b_1A1B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6694,
+   "name": "a_1A26",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6712,
+   "name": "b_1A38",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6723,
+   "name": "a_1A43",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6733,
+   "name": "b_1A4D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6734,
+   "name": "a_1A4E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6735,
+   "name": "a_1A4F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6738,
+   "name": "a_1A52",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6740,
+   "name": "a_1A54",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6741,
+   "name": "a_1A55",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6744,
+   "name": "a_1A58",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6746,
+   "name": "a_1A5A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6747,
+   "name": "a_1A5B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6750,
+   "name": "a_1A5E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6752,
+   "name": "a_1A60",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6753,
+   "name": "a_1A61",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6756,
+   "name": "a_1A64",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6767,
+   "name": "b_1A6F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6769,
+   "name": "a_1A71",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6771,
+   "name": "a_1A73",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6772,
+   "name": "a_1A74",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6775,
+   "name": "a_1A77",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6778,
+   "name": "a_1A7A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6780,
+   "name": "a_1A7C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6781,
+   "name": "a_1A7D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6784,
+   "name": "a_1A80",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6793,
+   "name": "b_1A89",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 6795,
+   "name": "a_1A8B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6797,
+   "name": "a_1A8D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6798,
+   "name": "a_1A8E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6801,
+   "name": "a_1A91",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6804,
+   "name": "a_1A94",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6806,
+   "name": "a_1A96",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6807,
+   "name": "a_1A97",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6810,
+   "name": "a_1A9A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 11857,
+   "name": "a_2E51",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12294,
+   "name": "s_3006",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 12341,
+   "name": "a_3035",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12342,
+   "name": "f_3036",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12344,
+   "name": "f_3038",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12346,
+   "name": "a_303A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12347,
+   "name": "a_303B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12348,
+   "name": "f_303C",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12351,
+   "name": "f_303F",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12354,
+   "name": "f_3042",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12357,
+   "name": "f_3045",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12360,
+   "name": "f_3048",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12363,
+   "name": "f_304B",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12366,
+   "name": "f_304E",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12369,
+   "name": "f_3051",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12372,
+   "name": "f_3054",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12375,
+   "name": "f_3057",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12378,
+   "name": "f_305A",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12381,
+   "name": "f_305D",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12384,
+   "name": "f_3060",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12387,
+   "name": "f_3063",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12390,
+   "name": "f_3066",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12393,
+   "name": "f_3069",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12396,
+   "name": "f_306C",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12399,
+   "name": "f_306F",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12402,
+   "name": "f_3072",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12405,
+   "name": "f_3075",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12408,
+   "name": "f_3078",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12411,
+   "name": "f_307B",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12414,
+   "name": "f_307E",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12417,
+   "name": "f_3081",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12420,
+   "name": "f_3084",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12423,
+   "name": "f_3087",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12426,
+   "name": "f_308A",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12429,
+   "name": "f_308D",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12432,
+   "name": "f_3090",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12435,
+   "name": "f_3093",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12438,
+   "name": "f_3096",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12441,
+   "name": "f_3099",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12444,
+   "name": "a_309C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12445,
+   "name": "a_309D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12446,
+   "name": "f_309E",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 12501,
+   "name": "s_30D5",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 12517,
+   "name": "sound_write",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 12539,
+   "name": "j_30FB",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 12579,
+   "name": "r_3123",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 12580,
+   "name": "b_3124",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12584,
+   "name": "a_3128",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12596,
+   "name": "b_3134",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12651,
+   "name": "b_316B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12661,
+   "name": "s_3175",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 12679,
+   "name": "b_3187",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12682,
+   "name": "r_318A",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 12683,
+   "name": "b_318B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12690,
+   "name": "j_3192",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 12716,
+   "name": "b_31AC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12729,
+   "name": "b_31B9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12741,
+   "name": "b_31C5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12754,
+   "name": "b_31D2",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12774,
+   "name": "a_31E6",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12785,
+   "name": "b_31F1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12798,
+   "name": "b_31FE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12811,
+   "name": "b_320B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12834,
+   "name": "b_3222",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12858,
+   "name": "b_323A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12878,
+   "name": "b_324E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12894,
+   "name": "b_325E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12896,
+   "name": "j_3260",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 12897,
+   "name": "b_3261",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12921,
+   "name": "b_3279",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 12949,
+   "name": "b_3295",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13043,
+   "name": "j_32F3",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13077,
+   "name": "b_3315",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13100,
+   "name": "b_332C",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13105,
+   "name": "b_3331",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13117,
+   "name": "b_333D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13176,
+   "name": "b_3378",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13202,
+   "name": "j_3392",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13214,
+   "name": "b_339E",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13217,
+   "name": "b_33A1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13225,
+   "name": "b_33A9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13287,
+   "name": "j_33E7",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13299,
+   "name": "b_33F3",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13315,
+   "name": "b_3403",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13340,
+   "name": "b_341C",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13355,
+   "name": "j_342B",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13392,
+   "name": "b_3450",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13400,
+   "name": "b_3458",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13434,
+   "name": "b_347A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13439,
+   "name": "a_347F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 13448,
+   "name": "b_3488",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13465,
+   "name": "b_3499",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13474,
+   "name": "b_34A2",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13476,
+   "name": "j_34A4",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13509,
+   "name": "b_34C5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13514,
+   "name": "b_34CA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13523,
+   "name": "j_34D3",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 13543,
+   "name": "a_34E7",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 13565,
+   "name": "b_34FD",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13590,
+   "name": "b_3516",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13629,
+   "name": "b_353D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13648,
+   "name": "b_3550",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13664,
+   "name": "b_3560",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13677,
+   "name": "r_356D",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 13678,
+   "name": "s_356E",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 13680,
+   "name": "s_3570",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 13690,
+   "name": "b_357A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 13701,
+   "name": "f_3585",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 13702,
+   "name": "f_3586",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 13801,
+   "name": "f_35E9",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 13802,
+   "name": "f_35EA",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 52024,
+   "name": "a_CB38",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52025,
+   "name": "a_CB39",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52026,
+   "name": "a_CB3A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52027,
+   "name": "a_CB3B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52032,
+   "name": "a_CB40",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52033,
+   "name": "a_CB41",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52034,
+   "name": "a_CB42",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52037,
+   "name": "a_CB45",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52038,
+   "name": "a_CB46",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52065,
+   "name": "a_CB61",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52256,
+   "name": "loader_vectors",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52283,
+   "name": "unpack_header",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52630,
+   "name": "load_by_code",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52702,
+   "name": "file_kinds",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52710,
+   "name": "kind_sides",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 54581,
+   "name": "text_templates",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 65461,
+   "name": "b_FFB5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 65465,
+   "name": "b_FFB9",
+   "type": "Branch",
+   "kind": "auto"
+  }
+ ],
+ "comments": [
+  {
+   "address": 2282,
+   "type": "line",
+   "text": "the play interrupt continues here (target of the JMP at $09CC)"
+  },
+  {
+   "address": 2503,
+   "type": "line",
+   "text": "hardware IRQ vector in play ($FFFE): saves A, Y and X and jumps to the band handler"
+  },
+  {
+   "address": 2902,
+   "type": "line",
+   "text": "NMI vector in play points at this RTI, so RESTORE does nothing"
+  },
+  {
+   "address": 2903,
+   "type": "line",
+   "text": "installs the next raster interrupt: X/Y = handler address into $FFFE/$FFFF, A = raster line into $D012"
+  },
+  {
+   "address": 3676,
+   "type": "line",
+   "text": "main loop of play"
+  },
+  {
+   "address": 3679,
+   "type": "line",
+   "text": "waits until bit 7 of $0400 is set (the frame flag), then runs the pass"
+  },
+  {
+   "address": 3695,
+   "type": "line",
+   "text": "clears the frame flag and loops"
+  },
+  {
+   "address": 3908,
+   "type": "line",
+   "text": "sets $D016 for play"
+  },
+  {
+   "address": 5892,
+   "type": "line",
+   "text": "reads the SID's paddle X register $D419 (1351 mouse in proportional mode)"
+  },
+  {
+   "address": 5912,
+   "type": "line",
+   "text": "reads the paddle Y register $D41A"
+  },
+  {
+   "address": 5961,
+   "type": "line",
+   "text": "an RTS no path reaches, after the JMP above"
+  },
+  {
+   "address": 12517,
+   "type": "line",
+   "text": "writes to SID voice 1 control $D404 (sound driver region $30E5-$3156)"
+  },
+  {
+   "address": 52256,
+   "type": "line",
+   "text": "jump table of the resident loader (nine JMPs)"
+  },
+  {
+   "address": 52283,
+   "type": "line",
+   "text": "reads an eight-byte header at $9000 into zero page $02-$0D"
+  },
+  {
+   "address": 52622,
+   "type": "line",
+   "text": "the same with the code from $0700,X, its top three bits forced to 7"
+  },
+  {
+   "address": 52630,
+   "type": "line",
+   "text": "loads the file whose code byte is $0400,X: low five bits the second letter of its name, top three bits its kind and disk side"
+  },
+  {
+   "address": 52672,
+   "type": "line",
+   "text": "the file is on another disk side than $CB60 says is in the drive: the game's prompt at $5009, then try again"
+  },
+  {
+   "address": 52694,
+   "type": "line",
+   "text": "the load failed: the game's handler at $5006, then try again"
+  },
+  {
+   "address": 52702,
+   "type": "line",
+   "text": "the first letters of the file names by kind: F T X M P I C S"
+  },
+  {
+   "address": 52710,
+   "type": "line",
+   "text": "the disk side each kind is on: F 2, T 3, X 4, M 5 (the four level sides), P, I and C 0 (disk 1), S $FF (any: every level side carries SA-SI)"
+  },
+  {
+   "address": 54581,
+   "type": "line",
+   "text": "briefing and end-of-level messages as screen codes, with XX where numbers go; a copy filled in for the current level lies at $5444"
+  }
+ ]
+}
