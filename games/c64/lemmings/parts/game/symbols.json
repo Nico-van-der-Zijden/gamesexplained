@@ -38,6 +38,11 @@
     "runtime: the blocker map, one byte per pixel column ($2174), and the unpack's first output"
    ],
    [
+    64045,
+    65529,
+    "beyond level 1's file, which ends at $FA2C: bytes an earlier load left; the longest level files reach $FFEB"
+   ],
+   [
     0,
     2048,
     "Resident: the loader and the variables"
@@ -48,7 +53,7 @@
     "Resident: the loader and the variables"
    ],
    [
-    64000,
+    65530,
     65535,
     "Resident: the loader and the variables"
    ]
@@ -80,7 +85,7 @@
     "Resident: the loader and the variables"
    ],
    [
-    64000,
+    65530,
     65535,
     "Resident: the loader and the variables"
    ]
@@ -416,6 +421,21 @@
    "start": 57768,
    "end": 63999,
    "type": "Byte"
+  },
+  {
+   "start": 64000,
+   "end": 64000,
+   "type": "Undefined"
+  },
+  {
+   "start": 64001,
+   "end": 64044,
+   "type": "Byte"
+  },
+  {
+   "start": 64045,
+   "end": 65529,
+   "type": "Undefined"
   }
  ],
  "symbols": [
@@ -9178,6 +9198,30 @@
    "name": "objects_b",
    "type": "UserDefined",
    "kind": "user"
+  },
+  {
+   "address": 64001,
+   "name": "level_file_end",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 64816,
+   "name": "f_FD30",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 64848,
+   "name": "KERNAL_RAMTASj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
+   "address": 64931,
+   "name": "KERNAL_IOINITj",
+   "type": "Predefined",
+   "kind": "system"
   }
  ],
  "comments": [
@@ -13844,7 +13888,7 @@
   {
    "address": 57658,
    "type": "line",
-   "text": "the next byte of the packed stream"
+   "text": "the level unpacker's own copy of the loader's next_byte: the next byte of the terrain's packed stream"
   },
   {
    "address": 57751,
@@ -13945,6 +13989,16 @@
    "address": 63739,
    "type": "line",
    "text": "the level's object tables and data, $F8FB-$F9F4"
+  },
+  {
+   "address": 64001,
+   "type": "line",
+   "text": "the last bytes of level 1's file, $FA01-$FA2C, after its object tables"
+  },
+  {
+   "address": 64816,
+   "type": "line",
+   "text": "named by $08B5, which copies the KERNAL ROM's vectors with the ROM in view; the RAM here is not that table"
   }
  ]
 }
