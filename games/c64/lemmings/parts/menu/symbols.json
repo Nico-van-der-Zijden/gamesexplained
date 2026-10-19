@@ -1956,7 +1956,7 @@
   {
    "address": 32768,
    "type": "line",
-   "text": "the title's five icons in every state (1 PLAYER with a joystick or a mouse, INTRO, NEW LEVEL, the note or FX, the four ratings) as bitmap rows of 48 bytes, $8000-$83FF"
+   "text": "the title's five icons in every state (1 PLAYER with a joystick or a mouse, INTRO, NEW LEVEL, the note or FX, the four ratings), 60 bytes a row: 48 bitmap bytes, 6 screen colours and 6 colour RAM values; $8000-$83FF"
   },
   {
    "address": 33792,
@@ -2171,12 +2171,12 @@
   {
    "address": 38116,
    "type": "line",
-   "text": "draws icon picture X in five rows of 48 bitmap bytes and 6 colour bytes each, from line $B2 of the frame"
+   "text": "draws icon picture X in five rows of 48 bitmap bytes, 6 screen colours and 6 colour RAM values each, from line $B2 of the frame"
   },
   {
    "address": 38152,
    "type": "line",
-   "text": "one row of an icon: 48 bitmap bytes from $9611 and the colours from $968B, to the bitmap and screen addresses from $9571-$95E9"
+   "text": "one row of an icon: its 48 bitmap bytes, 6 screen colours and 6 colour RAM values through icon_rows_lo/hi and the tables one and two entries on, to the bitmap, screen and colour RAM addresses from $9571-$95E9"
   },
   {
    "address": 38257,

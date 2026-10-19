@@ -5644,7 +5644,7 @@
   },
   {
    "address": 12345,
-   "name": "voice_tune_2",
+   "name": "voice_tune_seen_1",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -7126,13 +7126,13 @@
   },
   {
    "address": 20408,
-   "name": "rate_tens",
+   "name": "rate_units",
    "type": "Field",
    "kind": "user"
   },
   {
    "address": 20432,
-   "name": "rate_units",
+   "name": "rate_tens",
    "type": "Field",
    "kind": "user"
   },
@@ -8884,7 +8884,7 @@
   },
   {
    "address": 57462,
-   "name": "exit_col_hi",
+   "name": "exit_col_lo",
    "type": "Field",
    "kind": "user"
   },
@@ -9839,12 +9839,12 @@
   {
    "address": 4767,
    "type": "line",
-   "text": "per action (21 entries): the frame offset of the action's animation"
+   "text": "per action (21 entries): the pixel row within its character cell at which the lemming's frame is drawn (0, 2 or 7), stored in frame_row ($B1) at $143E and used by $1B23, $1C6A and $1D74"
   },
   {
    "address": 4788,
    "type": "line",
-   "text": "per action: the frame offset when the lemming faces the other way ($143B)"
+   "text": "per action: the same row for a lemming whose fuse is burning (the top three bits of its flags, $05C7, are not zero), read at $143B after fuse_tick"
   },
   {
    "address": 4809,
@@ -12154,12 +12154,12 @@
   {
    "address": 12342,
    "type": "line",
-   "text": "per voice: the tune last asked for with the $FC command"
+   "text": "per voice: the tune asked for, which the $FC command compares ($31D6) with voice_tune_seen; only silence ($30B6) writes it, with 0. Indexed by voices 0-2 it runs to $3038, voice_tune_seen's first byte"
   },
   {
    "address": 12343,
    "type": "line",
-   "text": "voice 1's entry of voice_tune, cleared by silence ($30B9)"
+   "text": "voice_tune for X = 1, the second voice; cleared by silence ($30B9)"
   },
   {
    "address": 12344,
@@ -12169,7 +12169,7 @@
   {
    "address": 12345,
    "type": "line",
-   "text": "voice 2's entry of voice_tune, cleared by silence"
+   "text": "voice_tune_seen for X = 1, the second voice; cleared by silence ($30BF)"
   },
   {
    "address": 12346,
@@ -12829,12 +12829,12 @@
   {
    "address": 20408,
    "type": "line",
-   "text": "the release rate's tens digit for each step 0-23"
+   "text": "the release rate's units digit for each step 0-23 (with rate_tens: 01, 06, 12, 17 ... 99)"
   },
   {
    "address": 20432,
    "type": "line",
-   "text": "the units digit"
+   "text": "the release rate's tens digit for each step 0-23"
   },
   {
    "address": 20456,
@@ -13259,7 +13259,7 @@
   {
    "address": 23359,
    "type": "line",
-   "text": "the colour bars of the screen texts, sixteen colours per line kind"
+   "text": "the base of the colour bars read at $5579, indexed from each text line's third byte up to the next multiple of 16; $5B3F-$5B4E are also brief_row_hi's last sixteen entries"
   },
   {
    "address": 23471,
@@ -13409,7 +13409,7 @@
   {
    "address": 29040,
    "type": "line",
-   "text": "the panel's two rows of characters, copied to the screen at $4370 by $11B4"
+   "text": "the panel's three rows of characters, $7170-$71E7, copied to screen rows 22-24 at $4370 by $11B4, which also sets their colour RAM to 9"
   },
   {
    "address": 29056,
@@ -13864,12 +13864,12 @@
   {
    "address": 57461,
    "type": "line",
-   "text": "the level's exits, three bytes each (row, then the column's high and low bytes), two at most: $1351 sets the exit test ($1F82, $1F8E, $1F96) from one of them each pass, alternating ($06E2); $E07A is $FF when there is only one"
+   "text": "the level's exits, three bytes each (the column's high byte, its low byte, then the row), two at most: $1351 sets the exit test ($1F82, $1F8E, $1F96) from one of them each pass, alternating ($06E2); $E07A is $FF when there is only one"
   },
   {
    "address": 57462,
    "type": "line",
-   "text": "the exits' columns, high bytes"
+   "text": "the exits' columns, low bytes"
   },
   {
    "address": 57463,

@@ -1222,7 +1222,7 @@
   },
   {
    "address": 1488,
-   "name": "rate_units_shown",
+   "name": "rate_tens_min",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -1240,13 +1240,13 @@
   },
   {
    "address": 1498,
-   "name": "rate_tens_char",
+   "name": "rate_units_min",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 1499,
-   "name": "rate_units_char",
+   "name": "rate_units_now",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -2774,7 +2774,7 @@
   {
    "address": 1038,
    "type": "line",
-   "text": "where the view should move to, fine part; set by the cursor at the screen edge"
+   "text": "where the view should move to, fine part; set by the cursor at the screen edge, and at the level's start by scroll_target_right ($11EF, $11F8) to bring the view to the start position"
   },
   {
    "address": 1039,
@@ -3174,7 +3174,7 @@
   {
    "address": 1488,
    "type": "line",
-   "text": "the release rate's digits in the panel ($05D0/$05D1, $05DA/$05DB)"
+   "text": "the tens digits of the panel's two rate counts: $05D0 the level's minimum rate, set at its start ($10FE), $05D1 the rate in force"
   },
   {
    "address": 1489,
@@ -3189,12 +3189,12 @@
   {
    "address": 1498,
    "type": "line",
-   "text": "the release rate's tens digit as a panel character"
+   "text": "the units digit of the level's minimum rate, set at the level's start ($10F8) and drawn as draw_count's count 8; a value 0-9, which draw_count turns into a character by adding $48"
   },
   {
    "address": 1499,
    "type": "line",
-   "text": "the release rate's units digit as a panel character"
+   "text": "the units digit of the release rate in force, draw_count's count 9; a value 0-9, which draw_count turns into a character by adding $48"
   },
   {
    "address": 1500,
@@ -3219,7 +3219,7 @@
   {
    "address": 1758,
    "type": "line",
-   "text": "$80 once the clock has run out ($0EC7)"
+   "text": "$80 once the level is over without the lemmings: set by end_level, which the clock running out reaches ($0EC7) and so does the back arrow while paused ($0AFA)"
   },
   {
    "address": 1759,
