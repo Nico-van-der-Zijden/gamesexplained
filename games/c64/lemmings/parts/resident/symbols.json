@@ -1,0 +1,2421 @@
+{
+ "schema": 1,
+ "platform": "c64",
+ "game": "lemmings",
+ "part": "resident",
+ "build": "PAL disk release, three disks (Psygnosis 1994); the boot disk unpatched, analysed at the title and at level 1 of Fun",
+ "source": "regenerator2000 live",
+ "regions": {
+  "exclude": [
+   [
+    256,
+    511,
+    "stack"
+   ],
+   [
+    53248,
+    57343,
+    "I/O and colour RAM"
+   ],
+   [
+    2049,
+    51999,
+    "3 parts: The end sequence, The game, Intro, code sheet and title menu"
+   ],
+   [
+    57344,
+    63999,
+    "2 parts: Intro, code sheet and title menu, The game"
+   ]
+  ],
+  "extra": [],
+  "edges": [
+   0,
+   256,
+   512,
+   1024,
+   2048,
+   4096,
+   16384,
+   32768,
+   40960,
+   49152,
+   53248,
+   57344
+  ],
+  "elsewhere": [
+   [
+    2049,
+    51999,
+    "3 parts: The end sequence, The game, Intro, code sheet and title menu"
+   ],
+   [
+    57344,
+    63999,
+    "2 parts: Intro, code sheet and title menu, The game"
+   ]
+  ]
+ },
+ "blocks": [
+  {
+   "start": 0,
+   "end": 12,
+   "type": "Code"
+  },
+  {
+   "start": 13,
+   "end": 2048,
+   "type": "Undefined"
+  },
+  {
+   "start": 52000,
+   "end": 52137,
+   "type": "Undefined"
+  },
+  {
+   "start": 52138,
+   "end": 52143,
+   "type": "Code"
+  },
+  {
+   "start": 52144,
+   "end": 52153,
+   "type": "Undefined"
+  },
+  {
+   "start": 52154,
+   "end": 52176,
+   "type": "Code"
+  },
+  {
+   "start": 52177,
+   "end": 52177,
+   "type": "Undefined"
+  },
+  {
+   "start": 52178,
+   "end": 52238,
+   "type": "Code"
+  },
+  {
+   "start": 52239,
+   "end": 52255,
+   "type": "Undefined"
+  },
+  {
+   "start": 52256,
+   "end": 52258,
+   "type": "Code"
+  },
+  {
+   "start": 52259,
+   "end": 52261,
+   "type": "Undefined"
+  },
+  {
+   "start": 52262,
+   "end": 52267,
+   "type": "Code"
+  },
+  {
+   "start": 52268,
+   "end": 52273,
+   "type": "Undefined"
+  },
+  {
+   "start": 52274,
+   "end": 52514,
+   "type": "Code"
+  },
+  {
+   "start": 52515,
+   "end": 52527,
+   "type": "Undefined"
+  },
+  {
+   "start": 52528,
+   "end": 52573,
+   "type": "Code"
+  },
+  {
+   "start": 52574,
+   "end": 52592,
+   "type": "Undefined"
+  },
+  {
+   "start": 52593,
+   "end": 52700,
+   "type": "Code"
+  },
+  {
+   "start": 52701,
+   "end": 52717,
+   "type": "Undefined"
+  },
+  {
+   "start": 52718,
+   "end": 53101,
+   "type": "Code"
+  },
+  {
+   "start": 53102,
+   "end": 53104,
+   "type": "Undefined"
+  },
+  {
+   "start": 53105,
+   "end": 53122,
+   "type": "Code"
+  },
+  {
+   "start": 53123,
+   "end": 57343,
+   "type": "Undefined"
+  },
+  {
+   "start": 64000,
+   "end": 65535,
+   "type": "Undefined"
+  }
+ ],
+ "symbols": [
+  {
+   "address": 0,
+   "name": "start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 1,
+   "name": "zpa_01",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 2,
+   "name": "zpa_02",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 3,
+   "name": "zpa_03",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 4,
+   "name": "zpa_04",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 5,
+   "name": "zpa_05",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 6,
+   "name": "zpa_06",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 7,
+   "name": "zpa_07",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 8,
+   "name": "zpa_08",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 9,
+   "name": "zpa_09",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 10,
+   "name": "zpa_0A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 11,
+   "name": "zpa_0B",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 12,
+   "name": "zpa_0C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 13,
+   "name": "zpa_0D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 14,
+   "name": "zpa_0E",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 15,
+   "name": "zpa_0F",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 32,
+   "name": "zpa_20",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 33,
+   "name": "zpa_21",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 34,
+   "name": "zpa_22",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 35,
+   "name": "zpa_23",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 36,
+   "name": "zpa_24",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 37,
+   "name": "zpa_25",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 38,
+   "name": "zpa_26",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 39,
+   "name": "zpa_27",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 40,
+   "name": "zpa_28",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 41,
+   "name": "zpa_29",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 42,
+   "name": "zpa_2A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 43,
+   "name": "zpa_2B",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 44,
+   "name": "zpa_2C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 45,
+   "name": "zpa_2D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52,
+   "name": "zpa_34",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53,
+   "name": "zpa_35",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 54,
+   "name": "zpp_36",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 55,
+   "name": "zpa_37",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 56,
+   "name": "zpa_38",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 57,
+   "name": "zpa_39",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 58,
+   "name": "zpa_3A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 59,
+   "name": "zpa_3B",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 60,
+   "name": "zpa_3C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 61,
+   "name": "zpa_3D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 62,
+   "name": "zpa_3E",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 63,
+   "name": "zpa_3F",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 64,
+   "name": "zpf_40",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 67,
+   "name": "zpf_43",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 70,
+   "name": "zpf_46",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 73,
+   "name": "zpa_49",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 74,
+   "name": "zpa_4A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 75,
+   "name": "zpf_4B",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 78,
+   "name": "zpf_4E",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 81,
+   "name": "zpf_51",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 84,
+   "name": "zpf_54",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 87,
+   "name": "zpf_57",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 90,
+   "name": "zpf_5A",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 153,
+   "name": "zpa_99",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 154,
+   "name": "zpa_9A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 160,
+   "name": "a_00A0",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 162,
+   "name": "a_00A2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 169,
+   "name": "a_00A9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 170,
+   "name": "zpa_AA",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 171,
+   "name": "zpa_AB",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 172,
+   "name": "zpa_AC",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 173,
+   "name": "zpa_AD",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 174,
+   "name": "zpa_AE",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 175,
+   "name": "zpa_AF",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 176,
+   "name": "zpa_B0",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 177,
+   "name": "zpa_B1",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 178,
+   "name": "zpa_B2",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 179,
+   "name": "zpa_B3",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 180,
+   "name": "zpa_B4",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 181,
+   "name": "zpa_B5",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 182,
+   "name": "zpa_B6",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 183,
+   "name": "zpa_B7",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 184,
+   "name": "zpa_B8",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 185,
+   "name": "zpa_B9",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 186,
+   "name": "zpa_BA",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 251,
+   "name": "zpa_FB",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 252,
+   "name": "zpa_FC",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 253,
+   "name": "zpa_FD",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 425,
+   "name": "a_01A9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 512,
+   "name": "f_0200",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 674,
+   "name": "a_02A2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 681,
+   "name": "a_02A9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 768,
+   "name": "f_0300",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 788,
+   "name": "f_0314",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 789,
+   "name": "a_0315",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 937,
+   "name": "a_03A9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1024,
+   "name": "frame_flag",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1025,
+   "name": "joy_raw",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1026,
+   "name": "joy_bits",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 1027,
+   "name": "a_0403",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1028,
+   "name": "a_0404",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1029,
+   "name": "a_0405",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1030,
+   "name": "a_0406",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1031,
+   "name": "sprite_y_base",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1032,
+   "name": "sprite_x_rot",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1033,
+   "name": "terrain_mc0",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1034,
+   "name": "terrain_colour",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1035,
+   "name": "terrain_mc1",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1036,
+   "name": "scroll_x_fine",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1037,
+   "name": "scroll_x_column",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1038,
+   "name": "scroll_target_fine",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1039,
+   "name": "scroll_target_column",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1040,
+   "name": "scroll_step_fine",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1041,
+   "name": "scroll_step_column",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1043,
+   "name": "sprite_x_table",
+   "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 1051,
+   "name": "sprite_x_msb",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1052,
+   "name": "irq_frames",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1053,
+   "name": "swap_ready",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1054,
+   "name": "a_041E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1055,
+   "name": "scroll_delay",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1056,
+   "name": "a_0420",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1057,
+   "name": "shown_screen",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1058,
+   "name": "a_0422",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1059,
+   "name": "a_0423",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1060,
+   "name": "f_0424",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1110,
+   "name": "f_0456",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1160,
+   "name": "f_0488",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1210,
+   "name": "f_04BA",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1260,
+   "name": "f_04EC",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1310,
+   "name": "f_051E",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1360,
+   "name": "a_0550",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1361,
+   "name": "f_0551",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1380,
+   "name": "a_0564",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1381,
+   "name": "f_0565",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1400,
+   "name": "release_rate",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1401,
+   "name": "a_0579",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1402,
+   "name": "a_057A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1403,
+   "name": "irq_tick",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1404,
+   "name": "a_057C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1405,
+   "name": "a_057D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1406,
+   "name": "a_057E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1407,
+   "name": "key_seen",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1408,
+   "name": "del_flag",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1409,
+   "name": "del_count",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1410,
+   "name": "del_released",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1411,
+   "name": "nuke_armed",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1412,
+   "name": "a_0584",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1413,
+   "name": "rate_delay",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1414,
+   "name": "pause_flag",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1415,
+   "name": "end_delay",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1416,
+   "name": "level_over",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1417,
+   "name": "a_0589",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1418,
+   "name": "a_058A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1419,
+   "name": "a_058B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1420,
+   "name": "a_058C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1421,
+   "name": "a_058D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1422,
+   "name": "a_058E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1424,
+   "name": "a_0590",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1425,
+   "name": "a_0591",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1426,
+   "name": "a_0592",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1427,
+   "name": "a_0593",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1428,
+   "name": "a_0594",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1429,
+   "name": "a_0595",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1430,
+   "name": "a_0596",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1432,
+   "name": "a_0598",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1433,
+   "name": "a_0599",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1434,
+   "name": "a_059A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1439,
+   "name": "a_059F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1442,
+   "name": "a_05A2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1460,
+   "name": "copied_column",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1461,
+   "name": "last_fine",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1462,
+   "name": "last_column",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1463,
+   "name": "out_count",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1464,
+   "name": "a_05B8",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1465,
+   "name": "a_05B9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1466,
+   "name": "a_05BA",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1467,
+   "name": "a_05BB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1468,
+   "name": "a_05BC",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1469,
+   "name": "a_05BD",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1470,
+   "name": "a_05BE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1471,
+   "name": "a_05BF",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1472,
+   "name": "selected_skill",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1473,
+   "name": "a_05C1",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1474,
+   "name": "bg_colour",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1475,
+   "name": "a_05C3",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1476,
+   "name": "a_05C4",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1477,
+   "name": "a_05C5",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1478,
+   "name": "a_05C6",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1479,
+   "name": "a_05C7",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1480,
+   "name": "f_05C8",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1488,
+   "name": "a_05D0",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1489,
+   "name": "a_05D1",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1490,
+   "name": "f_05D2",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1498,
+   "name": "a_05DA",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1499,
+   "name": "a_05DB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1500,
+   "name": "f_05DC",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1756,
+   "name": "paused_pass",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1757,
+   "name": "level_ending",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1758,
+   "name": "time_up",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1759,
+   "name": "tick_50",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 1760,
+   "name": "a_06E0",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1761,
+   "name": "a_06E1",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1762,
+   "name": "a_06E2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1763,
+   "name": "a_06E3",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1764,
+   "name": "a_06E4",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1765,
+   "name": "a_06E5",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1766,
+   "name": "a_06E6",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1767,
+   "name": "a_06E7",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1768,
+   "name": "a_06E8",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1769,
+   "name": "a_06E9",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1770,
+   "name": "a_06EA",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1771,
+   "name": "a_06EB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1772,
+   "name": "a_06EC",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1773,
+   "name": "a_06ED",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1774,
+   "name": "a_06EE",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 1792,
+   "name": "f_0700",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 1954,
+   "name": "a_07A2",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52024,
+   "name": "a_CB38",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52025,
+   "name": "a_CB39",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52026,
+   "name": "a_CB3A",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52027,
+   "name": "a_CB3B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52028,
+   "name": "a_CB3C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52029,
+   "name": "a_CB3D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52030,
+   "name": "a_CB3E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52031,
+   "name": "a_CB3F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52032,
+   "name": "a_CB40",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52033,
+   "name": "a_CB41",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52034,
+   "name": "a_CB42",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52037,
+   "name": "a_CB45",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52038,
+   "name": "a_CB46",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52039,
+   "name": "a_CB47",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52040,
+   "name": "a_CB48",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52041,
+   "name": "f_CB49",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 52051,
+   "name": "a_CB53",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52062,
+   "name": "a_CB5E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52063,
+   "name": "a_CB5F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52064,
+   "name": "a_CB60",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52065,
+   "name": "a_CB61",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52138,
+   "name": "b_CBAA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52154,
+   "name": "b_CBBA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52174,
+   "name": "b_CBCE",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52178,
+   "name": "s_CBD2",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52213,
+   "name": "b_CBF5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52215,
+   "name": "a_CBF7",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52218,
+   "name": "a_CBFA",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52256,
+   "name": "loader_vectors",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52262,
+   "name": "j_CC26",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52265,
+   "name": "j_CC29",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52274,
+   "name": "s_CC32",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52277,
+   "name": "s_CC35",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52280,
+   "name": "s_CC38",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52283,
+   "name": "unpack_header",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52335,
+   "name": "b_CC6F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52347,
+   "name": "b_CC7B",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52353,
+   "name": "b_CC81",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52365,
+   "name": "s_CC8D",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52367,
+   "name": "b_CC8F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52383,
+   "name": "b_CC9F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52385,
+   "name": "b_CCA1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52393,
+   "name": "b_CCA9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52399,
+   "name": "b_CCAF",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52412,
+   "name": "s_CCBC",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52418,
+   "name": "b_CCC2",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52421,
+   "name": "b_CCC5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52439,
+   "name": "b_CCD7",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52442,
+   "name": "b_CCDA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52453,
+   "name": "b_CCE5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52457,
+   "name": "b_CCE9",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52465,
+   "name": "b_CCF1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52471,
+   "name": "b_CCF7",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52483,
+   "name": "b_CD03",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52490,
+   "name": "b_CD0A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52500,
+   "name": "b_CD14",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52528,
+   "name": "j_CD30",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52541,
+   "name": "b_CD3D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52553,
+   "name": "j_CD49",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52566,
+   "name": "j_CD56",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52593,
+   "name": "s_CD71",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52607,
+   "name": "b_CD7F",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52622,
+   "name": "j_CD8E",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52630,
+   "name": "load_by_code",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52633,
+   "name": "j_CD99",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52636,
+   "name": "j_CD9C",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52648,
+   "name": "a_CDA8",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52678,
+   "name": "b_CDC6",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52700,
+   "name": "r_CDDC",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 52701,
+   "name": "a_CDDD",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52702,
+   "name": "file_kinds",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52710,
+   "name": "kind_sides",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 52718,
+   "name": "s_CDEE",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52809,
+   "name": "b_CE49",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52815,
+   "name": "r_CE4F",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 52816,
+   "name": "s_CE50",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52878,
+   "name": "j_CE8E",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 52906,
+   "name": "b_CEAA",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52907,
+   "name": "a_CEAB",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52921,
+   "name": "r_CEB9",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 52922,
+   "name": "s_CEBA",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52950,
+   "name": "b_CED6",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52952,
+   "name": "b_CED8",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52956,
+   "name": "b_CEDC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 52960,
+   "name": "s_CEE0",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 52961,
+   "name": "a_CEE1",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52985,
+   "name": "s_CEF9",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 53002,
+   "name": "r_CF0A",
+   "type": "Return",
+   "kind": "auto"
+  },
+  {
+   "address": 53003,
+   "name": "s_CF0B",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 53004,
+   "name": "a_CF0C",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53019,
+   "name": "a_CF1B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53030,
+   "name": "s_CF26",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 53045,
+   "name": "s_CF35",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 53046,
+   "name": "a_CF36",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53053,
+   "name": "b_CF3D",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53061,
+   "name": "a_CF45",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53068,
+   "name": "b_CF4C",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53074,
+   "name": "s_CF52",
+   "type": "Subroutine",
+   "kind": "auto"
+  },
+  {
+   "address": 53076,
+   "name": "b_CF54",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53079,
+   "name": "b_CF57",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53087,
+   "name": "a_CF5F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53098,
+   "name": "b_CF6A",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53102,
+   "name": "a_CF6E",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53103,
+   "name": "a_CF6F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53104,
+   "name": "a_CF70",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53105,
+   "name": "j_CF71",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 53107,
+   "name": "b_CF73",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 53123,
+   "name": "f_CF83",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 53233,
+   "name": "f_CFF1",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 54581,
+   "name": "text_templates",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 55296,
+   "name": "f_D800",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 55552,
+   "name": "f_D900",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 55808,
+   "name": "f_DA00",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 55880,
+   "name": "f_DA48",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 56064,
+   "name": "f_DB00",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 56136,
+   "name": "f_DB48",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 56176,
+   "name": "f_DB70",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 56179,
+   "name": "f_DB73",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 56180,
+   "name": "f_DB74",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 64816,
+   "name": "f_FD30",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 64848,
+   "name": "KERNAL_RAMTASj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
+   "address": 64931,
+   "name": "KERNAL_IOINITj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
+   "address": 65461,
+   "name": "b_FFB5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 65465,
+   "name": "b_FFB9",
+   "type": "Branch",
+   "kind": "auto"
+  }
+ ],
+ "comments": [
+  {
+   "address": 1024,
+   "type": "line",
+   "text": "bit 7 set by the play interrupt once per screen swap ($0913); the main loop at $0E5F waits for it and clears it"
+  },
+  {
+   "address": 1025,
+   "type": "line",
+   "text": "the joystick byte read from $DC00 by $0B3C, shifted out bit by bit into $0402-$0406"
+  },
+  {
+   "address": 1026,
+   "type": "line",
+   "text": "five flags, $80 when pressed: up, down, left, right, fire (from $DC00 bits 0-4, by $0B3C)"
+  },
+  {
+   "address": 1031,
+   "type": "line",
+   "text": "first sprite row's Y for the terrain sprites: the scroll's coarse row offset plus $48 ($0B7B), set by $0CDF"
+  },
+  {
+   "address": 1032,
+   "type": "line",
+   "text": "how far the eight terrain sprites' X positions are rotated through $0413-$041A ($0BB4), set by $0CDF"
+  },
+  {
+   "address": 1033,
+   "type": "line",
+   "text": "terrain sprite multicolour 0, from the level header's colour table at $E060 ($0E1C)"
+  },
+  {
+   "address": 1034,
+   "type": "line",
+   "text": "terrain sprites' own colour, from $E064 ($0E1C)"
+  },
+  {
+   "address": 1035,
+   "type": "line",
+   "text": "terrain sprite multicolour 1, from $E068 ($0E1C)"
+  },
+  {
+   "address": 1036,
+   "type": "line",
+   "text": "the view's horizontal position in pixels within a column (0-7); with $040D it says which part of the level is shown"
+  },
+  {
+   "address": 1037,
+   "type": "line",
+   "text": "the view's horizontal position in columns"
+  },
+  {
+   "address": 1038,
+   "type": "line",
+   "text": "where the view should move to, fine part; set by the cursor at the screen edge"
+  },
+  {
+   "address": 1039,
+   "type": "line",
+   "text": "where the view should move to, column part"
+  },
+  {
+   "address": 1040,
+   "type": "line",
+   "text": "this pass's scroll step, fine part, at most one column ($0DDB)"
+  },
+  {
+   "address": 1041,
+   "type": "line",
+   "text": "this pass's scroll step, columns (0 or 1)"
+  },
+  {
+   "address": 1043,
+   "type": "line",
+   "text": "the eight terrain sprites' X positions, 24 pixels apart, rotated into $D000-$D00E by $0B73"
+  },
+  {
+   "address": 1051,
+   "type": "line",
+   "text": "the X positions' ninth bits, built for $D010 by $0B73"
+  },
+  {
+   "address": 1052,
+   "type": "line",
+   "text": "counts frames since the last screen swap ($08EF)"
+  },
+  {
+   "address": 1053,
+   "type": "line",
+   "text": "$80 when the main loop has drawn the hidden screen and it may be shown ($0E74)"
+  },
+  {
+   "address": 1055,
+   "type": "line",
+   "text": "set to 6 by $0C90"
+  },
+  {
+   "address": 1057,
+   "type": "line",
+   "text": "which of the two screens is shown: 0 for $4000, 1 for $4400; toggled by the interrupt at each swap ($0904)"
+  },
+  {
+   "address": 1400,
+   "type": "line",
+   "text": "the release rate as a step 0-23 ($0B14 down to the level's minimum at $E03C, $0B30 up to 23)"
+  },
+  {
+   "address": 1403,
+   "type": "line",
+   "text": "set to $80 by every play interrupt ($08EA); $0DF5 waits on it to count frames"
+  },
+  {
+   "address": 1407,
+   "type": "line",
+   "text": "$80 when the keyboard scan at $0A5A found a key down"
+  },
+  {
+   "address": 1408,
+   "type": "line",
+   "text": "$80 after a press of DEL (key 11 of the scan table, $0AE7); cleared when $DC01 reads a key at the start of the scan; with $0581 and $0582 it detects DEL pressed twice"
+  },
+  {
+   "address": 1409,
+   "type": "line",
+   "text": "counts passes with no key down since DEL was pressed ($0AA6); a second DEL within 8 of them arms the nuke"
+  },
+  {
+   "address": 1410,
+   "type": "line",
+   "text": "$80 on a pass with no key down after DEL ($0AA9), so that holding DEL does not count as two presses"
+  },
+  {
+   "address": 1411,
+   "type": "line",
+   "text": "$80 once DEL has been pressed twice within 8 key-free passes ($0ADC)"
+  },
+  {
+   "address": 1413,
+   "type": "line",
+   "text": "counts passes between steps of the release rate while + or - is held (one step every 7)"
+  },
+  {
+   "address": 1414,
+   "type": "line",
+   "text": "$80 while SHIFT is held (key 10 of the scan table; SHIFT LOCK holds it down), cleared at the start of every scan ($0A70): the game is paused"
+  },
+  {
+   "address": 1415,
+   "type": "line",
+   "text": "counts 30 passes down once no lemming is left in play; at 0 the level ends ($0F31)"
+  },
+  {
+   "address": 1416,
+   "type": "line",
+   "text": "$80 once the level has ended: by time, by the back-arrow key while paused, or with every lemming gone ($0F36, $0ECA)"
+  },
+  {
+   "address": 1460,
+   "type": "line",
+   "text": "the scroll column whose terrain characters $0D1F last copied"
+  },
+  {
+   "address": 1461,
+   "type": "line",
+   "text": "the scroll position, fine, at the last frame ($0CFF)"
+  },
+  {
+   "address": 1462,
+   "type": "line",
+   "text": "the scroll position, columns, at the last frame ($0CF9)"
+  },
+  {
+   "address": 1463,
+   "type": "line",
+   "text": "lemmings released so far; when it reaches the level's count at $E039, no more come"
+  },
+  {
+   "address": 1472,
+   "type": "line",
+   "text": "the skill chosen with keys 1-8 (0-7), set by $0AB4; also moves the panel's highlight sprite ($0A4A)"
+  },
+  {
+   "address": 1474,
+   "type": "line",
+   "text": "the play area's background colour, from the level header at $E05C ($0E1C)"
+  },
+  {
+   "address": 1756,
+   "type": "line",
+   "text": "the pause flag copied at the start of the pass ($0E3C): when set, the clock ($0EE9) and $1DD9 are skipped ($0E4E)"
+  },
+  {
+   "address": 1757,
+   "type": "line",
+   "text": "$80 from the moment the level ends; stops the play interrupt calling $1916 ($091E)"
+  },
+  {
+   "address": 1758,
+   "type": "line",
+   "text": "$80 once the clock has run out ($0EC7)"
+  },
+  {
+   "address": 1759,
+   "type": "line",
+   "text": "counts frames in fives up to 50: one second of the clock at $0EE9"
+  },
+  {
+   "address": 52256,
+   "type": "line",
+   "text": "jump table of the resident loader (nine JMPs)"
+  },
+  {
+   "address": 52283,
+   "type": "line",
+   "text": "reads an eight-byte header at $9000 into zero page $02-$0D"
+  },
+  {
+   "address": 52622,
+   "type": "line",
+   "text": "the same with the code from $0700,X, its top three bits forced to 7"
+  },
+  {
+   "address": 52630,
+   "type": "line",
+   "text": "loads the file whose code byte is $0400,X: low five bits the second letter of its name, top three bits its kind and disk side"
+  },
+  {
+   "address": 52672,
+   "type": "line",
+   "text": "the file is on another disk side than $CB60 says is in the drive: the game's prompt at $5009, then try again"
+  },
+  {
+   "address": 52694,
+   "type": "line",
+   "text": "the load failed: the game's handler at $5006, then try again"
+  },
+  {
+   "address": 52702,
+   "type": "line",
+   "text": "the first letters of the file names by kind: F T X M P I C S"
+  },
+  {
+   "address": 52710,
+   "type": "line",
+   "text": "the disk side each kind is on: F 2, T 3, X 4, M 5 (the four level sides), P, I and C 0 (disk 1), S $FF (any: every level side carries SA-SI)"
+  },
+  {
+   "address": 54581,
+   "type": "line",
+   "text": "briefing and end-of-level messages as screen codes, with XX where numbers go; a copy filled in for the current level lies at $5444"
+  }
+ ]
+}
