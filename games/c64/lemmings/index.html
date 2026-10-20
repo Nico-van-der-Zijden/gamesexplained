@@ -50,17 +50,30 @@
 <section data-part="">
   <p class="fig">03 · Music</p>
   <h2 class="t">Music: eleven tunes on three players</h2>
-  <p class="lede">The intro, every level and the end sequence have tunes of their own. The credits name Jeroen Tel, and the play engine's driver carries his name.</p>
+  <p class="lede">The intro, every level and the end sequence have tunes of their own. The credits name Jeroen Tel, and the play engine's driver carries his name. The end tune, with its sampled applause, has its player in the end sequence's section below.</p>
   <div class="plate">
     <div id="lm-music"></div>
-    <p class="cap"><b>The game's own players, run on the kit's 6502</b> through the site's model of the SID with the 6581's filter. The level tunes play on the play engine's driver (<a href="source-game.html#3000"><code>$3000</code></a>), started as play starts them; the intro's on the intro's own driver (<a href="source-intro.html#4000"><code data-part="">$4000</code></a>); the end on the ending's (<a href="source-ending.html#0810"><code>$0810</code></a>). The end tune's fourth voice is a sampled sound played through the volume register from an interrupt, which the model does not play. The test beside this page (<code>test_music.js</code>) runs every tune on the simulator as the game calls it and compares every SID write of every frame with the page's.</p>
+    <p class="cap"><b>The game's own players, run on the kit's 6502</b> through the site's model of the SID with the 6581's filter. The level tunes play on the play engine's driver (<a href="source-game.html#3000"><code>$3000</code></a>), started as play starts them; the intro's on the intro's own driver (<a href="source-intro.html#4000"><code>$4000</code></a>). The test beside this page (<code>test_music.js</code>) runs every tune on the simulator as the game calls it and compares every SID write of every frame with the page's.</p>
   </div>
   <p data-part="game">Nine tunes play in the levels, one to a file of its own, SA to SI, loaded with the level to <code>$3652</code> (<code>load_level</code>, <code>$5BAF</code>). The play engine's driver reads it through a table of 64 sequences, the tunes' parts and the sound effects together (<code>seq_ptr_lo</code>, <code>$3652</code>). The music starts with the first lemming out of the trap door, which starts sequences 1 and 2 on the first two voices (<code>release_lemmings</code>, <code>$1DD9</code>). With sound effects chosen at the title (key 4), the same driver plays effects instead (<code>play_sound</code>, <code>$29F8</code>).</p>
   <p data-part="game">The driver's text <code>(C) 1993 JEROEN TEL / MANIACS OF NOISE</code> sits at <code>$3009</code>, between its three entry points and its variables. The intro's driver is a smaller relative, without the text, and the ending's a third, with a channel for a sampled sound: an NMI from CIA 2's timer writes four bits at a time into the SID's volume (<code>sample_nmi</code>, ending <a href="source-ending.html#0938"><code>$0938</code></a>).</p>
 </section>
 
 <section data-part="game">
-  <p class="fig">04 · The lemmings</p>
+  <p class="fig">04 · Sound effects</p>
+  <h2 class="t">Sound: six effects, one note each</h2>
+  <p class="lede">With sound effects chosen at the title (key 4) instead of music, the same driver plays the effects. Each is one note of one instrument.</p>
+  <div class="plate">
+    <div id="lm-sfx"></div>
+    <div class="lm-table-wrap"><table class="lm-table" id="sfx-table"></table></div>
+    <p class="cap"><b>The play engine's driver, run on the kit's 6502</b>, starting each effect as <code>play_sound</code> (<code>$29F8</code>) does, with the tune file of level 1 loaded; every tune file carries the same six. <code>test_music.js</code> compares every SID write of each with the game's code.</p>
+  </div>
+  <p>An effect is a sequence like any part of a tune, kept in the level's tune file beside the music: sequences <code>$1A</code> to <code>$1F</code> of the table at <code>$3652</code>. Each is four to seven bytes: an instrument, a length, a note and the end. The instruments, 11 to 15 of the file's set, do the work with their own waveform, pulse and arpeggio settings, so a single note is enough for an explosion. <code>play_sound</code> starts the effect on voice 1 or voice 3 by turns, rewriting its own <code>LDX</code> operand each time, so an effect does not cut off the one before; in music mode it plays nothing. The trap door's creak is the exception: the level start plays it on voice 3 in either mode (<code>$2AB2</code>), and in music mode the tune then starts on voices 1 and 2.</p>
+  <p>Nothing here is sampled. The digitised voices the developer's diary mentions, "Let's go" and "Oh no", are not in the game part: its driver writes the three voices only, and its NMI vector in play points at a bare <code>RTI</code>.</p>
+</section>
+
+<section data-part="game">
+  <p class="fig">05 · The lemmings</p>
   <h2 class="t">Twenty-one actions, eight skills</h2>
   <p class="lede">Each lemming is a handful of bytes: an action, a direction, a position and an animation frame.</p>
   <p>A level has up to 50 lemmings, each with an action number in the low five bits of <code>lemming_action</code> (resident <a href="source-resident.html#0424"><code>$0424</code></a>) and its direction in bit 7. Its X, a 9-bit value, is the level's pixel plus 8, and its Y is the line it stands on. Every pass, <code>move_lemming</code> (<code>$1E94</code>) calls the handler for its action from a table of 21 (<code>action_handler_lo</code>, <code>$1E6A</code>):</p>
@@ -70,7 +83,7 @@
 </section>
 
 <section data-part="game">
-  <p class="fig">05 · Levels and files</p>
+  <p class="fig">06 · Levels and files</p>
   <h2 class="t">A level is one file that unpacks itself</h2>
   <p class="lede">Every level file brings a 160-byte header, its terrain packed, the routine that unpacks the terrain, and its objects.</p>
   <div class="plate"><div class="lm-table-wrap"><table class="lm-table" id="hdr-table"></table></div><p class="cap"><b>Level 1's header, read by this page from the listing</b> (<code>level_header</code>, <code>$E000</code>), where the game part's snapshot has it at the briefing.</p></div>
@@ -79,7 +92,7 @@
 </section>
 
 <section data-part="menu">
-  <p class="fig">06 · The code sheet</p>
+  <p class="fig">07 · The code sheet</p>
   <h2 class="t">320 numbers from one addition</h2>
   <p class="lede">Before the title, the game asks for a number from a page of the manual, picked by the lemming picture on that page. The manual's sixteen tables follow a rule.</p>
   <div class="plate">
@@ -95,7 +108,7 @@
 </section>
 
 <section data-part="intro">
-  <p class="fig">07 · The intro</p>
+  <p class="fig">08 · The intro</p>
   <h2 class="t">Lemmings in pairs of sprites</h2>
   <p class="lede">Five pictures, each unpacked from the files IA and IB, with lemmings that walk, float down under umbrellas and climb.</p>
   <div class="lm-split">
@@ -107,11 +120,17 @@
 </section>
 
 <section data-part="ending">
-  <p class="fig">08 · The end</p>
+  <p class="fig">09 · The end</p>
   <h2 class="t">The end sequence: a photograph and an applause</h2>
   <p class="lede">After level 25 of Mayhem the loader fetches one more file, IC, and runs it at <code>$C400</code>.</p>
   <div class="plate"><img src="reference/ending.png" alt="A multicolour bitmap of five people in a row with a green-haired lemming held up among them"><p class="cap">The end picture: five people with a lemming among them, a still multicolour bitmap (<code>end_bitmap</code>, <code>$A000</code>).</p></div>
-  <p>The picture is a plain multicolour bitmap in video bank 2, with its colours copied into colour RAM (<code>end_picture</code>, <code>$C45B</code>). The ending's tune plays with it, and its sampled channel takes most of the file: about 30,000 bytes of four-bit sound from <code>$1500</code> to <code>$886E</code>. The screen before it promises "a huge applause". The sequence lasts 2,592 frames, about 52 seconds, or until fire is pressed, and then the game starts again from the title (<code>end_loop</code>, <code>$C415</code>).</p>
+  <p>The picture is a plain multicolour bitmap in video bank 2, with its colours copied into colour RAM (<code>end_picture</code>, <code>$C45B</code>). The sequence lasts 2,592 frames, about 52 seconds, or until fire is pressed, and then the game starts again from the title (<code>end_loop</code>, <code>$C415</code>).</p>
+  <h3>Music: the end tune and its sampled applause</h3>
+  <div class="plate">
+    <div id="lm-end-music"></div>
+    <p class="cap"><b>The ending's own player, run on the kit's 6502</b>, with CIA 2's timer counted down in the page and the game's interrupt handler run at each tick: 132,287 writes to the volume register in the 52 seconds. The site's model of the SID hears them as a 6581 does, by the level the volume scales when no voice sounds. <code>test_music.js</code> runs the same code on the simulator with a timer of its own and compares every SID write.</p>
+  </div>
+  <p>The tune's three voices play from the frame routine (<code>end_tune_frame</code>, <code>$0994</code>), but the volume is the sample's. The SID has no channel for a recording, so the ending plays one through the master volume: CIA 2's timer A raises an NMI at the sample's rate, 1.8 to 9.8 kHz by the note (<code>sample_rates</code>, <code>$10CD</code>), and each time <code>sample_nmi</code> (<code>$0938</code>) writes four bits of the recording into the low nybble of <code>$D418</code>, the high half of a byte, then the low. On a 6581 every volume step moves the chip's output, so the steps are the sound. The sound takes most of the file: about 30,000 bytes from <code>$1500</code> to <code>$886E</code>. The frame routine never writes the volume itself, and the silence routine leaves it at 0, so without the interrupt the whole tune is silent. The screen before it promises "a huge applause".</p>
 </section>
 
 </main>
@@ -151,6 +170,59 @@ function createDriver(D, C64Cpu) {
   };
 }
 // end of lm-music
+</script>
+<script>
+/* lm-end-music */
+// createDriver for the end tune, called once every D.period cycles (sid.js's period), not once a
+// frame: the tune's sampled channel is an NMI from CIA 2's timer A that writes four bits at a time
+// into the SID's volume ($0938), from 1.8 to 9.8 kHz, so the driver counts the timer down itself and
+// runs the game's NMI handler at each underflow, and runs the frame routine ($0813) every 19,656
+// cycles, as the end sequence's loop does once a frame. The timer follows the writes the game makes:
+// $DD04/$DD05 the latch (the high byte loads a stopped timer), $DD0E bit 0 start and bit 4 force
+// load, $DD0D the interrupt mask (bit 7 sets the bits given, otherwise clears them).
+function createEndDriver(D, C64Cpu) {
+  'use strict';
+  const P = D.period, FRAME = 312 * 63;
+  const m = new Uint8Array(0x10000), sid = new Uint8Array(25);
+  let writes = [], pending = [], on = false, toFrame = 0;
+  const cia = { latch: 0xFFFF, count: 0xFFFF, run: false, nmi: false };
+  const cpu = new C64Cpu.CPU(m, { port: 0x35, io: {
+    read(a) { return 0; },
+    write(a, v) {
+      if (a >= 0xD400 && a <= 0xD418) { sid[a - 0xD400] = v; writes.push(a - 0xD400, v); return; }
+      if (a === 0xDD04) cia.latch = (cia.latch & 0xFF00) | v;
+      else if (a === 0xDD05) { cia.latch = (cia.latch & 0xFF) | v << 8; if (!cia.run) cia.count = cia.latch; }
+      else if (a === 0xDD0D) { if (v & 1) cia.nmi = !!(v & 0x80); }
+      else if (a === 0xDD0E) { cia.run = !!(v & 1); if (v & 0x10) cia.count = cia.latch; }
+    },
+  } });
+  return {
+    sid,
+    get writes() { return writes; },
+    init() {
+      m.fill(0); sid.fill(0); writes = []; toFrame = 0;
+      Object.assign(cia, { latch: 0xFFFF, count: 0xFFFF, run: false, nmi: false });
+      for (const [base, hex] of D.blocks) for (let i = 0; i < hex.length / 2; i++) m[base + i] = parseInt(hex.substr(2 * i, 2), 16);
+      cpu.call(D.init, { a: 0, x: 0, y: 0, d: 0 }, { maxSteps: 1e6 });
+      pending = writes; writes = []; on = true;
+    },
+    stop() { on = false; writes = []; pending = []; },
+    play() {
+      writes = pending; pending = [];
+      if (!on) return;
+      let budget = P;
+      while (cia.run && cia.count < budget) {
+        budget -= cia.count + 1; cia.count = cia.latch;
+        if (cia.nmi) cpu.nmi(D.nmi, { maxSteps: 1e5 });
+      }
+      if (cia.run) cia.count -= budget;
+      if (toFrame < P) { toFrame += FRAME; cpu.call(D.frame, { d: 0 }, { maxSteps: 1e6 }); }   // a frame starts in this call
+      toFrame -= P;
+    },
+    playing() { return on; },
+  };
+}
+// end of lm-end-music
 </script>
 <script>
 /* code_sheet */
@@ -225,6 +297,16 @@ function pageNumbers(first) {
     C64Sid.mount(el, {
       driver: createDriver, data: D, filter: '6581',
       tunes: D.tunes.map(T => T.levels ? `${T.name} (${T.levels} levels)` : T.name),
+    });
+    C64Sid.mount($('lm-sfx'), {
+      driver: createDriver, data: { blocks: D.blocks, tunes: D.sfx }, filter: '6581',
+      tunes: D.sfx.map(T => T.name),
+    });
+    $('sfx-table').innerHTML = '<thead><tr><th>Sequence</th><th class="lm-l">Effect</th><th class="lm-l">When</th></tr></thead><tbody>' +
+      D.sfx.map(T => `<tr><td><code>$${T.seq.toString(16).toUpperCase()}</code></td><td class="lm-l">${T.name}</td><td class="lm-l">${T.what}</td></tr>`).join('') + '</tbody>';
+    C64Sid.mount($('lm-end-music'), {
+      driver: createEndDriver, data: D.end, filter: '6581', period: D.end.period, digi: 2,
+      tunes: [D.end.name],
     });
   })();
 
