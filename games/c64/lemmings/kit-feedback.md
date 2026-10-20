@@ -15,7 +15,8 @@ time, operating system and tool versions.
 
 ## What was changed in the kit
 
-Nothing.
+- `site/lib/sid.js`: a `digi` option (on `createSID`, `host` and `mount`) adds the 6581 mixer's DC level that the volume scales, so samples played through `$D418` are heard; the header says how to drive such a player with `period`. Lemmings' end tune needs it: its tune is silent without its NMI's volume writes.
+- `kit/c64/test_sid_digi.js`: checks that volume changes are silent without `digi`, heard with it, and quiet at a steady volume.
 
 ## Candidates
 

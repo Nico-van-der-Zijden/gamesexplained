@@ -49,7 +49,7 @@ game part). The disks are printed © Psygnosis 1994.
 | The play area scrolls left and right at the cursor; levels are two screens wide | confirmed | `scroll_view` (`$0C90`) and `read_mouse`'s edges (game part). A level is 312 multicolour pixels, 624 screen pixels, wide, and the play area shows 168 screen pixels of it |
 | The scenery is drawn with sprites, the lemmings in characters (the diary) | live | one recorded frame redrawn to the pixel (`index.html`, section 2): eight sprites side by side, moved down every 21 lines by raster interrupts; the lemmings ORed into fresh characters each pass (`draw_lemming`, `$1AA2`, game part) |
 | Up to about 100 lemmings on screen (the diary), 30 at most (Commodore Format via a search summary) | differs | the tables of play hold 50 lemmings (`lemming_action`, `$0424`, resident part), and the most any level has is 50 |
-| Digitised "Let's go" and "Oh no" (the diary) | open | the play engine's driver writes the three voices only, and the NMI vector in play is an RTI (`$0B56`), so a sample would need another way; none was found. The ending has a sample channel (`sample_nmi`, `$0938`, ending part) |
+| Digitised "Let's go" and "Oh no" (the diary) | open | the play engine's driver writes the three voices only, and the NMI vector in play is an RTI (`$0B56`), so a sample would need another way; none was found. The six effects are SID notes (`facts.md`, "Sound"). The ending has a sample channel (`sample_nmi`, `$0938`, ending part) |
 | Music by Jeroen Tel, "10 pieces of music" (title scroller) | confirmed | eleven tunes: the intro's (intro part), nine level tunes in the files SA-SI and the end tune (ending part); `index.html` plays them all on the game's own players |
 | A multiload | live | each level is a file on its rating's disk side; starting the game asks for disk 2 side A (`reference/insert-disk-2a.png`) |
 | Messages at the end of a level, by how well it went | live | `choose_message` (`$53CF`, game part) by the lemmings saved against the level's count and the number to save; `reference/cheat-level-end.png` |
@@ -72,6 +72,11 @@ Found in the code, not in the manual.
   instruction reads it.
 - An unused routine at `$2910` (game part) that would read a terrain
   pixel's colour.
+- 33 of the 300 lemming frames, 31 images, are never drawn: the odd
+  frames of the basher and the miner, 189-195 and the floater's first
+  (`graphics.html`).
+- The panel's character set at `$7000` holds the panel's text and its
+  four sprite shapes inside it (game part).
 - Each level stores the number to save already rounded up from the
   percentage (`$E040`); the end screen compares with it.
 - The intro's lemmings are pairs of sprites, a black hires outline over a

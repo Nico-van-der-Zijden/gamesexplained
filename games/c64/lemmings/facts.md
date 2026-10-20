@@ -81,11 +81,33 @@ level file's `unpack_terrain`, `$E094`); the sprites show 64 shapes at
 lemmings are ORed into characters taken afresh each pass from code 2 up
 (`draw_lemming`, `$1AA2`; resident `next_char`, `$0422`) on the screen not
 shown, `$4000` or `$4400`; the cursor uses characters `$FC`-`$FF`, water
-`$F4`-`$FB`. At line 217 `$D018` selects the panel's character set at
-`$5800`, and four sprites are set over the panel (`panel_setup`, `$0A04`).
+`$F4`-`$FB`. Each screen has its own character set for the lemmings: `$4000` with
+`$5000`, `$4400` with `$5800` (`screen_d018`, `$1349`). At line 217
+`$D018` = `$0C` selects the screen at `$4000` with the panel's character
+set at `$7000`, and four sprites are set over the panel (`panel_setup`,
+`$0A04`).
 The intro's lemmings are pairs of sprites, a black hires outline over a
 multicolour body (intro `show_image`, `$4EAA`); the end sequence is a
 multicolour bitmap in bank 2 (ending `end_picture`, `$C45B`).
+
+A lemming's frame in play is two bytes a line, 16 lines, from the
+addresses in `frame_lo`/`frame_hi` (`$3C00`/`$3D2C`) and
+`frame2_lo`/`frame_ptr_hi` (`$3E58`/`$2EA0`) plus 16 (game
+`or_frame_rows`, `$1D48`). The 300 entries point at 217 different
+images. Stepped as `$1FB1`-`$1FF2` steps them from 0, the 21 actions show
+267 of the entries; 33 entries, 31 images, are never drawn: the odd frames
+of the basher (117-147, 177) and the miner (247-267), 189-195, the
+floater's first frame 196, and 49 (`graphics.html`, `test_graphics.js`).
+Level objects are ORed into the sprite shapes the play area shows (game
+`animate_objects`, `$2A48`): entry i of the level's tables at `$E080`
+(kind and frame), `$E084`/`$E086` (target), `$E088`/`$E08A` (graphics)
+and `$E08C` (count), drawn when the object's frame equals the kind's low
+three bits; `setup_level` first replaces kinds `$B8`, `$BB`-`$BE` by
+`$A8`-`$AC` (`$0FF6`, `$0FFB`). Water is characters `$F4`-`$FB` along
+each character column whose surface the tables at `($E090)`/`($E092)`
+give (game `animate_water`, `$2B96`). Every other 48-pixel block of the
+terrain is kept 8 lines higher, as the right-hand sprites stand 8 lines
+lower; `terrain_at` adds the difference through `$4A00`.
 
 ## Mechanics
 
@@ -131,9 +153,19 @@ music starts at the first release in music mode (game `$1DEF`-`$1DFA`:
 sequences 1 and 2 on voices 0 and 1). The intro's driver (intro `$4000`)
 plays sequences 1-3 on the three voices. The ending's (`$0810`, `$0813`)
 adds a sample channel: an NMI from CIA 2's timer A writes four-bit steps
-into `$D418` (`sample_nmi`, `$0938`), from `$1500`-`$886E`. *Live* on the
-simulator: `test_music.js` plays all eleven tunes and matches every SID
-write of 6,000 frames with the page's player.
+into `$D418` (`sample_nmi`, `$0938`), from `$1500`-`$886E`, at 1.8 to
+9.8 kHz by the note (`$10CD`). The ending's frame routine never writes the
+volume, and `end_silence` (`$0D01`) leaves it at 0, so without the NMI the
+tune is silent; over the end sequence the NMI writes `$D418` 132,288
+times, values `$34`-`$3B`. Six sound effects, sequences `$1A`-`$1F` of every
+tune file, the same in all nine: explosion (`$23CD`), a lemming saved
+(`$1FA0`), the builder's last bricks (`$2570`), a skill given (`$1562`),
+death (`$1ED8`, `$1F72`, `$2002`, `$2148`, `$222E`) and the trap door
+(`$2AB2`). `play_sound` (`$29F8`) plays them on voices 0 and 2 by turns in
+effects mode only; the trap door's plays in both. *Live* on the
+simulator: `test_music.js` plays the ten tunes, the six effects and the
+end tune with its NMI and matches every SID write with the page's
+players.
 
 ## The listing's error rate
 
@@ -170,3 +202,5 @@ made.
 | The end sequence reached with `$CB48` = 99 at level 1 (`work/toend.py`) | IC loads and runs at `$C400`; the picture in `reference/ending.png` |
 | All eleven tunes on the game's own players (`test_music.js`) | every SID write of 6,000 frames matches the page |
 | The 320 code sheet numbers (`test_code_sheet.js`) | all match the menu's own code; five checked against the manual's page 18 |
+| The end tune with its NMI, rendered through `site/lib/sid.js` (`work/endlevel.js`) | rms 0.062 with the 6581's DC level, 0.048 without, no clipping |
+| The frame step for the 21 actions and the intro's 148 images (`test_graphics.js`) | the page's ports match the game's code |

@@ -3,7 +3,7 @@
  "platform": "c64",
  "game": "lemmings",
  "part": "resident",
- "build": "PAL disk release, three disks (Psygnosis 1994); the boot disk unpatched, analysed at the title and at level 1 of Fun",
+ "build": "PAL disk release, three disks (Psygnosis 1994), the boot disk unpatched; five parts: the resident loader, the intro, the menu, the game at level 1 of Fun's briefing, and the end sequence",
  "source": "regenerator2000 live",
  "regions": {
   "exclude": [

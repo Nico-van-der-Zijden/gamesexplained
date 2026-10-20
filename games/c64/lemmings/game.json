@@ -127,5 +127,31 @@
       "title": "Lemmings C64 manual (Psygnosis), scanned at the Games Database",
       "url": "https://www.gamesdatabase.org/Media/SYSTEM/Commodore_64/manual/Formated/Lemmings_-_Psygnosis.pdf"
     }
-  }
+  },
+  "tabs": [
+    [
+      "index.html",
+      "How it works"
+    ],
+    [
+      "discoveries.html",
+      "Discoveries"
+    ],
+    [
+      "levels.html",
+      "Maps / levels"
+    ],
+    [
+      "graphics.html",
+      "Graphics"
+    ],
+    [
+      "source.html",
+      "Source code"
+    ],
+    [
+      "about.html",
+      "About"
+    ]
+  ]
 }

@@ -47,7 +47,14 @@
 </section>
 
 <section data-part="game">
-  <p class="fig">05 · Left in the code</p>
+  <p class="fig">05 · Drawn and never shown</p>
+  <h2 class="t">Thirty-one lemming images no animation shows</h2>
+  <p class="lede">The table of lemming frames has 300 entries. Stepped as the game steps them, the 21 animations never reach 33 of them, which point at 31 images of their own.</p>
+  <p>Most are the odd frames of the basher and the miner. Their animations move on two frames a pass (<code>action_frame_step</code>, <code>$1308</code>) from a counter that starts at 0 and starts again at 0, so the frames between are skipped every time, although they differ from their neighbours. Frames 189 to 195 belong to no action, and the floater's first frame is skipped because its counter has moved on before the first frame is chosen. The <a href="graphics.html">Graphics</a> tab draws all of them; its test runs the game's own frame step for every action.</p>
+</section>
+
+<section data-part="game">
+  <p class="fig">06 · Left in the code</p>
   <h2 class="t">A routine nothing calls</h2>
   <p class="lede">At <code>$2910</code>, between the terrain test and the routines that dig and build, are 21 bytes of code that no instruction reaches.</p>
   <p>The routine reads a terrain pixel through <code>terrain_at</code> (<code>$28E8</code>) and shifts it down into the low bits, so that it returns the pixel's colour, 0 to 3 (<code>pixel_value_unused</code>). The references search finds no call, jump or pointer to it. <code>terrain_at</code> by itself answers whether a pixel is filled; this one would also tell one colour of terrain from another.</p>

@@ -3,7 +3,7 @@
  "platform": "c64",
  "game": "lemmings",
  "part": "game",
- "build": "PAL disk release, three disks (Psygnosis 1994); the boot disk unpatched, analysed at the title and at level 1 of Fun",
+ "build": "PAL disk release, three disks (Psygnosis 1994), the boot disk unpatched; five parts: the resident loader, the intro, the menu, the game at level 1 of Fun's briefing, and the end sequence",
  "source": "regenerator2000 live",
  "regions": {
   "exclude": [
@@ -8302,7 +8302,7 @@
   },
   {
    "address": 28672,
-   "name": "panel_sprites",
+   "name": "panel_charset",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -8352,6 +8352,12 @@
    "address": 29568,
    "name": "stale_7380",
    "type": "Field",
+   "kind": "user"
+  },
+  {
+   "address": 29632,
+   "name": "panel_sprite_shapes",
+   "type": "UserDefined",
    "kind": "user"
   },
   {
@@ -13394,17 +13400,17 @@
   {
    "address": 28672,
    "type": "line",
-   "text": "sprite shapes $C0-$D2 in video bank 1; the panel's four sprites show $D2, $CF, $D0 and $D1 ($3F90)"
+   "text": "the panel's character set, $7000-$77FF, which line 217 selects ($D018 = $0C, band_panel): the characters the panel shows lie in $7000-$739F (codes up to $73 in play), with the panel's rows of text at $7170 among them; sprite shapes $CF-$D2 at $73C0-$74BF are the panel's four sprites ($3F90), and tables follow from $74C0. Seen as sprite shapes, $7000-$73BF is $C0-$CE, which no sprite shows"
   },
   {
    "address": 28800,
    "type": "line",
-   "text": "the address the operand at $2A5D holds in this snapshot, from before the level set-up: $1000 rewrites it with the level's object table ($E080); the bytes here are panel_sprites'"
+   "text": "the address the operand at $2A5D holds in this snapshot, from before the level set-up: $1000 rewrites it with the level's object table ($E080); the bytes here are the panel character set's"
   },
   {
    "address": 28928,
    "type": "line",
-   "text": "the operand at $2AC0 before $1000 rewrites it with the objects' columns ($E082); the bytes are panel_sprites'"
+   "text": "the operand at $2AC0 before $1000 rewrites it with the objects' columns ($E082); the bytes are the panel character set's"
   },
   {
    "address": 29040,
@@ -13414,27 +13420,32 @@
   {
    "address": 29056,
    "type": "line",
-   "text": "the operand at $2AE6 before $1000 rewrites it ($E084); the bytes are panel_sprites'"
+   "text": "the operand at $2AE6 before $1000 rewrites it ($E084); the bytes are the panel character set's"
   },
   {
    "address": 29184,
    "type": "line",
-   "text": "the operand at $2AEF before $1000 rewrites it ($E086); the bytes are panel_sprites'"
+   "text": "the operand at $2AEF before $1000 rewrites it ($E086); the bytes are the panel character set's"
   },
   {
    "address": 29312,
    "type": "line",
-   "text": "the operand at $2ADA before $1000 rewrites it ($E088); the bytes are panel_sprites'"
+   "text": "the operand at $2ADA before $1000 rewrites it ($E088); the bytes are the panel character set's"
   },
   {
    "address": 29440,
    "type": "line",
-   "text": "the operand at $2AE0 before $1000 rewrites it ($E08A); the bytes are panel_sprites'"
+   "text": "the operand at $2AE0 before $1000 rewrites it ($E08A); the bytes are the panel character set's"
   },
   {
    "address": 29568,
    "type": "line",
-   "text": "the operand at $2AD4 before $1000 rewrites it ($E08C); the bytes are panel_sprites'"
+   "text": "the operand at $2AD4 before $1000 rewrites it ($E08C); the bytes are the panel character set's"
+  },
+  {
+   "address": 29632,
+   "type": "line",
+   "text": "the panel's four sprite shapes, $CF-$D2 ($73C0-$74BF), one of them the highlight on the chosen skill ($3F90)"
   },
   {
    "address": 29888,

@@ -81,3 +81,17 @@ traps, water), which each file draws from its own tables. The browser
 extension was not connected, so the pages were checked with headless
 Chrome screenshots of the built site (`python3 -m http.server`), with an
 isolated profile in the session's scratch folder.
+
+After the first push the contributor asked for the levels' objects, a
+working end tune, the sound effects and a graphics overview. The end tune
+had been silent on the page, not just its samples: its frame routine never
+writes the volume, which only the NMI does, so the page now counts CIA 2's
+timer down and runs the NMI itself, and `site/lib/sid.js` gained the 6581's
+DC level that makes volume samples heard. The objects turned out to be
+ORed into the sprite shapes, not drawn as characters. Drawing them showed
+seams every 48 pixels: the stored terrain of every other block is 8 lines
+higher, which the maps first drew as it is stored. While building the
+character-set view, the panel's set was found at `$7000`, where the page
+and `facts.md` had said `$5800`, and the listing's "sprite shapes
+`$C0`-`$D2`" at `$7000` turned out to be the panel's characters with four
+real shapes at the end; all three were corrected.

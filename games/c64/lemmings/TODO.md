@@ -22,11 +22,8 @@ Tier: **Silver**. Coverage 100 % in all five parts (`coverage.py`,
 - The bomber's count in seconds, measured live.
 - The rating keys at the title, which did not change the rating as VICE's
   keyboard was driven.
-- The levels page leaves out the objects (trap doors, exits, traps,
-  water), which each level file draws from its own tables (`$E080`); a
-  drawing of them would complete the maps.
-- The sound effects: the same driver plays them in effects mode; a player
-  for them would go beside the music.
+- The maps show each object at its first frame; a slider through the
+  objects' frames would show the trap doors opening and the traps.
 
 ## Article ideas
 
