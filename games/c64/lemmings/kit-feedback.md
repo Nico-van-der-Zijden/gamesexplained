@@ -7,9 +7,11 @@ time, operating system and tool versions.
 
 ## Skill text that changed what I did
 
+- `70-minisite`: "Start each case where the game starts it, and feed it what the page feeds it": the level tunes played almost nothing when started at the level's set-up; following every caller of the driver's start entry found the music starts at the first release, and the page and its test start it there.
+- `60-verify`: "A test must contain cases that have to succeed": the code sheet's test checks five numbers read off the manual's printed table as well as the game's own arithmetic, so a page and a game that agreed on a wrong rule would still fail.
+- `60-verify`: "search with every opcode and every index that can reach it": the line of text at `$A184` and the routine at `$2910` are called unread only after the references search showed no reader within reach.
 - `10-orient`: "Compare it with the play snapshot byte for byte": the first stop after the game's load held only `$5000`-`$5FFF` of it, so the hand-over moved to the level briefing, which holds the whole program.
-- `40-sweep`: "Relocating loaders can leave a second copy of code or tables in memory": the briefing texts turned out to be kept twice, a template under the I/O area and a filled-in copy, and both are labelled as such.
-- `10-orient`: "Read the file's header before trusting its name": the TAP header, and the D64s' sector checksums, are recorded in `orientation.md`.
+- `40-sweep`: "Relocating loaders can leave a second copy of code or tables in memory": the briefing's code turned out to be kept packed under the I/O area and restored before each load, and is labelled as such.
 
 ## What was changed in the kit
 
@@ -34,13 +36,20 @@ Nothing.
 
 ## What cost the most time
 
-The cassette release: about an hour went into getting tape 2 to load in
-VICE, through a monitor that reads numbers as hex, before the contributor
-offered the disk release. A tape helper in `vice.py` (the first ask) would
-have shortened the tries; the FILE ERROR itself is unexplained
-(`agent-history.md`).
+Bronze: the cassette release, about an hour, before the contributor
+offered the disks. Silver: splitting the program into parts that own
+their bytes (a resident base under the intro, the menu, the game and the
+ending) after the first cut had the ending owning the game's bytes. A
+line in `10-orient`'s "A game of several parts" saying to start with a
+base part for whatever never leaves memory, when a loader stays resident
+under every load, would have saved the restructuring.
+
+The browser extension was not connected in this session; the pages were
+checked with an installed Chrome run headless (`--screenshot`, an
+isolated `--user-data-dir` in the session's scratch folder) against the
+built site served from WSL.
 
 Host: Ubuntu 26.04.1 under WSL2 on Windows 11 (kernel
 6.18.54.1-microsoft-standard-WSL2), Intel Core i7-3770. VICE built from
 the vice-mcp v3.13.2 source as in the earlier runs here; `check-emulator`
-57 of 57. regenerator2000 0.9.20.
+57 of 57. regenerator2000 0.9.20. Node from `tools/node`.

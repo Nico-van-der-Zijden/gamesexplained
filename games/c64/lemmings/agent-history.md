@@ -44,3 +44,40 @@ each string one byte late: the game's text is in mixed-case screen codes,
 and a capital (`$41`-`$5A`) ends a run of the sweep's letters. The
 addresses in `features.md` and `facts.md` were corrected by searching for
 each whole string with its capital (`work/mixed.py`).
+
+## 20 October 2026, Silver run (claude-opus-5-5)
+
+The contributor asked for Silver from the disk release only, with the
+manual, a table of the levels, the way the screens are built, and the end
+sequence.
+
+The two Bronze parts (menu and game, cut by comparing the title with
+play) were rebuilt as five: a resident base for the loader and the
+variables, and the intro, the menu, the game and the ending over it. The
+ending first lay over the game and took the game's bytes as its own; a
+resident base under all of them fixed the ownership. Unpacking every file
+needed the running XOR the loader applies first (`$CEAA` rewrites its own
+EOR's operand); `work/levels.js` then reproduced level 1 byte for byte, but
+only once the tune file was loaded before `$500C` ran, since the briefing's
+code expects both.
+
+Several first readings were wrong and were caught by the code or the
+emulator: RUN/STOP does not end a level (the back arrow does, while
+paused); `$CBD2` restores the briefing's code from a stash under the I/O
+area rather than saving the level; the bytes from `$CB61` hold code as
+well as flags; the intro's band code at `$58DE` is only reached through a
+rewritten JMP, so the tracer left it as data until it was declared. The
+level tunes first seemed silent on the simulator: a level starts its music
+at the first release, in music mode, not at the set-up, which the play
+snapshot's driver state showed.
+
+The sample check (`facts.md`) found 7 of 60 comments wrong in a detail.
+The exits' byte order was found wrong while drawing the maps, before the
+sample: the entrances' layout did not fit the exits' bytes, and the code at
+`$1351` reads them as column high, column low, row.
+
+The levels page shows the terrain without the objects (trap doors, exits,
+traps, water), which each file draws from its own tables. The browser
+extension was not connected, so the pages were checked with headless
+Chrome screenshots of the built site (`python3 -m http.server`), with an
+isolated profile in the session's scratch folder.
