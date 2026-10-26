@@ -628,7 +628,7 @@
   {
    "start": 28465,
    "end": 28474,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 28475,
@@ -647,6 +647,26 @@
   },
   {
    "start": 30400,
+   "end": 32767,
+   "type": "Undefined"
+  },
+  {
+   "start": 32768,
+   "end": 32771,
+   "type": "Lo/Hi Address"
+  },
+  {
+   "start": 32772,
+   "end": 32783,
+   "type": "Byte"
+  },
+  {
+   "start": 32784,
+   "end": 32837,
+   "type": "Code"
+  },
+  {
+   "start": 32838,
    "end": 34303,
    "type": "Undefined"
   },
@@ -677,21 +697,21 @@
   },
   {
    "start": 61440,
-   "end": 64815,
+   "end": 64788,
    "type": "Undefined"
   },
   {
-   "start": 64816,
+   "start": 64789,
+   "end": 64824,
+   "type": "Code"
+  },
+  {
+   "start": 64825,
    "end": 64847,
    "type": "Byte"
   },
   {
    "start": 64848,
-   "end": 65279,
-   "type": "Undefined"
-  },
-  {
-   "start": 65280,
    "end": 65534,
    "type": "Code"
   },
@@ -784,6 +804,18 @@
    "address": 197,
    "name": "zpa_C5",
    "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 234,
+   "name": "zpp_EA",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 242,
+   "name": "zpp_F2",
+   "type": "ZeroPagePointer",
    "kind": "auto"
   },
   {
@@ -1052,15 +1084,15 @@
   },
   {
    "address": 717,
-   "name": "a_02CD",
+   "name": "figures_moved",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 718,
-   "name": "a_02CE",
+   "name": "figure_turn",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 719,
@@ -1088,15 +1120,15 @@
   },
   {
    "address": 723,
-   "name": "mission_over",
+   "name": "mission_phase",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 724,
-   "name": "a_02D4",
+   "name": "explosion_rounds",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 725,
@@ -1262,9 +1294,9 @@
   },
   {
    "address": 759,
-   "name": "a_02F7",
+   "name": "figure_moved_this_frame",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 788,
@@ -4159,6 +4191,12 @@
    "kind": "user"
   },
   {
+   "address": 12560,
+   "name": "a_3110",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
    "address": 13312,
    "name": "sprite_shapes_2",
    "type": "UserDefined",
@@ -6470,9 +6508,9 @@
   },
   {
    "address": 23482,
-   "name": "s_5BBA",
+   "name": "mission_state",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23510,
@@ -6512,9 +6550,9 @@
   },
   {
    "address": 23569,
-   "name": "f_5C11",
+   "name": "explosion_colours",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23586,
@@ -7088,9 +7126,9 @@
   },
   {
    "address": 24639,
-   "name": "a_603F",
+   "name": "cheat_on",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24640,
@@ -7106,9 +7144,9 @@
   },
   {
    "address": 24644,
-   "name": "j_6044",
+   "name": "figures_turn",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24660,
@@ -7208,9 +7246,9 @@
   },
   {
    "address": 24874,
-   "name": "s_612A",
+   "name": "move_figure",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24882,
@@ -7484,7 +7522,7 @@
   },
   {
    "address": 25503,
-   "name": "sound_and_hits",
+   "name": "hit_the_player",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -8510,15 +8548,15 @@
   },
   {
    "address": 28465,
-   "name": "f_6F31",
+   "name": "cheat_word",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28475,
-   "name": "s_6F3B",
+   "name": "check_cheat_word",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28477,
@@ -8549,6 +8587,48 @@
    "name": "tile_blocks_2",
    "type": "UserDefined",
    "kind": "user"
+  },
+  {
+   "address": 32768,
+   "name": "autostart_header",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32772,
+   "name": "cbm80_signature",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32784,
+   "name": "cold_start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32802,
+   "name": "j_8022",
+   "type": "Jump",
+   "kind": "auto"
+  },
+  {
+   "address": 32804,
+   "name": "b_8024",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 32817,
+   "name": "warm_start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32896,
+   "name": "a_8080",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
   },
   {
    "address": 33024,
@@ -9151,16 +9231,46 @@
    "kind": "auto"
   },
   {
+   "address": 62282,
+   "name": "KERNAL_OPENj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
+   "address": 64789,
+   "name": "KERNAL_RESTORj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
    "address": 64816,
    "name": "kernal_vectors_shadow",
    "type": "UserDefined",
    "kind": "user"
   },
   {
+   "address": 64848,
+   "name": "KERNAL_RAMTASj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
+   "address": 64931,
+   "name": "KERNAL_IOINITj",
+   "type": "Predefined",
+   "kind": "system"
+  },
+  {
    "address": 65280,
    "name": "j_FF00",
    "type": "Jump",
    "kind": "auto"
+  },
+  {
+   "address": 65371,
+   "name": "KERNAL_CINTj",
+   "type": "Predefined",
+   "kind": "system"
   }
  ],
  "comments": [
@@ -9305,6 +9415,16 @@
    "text": "where the player is in the castle, down, counted in tiles"
   },
   {
+   "address": 717,
+   "type": "line",
+   "text": "counts the figures that have moved"
+  },
+  {
+   "address": 718,
+   "type": "line",
+   "text": "which figure of the list is having its turn this frame"
+  },
+  {
    "address": 719,
    "type": "line",
    "text": "how many figures the floor's description put on this floor"
@@ -9327,7 +9447,12 @@
   {
    "address": 723,
    "type": "line",
-   "text": "$FF once the mission's job is done, which the main loop watches for"
+   "text": "0 while the mission is being played, $FF once it is over, and 1 to $11 while the castle is blowing up"
+  },
+  {
+   "address": 724,
+   "type": "line",
+   "text": "how many times the explosion's run of colours has been round, which ends at five"
   },
   {
    "address": 725,
@@ -9433,6 +9558,11 @@
    "address": 751,
    "type": "line",
    "text": "which of the three phases of the interrupt's rota comes next, so the heavy work is spread over three frames"
+  },
+  {
+   "address": 759,
+   "type": "line",
+   "text": "set once one figure has moved this frame, so only one moves at a time"
   },
   {
    "address": 2064,
@@ -10640,6 +10770,16 @@
    "text": "turns one binary-coded-decimal byte into the two screen codes that print it. The play character set keeps its digits at $F0 to $F9, so each nibble only has to be ORed with $F0; the upper one is shifted down first. Every number on the panel goes through here."
   },
   {
+   "address": 23482,
+   "type": "line",
+   "text": "watched each frame. While $02D3 is 0 it reads the hits: at $50, that is fifty, the mission is over and the player is dead. $FF means the mission is already over and the screen goes black. Anything between 1 and $11 is a step of the explosion that ends the demolition mission, which walks through the seventeen colours at $5C11 and repeats five times."
+  },
+  {
+   "address": 23569,
+   "type": "line",
+   "text": "the seventeen border and background colours the castle's explosion flashes through, in order"
+  },
+  {
    "address": 23586,
    "type": "line",
    "text": "the six-by-six block of map tiles around the player or another mover, read by $5C55. The movement tests read the four of them the player's own square covers."
@@ -10690,9 +10830,24 @@
    "text": "the four tiles the prisoner is drawn from when facing right"
   },
   {
+   "address": 24639,
+   "type": "line",
+   "text": "set while the cheat is on. It stops the player taking hits at $63A6, keeps a door key in hand at $5BD1 and fills the ammunition back to 99 every frame at $5BB4."
+  },
+  {
+   "address": 24644,
+   "type": "line",
+   "text": "the figures' turn. It walks the list the map builder left in $8100 to $8500, one figure a frame, counted in $02CE, and gives the figure whose turn it is a step. A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
+  },
+  {
+   "address": 24874,
+   "type": "line",
+   "text": "moves one figure a tile in the direction its kind byte holds. It looks at the four tiles it would step into: all empty and the figure moves and its place in $8300 is written on, a $55 means the player is there and the figure hits him, and anything else makes the figure turn by clearing bit 3 of its kind byte."
+  },
+  {
    "address": 25503,
    "type": "line",
-   "text": "the sound chip's and the player's own housekeeping, from $6009 and $600C: it takes a hit when one is due, silences and sets the chip up ($63B7), and runs the sound effects a frame at a time ($63E6)"
+   "text": "the only way the player is hurt. It adds one to the hits in binary-coded decimal, unless the hits already read $99 or the cheat is on. It is called from the four places in the figures' movement where the tile a figure would step into holds the player, which is the whole of the game's damage: no figure in this game ever fires a shot."
   },
   {
    "address": 25527,
@@ -10770,6 +10925,16 @@
    "text": "\"THE PRISONER IS VERY CLOSE.\", the only message kept away from the block at $5609"
   },
   {
+   "address": 28465,
+   "type": "line",
+   "text": "the ten characters that turn the cheat on, stored as each character's ASCII value masked to six bits: $25 $0D $01 $07 $07 $0F $14 $13 $21 $26, which is \"%MAGGOTS!&\". The name-entry screen leaves what was typed in the same form at $081F, so a player who gets into the high score table and types this gets the cheat on the next game."
+  },
+  {
+   "address": 28475,
+   "type": "line",
+   "text": "compares the ten characters of the name last typed on the high score screen with the word at $6F31 and sets $603F when every one matches. It runs each time a floor is built, so the cheat lasts as long as the name does."
+  },
+  {
    "address": 28672,
    "type": "line",
    "text": "the blocks the castle's floors are built from, sixteen bytes each: four tiles across and four down. A byte of a floor's description names one, and its address is $7000 plus sixteen times the byte."
@@ -10778,6 +10943,26 @@
    "address": 29696,
    "type": "line",
    "text": "more of the blocks the floors are built from"
+  },
+  {
+   "address": 32768,
+   "type": "line",
+   "text": "the cartridge signature the KERNAL looks for, which makes a reset and RESTORE restart the game: the cold start address $8010, the warm start address $8031, and the five bytes \"CBM80\" at $8004"
+  },
+  {
+   "address": 32772,
+   "type": "line",
+   "text": "the five bytes $C3 $C2 $CD $38 $30, which read as \"CBM80\" with the top bits set, and the filler after them"
+  },
+  {
+   "address": 32784,
+   "type": "line",
+   "text": "what a reset runs. Sets the stack up, clears decimal mode, calls the KERNAL's own set-up - IOINIT, RAMTAS, RESTOR and CINT - then puts six ASCII zeros in the score at $0819 and goes to the high score check at $0810, which leads back to the title screen."
+  },
+  {
+   "address": 32817,
+   "type": "line",
+   "text": "what RESTORE runs, through the KERNAL's NMI handler. Sets the stack up, turns the raster interrupt off, turns every sprite off and the sound down, and joins the cold start at the score reset, so RESTORE abandons the game and starts the attract loop again."
   },
   {
    "address": 33024,
