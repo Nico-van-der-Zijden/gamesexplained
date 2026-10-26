@@ -740,9 +740,9 @@
   },
   {
    "address": 679,
-   "name": "a_02A7",
+   "name": "current_floor",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 680,
@@ -764,9 +764,9 @@
   },
   {
    "address": 684,
-   "name": "a_02AC",
+   "name": "keys",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 685,
@@ -824,15 +824,15 @@
   },
   {
    "address": 694,
-   "name": "a_02B6",
+   "name": "tile_lookup_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 695,
-   "name": "a_02B7",
+   "name": "tile_lookup_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 696,
@@ -854,15 +854,15 @@
   },
   {
    "address": 699,
-   "name": "a_02BB",
+   "name": "digit_high",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 700,
-   "name": "a_02BC",
+   "name": "digit_low",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 701,
@@ -896,33 +896,33 @@
   },
   {
    "address": 706,
-   "name": "a_02C2",
+   "name": "score_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 707,
-   "name": "a_02C3",
+   "name": "score_mid",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 708,
-   "name": "a_02C4",
+   "name": "score_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 709,
-   "name": "a_02C5",
+   "name": "score_to_add",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 710,
-   "name": "a_02C6",
+   "name": "hits",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 711,
@@ -944,15 +944,15 @@
   },
   {
    "address": 714,
-   "name": "a_02CA",
+   "name": "player_tile_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 715,
-   "name": "a_02CB",
+   "name": "player_tile_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 716,
@@ -992,9 +992,9 @@
   },
   {
    "address": 722,
-   "name": "a_02D2",
+   "name": "hit_direction",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 723,
@@ -1010,7 +1010,7 @@
   },
   {
    "address": 725,
-   "name": "shot_range",
+   "name": "sound_effect",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -1112,9 +1112,9 @@
   },
   {
    "address": 742,
-   "name": "a_02E6",
+   "name": "floor_before_lift",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 743,
@@ -1148,15 +1148,15 @@
   },
   {
    "address": 749,
-   "name": "a_02ED",
+   "name": "prisoner_place_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 750,
-   "name": "a_02EE",
+   "name": "prisoner_place_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 751,
@@ -4052,51 +4052,51 @@
   },
   {
    "address": 16393,
-   "name": "saved_ammo",
+   "name": "keys_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16394,
-   "name": "saved_hits",
+   "name": "ammo_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16395,
-   "name": "saved_keys",
+   "name": "hits_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16396,
-   "name": "saved_item_1",
+   "name": "score_hi_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16397,
-   "name": "saved_item_2",
+   "name": "score_mid_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16398,
-   "name": "saved_item_3",
+   "name": "score_lo_carried_over",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16399,
-   "name": "missions_done",
+   "name": "mission_chosen",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 16400,
-   "name": "a_4010",
+   "name": "prisoner_floor",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16401,
@@ -4106,7 +4106,7 @@
   },
   {
    "address": 16402,
-   "name": "castle_number",
+   "name": "prisoner_here",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -4796,15 +4796,15 @@
   },
   {
    "address": 18416,
-   "name": "a_47F0",
+   "name": "draw_room_rows",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18417,
-   "name": "s_47F1",
+   "name": "draw_room",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18450,
@@ -4820,9 +4820,9 @@
   },
   {
    "address": 18453,
-   "name": "a_4815",
+   "name": "draw_room_source",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18454,
@@ -4832,9 +4832,9 @@
   },
   {
    "address": 18456,
-   "name": "a_4818",
+   "name": "draw_room_screen",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18457,
@@ -4844,9 +4844,9 @@
   },
   {
    "address": 18462,
-   "name": "a_481E",
+   "name": "draw_room_colour",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18463,
@@ -4952,9 +4952,9 @@
   },
   {
    "address": 18758,
-   "name": "j_4946",
+   "name": "between_missions",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18796,
@@ -5000,9 +5000,9 @@
   },
   {
    "address": 18924,
-   "name": "j_49EC",
+   "name": "take_the_lift",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18933,
@@ -5216,9 +5216,9 @@
   },
   {
    "address": 19770,
-   "name": "s_4D3A",
+   "name": "walked_onto_something",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19772,
@@ -5282,9 +5282,9 @@
   },
   {
    "address": 19909,
-   "name": "b_4DC5",
+   "name": "found_door_key",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19959,
@@ -5342,33 +5342,33 @@
   },
   {
    "address": 20148,
-   "name": "j_4EB4",
+   "name": "found_painting",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20173,
-   "name": "j_4ECD",
+   "name": "took_painting",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20190,
-   "name": "j_4EDE",
+   "name": "found_vase",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20215,
-   "name": "j_4EF7",
+   "name": "took_vase",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20232,
-   "name": "j_4F08",
+   "name": "found_food",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20259,
@@ -5378,27 +5378,33 @@
   },
   {
    "address": 20263,
-   "name": "j_4F27",
+   "name": "took_food",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20280,
-   "name": "j_4F38",
+   "name": "found_pendant",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20305,
-   "name": "j_4F51",
+   "name": "took_pendant",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20322,
    "name": "j_4F62",
    "type": "Jump",
    "kind": "auto"
+  },
+  {
+   "address": 20330,
+   "name": "found_ammo",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 20359,
@@ -5414,15 +5420,15 @@
   },
   {
    "address": 20368,
-   "name": "j_4F90",
+   "name": "found_first_aid",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20389,
-   "name": "j_4FA5",
+   "name": "took_first_aid",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20399,
@@ -5456,15 +5462,15 @@
   },
   {
    "address": 20482,
-   "name": "j_5002",
+   "name": "found_lift_pass",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20522,
-   "name": "s_502A",
+   "name": "clear_object_tiles",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20544,
@@ -5654,9 +5660,9 @@
   },
   {
    "address": 20941,
-   "name": "s_51CD",
+   "name": "map_address",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20991,
@@ -5672,9 +5678,9 @@
   },
   {
    "address": 21010,
-   "name": "s_5212",
+   "name": "shots_hit_anything",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21020,
@@ -5702,9 +5708,9 @@
   },
   {
    "address": 21147,
-   "name": "s_529B",
+   "name": "shot_hit_tile",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21161,
@@ -5846,21 +5852,21 @@
   },
   {
    "address": 21364,
-   "name": "f_5374",
+   "name": "shot_neighbours",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21382,
-   "name": "j_5386",
+   "name": "shoot_detonator",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21412,
-   "name": "j_53A4",
+   "name": "shoot_nothing",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21431,
@@ -5870,45 +5876,45 @@
   },
   {
    "address": 21439,
-   "name": "j_53BF",
+   "name": "shoot_open_chest",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21456,
-   "name": "j_53D0",
+   "name": "shot_hit_painting",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21475,
-   "name": "j_53E3",
+   "name": "shot_hit_food",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21494,
-   "name": "j_53F6",
+   "name": "shot_hit_pendant",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21513,
-   "name": "j_5409",
+   "name": "shot_hit_vase",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21532,
-   "name": "j_541C",
+   "name": "shot_hit_first_aid",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21551,
-   "name": "j_542F",
+   "name": "shoot_furniture",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21565,
@@ -5972,9 +5978,9 @@
   },
   {
    "address": 21665,
-   "name": "j_54A1",
+   "name": "shoot_lift_pass",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21674,
@@ -5984,27 +5990,27 @@
   },
   {
    "address": 21685,
-   "name": "j_54B5",
+   "name": "shoot_steel_door_right",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21716,
-   "name": "j_54D4",
+   "name": "shoot_steel_door_left",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21747,
-   "name": "j_54F3",
+   "name": "shoot_wooden_door_lower",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21768,
-   "name": "j_5508",
+   "name": "shoot_wooden_door_upper",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21792,
@@ -6014,9 +6020,9 @@
   },
   {
    "address": 21800,
-   "name": "j_5528",
+   "name": "shoot_soldier",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 21849,
@@ -6164,15 +6170,15 @@
   },
   {
    "address": 22933,
-   "name": "s_5995",
+   "name": "draw_panel_numbers",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23072,
-   "name": "s_5A20",
+   "name": "byte_to_digits",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23091,
@@ -6380,9 +6386,9 @@
   },
   {
    "address": 23586,
-   "name": "f_5C22",
+   "name": "tile_grid",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23587,
@@ -6494,15 +6500,15 @@
   },
   {
    "address": 23622,
-   "name": "s_5C46",
+   "name": "tiles_round_player",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23637,
-   "name": "s_5C55",
+   "name": "read_tile_grid",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23652,
@@ -6752,9 +6758,9 @@
   },
   {
    "address": 24474,
-   "name": "a_5F9A",
+   "name": "floor_detonators",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24475,
@@ -6926,27 +6932,27 @@
   },
   {
    "address": 24623,
-   "name": "f_602F",
+   "name": "prisoner_shapes_up",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24627,
-   "name": "f_6033",
+   "name": "prisoner_shapes_down",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24631,
-   "name": "f_6037",
+   "name": "prisoner_shapes_left",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24635,
-   "name": "f_603B",
+   "name": "prisoner_shapes_right",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24639,
@@ -8955,6 +8961,11 @@
  ],
  "comments": [
   {
+   "address": 679,
+   "type": "line",
+   "text": "which floor the player is on, 0 the basement to 3 the second floor"
+  },
+  {
    "address": 681,
    "type": "line",
    "text": "the message line's fine horizontal scroll, stepped down by 4 each frame; when it wraps the text is shifted a character along"
@@ -8963,6 +8974,11 @@
    "address": 682,
    "type": "line",
    "text": "what the player walked off the edge of: the bits say which way, and the room builder reads it to bring the next room in"
+  },
+  {
+   "address": 684,
+   "type": "line",
+   "text": "how many door keys the player is carrying, in binary-coded decimal; the panel prints it"
   },
   {
    "address": 687,
@@ -9000,9 +9016,29 @@
    "text": "set while fire is still held, so one press fires one shot"
   },
   {
+   "address": 694,
+   "type": "line",
+   "text": "the position across the room a tile lookup is about, in pixels"
+  },
+  {
+   "address": 695,
+   "type": "line",
+   "text": "the position down the room a tile lookup is about, in pixels"
+  },
+  {
    "address": 698,
    "type": "line",
    "text": "counts frames 0 to 3; the player may move on the frame it reaches 3, so one step takes four frames"
+  },
+  {
+   "address": 699,
+   "type": "line",
+   "text": "the screen code of the upper digit $5A20 has just made"
+  },
+  {
+   "address": 700,
+   "type": "line",
+   "text": "the screen code of the lower digit $5A20 has just made"
   },
   {
    "address": 701,
@@ -9015,6 +9051,31 @@
    "text": "counts the frames the player has not moved; the nag \"COME ON ! GET ON WITH IT.....\" waits on it"
   },
   {
+   "address": 706,
+   "type": "line",
+   "text": "the top two digits of the score, in binary-coded decimal"
+  },
+  {
+   "address": 707,
+   "type": "line",
+   "text": "the middle two digits of the score"
+  },
+  {
+   "address": 708,
+   "type": "line",
+   "text": "the bottom two digits of the score"
+  },
+  {
+   "address": 709,
+   "type": "line",
+   "text": "points waiting to be added to the score, in binary-coded decimal; the panel's own routine takes them a digit at a time"
+  },
+  {
+   "address": 710,
+   "type": "line",
+   "text": "how many hits the player has taken, in binary-coded decimal. Cold food takes $10 off it, first aid clears it, and the panel prints it."
+  },
+  {
    "address": 712,
    "type": "line",
    "text": "2 when the player is dead, which ends the game"
@@ -9025,6 +9086,21 @@
    "text": "set while the game is paused, so the interrupt leaves the game alone and only keeps the message line going"
   },
   {
+   "address": 714,
+   "type": "line",
+   "text": "where the player is in the castle, across, counted in tiles: the position in the room plus the room's own offset"
+  },
+  {
+   "address": 715,
+   "type": "line",
+   "text": "where the player is in the castle, down, counted in tiles"
+  },
+  {
+   "address": 722,
+   "type": "line",
+   "text": "the direction the shot that just hit something was travelling, kept so the thing hit knows which way the bullet came"
+  },
+  {
    "address": 723,
    "type": "line",
    "text": "$FF once the mission's job is done, which the main loop watches for"
@@ -9032,7 +9108,7 @@
   {
    "address": 725,
    "type": "line",
-   "text": "how many tiles the shot has left to travel, five when it is fired"
+   "text": "which sound to play, read by the sound routine at $63F3. Firing sets 5, a shot that hits something useless 2, a mirror 3, healing 4, a pickup 9 and a hit on a figure 1."
   },
   {
    "address": 728,
@@ -9080,9 +9156,24 @@
    "text": "set while the player's shot is in the air, so the turn waits for fire to be let go before anything else happens"
   },
   {
+   "address": 742,
+   "type": "line",
+   "text": "the floor the player was on before the lift, kept so the game can tell whether the prisoner was left behind"
+  },
+  {
    "address": 745,
    "type": "line",
    "text": "what the game's own code wants the main loop to do next: 1 the lift, 2 a prisoner delivered home"
+  },
+  {
+   "address": 749,
+   "type": "line",
+   "text": "where in the castle map the prisoner is, low byte"
+  },
+  {
+   "address": 750,
+   "type": "line",
+   "text": "where in the castle map the prisoner is, high byte"
   },
   {
    "address": 751,
@@ -9787,42 +9878,47 @@
   {
    "address": 16393,
    "type": "line",
-   "text": "how much ammunition the player had when the last mission ended, kept so the next mission in the same castle starts with it"
+   "text": "where the key count waits while the mission screens are up; $404F copies it back into $02AC when the next mission in the same castle begins"
   },
   {
    "address": 16394,
    "type": "line",
-   "text": "the hits the player had taken when the last mission ended"
+   "text": "where the ammunition waits between two missions of the same castle"
   },
   {
    "address": 16395,
    "type": "line",
-   "text": "the keys the player was carrying when the last mission ended"
+   "text": "where the hit count waits between two missions of the same castle"
   },
   {
    "address": 16396,
    "type": "line",
-   "text": "one of the three carried-item counters kept between missions"
+   "text": "where the score's top two digits wait between two missions of the same castle"
   },
   {
    "address": 16397,
    "type": "line",
-   "text": "another of them"
+   "text": "where the score's middle two digits wait between missions"
   },
   {
    "address": 16398,
    "type": "line",
-   "text": "the third of them"
+   "text": "where the score's bottom two digits wait between missions"
   },
   {
    "address": 16399,
    "type": "line",
-   "text": "how many missions of this castle the player has finished"
+   "text": "the mission the player picked on the select screen, 1 to 4 as the game counts them"
+  },
+  {
+   "address": 16400,
+   "type": "line",
+   "text": "which floor the mission's prisoner is on, or $FF on the demolition mission, which has none. The room builder compares it with the floor the player is on."
   },
   {
    "address": 16402,
    "type": "line",
-   "text": "which castle is being played, 0 for the first; the second castle starts the rooms from different data"
+   "text": "set when the prisoner is in the part of the castle being built, so $4151 puts the prisoner into the room instead of leaving the slot empty"
   },
   {
    "address": 16406,
@@ -9965,6 +10061,31 @@
    "text": "moves the player's second shot one tile in its direction, the same way as $46FA does the first, and counts its distance in $02B4"
   },
   {
+   "address": 18416,
+   "type": "line",
+   "text": "how many rows of the room are left to draw, counted down from 20"
+  },
+  {
+   "address": 18417,
+   "type": "line",
+   "text": "draws the whole room, 28 tiles across and 21 rows down, from the castle map the pointer in $FA names. It is written as a self-modifying loop: the bytes at $4815, $4818 and $481E are the operands of the three instructions in the inner loop, holding the map address, the screen address and the colour address, and the routine rewrites them as it goes. Each tile code goes to the screen and the colour the tile colour table at $8600 gives it goes to colour memory. A row of the map is 128 bytes, so each row adds $80 to the source and 40 to the two destinations."
+  },
+  {
+   "address": 18453,
+   "type": "line",
+   "text": "the operand of the instruction that reads the map: the address of the row being drawn"
+  },
+  {
+   "address": 18456,
+   "type": "line",
+   "text": "the operand of the instruction that writes the screen"
+  },
+  {
+   "address": 18462,
+   "type": "line",
+   "text": "the operand of the instruction that writes colour memory"
+  },
+  {
    "address": 18506,
    "type": "line",
    "text": "hands the machine over to the game: points $0314 at the game's own interrupt at $4AA7, stops CIA 1's timer A, asks for a raster interrupt on line $E9, banks BASIC out and leaves the KERNAL and the I/O in ($01 = $36), and drops into the loop at $4871"
@@ -9988,6 +10109,16 @@
    "address": 18672,
    "type": "line",
    "text": "the mission's job is done: pauses the game, clears the message line and waits for it to empty, then goes on to the end-of-mission screens"
+  },
+  {
+   "address": 18758,
+   "type": "line",
+   "text": "what happens between missions. Puts the KERNAL's own interrupt back and starts CIA 1's timer A again, so the mission screens have a working keyboard. With no mission in progress it clears the castle flag and asks for a mission ($1D23): mission 1 puts the prisoner in the basement, 2 on the first floor, 3 on the second, and 4, the demolition, has no prisoner, which is $FF in $4010. With a mission already in progress it asks which floor the lift should go to ($1AB2) instead, and keeps the keys, the ammunition, the hits and the three digits of the score in $4009 to $400E while the screens are up."
+  },
+  {
+   "address": 18924,
+   "type": "line",
+   "text": "the player has stepped into the lift: puts the I/O banking back, holds the game while the message line empties, forgets this floor's state and goes back to $4946, which asks which floor to ride to"
   },
   {
    "address": 19110,
@@ -10020,6 +10151,176 @@
    "text": "how far the game's interrupt has got: the main code sets it to 1 to ask the interrupt to start and waits for 2, then for 3"
   },
   {
+   "address": 19770,
+   "type": "line",
+   "text": "looks through the tile grid for anything the player has walked onto, skipping the grid's right-hand column. A door key is counted and named, a painting, a vase, cold food, a pendant, first aid and a lift pass are each picked up by their own routine, and a chest found anywhere but the first five places of the grid gives ammunition."
+  },
+  {
+   "address": 19909,
+   "type": "line",
+   "text": "the player walked onto a door key: counts it in decimal mode, says \"YOU HAVE FOUND\" and \"A DOOR KEY.\", and clears its two tiles"
+  },
+  {
+   "address": 20148,
+   "type": "line",
+   "text": "the player walked onto a painting: says \"YOU HAVE FOUND\", adds 25 to the score and falls into the shared tail that names it"
+  },
+  {
+   "address": 20173,
+   "type": "line",
+   "text": "clears the painting from the map, says \"A PAINTING.\" and redraws the room's tiles"
+  },
+  {
+   "address": 20190,
+   "type": "line",
+   "text": "the player walked onto a vase: \"YOU HAVE FOUND\", 15 points, and the tail that names it"
+  },
+  {
+   "address": 20215,
+   "type": "line",
+   "text": "clears the vase from the map, says \"A VASE.\" and redraws"
+  },
+  {
+   "address": 20232,
+   "type": "line",
+   "text": "the player walked onto cold food: \"YOU HAVE FOUND\", and takes $10 off the hits in decimal mode, stopping at none"
+  },
+  {
+   "address": 20263,
+   "type": "line",
+   "text": "clears the food from the map, says \"SOME COLD FOOD.\" and redraws"
+  },
+  {
+   "address": 20280,
+   "type": "line",
+   "text": "the player walked onto a pendant: \"YOU HAVE FOUND\" and 40 points"
+  },
+  {
+   "address": 20305,
+   "type": "line",
+   "text": "clears the pendant from the map, says \"A PENDANT.\" and redraws"
+  },
+  {
+   "address": 20330,
+   "type": "line",
+   "text": "the player walked onto a box of ammunition: adds to the ammunition in decimal mode and stops at $99, and when there is no room for any more says \"ANY MORE AMMO WOULD BE WASTED !\""
+  },
+  {
+   "address": 20368,
+   "type": "line",
+   "text": "the player walked onto first aid: \"YOU HAVE FOUND\", and clears the hits altogether"
+  },
+  {
+   "address": 20389,
+   "type": "line",
+   "text": "works back from the place in the tile grid to the map address of the object's own corner, clears its five tiles, scores it, redraws the room and says \"FIRST AID.\""
+  },
+  {
+   "address": 20482,
+   "type": "line",
+   "text": "the player walked onto a lift pass: \"YOU HAVE FOUND\", clears it from the grid, says \"A LIFT PASS.\" and marks the pass as carried"
+  },
+  {
+   "address": 20522,
+   "type": "line",
+   "text": "rubs an object out of the tile grid, which the redraw then takes to the screen"
+  },
+  {
+   "address": 20941,
+   "type": "line",
+   "text": "works out where in the castle map a place on the screen is. The room's top left corner is x = $20, y = $3A, a tile is eight pixels square and a row of the map is 128 bytes, so the address is the room pointer in $FA plus 16 times the pixels down plus an eighth of the pixels across. It leaves the address in $02 and $03."
+  },
+  {
+   "address": 21010,
+   "type": "line",
+   "text": "looks up the map tile each shot in the air has reached. Tiles $3E and $3F and the codes below $08 are air, so the shot flies on; anything else stops it. On a hit the shot is taken out of the air, its direction is kept in $02D2 and $529B decides what was hit."
+  },
+  {
+   "address": 21147,
+   "type": "line",
+   "text": "decides what a shot hit, by the tile code. $76 to $C0 and $D4 to $E3 are the soldiers and officers, $30 to $3E and $C0 to $CB and $E7 to $EE are walls that just stop it, $5E to $6D a soldier that falls, $49 and $4A the two halves of a steel door, $47 and $48 a wooden door, $43 to $46 a mirror that shortens the shot's range to three, $40 to $FB the furniture, and anything else is looked for in the six-by-six grid around the shot, where the nine places listed at $5374 are checked for the code of a pickup."
+  },
+  {
+   "address": 21364,
+   "type": "line",
+   "text": "the nine places in the six-by-six tile grid a shot looks at to find what it hit, since an object is drawn from several tiles and only its first one names it"
+  },
+  {
+   "address": 21382,
+   "type": "line",
+   "text": "a shot has set a detonator off: marks this floor's charge as armed in $5F9A plus the floor, says \"DETONATOR ACTIVATED.\", and scores it"
+  },
+  {
+   "address": 21412,
+   "type": "line",
+   "text": "the shot hit something that is no use: says \"YOU ARE WAISTING AMMO.\" (the game's own spelling) and leaves the shot's range at two"
+  },
+  {
+   "address": 21439,
+   "type": "line",
+   "text": "a shot hit an open chest, which breaks what is in it: clears the two tiles of the chest and scores it"
+  },
+  {
+   "address": 21456,
+   "type": "line",
+   "text": "the shot hit a painting, which is picked up all the same: says \"YOU HAVE SHOT\", and $4ECD names it and clears it"
+  },
+  {
+   "address": 21475,
+   "type": "line",
+   "text": "the shot hit cold food; $4F27 names it and clears it"
+  },
+  {
+   "address": 21494,
+   "type": "line",
+   "text": "the shot hit a pendant; $4F51 names it and clears it"
+  },
+  {
+   "address": 21513,
+   "type": "line",
+   "text": "the shot hit a vase; $4EF7 names it and clears it"
+  },
+  {
+   "address": 21532,
+   "type": "line",
+   "text": "the shot hit first aid; $4FA5 names it and clears it"
+  },
+  {
+   "address": 21551,
+   "type": "line",
+   "text": "the shot hit one of the four pieces of furniture, codes $4C to $4F, and turns it into the broken shape $50 to $53, two tiles on the top row and two on the row below"
+  },
+  {
+   "address": 21665,
+   "type": "line",
+   "text": "the shot hit a lift pass, which is no use at all: \"SHOOTING A LIFT PASS IS A BIT SILLY !\""
+  },
+  {
+   "address": 21685,
+   "type": "line",
+   "text": "a shot hit the right half of a steel door, code $49: sets the door's state and opens it from $50F7"
+  },
+  {
+   "address": 21716,
+   "type": "line",
+   "text": "a shot hit the left half of a steel door, code $4A, and opens it the same way"
+  },
+  {
+   "address": 21747,
+   "type": "line",
+   "text": "a shot hit the lower half of a wooden door, code $47, which can be shot open: $5192 does it"
+  },
+  {
+   "address": 21768,
+   "type": "line",
+   "text": "a shot hit the upper half of a wooden door, code $48; the same as $54F3 with the map address moved up a row"
+  },
+  {
+   "address": 21800,
+   "type": "line",
+   "text": "a shot hit a soldier or an officer, codes $5E to $6D. The twelve codes are the three shapes each of four kinds, and each kind takes the shot in its own place: the tile hit is moved left, right, up or down to find the figure's own square before it is knocked down."
+  },
+  {
    "address": 22025,
    "type": "line",
    "text": "the game's 33 messages for the line at the bottom of the screen, ASCII, each ending \"@\" ($40); facts.md lists them"
@@ -10030,14 +10331,64 @@
    "text": "prints a message on the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\"."
   },
   {
+   "address": 22933,
+   "type": "line",
+   "text": "writes every number on the status panel: the keys at row 4, the ammunition at row 6, the hits at row 8 and the six digits of the score at row 11, each as two screen codes from $5A20. On the way it also works out where the player is in the castle, in tiles, and leaves it in $02CA and $02CB."
+  },
+  {
+   "address": 23072,
+   "type": "line",
+   "text": "turns one binary-coded-decimal byte into the two screen codes that print it. The play character set keeps its digits at $F0 to $F9, so each nibble only has to be ORed with $F0; the upper one is shifted down first. Every number on the panel goes through here."
+  },
+  {
+   "address": 23586,
+   "type": "line",
+   "text": "the six-by-six block of map tiles around the player or another mover, read by $5C55. The movement tests read the four of them the player's own square covers."
+  },
+  {
    "address": 23587,
    "type": "line",
    "text": "the four tile codes the player's own square overlaps, worked out each frame by $5C46; every one must be below $2D for a move to be allowed"
   },
   {
+   "address": 23622,
+   "type": "line",
+   "text": "works out which tiles surround the player, from the position in $02DF and $02E0, by way of $51CD and $5C55, and leaves them in the grid at $5C22"
+  },
+  {
+   "address": 23637,
+   "type": "line",
+   "text": "reads the six-by-six block of map tiles around the place the pointer in $06 names into the grid at $5C22, six bytes a row. A row of the map is 128 bytes away, which the routine reaches by setting bit 7 of Y and stepping the pointer's high byte, so it never needs a second pointer."
+  },
+  {
+   "address": 24474,
+   "type": "line",
+   "text": "one byte a floor, set to 1 once that floor's charge has been armed; the castle blows up when all four are"
+  },
+  {
    "address": 24523,
    "type": "line",
    "text": "the game's own one-key scan: it drives keyboard row 7 and reads column 4, which is SPACE, and leaves $10 in $C5 while the key is down and 0 when it is up. The game keeps its own flag in the byte the KERNAL uses for the key it last saw, and nothing else on the keyboard is read."
+  },
+  {
+   "address": 24623,
+   "type": "line",
+   "text": "the four tiles the prisoner is drawn from when facing up"
+  },
+  {
+   "address": 24627,
+   "type": "line",
+   "text": "the four tiles the prisoner is drawn from when facing down"
+  },
+  {
+   "address": 24631,
+   "type": "line",
+   "text": "the four tiles the prisoner is drawn from when facing left"
+  },
+  {
+   "address": 24635,
+   "type": "line",
+   "text": "the four tiles the prisoner is drawn from when facing right"
   },
   {
    "address": 27800,
