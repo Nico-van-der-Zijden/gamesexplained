@@ -93,6 +93,83 @@ attract screens at `$1110` on the first pass (`work/diffsearch.py`).
 
 ## Mechanics
 
+**The castle is built from blocks.** A floor is a kilobyte of
+description in the RAM under the I/O area, at `$D000` plus `$400` for
+each floor: 32 rows of 32 bytes, and every byte names one of the blocks
+at `$7000`, which are four tiles across and four down. `$6A4B` banks
+every ROM out, reads the description and expands it into a map at
+`$9000` that is 128 tiles to a row and 128 rows deep, one byte a tile.
+Sixteen kilobytes of map from a kilobyte of description, which is why
+the map lies over the title picture at `$A000`.
+
+Certain bytes of a description mean more than a block. `$30` to `$37`
+are the four kinds of figure, two codes each, and every one found is
+added to the list of figures in `$8100` to `$8500`; `$62` marks this
+floor's dynamite charge, whose place is kept in `$02EA`; `$63` marks the
+prisoner, whose place is kept in `$02ED`.
+
+**The player moves a tile at a time.** `$4297` counts frames 0 to 3 in
+`$02BA` and acts only on the fourth, so a step is 8 pixels every 4
+frames. A move is allowed only when the four tiles the player would
+cover all read below `$2D`: `$2D` or more is a wall, a door, furniture, a
+figure or a pickup. At a room's edge the move asks for the next room
+instead, and the picture then scrolls a row or a column at a time
+(`$43D6`, `$4480`, `$4528`), carrying any shot in the air with it so a
+bullet keeps its place in the room rather than on the screen.
+
+**The player is in the map as well as in front of it.** He is drawn as
+four sprites, and `$5B1B` also stamps tile `$55` over the sixteen tiles
+he covers, keeps what was there in four buffers, runs the figures and the
+prisoner, and puts the sixteen tiles back. The figures only test whether
+the tile ahead of them is empty, so the stamp is how walking into the
+player is noticed at all.
+
+**Shots.** The player can have two in the air at once, the second once
+the first has travelled 8 pixels (`$463F`); each has its own direction,
+position and five tiles of range, and each costs a round. A shot flies
+through tiles `$3E`, `$3F` and anything below `$08`, and stops on
+anything else; `$529B` then decides what was hit, by tile code. Soldiers
+and officers are `$5E` to `$6D` and `$76` to `$C0`, the two halves of a
+steel door `$49` and `$4A`, a wooden door `$47` and `$48`, furniture
+`$4C` to `$4F`, a mirror `$43` to `$46`, and the pickups are found by
+looking at the nine places listed at `$5374` in the grid around the shot,
+because an object is drawn from several tiles and only its first names
+it.
+
+**Damage.** `$639F` is the only routine that adds to the hit count, and
+its only four callers are the four branches of the figures' movement
+where the tile a figure would step into holds the player's stamp. **No
+figure in this game ever fires a shot**: the whole of the game's damage
+is a figure walking into the player, one hit at a time. The hits are
+binary-coded decimal, and `$5BC8` compares them with `$50`: at fifty the
+mission is over and the player is dead.
+
+**Scoring.** Points wait in `$02C5` and the ticker at `$5AA0` takes one a
+frame, adding 1 to the score's middle pair of digits in decimal mode.
+One waiting point is therefore a hundred on the panel, and nothing ever
+writes the bottom pair, so every score in the game ends in two zeros. A
+soldier is worth 100, a vase 1500, a painting 2500, and a pendant and a
+pile of jewels 4000 each.
+
+**Supplies.** Cold food takes `$10` off the hits and first aid clears
+them altogether. A box of ammunition fills the count back towards `$99`,
+and when there is no room the game says "ANY MORE AMMO WOULD BE
+WASTED !". A mission starts with `$99`, that is 99 rounds.
+
+**Between missions.** `$4946` puts the KERNAL's own interrupt back so
+the mission screens have a keyboard, and keeps the keys, the ammunition,
+the hits and the three digits of the score in `$4009` to `$400E` while
+they are up. The mission chosen is 1 to 4 in `$0836`, and `$4010` is the
+floor its prisoner is on - the basement for 1, the first floor for 2, the
+second for 3 - or `$FF` for the demolition mission, which has no
+prisoner.
+
+**The cheat.** `$6F3B` compares the ten characters of the name last
+typed on the high score screen with the word at `$6F31`, which reads
+`%MAGGOTS!&`, and a match sets `$603F`. While that is set the player
+takes no hits, keeps a door key in hand and has the ammunition filled
+back to 99 every frame. `cheats.md` has it in full.
+
 ## Data tables
 
 The messages, each ending with `@`, at `$5609`:
@@ -241,11 +318,38 @@ and a shot produced 11 writes (*live*, `work/sidwrites.py`).
 ## Live tests
 
 - Controls, one at a time, from the play snapshot (`work/controls.py`,
-  `work/fire.py`).
+  `work/fire.py`): each direction moves the player 8 pixels every 4
+  frames, and fire puts a bullet sprite at the player's edge and spends a
+  round.
 - SPACE pauses and resumes, judged by the counter at `$02B4`
-  (`work/pause4.py`).
+  (`work/pause4.py`), and the paused game shows "...PAUSING..." on the
+  message line (`work/t_hits.py`).
 - RESTORE returns to the attract loop (`work/restore.py`).
+- The mission select's digit counts the other way from the mission the
+  game keeps: stepping it to 1 left `$0836` at 4 and the briefing read
+  "MISSION 1 / BLOW UP THE CASTLE" (`work/t_mission2.py`).
+- The hits kill at fifty: poked to `$49` the game played on, poked to
+  `$50` it set `$02D3` to `$FF`, which the main loop reads as the end
+  (`work/t_death.py`).
+- The ammunition starts at 99: `$02BD` reads `$99` and the panel's two
+  cells both hold `$F9` (`work/t_ammo.py`).
+- The cheat word turns the cheat on: with `%MAGGOTS!&` in the name
+  buffer at `$081F` a mission starts with `$603F` = 1 and a key in hand,
+  and without it `$603F` is 0 and there is no key (`work/cheattest.py`).
+- Nothing but a figure's step hurts the player: with a counting
+  checkpoint on `$639F` and a control on the interrupt, 170 seconds of
+  play and of standing still left `$639F` unrun and the hits at zero
+  while the control counted 12,078 interrupts (`work/t_hits.py`,
+  `work/t_contact.py`). The references search over every opcode and index
+  confirms that the only writes to the hit count are the mission's
+  restore, cold food, first aid and `$639F` itself.
 - Nothing executes in `$0100`-`$03FF` during 40 seconds of play, so the
   game is one load (`work/noload.py`).
 - One frame of play redrawn from memory matches the emulator's own
   picture, 104,448 pixels of 104,448 (`kit/c64/frame.py compare`).
+
+Tried and not settled: the end of the demolition mission. Arming all four
+charges and standing the player on the run of `$E4` tiles that `$5F27`
+tests for did not make the check fire (`work/t_explode3.py`), so what
+that tile is on the screen is open; the path through the code is traced
+but not observed.

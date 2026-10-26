@@ -1271,7 +1271,7 @@
   },
   {
    "address": 743,
-   "name": "prisoner_spare",
+   "name": "last_tile_under_player",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -5669,13 +5669,13 @@
   },
   {
    "address": 20322,
-   "name": "j_4F62",
+   "name": "took_ammo",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20330,
-   "name": "found_ammo",
+   "name": "ammo_box_overflow",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -9917,7 +9917,7 @@
   {
    "address": 743,
    "type": "line",
-   "text": "a byte the prisoner's code clears and never reads again"
+   "text": "the tile the player was standing on when the lift was last tested, so stepping onto the lift acts once rather than every frame"
   },
   {
    "address": 744,
@@ -9927,7 +9927,7 @@
   {
    "address": 745,
    "type": "line",
-   "text": "what the game's own code wants the main loop to do next: 1 the lift, 2 a prisoner delivered home"
+   "text": "what the game's own code wants the main loop to do next: 1 when the player has stepped onto the lift, whether to ride it or because a prisoner has been brought home, and 2 when the castle has been destroyed"
   },
   {
    "address": 746,
@@ -11227,7 +11227,7 @@
   {
    "address": 18924,
    "type": "line",
-   "text": "the player has stepped into the lift: puts the I/O banking back, holds the game while the message line empties, forgets this floor's state and goes back to $4946, which asks which floor to ride to"
+   "text": "the player has stepped onto the lift: puts the I/O banking back, holds the game while the message line empties, forgets this floor's state and goes back to $4946, which asks which floor to ride to"
   },
   {
    "address": 19110,
@@ -11370,9 +11370,14 @@
    "text": "clears the pendant from the map, says \"A PENDANT.\" and redraws"
   },
   {
+   "address": 20322,
+   "type": "line",
+   "text": "the player walked onto a chest of ammunition. It clears the chest's two tiles and adds $10 to the ammunition in decimal mode, which is sixteen rounds; if that would carry past 99 it sets 99 instead and says \"ANY MORE AMMO WOULD BE WASTED !\"."
+  },
+  {
    "address": 20330,
    "type": "line",
-   "text": "the player walked onto a box of ammunition: adds to the ammunition in decimal mode and stops at $99, and when there is no room for any more says \"ANY MORE AMMO WOULD BE WASTED !\""
+   "text": "the part of the ammunition pickup that runs when the count would carry past 99: it sets 99 and says \"ANY MORE AMMO WOULD BE WASTED !\""
   },
   {
    "address": 20368,
@@ -11732,7 +11737,7 @@
   {
    "address": 24359,
    "type": "line",
-   "text": "asks whether the mission's job is finished. On the demolition mission all four floors' charges must have been armed, and then it says \"THE CASTLE IS NOW DESTROYED.\" and asks the main loop to finish the mission; on a rescue mission the test is that the prisoner has been brought home."
+   "text": "asks whether the mission's job is done, and it is the routine that ends a mission. The test is the tile in the sixth row of the tile grid, two in from the left, which must read $E4; $02E7 keeps it so the test acts once for each arrival rather than every frame. On the demolition mission, which is the one with no prisoner ($4010 = $FF), all four floors' charges must have been armed, and then it says \"THE CASTLE IS NOW DESTROYED.\" and asks the main loop for $4A5C. On a rescue mission the prisoner must be on this floor and following, and then it says \"WELL DONE.....YOU HAVE RESCUED A PRISONER.\" and asks for $49EC. With the job not done it says \"YOUR MISSION IS NOT YET COMPLETE !\" and nothing else happens. What tile $E4 is on the screen is open: it is the only tile of its code on the basement floor, a run of nineteen along the map's last row, and standing the player on it in the emulator did not make the test fire."
   },
   {
    "address": 24474,
