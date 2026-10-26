@@ -55,11 +55,20 @@ Sources:
 | Some chests hold explosives, which are fatal when shot | open | Manual, page 5; C64-Wiki: "shooting them is fatal" |
 | Art treasures (paintings, vases, pendants, gemstones) score points | open | The attract loop's valuables screen; manual, page 5 |
 | Ammunition boxes hold 7 rounds each | open | Manual, page 6 |
-| The player carries at most 99 rounds | open | Manual, page 6 says 99; C64-Wiki says "the maximum is 100 shots". The tape starts a mission with 59 showing, not 99 (`reference/mission1-start.png`), so the number to find is the code's |
+| A mission starts with 99 rounds | **live** | The panel's two ammunition digits are `$F9 $F9` at the start of mission 1, and the character set draws `$F9` as a 9 (`work/screenpng.py` renders those rows from the snapshot). Manual, page 6 says 99 too; C64-Wiki's "maximum is 100 shots" is the row still to settle, since the ceiling is not the start |
 | Captives are escorted back to the starting point, and move more slowly than the player | open | Manual, page 6: "their fatigue makes them travel more slowly than you do" |
 | A dazed captive is moved on by firing a warning shot in his direction | open | Manual, page 6 |
 | A high score table, "TODAYS REAL HEROES", ten entries | **live** | The attract loop shows it, filled with ten PANDORA entries from 10000 down to 1000 (`reference/attract-hiscores.png`) |
 | Music or sound in the attract loop | **live** | 173 writes to `$D400`-`$D418` in three seconds of the attract loop, and none in three seconds of play with nothing pressed (`work/sidwrites.py`) |
+| A message line at the bottom of the screen | **live** | Rows 23 and 24 of the screen, drawn in the second alphabet; the raster split at line 228 switches the character set for them (`work/frame-play.json`) |
+| Four floors, named BASEMENT, GROUND FLOOR, FIRST FLOOR and SECOND FLOOR | **traced** | The four names, 13 bytes each, at `$1A78`, and the messages `IN THE BASEMENT.` to `ON THE SECOND FLOOR.` at `$5808`. Not yet seen on screen |
+| The two kinds of mission are `RESCUE THE PRISONER` and `BLOW UP THE CASTLE` | **traced** | Stored at `$1E18` and `$1E2C`, beside `MISSION` at `$1E06` and `SELECT MISSION` at `$1D14` |
+| A lift pass, and a telling-off for shooting one | **traced** | `A LIFT PASS.`, `YOU NEED A LIFT PASS !`, `SHOOTING A LIFT PASS IS A BIT SILLY !` and `YOU ARE ENTERING THE LIFT.` in the message block at `$5609` |
+| The game nags a player who stands still, and one who wastes ammunition | **traced** | `COME ON ! GET ON WITH IT.....`, `ANY MORE AMMO WOULD BE WASTED !` and `YOU ARE WAISTING AMMO.` (the game's own spelling) |
+| A hint when a prisoner is near | **traced** | `THE PRISONER IS VERY CLOSE.` at `$6C98`, apart from the rest |
+| Shooting explosives is fatal, and the game says so | **traced** | `FOOL!....EXPLOSIVES.` in the message block |
+| An empty chest says so | **traced** | `EMPTY!` in the message block |
+| The pause shows `...PAUSING...` | **traced** | Message 31 at `$5900`. The pause itself is live; the message was not read on screen |
 | A sound for the player's shot | **live** | 11 writes to the sound chip in the three seconds after a shot |
 
 ## Beyond the documentation

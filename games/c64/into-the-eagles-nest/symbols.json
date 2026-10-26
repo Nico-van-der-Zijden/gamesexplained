@@ -2,8 +2,8 @@
  "schema": 1,
  "platform": "c64",
  "game": "into-the-eagles-nest",
- "build": "",
- "source": "new_game.py",
+ "build": "PAL cassette, Pandora 1987, analysed at the loader's hand-over",
+ "source": "regenerator2000 live",
  "regions": {
   "exclude": [
    [
@@ -15,9 +15,20 @@
     53248,
     57343,
     "I/O and colour RAM"
+   ],
+   [
+    1024,
+    2047,
+    "screen RAM"
    ]
   ],
-  "extra": [],
+  "extra": [
+   [
+    8192,
+    10239,
+    "character set"
+   ]
+  ],
   "edges": [
    0,
    256,
@@ -33,7 +44,301 @@
    57344
   ]
  },
- "blocks": [],
- "symbols": [],
- "comments": []
+ "blocks": [
+  {
+   "start": 0,
+   "end": 13,
+   "type": "Code"
+  },
+  {
+   "start": 14,
+   "end": 3408,
+   "type": "Undefined"
+  },
+  {
+   "start": 3409,
+   "end": 3608,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 3609,
+   "end": 4295,
+   "type": "Undefined"
+  },
+  {
+   "start": 4296,
+   "end": 4362,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 4363,
+   "end": 4367,
+   "type": "Undefined"
+  },
+  {
+   "start": 4368,
+   "end": 4409,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 4410,
+   "end": 4470,
+   "type": "Undefined"
+  },
+  {
+   "start": 4471,
+   "end": 4522,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 4523,
+   "end": 6775,
+   "type": "Undefined"
+  },
+  {
+   "start": 6776,
+   "end": 6831,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 6832,
+   "end": 7443,
+   "type": "Undefined"
+  },
+  {
+   "start": 7444,
+   "end": 7458,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 7459,
+   "end": 7685,
+   "type": "Undefined"
+  },
+  {
+   "start": 7686,
+   "end": 7693,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 7694,
+   "end": 7703,
+   "type": "Undefined"
+  },
+  {
+   "start": 7704,
+   "end": 7742,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 7743,
+   "end": 7956,
+   "type": "Undefined"
+  },
+  {
+   "start": 7957,
+   "end": 7995,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 7996,
+   "end": 22024,
+   "type": "Undefined"
+  },
+  {
+   "start": 22025,
+   "end": 22826,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 22827,
+   "end": 27799,
+   "type": "Undefined"
+  },
+  {
+   "start": 27800,
+   "end": 27828,
+   "type": "PETSCII Text"
+  },
+  {
+   "start": 27829,
+   "end": 65279,
+   "type": "Undefined"
+  },
+  {
+   "start": 65280,
+   "end": 65534,
+   "type": "Code"
+  },
+  {
+   "start": 65535,
+   "end": 65535,
+   "type": "Undefined"
+  }
+ ],
+ "symbols": [
+  {
+   "address": 0,
+   "name": "start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 145,
+   "name": "zpp_91",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 3409,
+   "name": "hiscore_table",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 4296,
+   "name": "credits_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 4368,
+   "name": "valuables_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 4471,
+   "name": "supplies_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 6776,
+   "name": "floor_names",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7444,
+   "name": "select_mission_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7686,
+   "name": "mission_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7704,
+   "name": "mission_rescue_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7724,
+   "name": "mission_blow_up_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7957,
+   "name": "well_done_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 7969,
+   "name": "mission_success_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 22025,
+   "name": "messages",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 27800,
+   "name": "prisoner_close_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 65280,
+   "name": "j_FF00",
+   "type": "Jump",
+   "kind": "auto"
+  }
+ ],
+ "comments": [
+  {
+   "address": 3409,
+   "type": "line",
+   "text": "ten high score entries of 20 bytes: a seven-character name, padding, and a six-digit score, all ASCII"
+  },
+  {
+   "address": 4296,
+   "type": "line",
+   "text": "the attract loop's credits, four lines of ASCII each ending $FF"
+  },
+  {
+   "address": 4368,
+   "type": "line",
+   "text": "the valuables screen's heading and its four items, ASCII, each ending $00"
+  },
+  {
+   "address": 4471,
+   "type": "line",
+   "text": "the supplies screen's heading and its four items, ASCII, each ending $00"
+  },
+  {
+   "address": 6776,
+   "type": "line",
+   "text": "the four floors, 13 bytes each and a $00: BASEMENT, GROUND FLOOR, FIRST FLOOR, SECOND FLOOR"
+  },
+  {
+   "address": 7444,
+   "type": "line",
+   "text": "\"SELECT MISSION\", ASCII ending $00"
+  },
+  {
+   "address": 7686,
+   "type": "line",
+   "text": "\"MISSION\", the heading of the mission briefing"
+  },
+  {
+   "address": 7704,
+   "type": "line",
+   "text": "\"RESCUE THE PRISONER\""
+  },
+  {
+   "address": 7724,
+   "type": "line",
+   "text": "\"BLOW UP THE CASTLE\""
+  },
+  {
+   "address": 7957,
+   "type": "line",
+   "text": "\"WELL DONE !\""
+  },
+  {
+   "address": 7969,
+   "type": "line",
+   "text": "\"YOUR MISSION WAS A\" and, after it, \"SUCCESS\""
+  },
+  {
+   "address": 22025,
+   "type": "line",
+   "text": "the game's 33 messages for the line at the bottom of the screen, ASCII, each ending \"@\" ($40); facts.md lists them"
+  },
+  {
+   "address": 27800,
+   "type": "line",
+   "text": "\"THE PRISONER IS VERY CLOSE.\", the only message kept away from the block at $5609"
+  }
+ ]
 }

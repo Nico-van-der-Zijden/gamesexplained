@@ -35,6 +35,9 @@
     ],
     "20-features": [
       "claude-opus-5"
+    ],
+    "30-text": [
+      "claude-opus-5"
     ]
   },
   "accuracy": [
