@@ -752,15 +752,15 @@
   },
   {
    "address": 681,
-   "name": "a_02A9",
+   "name": "message_scroll",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 682,
-   "name": "a_02AA",
+   "name": "room_change",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 684,
@@ -782,45 +782,45 @@
   },
   {
    "address": 687,
-   "name": "a_02AF",
+   "name": "shots_in_air",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 688,
-   "name": "a_02B0",
+   "name": "player_facing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 689,
-   "name": "a_02B1",
+   "name": "shot1_direction",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 690,
-   "name": "a_02B2",
+   "name": "shot1_distance",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 691,
-   "name": "a_02B3",
+   "name": "shot2_direction",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 692,
-   "name": "a_02B4",
+   "name": "shot2_distance",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 693,
-   "name": "a_02B5",
+   "name": "fire_held",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 694,
@@ -848,9 +848,9 @@
   },
   {
    "address": 698,
-   "name": "a_02BA",
+   "name": "move_tick",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 699,
@@ -866,15 +866,15 @@
   },
   {
    "address": 701,
-   "name": "a_02BD",
+   "name": "ammo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 702,
-   "name": "a_02BE",
+   "name": "standing_still",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 703,
@@ -932,15 +932,15 @@
   },
   {
    "address": 712,
-   "name": "a_02C8",
+   "name": "player_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 713,
-   "name": "a_02C9",
+   "name": "pause_flag",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 714,
@@ -998,9 +998,9 @@
   },
   {
    "address": 723,
-   "name": "a_02D3",
+   "name": "mission_over",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 724,
@@ -1010,9 +1010,9 @@
   },
   {
    "address": 725,
-   "name": "a_02D5",
+   "name": "shot_range",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 726,
@@ -1028,9 +1028,9 @@
   },
   {
    "address": 728,
-   "name": "a_02D8",
+   "name": "walk_frame",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 729,
@@ -1040,45 +1040,45 @@
   },
   {
    "address": 730,
-   "name": "a_02DA",
+   "name": "walk_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 731,
-   "name": "a_02DB",
+   "name": "shot1_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 732,
-   "name": "a_02DC",
+   "name": "shot1_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 733,
-   "name": "a_02DD",
+   "name": "shot2_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 734,
-   "name": "a_02DE",
+   "name": "shot2_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 735,
-   "name": "a_02DF",
+   "name": "player_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 736,
-   "name": "a_02E0",
+   "name": "player_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 737,
@@ -1094,9 +1094,9 @@
   },
   {
    "address": 739,
-   "name": "a_02E3",
+   "name": "shot_pending",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 740,
@@ -1130,9 +1130,9 @@
   },
   {
    "address": 745,
-   "name": "a_02E9",
+   "name": "handover_wanted",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 746,
@@ -1160,9 +1160,9 @@
   },
   {
    "address": 751,
-   "name": "a_02EF",
+   "name": "irq_phase",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 752,
@@ -4052,45 +4052,45 @@
   },
   {
    "address": 16393,
-   "name": "a_4009",
+   "name": "saved_ammo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16394,
-   "name": "a_400A",
+   "name": "saved_hits",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16395,
-   "name": "a_400B",
+   "name": "saved_keys",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16396,
-   "name": "a_400C",
+   "name": "saved_item_1",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16397,
-   "name": "a_400D",
+   "name": "saved_item_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16398,
-   "name": "a_400E",
+   "name": "saved_item_3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16399,
-   "name": "a_400F",
+   "name": "missions_done",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16400,
@@ -4106,9 +4106,9 @@
   },
   {
    "address": 16402,
-   "name": "a_4012",
+   "name": "castle_number",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16403,
@@ -4118,9 +4118,9 @@
   },
   {
    "address": 16406,
-   "name": "j_4016",
+   "name": "game_cold_start",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16414,
@@ -4136,9 +4136,9 @@
   },
   {
    "address": 16463,
-   "name": "j_404F",
+   "name": "mission_start",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16472,
@@ -4159,6 +4159,12 @@
    "kind": "auto"
   },
   {
+   "address": 16549,
+   "name": "setup_play_sprites",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 16573,
    "name": "b_40BD",
    "type": "Branch",
@@ -4166,9 +4172,9 @@
   },
   {
    "address": 16776,
-   "name": "b_4188",
+   "name": "clear_player_sprites",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16788,
@@ -4184,9 +4190,9 @@
   },
   {
    "address": 16838,
-   "name": "j_41C6",
+   "name": "clear_play_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16840,
@@ -4201,6 +4207,12 @@
    "kind": "auto"
   },
   {
+   "address": 16923,
+   "name": "build_play_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 16948,
    "name": "b_4234",
    "type": "Branch",
@@ -4213,16 +4225,22 @@
    "kind": "auto"
   },
   {
+   "address": 16976,
+   "name": "start_mission_play",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 17006,
-   "name": "a_426E",
+   "name": "mission_in_progress",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17007,
-   "name": "s_426F",
+   "name": "player_and_rooms",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17019,
@@ -4250,9 +4268,9 @@
   },
   {
    "address": 17047,
-   "name": "b_4297",
+   "name": "player_turn",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17063,
@@ -4292,9 +4310,9 @@
   },
   {
    "address": 17122,
-   "name": "b_42E2",
+   "name": "player_move_up",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17187,
@@ -4352,9 +4370,9 @@
   },
   {
    "address": 17290,
-   "name": "j_438A",
+   "name": "player_move_down",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17355,
@@ -4370,9 +4388,9 @@
   },
   {
    "address": 17366,
-   "name": "j_43D6",
+   "name": "scroll_room_vertically",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17384,
@@ -4412,9 +4430,9 @@
   },
   {
    "address": 17460,
-   "name": "j_4434",
+   "name": "player_move_left",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17525,
@@ -4430,9 +4448,9 @@
   },
   {
    "address": 17536,
-   "name": "j_4480",
+   "name": "scroll_room_left",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17552,
@@ -4472,9 +4490,9 @@
   },
   {
    "address": 17628,
-   "name": "j_44DC",
+   "name": "player_move_right",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17693,
@@ -4490,9 +4508,9 @@
   },
   {
    "address": 17704,
-   "name": "j_4528",
+   "name": "scroll_room_right",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17722,
@@ -4544,9 +4562,9 @@
   },
   {
    "address": 17853,
-   "name": "j_45BD",
+   "name": "player_shoot",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17869,
@@ -4586,9 +4604,9 @@
   },
   {
    "address": 17983,
-   "name": "b_463F",
+   "name": "fire_second_shot",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18001,
@@ -4616,51 +4634,51 @@
   },
   {
    "address": 18073,
-   "name": "f_4699",
+   "name": "shot_start_x",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18077,
-   "name": "f_469D",
+   "name": "shot_start_y",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18081,
-   "name": "f_46A1",
+   "name": "player_shape_base",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18085,
-   "name": "s_46A5",
+   "name": "face_player",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18161,
-   "name": "a_46F1",
+   "name": "shot_sprite_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18162,
-   "name": "f_46F2",
+   "name": "bullet_offset_x",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18166,
-   "name": "f_46F6",
+   "name": "bullet_offset_y",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18170,
-   "name": "s_46FA",
+   "name": "move_shot_1",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18178,
@@ -4718,9 +4736,9 @@
   },
   {
    "address": 18293,
-   "name": "s_4775",
+   "name": "move_shot_2",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18304,
@@ -4850,15 +4868,15 @@
   },
   {
    "address": 18506,
-   "name": "j_484A",
+   "name": "start_game_loop",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18545,
-   "name": "j_4871",
+   "name": "game_loop",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18579,
@@ -4874,9 +4892,9 @@
   },
   {
    "address": 18585,
-   "name": "b_4899",
+   "name": "pause_game",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18590,
@@ -4904,9 +4922,9 @@
   },
   {
    "address": 18644,
-   "name": "b_48D4",
+   "name": "player_died",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18653,
@@ -4916,9 +4934,9 @@
   },
   {
    "address": 18672,
-   "name": "b_48F0",
+   "name": "mission_finished",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18680,
@@ -5012,9 +5030,15 @@
   },
   {
    "address": 19110,
-   "name": "a_4AA6",
+   "name": "irq_band",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 19111,
+   "name": "game_irq",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 19135,
@@ -5030,9 +5054,9 @@
   },
   {
    "address": 19149,
-   "name": "s_4ACD",
+   "name": "irq_game_work",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19170,
@@ -5054,9 +5078,9 @@
   },
   {
    "address": 19253,
-   "name": "b_4B35",
+   "name": "step_message_scroll",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19275,
@@ -5066,9 +5090,9 @@
   },
   {
    "address": 19276,
-   "name": "s_4B4C",
+   "name": "irq_sprites_and_message",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19314,
@@ -5132,9 +5156,9 @@
   },
   {
    "address": 19441,
-   "name": "a_4BF1",
+   "name": "irq_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19442,
@@ -6104,9 +6128,9 @@
   },
   {
    "address": 22830,
-   "name": "j_592E",
+   "name": "print_message",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 22837,
@@ -6362,9 +6386,9 @@
   },
   {
    "address": 23587,
-   "name": "a_5C23",
+   "name": "tile_round_player",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23588,
@@ -6764,9 +6788,9 @@
   },
   {
    "address": 24523,
-   "name": "s_5FCB",
+   "name": "scan_space",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24538,
@@ -8931,6 +8955,141 @@
  ],
  "comments": [
   {
+   "address": 681,
+   "type": "line",
+   "text": "the message line's fine horizontal scroll, stepped down by 4 each frame; when it wraps the text is shifted a character along"
+  },
+  {
+   "address": 682,
+   "type": "line",
+   "text": "what the player walked off the edge of: the bits say which way, and the room builder reads it to bring the next room in"
+  },
+  {
+   "address": 687,
+   "type": "line",
+   "text": "which of the player's two shots are in the air: bit 0 the first, bit 4 the second. Bit 1 is flipped when the first shot turns back at a room edge and bit 5 likewise for the second."
+  },
+  {
+   "address": 688,
+   "type": "line",
+   "text": "the way the player is facing, which is the way a shot goes: 1 up, 2 down, 3 left, 4 right"
+  },
+  {
+   "address": 689,
+   "type": "line",
+   "text": "the way the first shot is travelling, 1 up, 2 down, 3 left, 4 right, taken from the player's facing when it was fired"
+  },
+  {
+   "address": 690,
+   "type": "line",
+   "text": "how far the first shot has travelled, in pixels; the second shot cannot be fired until this has passed 8"
+  },
+  {
+   "address": 691,
+   "type": "line",
+   "text": "the way the second shot is travelling"
+  },
+  {
+   "address": 692,
+   "type": "line",
+   "text": "how far the second shot has travelled"
+  },
+  {
+   "address": 693,
+   "type": "line",
+   "text": "set while fire is still held, so one press fires one shot"
+  },
+  {
+   "address": 698,
+   "type": "line",
+   "text": "counts frames 0 to 3; the player may move on the frame it reaches 3, so one step takes four frames"
+  },
+  {
+   "address": 701,
+   "type": "line",
+   "text": "how many rounds the player has, kept in binary-coded decimal so the panel can print it a digit at a time. A mission starts with $99, that is 99."
+  },
+  {
+   "address": 702,
+   "type": "line",
+   "text": "counts the frames the player has not moved; the nag \"COME ON ! GET ON WITH IT.....\" waits on it"
+  },
+  {
+   "address": 712,
+   "type": "line",
+   "text": "2 when the player is dead, which ends the game"
+  },
+  {
+   "address": 713,
+   "type": "line",
+   "text": "set while the game is paused, so the interrupt leaves the game alone and only keeps the message line going"
+  },
+  {
+   "address": 723,
+   "type": "line",
+   "text": "$FF once the mission's job is done, which the main loop watches for"
+  },
+  {
+   "address": 725,
+   "type": "line",
+   "text": "how many tiles the shot has left to travel, five when it is fired"
+  },
+  {
+   "address": 728,
+   "type": "line",
+   "text": "which of the two walking shapes the player is drawn with, taken from the lowest bit of the step count"
+  },
+  {
+   "address": 730,
+   "type": "line",
+   "text": "counts the player's steps; its lowest bit is the walking frame $02D8"
+  },
+  {
+   "address": 731,
+   "type": "line",
+   "text": "the first shot's position across the room, in pixels"
+  },
+  {
+   "address": 732,
+   "type": "line",
+   "text": "the first shot's position down the room, in pixels"
+  },
+  {
+   "address": 733,
+   "type": "line",
+   "text": "the second shot's position across the room, in pixels"
+  },
+  {
+   "address": 734,
+   "type": "line",
+   "text": "the second shot's position down the room, in pixels"
+  },
+  {
+   "address": 735,
+   "type": "line",
+   "text": "the player's position across the room, in pixels, which the four player sprites are placed from"
+  },
+  {
+   "address": 736,
+   "type": "line",
+   "text": "the player's position down the room, in pixels"
+  },
+  {
+   "address": 739,
+   "type": "line",
+   "text": "set while the player's shot is in the air, so the turn waits for fire to be let go before anything else happens"
+  },
+  {
+   "address": 745,
+   "type": "line",
+   "text": "what the game's own code wants the main loop to do next: 1 the lift, 2 a prisoner delivered home"
+  },
+  {
+   "address": 751,
+   "type": "line",
+   "text": "which of the three phases of the interrupt's rota comes next, so the heavy work is spread over three frames"
+  },
+  {
    "address": 2064,
    "type": "line",
    "text": "jump stub into the high score check at $0B89, called from the game's own code at $4943 and $4AA3 when a game ends"
@@ -9626,9 +9785,259 @@
    "text": "the screen that follows a mission the player finished: blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place"
   },
   {
+   "address": 16393,
+   "type": "line",
+   "text": "how much ammunition the player had when the last mission ended, kept so the next mission in the same castle starts with it"
+  },
+  {
+   "address": 16394,
+   "type": "line",
+   "text": "the hits the player had taken when the last mission ended"
+  },
+  {
+   "address": 16395,
+   "type": "line",
+   "text": "the keys the player was carrying when the last mission ended"
+  },
+  {
+   "address": 16396,
+   "type": "line",
+   "text": "one of the three carried-item counters kept between missions"
+  },
+  {
+   "address": 16397,
+   "type": "line",
+   "text": "another of them"
+  },
+  {
+   "address": 16398,
+   "type": "line",
+   "text": "the third of them"
+  },
+  {
+   "address": 16399,
+   "type": "line",
+   "text": "how many missions of this castle the player has finished"
+  },
+  {
+   "address": 16402,
+   "type": "line",
+   "text": "which castle is being played, 0 for the first; the second castle starts the rooms from different data"
+  },
+  {
+   "address": 16406,
+   "type": "line",
+   "text": "the game's own first code, reached from the mission select. Clears the sixteen icon characters the attract screens borrowed at $2F40, blacks the border and background, clears the mission-in-progress flag and the counters of what the player is carrying, sets the score to six ASCII zeros, and goes to $4946, the top of the game's own loop."
+  },
+  {
+   "address": 16463,
+   "type": "line",
+   "text": "sets a mission going: puts the character set back, clears the game's variables at $02A8 to $02FF, and when a mission has already been played in this castle restores the ammunition, hits, keys and carried items the player ended it with. Then it builds the room ($601B), the panel ($5F9E) and starts the game's interrupt ($4BF2), and waits for the interrupt to report itself running."
+  },
+  {
+   "address": 16549,
+   "type": "line",
+   "text": "sets the eight sprites up for play: no expansion, multicolour for the lower four, the bullet yellow, the screen at $0400 with the play character set at $2000, multicolour text with the two extra backgrounds, and the three sprites of the castle emblem parked in the panel at fixed places. It then puts the player's four sprites round the player's position in $02DF and $02E0: sprites 0 and 2 on the left, 1 and 3 eight pixels further right, 0 and 1 on the top row, 2 and 3 a row of 21 lines below."
+  },
+  {
+   "address": 16776,
+   "type": "line",
+   "text": "blanks the four sprite shapes the player is drawn with, writing zero into both halves of each of the four 64-byte blocks at once through the pointer in $FC"
+  },
+  {
+   "address": 16838,
+   "type": "line",
+   "text": "fills all four pages of the screen with the solid black tile $EF and clears colour memory, then points the sprites at their shapes - $C0 to $C3 for the player's four, $F0 to $F2 for the castle emblem in the panel - and colours the panel's two bottom rows"
+  },
+  {
+   "address": 16923,
+   "type": "line",
+   "text": "finishes setting the mission up: draws the status panel ($5DC8), clears the message line ($5995), and on the first mission of a castle shows the greeting \"WELCOME TO THE EAGLES NEST.\" from $5694. It then draws the room ($47F1), tells the interrupt to start ($4BF1 = 1), turns all eight sprites on and waits for the interrupt to report back."
+  },
+  {
+   "address": 16976,
+   "type": "line",
+   "text": "the last of the setup: colours the player's four sprites, marks the mission as under way, sets the two shared sprite colours, starts the room's movers ($5ABD) and drops into the game's main loop at $484A"
+  },
+  {
+   "address": 17006,
+   "type": "line",
+   "text": "set once a mission has started, so the next mission restores what the player was carrying instead of starting fresh"
+  },
+  {
+   "address": 17007,
+   "type": "line",
+   "text": "the player's part of each frame. The low three bits of $02AA say what is going on: 1, 2, 3 or 4 means a room change is in progress and the matching scroll runs a step of it ($432E up, $43D6 down, $4480 left, $4528 right); with none of them set the player takes an ordinary turn at $4297."
+  },
+  {
+   "address": 17047,
+   "type": "line",
+   "text": "the player's turn, once a frame. It works out which tiles are round the player ($5C46), holds everything until fire is let go when $02E3 says a shot is pending, and then counts $02BA up to 3 and acts only on the fourth frame, which is why the player steps one tile every four frames. On that frame it reads control port 2 and goes to the routine for the direction pushed: up $42E2, down $438A, left $4434, right $44DC."
+  },
+  {
+   "address": 17122,
+   "type": "line",
+   "text": "moves the player up a tile when nothing solid is in the way. The four tiles round the player, which $5C46 left in $5C23 to $5C26, must all be below $2D: a tile code of $2D or more is a wall, a door or furniture and stops the move. Otherwise it takes 8 from the player's y, clears the standing-still count, and flips the walking frame. At y = $62 the player is at the top edge of the room, so instead it asks for the room above by setting bits in $02AA."
+  },
+  {
+   "address": 17290,
+   "type": "line",
+   "text": "moves the player down a tile when the four tiles at $5C41 to $5C44 are all below $2D. At y = $B2 the player is at the bottom edge, so it asks for the room below instead by setting bits in $02AA."
+  },
+  {
+   "address": 17366,
+   "type": "line",
+   "text": "moves the picture one row at a time while the player crosses between two rooms up or down, 13 steps counted in $FF. Each step moves the room pointer in $FA on by 128 bytes, takes 8 off the player's y, and brings each shot in the air with it, so a bullet keeps its place in the room rather than on the screen. The last step clears the direction bits in $02AA and leaves only the flag that says a room change is under way."
+  },
+  {
+   "address": 17460,
+   "type": "line",
+   "text": "moves the player left a tile when the four tiles at $5C28, $5C2E and their neighbours are all below $2D, and sets the facing to 3. At the left edge it asks for the room to the left instead."
+  },
+  {
+   "address": 17536,
+   "type": "line",
+   "text": "moves the picture one column at a time while the player crosses into the room on the left, counted down in $FE. Each step moves the room pointer in $FA back a byte, adds 8 to the player's x, and brings each shot in the air with it."
+  },
+  {
+   "address": 17628,
+   "type": "line",
+   "text": "moves the player right a tile when the four tiles at $5C2D, $5C33, $5C39 and $5C3F are all below $2D, and sets the facing to 4. At x = $B0 the player is at the right edge, so it asks for the room to the right instead."
+  },
+  {
+   "address": 17704,
+   "type": "line",
+   "text": "moves the picture one column at a time while the player crosses into the room on the right, counted up in $FE to $64. The mirror of $4480: the room pointer goes on a byte, the player's x comes back 8, and the shots in the air come with it."
+  },
+  {
+   "address": 17853,
+   "type": "line",
+   "text": "fire. It moves the shots already in the air ($4692) and then, if fire is held and this is a fresh press, fires one. The player can have two shots in the air at once: the first is fired when neither is, the second once the first has travelled 8 pixels. With no rounds left it says \"OUT OF AMMO!\"; otherwise it takes one off the ammunition in decimal mode, redraws the count, points the player's sprites the right way ($46A5), and starts the shot from the player's own position offset by the tables at $4699 and $469D, with five tiles of range."
+  },
+  {
+   "address": 17983,
+   "type": "line",
+   "text": "fires the player's second shot, once the first has travelled at least 8 pixels and no second one is already in the air. It spends a round, points the sprites, and starts the shot at the player with five tiles of range."
+  },
+  {
+   "address": 18073,
+   "type": "line",
+   "text": "how far across the player the shot starts, one byte for each of the four directions"
+  },
+  {
+   "address": 18077,
+   "type": "line",
+   "text": "how far down the player the shot starts, one byte for each of the four directions"
+  },
+  {
+   "address": 18081,
+   "type": "line",
+   "text": "the first of the player's four sprite shapes for each direction faced: $E0 up, $E4 down, $E8 left, $EC right"
+  },
+  {
+   "address": 18085,
+   "type": "line",
+   "text": "points the player's four sprites at the shapes for the way the player is facing, from the table at $46A1, marks a shot as pending, and gives the bullet sprite the shape for that direction, $F3 plus the direction less one"
+  },
+  {
+   "address": 18161,
+   "type": "line",
+   "text": "how the bullet sprite is being handled this frame; the interrupt reads it when it places sprite 4"
+  },
+  {
+   "address": 18162,
+   "type": "line",
+   "text": "where the bullet sprite sits beside the player for each direction"
+  },
+  {
+   "address": 18166,
+   "type": "line",
+   "text": "where the bullet sprite sits below the player for each direction"
+  },
+  {
+   "address": 18170,
+   "type": "line",
+   "text": "moves the player's first shot one tile in its direction, if one is in the air. At the edge of the room ($3A at the top, $E2 at the bottom, $20 at the left, $F2 at the right) it flips bit 1 of $02AF instead of going on."
+  },
+  {
+   "address": 18293,
+   "type": "line",
+   "text": "moves the player's second shot one tile in its direction, the same way as $46FA does the first, and counts its distance in $02B4"
+  },
+  {
+   "address": 18506,
+   "type": "line",
+   "text": "hands the machine over to the game: points $0314 at the game's own interrupt at $4AA7, stops CIA 1's timer A, asks for a raster interrupt on line $E9, banks BASIC out and leaves the KERNAL and the I/O in ($01 = $36), and drops into the loop at $4871"
+  },
+  {
+   "address": 18545,
+   "type": "line",
+   "text": "the game's main loop, which does nothing itself but watch four things and hand over when one of them happens. $02D3 = $FF means the mission is over ($48F0), $02C8 = 2 that the player is dead ($48D4), $02E9 = 1 that the player has stepped into the lift ($49EC) and 2 that a prisoner has been brought home ($4A5C), and $C5 = $10 that SPACE is down, which pauses. Everything else - the player, the guards, the shots, the panel - is done by the interrupt."
+  },
+  {
+   "address": 18585,
+   "type": "line",
+   "text": "SPACE pauses. It sets the pause flag, waits for SPACE to be let go, and then holds the game: with nothing on the joystick and the message line idle it prints \"...PAUSING...\", and it keeps printing it until SPACE or the stick is touched, when it clears the flag and the loop goes on."
+  },
+  {
+   "address": 18644,
+   "type": "line",
+   "text": "the player is dead: puts the I/O banking back, pauses the game while the message line empties, turns every sprite off, and goes back to the top of the game at $4946 through $6018"
+  },
+  {
+   "address": 18672,
+   "type": "line",
+   "text": "the mission's job is done: pauses the game, clears the message line and waits for it to empty, then goes on to the end-of-mission screens"
+  },
+  {
+   "address": 19110,
+   "type": "line",
+   "text": "which of the game's two interrupt bands comes next, flipped between 1 and 0 each time"
+  },
+  {
+   "address": 19111,
+   "type": "line",
+   "text": "the game's own interrupt, and where nearly everything in play happens. It serves two bands, flipped by $4AA6: one sets the screen to the play character set at $2000 and does the game's work ($4ACD), then asks for line $E3; the other sets the message line's character set at $2800 with its fine scroll and draws the sprites ($4B4C), then asks for line $FC. It never chains to the KERNAL's handler, so the jiffy clock and the KERNAL's keyboard scan do not run while the game is playing, which is why the game scans SPACE itself."
+  },
+  {
+   "address": 19149,
+   "type": "line",
+   "text": "the interrupt's first band. Puts the screen on the play character set at $2000 in multicolour with 38 columns, keeps the room's movers going ($5AA0), scans SPACE, and then, unless the game is paused or a room change is under way, works through a three-phase rota counted in $02EF: two phases redraw the room ($47F1), the third does the guards, the pickups and the collisions ($4D3A, $5212, $4586, $5A33, $5B1B, $5CB9, $5F27). It ends by stepping the message line's scroll four pixels and shifting the text along when that wraps."
+  },
+  {
+   "address": 19253,
+   "type": "line",
+   "text": "steps the message line four pixels left, and when that has used up a whole character shifts the line's text along ($4BDC) and brings the next character in ($5951)"
+  },
+  {
+   "address": 19276,
+   "type": "line",
+   "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, paints the panel ($600C), draws the room's movers ($5BBA), lets the bullet sprite fade after a hit, runs the player and the room changes ($426F) unless a change is already under way, and places the player's four sprites and the bullet's round the positions in $02DF and $02E0."
+  },
+  {
+   "address": 19441,
+   "type": "line",
+   "text": "how far the game's interrupt has got: the main code sets it to 1 to ask the interrupt to start and waits for 2, then for 3"
+  },
+  {
    "address": 22025,
    "type": "line",
    "text": "the game's 33 messages for the line at the bottom of the screen, ASCII, each ending \"@\" ($40); facts.md lists them"
+  },
+  {
+   "address": 22830,
+   "type": "line",
+   "text": "prints a message on the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\"."
+  },
+  {
+   "address": 23587,
+   "type": "line",
+   "text": "the four tile codes the player's own square overlaps, worked out each frame by $5C46; every one must be below $2D for a move to be allowed"
+  },
+  {
+   "address": 24523,
+   "type": "line",
+   "text": "the game's own one-key scan: it drives keyboard row 7 and reads column 4, which is SPACE, and leaves $10 in $C5 while the key is down and 0 when it is up. The game keeps its own flag in the byte the KERNAL uses for the key it last saw, and nothing else on the keyboard is read."
   },
   {
    "address": 27800,
