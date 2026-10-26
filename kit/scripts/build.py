@@ -367,8 +367,13 @@ def tab_place(f, n):
 
 
 def tab_order(game, present):
-    """The game's tabs as the bar shows them, in order: (file, label) for each one it has."""
-    return sorted(((f, n) for f, n in game.get("tabs", TABS) if f in present), key=lambda t: tab_place(*t))
+    """The game's tabs as the bar shows them, in order: (file, label) for each one it has. The bar
+    closes with Source code and About whatever a game's own list says, so a list that leaves either
+    out cannot hide the listing or the record of how it was checked."""
+    tabs = list(game.get("tabs", TABS))
+    named = {f for f, _ in tabs}
+    tabs += [(f, n) for f, n in TABS if f in ASSEMBLED and f not in named]
+    return sorted(((f, n) for f, n in tabs if f in present), key=lambda t: tab_place(*t))
 
 
 def tab_href(f):
