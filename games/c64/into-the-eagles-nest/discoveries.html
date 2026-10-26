@@ -1,0 +1,267 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Into the Eagle's Nest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+
+.en-cv{image-rendering:pixelated;display:block;max-width:100%;height:auto;background:#000;border-radius:6px}
+.en-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.en-key{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);margin-right:4px}
+.en-btn{font-family:var(--fm);font-size:13px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 11px;cursor:pointer;color:var(--ink)}
+.en-btn[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
+.en-quote{font-family:var(--fm);font-size:14px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:6px;padding:14px;white-space:pre-wrap;line-height:1.5;color:var(--ink)}
+table.en-tab{border-collapse:collapse;width:100%;font-size:14px}
+table.en-tab th,table.en-tab td{border-bottom:1px solid var(--line-soft);padding:6px 10px;text-align:left}
+table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+.en-row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.en-row > figure{margin:0;flex:1 1 280px}
+.en-row img{width:100%;height:auto;image-rendering:pixelated;border:1px solid var(--line);border-radius:6px;display:block}
+.en-row figcaption{font-size:14px;color:var(--ink-mute);margin-top:8px}
+</style>
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">1987 · Pandora</p>
+  <h1>Into the Eagle's Nest</h1>
+  <p class="sub">A cheat hidden in the high score table, a message for whoever took the tape apart, and a mission select that counts the wrong way.</p>
+</header>
+<main class="wrap">
+
+<section>
+  <p class="fig">01 · The cheat</p>
+  <h2 class="t">Secret: type %MAGGOTS!&amp; as your name</h2>
+  <p class="lede">Get into the high score table, type those ten characters, and the next game cannot hurt you.</p>
+  <div class="plate">
+    <div class="en-bar" id="en-word-bar"><span class="en-key">Show</span></div>
+    <canvas id="en-word" class="en-cv" width="680" height="120"></canvas>
+    <p class="cap">The ten bytes at <code>$6F31</code>, drawn in the game's own alphabet. Each is a character's ASCII value with the top two bits removed, which is the form the name-entry screen leaves at <code>$081F</code>.</p>
+  </div>
+  <p>When the game builds a floor it calls <code>$6F3B</code>, which compares the ten characters of the name last typed on the high score screen with the ten bytes at <code>$6F31</code>. If every one matches it sets <code>$603F</code>, and while that byte is set three things change:</p>
+  <table class="en-tab">
+    <tr><th>Effect</th><th>Where</th></tr>
+    <tr><td>Hits are never taken</td><td><code>$63A6</code> turns the one routine that adds a hit away</td></tr>
+    <tr><td>A door key is always in hand</td><td><code>$5BD1</code> writes 1 into the key count every frame</td></tr>
+    <tr><td>The ammunition is back to 99 every frame</td><td><code>$5BB4</code></td></tr>
+  </table>
+  <p class="cap">All ten characters are on the name-entry screen's own alphabet strip, so this is a cheat meant to be typed, not poked. Tested in the emulator: with the word in place a mission starts with <code>$603F</code> = 1 and a key in hand, and without it there is no key.</p>
+  <p>The check runs every time a floor is built, so the cheat lasts as long as the name does, and a new name on a later high score turns it off.</p>
+</section>
+
+<section>
+  <p class="fig">02 · The chests</p>
+  <h2 class="t">Secret: a chest pays out one time in eight, and kills you one time in eight</h2>
+  <p class="lede">The manual says a chest may hold something fragile, or explosives. It does not say how often.</p>
+  <div class="plate">
+    <div class="en-bar" id="en-chest-bar"><span class="en-key">Shoot</span></div>
+    <p class="en-quote" id="en-chest-log">Press the button to shoot a chest. The dice are the game's own, read in order from the table at $8700.</p>
+    <table class="en-tab" id="en-chest-tally">
+      <tr><th>Outcome</th><th>Chance in the code</th><th>Shots so far</th></tr>
+      <tr><td>EMPTY!</td><td>3 in 4</td><td id="en-chest-empty">0</td></tr>
+      <tr><td>SOME JEWELS. (4000 points)</td><td>1 in 8</td><td id="en-chest-jewels">0</td></tr>
+      <tr><td>FOOL!....EXPLOSIVES. (the game ends)</td><td>1 in 8</td><td id="en-chest-boom">0</td></tr>
+    </table>
+    <p class="cap">The decision at <code>$5598</code>, run here as the game runs it, on the game's own random numbers.</p>
+  </div>
+  <p>Shooting a closed chest goes to <code>$5598</code>, which takes the next number from the table of random
+  numbers and compares it with <code>$C0</code>. Three values in four are below it, and the chest is empty.
+  On the fourth it takes a second number and compares it with <code>$80</code>: half of those give jewels,
+  worth 4000, and the other half give explosives.</p>
+  <p>Explosives set <code>$02D3</code> to 1, which is the explosion at <code>$5BDD</code>: the border and the
+  background run through seventeen colours, five times over, and then the game is over. There is no warning and
+  nothing to be done about it, which is what the message calls the player.</p>
+  <p>So a chest is worth shooting only if 4000 points are worth a one-in-eight chance of ending the game. The
+  tip in the manual, "Only shoot at a known target", is the game telling you the odds without giving them.</p>
+</section>
+
+<section>
+  <p class="fig">03 · The loader</p>
+  <h2 class="t">Secret: the tape loader says hello</h2>
+  <p class="lede">The game's own loader carries a message for whoever pulled the tape apart.</p>
+  <div class="plate">
+    <p class="en-quote" id="en-hello">WILD SAVE (C) INTERCEPTOR MICROS 1987   WRITTEN BY ANDREW CHALLIS JANUARY 1987  HELLO HACKER I HOPE YOU HAVE FUN WITH   THIS LOADER</p>
+    <p class="cap">At <code>$033C</code>, in the cassette buffer, in plain ASCII. It is not drawn on any screen: it sits in the loader's own work space and the game never reads it.</p>
+  </div>
+  <p>The address is the C64's tape buffer, which is where a loader lives while it is reading. Wild Save was Interceptor Micros's tape system, and this says Challis wrote the game's copy of it himself in January 1987, a few months before the game came out.</p>
+  <p>Whoever left it expected the tape to be taken apart, and left a greeting where only that reader would find it.</p>
+</section>
+
+<section>
+  <p class="fig">04 · The mission select</p>
+  <h2 class="t">Bug: MISSION 1 blows up the castle</h2>
+  <p class="lede">The manual says mission four brings the castle down. On the screen it is mission one.</p>
+  <div class="plate">
+    <div class="en-row">
+      <figure><img src="reference/select-mission.png" alt="A black screen reading SELECT MISSION with the number 1 below it."><figcaption>The mission select, stepped down to 1.</figcaption></figure>
+      <figure><img src="reference/briefing-mission-1.png" alt="A black screen reading MISSION 1 and, below it, BLOW UP THE CASTLE."><figcaption>The briefing that follows it.</figcaption></figure>
+    </div>
+    <p class="cap">Taken in the emulator, one after the other: three pushes down and fire.</p>
+  </div>
+  <p>The game keeps the mission number in <code>$0836</code>, and the briefing at <code>$1E3F</code> reads it: 4 orders the castle blown up and anything else orders a prisoner rescued. The digit on the screen is not that number. <code>$1DBE</code> draws five minus it, so the mission the game calls 4 is the one the screen calls 1.</p>
+  <p>The manual was written for the American disk release, where the missions are numbered the way it describes. On this tape the screen counts the other way, and a player following the manual starts with the demolition.</p>
+</section>
+
+<section>
+  <p class="fig">05 · The guards</p>
+  <h2 class="t">Secret: no guard in the game ever fires</h2>
+  <p class="lede">The manual warns that the soldiers shoot and do great damage. They do not shoot at all.</p>
+  <div class="plate">
+    <table class="en-tab">
+      <tr><th>What writes the hit count at <code>$02C6</code></th><th>What it does</th></tr>
+      <tr><td><code>$4058</code>, <code>$4077</code></td><td>clears it, and puts back what the last mission left</td></tr>
+      <tr><td><code>$4F23</code></td><td>cold food: takes <code>$10</code> off it</td></tr>
+      <tr><td><code>$4FA2</code></td><td>first aid: clears it</td></tr>
+      <tr><td><code>$63B2</code></td><td>inside <code>$639F</code>, the one routine that adds a hit</td></tr>
+    </table>
+    <p class="cap">Every instruction in the game that can touch the hit count, found with the references search over every opcode and every index. <code>$639F</code> has four callers, and all four are the branches of the guards' movement where the tile ahead holds the player.</p>
+  </div>
+  <p>A guard hurts the player by walking into him, one hit at a time, and nothing else in the game hurts him at all. Fifty hits end the mission, which is the number the manual gives.</p>
+  <p>Standing still in a room with two guards for two minutes, with a counter on <code>$639F</code>, left the hit count at zero: the guards keep to their own part of the floor. The damage comes from walking into them.</p>
+</section>
+
+<section>
+  <p class="fig">06 · The dice</p>
+  <h2 class="t">Secret: the sound chip is the random number generator</h2>
+  <p class="lede">The game rolls its dice once, at start-up, out of the SID's noise.</p>
+  <div class="plate">
+    <canvas id="en-dice" class="en-cv" width="512" height="128"></canvas>
+    <p class="cap">The 256 bytes at <code>$8700</code> as the game built them, one column a byte. Drawn from a snapshot of play, not from the listing: the table does not exist until the game runs.</p>
+  </div>
+  <p><code>$67CA</code> sets voice three to noise at the highest frequency it can hold, reads the voice's own oscillator output at <code>$D41B</code> 256 times, writes what it reads into <code>$8700</code>, and silences the voice again. From then on <code>$67F3</code> steps an index through those 256 bytes, round and round, and that is every random number the game ever uses.</p>
+  <p>Reading the chip's noise is a common trick on the C64, and most games that use it read it afresh each time they need a number. Reading it 256 times at the start and keeping the answers costs a page of memory and makes every game identical from the same starting point.</p>
+</section>
+
+<section>
+  <p class="fig">07 · The spare tiles</p>
+  <h2 class="t">Secret: 999 bytes of castle nothing draws</h2>
+  <p class="lede">The tape loads 125 characters' worth of tiles that no instruction reaches.</p>
+  <div class="plate">
+    <canvas id="en-spare" class="en-cv" width="512" height="200"></canvas>
+    <p class="cap">The bytes from <code>$8C00</code> to <code>$8FE6</code>, drawn as 8 by 8 characters. Searched for a reader with the references search, by name, as a pointer and through an index: there is none.</p>
+  </div>
+  <p>They are shaped like the walls and floors the game draws from, and they are not the set it uses, which is at <code>$2000</code>. The manual promises a second castle, harder than the first, once the first has been destroyed. Nothing in this version builds one: the map builder always reads the same four descriptions.</p>
+  <p>Whether these are that second castle's tiles is open. They are the only candidate in the image, and nothing reads them.</p>
+</section>
+
+</main>
+<script src="../../lib/c64.js"></script>
+<script>
+/* en-dice */
+// The 256 random bytes at $8700, as the game built them from the sound chip's noise: one column a
+// byte, its height the value. They are not in the listing, which is the image before the game ran,
+// so they are embedded here, read out of a snapshot of play with kit/c64/snapshot.py.
+const EN_DICE = [167,239,225,211,197,183,169,155,141,127,113,99,85,71,57,43,29,15,1,243,229,215,201,187,173,159,145,131,117,103,89,75,61,47,33,19,5,247,233,219,205,191,177,163,149,135,121,107,93,79,65,51,37,23,9,251,237,223,209,195,181,167,153,139,125,111,97,83,69,55,41,27,13,255,241,227,213,199,185,171,157,143,129,115,101,87,73,59,45,31,17,3,245,231,217,203,189,175,161,147,133,119,105,91,77,63,49,35,21,7,249,235,221,207,193,179,165,151,137,123,109,95,81,67,53,39,25,11,253,239,225,211,197,183,169,155,141,127,113,99,85,71,57,43,29,15,1,243,229,215,201,187,173,159,145,131,117,103,89,75,61,47,33,19,5,247,233,219,205,191,177,163,149,135,121,107,93,79,65,51,37,23,9,251,237,223,209,195,181,167,153,139,125,111,97,83,69,55,41,27,13,255,198,184,170,156,142,128,114,100,86,72,58,44,30,16,2,244,230,216,202,188,174,160,146,132,118,104,90,76,62,48,34,20,6,205,191,177,163,149,135,121,107,93,79,65,51,37,23,9,251,237,223,209,195,181];
+// end of en-dice
+</script>
+<script>
+/* en-disc */
+'use strict';
+const $ = (id) => document.getElementById(id);
+const hex = (n, w) => '$' + n.toString(16).toUpperCase().padStart(w || 2, '0');
+function pressed(box, b) { box.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); }
+
+// The dice, drawn from the bytes themselves.
+(function dice() {
+  const cv = $('en-dice'), ctx = cv.getContext('2d');
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.fillStyle = C64.PAL ? C64.PAL[13] : '#a9ff9f';
+  EN_DICE.forEach((v, i) => { const h = Math.round(v / 255 * 120); ctx.fillRect(i * 2, 128 - h, 2, h); });
+})();
+
+// ---- 02 the chest gamble, exactly as $5598 decides it
+(function chest() {
+  const bar = document.getElementById('en-chest-bar'), log = document.getElementById('en-chest-log');
+  const tally = { empty: 0, jewels: 0, boom: 0 };
+  let at = 0;                                     // where in the table the game has got to
+  const next = () => EN_DICE[at++ % EN_DICE.length];
+  function shoot() {
+    const first = next();
+    let line, which;
+    if (first < 0xC0) { line = 'EMPTY!'; which = 'empty'; }
+    else {
+      const second = next();
+      if (second >= 0x80) { line = 'YOU HAVE SHOT SOME JEWELS.'; which = 'jewels'; }
+      else { line = 'FOOL!....EXPLOSIVES.'; which = 'boom'; }
+    }
+    tally[which]++;
+    document.getElementById('en-chest-empty').textContent = String(tally.empty);
+    document.getElementById('en-chest-jewels').textContent = String(tally.jewels);
+    document.getElementById('en-chest-boom').textContent = String(tally.boom);
+    log.textContent = line;
+  }
+  [['One chest', 1], ['Ten', 10], ['A hundred', 100]].forEach(([label, n]) => {
+    const el = document.createElement('button');
+    el.type = 'button'; el.className = 'en-btn'; el.textContent = label;
+    el.setAttribute('aria-pressed', 'false');
+    el.addEventListener('click', () => { for (let i = 0; i < n; i++) shoot(); });
+    bar.appendChild(el);
+  });
+})();
+
+C64.load('listing.json').then((m) => {
+  // 01 the cheat word, in the game's own big alphabet
+  const cv = $('en-word'), ctx = cv.getContext('2d'), bar = $('en-word-bar');
+  const set = m.ram.subarray(0x2800, 0x3000);
+  const word = Array.from(m.ram.subarray(0x6F31, 0x6F3B));
+  function show(asBytes) {
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
+    word.forEach((b, i) => {
+      const x = 14 + i * 66, y = 18;
+      if (asBytes) {
+        ctx.fillStyle = '#edf171'; ctx.font = '22px monospace'; ctx.textAlign = 'center';
+        ctx.fillText(hex(b), x + 32, y + 46);
+      } else {
+        const n = (b & 0x3F) * 4;
+        C64.drawGlyph(ctx, set, n, x, y, 4, C64.PAL[1], '#000');
+        C64.drawGlyph(ctx, set, n + 2, x + 32, y, 4, C64.PAL[1], '#000');
+        C64.drawGlyph(ctx, set, n + 1, x, y + 32, 4, C64.PAL[1], '#000');
+        C64.drawGlyph(ctx, set, n + 3, x + 32, y + 32, 4, C64.PAL[1], '#000');
+      }
+    });
+  }
+  [['The word', false], ['The bytes', true]].forEach(([label, on], i) => {
+    const el = document.createElement('button');
+    el.type = 'button'; el.className = 'en-btn'; el.textContent = label;
+    el.setAttribute('aria-pressed', String(i === 0));
+    el.addEventListener('click', () => { pressed(bar, el); show(on); });
+    bar.appendChild(el);
+  });
+  show(false);
+
+  // 06 the tiles nothing reaches
+  const sc = $('en-spare'), sctx = sc.getContext('2d');
+  sctx.fillStyle = '#000'; sctx.fillRect(0, 0, sc.width, sc.height);
+  C64.drawCharset(sctx, m.ram.subarray(0x8C00, 0x8FE7), 124, 32, 2, C64.PAL[3], '#000');
+}).catch((e) => {
+  const el = document.querySelector('#en-word'); if (el) el.replaceWith('The listing could not be loaded: ' + e.message);
+});
+// end of en-disc
+</script>

@@ -1,0 +1,162 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Into the Eagle's Nest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+
+.en-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.en-key{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);margin-right:4px}
+.en-btn{font-family:var(--fm);font-size:13px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 11px;cursor:pointer;color:var(--ink)}
+.en-btn[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
+.en-cv{image-rendering:pixelated;display:block;max-width:100%;height:auto;background:#000;border-radius:6px;margin:0 auto}
+table.en-tab{border-collapse:collapse;width:100%;font-size:14px}
+table.en-tab th,table.en-tab td{border-bottom:1px solid var(--line-soft);padding:6px 10px;text-align:left}
+table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+.en-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--ink-soft);margin-top:12px}
+.en-legend span{display:flex;align-items:center;gap:6px}
+.en-sw{width:14px;height:14px;border-radius:3px;border:1px solid var(--line)}
+</style>
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">1987 · Pandora</p>
+  <h1>Into the Eagle's Nest</h1>
+  <p class="sub">The castle's four floors, each drawn from the kilobyte of description the tape carries for it.</p>
+</header>
+<main class="wrap">
+
+<section>
+  <p class="fig">01 · The floors</p>
+  <h2 class="t">Four floors, 128 tiles square</h2>
+  <p class="lede">The whole of each floor, drawn one pixel a tile from its description and the table of blocks.</p>
+  <div class="plate">
+    <div class="en-bar" id="en-floor-bar"><span class="en-key">Floor</span></div>
+    <canvas id="en-map" class="en-cv" width="512" height="512"></canvas>
+    <div class="en-legend">
+      <span><i class="en-sw" style="background:#000"></i> open floor and nothing</span>
+      <span><i class="en-sw" style="background:#75cec8"></i> wall</span>
+      <span><i class="en-sw" style="background:#edf171"></i> a figure, a pickup or a door</span>
+    </div>
+    <p class="cap" id="en-map-cap"></p>
+  </div>
+  <p>Each floor is 32 rows of 32 bytes in the memory under the input and output chips, and each byte names one of the blocks at <code>$7000</code>, four tiles across and four down. That makes a map of 128 tiles each way, which the game builds at <code>$9000</code> when the player arrives on the floor. The screen shows 28 tiles by 21 of it at a time.</p>
+  <p>The pictures above are drawn the way the builder at <code>$6A4B</code> builds the map, and then coloured a pixel a tile from the tile colour table at <code>$8600</code>. The walls stand out because they are the only thing in the castle drawn in cyan.</p>
+</section>
+
+<section>
+  <p class="fig">02 · What a floor holds</p>
+  <h2 class="t">The figures, the charge and the prisoner</h2>
+  <p class="lede">Eight bytes of a floor's description are not blocks at all.</p>
+  <div class="plate">
+    <table class="en-tab" id="en-counts">
+      <tr><th>Floor</th><th>Blocks named</th><th>Figures</th><th>Charge</th><th>Prisoner</th></tr>
+    </table>
+    <p class="cap">Counted from the four descriptions in the listing. A figure's code is <code>$30</code> to <code>$37</code>, two for each of the four kinds; the charge is <code>$62</code> and the prisoner <code>$63</code>.</p>
+  </div>
+  <p>The builder picks those bytes out as it goes. Every figure it finds is added to a list in <code>$8100</code> to <code>$8500</code>, which holds each one's place in the map and its kind, and the figures then take turns one a frame. The charge and the prisoner each have one place kept for them, and the charge is only put on the map at all when the demolition mission is being played and that floor's charge has not yet been set off.</p>
+</section>
+
+</main>
+<script src="../../lib/c64.js"></script>
+<script>
+/* en-levels */
+'use strict';
+const $ = (id) => document.getElementById(id);
+const hex = (n, w) => '$' + n.toString(16).toUpperCase().padStart(w || 2, '0');
+function pressed(box, b) { box.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); }
+
+const FLOORS = [['Basement', 0xD000], ['Ground floor', 0xD400], ['First floor', 0xD800], ['Second floor', 0xDC00]];
+
+// A floor drawn a pixel a tile, from its description and the blocks at $7000.
+function drawFloor(ctx, m, base, scale) {
+  const colours = m.ram.subarray(0x8600, 0x8700);
+  const img = ctx.createImageData(128 * scale, 128 * scale);
+  for (let br = 0; br < 32; br++) {
+    for (let bc = 0; bc < 32; bc++) {
+      const b = m.ram[base + br * 32 + bc];
+      for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 4; c++) {
+          const code = m.ram[0x7000 + b * 16 + r * 4 + c];
+          const col = code === 0 ? '#000000' : C64.PAL[colours[code] & 7];
+          const R = parseInt(col.slice(1, 3), 16), G = parseInt(col.slice(3, 5), 16), B = parseInt(col.slice(5, 7), 16);
+          const x = (bc * 4 + c) * scale, y = (br * 4 + r) * scale;
+          for (let dy = 0; dy < scale; dy++) for (let dx = 0; dx < scale; dx++) {
+            const o = ((y + dy) * 128 * scale + x + dx) * 4;
+            img.data[o] = R; img.data[o + 1] = G; img.data[o + 2] = B; img.data[o + 3] = 255;
+          }
+        }
+      }
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+}
+
+function counts(m, base) {
+  let figures = 0, charge = 0, prisoner = 0, blocks = new Set();
+  for (let i = 0; i < 1024; i++) {
+    const b = m.ram[base + i];
+    if (b >= 0x30 && b <= 0x37) figures++;
+    else if (b === 0x62) charge++;
+    else if (b === 0x63) prisoner++;
+    blocks.add(b);
+  }
+  return { figures, charge, prisoner, blocks: blocks.size };
+}
+
+C64.load('listing.json').then((m) => {
+  const cv = $('en-map'), ctx = cv.getContext('2d'), bar = $('en-floor-bar'), cap = $('en-map-cap');
+  function show(i) {
+    drawFloor(ctx, m, FLOORS[i][1], 4);
+    const c = counts(m, FLOORS[i][1]);
+    cap.textContent = FLOORS[i][0] + ', from the kilobyte at ' + hex(FLOORS[i][1], 4) + ': '
+      + c.blocks + ' different blocks, ' + c.figures + ' figures, '
+      + (c.charge ? 'a charge' : 'no charge') + ' and ' + (c.prisoner ? 'a prisoner.' : 'no prisoner.');
+  }
+  FLOORS.forEach(([name], i) => {
+    const el = document.createElement('button');
+    el.type = 'button'; el.className = 'en-btn'; el.textContent = name;
+    el.setAttribute('aria-pressed', String(i === 0));
+    el.addEventListener('click', () => { pressed(bar, el); show(i); });
+    bar.appendChild(el);
+  });
+  show(0);
+  const tab = $('en-counts');
+  FLOORS.forEach(([name, base]) => {
+    const c = counts(m, base);
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + name + '</td><td>' + c.blocks + '</td><td>' + c.figures + '</td><td>'
+      + (c.charge ? 'yes' : 'no') + '</td><td>' + (c.prisoner ? 'yes' : 'no') + '</td>';
+    tab.appendChild(tr);
+  });
+}).catch((e) => { $('en-map-cap').textContent = 'The listing could not be loaded: ' + e.message; });
+// end of en-levels
+</script>

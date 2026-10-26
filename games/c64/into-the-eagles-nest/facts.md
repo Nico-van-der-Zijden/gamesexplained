@@ -136,6 +136,23 @@ looking at the nine places listed at `$5374` in the grid around the shot,
 because an object is drawn from several tiles and only its first names
 it.
 
+**Chests are a gamble.** A closed chest is tiles `$5E` to `$61`, and
+shooting one goes to `$5598`, which takes a number from the table of
+random numbers: only one in four is `$C0` or more, and the other three
+times the chest is empty. On that one it takes a second number, and gives
+jewels when it is `$80` or more and explosives otherwise, so a chest pays
+out one time in eight and blows up one time in eight. Jewels are tiles
+`$66` to `$69` and are worth 4000; explosives are `$6A` to `$6D` and set
+`$02D3` to 1, which is the explosion that kills the player. Either way the
+chest is left open, tiles `$62` to `$65`.
+
+**The explosion** at `$5BDD` is a crate of dynamite going off, not the
+castle. It walks the border and the background through the seventeen
+colours at `$5C11`, eighteen steps a round and five rounds, and then sets
+`$02D3` to `$FF`, which the main loop reads as the end of the game. The
+eighteenth step reads the byte after the table, which is the first byte of
+the tile grid at `$5C22`.
+
 **Damage.** `$639F` is the only routine that adds to the hit count, and
 its only four callers are the four branches of the figures' movement
 where the tile a figure would step into holds the player's stamp. **No
@@ -155,6 +172,15 @@ pile of jewels 4000 each.
 them altogether. A box of ammunition fills the count back towards `$99`,
 and when there is no room the game says "ANY MORE AMMO WOULD BE
 WASTED !". A mission starts with `$99`, that is 99 rounds.
+
+**How a mission ends.** The main loop watches four things. `$02C8` = 2
+means the player has stepped onto the lift with a pass, and `$48D4` takes
+him to the floor select; `$02E9` = 1 that a prisoner has been brought
+home, and `$49EC` saves the score, puts the ammunition back to 99 and
+starts the next mission; `$02E9` = 2 that the castle has been destroyed,
+and `$4A5C` shows the end-of-mission screen; `$02D3` = `$FF` that the
+player is dead, and `$48F0` shows "YOU ARE DEAD". The last three all end
+at the high score check.
 
 **Between missions.** `$4946` puts the KERNAL's own interrupt back so
 the mission screens have a keyboard, and keeps the keys, the ammunition,
@@ -314,6 +340,29 @@ writes in three seconds); play with nothing pressed writes it not at all,
 and a shot produced 11 writes (*live*, `work/sidwrites.py`).
 
 ## The listing's error rate
+
+A sample of 60 of the listing's 659 comments was drawn at random with
+seed 20261026 (`work/verify/sample.json`) and given to a checker that
+wrote none of them, on claude-opus-5. The checker marked 3 wrong and 10
+wrong in a detail, and every one of the 13 was read against the code
+again here and held: 13 of 60, which is 21.7 % and well over the mark of
+2 in 60. All 13 were corrected, and so was every other comment that said
+the same thing: the two hand-overs the main loop makes, which were
+swapped, carried the same mistake in four comments, and the chests that
+were taken for soldiers in three. The run recommends a full audit of the
+listing, which it did not do.
+
+What the checker found, in kind: two routines described as each other's
+job (the lift and the prisoner brought home); a range of tile codes taken
+for soldiers when it is the chests; counts off by a few (ten steps of a
+scroll, not thirteen; eighteen steps of the explosion, not seventeen;
+forty cells of a colour band when two of the four are four hundred); a
+test read the wrong way round (a counter that runs while fire is *not*
+held); and a set of tiles described as one per direction when they are
+the four rows of one block.
+
+The rate is the checker's, and a checker misses some, so 21.7 % is a
+lower bound on what a full audit would find.
 
 ## Live tests
 

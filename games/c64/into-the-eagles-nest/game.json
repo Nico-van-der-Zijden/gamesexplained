@@ -44,6 +44,12 @@
     ],
     "50-coverage": [
       "claude-opus-5"
+    ],
+    "60-verify": [
+      "claude-opus-5"
+    ],
+    "70-minisite": [
+      "claude-opus-5"
     ]
   },
   "accuracy": [
@@ -53,6 +59,31 @@
       "models": [
         "claude-opus-5"
       ]
+    },
+    {
+      "step": "annotate",
+      "models": [
+        "claude-opus-5"
+      ]
+    },
+    {
+      "step": "port",
+      "fixed": 1,
+      "models": [
+        "claude-opus-5"
+      ],
+      "note": "the music driver, which took the tune's first notes a tick late where the game takes them in the same call"
+    },
+    {
+      "step": "sample",
+      "size": 60,
+      "wrong": 13,
+      "fixed": 13,
+      "seed": 20261026,
+      "models": [
+        "claude-opus-5"
+      ],
+      "note": "every one of the 13 was read against the code again and held; an audit is recommended"
     }
   ],
   "kit_version": "0.0.244",
@@ -207,5 +238,19 @@
       "title": "",
       "url": ""
     }
-  }
+  },
+  "tabs": [
+    [
+      "index.html",
+      "How it works"
+    ],
+    [
+      "discoveries.html",
+      "Discoveries"
+    ],
+    [
+      "levels.html",
+      "Maps"
+    ]
+  ]
 }
