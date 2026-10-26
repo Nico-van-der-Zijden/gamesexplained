@@ -9,7 +9,7 @@
   "title_image": "reference/title.png",
   "build": "PAL cassette, Pandora 1987, analysed at the loader's hand-over",
   "tier": "none",
-  "coverage_percent": null,
+  "coverage_percent": 100.0,
   "copy": "agent-draft",
   "steward": "",
   "credits": [
@@ -40,6 +40,9 @@
       "claude-opus-5"
     ],
     "40-sweep": [
+      "claude-opus-5"
+    ],
+    "50-coverage": [
       "claude-opus-5"
     ]
   },
@@ -104,6 +107,11 @@
         "$BF40",
         "$CFFF",
         "runtime: the bottom part of the castle map, built from the floor's description by $6A40"
+      ],
+      [
+        "$FD50",
+        "$FFFF",
+        "untouched RAM beneath the KERNAL, apart from the two bytes at $FFFE the load wrote; no instruction in the game names any of it"
       ]
     ],
     "extra": [
@@ -122,7 +130,74 @@
     ]
   },
   "io": [],
-  "regions": [],
+  "regions": [
+    [
+      "$2000",
+      "$27FF",
+      "graphics",
+      "the play screen's character set: the castle's tiles, the figures, the pickups, the panel's letters and the digits"
+    ],
+    [
+      "$2800",
+      "$2FFF",
+      "graphics",
+      "the big alphabet the attract screens and the message line are written in, two cells by two to a character"
+    ],
+    [
+      "$3000",
+      "$3D8C",
+      "graphics",
+      "the sprite shapes: the player's four for each direction, the bullet's four and the castle emblem"
+    ],
+    [
+      "$5609",
+      "$592A",
+      "text",
+      "the 33 messages for the line at the bottom of the screen"
+    ],
+    [
+      "$7000",
+      "$76BF",
+      "levels",
+      "the blocks the castle's floors are built from, four tiles by four"
+    ],
+    [
+      "$8600",
+      "$86FF",
+      "tables",
+      "the colour of each tile of the play character set"
+    ],
+    [
+      "$8C00",
+      "$8FE6",
+      "graphics",
+      "999 bytes of tile-shaped graphics no instruction reaches"
+    ],
+    [
+      "$A000",
+      "$BF3F",
+      "graphics",
+      "the title picture's bitmap, which the castle map is built over"
+    ],
+    [
+      "$D000",
+      "$DFFF",
+      "levels",
+      "the four floors' descriptions, a kilobyte each"
+    ],
+    [
+      "$E000",
+      "$EFFF",
+      "graphics",
+      "the stone plaque's bitmap and its colours"
+    ],
+    [
+      "$F000",
+      "$F3FF",
+      "graphics",
+      "the prisoner's eight walking frames"
+    ]
+  ],
   "links": {
     "wiki": {
       "title": "Into the Eagle's Nest",

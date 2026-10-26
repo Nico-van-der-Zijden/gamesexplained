@@ -60,6 +60,11 @@
     48960,
     53247,
     "runtime: the bottom part of the castle map, built from the floor's description by $6A40"
+   ],
+   [
+    64848,
+    65535,
+    "untouched RAM beneath the KERNAL, apart from the two bytes at $FFFE the load wrote; no instruction in the game names any of it"
    ]
   ],
   "extra": [
@@ -97,6 +102,16 @@
   },
   {
    "start": 14,
+   "end": 511,
+   "type": "Undefined"
+  },
+  {
+   "start": 512,
+   "end": 767,
+   "type": "Byte"
+  },
+  {
+   "start": 768,
    "end": 2063,
    "type": "Undefined"
   },
@@ -447,11 +462,11 @@
   },
   {
    "start": 19442,
-   "end": 19658,
+   "end": 19753,
    "type": "Code"
   },
   {
-   "start": 19659,
+   "start": 19754,
    "end": 19769,
    "type": "Undefined"
   },
@@ -687,16 +702,26 @@
   },
   {
    "start": 36839,
+   "end": 40959,
+   "type": "Undefined"
+  },
+  {
+   "start": 40960,
+   "end": 48959,
+   "type": "Byte"
+  },
+  {
+   "start": 48960,
    "end": 53247,
    "type": "Undefined"
   },
   {
    "start": 53248,
-   "end": 61439,
+   "end": 62463,
    "type": "Byte"
   },
   {
-   "start": 61440,
+   "start": 62464,
    "end": 64788,
    "type": "Undefined"
   },
@@ -724,141 +749,141 @@
  "symbols": [
   {
    "address": 0,
-   "name": "start",
+   "name": "cpu_ddr",
    "type": "UserDefined",
    "kind": "user"
   },
   {
    "address": 1,
-   "name": "zpa_01",
+   "name": "cpu_port",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2,
-   "name": "zpa_02",
+   "name": "map_addr_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3,
-   "name": "zpa_03",
+   "name": "map_addr_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4,
-   "name": "zpa_04",
+   "name": "build_source_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5,
-   "name": "zpa_05",
+   "name": "build_source_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6,
-   "name": "zpa_06",
+   "name": "grid_addr_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7,
-   "name": "zpa_07",
+   "name": "grid_addr_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8,
-   "name": "zpa_08",
+   "name": "figure_from_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 9,
-   "name": "zpa_09",
+   "name": "figure_from_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 10,
-   "name": "zpa_0A",
+   "name": "figure_shape_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 11,
-   "name": "zpa_0B",
+   "name": "zero_page_builder",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 145,
-   "name": "zpp_91",
+   "name": "zero_page_pointers",
    "type": "ZeroPagePointer",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 197,
-   "name": "zpa_C5",
+   "name": "space_down",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 234,
-   "name": "zpp_EA",
+   "name": "zero_page_spare_1",
    "type": "ZeroPagePointer",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 242,
-   "name": "zpp_F2",
+   "name": "zero_page_spare_2",
    "type": "ZeroPagePointer",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 250,
-   "name": "zpa_FA",
+   "name": "room_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 251,
-   "name": "zpa_FB",
+   "name": "room_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 252,
-   "name": "zpa_FC",
+   "name": "pointer_lo",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 253,
-   "name": "zpa_FD",
+   "name": "pointer_hi",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 254,
-   "name": "zpa_FE",
+   "name": "room_offset_x",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 255,
-   "name": "zpa_FF",
+   "name": "room_offset_y",
    "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 512,
-   "name": "f_0200",
+   "name": "basic_input_buffer",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 679,
@@ -885,6 +910,12 @@
    "kind": "user"
   },
   {
+   "address": 683,
+   "name": "fade_mask",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
    "address": 684,
    "name": "keys",
    "type": "AbsoluteAddress",
@@ -892,15 +923,15 @@
   },
   {
    "address": 685,
-   "name": "a_02AD",
+   "name": "door_half",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 686,
-   "name": "a_02AE",
+   "name": "door_other_half",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 687,
@@ -958,15 +989,15 @@
   },
   {
    "address": 696,
-   "name": "a_02B8",
+   "name": "steel_door_tile",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 697,
-   "name": "a_02B9",
+   "name": "wooden_door_tile",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 698,
@@ -1000,21 +1031,21 @@
   },
   {
    "address": 703,
-   "name": "a_02BF",
+   "name": "idle_nag_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 704,
-   "name": "a_02C0",
+   "name": "idle_fire_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 705,
-   "name": "a_02C1",
+   "name": "idle_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 706,
@@ -1048,9 +1079,9 @@
   },
   {
    "address": 711,
-   "name": "a_02C7",
+   "name": "slide_steps",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 712,
@@ -1078,9 +1109,9 @@
   },
   {
    "address": 716,
-   "name": "a_02CC",
+   "name": "figures_phase",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 717,
@@ -1210,9 +1241,9 @@
   },
   {
    "address": 738,
-   "name": "a_02E2",
+   "name": "jewel_scan",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 739,
@@ -1222,15 +1253,15 @@
   },
   {
    "address": 740,
-   "name": "a_02E4",
+   "name": "prisoner_tick",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 741,
-   "name": "a_02E5",
+   "name": "prisoner_held",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 742,
@@ -1240,15 +1271,15 @@
   },
   {
    "address": 743,
-   "name": "a_02E7",
+   "name": "prisoner_spare",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 744,
-   "name": "a_02E8",
+   "name": "prisoner_free",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 745,
@@ -1258,25 +1289,25 @@
   },
   {
    "address": 746,
-   "name": "lift_place_lo",
+   "name": "detonator_place_lo",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 747,
-   "name": "lift_place_hi",
+   "name": "detonator_place_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 749,
-   "name": "prisoner_place_lo",
+   "name": "prisoner_start_lo",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 750,
-   "name": "prisoner_place_hi",
+   "name": "prisoner_start_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -1288,9 +1319,9 @@
   },
   {
    "address": 752,
-   "name": "a_02F0",
+   "name": "figures_or_prisoner",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 759,
@@ -1300,15 +1331,15 @@
   },
   {
    "address": 788,
-   "name": "a_0314",
+   "name": "irq_vector",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 789,
-   "name": "a_0315",
+   "name": "kernal_vectors",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 1024,
@@ -2404,9 +2435,9 @@
   },
   {
    "address": 2936,
-   "name": "f_0B78",
+   "name": "str_strip_end_mark",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2953,
@@ -2518,9 +2549,9 @@
   },
   {
    "address": 3284,
-   "name": "b_0CD4",
+   "name": "name_entry_wait",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3292,
@@ -2584,9 +2615,9 @@
   },
   {
    "address": 3408,
-   "name": "f_0D50",
+   "name": "hiscore_first_name",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3409,
@@ -2596,9 +2627,15 @@
   },
   {
    "address": 3421,
-   "name": "f_0D5D",
+   "name": "hiscore_first_score",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 3485,
+   "name": "hiscore_entries_rest",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 3609,
@@ -2608,9 +2645,9 @@
   },
   {
    "address": 3628,
-   "name": "f_0E2C",
+   "name": "str_heroes_heading",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3648,
@@ -2902,27 +2939,27 @@
   },
   {
    "address": 4435,
-   "name": "a_1153",
+   "name": "draw_icon_frames_screen",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4436,
-   "name": "a_1154",
+   "name": "draw_icon_frames_operand",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4441,
-   "name": "a_1159",
+   "name": "draw_icon_frames_colour",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4442,
-   "name": "a_115A",
+   "name": "draw_icon_frames_loop",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4466,
@@ -3010,9 +3047,9 @@
   },
   {
    "address": 4660,
-   "name": "f_1234",
+   "name": "false_symbol_1234",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4668,
@@ -3376,15 +3413,15 @@
   },
   {
    "address": 6452,
-   "name": "a_1934",
+   "name": "music_countdown_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6453,
-   "name": "a_1935",
+   "name": "music_countdown_3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6454,
@@ -3394,15 +3431,15 @@
   },
   {
    "address": 6455,
-   "name": "a_1937",
+   "name": "music_position_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6456,
-   "name": "a_1938",
+   "name": "music_position_3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6457,
@@ -3436,15 +3473,15 @@
   },
   {
    "address": 6466,
-   "name": "a_1942",
+   "name": "music_note_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6467,
-   "name": "a_1943",
+   "name": "music_note_spare",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6469,
@@ -3580,27 +3617,27 @@
   },
   {
    "address": 6790,
-   "name": "f_1A86",
+   "name": "str_ground_floor",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6804,
-   "name": "f_1A94",
+   "name": "str_first_floor",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6818,
-   "name": "f_1AA2",
+   "name": "str_second_floor",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6832,
-   "name": "a_1AB0",
+   "name": "floor_marker_tile",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6833,
@@ -3982,9 +4019,9 @@
   },
   {
    "address": 7988,
-   "name": "f_1F34",
+   "name": "str_success",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7996,
@@ -4060,51 +4097,63 @@
   },
   {
    "address": 8320,
-   "name": "f_2080",
+   "name": "tile_ammo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8336,
-   "name": "f_2090",
+   "name": "tile_door_key",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8352,
-   "name": "f_20A0",
+   "name": "tile_painting",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8384,
-   "name": "f_20C0",
+   "name": "tile_vase",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8416,
-   "name": "f_20E0",
+   "name": "tile_cold_food",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8448,
-   "name": "f_2100",
+   "name": "tiles_charset_1b",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8512,
-   "name": "f_2140",
+   "name": "tiles_charset_1c",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 8576,
+   "name": "tiles_charset_2",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 9008,
-   "name": "f_2330",
+   "name": "tiles_charset_1d",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 9072,
+   "name": "tiles_charset_3",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 9216,
@@ -4114,9 +4163,15 @@
   },
   {
    "address": 9888,
-   "name": "f_26A0",
+   "name": "prisoner_tiles",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 9952,
+   "name": "tiles_charset_4",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 10240,
@@ -4132,57 +4187,57 @@
   },
   {
    "address": 12096,
-   "name": "f_2F40",
+   "name": "borrowed_icon_tiles",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12160,
-   "name": "f_2F80",
+   "name": "borrowed_icon_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12192,
-   "name": "f_2FA0",
+   "name": "borrowed_icon_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12208,
-   "name": "f_2FB0",
+   "name": "borrowed_icon_5",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12216,
-   "name": "f_2FB8",
+   "name": "borrowed_icon_6",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12224,
-   "name": "f_2FC0",
+   "name": "borrowed_icon_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12240,
-   "name": "f_2FD0",
+   "name": "borrowed_icon_7",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12248,
-   "name": "f_2FD8",
+   "name": "borrowed_icon_8",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12256,
-   "name": "f_2FE0",
+   "name": "borrowed_icon_4",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 12288,
@@ -4192,9 +4247,15 @@
   },
   {
    "address": 12560,
-   "name": "a_3110",
+   "name": "sprite_shapes_1a",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 12624,
+   "name": "sprite_shapes_1b",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 13312,
@@ -4216,9 +4277,9 @@
   },
   {
    "address": 16384,
-   "name": "j_4000",
+   "name": "game_entry",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16393,
@@ -4270,9 +4331,9 @@
   },
   {
    "address": 16401,
-   "name": "a_4011",
+   "name": "lift_arrival",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16402,
@@ -4282,9 +4343,9 @@
   },
   {
    "address": 16403,
-   "name": "s_4013",
+   "name": "go_print_message",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 16406,
@@ -4720,9 +4781,9 @@
   },
   {
    "address": 17798,
-   "name": "s_4586",
+   "name": "clear_spent_shots",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 17827,
@@ -4798,9 +4859,9 @@
   },
   {
    "address": 18066,
-   "name": "s_4692",
+   "name": "move_shots",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18073,
@@ -4996,9 +5057,9 @@
   },
   {
    "address": 18454,
-   "name": "a_4816",
+   "name": "draw_room_source_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18456,
@@ -5008,9 +5069,9 @@
   },
   {
    "address": 18457,
-   "name": "a_4819",
+   "name": "draw_room_screen_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18462,
@@ -5020,9 +5081,9 @@
   },
   {
    "address": 18463,
-   "name": "a_481F",
+   "name": "draw_room_colour_loop",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 18480,
@@ -5290,15 +5351,15 @@
   },
   {
    "address": 19416,
-   "name": "f_4BD8",
+   "name": "wipe_irq_spare",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19420,
-   "name": "s_4BDC",
+   "name": "shift_message_line",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19422,
@@ -5308,21 +5369,21 @@
   },
   {
    "address": 19438,
-   "name": "a_4BEE",
+   "name": "wipe_line_top",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19439,
-   "name": "a_4BEF",
+   "name": "wipe_line_bottom",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19440,
-   "name": "a_4BF0",
+   "name": "wipe_band",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19441,
@@ -5332,9 +5393,15 @@
   },
   {
    "address": 19442,
-   "name": "s_4BF2",
+   "name": "install_wipe_irq",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 19490,
+   "name": "wipe_irq",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 19515,
@@ -5344,9 +5411,9 @@
   },
   {
    "address": 19530,
-   "name": "s_4C4A",
+   "name": "wipe_band_closed",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19565,
@@ -5374,15 +5441,51 @@
   },
   {
    "address": 19629,
-   "name": "s_4CAD",
+   "name": "wipe_band_open",
    "type": "Subroutine",
+   "kind": "user"
+  },
+  {
+   "address": 19659,
+   "name": "fade_in_tiles",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 19675,
+   "name": "b_4CDB",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 19693,
+   "name": "b_4CED",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 19704,
+   "name": "b_4CF8",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 19720,
+   "name": "b_4D08",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 19737,
+   "name": "b_4D19",
+   "type": "Branch",
    "kind": "auto"
   },
   {
    "address": 19754,
-   "name": "f_4D2A",
+   "name": "walked_onto_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 19770,
@@ -5494,9 +5597,9 @@
   },
   {
    "address": 20087,
-   "name": "s_4E77",
+   "name": "redraw_tile_grid",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 20089,
@@ -6286,21 +6389,21 @@
   },
   {
    "address": 22827,
-   "name": "a_592B",
+   "name": "message_read",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 22828,
-   "name": "a_592C",
+   "name": "message_write",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 22829,
-   "name": "a_592D",
+   "name": "message_half",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 22830,
@@ -6322,9 +6425,9 @@
   },
   {
    "address": 22865,
-   "name": "s_5951",
+   "name": "scroll_message_in",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 22882,
@@ -6352,9 +6455,9 @@
   },
   {
    "address": 23091,
-   "name": "s_5A33",
+   "name": "idle_nags",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23102,
@@ -6406,9 +6509,9 @@
   },
   {
    "address": 23200,
-   "name": "s_5AA0",
+   "name": "score_ticker",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23206,
@@ -6418,9 +6521,9 @@
   },
   {
    "address": 23229,
-   "name": "s_5ABD",
+   "name": "announce_floor",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23259,
@@ -6448,33 +6551,33 @@
   },
   {
    "address": 23307,
-   "name": "f_5B0B",
+   "name": "player_tiles_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23311,
-   "name": "f_5B0F",
+   "name": "player_tiles_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23315,
-   "name": "f_5B13",
+   "name": "player_tiles_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23319,
-   "name": "f_5B17",
+   "name": "player_tiles_4",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23323,
-   "name": "s_5B1B",
+   "name": "stamp_player_in_map",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23340,
@@ -6568,105 +6671,105 @@
   },
   {
    "address": 23588,
-   "name": "a_5C24",
+   "name": "tile_round_player_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23589,
-   "name": "a_5C25",
+   "name": "tile_round_player_3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23590,
-   "name": "a_5C26",
+   "name": "tile_round_player_4",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23591,
-   "name": "f_5C27",
+   "name": "tile_grid_row1_end",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23592,
-   "name": "a_5C28",
+   "name": "tile_grid_row2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23597,
-   "name": "a_5C2D",
+   "name": "tile_grid_row2_right",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23598,
-   "name": "a_5C2E",
+   "name": "tile_grid_row3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23603,
-   "name": "a_5C33",
+   "name": "tile_grid_row3_right",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23604,
-   "name": "a_5C34",
+   "name": "tile_grid_row4",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23609,
-   "name": "a_5C39",
+   "name": "tile_grid_row4_right",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23610,
-   "name": "a_5C3A",
+   "name": "tile_grid_row5",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23615,
-   "name": "a_5C3F",
+   "name": "tile_grid_row5_right",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23616,
-   "name": "f_5C40",
+   "name": "tile_grid_row6",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23617,
-   "name": "a_5C41",
+   "name": "tile_grid_row6_b",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23618,
-   "name": "a_5C42",
+   "name": "tile_grid_row6_c",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23619,
-   "name": "a_5C43",
+   "name": "tile_grid_row6_d",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23620,
-   "name": "a_5C44",
+   "name": "tile_grid_last",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23622,
@@ -6694,15 +6797,15 @@
   },
   {
    "address": 23721,
-   "name": "f_5CA9",
+   "name": "jewel_places",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23737,
-   "name": "s_5CB9",
+   "name": "jewels_pickup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 23767,
@@ -6802,9 +6905,9 @@
   },
   {
    "address": 24008,
-   "name": "s_5DC8",
+   "name": "draw_panel",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24028,
@@ -6820,33 +6923,33 @@
   },
   {
    "address": 24038,
-   "name": "a_5DE6",
+   "name": "draw_panel_screen_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24039,
-   "name": "a_5DE7",
+   "name": "draw_panel_screen_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24041,
-   "name": "a_5DE9",
+   "name": "draw_panel_colour_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24043,
-   "name": "a_5DEB",
+   "name": "draw_panel_colour_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24044,
-   "name": "a_5DEC",
+   "name": "draw_panel_rows",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24077,
@@ -6874,9 +6977,9 @@
   },
   {
    "address": 24290,
-   "name": "s_5EE2",
+   "name": "place_player_at_start",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24327,
@@ -6886,9 +6989,9 @@
   },
   {
    "address": 24359,
-   "name": "s_5F27",
+   "name": "mission_done_check",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24370,
@@ -6934,27 +7037,27 @@
   },
   {
    "address": 24475,
-   "name": "a_5F9B",
+   "name": "detonator_ground",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24476,
-   "name": "a_5F9C",
+   "name": "detonator_first",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24477,
-   "name": "a_5F9D",
+   "name": "detonator_second",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24478,
-   "name": "s_5F9E",
+   "name": "place_detonator",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24494,
@@ -6970,9 +7073,9 @@
   },
   {
    "address": 24538,
-   "name": "s_5FDA",
+   "name": "short_delay",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24540,
@@ -6993,28 +7096,34 @@
    "kind": "auto"
   },
   {
+   "address": 24556,
+   "name": "unreached_after_delay",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 24576,
-   "name": "s_6000",
+   "name": "go_stamp_player",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24585,
-   "name": "s_6009",
+   "name": "go_sound_init",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24588,
-   "name": "s_600C",
+   "name": "go_sound_tick",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24594,
-   "name": "s_6012",
+   "name": "go_next_random",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24597,
@@ -7024,21 +7133,21 @@
   },
   {
    "address": 24600,
-   "name": "s_6018",
+   "name": "go_end_of_mission_slide",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24603,
-   "name": "s_601B",
+   "name": "go_build_floor",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24606,
-   "name": "s_601E",
+   "name": "go_prisoner_turn",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24609,
@@ -7048,57 +7157,57 @@
   },
   {
    "address": 24612,
-   "name": "s_6024",
+   "name": "go_place_detonator",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24615,
-   "name": "a_6027",
+   "name": "prisoner_block_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24616,
-   "name": "a_6028",
+   "name": "prisoner_block_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24617,
-   "name": "a_6029",
+   "name": "prisoner_place_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24618,
-   "name": "a_602A",
+   "name": "prisoner_place_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24619,
-   "name": "a_602B",
+   "name": "prisoner_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24620,
-   "name": "a_602C",
+   "name": "prisoner_last_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24621,
-   "name": "a_602D",
+   "name": "prisoner_last_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24622,
-   "name": "a_602E",
+   "name": "prisoner_frame",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24623,
@@ -7132,15 +7241,15 @@
   },
   {
    "address": 24640,
-   "name": "j_6040",
+   "name": "go_shot_hit_figure",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24643,
-   "name": "a_6043",
+   "name": "prisoner_announced",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 24644,
@@ -7384,9 +7493,9 @@
   },
   {
    "address": 25220,
-   "name": "s_6284",
+   "name": "redraw_figure",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25242,
@@ -7408,57 +7517,57 @@
   },
   {
    "address": 25315,
-   "name": "a_62E3",
+   "name": "redraw_figure_op1",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25316,
-   "name": "a_62E4",
+   "name": "redraw_figure_row1",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25322,
-   "name": "a_62EA",
+   "name": "redraw_figure_op2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25323,
-   "name": "a_62EB",
+   "name": "redraw_figure_row2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25331,
-   "name": "a_62F3",
+   "name": "redraw_figure_op3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25332,
-   "name": "a_62F4",
+   "name": "redraw_figure_row3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25338,
-   "name": "a_62FA",
+   "name": "redraw_figure_op4",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25339,
-   "name": "a_62FB",
+   "name": "redraw_figure_operands",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25355,
-   "name": "s_630B",
+   "name": "figure_shapes",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25362,
@@ -7498,9 +7607,9 @@
   },
   {
    "address": 25450,
-   "name": "s_636A",
+   "name": "dead_figure_shapes",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25476,
@@ -7816,15 +7925,15 @@
   },
   {
    "address": 26345,
-   "name": "f_66E9",
+   "name": "sound_sweep_start",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26351,
-   "name": "j_66EF",
+   "name": "sound_sweep",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26375,
@@ -7846,15 +7955,15 @@
   },
   {
    "address": 26402,
-   "name": "f_6722",
+   "name": "sound_sweep_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26417,
-   "name": "j_6731",
+   "name": "sound_tail_4",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26443,
@@ -8032,9 +8141,9 @@
   },
   {
    "address": 26899,
-   "name": "j_6913",
+   "name": "end_of_mission_slide",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26909,
@@ -8050,9 +8159,9 @@
   },
   {
    "address": 26940,
-   "name": "s_693C",
+   "name": "slide_screen_up",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26944,
@@ -8062,9 +8171,9 @@
   },
   {
    "address": 27071,
-   "name": "s_69BF",
+   "name": "slide_screen_down",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27075,
@@ -8254,9 +8363,9 @@
   },
   {
    "address": 27707,
-   "name": "j_6C3B",
+   "name": "prisoner_turn",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27713,
@@ -8278,9 +8387,9 @@
   },
   {
    "address": 27828,
-   "name": "s_6CB4",
+   "name": "prisoner_is_close",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27849,
@@ -8308,9 +8417,9 @@
   },
   {
    "address": 27859,
-   "name": "b_6CD3",
+   "name": "prisoner_step_up",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27863,
@@ -8332,9 +8441,9 @@
   },
   {
    "address": 27914,
-   "name": "j_6D0A",
+   "name": "prisoner_step_down",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27920,
@@ -8356,9 +8465,9 @@
   },
   {
    "address": 27969,
-   "name": "j_6D41",
+   "name": "prisoner_step_left",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28017,
@@ -8368,9 +8477,9 @@
   },
   {
    "address": 28026,
-   "name": "j_6D7A",
+   "name": "prisoner_step_right",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28072,
@@ -8380,9 +8489,9 @@
   },
   {
    "address": 28081,
-   "name": "s_6DB1",
+   "name": "prisoner_choose_way",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28098,
@@ -8428,9 +8537,9 @@
   },
   {
    "address": 28193,
-   "name": "j_6E21",
+   "name": "shot_hit_prisoner",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28218,
@@ -8458,15 +8567,15 @@
   },
   {
    "address": 28249,
-   "name": "a_6E59",
+   "name": "prisoner_frame_half",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28250,
-   "name": "s_6E5A",
+   "name": "animate_prisoner",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28265,
@@ -8488,33 +8597,33 @@
   },
   {
    "address": 28302,
-   "name": "a_6E8E",
+   "name": "animate_prisoner_source",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28303,
-   "name": "a_6E8F",
+   "name": "animate_prisoner_operand",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28314,
-   "name": "f_6E9A",
+   "name": "prisoner_frame_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28322,
-   "name": "f_6EA2",
+   "name": "prisoner_frame_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28330,
-   "name": "j_6EAA",
+   "name": "shot_hit_figure",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28348,
@@ -8571,6 +8680,12 @@
    "kind": "auto"
   },
   {
+   "address": 28502,
+   "name": "unreached_after_cheat",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 28672,
    "name": "tile_blocks",
    "type": "UserDefined",
@@ -8578,9 +8693,15 @@
   },
   {
    "address": 29440,
-   "name": "f_7300",
+   "name": "figure_down_blocks",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 29504,
+   "name": "tile_blocks_1b",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 29696,
@@ -8625,10 +8746,22 @@
    "kind": "user"
   },
   {
+   "address": 32838,
+   "name": "unreached_after_warm_start",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 32896,
-   "name": "a_8080",
+   "name": "autostart_filler",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 32960,
+   "name": "unreached_autostart_tail",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 33024,
@@ -8668,69 +8801,75 @@
   },
   {
    "address": 34320,
-   "name": "a_8610",
+   "name": "tile_colours_key",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34322,
-   "name": "a_8612",
+   "name": "tile_colours_ammo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34324,
-   "name": "a_8614",
+   "name": "tile_colours_painting",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34328,
-   "name": "a_8618",
+   "name": "tile_colours_pendant_a",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34329,
-   "name": "a_8619",
+   "name": "tile_colours_pendant_b",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34330,
-   "name": "a_861A",
+   "name": "tile_colours_pendant_c",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34331,
-   "name": "a_861B",
+   "name": "tile_colours_pendant_d",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34332,
-   "name": "a_861C",
+   "name": "tile_colours_pendant",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34336,
-   "name": "a_8620",
+   "name": "tile_colours_vase",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34344,
-   "name": "a_8628",
+   "name": "tile_colours_icons",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34406,
-   "name": "a_8666",
+   "name": "tile_colours_more",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 34470,
+   "name": "tile_colours_rest",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 34560,
@@ -8753,6 +8892,54 @@
   {
    "address": 36864,
    "name": "castle_map",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40960,
+   "name": "title_picture",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41984,
+   "name": "title_picture_2",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 43008,
+   "name": "title_picture_3",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 44032,
+   "name": "title_picture_4",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 45056,
+   "name": "title_picture_5",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 46080,
+   "name": "title_picture_6",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 47104,
+   "name": "title_picture_7",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 48128,
+   "name": "title_picture_8",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -9172,9 +9359,9 @@
   },
   {
    "address": 56256,
-   "name": "f_DBC0",
+   "name": "floor_3_first_end",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 56320,
@@ -9214,21 +9401,33 @@
   },
   {
    "address": 60928,
-   "name": "f_EE00",
+   "name": "name_entry_colours_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 60992,
+   "name": "plaque_colours_2",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 61184,
-   "name": "f_EF00",
+   "name": "name_entry_colours_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 61248,
+   "name": "plaque_colours_3",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 61440,
-   "name": "f_F000",
+   "name": "prisoner_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 62282,
@@ -9238,13 +9437,19 @@
   },
   {
    "address": 64789,
-   "name": "KERNAL_RESTORj",
-   "type": "Predefined",
-   "kind": "system"
+   "name": "kernal_restor",
+   "type": "Subroutine",
+   "kind": "user"
   },
   {
    "address": 64816,
    "name": "kernal_vectors_shadow",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 64825,
+   "name": "kernal_vectors_shadow_rest",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -9275,6 +9480,121 @@
  ],
  "comments": [
   {
+   "address": 0,
+   "type": "line",
+   "text": "the processor port's direction register, which the KERNAL sets to $2F and the game leaves alone"
+  },
+  {
+   "address": 1,
+   "type": "line",
+   "text": "the processor port. The game uses $36 and $26 in play, $37 when it wants every ROM, and $30 when the map builder reads the floor descriptions under the I/O area."
+  },
+  {
+   "address": 2,
+   "type": "line",
+   "text": "the low byte of the place in the castle map a lookup is about, worked out by $51CD"
+  },
+  {
+   "address": 3,
+   "type": "line",
+   "text": "the high byte of that place"
+  },
+  {
+   "address": 4,
+   "type": "line",
+   "text": "the low byte of the block the map builder is copying from"
+  },
+  {
+   "address": 5,
+   "type": "line",
+   "text": "the high byte of the block the map builder is copying from"
+  },
+  {
+   "address": 6,
+   "type": "line",
+   "text": "the low byte of the place the tile grid is read from"
+  },
+  {
+   "address": 7,
+   "type": "line",
+   "text": "the high byte of the place the six-by-six tile grid is read from, which $5C55 steps as it works down the rows"
+  },
+  {
+   "address": 8,
+   "type": "line",
+   "text": "the low byte of the place a figure has just left"
+  },
+  {
+   "address": 9,
+   "type": "line",
+   "text": "the high byte of the place a figure has just left"
+  },
+  {
+   "address": 10,
+   "type": "line",
+   "text": "the low byte of the four tiles a figure is drawn from"
+  },
+  {
+   "address": 11,
+   "type": "line",
+   "text": "the map builder's own pointer into the blocks at $7000"
+  },
+  {
+   "address": 145,
+   "type": "line",
+   "text": "the zero page the game works in: $02 and $03 the map address being read, $04 to $09 the builders' pointers, $FA and $FB the room's own place in the map, $FC and $FD the all-purpose pointer, and $FE and $FF the room's offset in tiles"
+  },
+  {
+   "address": 197,
+   "type": "line",
+   "text": "the game's own flag for the SPACE key, $10 while it is held and 0 when it is not, kept in the byte the KERNAL uses for the last key it saw. $5FCB writes it and the main loop reads it."
+  },
+  {
+   "address": 234,
+   "type": "line",
+   "text": "zero page the game does not use, left as the KERNAL's tape and screen work space"
+  },
+  {
+   "address": 242,
+   "type": "line",
+   "text": "more zero page the game does not use"
+  },
+  {
+   "address": 250,
+   "type": "line",
+   "text": "the low byte of where the room shown on screen begins in the castle map"
+  },
+  {
+   "address": 251,
+   "type": "line",
+   "text": "the high byte of where the room shown on screen begins"
+  },
+  {
+   "address": 252,
+   "type": "line",
+   "text": "the low byte of the all-purpose pointer: the message being printed, the block being copied, the sprite shapes being cleared"
+  },
+  {
+   "address": 253,
+   "type": "line",
+   "text": "the high byte of that pointer"
+  },
+  {
+   "address": 254,
+   "type": "line",
+   "text": "how far across the floor, in tiles, the room on screen begins; the panel's reading of where the player is adds it"
+  },
+  {
+   "address": 255,
+   "type": "line",
+   "text": "how far down the floor, in tiles, the room on screen begins"
+  },
+  {
+   "address": 512,
+   "type": "line",
+   "text": "the BASIC line the loader was started from, which the game overwrites with its own variables from $02A7 onwards"
+  },
+  {
    "address": 679,
    "type": "line",
    "text": "which floor the player is on, 0 the basement to 3 the second floor"
@@ -9295,9 +9615,24 @@
    "text": "what the player walked off the edge of: the bits say which way, and the room builder reads it to bring the next room in"
   },
   {
+   "address": 683,
+   "type": "line",
+   "text": "the mask the tiles are faded in through, shifted left and a bit added each pass until every bit is set"
+  },
+  {
    "address": 684,
    "type": "line",
    "text": "how many door keys the player is carrying, in binary-coded decimal; the panel prints it"
+  },
+  {
+   "address": 685,
+   "type": "line",
+   "text": "which half of a steel door the shot struck, 0 the left and 1 the right, so the opener knows where the other half is"
+  },
+  {
+   "address": 686,
+   "type": "line",
+   "text": "how far away the door's other half is in the map, $80 or $81"
   },
   {
    "address": 687,
@@ -9345,6 +9680,16 @@
    "text": "the position down the room a tile lookup is about, in pixels"
   },
   {
+   "address": 696,
+   "type": "line",
+   "text": "the tile code of the steel door being opened, $4A"
+  },
+  {
+   "address": 697,
+   "type": "line",
+   "text": "the tile code of the wooden door being shot open, $47"
+  },
+  {
    "address": 698,
    "type": "line",
    "text": "counts frames 0 to 3; the player may move on the frame it reaches 3, so one step takes four frames"
@@ -9370,6 +9715,21 @@
    "text": "counts the frames the player has not moved; the nag \"COME ON ! GET ON WITH IT.....\" waits on it"
   },
   {
+   "address": 703,
+   "type": "line",
+   "text": "how many times $02C1 has filled with the player standing still; at fourteen the game says so"
+  },
+  {
+   "address": 704,
+   "type": "line",
+   "text": "how many times $02C1 has filled with fire held and no movement; at seven the game says so"
+  },
+  {
+   "address": 705,
+   "type": "line",
+   "text": "counts frames up to $80, after which the game starts counting how long the player has stood still"
+  },
+  {
    "address": 706,
    "type": "line",
    "text": "the top two digits of the score, in binary-coded decimal"
@@ -9382,17 +9742,22 @@
   {
    "address": 708,
    "type": "line",
-   "text": "the bottom two digits of the score"
+   "text": "the bottom two digits of the score. Nothing ever adds to them, so they stay at zero."
   },
   {
    "address": 709,
    "type": "line",
-   "text": "points waiting to be added to the score, in binary-coded decimal; the panel's own routine takes them a digit at a time"
+   "text": "points waiting to be added to the score, in binary-coded decimal. The ticker at $5AA0 takes one a frame and each is worth a hundred."
   },
   {
    "address": 710,
    "type": "line",
    "text": "how many hits the player has taken, in binary-coded decimal. Cold food takes $10 off it, first aid clears it, and the panel prints it."
+  },
+  {
+   "address": 711,
+   "type": "line",
+   "text": "how many of the ten slides of the end-of-mission effect are left"
   },
   {
    "address": 712,
@@ -9413,6 +9778,11 @@
    "address": 715,
    "type": "line",
    "text": "where the player is in the castle, down, counted in tiles"
+  },
+  {
+   "address": 716,
+   "type": "line",
+   "text": "how far through its three-step rota the figures' own work has got"
   },
   {
    "address": 717,
@@ -9520,14 +9890,39 @@
    "text": "how far through the table of random numbers the game has got; it runs round and round the 256 bytes"
   },
   {
+   "address": 738,
+   "type": "line",
+   "text": "how far through those sixteen places the search has got"
+  },
+  {
    "address": 739,
    "type": "line",
    "text": "set while the player's shot is in the air, so the turn waits for fire to be let go before anything else happens"
   },
   {
+   "address": 740,
+   "type": "line",
+   "text": "counts to 1 and back, so the prisoner moves on every other frame"
+  },
+  {
+   "address": 741,
+   "type": "line",
+   "text": "set while the prisoner is not to move at all, which is how a mission with no prisoner leaves him out"
+  },
+  {
    "address": 742,
    "type": "line",
    "text": "the floor the player was on before the lift, kept so the game can tell whether the prisoner was left behind"
+  },
+  {
+   "address": 743,
+   "type": "line",
+   "text": "a byte the prisoner's code clears and never reads again"
+  },
+  {
+   "address": 744,
+   "type": "line",
+   "text": "cleared while the prisoner is following, and read between missions to decide whether he was left behind"
   },
   {
    "address": 745,
@@ -9537,22 +9932,22 @@
   {
    "address": 746,
    "type": "line",
-   "text": "the low byte of the lift's place in the castle map"
+   "text": "where in the castle map this floor's dynamite charge is, low byte, taken from the byte $62 in the floor's description"
   },
   {
    "address": 747,
    "type": "line",
-   "text": "the high byte of the lift's place in the castle map"
+   "text": "where this floor's dynamite charge is, high byte"
   },
   {
    "address": 749,
    "type": "line",
-   "text": "where in the castle map the prisoner is, low byte"
+   "text": "where in the castle map the floor's description put the prisoner, low byte; the mission's own copy of his place is in $6029"
   },
   {
    "address": 750,
    "type": "line",
-   "text": "where in the castle map the prisoner is, high byte"
+   "text": "where the floor's description put the prisoner, high byte"
   },
   {
    "address": 751,
@@ -9560,9 +9955,24 @@
    "text": "which of the three phases of the interrupt's rota comes next, so the heavy work is spread over three frames"
   },
   {
+   "address": 752,
+   "type": "line",
+   "text": "which of the two the stamped-in player is for: 1 runs only the figures, anything else runs the prisoner as well"
+  },
+  {
    "address": 759,
    "type": "line",
    "text": "set once one figure has moved this frame, so only one moves at a time"
+  },
+  {
+   "address": 788,
+   "type": "line",
+   "text": "the low byte of the interrupt vector, which each of the game's five interrupt handlers is written into in turn"
+  },
+  {
+   "address": 789,
+   "type": "line",
+   "text": "the KERNAL's own interrupt vectors in page 3, which the game points at each of its interrupt handlers in turn"
   },
   {
    "address": 2064,
@@ -9670,6 +10080,11 @@
    "text": "set when the name-entry screen has acted on a stick push, cleared when the stick comes back to the middle, so one push moves the cursor one place"
   },
   {
+   "address": 2398,
+   "type": "line",
+   "text": "what fire does on the name-entry screen: takes the character the strip shows, and either steps the cursor on, up to ten characters, or, when the strip shows the end mark, draws a full stop and steps the cursor back one"
+  },
+  {
    "address": 2404,
    "type": "line",
    "text": "what fire does on the name-entry screen: takes the character the strip shows, and either steps the cursor on (up to ten characters) or, when the strip shows the end mark, draws a full stop and steps the cursor back one. Called from the joystick reader at $0A13."
@@ -9770,6 +10185,11 @@
    "text": "the 48 characters the name-entry strip offers, ASCII ending $FF: \"@ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789!\\\"#$%&'()_\" and a run of full stops. $09AB draws it and wraps at the 48th, so the strip is endless."
   },
   {
+   "address": 2936,
+   "type": "line",
+   "text": "the end mark the name-entry strip shows past the last character, ASCII ending $FF"
+  },
+  {
    "address": 2953,
    "type": "line",
    "text": "compares the score at $0819, digit by digit as ASCII, with each of the ten entries in the table at $0D51, twenty bytes apart. On the first entry the score beats, it goes to the name entry at $0BC1; on an equal entry it compares the next digit; otherwise it steps $0829 on by 20 and tries the next, and when that passes $C8 the score made no entry and it returns to the attract loop at $1014. Blanks the display and banks every ROM in on the way in."
@@ -9788,6 +10208,11 @@
    "address": 3283,
    "type": "line",
    "text": "how many characters of the name have been typed, 0 to 10; the name-entry screen waits for it to reach 10, and fire steps it"
+  },
+  {
+   "address": 3284,
+   "type": "line",
+   "text": "clears the count of characters typed and installs the attract interrupt, then waits for the name to be finished"
   },
   {
    "address": 3292,
@@ -9810,14 +10235,34 @@
    "text": "a two-deep delay loop that holds the finished high score table on a blank screen before the attract loop starts again at $1014. The shift at $0CF8 reads these same bytes as its source, which is only how it addresses the table twenty bytes lower."
   },
   {
+   "address": 3408,
+   "type": "line",
+   "text": "the space before the first high score entry's name; the ten entries run from here, twenty bytes apart"
+  },
+  {
    "address": 3409,
    "type": "line",
    "text": "ten high score entries of 20 bytes: a seven-character name, padding, and a six-digit score, all ASCII"
   },
   {
+   "address": 3421,
+   "type": "line",
+   "text": "the first entry's score, six ASCII digits; every entry is twenty bytes, so the scores are twenty bytes apart"
+  },
+  {
+   "address": 3485,
+   "type": "line",
+   "text": "the rest of the ten high score entries, each a seven-character name, padding and a six-digit score, all ASCII"
+  },
+  {
    "address": 3609,
    "type": "line",
    "text": "the high score table's heading, \"TODAYS REAL HEROES\" with the spaces that centre it, ASCII ending $FF"
+  },
+  {
+   "address": 3628,
+   "type": "line",
+   "text": "the end of the high score table's heading, \"TODAYS REAL HEROES\", ASCII ending $FF"
   },
   {
    "address": 3648,
@@ -9975,6 +10420,26 @@
    "text": "draws the four-cell-wide, thirteen-row block of character $E8 down the left of the supplies and valuables screens, which is the frame the four item pictures sit in, taking its colour from the byte at $8600. Walks the screen and colour memory together, adding 40 a row."
   },
   {
+   "address": 4435,
+   "type": "line",
+   "text": "the low byte of the screen address the icon frame drawing writes, which $113A rewrites a row at a time"
+  },
+  {
+   "address": 4436,
+   "type": "line",
+   "text": "the high byte of the screen address the icon frame drawing writes, which $113A rewrites as it goes down the rows"
+  },
+  {
+   "address": 4441,
+   "type": "line",
+   "text": "the low byte of the colour address the icon frame drawing writes"
+  },
+  {
+   "address": 4442,
+   "type": "line",
+   "text": "the rest of the icon frame drawing, whose operands $113A rewrites: $1153 and $1159 hold where on the screen and in colour memory the next four cells go"
+  },
+  {
    "address": 4471,
    "type": "line",
    "text": "the supplies screen's heading and its four items, ASCII, each ending $00"
@@ -10008,6 +10473,11 @@
    "address": 4523,
    "type": "line",
    "text": "builds the credits screen: fills the screen with the big alphabet's space, sets the two extra background colours the plaque's bitmap needs, installs the plaque interrupt at $0F4D, and draws the four credit lines from $10C8, $10D9, $10EA and $10FA"
+  },
+  {
+   "address": 4660,
+   "type": "line",
+   "text": "not a symbol at all. The room drawer at $47F1 rewrites its own operands, and the bytes it was assembled with point here, so the disassembler made a symbol out of an address the code never means. These bytes are part of the credits screen's drawing."
   },
   {
    "address": 4702,
@@ -10110,9 +10580,29 @@
    "text": "how many driver ticks are left of each voice's current note, one byte a voice; when it reaches zero the voice takes its next note"
   },
   {
+   "address": 6452,
+   "type": "line",
+   "text": "the second voice's count of ticks to its next note"
+  },
+  {
+   "address": 6453,
+   "type": "line",
+   "text": "the third voice's count of ticks to its next note"
+  },
+  {
    "address": 6454,
    "type": "line",
    "text": "how far each voice has read into its own stream, one byte a voice"
+  },
+  {
+   "address": 6455,
+   "type": "line",
+   "text": "how far the second voice has read into its own stream"
+  },
+  {
+   "address": 6456,
+   "type": "line",
+   "text": "how far the third voice has read into its own stream"
   },
   {
    "address": 6457,
@@ -10138,6 +10628,16 @@
    "address": 6465,
    "type": "line",
    "text": "the note number each voice has just taken from its stream, one byte a voice; $FF ends the tune"
+  },
+  {
+   "address": 6466,
+   "type": "line",
+   "text": "the note number the second voice has just taken from its stream"
+  },
+  {
+   "address": 6467,
+   "type": "line",
+   "text": "the third voice's note number, and the byte after it, which the driver writes through $1941 as a three-byte run"
   },
   {
    "address": 6469,
@@ -10168,6 +10668,26 @@
    "address": 6776,
    "type": "line",
    "text": "the four floors the lift serves, thirteen characters each and a $00: BASEMENT, GROUND FLOOR, FIRST FLOOR, SECOND FLOOR. The floor-select screen draws them as a list, and the message line names the same four at $5808."
+  },
+  {
+   "address": 6790,
+   "type": "line",
+   "text": "\"GROUND FLOOR \", thirteen characters and a $00"
+  },
+  {
+   "address": 6804,
+   "type": "line",
+   "text": "\"FIRST FLOOR  \", thirteen characters and a $00"
+  },
+  {
+   "address": 6818,
+   "type": "line",
+   "text": "\"SECOND FLOOR \", thirteen characters and a $00"
+  },
+  {
+   "address": 6832,
+   "type": "line",
+   "text": "the tile the floor-select screen marks the chosen floor with"
   },
   {
    "address": 6833,
@@ -10260,6 +10780,11 @@
    "text": "\"YOUR MISSION WAS A\" and, after it, \"SUCCESS\""
   },
   {
+   "address": 7988,
+   "type": "line",
+   "text": "\"SUCCESS\", ASCII ending $00, the last line of the end-of-mission screen"
+  },
+  {
    "address": 7996,
    "type": "line",
    "text": "the screen that follows a mission the player finished: blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place"
@@ -10270,9 +10795,69 @@
    "text": "the play screen's character set, 256 tiles of eight bytes. It holds the castle's walls, floors, doors, furniture, the figures, the pickups, the status panel's frame, the ten letters the panel needs and the digits at $F0 to $F9. facts.md has the letters' codes."
   },
   {
+   "address": 8320,
+   "type": "line",
+   "text": "the four tiles a box of ammunition is drawn from, which the supplies screen borrows"
+  },
+  {
+   "address": 8336,
+   "type": "line",
+   "text": "the four tiles a door key is drawn from, which the supplies screen borrows"
+  },
+  {
+   "address": 8352,
+   "type": "line",
+   "text": "the eight tiles a painting is drawn from, which the valuables screen borrows"
+  },
+  {
+   "address": 8384,
+   "type": "line",
+   "text": "the eight tiles a vase is drawn from, which the valuables screen borrows"
+  },
+  {
+   "address": 8416,
+   "type": "line",
+   "text": "the eight tiles a plate of cold food is drawn from, which the supplies screen borrows"
+  },
+  {
+   "address": 8448,
+   "type": "line",
+   "text": "more of the play screen's character set, the tiles from $20"
+  },
+  {
+   "address": 8512,
+   "type": "line",
+   "text": "more of the play screen's character set, the tiles from $28"
+  },
+  {
+   "address": 8576,
+   "type": "line",
+   "text": "more of the play screen's character set: the tiles from $30, which hold the walls and the doors"
+  },
+  {
+   "address": 9008,
+   "type": "line",
+   "text": "more of the play screen's character set, the tiles from $66, which draw the pile of jewels"
+  },
+  {
+   "address": 9072,
+   "type": "line",
+   "text": "more of the play screen's character set, the tiles from $6E"
+  },
+  {
    "address": 9216,
    "type": "line",
    "text": "the upper half of the play screen's character set, tiles $80 to $FF, which hold the panel's frame and the digits"
+  },
+  {
+   "address": 9888,
+   "type": "line",
+   "text": "the sixteen tiles of the play character set the prisoner is drawn with, rewritten from $F000 every time he moves"
+  },
+  {
+   "address": 9952,
+   "type": "line",
+   "text": "more of the play screen's character set, the tiles from $DC"
   },
   {
    "address": 10240,
@@ -10285,9 +10870,64 @@
    "text": "the upper half of the big alphabet, which holds the digits, the punctuation and the sixteen cells the attract screens borrow for the item pictures at $2F40"
   },
   {
+   "address": 12096,
+   "type": "line",
+   "text": "the sixteen tiles of the attract screens' character set that the supplies and valuables screens overwrite with pictures copied out of the play screen's set"
+  },
+  {
+   "address": 12160,
+   "type": "line",
+   "text": "the first item picture the attract screens copy into the big alphabet's spare codes"
+  },
+  {
+   "address": 12192,
+   "type": "line",
+   "text": "the second item picture the attract screens copy there"
+  },
+  {
+   "address": 12208,
+   "type": "line",
+   "text": "part of an item picture the supplies screen copies into the big alphabet's spare codes"
+  },
+  {
+   "address": 12216,
+   "type": "line",
+   "text": "part of an item picture the supplies screen copies there"
+  },
+  {
+   "address": 12224,
+   "type": "line",
+   "text": "the third item picture the attract screens copy there"
+  },
+  {
+   "address": 12240,
+   "type": "line",
+   "text": "the top half of the fourth supply's picture, copied here out of the play character set"
+  },
+  {
+   "address": 12248,
+   "type": "line",
+   "text": "the bottom half of the fourth supply's picture, copied here out of the play character set"
+  },
+  {
+   "address": 12256,
+   "type": "line",
+   "text": "the fourth item picture the attract screens copy there"
+  },
+  {
    "address": 12288,
    "type": "line",
    "text": "the sprite shapes, 64 bytes each, which the pointers at $07F8 name as a number from $C0. The player's four are $C0 to $C3, and $E0 to $EF are the four he is drawn with for each of the four directions."
+  },
+  {
+   "address": 12560,
+   "type": "line",
+   "text": "more sprite shapes, the numbers from $C4"
+  },
+  {
+   "address": 12624,
+   "type": "line",
+   "text": "more sprite shapes, the numbers from $C5"
   },
   {
    "address": 13312,
@@ -10303,6 +10943,11 @@
    "address": 15360,
    "type": "line",
    "text": "the last sprite shapes, numbers $F0 to $F6: the castle emblem in the panel and the bullet, one shape for each direction it can fly"
+  },
+  {
+   "address": 16384,
+   "type": "line",
+   "text": "the three bytes the mission select jumps to, which go straight on to the game's cold start at $4016"
   },
   {
    "address": 16393,
@@ -10345,9 +10990,19 @@
    "text": "which floor the mission's prisoner is on, or $FF on the demolition mission, which has none. The room builder compares it with the floor the player is on."
   },
   {
+   "address": 16401,
+   "type": "line",
+   "text": "set while the player has just come out of the lift, so the next mission starts him at the lift rather than in the storage room"
+  },
+  {
    "address": 16402,
    "type": "line",
    "text": "set when the prisoner is in the part of the castle being built, so $4151 puts the prisoner into the room instead of leaving the slot empty"
+  },
+  {
+   "address": 16403,
+   "type": "line",
+   "text": "jump stub into the message printer at $592E, which the prisoner's own code calls"
   },
   {
    "address": 16406,
@@ -10435,6 +11090,11 @@
    "text": "moves the picture one column at a time while the player crosses into the room on the right, counted up in $FE to $64. The mirror of $4480: the room pointer goes on a byte, the player's x comes back 8, and the shots in the air come with it."
   },
   {
+   "address": 17798,
+   "type": "line",
+   "text": "takes a shot out of the air once it has turned back at a room's edge, which is what bits 1 and 5 of $02AF mark, and then runs whatever is still flying ($4692)"
+  },
+  {
    "address": 17853,
    "type": "line",
    "text": "fire. It moves the shots already in the air ($4692) and then, if fire is held and this is a fresh press, fires one. The player can have two shots in the air at once: the first is fired when neither is, the second once the first has travelled 8 pixels. With no rounds left it says \"OUT OF AMMO!\"; otherwise it takes one off the ammunition in decimal mode, redraws the count, points the player's sprites the right way ($46A5), and starts the shot from the player's own position offset by the tables at $4699 and $469D, with five tiles of range."
@@ -10443,6 +11103,11 @@
    "address": 17983,
    "type": "line",
    "text": "fires the player's second shot, once the first has travelled at least 8 pixels and no second one is already in the air. It spends a round, points the sprites, and starts the shot at the player with five tiles of range."
+  },
+  {
+   "address": 18066,
+   "type": "line",
+   "text": "moves each of the player's two shots along, one step a frame"
   },
   {
    "address": 18073,
@@ -10505,14 +11170,29 @@
    "text": "the operand of the instruction that reads the map: the address of the row being drawn"
   },
   {
+   "address": 18454,
+   "type": "line",
+   "text": "the high byte of the map address the room drawer reads, which it rewrites a row at a time"
+  },
+  {
    "address": 18456,
    "type": "line",
    "text": "the operand of the instruction that writes the screen"
   },
   {
+   "address": 18457,
+   "type": "line",
+   "text": "the high byte of the screen address the room drawer writes, which it rewrites a row at a time"
+  },
+  {
    "address": 18462,
    "type": "line",
    "text": "the operand of the instruction that writes colour memory"
+  },
+  {
+   "address": 18463,
+   "type": "line",
+   "text": "the rest of the room drawer's inner loop, whose operands $47F1 rewrites. The address $481F itself is the operand that holds where in colour memory the row being drawn goes."
   },
   {
    "address": 18506,
@@ -10575,9 +11255,64 @@
    "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, paints the panel ($600C), draws the room's movers ($5BBA), lets the bullet sprite fade after a hit, runs the player and the room changes ($426F) unless a change is already under way, and places the player's four sprites and the bullet's round the positions in $02DF and $02E0."
   },
   {
+   "address": 19416,
+   "type": "line",
+   "text": "the bytes before the wipe interrupt's own code, which nothing reaches"
+  },
+  {
+   "address": 19420,
+   "type": "line",
+   "text": "shifts the message line's two rows one cell to the left, so the text moves on after the fine scroll has used up a whole cell"
+  },
+  {
+   "address": 19438,
+   "type": "line",
+   "text": "the raster line the wipe's open band starts at"
+  },
+  {
+   "address": 19439,
+   "type": "line",
+   "text": "the raster line the wipe's open band ends at"
+  },
+  {
+   "address": 19440,
+   "type": "line",
+   "text": "which of the wipe interrupt's two bands comes next, flipped each time"
+  },
+  {
    "address": 19441,
    "type": "line",
-   "text": "how far the game's interrupt has got: the main code sets it to 1 to ask the interrupt to start and waits for 2, then for 3"
+   "text": "how far the mission's opening has got: the main code sets 1 to ask for the wipe to close, and the interrupt answers 2 when it has closed and 3 when it has opened again"
+  },
+  {
+   "address": 19442,
+   "type": "line",
+   "text": "installs the interrupt that wipes the screen open and shut between missions: stops CIA 1's timer A, sets the band to lines $32 to $FA and points $0314 at $4C22"
+  },
+  {
+   "address": 19490,
+   "type": "line",
+   "text": "the interrupt that opens and shuts the screen. Its two bands set the display on inside the band and an invalid, black mode outside it, so what shows is a window that closes to the middle of the screen and opens again four lines at a time. It reports where it has got to in $4BF1."
+  },
+  {
+   "address": 19530,
+   "type": "line",
+   "text": "the band outside the window: an invalid video mode, which the chip draws as black, and the player's sprites turned black with it. It is also where the window's two lines are moved, four at a time, towards the middle of the screen and back out again."
+  },
+  {
+   "address": 19629,
+   "type": "line",
+   "text": "the band inside the window: ordinary multicolour text and the player's sprites in their own colours"
+  },
+  {
+   "address": 19659,
+   "type": "line",
+   "text": "fades the room in. It copies the whole play character set out to $8000 and clears it, so every tile is blank, then copies it back through a mask that grows a bit at a time - 1, 3, 7 and so on - so the tiles appear a plane at a time. $02AB is the mask."
+  },
+  {
+   "address": 19754,
+   "type": "line",
+   "text": "the places in the tile grid the walked-onto test looks at, which it steps through skipping the grid's right-hand column"
   },
   {
    "address": 19770,
@@ -10590,9 +11325,14 @@
    "text": "the player walked onto a door key: counts it in decimal mode, says \"YOU HAVE FOUND\" and \"A DOOR KEY.\", and clears its two tiles"
   },
   {
+   "address": 20087,
+   "type": "line",
+   "text": "writes the six-by-six grid of tiles back into the castle map, so that whatever a pickup or a shot changed in the grid reaches the map and then the screen"
+  },
+  {
    "address": 20148,
    "type": "line",
-   "text": "the player walked onto a painting: says \"YOU HAVE FOUND\", adds 25 to the score and falls into the shared tail that names it"
+   "text": "the player walked onto a painting: says \"YOU HAVE FOUND\", puts 25 points in the queue, which the ticker turns into 2500, and falls into the shared tail that names it"
   },
   {
    "address": 20173,
@@ -10602,7 +11342,7 @@
   {
    "address": 20190,
    "type": "line",
-   "text": "the player walked onto a vase: \"YOU HAVE FOUND\", 15 points, and the tail that names it"
+   "text": "the player walked onto a vase: \"YOU HAVE FOUND\" and 15 waiting points, which is 1500"
   },
   {
    "address": 20215,
@@ -10622,7 +11362,7 @@
   {
    "address": 20280,
    "type": "line",
-   "text": "the player walked onto a pendant: \"YOU HAVE FOUND\" and 40 points"
+   "text": "the player walked onto a pendant: \"YOU HAVE FOUND\" and 40 waiting points, which is 4000"
   },
   {
    "address": 20305,
@@ -10755,9 +11495,29 @@
    "text": "the game's 33 messages for the line at the bottom of the screen, ASCII, each ending \"@\" ($40); facts.md lists them"
   },
   {
+   "address": 22827,
+   "type": "line",
+   "text": "how far the message line's scroll has read into the buffer at $8800"
+  },
+  {
+   "address": 22828,
+   "type": "line",
+   "text": "how far the printer has filled the buffer; the line is idle when the two are equal"
+  },
+  {
+   "address": 22829,
+   "type": "line",
+   "text": "which half of the character now entering the line is showing, because a character of the big alphabet is two cells wide and the line brings one cell in at a time"
+  },
+  {
    "address": 22830,
    "type": "line",
-   "text": "prints a message on the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\"."
+   "text": "puts a message in the queue for the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\". It copies the characters into the buffer at $8800, masking each to six bits as the big alphabet needs, adds a space after the last, and leaves the write position in $592C. The line is only emptied by the scroll, so a routine that wants to wait for the message to finish watches $592B against $592C."
+  },
+  {
+   "address": 22865,
+   "type": "line",
+   "text": "brings the next cell of the message into the right-hand end of the line, at $07BF and $07E7. A character takes two turns, its left half and then its right, after which the read position moves on. With nothing left to show it puts a space there instead."
   },
   {
    "address": 22933,
@@ -10768,6 +11528,46 @@
    "address": 23072,
    "type": "line",
    "text": "turns one binary-coded-decimal byte into the two screen codes that print it. The play character set keeps its digits at $F0 to $F9, so each nibble only has to be ORed with $F0; the upper one is shifted down first. Every number on the panel goes through here."
+  },
+  {
+   "address": 23091,
+   "type": "line",
+   "text": "the game's prodding. $02C1 counts up to $80 and then, if the player has not moved, counts $02BF; at fourteen of those it says \"COME ON ! GET ON WITH IT.....\". Holding fire without moving counts $02C0 instead, and at seven it says \"LETS GET DOWN TO SOME SERIOUS DESTRUCTION !\". Any movement puts both counts back to nothing."
+  },
+  {
+   "address": 23200,
+   "type": "line",
+   "text": "adds the points waiting in $02C5 to the score, one a frame, so the number on the panel climbs rather than jumps. Each one adds 1 to the score's middle pair of digits in decimal mode, carrying into the top pair, so one waiting point is a hundred on the panel; the bottom pair is never written, which is why every score in this game ends in two zeros."
+  },
+  {
+   "address": 23229,
+   "type": "line",
+   "text": "says which floor the mission starts on: \"YOU ARE\" and then one of \"IN THE BASEMENT.\", \"ON THE GROUND FLOOR.\", \"ON THE FIRST FLOOR.\" or \"ON THE SECOND FLOOR.\""
+  },
+  {
+   "address": 23307,
+   "type": "line",
+   "text": "the first four of the sixteen tiles the player's square is covering, kept while tile $55 stands in for him"
+  },
+  {
+   "address": 23311,
+   "type": "line",
+   "text": "the second four of them"
+  },
+  {
+   "address": 23315,
+   "type": "line",
+   "text": "the third four of them"
+  },
+  {
+   "address": 23319,
+   "type": "line",
+   "text": "the last four of them"
+  },
+  {
+   "address": 23323,
+   "type": "line",
+   "text": "writes the player into the castle map so that the figures can see him. It stamps tile $55 over the sixteen tiles the player's square covers, keeping what was there in the four buffers at $5B0B, $5B0F, $5B13 and $5B17, then runs the figures and the prisoner, and puts the sixteen tiles back. The figures only ever test whether the tile ahead is empty, so this is how walking into the player is noticed at all."
   },
   {
    "address": 23482,
@@ -10790,6 +11590,91 @@
    "text": "the four tile codes the player's own square overlaps, worked out each frame by $5C46; every one must be below $2D for a move to be allowed"
   },
   {
+   "address": 23588,
+   "type": "line",
+   "text": "the second of the four tiles the player's own square overlaps"
+  },
+  {
+   "address": 23589,
+   "type": "line",
+   "text": "the third of them"
+  },
+  {
+   "address": 23590,
+   "type": "line",
+   "text": "the fourth of them"
+  },
+  {
+   "address": 23591,
+   "type": "line",
+   "text": "the last two tiles of the grid's first row"
+  },
+  {
+   "address": 23592,
+   "type": "line",
+   "text": "the second row of the six-by-six tile grid around the player"
+  },
+  {
+   "address": 23597,
+   "type": "line",
+   "text": "the right-hand tile of the grid's second row, which the move to the right tests"
+  },
+  {
+   "address": 23598,
+   "type": "line",
+   "text": "the third row of the grid"
+  },
+  {
+   "address": 23603,
+   "type": "line",
+   "text": "the right-hand tile of the grid's third row"
+  },
+  {
+   "address": 23604,
+   "type": "line",
+   "text": "the fourth row of the grid"
+  },
+  {
+   "address": 23609,
+   "type": "line",
+   "text": "the right-hand tile of the grid's fourth row"
+  },
+  {
+   "address": 23610,
+   "type": "line",
+   "text": "the fifth row of the grid"
+  },
+  {
+   "address": 23615,
+   "type": "line",
+   "text": "the right-hand tile of the grid's fifth row"
+  },
+  {
+   "address": 23616,
+   "type": "line",
+   "text": "the grid's sixth row"
+  },
+  {
+   "address": 23617,
+   "type": "line",
+   "text": "the second tile of the grid's sixth row, which the move down tests"
+  },
+  {
+   "address": 23618,
+   "type": "line",
+   "text": "the third tile of the grid's sixth row"
+  },
+  {
+   "address": 23619,
+   "type": "line",
+   "text": "the fourth tile of the grid's sixth row"
+  },
+  {
+   "address": 23620,
+   "type": "line",
+   "text": "the last two tiles of the six-by-six grid around the player"
+  },
+  {
    "address": 23622,
    "type": "line",
    "text": "works out which tiles surround the player, from the position in $02DF and $02E0, by way of $51CD and $5C55, and leaves them in the grid at $5C22"
@@ -10800,14 +11685,174 @@
    "text": "reads the six-by-six block of map tiles around the place the pointer in $06 names into the grid at $5C22, six bytes a row. A row of the map is 128 bytes away, which the routine reaches by setting bit 7 of Y and stepping the pointer's high byte, so it never needs a second pointer."
   },
   {
+   "address": 23721,
+   "type": "line",
+   "text": "the sixteen places in the tile grid the jewels are looked for in"
+  },
+  {
+   "address": 23737,
+   "type": "line",
+   "text": "the pile of jewels, which is four tiles, $66 to $69. It looks round the player for any of them, works back to the pile's own corner, queues 40 points, which the ticker turns into 4000, says \"YOU HAVE FOUND\" and \"SOME JEWELS.\", and clears it."
+  },
+  {
+   "address": 24008,
+   "type": "line",
+   "text": "draws the status panel: its frame down the right of the screen, the three labels KEYS, AMMO and HITS placed cell by cell from the ten letters the play character set holds, the box round each number, and the colours of every part. It is written with self-modifying operands at $5DE6 and $5DEB, as the room drawer is."
+  },
+  {
+   "address": 24038,
+   "type": "line",
+   "text": "the low byte of the screen address the panel drawing writes, which $5DC8 rewrites a row at a time"
+  },
+  {
+   "address": 24039,
+   "type": "line",
+   "text": "the high byte of the screen address the panel drawing writes, which $5DC8 rewrites"
+  },
+  {
+   "address": 24041,
+   "type": "line",
+   "text": "the low byte of the colour address the panel drawing writes"
+  },
+  {
+   "address": 24043,
+   "type": "line",
+   "text": "the high byte of the colour address the panel drawing writes, which $5DC8 rewrites a row at a time"
+  },
+  {
+   "address": 24044,
+   "type": "line",
+   "text": "the part of the panel drawing whose operands $5DC8 rewrites: the loop that fills the panel's twenty-one rows, cell by cell, and the cells that spell KEYS, AMMO and HITS, the boxes round the three numbers and the colours of every part of it"
+  },
+  {
+   "address": 24290,
+   "type": "line",
+   "text": "puts the player where the mission starts. Coming out of the lift onto a new floor he is placed at the lift's own square, with the room pointer at $C580; otherwise he starts in the storage room the briefing describes, with the room pointer at $C5B8 and the room's offset in $FE and $FF."
+  },
+  {
+   "address": 24359,
+   "type": "line",
+   "text": "asks whether the mission's job is finished. On the demolition mission all four floors' charges must have been armed, and then it says \"THE CASTLE IS NOW DESTROYED.\" and asks the main loop to finish the mission; on a rescue mission the test is that the prisoner has been brought home."
+  },
+  {
    "address": 24474,
    "type": "line",
-   "text": "one byte a floor, set to 1 once that floor's charge has been armed; the castle blows up when all four are"
+   "text": "one byte a floor, in the order basement, ground, first, second, set to 1 once that floor's charge has been armed. The demolition mission ends when all four are set."
+  },
+  {
+   "address": 24475,
+   "type": "line",
+   "text": "whether the ground floor's charge has been armed"
+  },
+  {
+   "address": 24476,
+   "type": "line",
+   "text": "whether the first floor's charge has been armed"
+  },
+  {
+   "address": 24477,
+   "type": "line",
+   "text": "whether the second floor's charge has been armed, the last of the four the demolition mission needs"
+  },
+  {
+   "address": 24478,
+   "type": "line",
+   "text": "decides whether this floor's dynamite charge is on the map. On the demolition mission, while the floor's charge has not been armed, it leaves the four tiles the description marked alone, so the charge is there to be shot. On every other mission, and once the charge has been armed, it clears those four tiles, so no charge shows."
   },
   {
    "address": 24523,
    "type": "line",
    "text": "the game's own one-key scan: it drives keyboard row 7 and reads column 4, which is SPACE, and leaves $10 in $C5 while the key is down and 0 when it is up. The game keeps its own flag in the byte the KERNAL uses for the key it last saw, and nothing else on the keyboard is read."
+  },
+  {
+   "address": 24538,
+   "type": "line",
+   "text": "a counted delay of about a fifth of a second, used between the screens that end a mission"
+  },
+  {
+   "address": 24556,
+   "type": "line",
+   "text": "the bytes after the short delay routine, which nothing reaches"
+  },
+  {
+   "address": 24576,
+   "type": "line",
+   "text": "jump stub into $5B1B, which stamps the player into the map so the figures can see him"
+  },
+  {
+   "address": 24585,
+   "type": "line",
+   "text": "jump stub into the sound set-up at $63B7"
+  },
+  {
+   "address": 24588,
+   "type": "line",
+   "text": "jump stub into the sound's own frame at $63E6, called from the interrupt"
+  },
+  {
+   "address": 24594,
+   "type": "line",
+   "text": "jump stub into $67F3, which hands back the next byte of the random table"
+  },
+  {
+   "address": 24600,
+   "type": "line",
+   "text": "jump stub into $6913, which slides the room off the screen when a mission ends"
+  },
+  {
+   "address": 24603,
+   "type": "line",
+   "text": "jump stub into $6A4B, which builds a floor of the castle from its description"
+  },
+  {
+   "address": 24606,
+   "type": "line",
+   "text": "jump stub into the prisoner's turn at $6C3B"
+  },
+  {
+   "address": 24612,
+   "type": "line",
+   "text": "jump stub into $6BD8, which puts the prisoner's tiles on the map"
+  },
+  {
+   "address": 24615,
+   "type": "line",
+   "text": "where the prisoner is on the floor, across, counted in blocks"
+  },
+  {
+   "address": 24616,
+   "type": "line",
+   "text": "where the prisoner is on the floor, down, counted in blocks"
+  },
+  {
+   "address": 24617,
+   "type": "line",
+   "text": "where in the castle map the prisoner is now, low byte"
+  },
+  {
+   "address": 24618,
+   "type": "line",
+   "text": "where in the castle map the prisoner is now, high byte"
+  },
+  {
+   "address": 24619,
+   "type": "line",
+   "text": "the prisoner's direction in its lowest two bits and its state in the rest; bit 3 is cleared when the way ahead is blocked"
+  },
+  {
+   "address": 24620,
+   "type": "line",
+   "text": "where the prisoner was before this step, low byte, so the tiles he left can be put back"
+  },
+  {
+   "address": 24621,
+   "type": "line",
+   "text": "where the prisoner was before this step, high byte"
+  },
+  {
+   "address": 24622,
+   "type": "line",
+   "text": "counts the prisoner's steps; bit 1 picks which of the two frames of the walk is drawn"
   },
   {
    "address": 24623,
@@ -10835,6 +11880,16 @@
    "text": "set while the cheat is on. It stops the player taking hits at $63A6, keeps a door key in hand at $5BD1 and fills the ammunition back to 99 every frame at $5BB4."
   },
   {
+   "address": 24640,
+   "type": "line",
+   "text": "jump stub into $6EAA, which works out which figure a shot hit"
+  },
+  {
+   "address": 24643,
+   "type": "line",
+   "text": "set once \"THE PRISONER IS VERY CLOSE.\" has been said, so it is said once a floor"
+  },
+  {
    "address": 24644,
    "type": "line",
    "text": "the figures' turn. It walks the list the map builder left in $8100 to $8500, one figure a frame, counted in $02CE, and gives the figure whose turn it is a step. A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
@@ -10843,6 +11898,61 @@
    "address": 24874,
    "type": "line",
    "text": "moves one figure a tile in the direction its kind byte holds. It looks at the four tiles it would step into: all empty and the figure moves and its place in $8300 is written on, a $55 means the player is there and the figure hits him, and anything else makes the figure turn by clearing bit 3 of its kind byte."
+  },
+  {
+   "address": 25220,
+   "type": "line",
+   "text": "rubs a figure out of the four tiles it has just left and draws it into the four it has moved to, taking the shapes for its kind and direction. Its inner loops' operands are rewritten at $62E3 to $62FB, as the room drawer's are."
+  },
+  {
+   "address": 25315,
+   "type": "line",
+   "text": "the low byte of the first operand $6284 rewrites, where the figure's top-left tile goes"
+  },
+  {
+   "address": 25316,
+   "type": "line",
+   "text": "the first row of the figure redrawing, whose operand $6284 rewrites"
+  },
+  {
+   "address": 25322,
+   "type": "line",
+   "text": "the low byte of the second operand $6284 rewrites"
+  },
+  {
+   "address": 25323,
+   "type": "line",
+   "text": "the second row of the figure redrawing, whose operand $6284 rewrites"
+  },
+  {
+   "address": 25331,
+   "type": "line",
+   "text": "the low byte of the third operand $6284 rewrites"
+  },
+  {
+   "address": 25332,
+   "type": "line",
+   "text": "the third row of the figure redrawing, whose operand $6284 rewrites"
+  },
+  {
+   "address": 25338,
+   "type": "line",
+   "text": "the low byte of the fourth operand $6284 rewrites"
+  },
+  {
+   "address": 25339,
+   "type": "line",
+   "text": "the operands $6284 rewrites, which hold where the figure's four tiles go on the map"
+  },
+  {
+   "address": 25355,
+   "type": "line",
+   "text": "chooses which four tiles a figure is drawn from, by its kind and the way it is facing"
+  },
+  {
+   "address": 25450,
+   "type": "line",
+   "text": "points $0A and $0B at the four tiles a figure of this kind is drawn from once it has been knocked down: $7320, $7340, $7300 or $7360 by kind"
   },
   {
    "address": 25503,
@@ -10895,6 +12005,26 @@
    "text": "an effect that changes its waveform to a triangle with 16 frames left before it stops"
   },
   {
+   "address": 26345,
+   "type": "line",
+   "text": "the first values of the sound sweep the effect at $66EF steps through"
+  },
+  {
+   "address": 26351,
+   "type": "line",
+   "text": "one of the sound effects' tails: it steps voice 1's frequency high byte through the fifteen values at $6722, and on the eighth changes the waveform to a triangle and back, which is the clatter the game makes"
+  },
+  {
+   "address": 26402,
+   "type": "line",
+   "text": "the fifteen frequency high bytes the effect at $66EF steps through"
+  },
+  {
+   "address": 26417,
+   "type": "line",
+   "text": "another of the sound effects' tails: it counts the effect's frames down and silences voice 1 when they run out"
+  },
+  {
    "address": 26512,
    "type": "line",
    "text": "the player's footsteps, on voice 2: a short note at $0A00 or $0500 depending on which foot it is, taken from the walking frame"
@@ -10910,6 +12040,21 @@
    "text": "steps the index on and returns the next byte of the random table in A"
   },
   {
+   "address": 26899,
+   "type": "line",
+   "text": "slides the whole play area off the screen at the end of a mission, ten times over, with the figures still taking their turns in between, so the room drifts away while the game ends"
+  },
+  {
+   "address": 26940,
+   "type": "line",
+   "text": "moves the play area up and left by one cell, copying each row of the screen and of colour memory from the row below"
+  },
+  {
+   "address": 27071,
+   "type": "line",
+   "text": "moves the play area back down and right by one cell, the mirror of $693C"
+  },
+  {
    "address": 27200,
    "type": "line",
    "text": "builds the castle's map for a floor out of the floor's own description. Every byte of the description names a block of four tiles by four, kept at $7000 plus sixteen times the byte, and the routine copies the block's sixteen bytes into the map, four to a row and 128 bytes between rows. Certain bytes mean more than a block as well: $30 to $37 are the four kinds of figure, each of which is added to the list of figures in $8100 to $8500, $62 is the lift, whose place is kept in $02EA, and $63 is the prisoner, whose place is kept in $02ED. It is why a whole floor of the castle takes only a few hundred bytes to describe."
@@ -10920,9 +12065,84 @@
    "text": "builds a whole floor of the castle. It banks every ROM out so the RAM beneath them can be reached ($01 = $30), takes the floor's description from $D000 plus a kilobyte for each floor, and works through it as 32 rows of 32 bytes, each byte a block of four tiles by four. The map it builds starts at $9000 and is 128 tiles across, so a floor fills 16 kilobytes from a kilobyte of description. Every figure, the lift and the prisoner are picked out of the description as it goes."
   },
   {
+   "address": 27707,
+   "type": "line",
+   "text": "the prisoner's turn, every other frame. It does nothing until the prisoner is within ten blocks of the window the player can see, which keeps the work down while the player is elsewhere on the floor; when he is close it says so once, works out which way to go ($6DB1) and takes a step in it. The prisoner moves half as often as the player, which is the slowness the manual warns about."
+  },
+  {
    "address": 27800,
    "type": "line",
    "text": "\"THE PRISONER IS VERY CLOSE.\", the only message kept away from the block at $5609"
+  },
+  {
+   "address": 27828,
+   "type": "line",
+   "text": "says \"THE PRISONER IS VERY CLOSE.\" the first time the prisoner comes within reach, and remembers in $6043 that it has been said"
+  },
+  {
+   "address": 27859,
+   "type": "line",
+   "text": "moves the prisoner up a row of blocks when the four tiles above are empty, and gives up the direction when they are not"
+  },
+  {
+   "address": 27914,
+   "type": "line",
+   "text": "moves the prisoner down a row of blocks when the four tiles below are empty"
+  },
+  {
+   "address": 27969,
+   "type": "line",
+   "text": "moves the prisoner left when the four tiles to the left are empty"
+  },
+  {
+   "address": 28026,
+   "type": "line",
+   "text": "moves the prisoner right when the four tiles to the right are empty"
+  },
+  {
+   "address": 28081,
+   "type": "line",
+   "text": "chooses which way the prisoner goes next, from where the player is: it compares the prisoner's place in the castle with the player's and turns towards him, which is how he follows"
+  },
+  {
+   "address": 28193,
+   "type": "line",
+   "text": "a shot hit the prisoner, tiles $D4 to $E3. It turns him the way the bullet came and sets the top four bits of his state, which is the warning shot the manual tells the player to fire at a prisoner who will not move."
+  },
+  {
+   "address": 28249,
+   "type": "line",
+   "text": "which of the two frames of the walk this step draws, 0 or 1"
+  },
+  {
+   "address": 28250,
+   "type": "line",
+   "text": "redraws the prisoner. The sixteen tiles he is drawn from live in the character set at $26A0, and this copies a fresh 128 bytes over them from $F000, choosing which frame by his direction and by bit 1 of $602E, so he walks. It banks every ROM out for the copy, because the frames are in the RAM under the KERNAL."
+  },
+  {
+   "address": 28302,
+   "type": "line",
+   "text": "the low byte of the address $6E5A reads the prisoner's next frame from, which the routine writes before the copy"
+  },
+  {
+   "address": 28303,
+   "type": "line",
+   "text": "the high byte of the address $6E5A reads the prisoner's next frame from, which the routine writes before the copy"
+  },
+  {
+   "address": 28314,
+   "type": "line",
+   "text": "the low byte of each of the eight prisoner frames' addresses, by direction and walking frame"
+  },
+  {
+   "address": 28322,
+   "type": "line",
+   "text": "the high byte of each of the eight prisoner frames' addresses: $F000 to $F380, two frames for each of the four directions"
+  },
+  {
+   "address": 28330,
+   "type": "line",
+   "text": "a shot hit a soldier or an officer. It looks through the list of figures for the one within five blocks of where the bullet stopped. The first hit only sets bit 6 of that figure's kind byte, so the figure stays on its feet; the second plays sound 8, sets bit 5, clears the figure's sixteen tiles and queues a point, which the ticker turns into 100. That is the two shots each the manual asks for."
   },
   {
    "address": 28465,
@@ -10935,9 +12155,24 @@
    "text": "compares the ten characters of the name last typed on the high score screen with the word at $6F31 and sets $603F when every one matches. It runs each time a floor is built, so the cheat lasts as long as the name does."
   },
   {
+   "address": 28502,
+   "type": "line",
+   "text": "the bytes after the cheat check, which nothing reaches: the program ends here and the blocks the floors are built from begin at $7000"
+  },
+  {
    "address": 28672,
    "type": "line",
    "text": "the blocks the castle's floors are built from, sixteen bytes each: four tiles across and four down. A byte of a floor's description names one, and its address is $7000 plus sixteen times the byte."
+  },
+  {
+   "address": 29440,
+   "type": "line",
+   "text": "the blocks a figure knocked down is drawn from, four to a kind: $7300, $7320, $7340 and $7360"
+  },
+  {
+   "address": 29504,
+   "type": "line",
+   "text": "more of the blocks the floors are built from, from block $34"
   },
   {
    "address": 29696,
@@ -10963,6 +12198,21 @@
    "address": 32817,
    "type": "line",
    "text": "what RESTORE runs, through the KERNAL's NMI handler. Sets the stack up, turns the raster interrupt off, turns every sprite off and the sound down, and joins the cold start at the score reset, so RESTORE abandons the game and starts the attract loop again."
+  },
+  {
+   "address": 32838,
+   "type": "line",
+   "text": "the bytes after the warm start's code, which nothing reaches"
+  },
+  {
+   "address": 32896,
+   "type": "line",
+   "text": "the bytes after the autostart block's code, which are not reached"
+  },
+  {
+   "address": 32960,
+   "type": "line",
+   "text": "the last of the autostart block, which nothing reaches"
   },
   {
    "address": 33024,
@@ -10995,6 +12245,66 @@
    "text": "the colour of each tile of the play screen's character set, one byte a tile. The attract screens read it for the icons they show ($8600, $8614, $8618 to $861B, $8628 and $8666), and the castle's rooms are coloured from it."
   },
   {
+   "address": 34320,
+   "type": "line",
+   "text": "the colours of the tiles a door key is drawn from"
+  },
+  {
+   "address": 34322,
+   "type": "line",
+   "text": "the colours of the tiles a box of ammunition is drawn from"
+  },
+  {
+   "address": 34324,
+   "type": "line",
+   "text": "the colours of the tiles a painting is drawn from"
+  },
+  {
+   "address": 34328,
+   "type": "line",
+   "text": "the colour of the first tile of a pendant"
+  },
+  {
+   "address": 34329,
+   "type": "line",
+   "text": "the colour of the second tile of a pendant"
+  },
+  {
+   "address": 34330,
+   "type": "line",
+   "text": "the colour of the third tile of a pendant"
+  },
+  {
+   "address": 34331,
+   "type": "line",
+   "text": "the colour of the fourth tile of a pendant"
+  },
+  {
+   "address": 34332,
+   "type": "line",
+   "text": "the colours of the tiles a pendant is drawn from"
+  },
+  {
+   "address": 34336,
+   "type": "line",
+   "text": "the colours of the tiles a vase is drawn from"
+  },
+  {
+   "address": 34344,
+   "type": "line",
+   "text": "the part of the tile colour table the attract screens read for the pictures they show"
+  },
+  {
+   "address": 34406,
+   "type": "line",
+   "text": "more of the colour of each tile of the play character set"
+  },
+  {
+   "address": 34470,
+   "type": "line",
+   "text": "the rest of the colour of each tile of the play character set, one byte a tile"
+  },
+  {
    "address": 34560,
    "type": "line",
    "text": "256 random bytes, built at start-up from the sound chip's noise oscillator and read a byte at a time by $67F3"
@@ -11010,6 +12320,46 @@
    "text": "the floor the player is on, built from its description into 128 tiles across by 128 down, one byte a tile. It is 16 kilobytes, which is why it lies over the title picture at $A000 and the RAM under the I/O area is used for the descriptions."
   },
   {
+   "address": 40960,
+   "type": "line",
+   "text": "the title picture's bitmap, 8000 bytes of single-colour bitmap loaded from the tape and shown while the rest of the tape loads: the castle on its crag with \"Into The Eagle's Nest...\" above it and PANDORA below. Once the game runs, the castle map is built over it."
+  },
+  {
+   "address": 41984,
+   "type": "line",
+   "text": "the second kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 43008,
+   "type": "line",
+   "text": "the third kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 44032,
+   "type": "line",
+   "text": "the fourth kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 45056,
+   "type": "line",
+   "text": "the fifth kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 46080,
+   "type": "line",
+   "text": "the sixth kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 47104,
+   "type": "line",
+   "text": "the seventh kilobyte of the title picture's bitmap"
+  },
+  {
+   "address": 48128,
+   "type": "line",
+   "text": "the last of the title picture's bitmap, which ends at $BF3F"
+  },
+  {
    "address": 53248,
    "type": "line",
    "text": "the basement's description, a kilobyte: 32 rows of 32 bytes, each naming one of the blocks at $7000"
@@ -11023,6 +12373,341 @@
    "address": 55296,
    "type": "line",
    "text": "the first floor's description, in the same form"
+  },
+  {
+   "address": 55336,
+   "type": "line",
+   "text": "colour memory for row 1, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55365,
+   "type": "line",
+   "text": "colour memory for row 1, column 29 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55376,
+   "type": "line",
+   "text": "colour memory for row 2, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55416,
+   "type": "line",
+   "text": "colour memory for row 3, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55452,
+   "type": "line",
+   "text": "colour memory for row 3, column 36 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55453,
+   "type": "line",
+   "text": "colour memory for row 3, column 37 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55454,
+   "type": "line",
+   "text": "colour memory for row 3, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55456,
+   "type": "line",
+   "text": "colour memory for row 4, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55494,
+   "type": "line",
+   "text": "colour memory for row 4, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55496,
+   "type": "line",
+   "text": "colour memory for row 5, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55532,
+   "type": "line",
+   "text": "colour memory for row 5, column 36 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55533,
+   "type": "line",
+   "text": "colour memory for row 5, column 37 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55534,
+   "type": "line",
+   "text": "colour memory for row 5, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55536,
+   "type": "line",
+   "text": "colour memory for row 6, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55552,
+   "type": "line",
+   "text": "colour memory for row 6, column 16 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55574,
+   "type": "line",
+   "text": "colour memory for row 6, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55576,
+   "type": "line",
+   "text": "colour memory for row 7, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55581,
+   "type": "line",
+   "text": "colour memory for row 7, column 5 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55582,
+   "type": "line",
+   "text": "colour memory for row 7, column 6 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55610,
+   "type": "line",
+   "text": "colour memory for row 7, column 34 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55612,
+   "type": "line",
+   "text": "colour memory for row 7, column 36 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55613,
+   "type": "line",
+   "text": "colour memory for row 7, column 37 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55614,
+   "type": "line",
+   "text": "colour memory for row 7, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55616,
+   "type": "line",
+   "text": "colour memory for row 8, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55654,
+   "type": "line",
+   "text": "colour memory for row 8, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55656,
+   "type": "line",
+   "text": "colour memory for row 9, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55694,
+   "type": "line",
+   "text": "colour memory for row 9, column 38 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55696,
+   "type": "line",
+   "text": "colour memory for row 10, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55727,
+   "type": "line",
+   "text": "colour memory for row 10, column 31 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55736,
+   "type": "line",
+   "text": "colour memory for row 11, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55773,
+   "type": "line",
+   "text": "colour memory for row 11, column 37 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55776,
+   "type": "line",
+   "text": "colour memory for row 12, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55782,
+   "type": "line",
+   "text": "colour memory for row 12, column 6 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55808,
+   "type": "line",
+   "text": "colour memory for row 12, column 32 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55816,
+   "type": "line",
+   "text": "colour memory for row 13, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55824,
+   "type": "line",
+   "text": "colour memory for row 13, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55825,
+   "type": "line",
+   "text": "colour memory for row 13, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55856,
+   "type": "line",
+   "text": "colour memory for row 14, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55864,
+   "type": "line",
+   "text": "colour memory for row 14, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55865,
+   "type": "line",
+   "text": "colour memory for row 14, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55896,
+   "type": "line",
+   "text": "colour memory for row 15, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55936,
+   "type": "line",
+   "text": "colour memory for row 16, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55941,
+   "type": "line",
+   "text": "colour memory for row 16, column 5 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55942,
+   "type": "line",
+   "text": "colour memory for row 16, column 6 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55944,
+   "type": "line",
+   "text": "colour memory for row 16, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55945,
+   "type": "line",
+   "text": "colour memory for row 16, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55970,
+   "type": "line",
+   "text": "colour memory for row 16, column 34 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55976,
+   "type": "line",
+   "text": "colour memory for row 17, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55984,
+   "type": "line",
+   "text": "colour memory for row 17, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 55985,
+   "type": "line",
+   "text": "colour memory for row 17, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56016,
+   "type": "line",
+   "text": "colour memory for row 18, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56056,
+   "type": "line",
+   "text": "colour memory for row 19, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56064,
+   "type": "line",
+   "text": "colour memory for row 19, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56065,
+   "type": "line",
+   "text": "colour memory for row 19, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56096,
+   "type": "line",
+   "text": "colour memory for row 20, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56104,
+   "type": "line",
+   "text": "colour memory for row 20, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56105,
+   "type": "line",
+   "text": "colour memory for row 20, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56136,
+   "type": "line",
+   "text": "colour memory for row 21, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56165,
+   "type": "line",
+   "text": "colour memory for row 21, column 29 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56166,
+   "type": "line",
+   "text": "colour memory for row 21, column 30 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56176,
+   "type": "line",
+   "text": "colour memory for row 22, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56184,
+   "type": "line",
+   "text": "colour memory for row 22, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56185,
+   "type": "line",
+   "text": "colour memory for row 22, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56216,
+   "type": "line",
+   "text": "colour memory for row 23, column 0 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56224,
+   "type": "line",
+   "text": "colour memory for row 23, column 8 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56225,
+   "type": "line",
+   "text": "colour memory for row 23, column 9 of the screen to the code that writes it, which always runs with the I/O area banked in; the same byte is part of the first floor's description, which the map builder reads with the I/O area banked out"
+  },
+  {
+   "address": 56256,
+   "type": "line",
+   "text": "the last of the first floor's description, which runs to $DBFF"
   },
   {
    "address": 56320,
@@ -11050,9 +12735,44 @@
    "text": "the colour memory the plaque's bitmap is drawn with, which in bitmap mode is the screen at $EC00. The name-entry screen copies $EE00 and $EF00 of it into the real colour memory."
   },
   {
+   "address": 60928,
+   "type": "line",
+   "text": "the first page of the plaque's colour memory, which the name-entry screen copies into the real colour memory at $D800"
+  },
+  {
+   "address": 60992,
+   "type": "line",
+   "text": "more of the plaque's colour memory"
+  },
+  {
+   "address": 61184,
+   "type": "line",
+   "text": "the second page of it, copied to $D900"
+  },
+  {
+   "address": 61248,
+   "type": "line",
+   "text": "the last of the plaque's colour memory"
+  },
+  {
+   "address": 61440,
+   "type": "line",
+   "text": "the prisoner's sixteen-tile picture, eight times over: two frames of walking for each of the four directions, 128 bytes each. $6E5A copies the one wanted into the character set at $26A0, with the ROMs banked out."
+  },
+  {
+   "address": 64789,
+   "type": "line",
+   "text": "the KERNAL's own RESTOR routine, which the cold start at $8010 calls to put the system's vectors back. The bytes in the listing are the RAM beneath the ROM, which holds the game's data; the instruction reaches the ROM."
+  },
+  {
    "address": 64816,
    "type": "line",
    "text": "the KERNAL's own table of interrupt vectors, showing through in the RAM beneath the ROM. No instruction in the game names it."
+  },
+  {
+   "address": 64825,
+   "type": "line",
+   "text": "the rest of the KERNAL's vector table showing through in the RAM beneath the ROM. No instruction in the game names it."
   }
  ]
 }
