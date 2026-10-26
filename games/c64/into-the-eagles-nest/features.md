@@ -54,10 +54,10 @@ Sources:
 | 50 hits kill the player | **live** | `$5BC8` compares the hits with `$50`, and the count is binary-coded decimal: poked to `$49` the game played on, poked to `$50` it ended (`work/t_death.py`) |
 | The player flashes as the limit nears | open | Nothing found that changes the player with the hit count: the sprite colour registers are written only at `$424B` and `$4CB2`, neither of which reads `$02C6`, and the references search lists every reader of the hit count as the panel, the save between missions, the nags and the death test |
 | First aid and cold food heal hits | **confirmed** | `$4F08` takes `$10` off the hits in decimal mode, which is sixteen, and `$4F90` clears them altogether |
-| Drunken officers are harmless, and worth points when shot | **confirmed** | The twelve codes `$5E` to `$6D` are three shapes each of four kinds, and `$6EAA` scores any of them; nothing tells the kinds apart in what they do to the player |
-| Chests are shot open; shooting an open chest can destroy what is in it | **confirmed** | A closed chest is tiles `$5E` to `$61` and `$5528` opens it; an open one holding jewels is `$66` to `$69`, and shooting that gives the jewels at `$55F0`. The chest of ammunition is a different thing, tile `$12` in the grid, which `$4F62` gives when the player walks onto it and `$53BF` empties when it is shot |
-| A chest is a gamble: jewels one time in eight, explosives one time in eight | **confirmed** | `$5598` takes a random number and only one in four is `$C0` or more; on that it takes a second and splits it evenly at `$80` between jewels, worth 4000, and explosives, which end the game. The other three times it says "EMPTY!" |
-| Some chests hold explosives, which are fatal when shot | **confirmed** | `$55D5` says `FOOL!....EXPLOSIVES.` and sets `$02D3` to 1, which is the explosion at `$5BDD`: the border and background run through seventeen colours five times over and the game then ends |
+| Drunken officers are harmless, and worth points when shot | open | The figures are tiles `$76` to `$C0`, and a shot that hits one goes to `$6EAA`, which finds it on the figure list: the first hit sets bit 6 of its kind in `$8500`, and a second asks for sound 8, sets bit 5, clears its sixteen tiles from the map and scores 100. Whether one of the four kinds leaves the player alone has not been traced. Tiles `$5E` to `$6D`, once read as officers, are the chests |
+| Chests are shot open; shooting an open chest can destroy what is in it | **confirmed** | A closed chest is tiles `$5E` to `$61`, and a shot sends it to `$5528`, which opens it. Jewels showing in an open chest (`$66` to `$69`) are taken by walking into them (`$5CB9`, `$5DA6`), and shooting them instead (`$55F0`) says `YOU HAVE SHOT SOME JEWELS.` and loses them. Both seen in the game (`work/t_chest.py`). The chest of ammunition is a different thing, tile `$12` in the grid, which `$4F62` gives when the player walks onto it and `$53BF` empties when it is shot |
+| Shooting a closed chest opens it on jewels one time in eight, and on explosives one time in eight | **traced** | `$5598` takes a random number and only one in four is `$C0` or more; on that it takes a second and splits it evenly at `$80` between jewels, worth 4000 when walked into, and explosives. The other three times it says `EMPTY!`. Opening a chest never hurts the player |
+| Some chests hold explosives, which are fatal when shot | **confirmed** | Only when shot once the chest is open on them: `$55D5` says `FOOL!....EXPLOSIVES.` and sets `$02D3` to 1, which is the explosion at `$5BDD`: the border and background run through seventeen colours five times over and the game then ends. Walking into them does nothing. Seen in the game (`work/t_chest.py`) |
 | Art treasures (paintings, vases, pendants, gemstones) score points | **confirmed** | 2500 for a painting, 1500 for a vase, 4000 for a pendant and 4000 for a pile of jewels, each queued in `$02C5` and paid out a hundred at a time by `$5AA0` |
 | Ammunition boxes hold 7 rounds each | **differs** | A box gives sixteen: `$4F62` adds `$10` in decimal mode. The manual (page 6) says 7 |
 | A mission starts with 99 rounds | **live** | `$02BD` reads `$99` and the panel's two cells both hold `$F9` (`work/t_ammo.py`); `$405E` writes `$99`. The manual says 99 too. C64-Wiki's "maximum is 100 shots" is wrong: the ceiling is 99, and `$4F6A` says so when a box would carry past it |
@@ -96,7 +96,10 @@ Found in the code, not in the manual.
 - **The player is in the map as well as in front of it**, stamped as tile
   `$55` while the figures take their turn, which is how walking into him
   is noticed.
-- **999 bytes of unused tiles** at `$8C00` that no instruction reaches.
+- **The tape switches its own title picture on.** The bytes at `$8C00`
+  are the picture's screen colours, and five of the tape's blocks are one
+  byte each, written into the video chip and CIA 2 (`orientation.md`, "The
+  loader"). No instruction reads `$8C00`; the video chip does.
 
 ## Open questions
 
@@ -106,8 +109,7 @@ Found in the code, not in the manual.
   on it with every charge armed did not make the check fire
   (`work/t_explode3.py`).
 - Whether the second castle the manual promises exists in this version.
-  Nothing reads a second set of floor descriptions, and the 999 bytes of
-  tile-shaped data at `$8C00` are the only candidate.
+  Nothing reads a second set of floor descriptions.
 - Whether the game has a two-player mode. No source mentions one, and the
   only read of `$DC01`, where control port 1 would be, is the keyboard
   scan at `$5FD0`.

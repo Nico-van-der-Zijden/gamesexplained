@@ -78,15 +78,16 @@ all):
 |---|---|---|
 | `$0008`-`$0202`, `$0286`-`$0517`, `$0590`-`$05B7` | 1,205 | zero page, the loader and its work space |
 | `$0806`-`$80FF` | 30,970 | the program |
-| `$8600`-`$86FF` | 256 | |
-| `$8C00`-`$8FE6` | 999 | |
-| `$A000`-`$BF3D` | 7,998 | the title picture's bitmap, which the game overwrites with its own tables once it runs |
+| `$8600`-`$86FF` | 256 | the colour of each tile |
+| `$8C00`-`$8FE6` | 999 | the title picture's screen colours (the tape's block runs to `$8FE7`, which holds what it held at power-on) |
+| `$A000`-`$BF3D` | 7,998 | the title picture's bitmap, which the castle map covers once the game runs (the tape's block runs to `$BF3F`) |
 | `$D000`-`$F3FF` | 9,216 | data under the I/O area and the KERNAL |
 | `$FFFE`-`$FFFF` | 2 | |
 
 Everything else is untouched RAM at the hand-over: `$8100`-`$85FF`,
-`$8700`-`$8BFF`, `$8FE7`-`$9FFF` and `$C000`-`$CFFF` are filled in by the
-game as it runs.
+`$8700`-`$8BFF`, `$8FE8`-`$9FFF` and `$C000`-`$CFFF` are filled in by the
+game as it runs. The tape's own list of blocks, in "The loader" below, is
+the exact account of what was loaded where.
 
 `$01` reads `$26` in play: RAM at `$A000`-`$BFFF`, I/O at `$D000` and the
 KERNAL in at `$E000`. It reads `$27` at the hand-over, with BASIC still
@@ -109,16 +110,59 @@ vector, so the chain is the one handler at `$4AA7`: `$D018` = `$1B` and
 line 253. The band between them uses the character set at `$2800` without
 multicolour.
 
-## The loader, in a paragraph
+## The loader
 
-The tape's first block is loaded by the KERNAL in the ordinary way, and
-from then on the game reads its own tape. The code that does it sits in
-`$0286`-`$0517` and on the stack page: sampled during the load, the
-processor was almost always in a `JMP $02E8` loop at `$02E8`, and
-occasionally in `$0100`-`$018F`, which is where the reading is done.
-`$02EB` onwards, which the spin loop sits in front of, sets `$01` to
-`$37`, clears the border colour and reads `$DC0D`. The loading screen and
-then the title picture are shown while the rest of the tape is read, so
-the picture at `$A000` is loaded before the program that overwrites it.
-The loader's last act is to enter the game at `$1014`. It is not
-annotated further, by policy.
+The KERNAL loads the tape's first file in its own format, which takes the
+first 29.9 seconds of the tape and brings the turbo loader with it,
+Interceptor Micros' "WILD SAVE", signed by Andrew Challis in January 1987.
+Its set-up at `$02A7` writes `$01` = `$05`, which takes BASIC and the
+KERNAL out, points the hardware interrupt vector at `$FFFE` to `$0100`,
+loads CIA 1's timer A with `$03E0` and lets the cassette's read line
+interrupt; then the processor waits in `JMP $02E8`. Every pulse from the
+tape interrupts it: the handler at `$0100` reads the timer's high byte and
+restarts the timer, so a pulse longer than about 480 cycles is a 1 and a
+shorter one a 0, taken lowest bit first. On this tape the two pulses are
+384 to 399 cycles and 576 to 591. The border is dark grey only while the
+handler runs, which draws the loading stripes.
+
+The handler searches bit by bit for `$A0`, then expects more `$A0`s and the
+countdown `$0A` to `$01`, through a branch whose offset it rewrites as it
+goes from one state to the next. Then come blocks, one straight after
+another: five bytes of header (the last address, the length and a flag),
+the data, loaded from the last address downwards with each byte XORed
+with the low byte of its own address, and a checksum, the XOR of the
+bytes stored; a wrong one turns the border into a cycle of colours for
+ever. A flag of 0 writes with the I/O chips switched out, `$FF` sends the
+loader back to searching for a new lead-in, and `$FE` ends the load.
+
+`work/tapedecode.py` reads the tape image by those rules. Every checksum
+is good, and 49,728 of the 49,729 bytes it puts into RAM are what the
+hand-over snapshot holds; the other, `$0829`, is written by the code that
+runs between the loader and the hand-over. In tape time:
+
+| From | To | Block | |
+|---|---|---|---|
+| 29.88 s | 30.66 s | `$033C`-`$03FB` | the signature, into the cassette buffer |
+| 30.66 s | 61.83 s | `$A000`-`$BF3F` | the title picture's bitmap |
+| 61.83 s | 65.82 s | `$8C00`-`$8FE7` | its screen colours |
+| 65.82 s | 69.86 s | `$D011`, `$D800`-`$DBE7`, `$DD00`, `$D018`, `$D016`, `$D011` | into the chips: the screen off (`$0B`), the picture's colour RAM, video bank 2 (`$95`), the screen at `$8C00` and the bitmap at `$A000` (`$38`), multicolour (`$D8`), bitmap mode and the screen on (`$3B`) |
+| 69.86 s | 157.74 s | `$0800`-`$5FFF` | the program |
+| 157.76 s | 162.10 s | | flag `$FF`, and a new lead-in |
+| 162.10 s | 179.08 s | `$7000`-`$80FF` | the blocks and more of the program |
+| 179.08 s | 195.06 s | `$D000`-`$DFFF` | the four floors, flag 0: under the I/O chips |
+| 195.06 s | 196.09 s | `$8600`-`$86FF` | the tile colours |
+| 196.09 s | 216.16 s | `$E000`-`$F3FF` | under the KERNAL |
+| 216.17 s | 220.32 s | | flag `$FF`, and a new lead-in |
+| 220.32 s | 236.28 s | `$6000`-`$6FFF` | more of the program |
+| 236.28 s | 236.65 s | `$02A7`-`$02FF` | the loader's own page |
+| 236.65 s | | | flag `$FE`, the end |
+
+So the title picture is put on the screen by the tape: the loader has no
+code for it, and loads the five register values like any other bytes. The
+last block replaces the loader's own set-up while the processor waits in
+it, and keeps `JMP $02E8` where it was, so the waiting loop does not
+notice. The end of the load jumps into the replacement, which puts the
+KERNAL's interrupt back, sets timer A to `$4025` again and jumps to
+`$0810`; from there the game reaches `$1014`, where the listing starts.
+The loader's code is described here and not in the listing, as
+`10-orient` asks; a snapshot taken during the load is `work/loading.vsf`.

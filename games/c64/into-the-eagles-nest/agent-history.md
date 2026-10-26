@@ -59,6 +59,40 @@ an even split between 4000 points and the explosion that ends the game.
 No source had written that down, and it came out of correcting a wrong
 comment.
 
+## The second pass
+
+The contributor read the published pages and questioned six things: the
+tier, the floor format, the colour modes, the alphabets, the missing
+sprites and the loader, and whether a chest really killed one time in
+eight, since they had never been blown up. The session moved to
+claude-opus-5-5 for the rest of the work.
+
+The chest odds were wrong. The correction made after the sample had been
+written from `$5598` alone; reading `$5528` and `$5CB9` beside it, and
+then putting each kind of open chest in front of the player in the game,
+showed that a shot only opens a chest and that the explosives go off only
+when they are shot again. The first attempt at that test put the chest at
+a map address worked out by hand, which was wrong; stopping the machine
+at `$5C6A`, where the game has just computed the tiles round the player,
+gave the right one.
+
+The drawing was wrong in the way the contributor said. The page's own
+tile renderer drew every cell multicolour, while the game draws a cell
+hires when its colour is below 8, which is every wall and the whole
+panel. The frame rebuilt by the site's renderer had been right throughout.
+The pages now draw each tile in its own mode, a Graphics tab takes the
+screen, both alphabets and the sprites apart, and the Maps tab draws
+every floor tile by tile, with a test that runs the game's own builder.
+
+The Source code and About tabs had never been in the bar, because the
+game's own tab list named three pages; `build.py` now always closes the
+bar with them.
+
+Following a shot frame by frame found that it is never drawn, and
+decoding the tape found what the loader does with the title picture and
+what the bytes at `$8C00` are. The floor format was right: the page's
+expansion matches the game's map to the tile, apart from what has moved.
+
 ## The port that was a tick late
 
 The music driver, ported to JavaScript for the page, agreed with the

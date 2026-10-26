@@ -20,8 +20,29 @@ found 13 of 60 comments with a wrong detail, which is 21.7 %, well over
 the mark of 2 in 60. All 13 were corrected, and so was every other comment
 that said the same thing, but the sample's rate holds across the rest, so
 roughly one comment in five of the 659 is probably still wrong in some
-detail. A full audit, followed by a fresh sample on a model that took no
+detail. A second pass on claude-opus-5-5 corrected 21 more that were not
+in the sample (`facts.md`, "The listing's error rate"), which bears the
+rate out. A full audit, followed by a fresh sample on a model that took no
 part in it, is what would let the page call the listing checked.
+
+Found in that pass and left for the audit, each checked only as far as
+written here:
+
+- `$529B`'s comment says tiles `$30` to `$3E`, `$C0` to `$CB` and `$E7` to
+  `$EE` are "walls that just stop" a shot. They go to `$67FD`, which
+  redraws a four-tile object (`$34 $30 $31 $35` on its top row) as
+  something else, scores 2500 and asks for sound 8. What the object is
+  has not been seen in the game.
+- A shot's range: `$463F` and `facts.md` give it five tiles, but a shot
+  fired across open floor in the game (`work/t_shot.py`) flew ten tiles
+  to the wall.
+- What `$02C9` does: set when explosives go off and by the main loop's
+  hand-overs, and read at `$4B5F` to skip the flash and the player's
+  sprites.
+- The bytes the listing leaves untyped between code at `$6003`-`$6008`
+  and `$600F`-`$6011` (the jump table at `$6000`), and `$1000`-`$1002`.
+- Bit 6 of a figure's kind, which the first hit sets (`$6EAA`): what it
+  changes in the figure.
 
 ## Questions only a player can answer
 
@@ -30,8 +51,9 @@ part in it, is what would let the page call the listing checked.
   floor: a run of nineteen along the map's last row. Standing the player
   on it with every charge armed did not make the check fire.
 - Whether the second castle the manual promises exists. Nothing reads a
-  second set of floor descriptions; the 999 bytes of tile-shaped data at
-  `$8C00`, which no instruction reaches, are the only candidate.
+  second set of floor descriptions, and the tape carries none: every block
+  it loads is accounted for (`orientation.md`, "The loader"). The bytes at
+  `$8C00` that looked like its tiles are the title picture's colours.
 - How the demolition mission ends in play. The path through the code is
   traced; nobody has seen it.
 - Who "Mirai" is, whom C64-Wiki credits with the music.
@@ -51,3 +73,7 @@ part in it, is what would let the page call the listing checked.
   patrol or wander.
 - **The screens the run never saw**: the end-of-mission screen, the
   castle's own destruction, and the name entry with a real high score.
+- **The chests in order.** The dice restart at every mission (`$4058`
+  clears `$02E1`), so within one game the chests should open the same way
+  each mission when they are shot in the same order. That is read from the
+  code; a recorded route through two missions would show it.

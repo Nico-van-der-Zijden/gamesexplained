@@ -2,7 +2,7 @@
  "schema": 1,
  "platform": "c64",
  "game": "into-the-eagles-nest",
- "build": "PAL cassette, Pandora 1987, analysed at the loader's hand-over",
+ "build": "PAL cassette, Pandora, inlay stamped 1986, analysed at the loader's hand-over",
  "source": "regenerator2000 live",
  "regions": {
   "exclude": [
@@ -47,7 +47,7 @@
     "runtime: the buffer the message printer at $5935 fills with the characters of the line being shown"
    ],
    [
-    36839,
+    36840,
     36863,
     "runtime: untouched at the hand-over, inside the map builder's working area"
    ],
@@ -697,11 +697,11 @@
   },
   {
    "start": 35840,
-   "end": 36838,
+   "end": 36839,
    "type": "Byte"
   },
   {
-   "start": 36839,
+   "start": 36840,
    "end": 40959,
    "type": "Undefined"
   },
@@ -8885,7 +8885,7 @@
   },
   {
    "address": 35840,
-   "name": "unused_tiles",
+   "name": "title_colours",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -9817,7 +9817,7 @@
   {
    "address": 723,
    "type": "line",
-   "text": "0 while the mission is being played, $FF once the player is dead, and 1 to $12 while a crate of dynamite is going off"
+   "text": "0 while the mission is being played, $FF once the player is dead, and 1 to $12 while the explosives from a chest are going off"
   },
   {
    "address": 724,
@@ -10942,7 +10942,7 @@
   {
    "address": 15360,
    "type": "line",
-   "text": "the last sprite shapes, numbers $F0 to $F6: the castle emblem in the panel and the bullet, one shape for each direction it can fly"
+   "text": "the last sprite shapes, numbers $F0 to $F6: the castle on the panel and the flash at the barrel when a shot is fired, one shape for each direction"
   },
   {
    "address": 16384,
@@ -11017,7 +11017,7 @@
   {
    "address": 16549,
    "type": "line",
-   "text": "sets the eight sprites up for play: no expansion, multicolour for the lower four, the bullet yellow, the screen at $0400 with the play character set at $2000, multicolour text with the two extra backgrounds, and the three sprites of the castle emblem parked in the panel at fixed places. It then puts the player's four sprites round the player's position in $02DF and $02E0: sprites 0 and 2 on the left, 1 and 3 eight pixels further right, 0 and 1 on the top row, 2 and 3 a row of 21 lines below."
+   "text": "sets the eight sprites up for play: no expansion, multicolour for the lower four, sprite 4, the flash at the barrel, yellow, the screen at $0400 with the play character set at $2000, multicolour text with the two extra backgrounds, and the three sprites of the castle emblem parked in the panel at fixed places. It then puts the player's four sprites round the player's position in $02DF and $02E0: sprites 0 and 2 on the left, 1 and 3 eight pixels further right, 0 and 1 on the top row, 2 and 3 a row of 21 lines below."
   },
   {
    "address": 16776,
@@ -11132,22 +11132,22 @@
   {
    "address": 18085,
    "type": "line",
-   "text": "points the player's four sprites at the shapes for the way the player is facing, from the table at $46A1, marks a shot as pending, and gives the bullet sprite the shape for that direction, $F3 plus the direction less one"
+   "text": "points the player's four sprites at the shapes for the way the player is facing, from the table at $46A1, marks a shot as pending, and gives sprite 4, the flash at the barrel, the shape for that direction, $F3 plus the direction less one"
   },
   {
    "address": 18161,
    "type": "line",
-   "text": "how the bullet sprite is being handled this frame; the interrupt reads it when it places sprite 4"
+   "text": "how many frames the flash at the barrel has left: 4 when a shot is fired, yellow from 2, parked at 0; the interrupt reads it when it places sprite 4"
   },
   {
    "address": 18162,
    "type": "line",
-   "text": "where the bullet sprite sits beside the player for each direction"
+   "text": "where the flash at the barrel sits beside the player for each direction"
   },
   {
    "address": 18166,
    "type": "line",
-   "text": "where the bullet sprite sits below the player for each direction"
+   "text": "where the flash at the barrel sits below the player for each direction"
   },
   {
    "address": 18170,
@@ -11207,7 +11207,7 @@
   {
    "address": 18545,
    "type": "line",
-   "text": "the game's main loop, which does nothing itself but watch four things and hand over when one of them happens. $02D3 = $FF means the player is dead or a crate of dynamite has gone off ($48F0), $02C8 = 2 that he has stepped onto the lift ($48D4), $02E9 = 1 that a prisoner has been brought home ($49EC) and 2 that the castle has been destroyed ($4A5C), and $C5 = $10 that SPACE is down, which pauses. Everything else - the player, the guards, the shots, the panel - is done by the interrupt."
+   "text": "the game's main loop, which does nothing itself but watch four things and hand over when one of them happens. $02D3 = $FF means the player is dead or the explosives in a chest have been shot ($48F0), $02C8 = 2 that he has stepped onto the lift ($48D4), $02E9 = 1 that a prisoner has been brought home ($49EC) and 2 that the castle has been destroyed ($4A5C), and $C5 = $10 that SPACE is down, which pauses. Everything else - the player, the guards, the shots, the panel - is done by the interrupt."
   },
   {
    "address": 18585,
@@ -11222,7 +11222,7 @@
   {
    "address": 18672,
    "type": "line",
-   "text": "the player is dead, or a crate of dynamite has gone off. It clears the message line, silences all three voices and the volume, turns the sprites off, copies the six score digits off the panel into $0819 for the high score check, slides the room away, shows \"YOU ARE DEAD\" ($082A) and goes to the high score check at $0810."
+   "text": "the player is dead, or the explosives in a chest have been shot. It clears the message line, silences all three voices and the volume, turns the sprites off, copies the six score digits off the panel into $0819 for the high score check, slides the room away, shows \"YOU ARE DEAD\" ($082A) and goes to the high score check at $0810."
   },
   {
    "address": 18758,
@@ -11262,7 +11262,7 @@
   {
    "address": 19276,
    "type": "line",
-   "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, paints the panel ($600C), draws the room's movers ($5BBA), lets the bullet sprite fade after a hit, runs the player and the room changes ($426F) unless a change is already under way, and places the player's four sprites and the bullet's round the positions in $02DF and $02E0."
+   "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, paints the panel ($600C), draws the room's movers ($5BBA), counts the flash at the barrel down after a shot is fired, runs the player and the room changes ($426F) unless a change is already under way, and places the player's four sprites and the bullet's round the positions in $02DF and $02E0."
   },
   {
    "address": 19416,
@@ -11447,7 +11447,7 @@
   {
    "address": 21439,
    "type": "line",
-   "text": "a shot hit an open chest, which breaks what is in it: clears the two tiles of the chest and scores it"
+   "text": "a shot hit a box of ammunition, tile $12. It clears the box's two tiles from the grid, asks for sound 9 and writes the grid back to the map at $4E77: the rounds are lost and nothing is scored."
   },
   {
    "address": 21456,
@@ -11507,12 +11507,12 @@
   {
    "address": 21800,
    "type": "line",
-   "text": "a shot hit a closed chest, codes $5E to $6D. The code names which of the chest's four tiles was hit, and the routine works back to the chest's own corner. A chest already showing jewels ($66 to $69) gives them; one showing explosives ($6A to $6D) blows up; a closed one ($5E to $61) is a gamble, settled at $5598."
+   "text": "a shot hit a chest, codes $5E to $6D. The code names which of the chest's four tiles was hit, and the routine works back to the chest's own corner and reads its state there: a closed chest ($5E to $61) is opened at $5598, jewels showing ($66 to $69) are wasted at $55F0, and explosives showing ($6A to $6D) go off at $55D5."
   },
   {
    "address": 21912,
    "type": "line",
-   "text": "what a closed chest holds, decided when it is shot. It takes a random number, and only one of four is $C0 or more; on that it takes a second and gives jewels when it is $80 or more and explosives otherwise, each an even chance. The other three times in four it says \"EMPTY!\". Whatever happens, the chest is left open at $55BB."
+   "text": "opens a closed chest that has been shot. It takes a random number, and only one in four is $C0 or more; on that it takes a second and opens the chest on jewels ($66) when it is $80 or more and on explosives ($6A) otherwise, so one shot in eight shows each. The other three times in four it says \"EMPTY!\" and leaves the chest open and empty at $55BB. Nothing else happens on this shot: jewels are taken by walking into them ($5CB9), and explosives go off only when they are shot."
   },
   {
    "address": 21947,
@@ -11522,12 +11522,12 @@
   {
    "address": 21973,
    "type": "line",
-   "text": "the chest held explosives. It says \"FOOL!....EXPLOSIVES.\", sets $02D3 to 1, which starts the explosion that kills the player, pauses the game and asks for sound 7."
+   "text": "a shot hit the explosives in an open chest. It says \"FOOL!....EXPLOSIVES.\", sets $02D3 to 1, which starts the explosion that ends the game, sets $02C9 and asks for sound 7, which nothing else asks for. Walking into the explosives does nothing."
   },
   {
    "address": 22000,
    "type": "line",
-   "text": "the chest held jewels: \"YOU HAVE SHOT\" and \"SOME JEWELS.\", and the chest is left open"
+   "text": "a shot hit the jewels in an open chest. It says \"YOU HAVE SHOT\" and \"SOME JEWELS.\" and leaves the chest empty, with no points: the jewels are worth something only walked into ($5CB9)."
   },
   {
    "address": 22025,
@@ -11612,12 +11612,12 @@
   {
    "address": 23482,
    "type": "line",
-   "text": "watched each frame. While $02D3 is 0 it reads the hits: at $50, that is fifty, the player is dead. $FF means the game is over and the screen goes black. Anything from 1 to $12 is a step of the explosion a crate of dynamite makes, which walks the border and the background through the colours at $5C11 and goes round five times before setting $02D3 to $FF. The last step reads one byte past the table, which is the first byte of the tile grid at $5C22."
+   "text": "watched each frame. While $02D3 is 0 it reads the hits: at $50, that is fifty, the player is dead. $FF means the game is over and the screen goes black. Anything from 1 to $12 is a step of the explosion the explosives from a chest make, which walks the border and the background through the colours at $5C11 and goes round five times before setting $02D3 to $FF. The last step reads one byte past the table, which is the first byte of the tile grid at $5C22."
   },
   {
    "address": 23569,
    "type": "line",
-   "text": "the seventeen border and background colours a crate of dynamite flashes through, in order. The explosion takes eighteen steps, so the last one reads the byte after the table."
+   "text": "the seventeen border and background colours the explosives from a chest flash through, in order. The explosion takes eighteen steps, so the last one reads the byte after the table."
   },
   {
    "address": 23586,
@@ -11732,7 +11732,7 @@
   {
    "address": 23737,
    "type": "line",
-   "text": "the jewels in an opened chest, tiles $66 to $69. It looks round the player for any of them, works back to the chest's own corner, adds 40 points, which the ticker turns into 4000, says \"YOU HAVE FOUND\" and \"SOME JEWELS.\", and leaves the chest open and empty by writing the tiles $62 to $65 over it."
+   "text": "the jewels in an opened chest, tiles $66 to $69, taken by walking into them. Every frame it looks at the two tiles ahead of the player in the direction the stick is pushed, and on jewels it works back to the chest's own corner, adds 40 points, which the ticker turns into 4000, says \"YOU HAVE FOUND\" and \"SOME JEWELS.\", and leaves the chest open and empty by writing the tiles $62 to $65 over it. Explosives ($6A to $6D) are not looked for, so walking into them does nothing."
   },
   {
    "address": 24008,
@@ -12097,7 +12097,7 @@
   {
    "address": 27200,
    "type": "line",
-   "text": "builds the castle's map for a floor out of the floor's own description. Every byte of the description names a block of four tiles by four, kept at $7000 plus sixteen times the byte, and the routine copies the block's sixteen bytes into the map, four to a row and 128 bytes between rows. Certain bytes mean more than a block as well: $30 to $37 are the four kinds of figure, each of which is added to the list of figures in $8100 to $8500, $62 is the lift, whose place is kept in $02EA, and $63 is the prisoner, whose place is kept in $02ED. It is why a whole floor of the castle takes only a few hundred bytes to describe."
+   "text": "builds the castle's map for a floor out of the floor's own description. Every byte of the description names a block of four tiles by four, kept at $7000 plus sixteen times the byte, and the routine copies the block's sixteen bytes into the map, four to a row and 128 bytes between rows. Certain bytes mean more than a block as well: $30 to $37 are the four kinds of figure, each of which is added to the list of figures in $8100 to $8500, $62 is the floor's dynamite charge, whose place is kept in $02EA, and $63 is the prisoner, whose place is kept in $02ED. It is why a whole floor of the castle takes only a few hundred bytes to describe."
   },
   {
    "address": 27211,
@@ -12182,7 +12182,7 @@
   {
    "address": 28330,
    "type": "line",
-   "text": "a shot hit a soldier or an officer. It looks through the list of figures for the one within five blocks of where the bullet stopped. The first hit only sets bit 6 of that figure's kind byte, so the figure stays on its feet; the second plays sound 8, sets bit 5, clears the figure's sixteen tiles and queues a point, which the ticker turns into 100. That is the two shots each the manual asks for."
+   "text": "a shot hit a figure, tiles $76 to $C0. It looks through the list of figures for the first whose square has its corner no more than four tiles left of and above where the bullet stopped. The first hit only sets bit 6 of that figure's kind byte, so the figure stays on its feet; the second plays sound 8, sets bit 5, clears the figure's sixteen tiles and queues a point, which the ticker turns into 100. That is the two shots each the manual asks for."
   },
   {
    "address": 28465,
@@ -12352,7 +12352,7 @@
   {
    "address": 35840,
    "type": "line",
-   "text": "999 bytes of tile-shaped graphics, 125 characters' worth, that the tape loads and no instruction in the game reaches, by name or through a pointer built from an immediate. What they are is open; they are shaped like a second set of wall and floor tiles."
+   "text": "the title picture's screen colours, a thousand bytes, one for each character cell: the high and low halves of each give two of the colours the multicolour bitmap at $A000 draws that cell in. The tape loads them straight after the bitmap and before the five bytes it writes into the chips ($D011 = $0B, $DD00 = $95 for the video bank at $8000, $D018 = $38 for this screen and the bitmap, $D016 = $D8, $D011 = $3B), so the video chip reads them while the rest of the tape loads, and no instruction ever does (work/tapedecode.py)."
   },
   {
    "address": 36864,

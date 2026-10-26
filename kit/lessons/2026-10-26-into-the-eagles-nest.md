@@ -28,10 +28,31 @@
   the pieces of memory they read, matched exactly and took a tenth of the
   work. The test is then worth keeping, because what it checks is what
   the page adds: the memory handed over and the entry points called.
-- **Correcting a wrong comment is where the discoveries are.** The sample
-  found a range of tile codes described as soldiers. They are the chests,
-  and reading what they really do turned up the best mechanic in the
-  game: shooting a closed chest gives nothing three times in four, and on
-  the fourth an even split between 4000 points and an explosion that ends
-  the game. A page section and a widget came out of a comment that had to
-  be fixed anyway.
+- **A correction is a new reading, and can be as wrong as the comment.**
+  The sample found a range of tile codes described as soldiers. They are
+  the chests, and the correction, written from the one routine that opens
+  a chest, put on the page a one-in-eight chance that shooting a chest
+  ends the game. The contributor questioned it, having never been blown
+  up. Reading the routines on either side, and putting each kind of open
+  chest in front of the player in the game, showed that a shot only opens
+  a chest, that the jewels are collected by walking into them and wasted
+  by a second shot, and that only a shot at explosives already showing
+  ends the game. A correction reads everything that touches what it
+  describes, and is seen in the game before a page repeats it.
+- **The tape is the load map.** The load map was made by comparing the
+  hand-over with a power-on snapshot, which cannot see a byte loaded with
+  the value RAM already held, nor a block loaded into a chip. Decoding the
+  tape image by the loader's own rules, a page of Python, gave every block
+  with its address, length and flag, all sixteen checksums good and
+  49,728 of 49,729 bytes as the snapshot has them. Five of the blocks are
+  one byte each, written into the video chip and CIA 2, and they showed
+  that the 1,000 bytes at `$8C00`, which no instruction reads and which
+  had been described as spare tiles, are the title picture's screen
+  colours.
+- **A page that draws its own tiles must draw them in the chip's mode.**
+  The page's tile drawing put every cell in multicolour. The game mixes
+  the modes cell by cell, walls hires and floors multicolour, and the
+  contributor saw at once that the walls and the panel's letters were
+  wrong. Comparing the widget's drawing of one room with the recorded
+  frame, which the site's renderer had drawn right all along, would have
+  caught it.

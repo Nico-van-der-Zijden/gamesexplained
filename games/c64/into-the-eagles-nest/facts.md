@@ -14,7 +14,7 @@ Mindscape manual for the American release © 1987.
 
 | Thing | Where |
 |---|---|
-| Program and data, as the tape leaves them | `$0806`-`$80FF`, `$8600`-`$86FF`, `$8C00`-`$8FE6`, `$A000`-`$BF3D`, `$D000`-`$F3FF` |
+| Program and data, as the tape loads them | `$0800`-`$80FF`, `$8600`-`$86FF`, `$8C00`-`$8FE7` (the title picture's screen colours), `$A000`-`$BF3F` (its bitmap), `$D000`-`$F3FF` (`orientation.md`, "The loader") |
 | Title picture's bitmap, overwritten once the game runs | `$A000`-`$BF3D` |
 | Screen | `$0400` |
 | Character set for the play screen and the status panel | `$2000` |
@@ -40,15 +40,56 @@ and RESTORE abandons the game for the attract loop (all *live*;
 
 ## Graphics
 
-The player is four sprites in a 2×2 block, sprites 0 to 3; the bullet is
-sprite 4, parked at (0,0) when there is none (*live*).
+**Two modes, chosen cell by cell.** One frame of play writes the video
+chip four times: `$D018` = `$1B` and `$D016` = `$C4` on line 228, then
+`$D018` = `$19` and `$D016` = `$D0` on line 253 (`work/frame-play.json`).
+So the play area and the panel are text from the character set at
+`$2000` with multicolour on, and lines 228 to 253 are text from the set
+at `$2800` with multicolour off: that band is the message line.
 
-One frame of play writes the video chip four times: `$D018` = `$1B` and
-`$D016` = `$C4` on line 228, then `$D018` = `$19` and `$D016` = `$D0` on
-line 253 (`work/frame-play.json`). So the play screen and the panel are
-multicolour text from the character set at `$2000`, and lines 228 to 253
-are single-colour text from the set at `$2800`: that band is the message
-line at the bottom.
+With multicolour on, the video chip still draws a cell in hires when the
+cell's colour is below 8, and the game uses that on purpose. Every play
+area cell's colour is the entry for its tile in the table at `$8600`
+(all 588 cells of the recorded frame match), and the table gives 67 of
+the 256 tiles a colour below 8 and the other 189 one of 8 to 15. The
+walls are colour 3, so they are hires cyan on black, while the floors and
+the objects are multicolour, with `$D021` black, `$D022` dark grey (`$0B`)
+and `$D023` grey (`$0C`) shared and the cell's own colour less 8 as the
+fourth. The panel is colour 7 almost throughout, so it is hires yellow.
+The message line's two rows have colour 8 and 7 in colour RAM; with
+multicolour off those are simply orange and yellow, so each big letter is
+orange on its top row of cells and yellow on its bottom one.
+
+**Sprites.** All eight are on in play (`$D015` = `$FF`), none expanded.
+
+- 0 to 3 are the player, two across and two down, 24 pixels apart across
+  and 21 down. They are multicolour (`$D01C` = `$0F`): yellow as their own
+  colour, black (`$D025`) and green (`$D026`) shared. He has twelve poses
+  of four shapes each. Walking, `$4BB8` takes the first shape for the
+  direction from `$4BD8` (`$C0` up, `$C4` down, `$C8` left, `$CC` right)
+  and adds `$10` on every other step, from bit 1 of `$02DA`. Firing,
+  `$46A5` takes it from `$46A1` (`$E0`, `$E4`, `$E8`, `$EC`), and the pose
+  is held until fire is let go (`$429F` clears `$02E3`). `$02B0` holds the
+  direction: 1 up, 2 down, 3 left, 4 right.
+- 4 is the flash at the barrel. `$46A5` gives it the shape `$F3` plus the
+  direction less one and places it beside the player from the tables at
+  `$46F2` and `$46F6`, orange; the interrupt counts `$46F1` down from 4,
+  turns it yellow at 2 and parks it at (0,0) at 0. Until the first shot
+  its pointer is `$EF`, left there by the screen clear at `$41D6`, which
+  fills the whole of `$0400` to `$07FF` with `$EF`, pointers included.
+- 5 to 7 are the castle drawn on the panel, hires and black, pointers
+  `$F0` to `$F2`, set once at `$40D9` to `$4102`: the castle at (286,168)
+  and the hill under it in two halves at (274,189) and (298,189).
+
+**The shot itself is never drawn.** Its place is kept in `$02DB` and
+`$02DC` (the second shot's in `$02DD` and `$02DE`), and every frame
+`$5212` looks up the map tile there; nothing writes it to the screen or
+to a sprite. Seen in the game (`work/t_shot.py`, `work/t_shot2.py`):
+fired to the right, sprite 4 stayed at (160,183) for four frames, orange
+for three and yellow for one, and was then parked, while the shot went on
+from x 152 to x 224 and hit the wall, 8 pixels on two frames of every
+three; a screenshot at the eighth frame differs from the one before the
+shot only in the panel's ammunition digit and the player's pose.
 
 ## The two alphabets
 
@@ -56,8 +97,10 @@ The game writes text in two different ways, and neither uses the
 machine's own screen codes.
 
 **The status panel**, from the character set at `$2000`. Only the ten
-letters the panel needs exist, scattered among the wall tiles, each drawn
-as holes in a solid cell so the letter shows the colour behind it:
+letters the panel needs exist, scattered among the wall tiles. The panel's
+cells are colour 7, so they are drawn hires: the set bits are yellow and
+the letter is made of the clear bits, which show the black background, so
+each letter is black on a yellow cell:
 
 | Letter | A | E | H | I | K | M | O | S | T | Y |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -125,28 +168,49 @@ the tile ahead of them is empty, so the stamp is how walking into the
 player is noticed at all.
 
 **Shots.** The player can have two in the air at once, the second once
-the first has travelled 8 pixels (`$463F`); each has its own direction,
-position and five tiles of range, and each costs a round. A shot flies
+the first has travelled 8 pixels (`$463F`); each has its own direction
+and position, and each costs a round. `$463F` sets a range of five, but a
+shot fired across open floor flew ten tiles to the wall (`work/t_shot.py`),
+so what the five counts is open. A shot flies
 through tiles `$3E`, `$3F` and anything below `$08`, and stops on
-anything else; `$529B` then decides what was hit, by tile code. Soldiers
-and officers are `$5E` to `$6D` and `$76` to `$C0`, the two halves of a
+anything else; `$529B` then decides what was hit, by tile code. The
+figures are `$76` to `$C0`, the chests `$5E` to `$6D`, the two halves of a
 steel door `$49` and `$4A`, a wooden door `$47` and `$48`, furniture
 `$4C` to `$4F`, a mirror `$43` to `$46`, and the pickups are found by
 looking at the nine places listed at `$5374` in the grid around the shot,
 because an object is drawn from several tiles and only its first names
 it.
 
-**Chests are a gamble.** A closed chest is tiles `$5E` to `$61`, and
-shooting one goes to `$5598`, which takes a number from the table of
-random numbers: only one in four is `$C0` or more, and the other three
-times the chest is empty. On that one it takes a second number, and gives
-jewels when it is `$80` or more and explosives otherwise, so a chest pays
-out one time in eight and blows up one time in eight. Jewels are tiles
-`$66` to `$69` and are worth 4000; explosives are `$6A` to `$6D` and set
-`$02D3` to 1, which is the explosion that kills the player. Either way the
-chest is left open, tiles `$62` to `$65`.
+**Chests.** A chest is a block of four tiles, two by two, in one of four
+states: closed (`$5E` to `$61`), open and empty (`$62` to `$65`), open on
+jewels (`$66` to `$69`) and open on explosives (`$6A` to `$6D`). A shot
+that hits any of the sixteen goes to `$5528`, which finds the chest's
+corner from whichever tile was hit and reads its state there.
 
-**The explosion** at `$5BDD` is a crate of dynamite going off, not the
+- **Shooting a closed chest only opens it.** `$5598` takes a number from
+  the table of random numbers. Below `$C0`, three times in four, it says
+  `EMPTY!` and redraws the chest open and empty. Otherwise it takes a
+  second number and redraws the chest open on jewels when that is `$80` or
+  more and on explosives when it is less, so one shot in eight shows
+  jewels and one in eight explosives. Nothing else happens on that shot.
+- **Jewels are collected by walking into them.** `$5CB9`, run every frame
+  of play, looks at the two tiles ahead of the player in the direction the
+  stick is pushed, and on `$66` to `$69` goes to `$5DA6`: `YOU HAVE FOUND
+  SOME JEWELS.`, 40 points queued in `$02C5`, which is 4000 on the panel,
+  and the chest left empty.
+- **Shooting the jewels wastes them.** `$55F0` says `YOU HAVE SHOT SOME
+  JEWELS.` and leaves the chest empty, with no points.
+- **Explosives go off only when shot.** `$55D5` says `FOOL!....EXPLOSIVES.`,
+  asks for sound 7, the only place that sound is asked for, and sets
+  `$02D3` to 1, which is the explosion that ends the game. Walking into
+  them does nothing: `$5CB9` looks only for jewels, and every tile from
+  `$2D` up is solid.
+
+All four were seen in the game with an open chest put into the map just
+ahead of the player (`work/t_chest.py`): the messages, `$02C5` paying out
+the 40, and `$02D3` reaching `$FF` a second and a half after the shot.
+
+**The explosion** at `$5BDD` is the explosives in a chest going off, not the
 castle. It walks the border and the background through the seventeen
 colours at `$5C11`, eighteen steps a round and five rounds, and then sets
 `$02D3` to `$FF`, which the main loop reads as the end of the game. The
@@ -364,11 +428,26 @@ the four rows of one block.
 The rate is the checker's, and a checker misses some, so 21.7 % is a
 lower bound on what a full audit would find.
 
+After the sample, 21 more comments were corrected on claude-opus-5-5
+when the contributor questioned the chest odds and the chests, the shot
+and the tape were checked in the game running and against the tape image:
+the chests' contents and what a shot does to them (five), the explosion
+taken for a crate of dynamite (five), the charge taken for the lift, a
+figure's distance given in blocks instead of tiles, the ammunition box
+taken for an open chest, the flash at the barrel taken for the bullet
+(seven), and the title picture's screen colours at
+`$8C00` taken for spare tiles. Five of the 21 were among the sample's 60.
+The checker passed two of them, `$46A5` and `$46F1`, which call the flash
+the bullet, so at least 15 of the 60 were wrong, 25 %, and 21.7 % above
+is the checker's count. It marked the other three (`$5528`, `$5BBA` and
+`$5CB9`) wrong for another detail, and the corrections made then left
+these mistakes in them.
+
 ## Live tests
 
 - Controls, one at a time, from the play snapshot (`work/controls.py`,
   `work/fire.py`): each direction moves the player 8 pixels every 4
-  frames, and fire puts a bullet sprite at the player's edge and spends a
+  frames, and fire puts the flash sprite at the player's barrel and spends a
   round.
 - SPACE pauses and resumes, judged by the counter at `$02B4`
   (`work/pause4.py`), and the paused game shows "...PAUSING..." on the
@@ -377,6 +456,19 @@ lower bound on what a full audit would find.
 - The mission select's digit counts the other way from the mission the
   game keeps: stepping it to 1 left `$0836` at 4 and the briefing read
   "MISSION 1 / BLOW UP THE CASTLE" (`work/t_mission2.py`).
+- Chests (`work/t_chest.py`): with an open chest put into the map just
+  ahead of the player, walking into jewels said "YOU HAVE FOUND SOME
+  JEWELS." and `$02C5` paid out 40; shooting jewels said "YOU HAVE SHOT
+  SOME JEWELS." and paid nothing; shooting explosives said
+  "FOOL!....EXPLOSIVES." and `$02D3` reached `$FF` a second and a half
+  later; walking into explosives did nothing.
+- A shot is not drawn (`work/t_shot.py`, `work/t_shot2.py`): see
+  Graphics, "The shot itself is never drawn".
+- The loader, stopped part way through the tape (`work/loadpeek.py`,
+  `work/loading.vsf`): the processor in the `$02E8` loop, `$FFFE` pointing
+  at `$0100`, and the block header at `$FA` to `$FE` reading `$B6B2`,
+  `$16B3` bytes to go and flag 1, which ends at `$A000`: the title picture,
+  loading from its top end down.
 - The hits kill at fifty: poked to `$49` the game played on, poked to
   `$50` it set `$02D3` to `$FF`, which the main loop reads as the end
   (`work/t_death.py`).
