@@ -1892,75 +1892,81 @@
   },
   {
    "address": 2064,
-   "name": "j_0810",
+   "name": "go_hiscore_check",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2073,
-   "name": "f_0819",
+   "name": "score_digits",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2079,
-   "name": "f_081F",
+   "name": "hiscore_name_entry",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2089,
-   "name": "a_0829",
+   "name": "attract_screen_colour",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2090,
-   "name": "s_082A",
+   "name": "go_you_are_dead",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2093,
-   "name": "s_082D",
+   "name": "go_floor_select",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2096,
-   "name": "s_0830",
+   "name": "go_mission_select",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2099,
-   "name": "s_0833",
+   "name": "go_mission_briefing",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2102,
-   "name": "a_0836",
+   "name": "mission_number",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2103,
-   "name": "s_0837",
+   "name": "go_mission_result",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2106,
-   "name": "s_083A",
+   "name": "install_attract_irq",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2137,
-   "name": "a_0859",
+   "name": "attract_irq_band",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 2138,
+   "name": "attract_irq",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 2177,
@@ -1988,51 +1994,51 @@
   },
   {
    "address": 2213,
-   "name": "s_08A5",
+   "name": "band_picture",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2256,
-   "name": "s_08D0",
+   "name": "set_text_screen",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2300,
-   "name": "s_08FC",
+   "name": "band_text",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2344,
-   "name": "a_0928",
+   "name": "strip_scroll",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2345,
-   "name": "s_0929",
+   "name": "band_strip_scroll",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2357,
-   "name": "s_0935",
+   "name": "band_strip_scroll_off",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2368,
-   "name": "s_0940",
+   "name": "draw_name_cursor",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2397,
-   "name": "a_095D",
+   "name": "name_entry_busy",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2398,
@@ -2042,9 +2048,9 @@
   },
   {
    "address": 2404,
-   "name": "b_0964",
+   "name": "name_entry_fire",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2433,
@@ -2066,21 +2072,21 @@
   },
   {
    "address": 2473,
-   "name": "a_09A9",
+   "name": "strip_position",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2474,
-   "name": "a_09AA",
+   "name": "strip_character",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2475,
-   "name": "j_09AB",
+   "name": "draw_alphabet_strip",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2489,
@@ -2114,9 +2120,9 @@
   },
   {
    "address": 2579,
-   "name": "s_0A13",
+   "name": "name_entry_input",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2589,
@@ -2138,9 +2144,9 @@
   },
   {
    "address": 2615,
-   "name": "j_0A37",
+   "name": "strip_scroll_right",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2629,
@@ -2156,9 +2162,9 @@
   },
   {
    "address": 2650,
-   "name": "j_0A5A",
+   "name": "strip_scroll_left",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2662,
@@ -2174,63 +2180,63 @@
   },
   {
    "address": 2683,
-   "name": "a_0A7B",
+   "name": "plot_code_tl",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2684,
-   "name": "a_0A7C",
+   "name": "plot_code_tr",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2685,
-   "name": "a_0A7D",
+   "name": "plot_code_bl",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2686,
-   "name": "a_0A7E",
+   "name": "plot_code_br",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2687,
-   "name": "a_0A7F",
+   "name": "plot_char",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2688,
-   "name": "a_0A80",
+   "name": "plot_col",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2689,
-   "name": "a_0A81",
+   "name": "plot_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2690,
-   "name": "a_0A82",
+   "name": "plot_colour_top",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2691,
-   "name": "a_0A83",
+   "name": "plot_colour_bottom",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2692,
-   "name": "s_0A84",
+   "name": "plot_char_2x2",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2729,
@@ -2258,21 +2264,21 @@
   },
   {
    "address": 2829,
-   "name": "f_0B0D",
+   "name": "str_well_done",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2870,
-   "name": "f_0B36",
+   "name": "str_enter_your_name",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2888,
-   "name": "f_0B48",
+   "name": "name_alphabet",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2936,
@@ -2282,9 +2288,9 @@
   },
   {
    "address": 2953,
-   "name": "j_0B89",
+   "name": "hiscore_check",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 2968,
@@ -2312,9 +2318,9 @@
   },
   {
    "address": 3009,
-   "name": "b_0BC1",
+   "name": "name_entry_screen",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3026,
@@ -2345,6 +2351,12 @@
    "name": "b_0C15",
    "type": "Branch",
    "kind": "auto"
+  },
+  {
+   "address": 3112,
+   "name": "draw_name_entry_text",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 3136,
@@ -2384,9 +2396,9 @@
   },
   {
    "address": 3283,
-   "name": "a_0CD3",
+   "name": "name_length",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3284,
@@ -2396,21 +2408,21 @@
   },
   {
    "address": 3292,
-   "name": "b_0CDC",
+   "name": "wait_for_name",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3303,
-   "name": "b_0CE7",
+   "name": "read_typed_name",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3320,
-   "name": "b_0CF8",
+   "name": "hiscore_insert",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3337,
@@ -2432,9 +2444,9 @@
   },
   {
    "address": 3388,
-   "name": "f_0D3C",
+   "name": "hiscore_delay",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3390,
@@ -2480,9 +2492,15 @@
   },
   {
    "address": 3648,
-   "name": "s_0E40",
+   "name": "install_title_irq",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 3690,
+   "name": "title_irq",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 3759,
@@ -2522,9 +2540,9 @@
   },
   {
    "address": 3833,
-   "name": "s_0EF9",
+   "name": "paint_four_bands",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3835,
@@ -2534,9 +2552,9 @@
   },
   {
    "address": 3917,
-   "name": "s_0F4D",
+   "name": "install_plaque_irq",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 3935,
@@ -2546,9 +2564,15 @@
   },
   {
    "address": 3988,
-   "name": "a_0F94",
+   "name": "plaque_irq_band",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 3989,
+   "name": "plaque_irq",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 4018,
@@ -2558,81 +2582,81 @@
   },
   {
    "address": 4032,
-   "name": "s_0FC0",
+   "name": "set_plaque_bitmap",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4069,
-   "name": "f_0FE5",
+   "name": "fade_table_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4079,
-   "name": "f_0FEF",
+   "name": "fade_table_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4089,
-   "name": "f_0FF9",
+   "name": "fade_table_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4099,
-   "name": "f_1003",
+   "name": "fade_table_4",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4109,
-   "name": "a_100D",
+   "name": "fade_colour_1",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4110,
-   "name": "a_100E",
+   "name": "fade_colour_2",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4111,
-   "name": "a_100F",
+   "name": "fade_colour_3",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4112,
-   "name": "a_1010",
+   "name": "fade_colour_4",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4113,
-   "name": "a_1011",
+   "name": "fade_step",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4114,
-   "name": "a_1012",
+   "name": "fade_phase",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4115,
-   "name": "a_1013",
+   "name": "fade_hold",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4116,
-   "name": "j_1014",
+   "name": "build_title_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4119,
@@ -2666,9 +2690,9 @@
   },
   {
    "address": 4271,
-   "name": "b_10AF",
+   "name": "wait_on_title",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4293,
@@ -2678,33 +2702,33 @@
   },
   {
    "address": 4296,
-   "name": "credits_text",
+   "name": "str_programming_by",
    "type": "UserDefined",
    "kind": "user"
   },
   {
    "address": 4313,
-   "name": "f_10D9",
+   "name": "str_andrew_challis",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4330,
-   "name": "f_10EA",
+   "name": "str_graphics_by",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4346,
-   "name": "f_10FA",
+   "name": "str_robin_chapman",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4363,
-   "name": "f_110B",
+   "name": "str_valuables_heading",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4368,
@@ -2714,33 +2738,33 @@
   },
   {
    "address": 4378,
-   "name": "f_111A",
+   "name": "str_painting",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4387,
-   "name": "f_1123",
+   "name": "str_vase",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4392,
-   "name": "f_1128",
+   "name": "str_pendant",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4400,
-   "name": "f_1130",
+   "name": "str_gemstones",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4410,
-   "name": "s_113A",
+   "name": "draw_icon_frames",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4430,
@@ -2792,39 +2816,39 @@
   },
   {
    "address": 4472,
-   "name": "f_1178",
+   "name": "str_supplies_heading",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4483,
-   "name": "f_1183",
+   "name": "str_cold_food",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4493,
-   "name": "f_118D",
+   "name": "str_door_key",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4502,
-   "name": "f_1196",
+   "name": "str_ammunition",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4513,
-   "name": "f_11A1",
+   "name": "str_first_aid",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4523,
-   "name": "j_11AB",
+   "name": "build_credits_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4525,
@@ -2888,9 +2912,9 @@
   },
   {
    "address": 4702,
-   "name": "b_125E",
+   "name": "wait_on_credits",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4704,
@@ -2911,6 +2935,12 @@
    "kind": "auto"
   },
   {
+   "address": 4726,
+   "name": "copy_valuable_icons",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 4728,
    "name": "b_1278",
    "type": "Branch",
@@ -2924,15 +2954,21 @@
   },
   {
    "address": 4768,
-   "name": "b_12A0",
+   "name": "build_valuables_screen",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 4788,
+   "name": "place_valuable_icons",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 4959,
-   "name": "j_135F",
+   "name": "draw_valuables_text",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 4976,
@@ -2996,9 +3032,9 @@
   },
   {
    "address": 5091,
-   "name": "b_13E3",
+   "name": "wait_on_valuables",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5093,
@@ -3011,6 +3047,12 @@
    "name": "b_13E7",
    "type": "Branch",
    "kind": "auto"
+  },
+  {
+   "address": 5113,
+   "name": "copy_supply_icons",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 5115,
@@ -3029,6 +3071,18 @@
    "name": "b_141D",
    "type": "Branch",
    "kind": "auto"
+  },
+  {
+   "address": 5167,
+   "name": "build_supplies_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 5303,
+   "name": "draw_supplies_text",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 5315,
@@ -3092,9 +3146,9 @@
   },
   {
    "address": 5451,
-   "name": "b_154B",
+   "name": "wait_on_supplies",
    "type": "Branch",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5453,
@@ -3116,9 +3170,9 @@
   },
   {
    "address": 5478,
-   "name": "j_1566",
+   "name": "mission_select_setup",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5494,
@@ -3140,45 +3194,45 @@
   },
   {
    "address": 5602,
-   "name": "f_15E2",
+   "name": "music_stream_1",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5760,
-   "name": "f_1680",
+   "name": "music_stream_2",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 5992,
-   "name": "f_1768",
+   "name": "music_stream_3",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6136,
-   "name": "f_17F8",
+   "name": "note_freq_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6210,
-   "name": "f_1842",
+   "name": "note_freq_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6284,
-   "name": "f_188C",
+   "name": "note_length",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6358,
-   "name": "s_18D6",
+   "name": "music_init",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6360,
@@ -3188,15 +3242,15 @@
   },
   {
    "address": 6448,
-   "name": "f_1930",
+   "name": "music_waveform",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6451,
-   "name": "a_1933",
+   "name": "music_countdown",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6452,
@@ -3212,9 +3266,9 @@
   },
   {
    "address": 6454,
-   "name": "a_1936",
+   "name": "music_position",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6455,
@@ -3230,33 +3284,33 @@
   },
   {
    "address": 6457,
-   "name": "f_1939",
+   "name": "music_freq_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6460,
-   "name": "f_193C",
+   "name": "music_freq_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6463,
-   "name": "a_193F",
+   "name": "music_voice",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6464,
-   "name": "a_1940",
+   "name": "music_voice_offset",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6465,
-   "name": "a_1941",
+   "name": "music_note",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6466,
@@ -3272,15 +3326,15 @@
   },
   {
    "address": 6469,
-   "name": "a_1945",
+   "name": "music_tick",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6471,
-   "name": "s_1947",
+   "name": "music_driver",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6482,
@@ -3362,15 +3416,15 @@
   },
   {
    "address": 6676,
-   "name": "f_1A14",
+   "name": "str_you_are_dead",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6689,
-   "name": "j_1A21",
+   "name": "draw_you_are_dead",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6693,
@@ -3392,9 +3446,9 @@
   },
   {
    "address": 6763,
-   "name": "f_1A6B",
+   "name": "str_select_floor",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6776,
@@ -3428,15 +3482,15 @@
   },
   {
    "address": 6833,
-   "name": "a_1AB1",
+   "name": "floor_chosen",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6834,
-   "name": "j_1AB2",
+   "name": "floor_select_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 6848,
@@ -3511,6 +3565,12 @@
    "kind": "auto"
   },
   {
+   "address": 7136,
+   "name": "floor_select_input",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 7172,
    "name": "b_1C04",
    "type": "Branch",
@@ -3536,9 +3596,9 @@
   },
   {
    "address": 7304,
-   "name": "j_1C88",
+   "name": "floor_select_delay",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7306,
@@ -3584,15 +3644,15 @@
   },
   {
    "address": 7444,
-   "name": "select_mission_text",
+   "name": "str_select_mission",
    "type": "UserDefined",
    "kind": "user"
   },
   {
    "address": 7459,
-   "name": "j_1D23",
+   "name": "mission_select_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7480,
@@ -3614,9 +3674,9 @@
   },
   {
    "address": 7577,
-   "name": "j_1D99",
+   "name": "mission_select_input",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7591,
@@ -3638,9 +3698,9 @@
   },
   {
    "address": 7614,
-   "name": "j_1DBE",
+   "name": "draw_mission_digit",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7641,
@@ -3656,9 +3716,9 @@
   },
   {
    "address": 7652,
-   "name": "j_1DE4",
+   "name": "mission_number_up",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7664,
@@ -3668,9 +3728,9 @@
   },
   {
    "address": 7670,
-   "name": "j_1DF6",
+   "name": "mission_number_down",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7680,
@@ -3686,9 +3746,9 @@
   },
   {
    "address": 7694,
-   "name": "f_1E0E",
+   "name": "str_mission_heading",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7704,
@@ -3704,9 +3764,9 @@
   },
   {
    "address": 7743,
-   "name": "j_1E3F",
+   "name": "mission_briefing",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 7751,
@@ -3763,6 +3823,12 @@
    "kind": "auto"
   },
   {
+   "address": 7939,
+   "name": "briefing_delay",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 7941,
    "name": "b_1F05",
    "type": "Branch",
@@ -3800,9 +3866,9 @@
   },
   {
    "address": 7996,
-   "name": "j_1F3C",
+   "name": "mission_result_screen",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8032,
@@ -8342,9 +8408,9 @@
   },
   {
    "address": 34304,
-   "name": "a_8600",
+   "name": "tile_colours",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34320,
@@ -8865,14 +8931,379 @@
  ],
  "comments": [
   {
+   "address": 2064,
+   "type": "line",
+   "text": "jump stub into the high score check at $0B89, called from the game's own code at $4943 and $4AA3 when a game ends"
+  },
+  {
+   "address": 2073,
+   "type": "line",
+   "text": "the player's score as six ASCII digits, \"000000\" at the hand-over; read when the score is drawn and when a high score is checked"
+  },
+  {
+   "address": 2079,
+   "type": "line",
+   "text": "the name being typed, ten ASCII characters, all \".\" at the hand-over, which the name-entry screen fills in and the high score table takes"
+  },
+  {
+   "address": 2089,
+   "type": "line",
+   "text": "the colour the attract and high score screens draw their text in; read and written by the screen builders at $0B89 and $0CF9"
+  },
+  {
+   "address": 2090,
+   "type": "line",
+   "text": "jump stub into the death screen at $1A21, called from the game at $4931"
+  },
+  {
+   "address": 2093,
+   "type": "line",
+   "text": "jump stub into the floor-select screen at $1AB2, called from the game at $499E when the player rides the lift"
+  },
+  {
+   "address": 2096,
+   "type": "line",
+   "text": "jump stub into the mission-select screen at $1D23, called from the game at $4966"
+  },
+  {
+   "address": 2099,
+   "type": "line",
+   "text": "jump stub into the mission briefing at $1E3F, called from the game at $4A4E"
+  },
+  {
+   "address": 2102,
+   "type": "line",
+   "text": "which mission the player chose, 1 to 4, set by the mission-select screen and read by the briefing and the end-of-mission screens"
+  },
+  {
+   "address": 2103,
+   "type": "line",
+   "text": "jump stub into the end-of-mission screen at $1F3C, called from the game at $4AA0"
+  },
+  {
+   "address": 2106,
+   "type": "line",
+   "text": "stops CIA 1's timer A, turns the video chip's raster interrupt on, points the interrupt vector $0314 at the handler at $085A, asks for the first interrupt on line 0 and clears the band counter at $0859. Called once, from $0CD9."
+  },
+  {
+   "address": 2137,
+   "type": "line",
+   "text": "which band of the attract screen's raster split the next interrupt serves, 0 to 3; the handler at $085A steps it and wraps it to 0"
+  },
+  {
+   "address": 2138,
+   "type": "line",
+   "text": "the attract screens' raster interrupt, a chain of four bands counted by $0859. Band 0 sets the picture at the top ($08A5) and asks for line $78, band 1 the text below it ($08FC) and line $C6, band 2 the scrolling strip's fine position ($0929) and line $DA, band 3 puts the fine position back ($0935) and line 0. Band 0 ends by jumping into the KERNAL's own interrupt handler at $EA31, so the jiffy clock and the keyboard still run; the other three return with RTI."
+  },
+  {
+   "address": 2213,
+   "type": "line",
+   "text": "band 0: multicolour bitmap mode ($D011 = $3B, $D016 = $D8) with video bank 3, so the plaque's bitmap at $E000 and its colours at $EC00 are what the top of the screen shows. Then reads the joystick ($0A13) and redraws the name-entry cursor ($0940)."
+  },
+  {
+   "address": 2256,
+   "type": "line",
+   "text": "switches to multicolour text with the screen at $0400 and the character set at $2800, video bank 0, blanking the display for the change ($D011 = $7B, then $1B). Called from $0FB2."
+  },
+  {
+   "address": 2300,
+   "type": "line",
+   "text": "band 1: single-colour text with the screen at $0400 and the character set at $2800, video bank 0, so the words below the picture are drawn from the two-cell-wide alphabet. Blanks the display across the change, as $08D0 does."
+  },
+  {
+   "address": 2344,
+   "type": "line",
+   "text": "the fine horizontal position of the name-entry screen's scrolling alphabet, 0 to 7 in the video chip's own units; band 2 puts it into $D016 and the joystick routine steps it by 4"
+  },
+  {
+   "address": 2345,
+   "type": "line",
+   "text": "band 2: puts $0928 into the low four bits of $D016, which scrolls the alphabet strip at the bottom of the name-entry screen sideways without redrawing it"
+  },
+  {
+   "address": 2357,
+   "type": "line",
+   "text": "band 3: puts the fine horizontal position back to 0 and 40 columns ($D016 low nibble = 8), so only the strip's own band is scrolled"
+  },
+  {
+   "address": 2368,
+   "type": "line",
+   "text": "draws the character the name-entry strip has under its cursor at row 23, column 10 plus twice the letter's place, taking the character from the strip position $070B and the cursor from $0CD3"
+  },
+  {
+   "address": 2397,
+   "type": "line",
+   "text": "set when the name-entry screen has acted on a stick push, cleared when the stick comes back to the middle, so one push moves the cursor one place"
+  },
+  {
+   "address": 2404,
+   "type": "line",
+   "text": "what fire does on the name-entry screen: takes the character the strip shows, and either steps the cursor on (up to ten characters) or, when the strip shows the end mark, draws a full stop and steps the cursor back one. Called from the joystick reader at $0A13."
+  },
+  {
+   "address": 2473,
+   "type": "line",
+   "text": "how far the name-entry alphabet strip has scrolled, in half-characters, 0 to $5F; $09AB redraws the strip from it and the joystick steps it"
+  },
+  {
+   "address": 2474,
+   "type": "line",
+   "text": "the strip position in whole characters, $09A9 shifted right; $09AB indexes the alphabet at $0B48 with it"
+  },
+  {
+   "address": 2475,
+   "type": "line",
+   "text": "redraws the name-entry screen's alphabet strip into rows 23 and 24 from the alphabet at $0B48, starting at the character $09A9 names and wrapping at the 48th. On an even half-step it writes each character's four cells in place; on an odd one it writes the right-hand half of one character beside the left-hand half of the next, which is how the strip moves half a character at a time."
+  },
+  {
+   "address": 2579,
+   "type": "line",
+   "text": "reads the joystick on control port 2 ($DC00) for the name-entry screen: left scrolls the alphabet strip one way ($0A37), right the other ($0A5A), fire takes the character under the cursor ($095E), and the middle position clears the one-push-at-a-time flag $095D. Called once a frame from band 0 of the attract interrupt."
+  },
+  {
+   "address": 2615,
+   "type": "line",
+   "text": "scrolls the name-entry alphabet strip one step right: adds 4 to the fine position, and when that reaches 8 puts it back to 0 and moves the strip back a half-character, wrapping at $5F, then redraws the strip"
+  },
+  {
+   "address": 2650,
+   "type": "line",
+   "text": "scrolls the name-entry alphabet strip one step left: takes 4 from the fine position, and when that underflows puts it back to 4 and moves the strip on a half-character, wrapping at $60, then redraws the strip"
+  },
+  {
+   "address": 2683,
+   "type": "line",
+   "text": "the top-left cell's code, worked out by the plotter at $0A84"
+  },
+  {
+   "address": 2684,
+   "type": "line",
+   "text": "the top-right cell's code"
+  },
+  {
+   "address": 2685,
+   "type": "line",
+   "text": "the bottom-left cell's code"
+  },
+  {
+   "address": 2686,
+   "type": "line",
+   "text": "the bottom-right cell's code"
+  },
+  {
+   "address": 2687,
+   "type": "line",
+   "text": "the character the plotter at $0A84 is to draw, already masked to six bits (so A is 1 and the digit 0 is $30)"
+  },
+  {
+   "address": 2688,
+   "type": "line",
+   "text": "the column the plotter writes at, 0 to 39, stepped on by 2 after each character"
+  },
+  {
+   "address": 2689,
+   "type": "line",
+   "text": "the row the plotter writes at, stepped on by 2 when the column passes 39"
+  },
+  {
+   "address": 2690,
+   "type": "line",
+   "text": "the colour the plotter puts in both of the character's upper colour cells"
+  },
+  {
+   "address": 2691,
+   "type": "line",
+   "text": "the colour for both of its lower cells"
+  },
+  {
+   "address": 2692,
+   "type": "line",
+   "text": "draws one character of the big alphabet, which is two cells wide and two high. Multiplies $0A7F by four for the four cell codes (top-left n, bottom-left n+1, top-right n+2, bottom-right n+3), builds the screen address $0400 + 40 * $0A81 + $0A80 by adding 40 a row at a time, writes the four codes, adds $D4 to the pointer's high byte to reach colour memory at $D800 and writes $0A82 to the upper pair and $0A83 to the lower, then steps the column on by two and the row by two when the column passes 39. 48 places call it."
+  },
+  {
+   "address": 2829,
+   "type": "line",
+   "text": "\"     WELL DONE      YOU ARE A REAL HERO \", ASCII ending $FF; drawn as two rows of twenty characters by $0C28"
+  },
+  {
+   "address": 2870,
+   "type": "line",
+   "text": "\"  ENTER YOUR NAME\", ASCII ending $FF"
+  },
+  {
+   "address": 2888,
+   "type": "line",
+   "text": "the 48 characters the name-entry strip offers, ASCII ending $FF: \"@ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789!\\\"#$%&'()_\" and a run of full stops. $09AB draws it and wraps at the 48th, so the strip is endless."
+  },
+  {
+   "address": 2953,
+   "type": "line",
+   "text": "compares the score at $0819, digit by digit as ASCII, with each of the ten entries in the table at $0D51, twenty bytes apart. On the first entry the score beats, it goes to the name entry at $0BC1; on an equal entry it compares the next digit; otherwise it steps $0829 on by 20 and tries the next, and when that passes $C8 the score made no entry and it returns to the attract loop at $1014. Blanks the display and banks every ROM in on the way in."
+  },
+  {
+   "address": 3009,
+   "type": "line",
+   "text": "builds the name-entry screen. Steps $0829 back to the entry the score beat, copies the colour memory of the plaque at the top from the tables at $EE00 and $EF00 with the KERNAL banked out, clears the rows below with the big alphabet's space, puts the strip at character $4F, sets the colour of the three regions the screen uses, and draws the strip and the two lines of text. It then installs the attract interrupt at $0CD9 and waits for ten characters."
+  },
+  {
+   "address": 3112,
+   "type": "line",
+   "text": "draws the two lines of the name-entry screen, \"WELL DONE / YOU ARE A REAL HERO\" from $0B0D and \"ENTER YOUR NAME\" from $0B36, each ending $FF, through the plotter at $0A84, and then the end mark the strip uses. Each line has its own pair of colours, and after twenty characters of the first line it drops a row."
+  },
+  {
+   "address": 3283,
+   "type": "line",
+   "text": "how many characters of the name have been typed, 0 to 10; the name-entry screen waits for it to reach 10, and fire steps it"
+  },
+  {
+   "address": 3292,
+   "type": "line",
+   "text": "spins until ten characters have been typed, with the attract interrupt doing the work: the strip, the cursor and the joystick are all handled by band 0"
+  },
+  {
+   "address": 3303,
+   "type": "line",
+   "text": "reads the ten typed characters back off the screen itself, from row 23 at $07A3 taking every other cell, shifts each right twice to undo the plotter's multiply by four, and leaves them in $081F"
+  },
+  {
+   "address": 3320,
+   "type": "line",
+   "text": "makes room for the new entry by copying the table down twenty bytes, from the end back to the place the score beat, then fills the entry with spaces, the name from $081F and the score from $0819. The source address $0D3C is simply $0D51 less twenty; the bytes there are a delay loop, not a table."
+  },
+  {
+   "address": 3388,
+   "type": "line",
+   "text": "a two-deep delay loop that holds the finished high score table on a blank screen before the attract loop starts again at $1014. The shift at $0CF8 reads these same bytes as its source, which is only how it addresses the table twenty bytes lower."
+  },
+  {
    "address": 3409,
    "type": "line",
    "text": "ten high score entries of 20 bytes: a seven-character name, padding, and a six-digit score, all ASCII"
   },
   {
+   "address": 3648,
+   "type": "line",
+   "text": "installs the title screen's fade interrupt: blanks the display, black border and background, stops CIA 1's timer A, points $0314 at $0E6A, asks for line 0 and turns the raster interrupt on. Called from the title screen builder at $1024."
+  },
+  {
+   "address": 3690,
+   "type": "line",
+   "text": "the title screen's raster interrupt: a fade worked by rewriting colour memory. $1012 says which phase it is in (0 fade in, 2 fade out, 3 hold, 1 and 4 idle), $1011 the step inside it, 0 to 9. Each step takes four colours from the tables at $0FE5, $0FEF, $0FF9 and $1003, puts them in $100D to $1010 and calls $0EF9 to paint the four bands of the screen with them. The fade in counts up to 10 and goes to the hold, the hold counts $1013 to 256 and starts the fade out, the fade out counts down to 0 and stops. It then calls the music at $1947 and ends through the KERNAL's handler at $EA31."
+  },
+  {
+   "address": 3833,
+   "type": "line",
+   "text": "writes the four colours in $100D to $1010 into the four bands of colour memory the title screen uses, forty cells each, so one call recolours the whole picture. Called by both halves of the fade."
+  },
+  {
+   "address": 3917,
+   "type": "line",
+   "text": "installs the interrupt the credits, supplies and valuables screens run on. Banks every ROM in, blanks the display, copies the plaque's colour memory from $EE00 and $EF00 with the KERNAL banked out, stops CIA 1's timer A, clears the band flag $0F94, points $0314 at $0F95 and asks for line 0. Called from $11C8."
+  },
+  {
+   "address": 3988,
+   "type": "line",
+   "text": "which of the two bands the plaque screens' interrupt serves next, flipped each time: 0 draws the picture at the top, 1 the text below it"
+  },
+  {
+   "address": 3989,
+   "type": "line",
+   "text": "the interrupt the credits, supplies and valuables screens run on, two bands flipped by $0F94. On the picture band it switches to the bitmap ($0FC0), asks for line $78 and plays the music at $1947, ending through the KERNAL's handler at $EA31; on the text band it switches back to text ($08D0), asks for line 0 and returns with RTI."
+  },
+  {
+   "address": 4032,
+   "type": "line",
+   "text": "switches the top of the screen to the multicolour bitmap of the stone plaque: bitmap mode, white background 0, video bank 3 and $D018 = $B8, so the bitmap is at $E000 and its colours at $EC00"
+  },
+  {
+   "address": 4069,
+   "type": "line",
+   "text": "the first band's colour for each of the ten fade steps"
+  },
+  {
+   "address": 4079,
+   "type": "line",
+   "text": "the second band's colour for each step"
+  },
+  {
+   "address": 4089,
+   "type": "line",
+   "text": "the third band's colour for each step"
+  },
+  {
+   "address": 4099,
+   "type": "line",
+   "text": "the fourth band's colour for each step"
+  },
+  {
+   "address": 4109,
+   "type": "line",
+   "text": "the colour the fade's current step gives the first band of the title screen"
+  },
+  {
+   "address": 4110,
+   "type": "line",
+   "text": "the second band's colour for this step"
+  },
+  {
+   "address": 4111,
+   "type": "line",
+   "text": "the third band's colour for this step"
+  },
+  {
+   "address": 4112,
+   "type": "line",
+   "text": "the fourth band's colour for this step"
+  },
+  {
+   "address": 4113,
+   "type": "line",
+   "text": "which of the ten steps of the title screen's fade is showing, an index into the four colour tables at $0FE5"
+  },
+  {
+   "address": 4114,
+   "type": "line",
+   "text": "which phase the title screen's fade is in: 0 fades in, 2 fades out, 3 holds the picture, 1 and 4 leave it alone"
+  },
+  {
+   "address": 4115,
+   "type": "line",
+   "text": "counts the frames the finished title picture is held, from 0 round to 0 again, which is 256 frames, about five seconds on a PAL machine"
+  },
+  {
+   "address": 4116,
+   "type": "line",
+   "text": "builds the title screen. Starts the music at $18D6, sets the fade to its first phase, installs the fade interrupt at $0E40, selects video bank 0 with the screen at $0400 and the character set at $2800 in single-colour text, fills all four pages of the screen with the big alphabet's space, then draws the heading at $0E2C and the whole high score table at $0D50, two hundred characters, through the plotter at $0A84. It ends in the wait at $10AF."
+  },
+  {
+   "address": 4271,
+   "type": "line",
+   "text": "waits on the title screen: fire on control port 2 goes to the mission select at $1566, and when the fade reaches its last phase ($1012 = 4) the attract loop moves on to the credits screen at $11AB"
+  },
+  {
    "address": 4296,
    "type": "line",
-   "text": "the attract loop's credits, four lines of ASCII each ending $FF"
+   "text": "\"  PROGRAMMING BY\", ASCII ending $FF"
+  },
+  {
+   "address": 4313,
+   "type": "line",
+   "text": "\"  ANDREW CHALLIS\", ASCII ending $FF"
+  },
+  {
+   "address": 4330,
+   "type": "line",
+   "text": "\"    GRAPHICS BY\", ASCII ending $FF"
+  },
+  {
+   "address": 4346,
+   "type": "line",
+   "text": "\"   ROBIN CHAPMAN\", ASCII ending $FF"
+  },
+  {
+   "address": 4363,
+   "type": "line",
+   "text": "five spaces, drawn before \"VALUABLES\" so the heading sits centred"
   },
   {
    "address": 4368,
@@ -8880,14 +9311,244 @@
    "text": "the valuables screen's heading and its four items, ASCII, each ending $00"
   },
   {
+   "address": 4378,
+   "type": "line",
+   "text": "\"PAINTING\", ASCII ending $00"
+  },
+  {
+   "address": 4387,
+   "type": "line",
+   "text": "\"VASE\", ASCII ending $00"
+  },
+  {
+   "address": 4392,
+   "type": "line",
+   "text": "\"PENDANT\", ASCII ending $00"
+  },
+  {
+   "address": 4400,
+   "type": "line",
+   "text": "\"GEMSTONES\", ASCII ending $00"
+  },
+  {
+   "address": 4410,
+   "type": "line",
+   "text": "draws the four-cell-wide, thirteen-row block of character $E8 down the left of the supplies and valuables screens, which is the frame the four item pictures sit in, taking its colour from the byte at $8600. Walks the screen and colour memory together, adding 40 a row."
+  },
+  {
    "address": 4471,
    "type": "line",
    "text": "the supplies screen's heading and its four items, ASCII, each ending $00"
   },
   {
+   "address": 4472,
+   "type": "line",
+   "text": "\" SUPPLIES \", ASCII ending $00"
+  },
+  {
+   "address": 4483,
+   "type": "line",
+   "text": "\"COLD FOOD\", ASCII ending $00"
+  },
+  {
+   "address": 4493,
+   "type": "line",
+   "text": "\"DOOR KEY\", ASCII ending $00"
+  },
+  {
+   "address": 4502,
+   "type": "line",
+   "text": "\"AMMUNITION\", ASCII ending $00"
+  },
+  {
+   "address": 4513,
+   "type": "line",
+   "text": "\"FIRST AID\", ASCII ending $00"
+  },
+  {
+   "address": 4523,
+   "type": "line",
+   "text": "builds the credits screen: fills the screen with the big alphabet's space, sets the two extra background colours the plaque's bitmap needs, installs the plaque interrupt at $0F4D, and draws the four credit lines from $10C8, $10D9, $10EA and $10FA"
+  },
+  {
+   "address": 4702,
+   "type": "line",
+   "text": "holds the credits screen for about three seconds, polling fire on control port 2 all the way through so a press goes straight to the mission select at $1566. When nothing is pressed it builds the valuables screen."
+  },
+  {
+   "address": 4726,
+   "type": "line",
+   "text": "copies the pictures of the four valuables out of the play screen's character set at $2000 into the top sixteen codes of the attract screen's set at $2F40, so the icons beside PAINTING, VASE, PENDANT and GEMSTONES are the very tiles the player picks up in the castle. Four cells each, taken from $2000, $20A0, $20C0, $2140 and $2330."
+  },
+  {
+   "address": 4768,
+   "type": "line",
+   "text": "builds the valuables screen: clears it to the big alphabet's space, draws the icon frames at $113A, puts the four icons' cell codes in place, and then draws the heading and the four names through the plotter"
+  },
+  {
+   "address": 4788,
+   "type": "line",
+   "text": "puts the cell codes of the four valuables' pictures on the valuables screen, two by two, and takes each one's colour from the tile colour table at $8600, the same table the castle's rooms are coloured from"
+  },
+  {
+   "address": 4959,
+   "type": "line",
+   "text": "draws the valuables screen's heading and the four names, PAINTING, VASE, PENDANT and GEMSTONES, each from its own string and at its own row, through the plotter at $0A84"
+  },
+  {
+   "address": 5091,
+   "type": "line",
+   "text": "holds the valuables screen for about three seconds, polling fire all the way through so a press goes to the mission select at $1566, then builds the supplies screen"
+  },
+  {
+   "address": 5113,
+   "type": "line",
+   "text": "copies the pictures of the four supplies out of the play screen's character set at $2000 into the top codes of the attract screen's set at $2F80, from $20E0, $2100, $2080, $2090 and $2000, so the icons beside COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID are the tiles the player picks up"
+  },
+  {
+   "address": 5167,
+   "type": "line",
+   "text": "builds the supplies screen: draws the icon frames at $113A, places the four icons' cell codes with their colours from the tile colour table at $8600, and draws the heading and the four names"
+  },
+  {
+   "address": 5303,
+   "type": "line",
+   "text": "draws the supplies screen's heading \" SUPPLIES \" and the four names, COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID, each at its own row, through the plotter at $0A84"
+  },
+  {
+   "address": 5451,
+   "type": "line",
+   "text": "holds the supplies screen for about three seconds, polling fire all the way through so a press goes to the mission select at $1566. With nothing pressed the attract loop starts again at $1017, which rebuilds the title screen without restarting the music."
+  },
+  {
+   "address": 5478,
+   "type": "line",
+   "text": "leaves the attract loop for the game. Blanks the screen, clears all four pages of colour memory, keeps video bank 0 but points $D018 at $15, so the screen stays at $0400 and the characters come from the machine's own character ROM at $1000 - which is why the mission select is the only screen in the game written in the C64's own font. Turns the raster interrupt off, starts CIA 1's timer A and puts the KERNAL's own handler back in $0314, banks every ROM in, silences all 25 sound registers, waits for fire to be let go, and jumps into the game at $4000."
+  },
+  {
+   "address": 5602,
+   "type": "line",
+   "text": "voice 1's tune, one note number a step, read by the driver at $1947; $FF ends it and starts all three voices again"
+  },
+  {
+   "address": 5760,
+   "type": "line",
+   "text": "voice 2's tune, one note number a step"
+  },
+  {
+   "address": 5992,
+   "type": "line",
+   "text": "voice 3's tune, one note number a step"
+  },
+  {
+   "address": 6136,
+   "type": "line",
+   "text": "the frequency high byte of each note the tune uses, indexed by note number"
+  },
+  {
+   "address": 6210,
+   "type": "line",
+   "text": "the frequency low byte of each note, indexed by note number"
+  },
+  {
+   "address": 6284,
+   "type": "line",
+   "text": "how many driver ticks each note lasts, indexed by note number"
+  },
+  {
+   "address": 6358,
+   "type": "line",
+   "text": "starts the music: clears the three voices' counters and stream positions, sets the SID's volume to 15, and leaves the driver at $1947 to do the rest a frame at a time"
+  },
+  {
+   "address": 6448,
+   "type": "line",
+   "text": "the waveform and gate each voice plays with: $41 pulse for voices 1 and 3, $21 sawtooth for voice 2. The driver clears bit 0 to let a note go and writes the byte again to start the next."
+  },
+  {
+   "address": 6451,
+   "type": "line",
+   "text": "how many driver ticks are left of each voice's current note, one byte a voice; when it reaches zero the voice takes its next note"
+  },
+  {
+   "address": 6454,
+   "type": "line",
+   "text": "how far each voice has read into its own stream, one byte a voice"
+  },
+  {
+   "address": 6457,
+   "type": "line",
+   "text": "the frequency high byte each voice is playing, one byte a voice"
+  },
+  {
+   "address": 6460,
+   "type": "line",
+   "text": "the frequency low byte each voice is playing, one byte a voice"
+  },
+  {
+   "address": 6463,
+   "type": "line",
+   "text": "which of the three voices the driver is serving, 0 to 2"
+  },
+  {
+   "address": 6464,
+   "type": "line",
+   "text": "the offset of that voice's registers from $D400: 0, 7 or 14"
+  },
+  {
+   "address": 6465,
+   "type": "line",
+   "text": "the note number each voice has just taken from its stream, one byte a voice; $FF ends the tune"
+  },
+  {
+   "address": 6469,
+   "type": "line",
+   "text": "counts frames 0, 1, 2 so the driver only acts on every third one"
+  },
+  {
+   "address": 6471,
+   "type": "line",
+   "text": "the music, one tick at a time, called once a frame from the title and plaque interrupts. It does nothing on two frames in three, so the tune runs at about 16.7 ticks a second on a PAL machine. On the third it serves each of the three voices in turn: it counts the voice's note down, and when that runs out takes the next note number from the voice's own stream ($15E2, $1680 or $1768), looks the number up in the three note tables to get the frequency high byte, the low byte and the length, writes the frequency and the waveform to that voice, and steps the stream on. A note number of $FF ends the tune, and the driver starts all three streams again from the beginning, so the music is endless."
+  },
+  {
+   "address": 6676,
+   "type": "line",
+   "text": "\"YOU ARE DEAD\", ASCII ending $00"
+  },
+  {
+   "address": 6689,
+   "type": "line",
+   "text": "clears colour memory, puts the screen back to the big alphabet's character set at $2800 in single-colour text, and draws \"YOU ARE DEAD\" across the middle"
+  },
+  {
+   "address": 6763,
+   "type": "line",
+   "text": "\"SELECT FLOOR\", ASCII ending $00"
+  },
+  {
    "address": 6776,
    "type": "line",
-   "text": "the four floors, 13 bytes each and a $00: BASEMENT, GROUND FLOOR, FIRST FLOOR, SECOND FLOOR"
+   "text": "the four floors the lift serves, thirteen characters each and a $00: BASEMENT, GROUND FLOOR, FIRST FLOOR, SECOND FLOOR. The floor-select screen draws them as a list, and the message line names the same four at $5808."
+  },
+  {
+   "address": 6833,
+   "type": "line",
+   "text": "which floor the lift's list has the marker against, 0 to 3, counting up from the basement"
+  },
+  {
+   "address": 6834,
+   "type": "line",
+   "text": "builds the screen the lift shows: blanks the display, clears colour memory, sets multicolour text from the character set at $2800 with the two extra background colours the list needs, and draws \"SELECT FLOOR\" and the four floor names, each in its own colours"
+  },
+  {
+   "address": 7136,
+   "type": "line",
+   "text": "the floor-select screen's own loop. It marks the floor the player is on to begin with, taken from $02A7, then waits: up and down move the marker, wrapping round the four floors, and each move rubs out the old marker and draws the new one at column 32 of the floor's row. Fire returns the chosen floor in A. Between repeats it idles for about a fiftieth of a second and then waits for raster line $F0, so the marker steps at a readable pace."
+  },
+  {
+   "address": 7304,
+   "type": "line",
+   "text": "the pause between two steps of the floor marker: a counted loop and then a wait for raster line $F0, which is what stops one push running through all four floors"
   },
   {
    "address": 7444,
@@ -8895,9 +9556,39 @@
    "text": "\"SELECT MISSION\", ASCII ending $00"
   },
   {
+   "address": 7459,
+   "type": "line",
+   "text": "builds the mission-select screen - clears colour memory, single-colour text from the character set at $2800 - draws \"SELECT MISSION\" and the number, and then waits in $1D99"
+  },
+  {
+   "address": 7577,
+   "type": "line",
+   "text": "the mission-select screen's loop: up steps the mission number on, down steps it back, each wrapping round 1 to 4 and redrawing the digit, and fire shows the briefing at $1E3F and returns the chosen mission in A. Between steps it idles about a quarter of a second."
+  },
+  {
+   "address": 7614,
+   "type": "line",
+   "text": "draws the mission number at row 10, column 18. The digit shown is five minus $0836, so the number on the screen counts the other way from the number the game keeps: the screen's 1 is $0836 = 4."
+  },
+  {
+   "address": 7652,
+   "type": "line",
+   "text": "steps $0836 on by one, wrapping from 4 back to 1, and redraws the digit"
+  },
+  {
+   "address": 7670,
+   "type": "line",
+   "text": "steps $0836 back by one, wrapping from 1 round to 4, and redraws the digit"
+  },
+  {
    "address": 7686,
    "type": "line",
    "text": "\"MISSION\", the heading of the mission briefing"
+  },
+  {
+   "address": 7694,
+   "type": "line",
+   "text": "the second line of the briefing's heading, ASCII ending $00"
   },
   {
    "address": 7704,
@@ -8910,6 +9601,16 @@
    "text": "\"BLOW UP THE CASTLE\""
   },
   {
+   "address": 7743,
+   "type": "line",
+   "text": "the briefing the mission select shows when fire is pressed: clears the screen, draws \"MISSION\", the number and then one of the two orders - \"BLOW UP THE CASTLE\" when $0836 is 4, \"RESCUE THE PRISONER\" otherwise - and holds it for about three seconds. Because the digit drawn is five minus $0836, the screen that reads MISSION 1 is the one that orders the castle blown up."
+  },
+  {
+   "address": 7939,
+   "type": "line",
+   "text": "holds the finished briefing on screen for about three seconds before play begins"
+  },
+  {
    "address": 7957,
    "type": "line",
    "text": "\"WELL DONE !\""
@@ -8920,6 +9621,11 @@
    "text": "\"YOUR MISSION WAS A\" and, after it, \"SUCCESS\""
   },
   {
+   "address": 7996,
+   "type": "line",
+   "text": "the screen that follows a mission the player finished: blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place"
+  },
+  {
    "address": 22025,
    "type": "line",
    "text": "the game's 33 messages for the line at the bottom of the screen, ASCII, each ending \"@\" ($40); facts.md lists them"
@@ -8928,6 +9634,11 @@
    "address": 27800,
    "type": "line",
    "text": "\"THE PRISONER IS VERY CLOSE.\", the only message kept away from the block at $5609"
+  },
+  {
+   "address": 34304,
+   "type": "line",
+   "text": "the colour of each tile of the play screen's character set, one byte a tile. The attract screens read it for the icons they show ($8600, $8614, $8618 to $861B, $8628 and $8666), and the castle's rooms are coloured from it."
   }
  ]
 }
