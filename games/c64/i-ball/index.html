@@ -1,0 +1,593 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+.ib-cv{display:block;width:100%;height:auto;image-rendering:pixelated;background:#000;border-radius:4px}
+.ib-stack{position:relative}
+.ib-stack canvas+canvas{position:absolute;left:0;top:0;background:transparent}
+.ib-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.ib-btn{font:inherit;font-family:var(--fm);font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:var(--ink);cursor:pointer;line-height:1.3}
+.ib-btn:hover{border-color:var(--ink-mute)}
+.ib-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ib-out{font-size:15px;color:var(--ink);margin:12px 0 0;min-height:3em;line-height:1.55}
+.ib-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.ib-two figure{margin:0}
+.ib-two img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px}
+.ib-two figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px}
+.ib-tbl{border-collapse:collapse;font-size:14px;width:100%;margin:4px 0 0}
+.ib-tbl th,.ib-tbl td{text-align:left;vertical-align:top;padding:5px 8px;border-bottom:1px solid var(--line-soft)}
+.ib-tbl th{font-weight:700;color:var(--ink-soft)}
+.ib-tbl td.ib-n{font-family:var(--fm);font-size:13px;white-space:nowrap}
+.ib-range{display:flex;align-items:center;gap:12px;margin:12px 0 0;font-family:var(--fm);font-size:13px}
+.ib-range input{flex:1}
+.ib-kb{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin:0 0 6px}
+.ib-k{font:inherit;font-family:var(--fm);font-size:11px;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:6px 2px;cursor:pointer;color:var(--ink);min-height:34px}
+.ib-k[data-n="0"]{color:var(--ink-mute)}
+.ib-k[data-hot="1"]{background:var(--hl);border-color:var(--amber)}
+.ib-k[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ib-seq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;font-size:11.5px;margin:0 0 10px}
+.ib-seq div{border:1px solid var(--line);border-radius:5px;padding:4px 5px;background:var(--surface);min-height:44px;line-height:1.25}
+.ib-seq div.ib-now{background:var(--hl);border-color:var(--amber)}
+.ib-seq div.ib-chk{border-style:dashed;border-color:var(--ink-mute)}
+.ib-seq b{font-family:var(--fm);font-weight:500;color:var(--ink-mute);display:block;font-size:10.5px}
+@media (max-width:720px){.ib-two{grid-template-columns:1fr}.ib-seq{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+</style>
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">1987 · Firebird</p>
+  <h1>I, Ball</h1>
+  <p class="sub">A rolling eyeball with inertia, sixteen levels of walls that kill, and bonus discs that always come in the same order. The game runs its logic in an interrupt that cannot always keep up, and its timer counts passes of that logic rather than frames: with seven aliens on the screen, the timer's 50 seconds last about 97 real ones.</p>
+</header>
+<main class="wrap">
+
+<section>
+  <p class="fig">01 · The game</p>
+  <h2 class="t">Steer Iball to the top of the level</h2>
+  <p>Iball is a ball with an eye, and he is out to rescue four friends from Terry Ball. Each of the sixteen levels is a vertical track of walls. The screen scrolls up as Iball pushes towards the top, and the level ends when he reaches the home straight at the very top of the map. Some walls are electrified and kill him on touch; aliens form out of nothing and home in on him; the timer at the top of the screen counts down from 50.</p>
+  <p>Some of the aliens are discs. Touching a disc gives Iball an extra: a faster ball, a laser, a shield, a jump to the end of the level. The extras' icons light up in the panels above and below the play area. After every fourth level a friend is rescued, and after the sixteenth the game is over. Andrew Betts wrote the Commodore version, and Rob Hubbard wrote its music.</p>
+  <div class="ib-two">
+    <figure><img src="reference/title.png" alt="The title screen: FIREBIRD SOFTWARE PRESENTS IBALL, the four friends to rescue, PRESS FIRE TO PLAY"><figcaption>The title screen, with the four friends to rescue.</figcaption></figure>
+    <figure><img src="reference/level1-play.png" alt="Level 1 in play: Iball among aliens between two blocks, the extras icons and the timer above, the score below"><figcaption>Level 1 in play: the timer at 48, the extras icons dark above and below.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <p class="fig">02 · Music</p>
+  <h2 class="t">Music: Rob Hubbard's tune, played by the game's own driver</h2>
+  <p class="lede">The title plays the music, and so does play if the player presses 1 on the title screen. Press 2 instead and the game plays its sound effects.</p>
+  <div class="plate"><div id="ib-sid"></div><p class="cap">The game's music driver, <code>music_play</code> at <code>$E009</code>, run once a frame on the kit's 6502 over the listing's bytes, as the title screen's interrupt calls it, through a model of the SID. The test beside this page holds every register write of 3,000 frames to the same calls made on the game's code. The tune never ends: each voice's track goes back to its start.</p></div>
+  <p>The driver plays three voices, each from a <b>track</b>: a list of pattern numbers, with a transpose before some of them. A <b>pattern</b> is a run of notes with their lengths and instrument changes. There are 35 patterns (<code>pattern_ptrs</code>, <code>$E849</code>) and 18 <b>instruments</b> of 16 bytes (<code>instruments</code>, <code>$E70B</code>), whose flags switch on vibrato, a pulse-width sweep, an arpeggio, a filter sweep, or a drum table that changes the waveform and pitch each frame. C64-Wiki says the tune is a remix of Cabaret Voltaire's songs; Wikipedia names "Whip Blow" and "I Want You".</p>
+</section>
+
+<section>
+  <p class="fig">03 · Sound</p>
+  <h2 class="t">Sound: 22 effects, and the events that ask for them</h2>
+  <p class="lede">With effects chosen, a second player runs in place of the music. The game asks it for an effect by writing $40 plus the effect's number into one byte per voice.</p>
+  <div class="plate"><div id="ib-sfx"></div><p class="cap">The game's effects player, <code>effects_play</code> at <code>$ED56</code>, run once a frame on the kit's 6502 after the bytes each event writes into <code>effect_req</code> (<code>$ED50</code>-<code>$ED52</code>). Eight of the 22 effects are not asked for anywhere in the game; their buttons play them on voice 1.</p></div>
+  <p>An effect is a frequency that slides by a step, and the step itself changes each tick. One of eight scripts says when to slide up, when to slide down and when to go back to the start (<code>effect_script_data</code>, <code>$F050</code>). Each effect's 16 bytes (<code>effect_defs_a</code> and <code>effect_defs_b</code>) give its starting note, waveforms, length and script.</p>
+</section>
+
+<section>
+  <p class="fig">04 · Speech</p>
+  <h2 class="t">Sound: three spoken words, played through the volume register</h2>
+  <div class="plate">
+    <div class="ib-bar" id="ib-samps"></div>
+    <canvas id="ib-wave" class="ib-cv" width="900" height="120"></canvas>
+    <div class="ib-range"><span>pitch</span><input id="ib-pitch" type="range" min="90" max="250" value="140"><span id="ib-pitch-out">$8C</span></div>
+    <p class="ib-out" id="ib-samp-out">Press a word.</p>
+    <p class="cap">The game's own sample player, <code>say</code> (<code>$C1F3</code>) and <code>sample_nmi</code> (<code>$C199</code>), run on the kit's 6502 over the listing's bytes, one call of <code>sample_nmi</code> for each timer interrupt. The picture is the volume of every interrupt. The game uses the pitch <code>$8C</code>; the title screen's stick moves it between <code>$5A</code> and <code>$FA</code>, as this slider does.</p>
+  </div>
+  <p>The SID has no way to play recorded sound, but changing its master volume makes a click, and changing it thousands of times a second makes a waveform. Each byte of a sample holds two four-bit volumes. CIA 2's timer interrupts the processor every <code>sample_pitch</code> + 1 cycles, and each interrupt writes the next volume into <code>$D418</code>. The three samples fill <code>$A000</code>-<code>$BFFF</code>. The game plays the first on the title screen, the second when Iball dies, and the third at the end of a game.</p>
+  <p>While a sample plays, the game stands still. <code>irq_panel_end</code> (<code>$4506</code>) checks <code>sample_busy</code> and, if it is set, does not hand on to the next interrupt of the frame, so none of the game's logic runs until the word has been said.</p>
+</section>
+
+<section>
+  <p class="fig">05 · One frame</p>
+  <h2 class="t">One frame of play, rebuilt from memory</h2>
+  <div class="plate">
+    <div class="ib-bar" id="ib-bands"></div>
+    <div class="ib-stack"><canvas id="ib-frame" class="ib-cv" width="384" height="272"></canvas><canvas id="ib-frame-over" class="ib-cv" width="384" height="272"></canvas></div>
+    <p class="ib-out" id="ib-band-out">Press a band to see which interrupt sets it up.</p>
+    <p class="cap">One whole frame of level 1, recorded in the emulator: the registers as the frame began, every write to the video chip during it, and the memory it read. The page draws it with the site's C64 library; all 104,448 pixels match the emulator's own picture of the same frame.</p>
+  </div>
+  <p>Four raster interrupts cut the frame in bands, each setting the line of the next. The top and bottom panels use extended colour mode and the text character set, each with its own eight sprites: the extras' icons, the timer's two digits, the score and the lives. The play area between them uses multicolour characters from the playfield's set at <code>$3000</code> and eight sprites of its own. The panels' sprites are the same eight sprites as the play area's, moved and repainted three times a frame.</p>
+</section>
+
+<section>
+  <p class="fig">06 · The playfield</p>
+  <h2 class="t">A level is a list of tiles, built into a map before play</h2>
+  <div class="plate">
+    <div class="ib-bar" id="ib-lv-bar"></div>
+    <div class="ib-range"><span>map row</span><input id="ib-lv-row" type="range" min="0" max="215" value="215"><span id="ib-lv-row-out">215</span></div>
+    <canvas id="ib-lv" class="ib-cv" width="384" height="400" style="max-width:384px"></canvas>
+    <p class="cap">Level 1's map, built by the page from its tile list and the tile set as <code>build_level_map</code> builds it, 25 rows at a time, as the playfield shows them. The slider starts at the bottom, where Iball starts. The test beside this page holds the map of every level to the one the game's own code builds. Every level is drawn whole on the Maps / levels tab.</p>
+  </div>
+  <p>A level's description is 360 bytes: 60 rows of six tile numbers (<code>level_1</code> at <code>$7600</code>, and fifteen more after it). A tile is four characters by four, so a row of tiles is 24 characters wide, the width of the playfield. Before play, <code>build_level_map</code> (<code>$4B2F</code>) turns the tiles into a map of 240 rows of 24 characters, at <code>$097E</code>. The playfield is that map seen through a window of 25 rows. Each time the window moves by a whole row, <code>draw_playfield</code> copies all 600 characters again.</p>
+  <p>What a character does depends only on its number. Characters 1 to 5 are the shots and the lasers. Characters <code>$06</code> and up are walls, and characters <code>$EE</code> and up are electrified walls, which kill. Multicolour register 1 changes colour every frame, so whatever is drawn in that colour flashes.</p>
+</section>
+
+<section>
+  <p class="fig">07 · Iball</p>
+  <h2 class="t">Inertia: a push changes Iball's speed by one</h2>
+  <p>Iball moves with two speeds, across and up or down, each with a direction. A push in the direction he is moving adds one to that speed; a push the other way takes one off, and below zero turns him round (<code>push_up</code> to <code>push_right</code>, <code>limit_speeds</code>). The controls are read every second time the top interrupt runs, so holding the stick changes the speed by one every second frame or so. A speed that reaches the limit, 3, goes back to 2, so his top speed is 2 pixels a frame. With the Turbo Boost the vertical limit is 4, and with the Fuel Injection 5. Every 20 times the top interrupt runs, <code>friction</code> takes one off every speed, so Iball drifts to a stop when the stick is let go.</p>
+  <p>Iball never goes above line <code>$6C</code> of the screen. Pushing past it hands his speed to the scroll, so the map moves instead (<code>move_iball</code>). The sides of the screen turn him round. Walls are found by reading the screen: <code>probe_background</code> copies the 12 characters under him, three rows of four, and <code>bounce_iball</code> reverses his direction when the row or column he moves towards holds a wall. A hit on the top row while the map is in its top two rows is the end of the level.</p>
+  <table class="ib-tbl">
+    <tr><th>Speed limit</th><th>Top speed</th><th>When</th></tr>
+    <tr><td class="ib-n">3</td><td class="ib-n">2</td><td>at the start, and across always</td></tr>
+    <tr><td class="ib-n">4</td><td class="ib-n">3</td><td>up and down, with the Turbo Boost</td></tr>
+    <tr><td class="ib-n">5</td><td class="ib-n">4</td><td>up and down, with the Fuel Injection</td></tr>
+  </table>
+</section>
+
+<section id="controls">
+  <p class="fig">08 · Controls</p>
+  <h2 class="t">Every key in a column does the same job</h2>
+  <div class="plate">
+    <div class="ib-bar" id="ib-kb-mode"></div>
+    <div class="ib-kb" id="ib-kb"></div>
+    <p class="ib-out" id="ib-kb-out">Press a key.</p>
+    <p class="cap">The keyboard as the C64 wires it: eight rows and eight columns. Each key is shaded when it has a job. The jobs come from the value each of the game's tests writes to <code>$DC00</code> and the column it reads in <code>$DC01</code>; the test beside this page runs each of the game's tests on the kit's 6502 for every key and checks that the same keys answer.</p>
+  </div>
+  <p>The manual gives Z, X, O and K for left, right, up and down, P for fire, SPACE for the Smart Missile and M for the Molecule Bomb. The game reads a key by driving rows of the keyboard low and reading one column. Most of its tests drive seven rows at once, so every key in that column on those rows does the job. O is the up key, and so are E, T, U, @, the up-arrow and Q.</p>
+  <p>The same groups answer on the title screen, where the jobs change. I, the key C64-Wiki gives for the "IBALL!" sample, is in the fire column, so it starts a game. X and the other right keys say "IBALL!", Z "OH NO!", and SPACE "GAME OVER!".</p>
+</section>
+
+<section id="discs">
+  <p class="fig">09 · Discs</p>
+  <h2 class="t">The discs always give their extras in the same order</h2>
+  <div class="plate">
+    <div class="ib-bar"><button type="button" class="ib-btn" id="ib-take">Take a disc</button><button type="button" class="ib-btn" id="ib-die">Lose a life</button><button type="button" class="ib-btn" id="ib-reset">New game</button></div>
+    <div class="ib-seq" id="ib-seq"></div>
+    <p class="ib-out" id="ib-seq-out"></p>
+    <p class="cap">The 32 places of <code>disc_order</code> (<code>$62C3</code>). The highlighted place is the extra the next disc gives; dashed places are the checkpoints a death goes back to (<code>disc_checkpoints</code>, <code>$606B</code>). The test beside this page holds both buttons to the game's own code.</p>
+  </div>
+  <p>The first alien to form in a game is a disc. After that, a disc forms once 21 aliens have been killed (<code>disc_countdown</code>). Touching a disc gives the extra at the next place in the sequence; after the 32nd place the sequence repeats its last four. A death moves the sequence back to the last checkpoint and takes away the extra given at that checkpoint, so the next disc gives it again (<code>disc_rollback</code>, <code>$6648</code>).</p>
+  <table class="ib-tbl">
+    <tr><th>Extra</th><th>What the game does</th></tr>
+    <tr><td>Turbo Boost</td><td>vertical speed limit 4</td></tr>
+    <tr><td>Single Lazer, Twin Laser Set</td><td>a beam along Iball's row, the way he faces; with the Twin Laser Set both ways</td></tr>
+    <tr><td>Smart Missile</td><td>SPACE explodes every alien but the discs</td></tr>
+    <tr><td>Extra Score</td><td>100 points, plus 100 more for every two levels played</td></tr>
+    <tr><td>Bullet Spray</td><td>shots go up and down at once</td></tr>
+    <tr><td>Electro Shield</td><td>walls cannot kill, while its meter in the top panel empties</td></tr>
+    <tr><td>Extended Play, Timer Rewind</td><td>20 and 40 more on the timer</td></tr>
+    <tr><td>Hyperspace</td><td>the map runs to the goal at 6 pixels a pass</td></tr>
+    <tr><td>Molecule Bomb</td><td>M stops new aliens forming for 255 passes</td></tr>
+    <tr><td>Faulty Disc</td><td>every wall kills, until Iball dies or nears the top of the map</td></tr>
+    <tr><td>Fuel Injection</td><td>vertical speed limit 5</td></tr>
+    <tr><td>Bonus Ball</td><td>one more life</td></tr>
+    <tr><td>Hyper Brakes</td><td>the controls read every frame, while its meter empties</td></tr>
+    <tr><td>Lazer Cooler</td><td>the laser never overheats</td></tr>
+    <tr><td>Rainbow Ripple</td><td>a band seven characters wide, rolling up or down the screen in changing colours</td></tr>
+  </table>
+</section>
+
+<section>
+  <p class="fig">10 · Aliens</p>
+  <h2 class="t">Each alien's sprite decides how it hunts</h2>
+  <p>Up to seven aliens share sprites 1 to 7. A new one appears at a random place, away from walls and at least 20 pixels from Iball (<code>spawn_alien</code>), and spends 50 passes flickering through colours while it forms (<code>forming_step</code>). A forming alien cannot hurt Iball. Every alien moves with the map as it scrolls (<code>ride_scroll</code>), and on top of that it steers towards Iball, but which way depends on the sprite it got (<code>steer_aliens</code>):</p>
+  <table class="ib-tbl">
+    <tr><th>Sprites</th><th>Steers towards Iball</th></tr>
+    <tr><td class="ib-n">1, 2</td><td>up and down</td></tr>
+    <tr><td class="ib-n">3, 4</td><td>both ways</td></tr>
+    <tr><td class="ib-n">5, 6, 7</td><td>across</td></tr>
+  </table>
+  <p>Their speed rises with the level. Across, an alien moves 1 pixel a pass on levels 1 to 4, 2 on levels 5 to 13 and 3 on the last three (<code>alien_speed_x</code>). Up and down, it adds 1, 2 or 3 to the scroll's speed, from levels 1, 9 and 16 (<code>alien_accel_y</code>). Iball's shots are characters on the screen, so an alien dies when a shot character is among the 12 characters around it (<code>alien_shot</code>).</p>
+</section>
+
+<section id="time">
+  <p class="fig">11 · Time</p>
+  <h2 class="t">The timer counts the game's logic, not seconds</h2>
+  <p>The work of each frame is split between the interrupts. The third, <code>irq_logic</code> at line <code>$92</code>, runs the aliens, the shots, the scroll and the timer. It can take longer than a frame, and when its interrupt comes round again before it has finished, the new interrupt returns at once. So the more there is on the screen, the more frames the logic misses. The timer, <code>timer_tick</code>, takes a second off every 50 passes of that logic, not every 50 frames.</p>
+  <table class="ib-tbl">
+    <tr><th>Level 1</th><th class="ib-n">Frames</th><th class="ib-n">Logic passes</th><th class="ib-n">50 timer seconds last</th></tr>
+    <tr><td>Iball alone</td><td class="ib-n">1,500</td><td class="ib-n">1,500</td><td class="ib-n">50 s</td></tr>
+    <tr><td>Seven aliens about</td><td class="ib-n">1,350</td><td class="ib-n">695</td><td class="ib-n">about 97 s</td></tr>
+  </table>
+  <p class="cap">Counted in the emulator with checkpoints on <code>irq_logic</code>'s work and on <code>timer_tick</code>, only while Iball was alive and no sample played. The timer also stands still while Iball materialises or dies, in hyperspace, and while a word is said.</p>
+</section>
+
+</main>
+<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>
+<script src="../../lib/c64.js"></script>
+<script src="../../lib/sid.js"></script>
+<script src="../../lib/cpu6502.js"></script>
+<script type="application/json" id="ib-frame-data">{"schema":1,"standard":"PAL","lines":312,"cycles":63,"about":"","vic":[64,255,94,255,124,255,154,255,184,255,214,255,238,255,12,255,128,80,0,0,0,255,216,0,29,247,241,0,159,0,255,165,240,240,253,250,243,255,251,240,240,240,240,240,254,254,252],"cia2":[151,63],"cpu":[47,53],"writes":[[0,41,65534,6],[0,47,65535,69],[2,25,53265,88],[2,37,53276,31],[2,53,53264,192],[3,13,53294,247],[3,22,2047,145],[3,36,53293,247],[3,45,2046,142],[3,59,53292,252],[4,5,2045,156],[4,28,2044,132],[4,51,2043,131],[5,11,2042,130],[5,34,2041,129],[5,57,2040,128],[6,9,53263,25],[6,24,53262,19],[6,39,53261,25],[6,54,53260,1],[7,6,53259,25],[7,21,53258,227],[7,36,53257,25],[7,51,53256,197],[8,3,53255,25],[8,18,53254,167],[8,33,53253,25],[8,48,53252,137],[8,63,53251,25],[9,15,53250,107],[9,30,53249,25],[9,45,53248,77],[54,48,65534,109],[55,10,53276,255],[55,20,53265,24],[55,34,53282,254],[56,6,53264,0],[56,63,53263,90],[57,14,53262,174],[57,28,53261,112],[57,42,53260,181],[57,56,53259,160],[58,7,53258,114],[58,21,53257,170],[58,35,53256,140],[58,49,53255,86],[58,63,53254,118],[59,14,53253,106],[59,28,53252,111],[59,42,53251,98],[59,56,53250,111],[60,7,53249,160],[60,21,53248,174],[60,36,2047,175],[60,59,2046,172],[61,5,53293,245],[61,19,2045,161],[61,28,53292,247],[61,42,2044,172],[61,51,53291,248],[62,2,2043,172],[62,11,53290,254],[62,25,2042,167],[62,34,53289,253],[62,48,2041,182],[62,57,53288,254],[63,8,2040,150],[63,17,53287,252],[146,46,65534,114],[146,52,65535,70],[248,46,53265,88],[249,1,65534,50],[249,7,65535,68],[249,34,53265,80],[249,46,53276,159],[249,52,53264,128],[249,63,53263,255],[250,14,53262,12],[250,28,53261,255],[250,42,53260,238],[250,56,53259,255],[251,7,53258,214],[251,21,53257,255],[251,35,53256,184],[251,49,53255,255],[251,63,53254,154],[252,14,53253,255],[252,28,53252,124],[252,42,53251,255],[252,56,53250,94],[253,7,53249,255],[253,21,53248,64],[253,33,53287,240],[253,41,53288,240],[253,49,53289,240],[253,57,53290,240],[254,2,53291,240],[254,10,53292,254],[254,18,53293,254],[254,26,53294,252],[254,31,53286,252],[254,39,2040,133],[254,47,2041,134],[254,55,2042,135],[254,63,2043,136],[255,8,2044,137],[255,16,2045,154],[255,24,2046,155],[255,32,2047,231],[255,44,53286,251]],"colour":"CgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgIPCAcADwQPBA8FDwMOAAsECwIPAAcFDA==","ram":[{"a":1024,"b":"AAAAAAAAAAAAAAAAAAAAAPH09PLx9PTyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDM0JwAAAAAAAAAAeDM0JwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAeH8EAAAAAAAAAAMAeH8EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAICHBAAAAAAAAAADAICHBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAd0tMeQAAAAAAAAAAd0tMeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8fRdrfH0Xa/b3+AD29/gAfH0Xa3x9F2sAAAAAAAAAAAAAAAAAAAAAGX5/bBl+f2wA+fn6APn5+hl+f2wZfn9sAAAAAAAAAAAAAAAAAAAAAHuAgRp7gIEaAPn5+wD5+ft7gIEae4CBGgAAAAAAAAAAAAAAAAAAAAB6HGloehxpaPb3+AD29/gAehxpaHocaWgAAAAAAAAAAA=="},{"a":2040,"b":"hYaHiImam+c="},{"a":8192,"b":"AAAAAAAAAAMAAA7AAA7AAA5wAA6w//6c6qqs6qqn6qqr6qqr6qqs//6sAA6wAA6wAA7AAA7AAAMAAAAAAAAA"},{"a":8256,"b":"AAAAAAAAAAAAAAAA8AAA7PzxO5dfOqqrDqqrDquvDr/zDrMAOvwAOsAAOsAA6wAA6wAA/AAAAAAAAAAAAAAA"},{"a":8320,"b":"AAAAAAAAAAAAAAAAwAwAszgA7uwAOrAAOrAA6WwA7pTA7qtwO+ucOr+rPrOv7uzwszgAwAwAAAAAAAAAAAAA"},{"a":8384,"b":"AAAAAAAAAAAwAADsOwOrADz8O+cAO+vsO+vsADzsOwDsOwwAOzfsOzvsAAzsPwAA6sDsOwAADAAAAAAAAAAA"},{"a":8448,"b":"AAAAAAAAAAAAAAAADADwH9DwTqzsHqzcT/DsDADrAADrDADrT9DsHqzsTqzsH/DwDADwAAAAAAAAAAAAAAAA"},{"a":8512,"b":"AAAAAAAAAAAAAAAAPPMAt23Au66wPPOwAADsMADs7AA77AA7OwAMOwAADk88DrbeA7ruAM88AAAAAAAAAAAA"},{"a":8576,"b":"AAAAAAAAPAAw5wDw6wOw6w7APDrAAOsAA6sAAOwAADsAAA7AADqwADrAAOs8AOznA7DrA8DrAwA8AAAAAAAA"},{"a":8640,"b":"AAAAAAAAAAAAAAAAAAAAAAAANDQAO/sADA/EAwDbAMerADr8AG7AAa8ABrAAGsAA6wAA7AAAMAAAAAAAAAAA"},{"a":8704,"b":"AAAAAAAAAAAAAAAAA/wAA6vAA5awA6lsP6qc66qn66qr66qrP6qsA6qsA6qwA6vAA/wAAAAAAAAAAAAAAAAA"},{"a":8768,"b":"AAAAAAAAAAAAIAAII8PIjsOyjsOyOwDsOzzs7Oc77Os77Os77Os7OzzsOwDsjsOyjsOyI8PIIAAIAAAAAAAA"},{"a":9088,"b":"AAAAAAAAAAAAAeAAA+AAB+AAD+AAHeAAOeAAceAA4eAAweAA//wAAeAAAeAAAeAAAeAAP/wAAAAAAAAAAAAA"},{"a":9280,"b":"AAAAAAAAAAAA//wA4/wAAPgAAHAAAHAAAOAAAcAAA4AAA4AABwAABwAABwAABwAABwAABwAAAAAAAAAAAAAA"},{"a":9600,"b":"PAAA6/sA66mA6+BQP4oQP4UUPuEEO6gE/qoF/umV+6pl/qqV+6pV/umVA6pAPCgUPihUDzRQACgAA+mAALsA"},{"a":9856,"b":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDw8YmJiYmJicnJycnJyPDw8AAAAAAAAAAAAAAAA"},{"a":9920,"b":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDw8YmJiYmJicnJycnJyPDw8AAAAAAAAAAAAAAAA"},{"a":9984,"b":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"a":10304,"b":"AmYACaWACaWAKaWgJaWgJalgpalopalopalopalopalopalopalopalopaloJalgJaWgKaWgCaWACaWAAmYA"},{"a":10688,"b":"AAAAAAAAABAAAKAAAKAAAIAAAAAEADwoAOcoAKkgAKoABKoAKOsAKDwAIAAAAAEAAAoAAAoAAAgAAAAAAAAA"},{"a":11008,"b":"AAAAAAAAkAAJoAAKCP8gA6rAAiiAAiiAAqqAMoKE/kGV/gCV/xRV/5ZVP6pUP+lUD+lQA91AAPUAA/VAD/VQ"},{"a":11200,"b":"AP8AA/8AA/9AA/9AA/9QA/9QA/9QA/9AA/9AA/9AA/9AA/9AA/9AA/9AA/9AA/9QA/9QA/9AA/9AA/8AAP8A"},{"a":11648,"b":"AAAAAN0FA/VE/91VP3dU/8zUPwQUPIyE/ISF8oSh8gwh/DUF/fdV/99VP2rUP4CUPR0VP3dU//VVM91A8PUA"},{"a":12288,"b":"AAAAAAAAAAA="},{"a":12472,"b":"qqqqqqqqqqo="},{"a":12488,"b":"//////////+77rvuu+677g=="},{"a":12512,"b":"M8wzzDPMM8w="},{"a":12528,"b":"qqrq6vr6/v6qqquqq667rv/88/zzzDPMO+47zjPOM8w="},{"a":12600,"b":"gICgoKioqqo="},{"a":12680,"b":"oKigoIiCgg=="},{"a":12688,"b":"Dw8PDw+/vw=="},{"a":12696,"b":"qsDqwOrA6sCqAqoCqgKqAg=="},{"a":12888,"b":"wOrA6sDqwKoDqwOrA6sCqg=="},{"a":13120,"b":"u+677jvOM8w7zjPMM8wzzA=="},{"a":13144,"b":"qqqqqquqq66rrquuu6677g=="},{"a":13240,"b":"zDMMMwwDAAMDAw8PPz///7vuuOyw4IDA8/zz/PPM88z///////z//Krq+v7/////qqqqqqrq6vr+/v//8PDw8KqqqqoKCgoK8MAwwDPMM8wLDgsOu+477g=="},{"a":13824,"b":"iIiIiIiIiIgiIiIiIiIiIg=="},{"a":14223,"b":"QA=="},{"a":14231,"b":"AQ=="},{"a":14247,"b":"EQ=="},{"a":14256,"b":"AFBRURBBEAAFFRQVEQQRBFBUVVURRRBABBVVVRFEEQQAEFRUFUURUVFRRVUQRBAA"},{"a":14784,"b":"AAAAzQAA+kAAOEAA+BAA/hAA+VAA/lAACgAAOUAADgAABzBzGvGvEsEsQvQvS/S/VvVvW/W/CgCgFsFsCwCwAA=="},{"a":16383,"b":"AA=="}],"capture":{"phase_cycles_uncertain":0,"frame_cycles":19655,"frame_ended_on_line":0,"picture_lines_low":0,"writes_account_for_end_state":true,"ram_bytes_changed_during_frame":173,"colour_cells_changed_during_frame":0}}</script>
+<script>
+/* ib-music */
+// createDriver for C64Sid: runs the game's own music driver and its sound effects player on the
+// kit's 6502 (C64Cpu, from ../../lib/cpu6502.js, which sid.js hands to createDriver), their code
+// and tables taken from the listing over IB_MUSIC_RANGES. The game calls them once a frame:
+// title_irq ($6DD7) calls music_play ($E009) on the title screen, and irq_panel_end ($4506) calls
+// music_play in play when the title chose music, or effects_play ($ED56) when it chose effects.
+//   The music: init calls music_on ($E51F), which sets the volume and asks the driver to start;
+//   then music_play once a frame. The tune loops for ever: its tracks end by going back to their
+//   start.
+//   The effects: init writes the requests the game writes for an event into effect_req
+//   ($ED50-$ED52, $40 plus the effect's number, $FF for a voice left alone); then effects_play
+//   once a frame, until every voice is idle again and 25 frames more for the release.
+const IB_STEP = 19656;
+const IB_MUSIC_RANGES = [[0x00FC, 0x00FF], [0xE000, 0xF219]];
+const IB_TUNES = [{ name: 'The tune', music: true }];
+const IB_EFFECTS = [
+  { name: 'Iball materialises', req: [0x49, 0x40, 0x49], at: '$4E88' },
+  { name: 'The pieces gather', req: [0x4B, 0x55, 0x4B], at: '$4EFB' },
+  { name: 'Iball dies', req: [0x44, 0x55, 0xFF], at: '$504C' },
+  { name: 'The laser', req: [0x45, 0x4F, 0xFF], at: '$6759' },
+  { name: 'An alien is shot', req: [0xFF, 0xFF, 0x41], at: '$5C8C' },
+  { name: 'A disc forms', req: [0x4A, 0x4A, 0x4A], at: '$567F' },
+  { name: 'A disc is taken', req: [0xFF, 0xFF, 0x48], at: '$5D49' },
+  { name: 'The level is won', req: [0x46, 0x4F, 0xFF], at: '$58F1' },
+  { name: 'A friend is rescued', req: [0x4F, 0x4F, 0x4F], at: '$59E6' },
+  { name: 'Molecule Bomb', req: [0x4B, 0x4D, 0xFF], at: '$58A3' },
+  { name: 'Smart Missile', req: [0x49, 0x4F, 0xFF], at: '$58CA' },
+  { name: 'Rainbow Ripple', req: [0x4C, 0x4D, 0xFF], at: '$6A3B' },
+  { name: 'Hyperspace', req: [0x53, 0x55, 0xFF], at: '$6459' },
+  ...[2, 3, 7, 14, 16, 17, 18, 20].map((n) => ({ name: 'Effect ' + n + ', unused', req: [0x40 + n, 0xFF, 0xFF], at: null })),
+];
+function createDriver(D, C64Cpu) {
+  const TAIL = 25;
+  const base = new Uint8Array(0x10000);
+  for (const [ad, bytes] of D.mem) base.set(bytes, ad);
+  const sid = new Uint8Array(25);
+  let m, cpu, c, writes = [], bus = 0, tail = 0, over = false;
+  const io = {
+    read(ad) { if (ad >= 0xD400 && ad < 0xD800) return bus; throw new Error('read $' + ad.toString(16)); },
+    write(ad, v) {
+      if (ad >= 0xD400 && ad < 0xD800) { const r = ad & 0x1F; if (r < 25) { sid[r] = v; writes.push(r, v); } bus = v; return; }
+      throw new Error('write $' + ad.toString(16));
+    },
+  };
+  const run = (ad) => { cpu.cycles = 0; cpu.call(ad, { a: 0, x: 0, y: 0 }, { maxSteps: 200000 }); };
+  const idle = () => m[0xED50] === 0xFF && m[0xED51] === 0xFF && m[0xED52] === 0xFF;
+  return {
+    sid,
+    get writes() { return writes; },
+    get mem() { return m; },
+    init(t) {
+      c = D.tunes[t];
+      m = base.slice(); cpu = new C64Cpu.CPU(m, { port: 0x35, io });
+      sid.fill(0); bus = 0; tail = 0; over = false; writes = [];
+      if (c.music) run(0xE51F);                                   // music_on
+      else for (let v = 0; v < 3; v++) m[0xED50 + v] = c.req[v];   // effect_req, as the game writes it
+    },
+    stop() { over = true; writes = []; },
+    play() {
+      writes = [];
+      if (over) return;
+      if (c.music) { run(0xE009); return; }                       // music_play
+      run(0xED56);                                                 // effects_play
+      if (idle() && ++tail >= TAIL) over = true;
+    },
+    playing() { return !over; },
+    voice(v) {
+      if (c && c.music) return { pattern: m[0xE50D + v], step: m[0xE510 + v] };
+      return { request: m ? '$' + m[0xED50 + v].toString(16).toUpperCase() : '' };
+    },
+  };
+}
+// end of ib-music
+</script>
+<script>
+/* ib-speech */
+// The three speech samples, played by the game's own player on the kit's 6502 (C64Cpu) over the
+// listing's bytes. say ($C1F3) with the sample's number in A starts it as the game does: the NMI
+// vector to sample_nmi ($C199), CIA 2's timer A to sample_pitch ($C021) cycles and its interrupt
+// on. Here each NMI is taken in turn, sample_pitch + 1 cycles apart (a timer whose latch holds n
+// runs out every n + 1 cycles), and the four-bit volume each one writes to $D418 is kept, until
+// sample_busy ($C05E) goes back to 0. The raster interrupts that the game takes meanwhile do not
+// delay the NMIs, which come first; they are left out.
+//   ibSample(ram, C64Cpu, n, pitch)  -> { vols: Uint8Array, period }  the volume of every NMI
+//   ibRender(s, rate)                 -> Float32Array  the volumes as sound at rate per second,
+//                                        the DC taken out as the C64's output stage does
+const IB_SAMPLES = [
+  { name: '“IBALL!”', n: 0, where: 'the title screen' },
+  { name: '“OH NO!”', n: 1, where: 'a death' },
+  { name: '“GAME OVER!”', n: 2, where: 'the end of a game' },
+];
+function ibSample(ram, C64Cpu, n, pitch) {
+  const m = ram.slice(), vols = [];
+  m[0xC021] = pitch;
+  const io = {
+    read(a) { if (a === 0xDD0D) return 0x81; throw new Error('ibSample: read $' + a.toString(16)); },
+    write(a, v) {
+      if (a === 0xD418) { vols.push(v & 15); return; }
+      if (a >= 0xDD04 && a <= 0xDD0E) return;
+      throw new Error('ibSample: write $' + a.toString(16));
+    },
+  };
+  const cpu = new C64Cpu.CPU(m, { port: 0x35, io });
+  cpu.call(0xC1F3, { a: n, x: 0, y: 0 }, { maxSteps: 100000 });  // say
+  let guard = 0;
+  while (m[0xC05E] && guard++ < 40000) { cpu.pc = 0x1000; cpu.nmi(null, { maxSteps: 1000 }); }
+  return { vols: Uint8Array.from(vols), period: pitch + 1 };
+}
+function ibRender(s, rate) {
+  const CLOCK = 985248, step = CLOCK / rate, n = Math.ceil(s.vols.length * s.period / step);
+  const out = new Float32Array(n);
+  for (let i = 0; i < n; i++) { const k = Math.min(s.vols.length - 1, Math.floor(i * step / s.period)); out[i] = s.vols[k] / 15; }
+  const R = 1 - 2 * Math.PI * 16 / rate;
+  let px = out[0], py = 0;
+  for (let i = 0; i < n; i++) { const x = out[i], y = x - px + R * py; px = x; py = y; out[i] = 0.8 * y; }
+  return out;
+}
+// end of ib-speech
+</script>
+<script>
+/* ib-levels */
+// A level drawn from its tile list, as build_level_map ($4B2F) builds it before play.
+//   ibMap(ram, level) -> Uint8Array(240 * 24)  the map buffer the game builds at $097E: 60 rows of
+//                        six tiles from the level's list (level_ptr_lo/hi, $4AEF/$4AFF), each tile
+//                        four characters by four from the tile set at $7380 (16 bytes a tile; the
+//                        game adds a page for tile numbers $10-$1F and two from $20 up, which is
+//                        16 times the number for every number below $30, and the levels use 0-39).
+//   ibColours(ram, level) -> [background, $D022, $D023, character colour]  for C64.drawGlyphMC:
+//                        the background 0, multicolour register 1 as the game leaves it in the
+//                        recorded frame ($0D; the game steps it every frame), register 2 from
+//                        level_colour3 ($4B0F) and the cells' colour from level_char_colour ($4B1F).
+//   ibDrawMap(ctx, ram, level, s, from, rows)  draws rows of the map with the playfield's
+//                        character set at $3000, from map row from.
+function ibMap(ram, level) {
+  const list = ram[0x4AEF + level] | ram[0x4AFF + level] << 8, map = new Uint8Array(240 * 24);
+  for (let tr = 0; tr < 60; tr++) for (let tc = 0; tc < 6; tc++) {
+    const t = ram[list + tr * 6 + tc], tile = 0x7380 + 16 * t;
+    for (let r = 0; r < 4; r++) for (let k = 0; k < 4; k++) map[(tr * 4 + r) * 24 + tc * 4 + k] = ram[tile + r * 4 + k];
+  }
+  return map;
+}
+function ibColours(ram, level) { return [0, 0x0D, ram[0x4B0F + level] & 15, ram[0x4B1F + level] & 7]; }
+function ibDrawMap(ctx, ram, level, s, from, rows) {
+  const map = ibMap(ram, level), cs = ram.subarray(0x3000, 0x3800), col = ibColours(ram, level).map((i) => C64.PAL[i]);
+  for (let r = 0; r < rows; r++) for (let k = 0; k < 24; k++)
+    C64.drawGlyphMC(ctx, cs, map[(from + r) * 24 + k], k * 8 * s, r * 8 * s, s, col);
+}
+// end of ib-levels
+</script>
+<script>
+/* ib-discs */
+// The disc sequence: which extra the next disc gives, and where a death sends the sequence back.
+//   ibTake(i)  the place after a disc is taken at place i: one on, and from 32 back to 28, as
+//              give_extra does at $605C-$6066.
+//   ibDie(i)   the place after a death at place i: unchanged at 0, otherwise the checkpoint
+//              disc_checkpoints ($606B) gives, as disc_rollback ($6648) does.
+//   IB_LOST    the extra a death takes away at each checkpoint (disc_rollback's comparisons).
+const IB_EXTRAS = ['Turbo Boost', 'Single Lazer', 'Smart Missile', 'Extra Score', 'Bullet Spray', 'Electro Shield',
+  'Extended Play', 'Twin Laser Set', 'Hyperspace', 'Molecule Bomb', 'Faulty Disc', 'Fuel Injection', 'Bonus Ball',
+  'Hyper Brakes', 'Timer Rewind', 'Lazer Cooler', 'Rainbow Ripple'];
+const IB_LOST = { 1: 'Single Lazer', 2: 'Smart Missile', 4: 'Bullet Spray', 8: 'Twin Laser Set', 13: 'Fuel Injection', 18: 'Lazer Cooler', 26: 'Rainbow Ripple' };
+function ibTake(i) { i++; return i >= 32 ? 28 : i; }
+function ibDie(ram, i) { return i === 0 ? 0 : ram[0x606B + i]; }
+// end of ib-discs
+</script>
+<script>
+/* ib-keys */
+// Which keys do what. Each test writes a value to $DC00, which drives low the rows whose bits are
+// 0, and reads one column's bit in $DC01: every key in that column on a driven row answers.
+// IB_TESTS lists the game's tests, each as the value written, the column read and the job; ibJobs
+// gives the jobs of the key on row r, column c.
+const IB_TESTS = [
+  { dc00: 0x01, col: 6, job: 'up', where: 'read_controls $4946' },
+  { dc00: 0x01, col: 5, job: 'down', where: 'read_controls $4967' },
+  { dc00: 0xB5, col: 4, job: 'left', where: 'read_controls $4988' },
+  { dc00: 0x80, col: 7, job: 'right', where: 'read_controls $49A9' },
+  { dc00: 0x01, col: 1, job: 'fire', where: 'fire $51C7' },
+  { dc00: 0x1F, col: 4, job: 'Smart Missile', where: 'smart_key $58B3' },
+  { dc00: 0xAE, col: 4, job: 'Molecule Bomb', where: 'molecule_key $588D' },
+  { dc00: 0x04, col: 7, job: 'pause', where: 'check_pause $660C' },
+];
+const IB_TITLE_TESTS = [
+  { dc00: 0x01, col: 1, job: 'start a game', where: 'game_start $6D8D' },
+  { dc00: 0x7F, col: 0, job: 'music', where: 'title_irq $6E1C' },
+  { dc00: 0x7F, col: 3, job: 'sound effects', where: 'title_irq $6E30' },
+  { dc00: 0x80, col: 7, job: '“IBALL!”', where: 'title_irq $6E70' },
+  { dc00: 0xB5, col: 4, job: '“OH NO!”', where: 'title_irq $6E81' },
+  { dc00: 0x1F, col: 4, job: '“GAME OVER!”', where: 'title_irq $6E92' },
+];
+const IB_MATRIX = [
+  ['DEL', 'RETURN', 'CRSR →', 'F7', 'F1', 'F3', 'F5', 'CRSR ↓'],
+  ['3', 'W', 'A', '4', 'Z', 'S', 'E', 'L SHIFT'],
+  ['5', 'R', 'D', '6', 'C', 'F', 'T', 'X'],
+  ['7', 'Y', 'G', '8', 'B', 'H', 'U', 'V'],
+  ['9', 'I', 'J', '0', 'M', 'K', 'O', 'N'],
+  ['+', 'P', 'L', '-', '.', ':', '@', ','],
+  ['£', '*', ';', 'HOME', 'R SHIFT', '=', '↑', '/'],
+  ['1', '←', 'CTRL', '2', 'SPACE', 'C=', 'Q', 'RUN/STOP'],
+];
+function ibJobs(tests, r, c) { return tests.filter((t) => t.col === c && !(t.dc00 >> r & 1)).map((t) => t.job); }
+// end of ib-keys
+</script>
+<script>
+/* ib-page */
+// The page's widgets, on the blocks above and the listing (C64.load).
+const $ = (id) => document.getElementById(id);
+const hex = (n, w = 2) => '$' + n.toString(16).toUpperCase().padStart(w, '0');
+function button(bar, label, on) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'ib-btn'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+  b.addEventListener('click', () => { for (const o of bar.children) o.setAttribute('aria-pressed', String(o === b)); on(); });
+  bar.appendChild(b);
+  return b;
+}
+
+// ---- 05 the frame and its bands
+const IB_BANDS = [
+  { from: 0, to: 0x36, name: 'line 0', at: '$4432', text: 'irq_top, at line 0: extended colour mode and the text character set for the panel, the panel\'s eight sprites (five extras icons, the meter, the timer\'s two digits), then the player\'s logic for the frame.' },
+  { from: 0x36, to: 0x92, name: 'line $36', at: '$4506', text: 'irq_panel_end, at line $36: extended colour off, multicolour register 1 stepped, the play sprites written to the chip, and the music or the effects.' },
+  { from: 0x92, to: 0xF8, name: 'line $92', at: '$456D', text: 'irq_logic, at line $92: nothing on the screen changes here. It runs the aliens, the shots, the scroll and the timer, and can run on past the bottom of the frame.' },
+  { from: 0xF8, to: 0x138, name: 'line $F8', at: '$4672', text: 'irq_bottom, at line $F8: extended colour on again, black background, and the bottom panel\'s sprites (five extras icons, the score and the lives).' },
+];
+function frameWidget() {
+  const F = JSON.parse($('ib-frame-data').textContent);
+  C64.drawFrame($('ib-frame'), F, 1);
+  const over = $('ib-frame-over'), ctx = over.getContext('2d'), bar = $('ib-bands');
+  const TOP = 0x10;                                   // the picture's first raster line ($10)
+  IB_BANDS.forEach((b) => button(bar, b.name, () => {
+    ctx.clearRect(0, 0, over.width, over.height);
+    ctx.fillStyle = 'rgba(255,211,77,0.28)';
+    const y0 = Math.max(0, b.from - TOP), y1 = Math.min(over.height, b.to - TOP);
+    ctx.fillRect(0, y0, over.width, y1 - y0);
+    ctx.strokeStyle = '#ffd34d'; ctx.lineWidth = 2; ctx.strokeRect(1, y0 + 1, over.width - 2, y1 - y0 - 2);
+    $('ib-band-out').innerHTML = '<b>Lines ' + hex(b.from) + '-' + hex(b.to - 1, 2) + ', <code>' + b.at + '</code></b> ' + b.text.replace(/(\$[0-9A-F]{2,4})/g, '<code>$1</code>');
+  }));
+  bar.children[1].click();
+}
+
+// ---- 02 and 03 the music and the effects
+function soundWidgets(ram) {
+  const mem = IB_MUSIC_RANGES.map(([a, b]) => [a, ram.slice(a, b + 1)]);
+  const rows = [{ k: 'Pattern', f: (v) => v.pattern === undefined ? '' : String(v.pattern) }];
+  C64Sid.mount($('ib-sid'), { driver: createDriver, data: { mem, tunes: IB_TUNES, step: IB_STEP }, tunes: IB_TUNES.map((t) => t.name), rows, filter: '6581' });
+  C64Sid.mount($('ib-sfx'), { driver: createDriver, data: { mem, tunes: IB_EFFECTS, step: IB_STEP }, tunes: IB_EFFECTS.map((t) => t.name), rows: [] });
+}
+
+// ---- 04 the speech
+function speechWidget(ram) {
+  const bar = $('ib-samps'), cv = $('ib-wave'), ctx = cv.getContext('2d'), slider = $('ib-pitch');
+  let ac = null, src = null, last = null;
+  const show = () => { $('ib-pitch-out').textContent = hex(+slider.value); };
+  slider.addEventListener('input', show); show();
+  function play(s) {
+    last = s;
+    const pitch = +slider.value, smp = ibSample(ram, C64Cpu, s.n, pitch);
+    ctx.fillStyle = '#1d1f24'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.fillStyle = '#ffd34d';
+    const n = smp.vols.length;
+    for (let x = 0; x < cv.width; x++) {
+      let lo = 15, hi = 0;
+      for (let k = Math.floor(x * n / cv.width); k < Math.floor((x + 1) * n / cv.width); k++) { lo = Math.min(lo, smp.vols[k]); hi = Math.max(hi, smp.vols[k]); }
+      if (hi >= lo) ctx.fillRect(x, 110 - hi * 6.5, 1, (hi - lo) * 6.5 + 1);
+    }
+    const secs = n * smp.period / 985248;
+    $('ib-samp-out').innerHTML = `<b>${s.name}</b>, played by the game on ${s.where}: ${n.toLocaleString('en')} volumes, one every ${smp.period} cycles, ${secs.toFixed(2)} seconds at pitch <code>${hex(pitch)}</code>.`;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (src) src.stop();
+      const pcm = ibRender(smp, ac.sampleRate), buf = ac.createBuffer(1, pcm.length, ac.sampleRate);
+      buf.copyToChannel(pcm, 0);
+      src = ac.createBufferSource(); src.buffer = buf; src.connect(ac.destination); src.start();
+    } catch (e) { $('ib-samp-out').insertAdjacentText('beforeend', ' (This browser would not play it: ' + e.message + '.)'); }
+  }
+  for (const s of IB_SAMPLES) button(bar, s.name, () => play(s));
+  slider.addEventListener('change', () => { if (last) play(last); });
+}
+
+// ---- 06 the playfield
+function levelWidget(ram) {
+  const cv = $('ib-lv'), ctx = cv.getContext('2d'), slider = $('ib-lv-row'), bar = $('ib-lv-bar');
+  let level = 0;
+  const draw = () => {
+    const from = +slider.value;
+    $('ib-lv-row-out').textContent = from;
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ibDrawMap(ctx, ram, level, 2, from, 25);
+  };
+  for (let l = 0; l < 16; l++) button(bar, String(l + 1), () => { level = l; draw(); });
+  bar.children[0].setAttribute('aria-pressed', 'true');
+  slider.addEventListener('input', draw);
+  draw();
+}
+
+// ---- 08 the keyboard
+function keysWidget() {
+  const kb = $('ib-kb'), modes = $('ib-kb-mode');
+  let tests = IB_TESTS, sel = null;
+  const paint = () => {
+    for (const k of kb.children) {
+      const jobs = ibJobs(tests, +k.dataset.r, +k.dataset.c);
+      k.dataset.n = String(jobs.length); k.dataset.hot = jobs.length ? '1' : '0';
+    }
+    if (sel) say(sel);
+  };
+  const say = (k) => {
+    const r = +k.dataset.r, c = +k.dataset.c, jobs = ibJobs(tests, r, c);
+    const t = tests.filter((t) => t.col === c && !(t.dc00 >> r & 1));
+    $('ib-kb-out').innerHTML = `<b>${IB_MATRIX[r][c]}</b> (row ${r}, column ${c}): ` +
+      (jobs.length ? t.map((x) => `${x.job}, from the test that writes <code>${hex(x.dc00)}</code> to <code>$DC00</code> and reads column ${x.col}`).join('; ') : 'no job here') + '.';
+  };
+  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'ib-k'; b.dataset.r = r; b.dataset.c = c; b.textContent = IB_MATRIX[r][c];
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => { for (const o of kb.children) o.setAttribute('aria-pressed', String(o === b)); sel = b; say(b); });
+    kb.appendChild(b);
+  }
+  button(modes, 'In play', () => { tests = IB_TESTS; paint(); });
+  button(modes, 'On the title screen', () => { tests = IB_TITLE_TESTS; paint(); });
+  modes.children[0].setAttribute('aria-pressed', 'true');
+  paint();
+}
+
+// ---- 09 the disc sequence
+function discsWidget(ram) {
+  const seq = $('ib-seq');
+  let place = 0, given = [];
+  const draw = (msg) => {
+    seq.innerHTML = '';
+    for (let i = 0; i < 32; i++) {
+      const d = document.createElement('div');
+      d.innerHTML = `<b>${i + 1}</b>${IB_EXTRAS[ram[0x62C3 + i]]}`;
+      if (i === place) d.className = 'ib-now';
+      else if (IB_LOST[i]) d.className = 'ib-chk';
+      seq.appendChild(d);
+    }
+    $('ib-seq-out').innerHTML = msg || 'The next disc gives the extra at place 1.';
+  };
+  $('ib-take').addEventListener('click', () => {
+    const x = IB_EXTRAS[ram[0x62C3 + place]], was = place;
+    place = ibTake(place); given.push(x);
+    draw(`The disc at place ${was + 1} gave <b>${x}</b>. The next gives the extra at place ${place + 1}.`);
+  });
+  $('ib-die').addEventListener('click', () => {
+    const was = place; place = ibDie(ram, place);
+    // disc_rollback clears the checkpoint's extra; it was given only if the sequence had passed it
+    const lost = was > place && IB_LOST[place] ? ` and takes away the <b>${IB_LOST[place]}</b>, which the next disc gives again` : '';
+    draw(was === 0 ? 'A death before the first disc changes nothing.'
+      : was === place ? `The death leaves the sequence at place ${place + 1}, a checkpoint whose extra has not been given yet.`
+      : `The death sends the sequence from place ${was + 1} back to place ${place + 1}${lost}.`);
+  });
+  $('ib-reset').addEventListener('click', () => { place = 0; given = []; draw(); });
+  draw();
+}
+
+frameWidget();
+keysWidget();
+C64.load('listing.json').then((L) => {
+  soundWidgets(L.ram); speechWidget(L.ram); levelWidget(L.ram); discsWidget(L.ram);
+}).catch((e) => {
+  for (const id of ['ib-sid', 'ib-sfx', 'ib-samp-out', 'ib-seq-out'])
+    $(id).textContent = 'This widget runs in the built site, which serves the listing it reads (' + e.message + ').';
+});
+// end of ib-page
+</script>

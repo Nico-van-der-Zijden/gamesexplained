@@ -1,0 +1,135 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+.ib-cv{display:block;width:100%;height:auto;image-rendering:pixelated;background:#000;border-radius:4px}
+.ib-stack{position:relative}
+.ib-stack canvas+canvas{position:absolute;left:0;top:0;background:transparent}
+.ib-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.ib-btn{font:inherit;font-family:var(--fm);font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:var(--ink);cursor:pointer;line-height:1.3}
+.ib-btn:hover{border-color:var(--ink-mute)}
+.ib-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ib-out{font-size:15px;color:var(--ink);margin:12px 0 0;min-height:3em;line-height:1.55}
+.ib-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.ib-two figure{margin:0}
+.ib-two img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px}
+.ib-two figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px}
+.ib-tbl{border-collapse:collapse;font-size:14px;width:100%;margin:4px 0 0}
+.ib-tbl th,.ib-tbl td{text-align:left;vertical-align:top;padding:5px 8px;border-bottom:1px solid var(--line-soft)}
+.ib-tbl th{font-weight:700;color:var(--ink-soft)}
+.ib-tbl td.ib-n{font-family:var(--fm);font-size:13px;white-space:nowrap}
+.ib-range{display:flex;align-items:center;gap:12px;margin:12px 0 0;font-family:var(--fm);font-size:13px}
+.ib-range input{flex:1}
+.ib-kb{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin:0 0 6px}
+.ib-k{font:inherit;font-family:var(--fm);font-size:11px;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:6px 2px;cursor:pointer;color:var(--ink);min-height:34px}
+.ib-k[data-n="0"]{color:var(--ink-mute)}
+.ib-k[data-hot="1"]{background:var(--hl);border-color:var(--amber)}
+.ib-k[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ib-seq{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;font-size:11.5px;margin:0 0 10px}
+.ib-seq div{border:1px solid var(--line);border-radius:5px;padding:4px 5px;background:var(--surface);min-height:44px;line-height:1.25}
+.ib-seq div.ib-now{background:var(--hl);border-color:var(--amber)}
+.ib-seq div.ib-chk{border-style:dashed;border-color:var(--ink-mute)}
+.ib-seq b{font-family:var(--fm);font-weight:500;color:var(--ink-mute);display:block;font-size:10.5px}
+@media (max-width:720px){.ib-two{grid-template-columns:1fr}.ib-seq{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+</style>
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">1987 · Firebird</p>
+  <h1>I, Ball</h1>
+  <p class="sub">What the code does that the manual does not say: a timer that slows down when the screen is busy, a missile that pays for aliens that are not there, title keys that are not the ones in the documentation, and the remains of earlier versions of the game left in memory.</p>
+</header>
+<main class="wrap">
+
+<section>
+  <p class="fig">01 · The timer</p>
+  <h2 class="t">Bug: the more aliens on the screen, the slower the timer runs</h2>
+  <p>The timer at the top of the screen starts each level at 50, and Iball loses a life when it reaches 0. But <code>timer_tick</code> takes a second off every 50 passes of the game's logic, and the logic does not run every frame. Its interrupt, <code>irq_logic</code>, skips a frame whenever the last pass has not finished, and a pass takes longer the more there is on the screen. So the busier the level, the slower the timer.</p>
+  <p>With only Iball on the screen the logic runs every frame and the timer keeps time. With seven aliens about, the emulator counted 695 passes in 1,350 frames, so the level's 50 seconds last about 97 real ones: a busy level gives the player nearly twice the time the timer shows. The How it works page has <a href="index.html#time">the interrupts and the measurement</a>.</p>
+</section>
+
+<section>
+  <p class="fig">02 · The Smart Missile</p>
+  <h2 class="t">Bug: the Smart Missile pays 10 points for every alien that is not there</h2>
+  <p>Pressing SPACE with the Smart Missile fires it once: every alien explodes and scores 10 points. <code>smart_missile</code> goes through sprites 1 to 7 and sets each one exploding, skipping the discs and those already exploding. It never tests whether the sprite is in use, so an empty slot explodes too, out of sight, and scores the same 10 points.</p>
+  <p>Seen in the emulator: fired on a screen with no alien on it, the missile gave 70 points, and the disc countdown, which counts aliens killed, went from 20 to 13. Seven kills that never happened bring the next disc nearer too.</p>
+</section>
+
+<section>
+  <p class="fig">03 · The title screen</p>
+  <h2 class="t">Secret: the title's speech keys are X, Z and SPACE, not I, O and G</h2>
+  <p>C64-Wiki says that on the title screen I, O and G say the three samples, "IBALL!", "OH NO!" and "GAME OVER!". In this image, I starts a game and O and G do nothing. <code>title_irq</code> tests the same key groups that steer and fire in play: the right keys (X and its group) say "IBALL!", the left keys (Z and its group) say "OH NO!", and the Smart Missile's keys (SPACE and its group) say "GAME OVER!". Pushing the joystick forward or back while on the title screen raises or lowers their pitch.</p>
+  <p>Seen in the emulator, each key pressed on the title screen in turn. The How it works page has <a href="index.html#controls">every key and what it does</a>, and the samples at any pitch.</p>
+</section>
+
+<section>
+  <p class="fig">04 · The keyboard</p>
+  <h2 class="t">Secret: five other keys pause the game as well as RUN/STOP</h2>
+  <p>The game tests a key by driving several rows of the keyboard at once and reading one column, so every key in that column on those rows answers. The pause test drives every row but one and reads the column of RUN/STOP, so V, N, comma, / and left SHIFT pause the game too. The movement keys come in groups the same way: O is the up key, and so are E, T, U, @, the up-arrow and Q.</p>
+  <p>Seen in the emulator: RUN/STOP and V each paused the game and resumed it.</p>
+</section>
+
+<section>
+  <p class="fig">05 · Speech</p>
+  <h2 class="t">Secret: the game stands still while a word is said</h2>
+  <p>The speech plays from a timer interrupt that writes a new volume to the sound chip thousands of times a second. While it plays, <code>irq_panel_end</code> sees <code>sample_busy</code> set and does not hand on to the next interrupt of the frame, so none of the game's logic runs until the word is over. On the title screen, pressing a speech key holds the screen for the length of the word.</p>
+</section>
+
+<section>
+  <p class="fig">06 · Losing a life</p>
+  <h2 class="t">Secret: a death can take an extra back</h2>
+  <p>The discs give their extras in a fixed order of 32 places. When Iball dies, <code>disc_rollback</code> sends the sequence back to a checkpoint (places 2, 3, 5, 9, 14, 19 and 27) and, if the sequence had already passed that place, clears the extra given there, so the next disc gives it again. A player who has collected the Twin Laser Set and a few more extras keeps those given before the checkpoint and loses the one given on it. The How it works page has <a href="index.html#discs">the whole sequence to step through</a>.</p>
+</section>
+
+<section>
+  <p class="fig">07 · In the code</p>
+  <h2 class="t">Bug: four slips in the code, traced but not seen in play</h2>
+  <p>These are in the listing. Each was followed through the code; none shows itself on the screen in a way a player would notice.</p>
+  <ul>
+    <li><b>A laser hit frees the wrong shot.</b> In <code>alien_shot</code>, for a laser or ripple character the X register holds the character's place in the probe (0 to 3), not a shot's slot, so <code>clear_shot</code> frees one of shot slots 0 to 3.</li>
+    <li><b>The interrupts of CIA 1 are switched off with a byte from zero page.</b> <code>init_game_irq</code> and <code>init_title_irq</code> load <code>$7F</code>, the byte at address <code>$7F</code>, where <code>#$7F</code> was surely meant. Nothing in the game writes that byte, so it holds whatever the loader left there.</li>
+    <li><b><code>death_explode</code>'s loop runs once.</b> It ends with <code>DEX</code> and <code>BEQ</code>, so only sprite 7 gets its colour and pointer there; <code>death_flash</code> sets all the pointers afterwards, which hides the slip.</li>
+    <li><b>Three flags nothing uses.</b> <code>disc_rollback</code> clears Fuel Injection's flag, but the extra never sets it: it only raises the vertical speed limit. Turbo Boost and Extended Play set flags that nothing reads.</li>
+  </ul>
+</section>
+
+<section>
+  <p class="fig">08 · Leftovers</p>
+  <h2 class="t">Secret: earlier versions of the game are still in memory</h2>
+  <p>The image holds code the game never runs. There are older versions of the two panel routines at <code>$41E5</code>-<code>$426A</code> and an older dot scroller at <code>$4CEE</code>; six fragments of code that nothing reaches; a stale copy of <code>$4246</code>-<code>$42FF</code> at <code>$C246</code>; and the remains of a loader at <code>$8CD0</code>-<code>$8DFF</code>, with the text "SEARCHING LOADING BLOCK? REWIND TO" elsewhere in memory and "LOADING 12" near the top.</p>
+  <p>Beside the speech player sits a small test program, <code>sample_test</code> at <code>$C209</code>. It flashes the border and background while a sample plays and says a sample when one of its keys is pressed: what a programmer would use to try the speech out on its own. Nothing in the game calls it. The Source code tab has all of these, each marked.</p>
+</section>
+
+</main>
+<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>

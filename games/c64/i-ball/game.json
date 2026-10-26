@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "platform": "c64",
+  "slug": "i-ball",
+  "title": "I, Ball",
+  "year": 1987,
+  "publisher": "Firebird",
+  "developer": "Andrew Betts (Commodore version)",
+  "title_image": "reference/title.png",
+  "build": "one-file whole-memory image, $0314-$FFFF, started by an IRQ hook at $033C (I_Ball.prg, MD5 ab57fa0a25cfa9ab7b411317f9a305ca); from the OneLoad64 games collection v5; original release unknown",
+  "tier": "silver",
+  "coverage_percent": 100,
+  "copy": "agent-draft",
+  "steward": "",
+  "credits": [
+    {
+      "by": "Andrew Betts",
+      "role": "Commodore version (the title screen)"
+    }
+  ],
+  "tools": {
+    "emulator": "release v3.13.2, v3.13.2-linux-x86_64-gui.zip",
+    "disassembler": "regenerator2000 0.9.20",
+    "host": "Linux x86_64 (Ubuntu 24.04.5, cloud container)"
+  },
+  "model": "claude-opus-5-5",
+  "step_models": {
+    "10-orient": [
+      "claude-opus-5-5"
+    ],
+    "20-features": [
+      "claude-opus-5-5"
+    ],
+    "30-text": [
+      "claude-opus-5-5"
+    ],
+    "40-sweep": [
+      "claude-opus-5-5"
+    ],
+    "50-coverage": [
+      "claude-opus-5-5"
+    ],
+    "60-verify": [
+      "claude-opus-5-5"
+    ],
+    "70-minisite": [
+      "claude-opus-5-5"
+    ],
+    "80-retro": [
+      "claude-opus-5-5"
+    ]
+  },
+  "accuracy": [
+    {
+      "step": "research",
+      "web": true,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "annotate",
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "sample",
+      "size": 80,
+      "wrong": 6,
+      "fixed": 6,
+      "seed": 20261026,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "60 hand-written and 20 generated comments, from 647 and 166, checked by a fresh agent against the code; 19 others that shared the wrong ones' beliefs were corrected with them"
+    }
+  ],
+  "kit_version": "0.0.242",
+  "created": "2026-10-26",
+  "video": {
+    "screen": "$0400",
+    "charset": "$3000"
+  },
+  "coverage": {
+    "exclude": [
+      [
+        "$0000",
+        "$00FF",
+        "runtime: zero page, the game's variables (named in the listing) and the music driver's pointers"
+      ],
+      [
+        "$0200",
+        "$033B",
+        "system: the KERNAL's work area, which the game does not use once it runs"
+      ],
+      [
+        "$0387",
+        "$03FF",
+        "system: the rest of the cassette buffer and the KERNAL's vectors after start_hook"
+      ],
+      [
+        "$0400",
+        "$07FF",
+        "runtime: the screen and the sprite pointers, written by clear_screen, draw_playfield and the text routines"
+      ],
+      [
+        "$0800",
+        "$097D",
+        "never read: the RAM's power-on pattern ($00 and $FF in blocks) and zeros"
+      ],
+      [
+        "$097E",
+        "$1FFF",
+        "runtime: the map buffer, built from the level's tile list by build_level_map at the start of every level (at the hand-over it holds a map, and at $1FB3 the text SEARCHING LOADING BLOCK? REWIND TO, which the build overwrites); the last two bytes are never written or read"
+      ],
+      [
+        "$4000",
+        "$40AF",
+        "runtime: the shot table and the variables after it, cleared by new_game and reset_level; at the hand-over they hold leftover code"
+      ],
+      [
+        "$41B0",
+        "$41DC",
+        "runtime: the per-sprite sets and the extras flags; at the hand-over they hold leftover code"
+      ],
+      [
+        "$70A1",
+        "$71FF",
+        "never read: zeros, with seven stray bytes at $70A7"
+      ],
+      [
+        "$8C80",
+        "$9FFF",
+        "never read: the RAM's power-on pattern, with leftovers of a loader at $8CD0-$8DFF (code that copies memory and sets up the screen, and two lines of text), which the game never runs"
+      ],
+      [
+        "$C05F",
+        "$C15E",
+        "runtime: the high-nybble table, built by make_nybble_table before every sample"
+      ],
+      [
+        "$C300",
+        "$CFFF",
+        "never read: the RAM's power-on pattern"
+      ],
+      [
+        "$D000",
+        "$DFFF",
+        "never read: RAM under the I/O area, which the game never banks in for the processor and the video chip (bank 0) cannot see. $D000-$D3FF holds what looks like map rows, left from before the image was saved; the rest is the RAM's power-on pattern"
+      ],
+      [
+        "$F21A",
+        "$FFF9",
+        "never read: leftovers after the effects' definitions, which no pointer reaches: four-bit data like the speech samples', multicolour graphics, and at $FF00 the text **LOADING 12"
+      ],
+      [
+        "$FFFA",
+        "$FFFF",
+        "runtime: the hardware NMI and IRQ vectors, written by set_sample_nmi and the interrupt handlers"
+      ]
+    ],
+    "extra": [
+      [
+        "$2000",
+        "$2FFF",
+        "the sprite shapes $80-$BF: the panels' icons, timer digits, score and meter sprites, Iball's roll, the aliens, the disc, the explosions and the pieces"
+      ],
+      [
+        "$3000",
+        "$37FF",
+        "the playfield's character set, which the video chip reads through $D018 (the animated characters at $36F0 and the dot at $37F8 are rewritten in play)"
+      ],
+      [
+        "$3800",
+        "$3FFF",
+        "the text character set of the title and the screens between levels, with the sprite shapes $E0-$FF above it: the lives, the friends and the explosion"
+      ]
+    ],
+    "include": []
+  },
+  "io": [],
+  "regions": [
+    [
+      "$2000",
+      "$2FFF",
+      "graphics",
+      "the sprite shapes $80-$BF"
+    ],
+    [
+      "$3000",
+      "$37FF",
+      "graphics",
+      "the playfield's character set"
+    ],
+    [
+      "$3800",
+      "$3FFF",
+      "graphics",
+      "the text character set and sprites $E0-$FF"
+    ],
+    [
+      "$4000",
+      "$41DC",
+      "variables",
+      "the shot table, the random table and the flags"
+    ],
+    [
+      "$40B0",
+      "$41AF",
+      "tables",
+      "256 random bytes"
+    ],
+    [
+      "$7200",
+      "$737F",
+      "graphics",
+      "three frames of the animated characters"
+    ],
+    [
+      "$7380",
+      "$75FF",
+      "levels",
+      "the 40 tiles"
+    ],
+    [
+      "$7600",
+      "$8C7F",
+      "levels",
+      "the 16 levels' tile lists"
+    ],
+    [
+      "$A000",
+      "$BFFF",
+      "sound",
+      "the three speech samples"
+    ],
+    [
+      "$C000",
+      "$C2FF",
+      "code",
+      "the speech player and its test program"
+    ],
+    [
+      "$E000",
+      "$E5FF",
+      "code",
+      "the music driver"
+    ],
+    [
+      "$E583",
+      "$ED4F",
+      "sound",
+      "the music: patterns, instruments and tracks"
+    ],
+    [
+      "$ED50",
+      "$F04F",
+      "code",
+      "the sound effects player"
+    ],
+    [
+      "$F050",
+      "$F219",
+      "sound",
+      "the sound effects' scripts and definitions"
+    ]
+  ],
+  "links": {
+    "wiki": {
+      "title": "I, Ball – C64-Wiki",
+      "url": "https://www.c64-wiki.com/wiki/I,_Ball"
+    },
+    "manual": {
+      "title": "",
+      "url": ""
+    }
+  }
+}

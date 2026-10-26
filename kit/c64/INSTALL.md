@@ -145,6 +145,14 @@ about ten minutes on sixteen cores, most of it one dependency
 (`aws-lc-sys`), and used a temporary folder under `/tmp` that cargo
 removes when it finishes.
 
+Behind an HTTPS proxy that re-signs connections, as in a cloud
+container, cargo may not reach crates.io with its defaults. Give it the
+proxy and the proxy's certificate bundle on the command line, so nothing
+is written to a cargo configuration file:
+`CARGO_HTTP_PROXY=$HTTPS_PROXY CARGO_HTTP_CAINFO=<the proxy's CA bundle>`
+before `cargo install`. On 26 October 2026 that let the install above
+finish in a Claude cloud container on Ubuntu 24.04.5.
+
 ## What goes where, and what is left behind
 
 Tell the contributor this before installing anything:
@@ -581,6 +589,13 @@ libieee1284-3t64, libmicrohttpd12t64, libpcap0.8t64 and libportaudio2
 (and libpcap's own libibverbs1, libnl-3-200 and libnl-route-3-200); with
 those nine unpacked there, the v3.13.2 zip passed `check-emulator` 57 of 57
 and nothing was installed on the system.
+
+When `apt-get download` cannot reach the archive (on 26 October 2026, in
+such a container, it downloaded nothing), fetch each
+`.deb` over HTTPS from the archive's pool instead, with `curl -fLO
+https://archive.ubuntu.com/ubuntu/pool/<component>/<p>/<package>/<file>.deb`
+(the path is on the package's page at packages.ubuntu.com), into the same
+folder, and unpack it the same way.
 
 The v3.13.2 zip needed nothing outside that set on 2 October 2026. On
 Ubuntu 26.04 it cannot run: it is linked against `libFLAC.so.12`, and
