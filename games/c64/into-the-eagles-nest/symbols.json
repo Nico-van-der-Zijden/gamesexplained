@@ -12,14 +12,54 @@
     "stack"
    ],
    [
-    53248,
-    57343,
-    "I/O and colour RAM"
-   ],
-   [
     1024,
     2047,
     "screen RAM"
+   ],
+   [
+    1024,
+    2023,
+    "runtime: the screen, which the game fills with tiles and the status panel; the bytes the loader left here are its own loading screen"
+   ],
+   [
+    2024,
+    2047,
+    "runtime: the sprite pointers and the bytes beside them, written at the start of every mission"
+   ],
+   [
+    33024,
+    33535,
+    "runtime: the figures' positions on the floor, filled in by the map builder at $6A40 as it reads the floor's description"
+   ],
+   [
+    33536,
+    34303,
+    "runtime: the figures' places in the castle map and their kinds, filled in by the map builder"
+   ],
+   [
+    34560,
+    34815,
+    "runtime: the 256 random bytes $67CA reads out of the sound chip's noise oscillator at start-up"
+   ],
+   [
+    34816,
+    35839,
+    "runtime: the buffer the message printer at $5935 fills with the characters of the line being shown"
+   ],
+   [
+    36839,
+    36863,
+    "runtime: untouched at the hand-over, inside the map builder's working area"
+   ],
+   [
+    36864,
+    40959,
+    "runtime: the top quarter of the castle map, built from the floor's description by $6A40"
+   ],
+   [
+    48960,
+    53247,
+    "runtime: the bottom part of the castle map, built from the floor's description by $6A40"
    ]
   ],
   "extra": [
@@ -27,6 +67,11 @@
     8192,
     10239,
     "character set"
+   ],
+   [
+    40960,
+    48959,
+    "the title picture's bitmap, loaded from tape and shown while the rest of the tape loads; the castle map is built over it once the game runs"
    ]
   ],
   "edges": [
@@ -157,13 +202,8 @@
   },
   {
    "start": 3409,
-   "end": 3608,
-   "type": "PETSCII Text"
-  },
-  {
-   "start": 3609,
    "end": 3647,
-   "type": "Undefined"
+   "type": "PETSCII Text"
   },
   {
    "start": 3648,
@@ -223,7 +263,7 @@
   {
    "start": 5602,
    "end": 6357,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 6358,
@@ -312,6 +352,16 @@
   },
   {
    "start": 8187,
+   "end": 8191,
+   "type": "Undefined"
+  },
+  {
+   "start": 8192,
+   "end": 15756,
+   "type": "Byte"
+  },
+  {
+   "start": 15757,
    "end": 16383,
    "type": "Undefined"
   },
@@ -587,16 +637,56 @@
   },
   {
    "start": 28502,
-   "end": 59952,
+   "end": 28671,
    "type": "Undefined"
   },
   {
-   "start": 59953,
-   "end": 60457,
-   "type": "Code"
+   "start": 28672,
+   "end": 30399,
+   "type": "Byte"
   },
   {
-   "start": 60458,
+   "start": 30400,
+   "end": 34303,
+   "type": "Undefined"
+  },
+  {
+   "start": 34304,
+   "end": 34559,
+   "type": "Byte"
+  },
+  {
+   "start": 34560,
+   "end": 35839,
+   "type": "Undefined"
+  },
+  {
+   "start": 35840,
+   "end": 36838,
+   "type": "Byte"
+  },
+  {
+   "start": 36839,
+   "end": 53247,
+   "type": "Undefined"
+  },
+  {
+   "start": 53248,
+   "end": 61439,
+   "type": "Byte"
+  },
+  {
+   "start": 61440,
+   "end": 64815,
+   "type": "Undefined"
+  },
+  {
+   "start": 64816,
+   "end": 64847,
+   "type": "Byte"
+  },
+  {
+   "start": 64848,
    "end": 65279,
    "type": "Undefined"
   },
@@ -746,9 +836,9 @@
   },
   {
    "address": 680,
-   "name": "a_02A8",
+   "name": "block_rows_left",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 681,
@@ -974,21 +1064,21 @@
   },
   {
    "address": 719,
-   "name": "a_02CF",
+   "name": "figure_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 720,
-   "name": "a_02D0",
+   "name": "block_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 721,
-   "name": "a_02D1",
+   "name": "block_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 722,
@@ -1016,15 +1106,15 @@
   },
   {
    "address": 726,
-   "name": "a_02D6",
+   "name": "sound_playing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 727,
-   "name": "a_02D7",
+   "name": "sound_timer",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 728,
@@ -1034,9 +1124,9 @@
   },
   {
    "address": 729,
-   "name": "a_02D9",
+   "name": "footstep_phase",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 730,
@@ -1082,9 +1172,9 @@
   },
   {
    "address": 737,
-   "name": "a_02E1",
+   "name": "random_index",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 738,
@@ -1136,15 +1226,15 @@
   },
   {
    "address": 746,
-   "name": "a_02EA",
+   "name": "lift_place_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 747,
-   "name": "a_02EB",
+   "name": "lift_place_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 749,
@@ -2341,12 +2431,6 @@
    "kind": "auto"
   },
   {
-   "address": 3084,
-   "name": "f_0C0C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
    "address": 3093,
    "name": "b_0C15",
    "type": "Branch",
@@ -2483,6 +2567,12 @@
    "name": "f_0D5D",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 3609,
+   "name": "str_todays_real_heroes",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 3628,
@@ -3932,9 +4022,9 @@
   },
   {
    "address": 8192,
-   "name": "f_2000",
+   "name": "tiles_charset",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 8320,
@@ -3985,10 +4075,28 @@
    "kind": "auto"
   },
   {
+   "address": 9216,
+   "name": "tiles_charset_high",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 9888,
    "name": "f_26A0",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 10240,
+   "name": "big_alphabet",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 11264,
+   "name": "big_alphabet_high",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 12096,
@@ -4043,6 +4151,30 @@
    "name": "f_2FE0",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 12288,
+   "name": "sprite_shapes",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 13312,
+   "name": "sprite_shapes_2",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 14336,
+   "name": "sprite_shapes_3",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 15360,
+   "name": "sprite_shapes_4",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 16384,
@@ -7352,9 +7484,9 @@
   },
   {
    "address": 25503,
-   "name": "s_639F",
+   "name": "sound_and_hits",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25526,
@@ -7364,9 +7496,9 @@
   },
   {
    "address": 25527,
-   "name": "j_63B7",
+   "name": "sound_init",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25540,
@@ -7376,9 +7508,9 @@
   },
   {
    "address": 25574,
-   "name": "j_63E6",
+   "name": "sound_tick",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25587,
@@ -7400,9 +7532,9 @@
   },
   {
    "address": 25604,
-   "name": "j_6404",
+   "name": "start_sound_effect",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25617,
@@ -7460,15 +7592,15 @@
   },
   {
    "address": 25676,
-   "name": "j_644C",
+   "name": "sound_hit_figure",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25718,
-   "name": "j_6476",
+   "name": "sound_wasted",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 25770,
@@ -7514,9 +7646,9 @@
   },
   {
    "address": 26133,
-   "name": "j_6615",
+   "name": "continue_sound_effect",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26143,
@@ -7574,9 +7706,9 @@
   },
   {
    "address": 26202,
-   "name": "j_665A",
+   "name": "sound_tail_1",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26213,
@@ -7586,9 +7718,9 @@
   },
   {
    "address": 26224,
-   "name": "j_6670",
+   "name": "sound_tail_2",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26235,
@@ -7598,9 +7730,9 @@
   },
   {
    "address": 26246,
-   "name": "j_6686",
+   "name": "sound_tail_3",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26261,
@@ -7724,9 +7856,9 @@
   },
   {
    "address": 26512,
-   "name": "s_6790",
+   "name": "footstep",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26554,
@@ -7736,9 +7868,9 @@
   },
   {
    "address": 26570,
-   "name": "s_67CA",
+   "name": "build_random_table",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26596,
@@ -7748,9 +7880,9 @@
   },
   {
    "address": 26611,
-   "name": "j_67F3",
+   "name": "next_random",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26621,
@@ -7904,9 +8036,9 @@
   },
   {
    "address": 27200,
-   "name": "s_6A40",
+   "name": "build_castle_map",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27202,
@@ -7922,9 +8054,9 @@
   },
   {
    "address": 27211,
-   "name": "j_6A4B",
+   "name": "build_floor",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 27257,
@@ -8401,40 +8533,52 @@
    "kind": "auto"
   },
   {
+   "address": 28672,
+   "name": "tile_blocks",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 29440,
    "name": "f_7300",
    "type": "Field",
    "kind": "auto"
   },
   {
+   "address": 29696,
+   "name": "tile_blocks_2",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 33024,
-   "name": "f_8100",
+   "name": "figure_x",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33280,
-   "name": "f_8200",
+   "name": "figure_y",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33536,
-   "name": "f_8300",
+   "name": "figure_place_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33792,
-   "name": "f_8400",
+   "name": "figure_place_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34048,
-   "name": "f_8500",
+   "name": "figure_kind",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34304,
@@ -8510,9 +8654,9 @@
   },
   {
    "address": 34560,
-   "name": "f_8700",
+   "name": "random_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34816,
@@ -8521,10 +8665,34 @@
    "kind": "auto"
   },
   {
+   "address": 35840,
+   "name": "unused_tiles",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 36864,
+   "name": "castle_map",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 53248,
+   "name": "floor_1_basement",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 54272,
+   "name": "floor_2_ground",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 55296,
-   "name": "f_D800",
+   "name": "floor_3_first",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 55336,
@@ -8929,10 +9097,40 @@
    "kind": "auto"
   },
   {
+   "address": 56320,
+   "name": "floor_4_second",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 57344,
+   "name": "plaque_bitmap",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 58368,
+   "name": "plaque_bitmap_2",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 59392,
+   "name": "plaque_bitmap_3",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 59953,
    "name": "j_EA31",
    "type": "Jump",
    "kind": "auto"
+  },
+  {
+   "address": 60416,
+   "name": "plaque_colours",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 60928,
@@ -8953,6 +9151,12 @@
    "kind": "auto"
   },
   {
+   "address": 64816,
+   "name": "kernal_vectors_shadow",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 65280,
    "name": "j_FF00",
    "type": "Jump",
@@ -8964,6 +9168,11 @@
    "address": 679,
    "type": "line",
    "text": "which floor the player is on, 0 the basement to 3 the second floor"
+  },
+  {
+   "address": 680,
+   "type": "line",
+   "text": "how many rows of blocks of the floor are still to be built"
   },
   {
    "address": 681,
@@ -9096,6 +9305,21 @@
    "text": "where the player is in the castle, down, counted in tiles"
   },
   {
+   "address": 719,
+   "type": "line",
+   "text": "how many figures the floor's description put on this floor"
+  },
+  {
+   "address": 720,
+   "type": "line",
+   "text": "which column of blocks the builder is filling in"
+  },
+  {
+   "address": 721,
+   "type": "line",
+   "text": "which row of blocks the builder is filling in"
+  },
+  {
    "address": 722,
    "type": "line",
    "text": "the direction the shot that just hit something was travelling, kept so the thing hit knows which way the bullet came"
@@ -9108,12 +9332,27 @@
   {
    "address": 725,
    "type": "line",
-   "text": "which sound to play, read by the sound routine at $63F3. Firing sets 5, a shot that hits something useless 2, a mirror 3, healing 4, a pickup 9 and a hit on a figure 1."
+   "text": "which sound to start, read once a frame by $63F3: 1 to 9, and 0 for none. Firing sets 5, a shot that hits something useless 2, a mirror 3, healing 4, a pickup 9 and a hit on a figure 1."
+  },
+  {
+   "address": 726,
+   "type": "line",
+   "text": "which sound effect is in progress, so the tick at $6615 can carry it on"
+  },
+  {
+   "address": 727,
+   "type": "line",
+   "text": "how many frames the sound in progress has left"
   },
   {
    "address": 728,
    "type": "line",
    "text": "which of the two walking shapes the player is drawn with, taken from the lowest bit of the step count"
+  },
+  {
+   "address": 729,
+   "type": "line",
+   "text": "flips with the player's step so the footsteps alternate between two pitches"
   },
   {
    "address": 730,
@@ -9151,6 +9390,11 @@
    "text": "the player's position down the room, in pixels"
   },
   {
+   "address": 737,
+   "type": "line",
+   "text": "how far through the table of random numbers the game has got; it runs round and round the 256 bytes"
+  },
+  {
    "address": 739,
    "type": "line",
    "text": "set while the player's shot is in the air, so the turn waits for fire to be let go before anything else happens"
@@ -9164,6 +9408,16 @@
    "address": 745,
    "type": "line",
    "text": "what the game's own code wants the main loop to do next: 1 the lift, 2 a prisoner delivered home"
+  },
+  {
+   "address": 746,
+   "type": "line",
+   "text": "the low byte of the lift's place in the castle map"
+  },
+  {
+   "address": 747,
+   "type": "line",
+   "text": "the high byte of the lift's place in the castle map"
   },
   {
    "address": 749,
@@ -9429,6 +9683,11 @@
    "address": 3409,
    "type": "line",
    "text": "ten high score entries of 20 bytes: a seven-character name, padding, and a six-digit score, all ASCII"
+  },
+  {
+   "address": 3609,
+   "type": "line",
+   "text": "the high score table's heading, \"TODAYS REAL HEROES\" with the spaces that centre it, ASCII ending $FF"
   },
   {
    "address": 3648,
@@ -9874,6 +10133,46 @@
    "address": 7996,
    "type": "line",
    "text": "the screen that follows a mission the player finished: blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place"
+  },
+  {
+   "address": 8192,
+   "type": "line",
+   "text": "the play screen's character set, 256 tiles of eight bytes. It holds the castle's walls, floors, doors, furniture, the figures, the pickups, the status panel's frame, the ten letters the panel needs and the digits at $F0 to $F9. facts.md has the letters' codes."
+  },
+  {
+   "address": 9216,
+   "type": "line",
+   "text": "the upper half of the play screen's character set, tiles $80 to $FF, which hold the panel's frame and the digits"
+  },
+  {
+   "address": 10240,
+   "type": "line",
+   "text": "the character set the attract screens and the message line are written in. Each character of text is a block of two cells by two, so one letter takes four of these, and the code of its first cell is the ASCII value masked to six bits and multiplied by four."
+  },
+  {
+   "address": 11264,
+   "type": "line",
+   "text": "the upper half of the big alphabet, which holds the digits, the punctuation and the sixteen cells the attract screens borrow for the item pictures at $2F40"
+  },
+  {
+   "address": 12288,
+   "type": "line",
+   "text": "the sprite shapes, 64 bytes each, which the pointers at $07F8 name as a number from $C0. The player's four are $C0 to $C3, and $E0 to $EF are the four he is drawn with for each of the four directions."
+  },
+  {
+   "address": 13312,
+   "type": "line",
+   "text": "more sprite shapes, numbers $D0 to $DF"
+  },
+  {
+   "address": 14336,
+   "type": "line",
+   "text": "more sprite shapes, numbers $E0 to $EF, the player facing each of the four ways"
+  },
+  {
+   "address": 15360,
+   "type": "line",
+   "text": "the last sprite shapes, numbers $F0 to $F6: the castle emblem in the panel and the bullet, one shape for each direction it can fly"
   },
   {
    "address": 16393,
@@ -10391,14 +10690,184 @@
    "text": "the four tiles the prisoner is drawn from when facing right"
   },
   {
+   "address": 25503,
+   "type": "line",
+   "text": "the sound chip's and the player's own housekeeping, from $6009 and $600C: it takes a hit when one is due, silences and sets the chip up ($63B7), and runs the sound effects a frame at a time ($63E6)"
+  },
+  {
+   "address": 25527,
+   "type": "line",
+   "text": "silences all 25 sound registers by writing 8 and then 0 to each, sets the volume to 15 with the low-pass filter on, the cutoff to $50 and the resonance to 2, and builds the table of random numbers at $67CA"
+  },
+  {
+   "address": 25574,
+   "type": "line",
+   "text": "the sound, once a frame. It plays a footstep when the player has stepped, starts the effect $02D5 asks for, or carries on the one already playing."
+  },
+  {
+   "address": 25604,
+   "type": "line",
+   "text": "starts one of the nine effects on voice 1, each with its own attack and decay, pulse width, frequency and waveform, and its own length in $02D7"
+  },
+  {
+   "address": 25676,
+   "type": "line",
+   "text": "effect 1, for a shot going home: a short pulse note at $01C8 with a fast attack and no sustain"
+  },
+  {
+   "address": 25718,
+   "type": "line",
+   "text": "effect 2, for a shot that hits something that does not matter"
+  },
+  {
+   "address": 26133,
+   "type": "line",
+   "text": "carries the sound in progress on, a frame at a time: most of the nine count $02D7 down and then let the note go by clearing the waveform, and some change the waveform part way through"
+  },
+  {
+   "address": 26202,
+   "type": "line",
+   "text": "counts the effect's frames down and silences voice 1 when they run out"
+  },
+  {
+   "address": 26224,
+   "type": "line",
+   "text": "the same tail for another of the effects"
+  },
+  {
+   "address": 26246,
+   "type": "line",
+   "text": "an effect that changes its waveform to a triangle with 16 frames left before it stops"
+  },
+  {
+   "address": 26512,
+   "type": "line",
+   "text": "the player's footsteps, on voice 2: a short note at $0A00 or $0500 depending on which foot it is, taken from the walking frame"
+  },
+  {
+   "address": 26570,
+   "type": "line",
+   "text": "fills 256 bytes at $8700 with random numbers. It sets voice 3 to noise at the highest frequency and reads the oscillator's own output at $D41B 256 times, which is the SID's noise generator used as the game's dice, then silences the voice again. Called once, from the sound set-up."
+  },
+  {
+   "address": 26611,
+   "type": "line",
+   "text": "steps the index on and returns the next byte of the random table in A"
+  },
+  {
+   "address": 27200,
+   "type": "line",
+   "text": "builds the castle's map for a floor out of the floor's own description. Every byte of the description names a block of four tiles by four, kept at $7000 plus sixteen times the byte, and the routine copies the block's sixteen bytes into the map, four to a row and 128 bytes between rows. Certain bytes mean more than a block as well: $30 to $37 are the four kinds of figure, each of which is added to the list of figures in $8100 to $8500, $62 is the lift, whose place is kept in $02EA, and $63 is the prisoner, whose place is kept in $02ED. It is why a whole floor of the castle takes only a few hundred bytes to describe."
+  },
+  {
+   "address": 27211,
+   "type": "line",
+   "text": "builds a whole floor of the castle. It banks every ROM out so the RAM beneath them can be reached ($01 = $30), takes the floor's description from $D000 plus a kilobyte for each floor, and works through it as 32 rows of 32 bytes, each byte a block of four tiles by four. The map it builds starts at $9000 and is 128 tiles across, so a floor fills 16 kilobytes from a kilobyte of description. Every figure, the lift and the prisoner are picked out of the description as it goes."
+  },
+  {
    "address": 27800,
    "type": "line",
    "text": "\"THE PRISONER IS VERY CLOSE.\", the only message kept away from the block at $5609"
   },
   {
+   "address": 28672,
+   "type": "line",
+   "text": "the blocks the castle's floors are built from, sixteen bytes each: four tiles across and four down. A byte of a floor's description names one, and its address is $7000 plus sixteen times the byte."
+  },
+  {
+   "address": 29696,
+   "type": "line",
+   "text": "more of the blocks the floors are built from"
+  },
+  {
+   "address": 33024,
+   "type": "line",
+   "text": "where each figure on this floor is, across the floor in blocks; one byte a figure"
+  },
+  {
+   "address": 33280,
+   "type": "line",
+   "text": "where each figure on this floor is, down the floor in blocks; one byte a figure"
+  },
+  {
+   "address": 33536,
+   "type": "line",
+   "text": "the low byte of each figure's place in the castle map"
+  },
+  {
+   "address": 33792,
+   "type": "line",
+   "text": "the high byte of each figure's place in the castle map"
+  },
+  {
+   "address": 34048,
+   "type": "line",
+   "text": "what each figure is, 1 to 4: the kinds the description's bytes $34 and $35, $30 and $31, $36 and $37, and $32 and $33 stand for"
+  },
+  {
    "address": 34304,
    "type": "line",
    "text": "the colour of each tile of the play screen's character set, one byte a tile. The attract screens read it for the icons they show ($8600, $8614, $8618 to $861B, $8628 and $8666), and the castle's rooms are coloured from it."
+  },
+  {
+   "address": 34560,
+   "type": "line",
+   "text": "256 random bytes, built at start-up from the sound chip's noise oscillator and read a byte at a time by $67F3"
+  },
+  {
+   "address": 35840,
+   "type": "line",
+   "text": "999 bytes of tile-shaped graphics, 125 characters' worth, that the tape loads and no instruction in the game reaches, by name or through a pointer built from an immediate. What they are is open; they are shaped like a second set of wall and floor tiles."
+  },
+  {
+   "address": 36864,
+   "type": "line",
+   "text": "the floor the player is on, built from its description into 128 tiles across by 128 down, one byte a tile. It is 16 kilobytes, which is why it lies over the title picture at $A000 and the RAM under the I/O area is used for the descriptions."
+  },
+  {
+   "address": 53248,
+   "type": "line",
+   "text": "the basement's description, a kilobyte: 32 rows of 32 bytes, each naming one of the blocks at $7000"
+  },
+  {
+   "address": 54272,
+   "type": "line",
+   "text": "the ground floor's description, in the same form"
+  },
+  {
+   "address": 55296,
+   "type": "line",
+   "text": "the first floor's description, in the same form"
+  },
+  {
+   "address": 56320,
+   "type": "line",
+   "text": "the second floor's description, in the same form"
+  },
+  {
+   "address": 57344,
+   "type": "line",
+   "text": "the multicolour bitmap of the stone plaque reading \"Into The Eagle's Nest...\", which the credits, supplies and valuables screens show across the top of the screen. The video chip reads it from bank 3 while the first band of the interrupt is in force."
+  },
+  {
+   "address": 58368,
+   "type": "line",
+   "text": "the middle of the plaque's bitmap"
+  },
+  {
+   "address": 59392,
+   "type": "line",
+   "text": "the bottom of the plaque's bitmap"
+  },
+  {
+   "address": 60416,
+   "type": "line",
+   "text": "the colour memory the plaque's bitmap is drawn with, which in bitmap mode is the screen at $EC00. The name-entry screen copies $EE00 and $EF00 of it into the real colour memory."
+  },
+  {
+   "address": 64816,
+   "type": "line",
+   "text": "the KERNAL's own table of interrupt vectors, showing through in the RAM beneath the ROM. No instruction in the game names it."
   }
  ]
 }

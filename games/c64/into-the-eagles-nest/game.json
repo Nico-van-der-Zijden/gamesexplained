@@ -59,9 +59,67 @@
     "charset": "$2000"
   },
   "coverage": {
-    "exclude": [],
-    "extra": [],
-    "include": []
+    "exclude": [
+      [
+        "$0400",
+        "$07E7",
+        "runtime: the screen, which the game fills with tiles and the status panel; the bytes the loader left here are its own loading screen"
+      ],
+      [
+        "$07E8",
+        "$07FF",
+        "runtime: the sprite pointers and the bytes beside them, written at the start of every mission"
+      ],
+      [
+        "$8100",
+        "$82FF",
+        "runtime: the figures' positions on the floor, filled in by the map builder at $6A40 as it reads the floor's description"
+      ],
+      [
+        "$8300",
+        "$85FF",
+        "runtime: the figures' places in the castle map and their kinds, filled in by the map builder"
+      ],
+      [
+        "$8700",
+        "$87FF",
+        "runtime: the 256 random bytes $67CA reads out of the sound chip's noise oscillator at start-up"
+      ],
+      [
+        "$8800",
+        "$8BFF",
+        "runtime: the buffer the message printer at $5935 fills with the characters of the line being shown"
+      ],
+      [
+        "$8FE7",
+        "$8FFF",
+        "runtime: untouched at the hand-over, inside the map builder's working area"
+      ],
+      [
+        "$9000",
+        "$9FFF",
+        "runtime: the top quarter of the castle map, built from the floor's description by $6A40"
+      ],
+      [
+        "$BF40",
+        "$CFFF",
+        "runtime: the bottom part of the castle map, built from the floor's description by $6A40"
+      ]
+    ],
+    "extra": [
+      [
+        "$A000",
+        "$BF3F",
+        "the title picture's bitmap, loaded from tape and shown while the rest of the tape loads; the castle map is built over it once the game runs"
+      ]
+    ],
+    "include": [
+      [
+        "$D000",
+        "$DFFF",
+        "the four floors' descriptions, a kilobyte each, which the game reads with the I/O area banked out"
+      ]
+    ]
   },
   "io": [],
   "regions": [],
