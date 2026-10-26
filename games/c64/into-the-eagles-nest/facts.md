@@ -135,6 +135,101 @@ Other text: the four floor names at `$1A78` (`BASEMENT`, `GROUND FLOOR`,
 `ROBIN CHAPMAN`, each ending `$FF`); `VALUABLES` and its four items at
 `$1110`, and `SUPPLIES` and its four at `$1177`, each ending `$00`.
 
+## Hardware registers
+
+The census over every decoded instruction (`kit/cpu/census.py`, from
+`symbols.json` with the code seeded from what ran) found 401 instructions
+naming 70 registers. The counts are of instructions, not of writes at run
+time.
+
+What the game never names is as telling as what it hammers. **No
+instruction reads `$D01E` or `$D01F`**, the video chip's sprite collision
+registers, so every collision in the game is worked out in software. It
+also never touches the sprite priority register `$D01B`, the light pen,
+the paddles, the voices' pulse-width low bytes, or voice 3's envelope
+output; it does read voice 3's oscillator output `$D41B`, at `$673D`.
+Of CIA 2 only port A and its direction register are used, for the video
+bank; of CIA 1, port A and B, the interrupt register and timer A's
+control.
+
+| Register | Name | How the game reaches it | First |
+|---|---|---|---|
+| `$0001` | `cpu_port` | `sta` ×16, `lda` ×5 | `$0B91`, `$0BCA` |
+| `$D000` | `vic_sprite0_x` | `sta,x` ×1, `sta` ×2 | `$40BD`, `$410E` |
+| `$D001` | `vic_sprite0_y` | `sta` ×2 | `$4123` |
+| `$D002` | `vic_sprite1_x` | `sta` ×2 | `$4117` |
+| `$D003` | `vic_sprite1_y` | `sta` ×2 | `$4126` |
+| `$D004` | `vic_sprite2_x` | `sta` ×2 | `$4111` |
+| `$D005` | `vic_sprite2_y` | `sta` ×2 | `$412C` |
+| `$D006` | `vic_sprite3_x` | `sta` ×2 | `$411A` |
+| `$D007` | `vic_sprite3_y` | `sta` ×2 | `$412F` |
+| `$D008` | `vic_sprite4_x` | `sta` ×2 | `$46D6` |
+| `$D009` | `vic_sprite4_y` | `sta` ×2 | `$46E3` |
+| `$D00A` | `vic_sprite5_x` | `sta` ×1 | `$40DE` |
+| `$D00B` | `vic_sprite5_y` | `sta` ×1 | `$40E3` |
+| `$D00C` | `vic_sprite6_x` | `sta` ×1 | `$40E8` |
+| `$D00D` | `vic_sprite6_y` | `sta` ×1 | `$40ED` |
+| `$D00E` | `vic_sprite7_x` | `sta` ×1 | `$40F2` |
+| `$D00F` | `vic_sprite7_y` | `sta` ×1 | `$40F7` |
+| `$D010` | `vic_sprite_x_msb` | `sta` ×1 | `$40D9` |
+| `$D011` | `vic_control1` | `sta` ×27 | `$08A7` |
+| `$D012` | `vic_raster` | `sta` ×12, `lda` ×1 | `$0851`, `$1C92` |
+| `$D015` | `vic_sprite_enable` | `sta` ×5 | `$423E` |
+| `$D016` | `vic_control2` | `sta` ×16, `lda` ×2 | `$08B1`, `$0929` |
+| `$D017` | `vic_sprite_expand_y` | `sta` ×1 | `$40A9` |
+| `$D018` | `vic_memory` | `sta` ×15 | `$08B6` |
+| `$D019` | `vic_irq_status` | `sta` ×3 | `$085C` |
+| `$D01A` | `vic_irq_enable` | `sta` ×9, `lda` ×2 | `$0842`, `$0E60` |
+| `$D01C` | `vic_sprite_multicolour` | `sta` ×1 | `$40C5` |
+| `$D01D` | `vic_sprite_expand_x` | `sta` ×1 | `$40A6` |
+| `$D020` | `vic_border` | `sta` ×8 | `$0BEF` |
+| `$D021` | `vic_background0` | `sta` ×12 | `$08AC` |
+| `$D022` | `vic_background1` | `sta` ×3 | `$11C0` |
+| `$D023` | `vic_background2` | `sta` ×3 | `$11C5` |
+| `$D025` | `vic_sprite_mc0` | `sta` ×1 | `$4260` |
+| `$D026` | `vic_sprite_mc1` | `sta` ×1 | `$4265` |
+| `$D027` | `vic_sprite0_colour` | `sta` ×1 | `$424D` |
+| `$D028` | `vic_sprite1_colour` | `sta` ×1 | `$4250` |
+| `$D029` | `vic_sprite2_colour` | `sta` ×1 | `$4253` |
+| `$D02A` | `vic_sprite3_colour` | `sta` ×1 | `$4256` |
+| `$D02B` | `vic_sprite4_colour` | `sta` ×3 | `$40AE` |
+| `$D02C` | `vic_sprite5_colour` | `sta` ×1 | `$40FC` |
+| `$D02D` | `vic_sprite6_colour` | `sta` ×1 | `$40FF` |
+| `$D02E` | `vic_sprite7_colour` | `sta` ×1 | `$4102` |
+| `$D400` | `sid_v1_freq_lo` | `sta,x` ×6, `sta,y` ×2, `sta` ×10 | `$15C5`, `$19CF`, `$6466` |
+| `$D401` | `sid_v1_freq_hi` | `sta,y` ×2, `sta` ×12 | `$19D2`, `$6457` |
+| `$D403` | `sid_v1_pulse_hi` | `sta` ×6 | `$1907` |
+| `$D404` | `sid_v1_control` | `sta,y` ×2, `sta` ×35 | `$19C3`, `$4905` |
+| `$D405` | `sid_v1_attack_decay` | `sta` ×10 | `$18E9` |
+| `$D406` | `sid_v1_sustain_release` | `sta` ×10 | `$18F8` |
+| `$D407` | `sid_v2_freq_lo` | `sta` ×1 | `$6798` |
+| `$D408` | `sid_v2_freq_hi` | `sta` ×2 | `$67B1` |
+| `$D40A` | `sid_v2_pulse_hi` | `sta` ×1 | `$190C` |
+| `$D40B` | `sid_v2_control` | `sta` ×6 | `$4908` |
+| `$D40C` | `sid_v2_attack_decay` | `sta` ×2 | `$18EE` |
+| `$D40D` | `sid_v2_sustain_release` | `sta` ×2 | `$18FD` |
+| `$D40E` | `sid_v3_freq_lo` | `sta` ×8 | `$6495` |
+| `$D40F` | `sid_v3_freq_hi` | `sta` ×10 | `$649A` |
+| `$D411` | `sid_v3_pulse_hi` | `sta` ×1 | `$1911` |
+| `$D412` | `sid_v3_control` | `sta` ×11 | `$490B` |
+| `$D413` | `sid_v3_attack_decay` | `sta` ×3 | `$18F3` |
+| `$D414` | `sid_v3_sustain_release` | `sta` ×3 | `$1902` |
+| `$D416` | `sid_filter_cutoff_hi` | `sta` ×1 | `$63DA` |
+| `$D417` | `sid_filter_resonance` | `sta` ×1 | `$63DF` |
+| `$D418` | `sid_filter_mode_volume` | `sta` ×3 | `$192C` |
+| `$D41B` | `sid_v3_oscillator` | `lda` ×2 | `$673D` |
+| `$DC00` | `cia1_port_a` | `lda` ×27, `sta` ×1 | `$0A13`, `$5FCD` |
+| `$DC01` | `cia1_port_b` | `lda` ×1 | `$5FD0` |
+| `$DC0D` | `cia1_interrupt` | `lda` ×1 | `$15B0` |
+| `$DC0E` | `cia1_control_a` | `sta` ×9 | `$083D` |
+| `$DD00` | `cia2_port_a` | `lda` ×7, `sta` ×7 | `$08C1`, `$08C6` |
+| `$DD02` | `cia2_ddr_a` | `lda` ×7, `sta` ×7 | `$08B9`, `$08BE` |
+
+Registers an indexed access could still reach, which the table above
+does not list because no instruction names them outright: `$D013`-`$D014`,
+`$D01B`, `$D01E`-`$D01F`, `$D024`, `$D402`, `$D409`, `$D410`, `$D415`,
+`$D419`-`$D41A` and `$D41C`.
+
 ## Sound
 
 The attract loop writes the sound chip about 58 times a second (173

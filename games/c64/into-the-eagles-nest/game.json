@@ -38,6 +38,9 @@
     ],
     "30-text": [
       "claude-opus-5"
+    ],
+    "40-sweep": [
+      "claude-opus-5"
     ]
   },
   "accuracy": [
