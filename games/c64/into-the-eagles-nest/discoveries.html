@@ -144,7 +144,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
     <p class="cap">Every instruction in the game that can touch the hit count, found with the references search over every opcode and every index. <code>$639F</code> has four callers, and all four are the branches of the guards' movement where the tile ahead holds the player.</p>
   </div>
   <p>A guard hurts the player by walking into him, one hit at a time, and nothing else in the game hurts him at all. Fifty hits end the mission, which is the number the manual gives.</p>
-  <p>Standing still in a room with two guards for two minutes, with a counter on <code>$639F</code>, left the hit count at zero: the guards keep to their own part of the floor. The damage comes from walking into them.</p>
+  <p>Standing still in the first room for two minutes, with a counter on <code>$639F</code>, left the hit count at zero, and the two guards in that room never reached the player. How far a guard ranges is open: this says only that standing still in that room is safe.</p>
 </section>
 
 <section>
@@ -156,7 +156,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
     <p class="cap">The 256 bytes at <code>$8700</code> as the game built them, one column a byte. Drawn from a snapshot of play, not from the listing: the table does not exist until the game runs.</p>
   </div>
   <p><code>$67CA</code> sets voice three to noise at the highest frequency it can hold, reads the voice's own oscillator output at <code>$D41B</code> 256 times, writes what it reads into <code>$8700</code>, and silences the voice again. From then on <code>$67F3</code> steps an index through those 256 bytes, round and round, and that is every random number the game ever uses.</p>
-  <p>Reading the chip's noise is a common trick on the C64, and most games that use it read it afresh each time they need a number. Reading it 256 times at the start and keeping the answers costs a page of memory and makes every game identical from the same starting point.</p>
+  <p>Reading the chip's noise is a known way of getting a random number on this machine. Reading it 256 times at the start and keeping the answers costs a page of memory, and it means every game started from the same point makes the same choices, since the table is read in order and never built again.</p>
 </section>
 
 <section>

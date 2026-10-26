@@ -14,7 +14,7 @@ JavaScript file's header is its manual.
 
 | Row | Core step | On the C64 |
 |---|---|---|
-| `snapshot` | `10-orient`, `15-parts`, `50-coverage`: the image everything is read from | a `.vsf`, saved by VICE without ROMs (`tool-vice-mcp`); the hand-over is `work/entry.vsf`, which `listing.py` takes by default |
+| `snapshot` | `10-orient`, `15-parts`, `50-coverage`: the image everything is read from | a `.vsf`, saved by VICE without ROMs (`tool-vice-mcp`); the hand-over is `work/entry.vsf`, which `listing.py` takes as its `--entry` by default. The snapshot to build the listing from is always named: `listing.py <game dir> work/<state>.vsf` |
 | `media` | `10-orient`, step 7; `15-parts`, step 6: the files on the disk | `c1541` from the emulator's build reads a G64 or D64; `python3 kit/c64/disk.py extract <image> <dir>` writes every file, and `disk.py <image>` lists the sectors no file holds. A cartridge is `kit/c64/crt.py` (`c64-reference`, "Bank-switched cartridges") |
 | `disassembler` | `10-orient`, step 6; `50-coverage`, the loop | regenerator2000, live, through `kit/c64/r2000.py` (`tool-regen2000`); `symbols_export.py <game>` reads the running session, and `coverage.py --live` its figure |
 | `census` | `40-sweep`, the register census | `python3 kit/cpu/census.py <game or part dir> [<snapshot.vsf>] [--live]`: the chips at `$D000`-`$DFFF`, the expansion port's pages and the processor port at `$00`-`$01` |

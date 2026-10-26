@@ -1,4 +1,4 @@
-# Into The Eagles Nest — kit feedback
+# Into the Eagle's Nest — kit feedback
 
 Written in the retrospective (`kit/skills/core/80-retro`). Which skill text
 changed what the run did, what the skills and kit got wrong or left out,
@@ -7,35 +7,66 @@ time, operating system and tool versions.
 
 ## Skill text that changed what I did
 
-<up to five lines, the one that mattered most first, each written as
-- `<skill folder>`: "<words copied exactly from the passage>": what you did, or did not do, because of it
-or the one line "None." (80-retro, step 1). check_docs.py fails while this placeholder is here,
-once game.json has a tier (80-retro, step 7) and on any pull request.>
+- `30-text`: "First rule out an offset": searching for the differences between the letters of a word the game shows found its stored text in one pass, in plain ASCII, after a search for screen codes had found nothing.
+- `60-verify`: "When you measure with breakpoints, put one on a routine you know runs": the checkpoint on the interrupt proved the instrument was alive while the one on the damage routine stayed at zero, which is what let "nothing but a guard's step hurts the player" stay a measurement rather than a guess.
+- `50-coverage`: "Compare a snapshot taken before the": comparing the hand-over with a play snapshot showed that the title picture at $A000 is authored data the castle map is later built over, which decided both which snapshot the listing is built from and what the coverage counts.
+- `70-minisite`: "Port the routine, then test the port against the game itself": the test caught the music driver taking the tune's first notes a tick late, after 1,802 calls that matched.
+- `60-verify`: "A wrong comment is usually one belief written down more than once": each of the sample's two serious findings was in several comments, and searching for the belief rather than for the comment is what found them.
 
 ## What was changed in the kit
 
-<one line per change: the file and what it now says. For a change that
-carries a lesson, name its file in `kit/lessons/` and stop there: the
-lesson is told once, in that file. Any other change (a script, a path,
-the site) says why here. Text added to a core skill also names the other
-game folder where it would have mattered, as games/<platform>/<slug>
-(80-retro, step 3).>
+- `kit/skills/core/30-text`: the note on inverted fonts now says to render such a set to a picture and never to a text dump of 8×8 cells, because the dump draws the set pixels and an inverted letter then reads as a block of dither. `games/c64/the-goonies` stores its font inverted too, and `kit/lessons/2026-10-26-into-the-eagles-nest.md` has the case.
+- `kit/skills/c64/steps`: the `snapshot` row said the hand-over is "`work/entry.vsf`, which `listing.py` takes by default", which reads as though the snapshot argument could be left out. It cannot: only `--entry` defaults. The row now says which argument defaults and shows the call.
 
 ## Candidates
 
-<a silent failure no other game could be named for (80-retro, step 3),
-one paragraph each: what went wrong unnoticed, how it was caught, and
-what the skill would say. The next run that meets it makes the edit.
-"None." if there were none.>
+The next run that meets one of these can make the edit; this run could
+name only its own game for each.
+
+**Read a number out of memory, not off the emulator's picture.** This
+game's font draws a 9 with a flat top, and at the emulator's 384 pixels it
+reads as a 5. The ammunition a mission starts with was written down as 59
+three times, in `features.md` and in two comments, before the byte at
+`$02BD` settled it at `$99`. It was caught by reading the panel's two
+cells, which both held the same code, so the two digits could not have
+been different. A line in `60-verify` under "Measuring without fooling
+yourself" would say that a number a page is going to quote is read from
+the variable or the screen's own cells, and that a screenshot is for
+seeing which screen it is.
+
+**A helper script must not take a standard library module's name.** A
+`dis.py` written into the game's `work/` shadowed Python's own `dis`, and
+the failure surfaced in unrelated scripts, through `traceback`'s import,
+as an error naming the wrong file. `python3 -I` does not help, since it
+also drops the path the kit's own modules are found on. It cost a
+confusing ten minutes. A line where the skills first tell an agent to
+write helper scripts, in `50-coverage` or in `tool-regen2000`, would say
+to keep away from the standard library's names.
 
 ## Maintainer asks
 
-<one bullet per ask. Filed: "- #123: the ask in one line". Not filed (no
-yes, or no way to reach the repository): "- **The ask, in one line.** The
-problem, what it cost, what to change and where", which the repository
-files when the pull request merges. Prose around the bullets is free;
-check_docs.py checks the bullets.>
+None. Both gaps this run met are in "Candidates" above, waiting for a
+second game to justify the edit.
 
 ## What cost the most time
 
-<one sentence: the single change to the kit that would have saved the most time>
+Reading an inverted character set as a text dump instead of as a picture,
+which is the change made to `kit/skills/core/30-text` above.
+
+## Tools and the operating system
+
+Windows 11 Pro with the repository in a WSL2 Ubuntu clone, as the earlier
+C64 games on this machine were done. The emulator is an own build of
+vice-mcp v3.13.2, commit 1e83aab134, which passed all 57 of
+`check-emulator`'s checks. `kit/c64/INSTALL.md` needed nothing.
+
+Two notes for anyone driving the kit from Windows through `wsl.exe`:
+
+- `wsl.exe -d Ubuntu -- bash -lc "..."` is parsed by the Windows shell
+  first, which eats `$VAR`, backticks and even `\$`. Anything with a
+  dollar sign, a backtick or a loop in it goes in a script file, run as
+  `wsl.exe -d Ubuntu -- bash <path>`.
+- The `vice` MCP server is down at the start of such a session, as
+  `tool-vice-mcp` says it will be, because the emulator is started later.
+  `python3 kit/c64/vice.py` drove the emulator for the whole run instead,
+  and did everything this run needed.
