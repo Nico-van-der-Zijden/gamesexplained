@@ -1,4 +1,4 @@
-## next · 2026-10-26 · Castle Master (C64) · air with Claude
+## 0.0.244 · 2026-10-26 · Castle Master (C64) · air with Claude
 
 - **Put a faster pace's slowest setting at the machine's quickest loop.**
   Fast CPU's 1× on Castle Master took a step a second, near the middle of
