@@ -588,9 +588,9 @@ registerProcessor('c64-sid', C64SidProcessor);`;
 .sid-roll[hidden],.sid-stagebox[hidden],.sid-filt[hidden]{display:none}
 .sid-stagebox{position:relative}
 .sid-stage{display:block;width:100%;height:min(480px,56vw,80vh);border-radius:8px;background:#060607}
-@media (orientation:portrait){.sid-stage{height:min(72vh,150vw)}}
+@media (orientation:portrait){.sid-stage{height:auto;aspect-ratio:10/13;max-height:72vh}}
 .sid-stagebox:fullscreen{background:#060607}
-.sid-stagebox:fullscreen .sid-stage{height:100vh;border-radius:0}
+.sid-stagebox:fullscreen .sid-stage{height:100vh;max-height:none;border-radius:0}
 .sid-player .sid-full{position:absolute;right:10px;top:10px;padding:3px 9px;font-size:11.5px;background:rgba(30,30,32,.7);color:#e9e7e1;border-color:rgba(255,255,255,.18)}
 .sid-player .sid-full[hidden]{display:none}
 .sid-voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:10px;margin-top:12px}

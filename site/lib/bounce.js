@@ -58,6 +58,13 @@
     tall: { yaw: 1.06, pitch: 0.63, fov: 1.06, ax: -0.04, ay: 0.17, zoom: 0.9 },
     wide: { yaw: 1, pitch: 0.86, fov: 0.7, ax: -0.3, ay: 0.08, zoom: 1 },
   };
+  // A tall canvas is framed as one TALL times as tall as wide, the shape the tall camera was
+  // chosen on, and shows the bottom of that frame: its top holds only the dark beyond the
+  // staves, so a page may make the canvas shorter and see the same picture with less of that.
+  // A canvas taller than TALL is framed as itself (a phone held upright in full screen). One so
+  // short that it would leave less than ROOM of its width above the highest staff line gets a
+  // shorter frame, the tallest that leaves ROOM.
+  const TALL = 1.72, ROOM = 0.08;
 
   const rgb = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
   const mix = (a, b, k) => a.map((v, i) => Math.round(v + (b[i] - v) * k));
@@ -286,8 +293,9 @@
     // One fixed angle per shape: from behind, above and a little to the side on a tall canvas, so
     // that time runs up and to the right, and from the side on a wide one, looking a little ahead
     // so that most of what shows is to come. The distance is found by halving until the lanes
-    // around the ball, and the top of its arc, fit the canvas; on a tall one the lanes may run off
-    // its right edge where they come nearest.
+    // around the ball, and the top of its arc, fit the frame; on a tall one the lanes may run off
+    // its right edge where they come nearest. The frame is the canvas, or the taller one TALL
+    // and ROOM describe, of which the canvas shows the bottom.
     function camera() {
       const n = Math.max(lanes.length, 3);           // one or two lanes keep the size they have among three
       const half = (n * LANE + (n - 1) * GAP) / 2;
@@ -299,20 +307,49 @@
       const R = [-F[2], 0, F[0]], rl = Math.hypot(R[0], R[2]);
       R[0] /= rl; R[2] /= rl;
       const U = [R[1] * F[2] - R[2] * F[1], R[2] * F[0] - R[0] * F[2], R[0] * F[1] - R[1] * F[0]];
-      const focal = (H / 2) / Math.tan(P.fov / 2);
-      const ox = P.ax * W / 2, oy = P.ay * H / 2;
-      const at = (d) => {                              // the camera d away, with the ball's point at (ox, oy)
-        const cx = d * ox / focal, cy = -d * oy / focal;
-        return { pos: [-d * F[0] - cx * R[0] - cy * U[0], -d * F[1] - cx * R[1] - cy * U[1], -d * F[2] - cx * R[2] - cy * U[2]], F, R, U, focal };
+      const framed = (fh) => {                         // the camera for a frame fh tall whose bottom is the canvas's
+        const focal = (fh / 2) / Math.tan(P.fov / 2), mid = H - fh / 2;   // mid: the frame's middle row on the canvas
+        const ox = P.ax * W / 2, oy = P.ay * fh / 2;
+        const at = (d) => {                            // the camera d away, with the ball's point at (ox, oy)
+          const cx = d * ox / focal, cy = -d * oy / focal;
+          return { pos: [-d * F[0] - cx * R[0] - cy * U[0], -d * F[1] - cx * R[1] - cy * U[1], -d * F[2] - cx * R[2] - cy * U[2]], F, R, U, focal, mid, fh };
+        };
+        const m = 0.04 * Math.min(W, fh);
+        const fits = (c) => P.keys.every(([x, y, z]) => {
+          const p = proj(c, x, y, z);
+          return p && p[0] >= m && p[0] <= W - m && p[1] >= m + H - fh && p[1] <= H - m;
+        });
+        let lo = 0.5, hi = 60;
+        for (let k = 0; k < 40; k++) { const d = (lo + hi) / 2; if (fits(at(d))) hi = d; else lo = d; }
+        return at(hi / (P.zoom || 1));
       };
-      const fits = (c) => P.keys.every(([x, y, z]) => {
-        const p = proj(c, x, y, z);
-        const m = 0.04 * Math.min(W, H);
-        return p && p[0] >= m && p[0] <= W - m && p[1] >= m && p[1] <= H - m;
-      });
-      let lo = 0.5, hi = 60;
-      for (let k = 0; k < 40; k++) { const d = (lo + hi) / 2; if (fits(at(d))) hi = d; else lo = d; }
-      return at(hi / (P.zoom || 1));
+      if (!portrait || H >= TALL * W) return framed(H);
+      const shows = (c) => staffTop(c, n) >= ROOM * W;
+      let c = framed(TALL * W);
+      if (!shows(c)) {
+        let lo = H, hi = TALL * W;
+        for (let k = 0; k < 20; k++) { const fh = (lo + hi) / 2; if (shows(framed(fh))) lo = fh; else hi = fh; }
+        c = framed(lo);
+      }
+      return c;
+    }
+
+    // The highest row on the canvas that the staves of n lanes reach within its width.
+    function staffTop(c, n) {
+      let top = Infinity;
+      for (let k = 0; k < n; k++) for (let j = 0; j < 5; j++) {
+        const x = ((n - 1) / 2 - k) * (LANE + GAP) + (j - 2) * 0.2 * SPAN * LANE;
+        const a = proj(c, x, 0, NEAR()), b = proj(c, x, 0, FAR());
+        if (!a || !b) continue;
+        let t0 = 0, t1 = 1;                            // the part of the line from a to b with x 0 to W
+        if (a[0] !== b[0]) {
+          const u = -a[0] / (b[0] - a[0]), v = (W - a[0]) / (b[0] - a[0]);
+          t0 = Math.max(0, Math.min(u, v)); t1 = Math.min(1, Math.max(u, v));
+        } else if (a[0] < 0 || a[0] > W) continue;
+        if (t0 > t1) continue;
+        top = Math.min(top, a[1] + (b[1] - a[1]) * t0, a[1] + (b[1] - a[1]) * t1);
+      }
+      return top;
     }
 
     // A point (x across, y up, z along time, all relative to the ball's point) on the canvas:
@@ -324,7 +361,7 @@
       const cx = dx * c.R[0] + dz * c.R[2];
       const cy = dx * c.U[0] + dy * c.U[1] + dz * c.U[2];
       const s = c.focal / cz;
-      return [W / 2 + cx * s, H / 2 - cy * s, cz, s];
+      return [W / 2 + cx * s, c.mid - cy * s, cz, s];
     }
 
     // A disc of radius r lying on the sheet at (x, z), as the ellipse the camera sees, for
@@ -367,8 +404,9 @@
       return (grain = bctx.createPattern(c, 'repeat'));
     }
 
-    // fog: 1 up to a little way ahead of the ball, falling to 0 at the far end of what is drawn
-    const FAR = () => portrait ? 18 : 12;
+    // fog: 1 up to a little way ahead of the ball, falling to 0 at the far end of what is drawn;
+    // the staves start NEAR behind the ball
+    const FAR = () => portrait ? 18 : 12, NEAR = () => portrait ? -4 : -6;
     const fog = (z) => clamp(1 - (z - FAR() * 0.55) / (FAR() * 0.45), 0, 1);
 
     function draw(t, opts) {
@@ -455,10 +493,10 @@
       g.setTransform(1, 0, 0, 1, 0, 0);
       g.globalCompositeOperation = 'source-over';
       g.globalAlpha = 1;
-      const c0 = proj(cam, 0, 0, portrait ? 2.5 : 0.6) || [W / 2, H / 2];
+      const c0 = proj(cam, 0, 0, portrait ? 2.5 : 0.6) || [W / 2, cam.mid];
       g.fillStyle = '#060607';
       g.fillRect(0, 0, W, H);
-      const lit = g.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], Math.max(W, H) * 0.85);
+      const lit = g.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], Math.max(W, cam.fh) * 0.85);
       lit.addColorStop(0, '#5a5650'); lit.addColorStop(0.35, '#3a3734'); lit.addColorStop(0.7, '#1a1918'); lit.addColorStop(1, '#070708');
       g.fillStyle = lit;
       g.fillRect(0, 0, W, H);
@@ -477,7 +515,7 @@
 
     // A lane's staff: five engraved lines along time, fading into the dark.
     function staff(cx, alpha, l) {
-      const z0 = portrait ? -4 : -6, z1 = FAR();
+      const z0 = NEAR(), z1 = FAR();
       for (let k = 0; k < 5; k++) {
         const x = cx + (k - 2) * 0.2 * SPAN * LANE, w = 0.006;
         const a = proj(cam, x - w, 0, z0), b = proj(cam, x + w, 0, z0), c = proj(cam, x + w, 0, z1), d = proj(cam, x - w, 0, z1);
@@ -678,7 +716,7 @@
       g.fillRect(0, 0, W, H);
       g.globalAlpha = 1;
       g.globalCompositeOperation = 'source-over';
-      const v = g.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.hypot(W, H) * 0.6);
+      const v = g.createRadialGradient(W / 2, cam.mid, Math.min(W, cam.fh) * 0.35, W / 2, cam.mid, Math.hypot(W, cam.fh) * 0.6);
       v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.55)');
       g.fillStyle = v;
       g.fillRect(0, 0, W, H);
