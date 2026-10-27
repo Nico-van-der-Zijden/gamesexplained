@@ -113,7 +113,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
   </div>
   <p>The description is 32 rows of 32 bytes, and every byte names one of the blocks kept at <code>$7000</code>. A block is sixteen bytes: four tiles across and four down. The builder at <code>$6A4B</code> works through the description, copies each block's sixteen tiles into the map at <code>$9000</code>, and so turns a kilobyte into sixteen.</p>
   <p>The map is too big to live anywhere the video chip can see it, so the game keeps it at <code>$9000</code> and draws the 28 tiles by 21 the screen shows from it, one row at a time. The descriptions themselves are stored under the input and output chips at <code>$D000</code>, in the memory the C64 keeps there behind them, and the builder switches the chips out of the way to read them.</p>
-  <p>Some bytes of a description mean more than a block. <code>$30</code> to <code>$37</code> are the four kinds of guard, and every one found is added to a list of figures; <code>$62</code> marks the floor's dynamite charge, and <code>$63</code> the prisoner.</p>
+  <p>Some bytes of a description mean more than a block. <code>$30</code> to <code>$37</code> are guards, a pair of bytes for each of the four directions a guard can start out walking, and every one found is added to a list of figures.</p>
 </section>
 
 <section>
@@ -138,7 +138,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
     <table class="en-tab">
       <tr><th>Control</th><th>What it does</th><th>Where</th></tr>
       <tr><td>Joystick, port 2</td><td>Walks one tile every four frames. The direction is also the direction a shot goes.</td><td><code>$4297</code></td></tr>
-      <tr><td>Fire</td><td>Shoots, and spends one round. Two shots can be in the air at once, the second once the first has travelled 8 pixels.</td><td><code>$45BD</code>, <code>$463F</code></td></tr>
+      <tr><td>Fire</td><td>Shoots, and spends one round. Two shots can be in the air at once, the second once the first has taken eight steps of 8 pixels.</td><td><code>$45BD</code>, <code>$463F</code></td></tr>
       <tr><td>SPACE</td><td>Pauses, and pauses again to carry on. The message line reads <code>...PAUSING...</code>.</td><td><code>$5FCB</code>, <code>$4899</code></td></tr>
       <tr><td>RESTORE</td><td>Abandons the game and returns to the attract loop.</td><td><code>$8031</code></td></tr>
     </table>
@@ -155,7 +155,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
     <div id="en-sfx"></div>
     <p class="cap">The effects at <code>$6404</code> and the footsteps at <code>$6790</code>, ported and run through the site's model of the SID. Each effect sets its own attack, decay, pulse width, frequency and waveform on voice one, and a length in frames.</p>
   </div>
-  <p>A routine that wants a noise leaves its number in <code>$02D5</code>, and the sound's own frame at <code>$63E6</code> starts it. Finding something, a key, a treasure or a lift pass, is 1, and so is arming a detonator. A shot that hits something useless is 2, a mirror 3, healing 4 and firing 5. Unlocking a door with a key is 6, and the explosives in a chest going off 7. A guard killed is 8, and so is the object worth 2500 that <code>$67FD</code> breaks; a shot that opens a door or hits a pickup is 9. The footsteps are separate, on voice two, and alternate between two pitches as the player's walking frame flips.</p>
+  <p>A routine that wants a noise leaves its number in <code>$02D5</code>, and the sound's own frame at <code>$63E6</code> starts it. Finding something, a key, a treasure or a lift pass, is 1, and so is arming a detonator. A shot that hits something useless is 2, a shot at a locked door 3, healing 4 and firing 5. Unlocking a door with a key is 6, and the explosives in a chest going off 7. A guard killed is 8, and so is the object worth 2500 that <code>$67FD</code> breaks; a shot that opens a door or hits a pickup is 9. The footsteps are separate, on voice two, and alternate between two pitches as the player's walking frame flips.</p>
   <p>Voice three has another job. When a game starts, <code>$67CA</code> sets it to noise at the highest frequency, reads its own oscillator 256 times into a table at <code>$8700</code>, and silences it again. That table is the game's dice: the chip's noise generator, read once a game and kept, and the chests are the only thing that ever throws them (<a href="discoveries.html">Discoveries</a>).</p>
 </section>
 
@@ -331,7 +331,7 @@ function sound(m) {
                [0x6000, Array.from(m.ram.subarray(0x6000, 0x6800))]];
   C64Sid.mount($('en-sfx'), {
     driver: createSfx, data: { mem },
-    tunes: ['1 found', '2 a wasted shot', '3 a mirror', '4 healed', '5 firing',
+    tunes: ['1 found', '2 a wasted shot', '3 a locked door', '4 healed', '5 firing',
             '6 a door unlocked', '7 explosives', '8 a guard killed', '9 shot open', 'Footsteps'],
     filter: '6581', bounce: false,
     rows: [{ k: 'Effect', f: (v) => (v.effect ? String(v.effect) : '-') },

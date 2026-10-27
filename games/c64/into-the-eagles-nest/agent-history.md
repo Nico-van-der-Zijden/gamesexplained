@@ -93,6 +93,28 @@ decoding the tape found what the loader does with the title picture and
 what the bytes at `$8C00` are. The floor format was right: the page's
 expansion matches the game's map to the tile, apart from what has moved.
 
+## The audit
+
+The contributor asked for the audit so the game could reach Silver. They
+are not a maintainer, so it was made unsigned, on claude-opus-5-5, one
+checker at a time over five address ranges and then `facts.md`, each a
+fresh agent that had written none of it. Of the 667 comments, 205 needed
+a correction, about one in three, which is more than the first sample's
+rate suggested; the long comments about the figures, the prisoner and
+the shots held most of them. Every flagged comment that a checker called
+wrong outright was read against the code before it was applied, and the
+checks held. The `facts.md` pass found 28 of 114 claims wrong, among
+them the shot's "range of five", which is the number of the firing
+sound, and the box of ammunition's sixteen rounds, which is `$10` added
+in decimal mode, ten.
+
+Halfway through, the contributor questioned the chest widget, which
+never showed explosives. The table of random numbers in every snapshot
+was a ramp, because the kit's VICE ran with sound off, and with sound off
+VICE answers the noise register with its cycle counter. Running the
+game's own table builder with the sound chip clocked gave noise, and
+odds of about one in seven for jewels and one in ten for explosives.
+
 ## The port that was a tick late
 
 The music driver, ported to JavaScript for the page, agreed with the

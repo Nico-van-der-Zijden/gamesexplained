@@ -82,7 +82,7 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
     </table>
     <p class="cap">Counted from the four descriptions and the blocks in the listing. A guard's byte is <code>$30</code> to <code>$37</code>, the charge's <code>$62</code> and the prisoner's <code>$63</code>; a chest is drawn into the blocks <code>$3F</code> and <code>$43</code>.</p>
   </div>
-  <p>A byte from <code>$30</code> to <code>$37</code> is a guard. It names a block like any other, which has the guard drawn in it, and the builder also puts the guard on the list of figures at <code>$8100</code> to <code>$8500</code>, with its place in the map and one of four kinds, two bytes to a kind. The figures then take their turns one a frame.</p>
+  <p>A byte from <code>$30</code> to <code>$37</code> is a guard. It names a block like any other, which has the guard drawn in it, and the builder also puts the guard on the list of figures at <code>$8100</code> to <code>$8500</code>, with its place in the map and the direction it starts out walking, two description bytes to a direction: <code>$34</code> and <code>$35</code> up, <code>$30</code> and <code>$31</code> down, <code>$36</code> and <code>$37</code> left, <code>$32</code> and <code>$33</code> right. From then on each guard turns towards the player as it walks (<code>$630B</code>), and up to seven of them take a step each time the figures have their turn, on two frames in three.</p>
   <p><code>$62</code> marks the floor's dynamite charge, whose place the builder keeps in <code>$02EA</code>, and <code>$63</code> the prisoner, kept in <code>$02ED</code>. The charge stays on the map only on the demolition mission, and only until it has been armed: on every other mission, and on that one afterwards, <code>$5F9E</code> clears its four tiles as soon as the floor is built.</p>
   <p>No byte of a description means a chest. Two of the blocks, <code>$3F</code> and <code>$43</code>, have a chest drawn into them, so a floor has a chest wherever its description names one of those two blocks, and what the chest holds is decided only when it is shot (<a href="discoveries.html">Discoveries</a>).</p>
 </section>
@@ -121,7 +121,8 @@ function buttons(box, items, start = 0) {
 }
 
 const FLOORS = ['Basement', 'Ground floor', 'First floor', 'Second floor'];
-const KIND = { 0x30: 2, 0x31: 2, 0x32: 4, 0x33: 4, 0x34: 1, 0x35: 1, 0x36: 3, 0x37: 3 };   // $6A8C
+const KIND = { 0x30: 2, 0x31: 2, 0x32: 4, 0x33: 4, 0x34: 1, 0x35: 1, 0x36: 3, 0x37: 3 };   // $6AD3: the starting direction
+const WAY = ['', 'up', 'down', 'left', 'right'];
 const MARK = { guard: '#ff4fd8', chest: '#ffd23f', charge: '#ff3b30', prisoner: '#3bd1ff' };
 
 // Each tile's 64 pixels as palette numbers, in the mode the screen draws it: multicolour when its
@@ -195,7 +196,7 @@ C64.load('listing.json').then((m) => {
     const b = m.ram[0xD000 + floor * 0x400 + bi];
     $('lv-tile').textContent = 'Column ' + tx + ', row ' + ty + ': tile ' + hex(code) + (code < 0x2D ? ', open' : ', solid')
       + ', drawn ' + (c >= 8 ? 'multicolour' : 'hires') + '. It is in block ' + hex(b) + ', byte ' + bi + ' of the description at '
-      + hex(0xD000 + floor * 0x400 + bi, 4) + (KIND[b] ? ', a guard of kind ' + KIND[b] : b === 0x62 ? ', the charge' : b === 0x63 ? ', the prisoner' : '') + '.';
+      + hex(0xD000 + floor * 0x400 + bi, 4) + (KIND[b] ? ', a guard that starts out walking ' + WAY[KIND[b]] : b === 0x62 ? ', the charge' : b === 0x63 ? ', the prisoner' : '') + '.';
   }
   cv.addEventListener('mousemove', point); cv.addEventListener('click', point);
   draw();

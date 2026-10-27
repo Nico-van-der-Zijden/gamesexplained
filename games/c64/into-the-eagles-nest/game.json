@@ -105,6 +105,35 @@
         "claude-opus-5-5"
       ],
       "note": "the chests, the shot and the tape: open chests put in front of the player in the game, a shot followed frame by frame, and the tape image decoded by the loader's rules, after the contributor questioned the chest odds"
+    },
+    {
+      "step": "port",
+      "fixed": 2,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "the chest widget's odds, checked against tables built by the game's own loop with the sound chip running"
+    },
+    {
+      "step": "audit",
+      "checked": 667,
+      "of": 667,
+      "fixed": 205,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "and every claim in facts.md, 28 of 114 corrected; made on the contributor's run, not by a maintainer"
+    },
+    {
+      "step": "sample",
+      "size": 60,
+      "wrong": 5,
+      "fixed": 5,
+      "seed": 20261027,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "after the audit, by a checker that took no part in it; made on the contributor's run, not by a maintainer"
     }
   ],
   "kit_version": "0.0.244",

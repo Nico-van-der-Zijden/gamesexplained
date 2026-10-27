@@ -15,7 +15,7 @@ Mindscape manual for the American release © 1987.
 | Thing | Where |
 |---|---|
 | Program and data, as the tape loads them | `$0800`-`$80FF`, `$8600`-`$86FF`, `$8C00`-`$8FE7` (the title picture's screen colours), `$A000`-`$BF3F` (its bitmap), `$D000`-`$F3FF` (`orientation.md`, "The loader") |
-| Title picture's bitmap, overwritten once the game runs | `$A000`-`$BF3D` |
+| Title picture's bitmap, overwritten by the castle map at `$9000`-`$CFFF` once the game runs | `$A000`-`$BF3F` |
 | Screen | `$0400` |
 | Character set for the play screen and the status panel | `$2000` |
 | Character set for the attract screens and the message line | `$2800` |
@@ -23,7 +23,7 @@ Mindscape manual for the American release © 1987.
 | Message text, as ASCII separated by `@` | `$5609`-`$592A` |
 | Message buffer the printer fills | `$8800` onwards |
 | High score table, ten entries of 20 bytes | `$0D51`-`$0E18` |
-| Floor names, four of 13 bytes | `$1A78`-`$1AAE` |
+| Floor names, four of 13 characters, each followed by `$00` | `$1A78`-`$1AAF` |
 
 ## Timing
 
@@ -34,15 +34,18 @@ The player moves 8 pixels every 4 frames in each direction, measured on
 ## Controls
 
 Joystick in control port 2. Each direction moves the player; fire shoots
-in the direction of travel and spends one round. SPACE toggles a pause,
-and RESTORE abandons the game for the attract loop (all *live*;
+in the direction of travel and spends one round. SPACE toggles a pause
+(the stick or fire also ends it, `$48A2`), and RESTORE abandons the game for the attract loop (all *live*;
 `features.md` has the measurements).
 
 ## Graphics
 
-**Two modes, chosen cell by cell.** One frame of play writes the video
-chip four times: `$D018` = `$1B` and `$D016` = `$C4` on line 228, then
-`$D018` = `$19` and `$D016` = `$D0` on line 253 (`work/frame-play.json`).
+**Two modes, chosen cell by cell.** The game's interrupt sets the video
+chip's two mode registers twice a frame: `$4B4C` writes `$1A` to `$D018`
+and `$40` plus the message line's fine scroll to `$D016` on line 228,
+and `$4ACD` writes `$18` and `$50` on line 253. Read back, as
+`work/frame-play.json` recorded them, they are `$1B` and `$C4`, then
+`$19` and `$D0`, because the chip's unused bits read as 1.
 So the play area and the panel are text from the character set at
 `$2000` with multicolour on, and lines 228 to 253 are text from the set
 at `$2800` with multicolour off: that band is the message line.
@@ -67,9 +70,9 @@ orange on its top row of cells and yellow on its bottom one.
   colour, black (`$D025`) and green (`$D026`) shared. He has twelve poses
   of four shapes each. Walking, `$4BB8` takes the first shape for the
   direction from `$4BD8` (`$C0` up, `$C4` down, `$C8` left, `$CC` right)
-  and adds `$10` on every other step, from bit 1 of `$02DA`. Firing,
+  and adds `$10` on two steps of every four, from bit 1 of the step count in `$02DA`, so the pose changes every second step. Firing,
   `$46A5` takes it from `$46A1` (`$E0`, `$E4`, `$E8`, `$EC`), and the pose
-  is held until fire is let go (`$429F` clears `$02E3`). `$02B0` holds the
+  is held until fire is let go (`$429F` tests fire and `$42A9` clears `$02E3`). `$02B0` holds the
   direction: 1 up, 2 down, 3 left, 4 right.
 - 4 is the flash at the barrel. `$46A5` gives it the shape `$F3` plus the
   direction less one and places it beside the player from the tables at
@@ -78,12 +81,12 @@ orange on its top row of cells and yellow on its bottom one.
   its pointer is `$EF`, left there by the screen clear at `$41D6`, which
   fills the whole of `$0400` to `$07FF` with `$EF`, pointers included.
 - 5 to 7 are the castle drawn on the panel, hires and black, pointers
-  `$F0` to `$F2`, set once at `$40D9` to `$4102`: the castle at (286,168)
+  `$F0` to `$F2`, which `$41F8` sets, placed and coloured at `$40D9` to `$4102`: the castle at (286,168)
   and the hill under it in two halves at (274,189) and (298,189).
 
 **The shot itself is never drawn.** Its place is kept in `$02DB` and
-`$02DC` (the second shot's in `$02DD` and `$02DE`), and every frame
-`$5212` looks up the map tile there; nothing writes it to the screen or
+`$02DC` (the second shot's in `$02DD` and `$02DE`), and on two frames
+of every three `$5212` looks up the map tile there; nothing writes it to the screen or
 to a sprite. Seen in the game (`work/t_shot.py`, `work/t_shot2.py`):
 fired to the right, sprite 4 stayed at (160,183) for four frames, orange
 for three and yellow for one, and was then parked, while the shot went on
@@ -153,30 +156,34 @@ prisoner, whose place is kept in `$02ED`.
 
 **The player moves a tile at a time.** `$4297` counts frames 0 to 3 in
 `$02BA` and acts only on the fourth, so a step is 8 pixels every 4
-frames. A move is allowed only when the four tiles the player would
-cover all read below `$2D`: `$2D` or more is a wall, a door, furniture, a
-figure or a pickup. At a room's edge the move asks for the next room
+frames. A move is allowed only when the four tiles of the row or column
+he would step into all read below `$2D`: `$2D` or more is a wall, a door,
+furniture, a figure or a chest. The pickups are tiles `$08` to `$2B`,
+below `$2D`, so the player walks onto them and `$4D3A` takes them. At a room's edge the move asks for the next room
 instead, and the picture then scrolls a row or a column at a time
-(`$43D6`, `$4480`, `$4528`), carrying any shot in the air with it so a
+(`$432E`, `$43D6`, `$4480`, `$4528`), carrying any shot in the air with it so a
 bullet keeps its place in the room rather than on the screen.
 
 **The player is in the map as well as in front of it.** He is drawn as
 four sprites, and `$5B1B` also stamps tile `$55` over the sixteen tiles
-he covers, keeps what was there in four buffers, runs the figures and the
-prisoner, and puts the sixteen tiles back. The figures only test whether
-the tile ahead of them is empty, so the stamp is how walking into the
+he covers, keeps what was there in four buffers, runs the figures (and the
+prisoner on one of its two calls, `$5B72`), and puts the sixteen tiles back. The figures only test whether
+the four tiles ahead of them are all empty, so the stamp is how walking into the
 player is noticed at all.
 
 **Shots.** The player can have two in the air at once, the second once
-the first has travelled 8 pixels (`$463F`); each has its own direction
-and position, and each costs a round. `$463F` sets a range of five, but a
-shot fired across open floor flew ten tiles to the wall (`work/t_shot.py`),
-so what the five counts is open. A shot flies
+the first has taken eight steps of 8 pixels, 64 pixels (`$4646`, and
+`$45E4` the other way round); each has its own direction and position,
+and each costs a round. A shot has no range: its step count is read only
+by that test, so it flies on until it reaches a tile it does not pass or
+the room's edge (`$46FA`, `$4775`), and one fired across open floor flew
+ten tiles to the wall (`work/t_shot.py`). The 5 that `$463F` loads is
+the firing sound's number, for `$02D5`. A shot flies
 through tiles `$3E`, `$3F` and anything below `$08`, and stops on
 anything else; `$529B` then decides what was hit, by tile code. The
 figures are `$76` to `$C0`, the chests `$5E` to `$6D`, the two halves of a
 steel door `$49` and `$4A`, a wooden door `$47` and `$48`, furniture
-`$4C` to `$4F`, a mirror `$43` to `$46`, and the pickups are found by
+`$4C` to `$4F`, the locked doors `$43` to `$46`, which a key opens, and the pickups are found by
 looking at the nine places listed at `$5374` in the grid around the shot,
 because an object is drawn from several tiles and only its first names
 it.
@@ -184,17 +191,27 @@ it.
 **Chests.** A chest is a block of four tiles, two by two, in one of four
 states: closed (`$5E` to `$61`), open and empty (`$62` to `$65`), open on
 jewels (`$66` to `$69`) and open on explosives (`$6A` to `$6D`). A shot
-that hits any of the sixteen goes to `$5528`, which finds the chest's
+that hits any of the sixteen goes to `$5528`, which passes over the four
+of an empty chest (`$5558`) and for the other twelve finds the chest's
 corner from whichever tile was hit and reads its state there.
 
 - **Shooting a closed chest only opens it.** `$5598` takes a number from
   the table of random numbers. Below `$C0`, three times in four, it says
   `EMPTY!` and redraws the chest open and empty. Otherwise it takes a
   second number and redraws the chest open on jewels when that is `$80` or
-  more and on explosives when it is less, so one shot in eight shows
-  jewels and one in eight explosives. Nothing else happens on that shot.
-- **Jewels are collected by walking into them.** `$5CB9`, run every frame
-  of play, looks at the two tiles ahead of the player in the direction the
+  more and on explosives when it is less. Nothing else happens on that shot.
+- **Jewels come up more often than explosives.** The two numbers are
+  neighbouring bytes of the table, and neighbouring bytes are alike: the
+  builder at `$67CA` reads the noise every 14 cycles, and at the highest
+  frequency the noise steps about once every 16, so a byte is usually the
+  next one's value shifted once and sometimes equal to it. A first number
+  of `$C0` or more has its top bits set, and the second leans the same
+  way. Ten tables built by the game's own loop on the emulator with its
+  sound chip running gave, over all 2,560 places the index can stand,
+  1,935 empty, 381 jewels and 244 explosives: three in four empty, about
+  one shot in seven on jewels and one in ten on explosives.
+- **Jewels are collected by walking into them.** `$5CB9`, run on one frame
+  of every three in play, looks at the two tiles ahead of the player in the direction the
   stick is pushed, and on `$66` to `$69` goes to `$5DA6`: `YOU HAVE FOUND
   SOME JEWELS.`, 40 points queued in `$02C5`, which is 4000 on the panel,
   and the chest left empty.
@@ -208,7 +225,7 @@ corner from whichever tile was hit and reads its state there.
 
 All four were seen in the game with an open chest put into the map just
 ahead of the player (`work/t_chest.py`): the messages, `$02C5` paying out
-the 40, and `$02D3` reaching `$FF` a second and a half after the shot.
+the 40, and `$02D3` reaching `$FF` after the shot. By the code the explosion takes 90 frames, eighteen steps of five rounds at one a frame, about 1.8 seconds.
 
 **The explosion** at `$5BDD` is the explosives in a chest going off, not the
 castle. It walks the border and the background through the seventeen
@@ -227,28 +244,31 @@ mission is over and the player is dead.
 
 **Scoring.** Points wait in `$02C5` and the ticker at `$5AA0` takes one a
 frame, adding 1 to the score's middle pair of digits in decimal mode.
-One waiting point is therefore a hundred on the panel, and nothing ever
-writes the bottom pair, so every score in the game ends in two zeros. A
+One waiting point is therefore a hundred on the panel, and nothing adds
+to the bottom pair (only `$4058` clears it and `$4089` restores it from
+its own copy), so every score in the game ends in two zeros. A
 soldier is worth 100, a vase 1500, a painting 2500, and a pendant and a
 pile of jewels 4000 each.
 
 **Supplies.** Cold food takes `$10` off the hits and first aid clears
-them altogether. A box of ammunition fills the count back towards `$99`,
-and when there is no room the game says "ANY MORE AMMO WOULD BE
+them altogether. A box of ammunition adds `$10` in decimal mode, ten
+rounds (`$4F62`); when that would pass 99, which it does from 90 up, the
+count is set to 99 and the game says "ANY MORE AMMO WOULD BE
 WASTED !". A mission starts with `$99`, that is 99 rounds.
 
-**How a mission ends.** The main loop watches four things. `$02C8` = 2
+**How a mission ends.** Besides SPACE, which pauses (`$488A`), the main loop watches four things. `$02C8` = 2
 means the player has stepped onto the lift with a pass, and `$48D4` takes
 him to the floor select; `$02E9` = 1 that a prisoner has been brought
 home, and `$49EC` saves the score, puts the ammunition back to 99 and
 starts the next mission; `$02E9` = 2 that the castle has been destroyed,
 and `$4A5C` shows the end-of-mission screen; `$02D3` = `$FF` that the
-player is dead, and `$48F0` shows "YOU ARE DEAD". The last three all end
-at the high score check.
+player is dead, and `$48F0` shows "YOU ARE DEAD". `$4A5C` and `$48F0` end
+at the high score check, and `$49EC` goes on to the next mission's
+briefing.
 
 **Between missions.** `$4946` puts the KERNAL's own interrupt back so
 the mission screens have a keyboard, and keeps the keys, the ammunition,
-the hits and the three digits of the score in `$4009` to `$400E` while
+the hits and the score's three bytes, six digits, in `$4009` to `$400E` while
 they are up. The mission chosen is 1 to 4 in `$0836`, and `$4010` is the
 floor its prisoner is on - the basement for 1, the first floor for 2, the
 second for 3 - or `$FF` for the demolition mission, which has no
@@ -258,7 +278,7 @@ prisoner.
 typed on the high score screen with the word at `$6F31`, which reads
 `%MAGGOTS!&`, and a match sets `$603F`. While that is set the player
 takes no hits, keeps a door key in hand and has the ammunition filled
-back to 99 every frame. `cheats.md` has it in full.
+back to 99 on two frames of every three (`$5BB4`). `cheats.md` has it in full.
 
 ## Data tables
 
@@ -294,18 +314,18 @@ The messages, each ending with `@`, at `$5609`:
 `$6C98`: `THE PRISONER IS VERY CLOSE.`
 
 Other text: the four floor names at `$1A78` (`BASEMENT`, `GROUND FLOOR`,
-`FIRST FLOOR`, `SECOND FLOOR`, 13 bytes each); `SELECT MISSION` at
+`FIRST FLOOR`, `SECOND FLOOR`, 13 characters and a `$00` each); `SELECT MISSION` at
 `$1D14`; `MISSION` at `$1E06`; `RESCUE THE PRISONER` at `$1E18`;
 `BLOW UP THE CASTLE` at `$1E2C`; `WELL DONE !` at `$1F15`;
 `YOUR MISSION WAS A` at `$1F21`; `SUCCESS` at `$1F34`; the credits at
 `$10C8` (`PROGRAMMING BY`, `ANDREW CHALLIS`, `GRAPHICS BY`,
 `ROBIN CHAPMAN`, each ending `$FF`); `VALUABLES` and its four items at
-`$1110`, and `SUPPLIES` and its four at `$1177`, each ending `$00`.
+`$1110`, and `SUPPLIES` and its four at `$1178`, each ending `$00`.
 
 ## Hardware registers
 
 The census over every decoded instruction (`kit/cpu/census.py`, from
-`symbols.json` with the code seeded from what ran) found 401 instructions
+`symbols.json` with the code seeded from what ran) found 422 instructions
 naming 70 registers. The counts are of instructions, not of writes at run
 time.
 
@@ -314,7 +334,7 @@ instruction reads `$D01E` or `$D01F`**, the video chip's sprite collision
 registers, so every collision in the game is worked out in software. It
 also never touches the sprite priority register `$D01B`, the light pen,
 the paddles, the voices' pulse-width low bytes, or voice 3's envelope
-output; it does read voice 3's oscillator output `$D41B`, at `$673D`.
+output; it does read voice 3's oscillator output `$D41B`, at `$673D` and `$67E4`.
 Of CIA 2 only port A and its direction register are used, for the video
 bank; of CIA 1, port A and B, the interrupt register and timer A's
 control.
@@ -339,26 +359,26 @@ control.
 | `$D00E` | `vic_sprite7_x` | `sta` ×1 | `$40F2` |
 | `$D00F` | `vic_sprite7_y` | `sta` ×1 | `$40F7` |
 | `$D010` | `vic_sprite_x_msb` | `sta` ×1 | `$40D9` |
-| `$D011` | `vic_control1` | `sta` ×27 | `$08A7` |
-| `$D012` | `vic_raster` | `sta` ×12, `lda` ×1 | `$0851`, `$1C92` |
-| `$D015` | `vic_sprite_enable` | `sta` ×5 | `$423E` |
+| `$D011` | `vic_control1` | `sta` ×29 | `$08A7` |
+| `$D012` | `vic_raster` | `sta` ×14, `lda` ×1 | `$0851`, `$1C92` |
+| `$D015` | `vic_sprite_enable` | `sta` ×6 | `$423E` |
 | `$D016` | `vic_control2` | `sta` ×16, `lda` ×2 | `$08B1`, `$0929` |
 | `$D017` | `vic_sprite_expand_y` | `sta` ×1 | `$40A9` |
 | `$D018` | `vic_memory` | `sta` ×15 | `$08B6` |
-| `$D019` | `vic_irq_status` | `sta` ×3 | `$085C` |
-| `$D01A` | `vic_irq_enable` | `sta` ×9, `lda` ×2 | `$0842`, `$0E60` |
+| `$D019` | `vic_irq_status` | `sta` ×5 | `$085C` |
+| `$D01A` | `vic_irq_enable` | `sta` ×10, `lda` ×2 | `$0842`, `$0E60` |
 | `$D01C` | `vic_sprite_multicolour` | `sta` ×1 | `$40C5` |
 | `$D01D` | `vic_sprite_expand_x` | `sta` ×1 | `$40A6` |
 | `$D020` | `vic_border` | `sta` ×8 | `$0BEF` |
 | `$D021` | `vic_background0` | `sta` ×12 | `$08AC` |
 | `$D022` | `vic_background1` | `sta` ×3 | `$11C0` |
 | `$D023` | `vic_background2` | `sta` ×3 | `$11C5` |
-| `$D025` | `vic_sprite_mc0` | `sta` ×1 | `$4260` |
-| `$D026` | `vic_sprite_mc1` | `sta` ×1 | `$4265` |
-| `$D027` | `vic_sprite0_colour` | `sta` ×1 | `$424D` |
-| `$D028` | `vic_sprite1_colour` | `sta` ×1 | `$4250` |
-| `$D029` | `vic_sprite2_colour` | `sta` ×1 | `$4253` |
-| `$D02A` | `vic_sprite3_colour` | `sta` ×1 | `$4256` |
+| `$D025` | `vic_sprite_mc0` | `sta` ×3 | `$4260` |
+| `$D026` | `vic_sprite_mc1` | `sta` ×3 | `$4265` |
+| `$D027` | `vic_sprite0_colour` | `sta` ×3 | `$424D` |
+| `$D028` | `vic_sprite1_colour` | `sta` ×3 | `$4250` |
+| `$D029` | `vic_sprite2_colour` | `sta` ×3 | `$4253` |
+| `$D02A` | `vic_sprite3_colour` | `sta` ×3 | `$4256` |
 | `$D02B` | `vic_sprite4_colour` | `sta` ×3 | `$40AE` |
 | `$D02C` | `vic_sprite5_colour` | `sta` ×1 | `$40FC` |
 | `$D02D` | `vic_sprite6_colour` | `sta` ×1 | `$40FF` |
@@ -383,7 +403,7 @@ control.
 | `$D414` | `sid_v3_sustain_release` | `sta` ×3 | `$1902` |
 | `$D416` | `sid_filter_cutoff_hi` | `sta` ×1 | `$63DA` |
 | `$D417` | `sid_filter_resonance` | `sta` ×1 | `$63DF` |
-| `$D418` | `sid_filter_mode_volume` | `sta` ×3 | `$192C` |
+| `$D418` | `sid_filter_mode_volume` | `sta` ×4 | `$192C` |
 | `$D41B` | `sid_v3_oscillator` | `lda` ×2 | `$673D` |
 | `$DC00` | `cia1_port_a` | `lda` ×27, `sta` ×1 | `$0A13`, `$5FCD` |
 | `$DC01` | `cia1_port_b` | `lda` ×1 | `$5FD0` |
@@ -443,7 +463,45 @@ is the checker's count. It marked the other three (`$5528`, `$5BBA` and
 `$5CB9`) wrong for another detail, and the corrections made then left
 these mistakes in them.
 
+Two more were corrected on claude-opus-5-5 when the contributor
+questioned the chest widget, which never opened a chest on explosives:
+`$5598` gave the odds as one in eight each and `$67CA` said nothing of how
+alike the table's neighbours are. Both now follow tables built with the
+sound chip running (`work/dice_real.py`, under "Live tests").
+
+Then every comment was audited, on claude-opus-5-5, by five checkers in
+turn, each given one range of addresses and none of them a writer of the
+listing: 667 comments checked of 667, and 205 corrected, 160 for a wrong
+detail, 43 for a wrong main claim and 2 for a detail that could not be
+settled, which was cut. The worst ranges were the zero page and the
+variables at `$0200` (50 of 188) and the figures, the prisoner, the sound
+and the tile tables from `$6001` (52 of 149): callers and readers missed,
+units given in pixels or blocks for tiles, rates given as every frame for
+routines that run one frame in two or three, and labels on the wrong one
+of two neighbouring things (the door key and the ammunition, the halves
+of the doors, the panel drawer's colour operands). The audit also checked
+every claim in this file, 114 of them, and corrected 28.
+
+After the audit a new sample of 60 of the 671 comments was drawn with
+seed 20261027 (`work/verify-2/sample.json`) and given to a checker on
+claude-opus-5-5 that took no part in writing or auditing them. It marked
+4 wrong in a detail and 2 doubtful; read against the code, 5 of the 6
+held: a figure drawn from four tiles when it is sixteen, two hand-overs
+credited to the mission select when they are the attract screens' exit at
+`$1566`, the room-change variable described as one bit per direction when
+it holds a direction number and the scroll's step count, and a label put
+after the instruction that starts what it describes. The sixth, a quoted
+heading without its leading space, is not counted. 5 of 60 is 8.3 %, with
+a 95 % interval of 3.6 % to 18.1 %, over the mark of 2 in 60. All five were
+corrected, with the five other comments that said the same things.
+
 ## Live tests
+
+- `work/dice_real.py`: the builder at `$67CA`, copied byte for byte, run
+  ten times on a reset machine with the sound chip running, and the
+  chest's two rolls counted at every index: 1,935 empty, 381 jewels, 244
+  explosives. With the emulator's sound off the same loop gives a ramp
+  falling by 14 a byte, on which a chest never shows explosives.
 
 - Controls, one at a time, from the play snapshot (`work/controls.py`,
   `work/fire.py`): each direction moves the player 8 pixels every 4
@@ -460,8 +518,8 @@ these mistakes in them.
   ahead of the player, walking into jewels said "YOU HAVE FOUND SOME
   JEWELS." and `$02C5` paid out 40; shooting jewels said "YOU HAVE SHOT
   SOME JEWELS." and paid nothing; shooting explosives said
-  "FOOL!....EXPLOSIVES." and `$02D3` reached `$FF` a second and a half
-  later; walking into explosives did nothing.
+  "FOOL!....EXPLOSIVES." and `$02D3` reached `$FF` soon
+  after, which by the code is 90 frames, about 1.8 seconds; walking into explosives did nothing.
 - A shot is not drawn (`work/t_shot.py`, `work/t_shot2.py`): see
   Graphics, "The shot itself is never drawn".
 - The loader, stopped part way through the tape (`work/loadpeek.py`,
@@ -483,7 +541,8 @@ these mistakes in them.
   while the control counted 12,078 interrupts (`work/t_hits.py`,
   `work/t_contact.py`). The references search over every opcode and index
   confirms that the only writes to the hit count are the mission's
-  restore, cold food, first aid and `$639F` itself.
+  restore (`$4077`), the clear of `$02A8` to `$02FF` at
+  `$4058`, cold food, first aid and `$639F` itself.
 - Nothing executes in `$0100`-`$03FF` during 40 seconds of play, so the
   game is one load (`work/noload.py`).
 - One frame of play redrawn from memory matches the emulator's own

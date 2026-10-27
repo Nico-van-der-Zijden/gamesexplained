@@ -56,3 +56,21 @@
   wrong. Comparing the widget's drawing of one room with the recorded
   frame, which the site's renderer had drawn right all along, would have
   caught it.
+- **An emulator with its sound off makes a game's dice wrong.** The game
+  fills a table of 256 random numbers by reading voice 3's noise at
+  `$D41B` every 14 cycles. The run's VICE had `Sound=0` in its `vicerc`,
+  as `kit/c64/INSTALL.md` suggested for speed, and with sound off VICE
+  answers `$D41B` with the low byte of its cycle counter: the table in
+  every snapshot was a ramp falling by 14 a byte. On that ramp a chest
+  never opens on explosives, which the page's chest widget showed and the
+  contributor questioned. Run again with the chip clocked (sound to the
+  `fs` device and `/dev/null`), the same loop gave noise, and over ten
+  tables and 2,560 starting points a shot at a closed chest showed 1,935
+  empty, 381 jewels and 244 explosives on 27 October 2026. The code reads
+  as an even split, one in eight each, because it splits the second
+  number at `$80`; the measured odds are about one in seven and one in
+  ten, because the noise steps about once every 16 cycles and two bytes
+  read 14 cycles apart are alike. Snapshots saved with sound off would
+  not restore the SID with sound on ("Cannot initialize SID engine",
+  VICE v3.13.2), so the measurement ran the game's loop on a freshly
+  reset machine.

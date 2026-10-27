@@ -13,7 +13,7 @@ sets `$603F`. While that byte is set the game:
 
 - never lets the player take a hit (`$63A6` turns `$639F` away),
 - keeps a door key in hand, written back every frame (`$5BD1`),
-- fills the ammunition back to 99 every frame (`$5BB4`).
+- fills the ammunition back to 99 on two frames in three (`$5BB4`).
 
 The word is **`%MAGGOTS!&`**, ten characters, every one of them on the
 name-entry screen's own alphabet strip. So the way to use it is to score

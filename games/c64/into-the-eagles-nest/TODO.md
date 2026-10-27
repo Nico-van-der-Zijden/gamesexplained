@@ -6,43 +6,34 @@ Current tier and what is missing for the next one. Coverage gaps from
 ## For the next tier
 
 Silver is met except for the one thing an unattended run on an unproven
-model cannot give itself: **a maintainer's check**. The run was made on
-`claude-opus-5`, which `kit/models.json` has not declared proven, so
-`tier` stays `bronze` until a maintainer samples the listing on a proven
-model and, if that sample is over the mark, audits it (`kit/CHECKING.md`).
-Everything else Silver asks for is in place: 100 % coverage, `facts.md`,
-one sample checked and recorded, every feature settled or explicitly open,
-`symbols.json` and `listing.json`, and the minisite with a player for the
-tune.
+model cannot give itself: **a maintainer's check**. The listing was first
+written on `claude-opus-5`, which `kit/models.json` has not declared
+proven, so `tier` stays `bronze` until a maintainer samples it on a
+proven model (`kit/CHECKING.md`). Everything else Silver asks for is in
+place: 100 % coverage, `facts.md`, samples checked and recorded, every
+feature settled or explicitly open, `symbols.json` and `listing.json`, and
+the minisite with a player for the tune.
 
-**An audit of the listing is the first thing to do.** The run's own sample
-found 13 of 60 comments with a wrong detail, which is 21.7 %, well over
-the mark of 2 in 60. All 13 were corrected, and so was every other comment
-that said the same thing, but the sample's rate holds across the rest, so
-roughly one comment in five of the 659 is probably still wrong in some
-detail. A second pass on claude-opus-5-5 corrected 21 more that were not
-in the sample (`facts.md`, "The listing's error rate"), which bears the
-rate out. A full audit, followed by a fresh sample on a model that took no
-part in it, is what would let the page call the listing checked.
+The listing has been audited, every comment and every claim in
+`facts.md`, on `claude-opus-5-5`, and sampled again afterwards (`facts.md`,
+"The listing's error rate"). Neither carries a maintainer's login: the
+contributor is not a maintainer. The sample after the audit found 5 of 60
+wrong, over the mark of 2, so a maintainer's own sample that also comes
+out over the mark needs a full audit under their login before the game
+can be Silver.
 
-Found in that pass and left for the audit, each checked only as far as
-written here:
+Left open by the audit:
 
-- `$529B`'s comment says tiles `$30` to `$3E`, `$C0` to `$CB` and `$E7` to
-  `$EE` are "walls that just stop" a shot. They go to `$67FD`, which
-  redraws a four-tile object (`$34 $30 $31 $35` on its top row) as
-  something else, scores 2500 and asks for sound 8. What the object is
-  has not been seen in the game.
-- A shot's range: `$463F` and `facts.md` give it five tiles, but a shot
-  fired across open floor in the game (`work/t_shot.py`) flew ten tiles
-  to the wall.
+- What the object is that a shot turns into other tiles for 2500 points
+  and sound 8 (`$67FD`, reached from `$529B` for tiles `$30` to `$3E`,
+  `$C1` to `$CB` and `$E7` to `$EE`). It has not been seen in the game.
 - What `$02C9` does: set when explosives go off and by the main loop's
   hand-overs, and read at `$4B5F` to skip the flash and the player's
   sprites.
-- The bytes the listing leaves untyped between code at `$6003`-`$6008`
-  and `$600F`-`$6011` (the jump table at `$6000`), and `$1000`-`$1002`.
-- Bit 6 of a figure's kind, which the first hit sets (`$6EAA`): what it
-  changes in the figure.
+- How long the explosion takes. A live run saw `$02D3` reach `$FF` about a
+  second and a half after the shot; the code gives 90 frames, 1.8 seconds.
+- What filter routing `$63B7`'s write of 2 to `$D417` sets, which the C64
+  reference does not cover.
 
 ## Questions only a player can answer
 
