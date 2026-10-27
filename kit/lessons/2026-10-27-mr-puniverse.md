@@ -1,4 +1,4 @@
-## next · 2026-10-27 · Mr Puniverse (C16) · air with Claude
+## 0.0.255 · 2026-10-27 · Mr Puniverse (C16) · air with Claude
 
 - **Hold the page's first picture to the emulator's: a lockstep cannot
   see the start memory.** Mr Puniverse's port ran 120,000 frames in
