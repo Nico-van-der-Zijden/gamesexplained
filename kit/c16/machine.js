@@ -21,7 +21,8 @@
 //   on) and the three timers ($FF00-$FF05, counting at the single clock; timer 1 shows 0 for a
 //   count and then the value last written to it less 1, timers 2 and 3 run on through 0; their
 //   flags $FF09 bits 3, 4 and 6, interrupting when $FF0A enables them). $FF1D and $FF1C read the
-//   line, $FF1E the place on it, as plus4emu's do. The processor sees TED's interrupt line two
+//   line, $FF1E the place on it, and $FF1F's bits 0-2 the line within the character row
+//   (C16.timing's charLine), as plus4emu's do. The processor sees TED's interrupt line two
 //   cycles late and takes the interrupt in place of the next instruction it starts after that,
 //   as the 6502 does: one raised before an instruction's last two cycles is taken after it, one a
 //   CLI lets through an instruction later, and one raised just before a SEI still once. An
@@ -37,8 +38,9 @@
 // - TED's other registers read back what was written, with the bits that read 1 set (the
 //   reference's table), and a write to the sound's, $FF0E-$FF12, goes into soundLog when it is an
 //   array, as [tick, register, value]: the plus4emu server's sound log has the same rows.
-// Not modelled: the drawing (C16.render draws memory), the cursor and flash counters, the light
-// pen, the serial bus, the tape, the ACIA and the 6529 (they read $FF), the 7501's own port at $00
+// Not modelled: the drawing (C16.render draws memory), the cursor and flash counters ($FF1F's bits
+// 3-6 read as written), $FF1F's line with the display off, the light pen, the serial bus, the
+// tape, the ACIA and the 6529 (they read $FF), the 7501's own port at $00
 // and $01 (RAM here), writes to TED's line and position counters, a screen fetch started or ended
 // by a write to $FF06 in the middle of a line, the single clock forced by $FF13's bit 1, and the
 // sound itself. Checked against plus4emu by kit/c16/test_machine.js
@@ -59,6 +61,12 @@
 // - press(k), release(k), releaseAll(), keys (a Set of key numbers), joy and joy1.
 // - hooks: { address: fn(cpu) }, run before the instruction there (a stand-in for a KERNAL routine
 //   the game calls): returning true stops the run, and moving cpu.pc skips the instruction.
+//   spend(n) puts a stand-in's n cycles on the beam. kernalHooks(m) gives the kit's stand-ins:
+//   SCNKEY ($FF9F), the keyboard scan a game's interrupt calls, as C16.scnkey (site/lib/c16.js),
+//   held to the ROM by kit/c16/test_scnkey.js. Its reads and writes of the chips go through
+//   ioRead and ioWrite, all at its first cycle's tick, and of the RAM through the processor, so a
+//   lockstep sees them; its cycles are the ROM's, and it leaves A, X and Y as the ROM does, the
+//   flags not.
 // - onIrq(machine, entry) and onRti(machine) are called as an interrupt is taken (entry is the
 //   handler's address; irqStart, cpu.cycles as it began) and as the RTI that ends one runs; depth
 //   counts the interrupts in progress. kit/c16/lockstep.js uses them.
@@ -288,6 +296,7 @@ class Machine {
       return r === 0x1D ? L & 0xFF : 0xFE | (L >> 8);
     }
     if (r === 0x1E) return (((t + HPOS_AT) % LINE) * 2) & 0xFF;
+    if (r === 0x1F) return (this.ted[0x1F] & 0x78) | 0x80 | this.beam.charLine(t);
     return this.ted[r] | READ_ONES[r];
   }
   // The keyboard and joystick lines that $FD30 and a write of w to $FF08 select.
@@ -430,6 +439,18 @@ class Machine {
     return true;
   }
 
+  // n cycles of a hook's stand-in, as reads, from the next instruction's first cycle on.
+  spend(n) {
+    if (n <= 0) return;
+    const cpu = this.cpu;
+    this.kT = this.tick;
+    const t = this.seq(new Uint8Array(n - 1), cpu.i);
+    cpu.cycles += n;
+    this.tick = this.now = this.beam.step(t, 0);
+    this.iFetch = cpu.i; this.fetched = false;
+    this.stall(t, this.iFetch);
+  }
+
   // --- running ---
   // Run for n ticks of TED, the interrupts included. False when onPass stopped the run.
   runTicks(n) {
@@ -477,4 +498,18 @@ class Machine {
   }
 }
 
-module.exports = { Machine, KEY, KERNAL_TED, loadListing, LINE, LINES, FRAME };
+// The kit's stand-ins for KERNAL routines, as hooks for machine m (above).
+function kernalHooks(m) {
+  return {
+    0xFF9F: cpu => {                                         // SCNKEY
+      const r = globalThis.C16.scnkey(a => cpu.rd(a), (a, v) => cpu.wr(a, v),
+        { read: a => m.ioRead(a), write: (a, v) => m.ioWrite(a, v) });
+      cpu.a = r.a; cpu.x = r.x; cpu.y = r.y;
+      cpu.rts();
+      m.spend(r.cycles);
+      return false;
+    },
+  };
+}
+
+module.exports = { Machine, KEY, KERNAL_TED, loadListing, kernalHooks, LINE, LINES, FRAME };

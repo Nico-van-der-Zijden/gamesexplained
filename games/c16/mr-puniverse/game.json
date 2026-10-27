@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "platform": "c16",
+  "slug": "mr-puniverse",
+  "title": "Mr Puniverse",
+  "year": 1985,
+  "publisher": "Mastertronic",
+  "developer": "Mr. Chip Software",
+  "title_image": "reference/title.png",
+  "build": "Mastertronic cassette, Novaload, from the TOSEC raw tape (2016-11-11)",
+  "tier": "platinum",
+  "coverage_percent": 100.0,
+  "copy": "agent-draft",
+  "steward": "",
+  "credits": [
+    {
+      "by": "Tony Kelly",
+      "role": "programmer"
+    }
+  ],
+  "tools": {
+    "emulator": "plus4emu 1.2.11 (git 939e652) with kit/c16/codemap.patch, built without libsndfile, in the kit's server",
+    "disassembler": "regenerator2000 0.9.20",
+    "python": "3.13.17",
+    "host": "Linux (Ubuntu 24.04), x86_64"
+  },
+  "model": "claude-opus-5-5[1m]",
+  "step_models": {
+    "10-orient": [
+      "claude-opus-5-5[1m]"
+    ],
+    "20-features": [
+      "claude-opus-5-5[1m]"
+    ],
+    "40-sweep": [
+      "claude-opus-5-5[1m]"
+    ],
+    "50-coverage": [
+      "claude-opus-5-5[1m]"
+    ],
+    "60-verify": [
+      "claude-opus-5-5[1m]"
+    ],
+    "70-minisite": [
+      "claude-opus-5-5[1m]"
+    ],
+    "80-retro": [
+      "claude-opus-5-5[1m]"
+    ]
+  },
+  "accuracy": [
+    {
+      "step": "research",
+      "web": true,
+      "models": [
+        "claude-opus-5-5[1m]"
+      ]
+    },
+    {
+      "step": "annotate",
+      "models": [
+        "claude-opus-5-5[1m]"
+      ]
+    },
+    {
+      "step": "sample",
+      "size": 80,
+      "wrong": 4,
+      "fixed": 4,
+      "seed": 20261027,
+      "models": [
+        "claude-opus-5-5[1m]"
+      ],
+      "note": "60 hand-written comments and 20 of the 25 room comments"
+    },
+    {
+      "step": "play",
+      "fixed": 0,
+      "models": [
+        "claude-opus-5-5[1m]"
+      ],
+      "note": "every routine ported and checked against the game's code, alone and in lockstep; no comment in the listing needed correcting"
+    }
+  ],
+  "kit_version": "0.0.254",
+  "created": "2026-10-27",
+  "video": {
+    "screen": "$0800",
+    "charset": "$3800"
+  },
+  "coverage": {
+    "exclude": [
+      [
+        "$0000",
+        "$07FF",
+        "runtime: nothing of the game is loaded below $0800. Zero page and pages 3 and 5, which hold the game's variables (cleared by new_game from $0345) and the KERNAL's (the key code at $C6, the SHIFT flag at $0543); the stack; the KERNAL's vectors at $0314-$0315, which setup_machine points at irq; and the leftovers of the Novaload loader in pages 1 to 3"
+      ],
+      [
+        "$0AD0",
+        "$0AF7",
+        "not the game's: row 18's colours, the line between the play area and the panel, as the loading screen left them. The game reads none of them; pause_check writes six for PAUSED (paused_colours), and the rest stay unseen under the blank character $D6 that setup_machine puts in every cell of the row"
+      ],
+      [
+        "$0BE8",
+        "$0BFF",
+        "not shown: the 24 bytes after the screen's last colour, which nothing writes; as loaded they hold the pattern of memory nothing had written"
+      ],
+      [
+        "$0FE8",
+        "$108F",
+        "runtime: the switch states and the object tables (switch_state to shot_lo), which draw_room clears for every room. As loaded, $0FE8-$0FFF hold the pattern of memory nothing had written, $1001-$100C the BASIC line 0 SYS6900 that names the game's start, and the rest zeros"
+      ],
+      [
+        "$1AA7",
+        "$1AF3",
+        "not the game's: 77 bytes between the tune's second voice and the code, which nothing reads; after one stray byte they hold the pattern of memory nothing had written"
+      ],
+      [
+        "$3471",
+        "$37BB",
+        "not the game's: 843 bytes between the title's dot path and the strings, which nothing reads, mostly the pattern of memory nothing had written"
+      ],
+      [
+        "$3BC0",
+        "$3BEF",
+        "runtime: characters $78-$7D, the player as drawn, which merge_player rebuilds on every pass of the main loop"
+      ],
+      [
+        "$3FD0",
+        "$3FFF",
+        "runtime: merge_player's work buffer, where copy_under_glyphs puts the scenery behind the player (where characters $FA-$FF would be)"
+      ]
+    ],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": [],
+  "links": {
+    "wiki": {
+      "title": "Mr. Puniverse – Plus/4 World",
+      "url": "https://plus4world.powweb.com/software/Mr_Puniverse"
+    },
+    "manual": {
+      "title": "",
+      "url": ""
+    }
+  }
+}
