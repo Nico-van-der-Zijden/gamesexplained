@@ -653,4 +653,30 @@ const TICK = (() => {
   check('standInGen until: stopped at the JMP\'s target', [r.value.at, M[0xC110], M[0xC111]].join(), [0xC310, 1, 0].join());
 }
 
+// A handler that reads a write-only SID register gets the data bus as the game's read it, faded
+// with the time since the write, not as the port's chips hold it when the replay comes.
+{
+  const { Machine } = require('./machine.js');
+  const ram = new Uint8Array(65536);
+  // $1000: SEI; the vector $FFFE to $1100; a raster interrupt on line $80; CLI; then the loop at $1020: INC $2000; JMP $1020
+  ram.set([0x78, 0xA9, 0x00, 0x8D, 0xFE, 0xFF, 0xA9, 0x11, 0x8D, 0xFF, 0xFF, 0xA9, 0x80, 0x8D, 0x12, 0xD0,
+    0xA9, 0x1B, 0x8D, 0x11, 0xD0, 0xA9, 0x01, 0x8D, 0x1A, 0xD0, 0x58, 0xEA, 0xEA, 0xEA, 0xEA, 0xEA,
+    0xEE, 0x00, 0x20, 0x4C, 0x20, 0x10], 0x1000);
+  // $1100: LDA #$FF STA $D400 (the bus holds $FF); about 20,000 cycles of counting; LDA $D405 (the
+  // bus, faded); STA $2010; LDA #$01 STA $D019; RTI
+  ram.set([0xA9, 0xFF, 0x8D, 0x00, 0xD4, 0xA2, 0x10, 0xA0, 0x00, 0x88, 0xD0, 0xFD, 0xCA, 0xD0, 0xF8,
+    0xAD, 0x05, 0xD4, 0x8D, 0x10, 0x20, 0xA9, 0x01, 0x8D, 0x19, 0xD0, 0x40], 0x1100);
+  // a 6581, whose bus holds a value $1D00 cycles (site/lib/sid.js), well inside the handler's count
+  const m = new Machine({ ram, pc: 0x1000, port: { dir: 0x2F, data: 0x35 }, sid: '6581' });
+  const P = { M: new Uint8Array(65536) };
+  P.irq = function () { P.io.write(0xD400, 0xFF); P.M[0x2010] = P.io.read(0xD405); P.io.write(0xD019, 1); };
+  P.program = function* () {
+    P.io.write(0xD012, 0x80); P.io.write(0xD011, 0x1B); P.io.write(0xD01A, 1);
+    for (;;) { yield { cp: 0x1020 }; P.M[0x2000] = (P.M[0x2000] + 1) & 255; }
+  };
+  const r = new Lockstep({ machine: m, port: P, program: (p) => p.program(), passAt: 0x1020, irqs: { 0x1100: 'irq' }, compare: [[0x2010, 0x2010]] })
+    .run({ passes: 3000 });
+  check('a handler\'s read of the SID\'s faded bus: the game read $' + m.ram[0x2010].toString(16) + ', and so did the port, 3000 passes identical', r.ok && r.passes === 3000 && m.ram[0x2010] !== 0xFF, true);
+}
+
 process.exit(fails ? 1 : 0);

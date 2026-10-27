@@ -66,7 +66,8 @@
 //   goes back to the port's. Its reads of the raster ($D012, and $D011's bit 7) get the values the
 //   game's did, in turn (a read past those, the line the game's handler ended on), and the raster's
 //   interrupt bit is latched. So do its reads of the interrupt flags, $D019, $DC0D and $DD0D, and
-//   of the sprite collisions, $D01E and $D01F, the port's chips' own after those: one handler for
+//   of the sprite collisions, $D01E and $D01F, and of the SID (a write-only register reads the data
+//   bus as it fades, so the value depends on when the read comes), the port's chips' own after those: one handler for
 //   the raster and a CIA's timer, as many games have, takes the branch the game's took, and one
 //   that gathers the collisions gathers the game's. At the next checkpoint or wait's exit, where the two stand at the same
 //   place, a byte an interrupt wrote and the game's main program wrote again afterwards gets back
@@ -649,7 +650,10 @@ class Lockstep {
       }
       const f = q !== null ? flagRegister(a) : -1;
       if (f >= 0) { if (!q.flags.has(f)) q.flags.set(f, { v: [], i: 0 }); q.flags.get(f).v.push(v); }
-      else if (q !== null && m.nest) {
+      // with nest every chip register, and without it the SID's: a read of one of its write-only
+      // registers gives the data bus as it fades (machine.js), which depends on when the read comes,
+      // and a replay comes later
+      else if (q !== null && (m.nest || (a >= 0xD400 && a < 0xD800))) {
         const k = chipRead(a);
         if (k >= 0) { if (!q.chip.has(k)) q.chip.set(k, { v: [], i: 0 }); q.chip.get(k).v.push(v); }
       }
