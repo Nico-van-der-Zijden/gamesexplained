@@ -8,13 +8,13 @@
   'use strict';
   function install(P, H) {
     const M = P.M, { rd, wr, ib } = H;
-    const slide_room_apart = H.call('slide_room_apart', 0x6913);   // go_slide_room_apart $6018
+    const slide_room_apart = H.gen('slide_room_apart', 0x6913);   // go_slide_room_apart $6018
     const draw_panel_numbers = H.call('draw_panel_numbers', 0x5995);
-    const short_delay = H.call('short_delay', 0x5FDA);
+    const short_delay = H.gen('short_delay', 0x5FDA);
     const print_message = H.call('print_message', 0x592E);
     const draw_you_are_dead = H.call('draw_you_are_dead', 0x1A21);  // go_you_are_dead $082A
-    const mission_result_screen = H.call('mission_result_screen', 0x1F3C);
-    const mission_briefing = H.call('mission_briefing', 0x1E3F);
+    const mission_result_screen = H.gen('mission_result_screen', 0x1F3C);
+    const mission_briefing = H.gen('mission_briefing', 0x1E3F);
     const mission_select_screen = H.gen('mission_select_screen', 0x1D23);
     const floor_select_screen = H.gen('floor_select_screen', 0x1AB2);
     const score_ticker = H.call('score_ticker', 0x5AA0);
@@ -82,7 +82,7 @@
       M[0x02C9] = 1;
       yield* messageIdle(0x48DD);
       wr(0xD015, 0);
-      slide_room_apart();
+      yield* slide_room_apart();
       return yield* P.between_missions();
     };
     // the six score digits off the panel at $05D7, as ASCII for the high score check
@@ -91,15 +91,15 @@
       M[0x02C9] = 1;
       draw_panel_numbers();
       yield* messageIdle(0x48F8);
-      short_delay();
+      yield* short_delay();
       wr(0xD404, 0); wr(0xD40B, 0); wr(0xD412, 0); wr(0xD418, 0);
       wr(0xD015, 0);
       scoreDigits();
-      slide_room_apart();
+      yield* slide_room_apart();
       P.sei();
       wr(0xD011, 0x6B);
       draw_you_are_dead();
-      short_delay(); short_delay();
+      yield* short_delay(); yield* short_delay();
       wr(0xD011, 0x6B);
       wr(0x0001, 0x37);
       return 0x0810;                                               // go_hiscore_check
@@ -143,13 +143,13 @@
       M[0x6043] = 0; M[0x4009] = 0; M[0x4012] = 0;
       M[0x400A] = 0x99; M[0x400B] = 0;
       M[0x400C] = M[0x02C2]; M[0x400D] = M[0x02C3]; M[0x400E] = M[0x02C4];
-      short_delay();
+      yield* short_delay();
       wr(0xD015, 0);
-      slide_room_apart();
+      yield* slide_room_apart();
       kernalIrq();
       M[0x400F] = (M[0x400F] + 1) & 255;
       M[0x0836] = M[0x400F];
-      mission_briefing();
+      yield* mission_briefing();
       M[0x4011] = 1;
       return P.mission_prisoner_floor(M[0x400F]);
     };
@@ -158,11 +158,11 @@
       M[0x02C9] = 1;
       scoreDigits();
       yield* messageIdle(0x4A77);
-      short_delay();
+      yield* short_delay();
       wr(0xD015, 0);
-      slide_room_apart();
+      yield* slide_room_apart();
       kernalIrq();
-      mission_result_screen();
+      yield* mission_result_screen();
       return 0x0810;                                               // go_hiscore_check
     };
 
