@@ -130,6 +130,11 @@
 //   a handler being run reads them so too, from what its game's handler read (irqs above). On the
 //   page, outside the lockstep, the port's io gives irqByte: a => M[a]. With nest the lockstep's
 //   io gives the list too, as irqBytes, a Set.
+// - P.cpuPort: a port whose game changes its banking as it goes ($01: the chips at $D000 in play,
+//   RAM under them while a level is built) keeps the processor port's data there, as the game last
+//   wrote it. The game's own code standing in for a routine (standIn, standInGen) then runs on that
+//   banking, and what it writes to $01 comes back in P.cpuPort. Without it a stand-in keeps the
+//   banking it was made with (opts.port, default $35).
 // - hooks: the machine's own stand-ins, by address, as Machine's hooks take them (a KERNAL routine
 //   the game calls and the simulator holds no ROM for): put on the machine for the run and on the
 //   copies irqBytes runs on ahead, which a hook set on the machine alone never reaches. A hook acts
@@ -957,6 +962,9 @@ function simulator(P, opts) {
   }
   return s;
 }
+// the processor port a stand-in runs on: the port's own, when it keeps one (P.cpuPort)
+const portIn = (P, cpu) => { if (typeof P.cpuPort === 'number' && cpu.pdata !== (P.cpuPort & 0xFF)) cpu.portWrite(1, P.cpuPort & 0xFF); };
+const portOut = (P, cpu) => { if (typeof P.cpuPort === 'number') P.cpuPort = cpu.pdata; };
 function regsIn(r) {
   const regs = { d: 0 };
   for (const k of ['a', 'x', 'y', 'n', 'v', 'd', 'i', 'z', 'c']) if (r && r[k] !== undefined) regs[k] = r[k];
@@ -964,16 +972,22 @@ function regsIn(r) {
 }
 const regsOut = cpu => ({ a: cpu.a, x: cpu.x, y: cpu.y, n: cpu.n, v: cpu.v, z: cpu.z, c: cpu.c });
 
+// opts: irq, the routine is an interrupt handler; kernal, with irq, one the KERNAL's entry at $FF48
+// reaches through $0314, which leaves by $EA31 or $EA81 (cpu6502.js's irq); hooks, the simulator's
+// own stand-ins by address, for what the game calls that it holds no code for; port and maxSteps.
 function standIn(P, address, opts = {}) {
   return function (r) {
     const s = simulator(P, opts), cpu = s.cpu;
+    portIn(P, cpu);
     cpu.setRegs(regsIn(r));
-    if (opts.irq) {
-      cpu.sp = s.top;
-      cpu.handler = P.io && P.io.irqBytes && P.io.irqBytes.size ? P.io.irqBytes : null;
-      try { cpu.irq(address, { maxSteps: opts.maxSteps }); } finally { cpu.handler = null; }
-    }
-    else cpu.call(address, { sp: s.top }, { maxSteps: opts.maxSteps });
+    try {
+      if (opts.irq) {
+        cpu.sp = s.top;
+        cpu.handler = P.io && P.io.irqBytes && P.io.irqBytes.size ? P.io.irqBytes : null;
+        try { cpu.irq(address, { maxSteps: opts.maxSteps, kernal: opts.kernal, hooks: opts.hooks }); } finally { cpu.handler = null; }
+      }
+      else cpu.call(address, { sp: s.top }, { maxSteps: opts.maxSteps, hooks: opts.hooks });
+    } finally { portOut(P, cpu); }
     return regsOut(cpu);
   };
 }
@@ -998,12 +1012,16 @@ function pollTable(polls) {
 }
 
 // The game's routine at address, standing in for one of the port's that waits (see the header).
+// opts.until: addresses where the game's code is stopped as though it had returned, for a stretch
+// of a program that goes on by JMP rather than returning (an attract loop that jumps into the game);
+// the result's at is the address it stopped at, or $FFFF for a return.
 function standInGen(P, address, opts = {}) {
   const polls = pollTable(opts.polls);
   return function* (r) { return yield* waiting(P, address & 0xFFFF, opts, polls, r); };
 }
 function* waiting(P, address, opts, polls, r) {
   const s = simulator(P, opts), cpu = s.cpu, M = cpu.m, top = s.top, max = opts.maxSteps || 1e6;
+  const until = new Set(opts.until || []);
   // since the last yield: the addresses of the instructions that read a poll address, the RAM
   // bytes of polls they read, and the routine's own cycles (the first time, from the JSR); and the
   // bytes it has polled, which it reads from P.M from then on
@@ -1015,15 +1033,17 @@ function* waiting(P, address, opts, polls, r) {
     const saved = { a: cpu.a, x: cpu.x, y: cpu.y, sp: cpu.sp, p: cpu.p, pc: cpu.pc };
     own = 0; turned.clear(); read.clear();
     s.top = cpu.sp;
-    try { yield y; } finally { s.top = top; cpu.setRegs(saved); }
+    portOut(P, cpu);
+    try { yield y; } finally { s.top = top; cpu.setRegs(saved); portIn(P, cpu); }
   }
   // the game run on to the start of the line the routine has reached, keeping back spare cycles
   const catchUp = spare => (own - spare >= LINE ? pause({ cycles: own - spare - LINE + 1 }) : []);
+  portIn(P, cpu);
   cpu.setRegs(regsIn(r));
   cpu.sp = top;
   cpu.push(0xFF); cpu.push(0xFE);                    // its RTS lands on $FFFF
   cpu.pc = address;
-  while (cpu.pc !== 0xFFFF) {
+  while (cpu.pc !== 0xFFFF && !(until.size && until.has(cpu.pc))) {
     let op = cpu.fb(cpu.pc, true), e = DATA[op] ? target(cpu, OPCODES[op][1]) : -1;
     if (e >= 0 && polls[e]) {
       if (turned.has(cpu.pc)) {                      // a turn of a polling loop: a bare yield
@@ -1046,7 +1066,8 @@ function* waiting(P, address, opts, polls, r) {
     if (++steps > max) throw new Error('standInGen: the routine at ' + hex(address) + ' ran ' + max + ' instructions without returning (at ' + hex(cpu.pc) + ')');
   }
   yield* catchUp(0);
-  return regsOut(cpu);
+  portOut(P, cpu);
+  return Object.assign(regsOut(cpu), { at: cpu.pc });
 }
 
 // A port's routine that waits, checked against the game's at address, frame by frame (see the

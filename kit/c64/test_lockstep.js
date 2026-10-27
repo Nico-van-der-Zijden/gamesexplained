@@ -616,4 +616,41 @@ const TICK = (() => {
   check('and the joystick changed', seen.size > 1, true);
 }
 
+// A stand-in on the port's banking (P.cpuPort), and an interrupt handler the KERNAL's entry reaches.
+{
+  const M = new Uint8Array(65536), P = { M, cpuPort: 0x34 };
+  P.io = { read: (a) => (a === 0xD020 ? 0xAB : 0), write: () => {} };
+  M[0xD020] = 0x11;
+  // $C000: LDA $D020; STA $C100; LDA #$35; STA $01; RTS
+  M.set([0xAD, 0x20, 0xD0, 0x8D, 0x00, 0xC1, 0xA9, 0x35, 0x85, 0x01, 0x60], 0xC000);
+  const f = standIn(P, 0xC000);
+  f();
+  check('a stand-in on $01 = $34 reads the RAM under the chips', M[0xC100], 0x11);
+  check('the banking it leaves comes back in P.cpuPort', P.cpuPort, 0x35);
+  f();
+  check('the next stand-in runs on the banking the port keeps', M[0xC100], 0xAB);
+  // $C200: INC $C101; PLA; TAY; PLA; TAX; PLA; RTI, a handler for the KERNAL's entry, and $C210: INC $C102; JMP $EA31
+  M.set([0xEE, 0x01, 0xC1, 0x68, 0xA8, 0x68, 0xAA, 0x68, 0x40], 0xC200);
+  M.set([0xEE, 0x02, 0xC1, 0x4C, 0x31, 0xEA], 0xC210);
+  P.cpuPort = 0x36;
+  const r = standIn(P, 0xC200, { irq: true, kernal: true })({ a: 0x12, x: 0x34, y: 0x56 });
+  check('a handler that pulls what $FF48 pushed returns the registers', [r.a, r.x, r.y].join(), [0x12, 0x34, 0x56].join());
+  let acked = 0;
+  standIn(P, 0xC210, { irq: true, kernal: true, hooks: { 0xEA30: () => {} } })({});
+  standIn(P, 0xC210, { irq: true, kernal: true, hooks: { 0xEA31: (c) => { acked++; c.y = c.pull(); c.x = c.pull(); c.a = c.pull(); c.rti(); } } })({});
+  check('a handler that leaves by $EA31 runs, and a hook can stand in for it', [M[0xC101], M[0xC102], acked].join(), [1, 2, 1].join());
+}
+
+// A stand-in that goes on by JMP, stopped where the port takes over (standInGen's until).
+{
+  const M = new Uint8Array(65536), P = { M };
+  P.io = { read: () => 0, write: () => {} };
+  // $C300: INC $C110; JMP $C310 ... $C310: INC $C111; RTS
+  M.set([0xEE, 0x10, 0xC1, 0x4C, 0x10, 0xC3], 0xC300);
+  M.set([0xEE, 0x11, 0xC1, 0x60], 0xC310);
+  const it = standInGen(P, 0xC300, { until: [0xC310] })({});
+  let r; do r = it.next(); while (!r.done);
+  check('standInGen until: stopped at the JMP\'s target', [r.value.at, M[0xC110], M[0xC111]].join(), [0xC310, 1, 0].join());
+}
+
 process.exit(fails ? 1 : 0);
