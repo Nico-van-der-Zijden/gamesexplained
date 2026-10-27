@@ -21,6 +21,8 @@ time, operating system and tool versions.
 - `kit/scripts/build.py`: the tab bar now always closes with Source code and About. This game's `tabs` listed only three pages, and the build dropped the Source and About tabs from the bar without a word, so the listing and the record of its sample could not be reached; the minisite skill says the bar always closes with them. `test_build_next_tab.py` has the case.
 - `kit/c64/INSTALL.md`: the note that recommends `Sound=0` in VICE's `vicerc` for speed now says what sound off breaks. With it off, VICE answers `$D41B` and `$D41C` with the low byte of its cycle counter, which `kit/c64/tools.py` already said, so a game that takes its dice from voice 3's noise gets a ramp. This game's table of random numbers was a ramp in every snapshot, and on it a chest never opens on explosives; the page's chest widget showed that, and the contributor questioned it. A snapshot saved with sound off also fails to restore the SID with sound on ("Cannot initialize SID engine", VICE v3.13.2).
 - `kit/skills/c64/c64-reference`, "SID essentials": a paragraph on `$D41B` as dice. The noise steps every 2^20 / frequency cycles, so a table filled by a tight loop has neighbours that are alike, and odds that combine two neighbouring bytes are not what the code reads as; work them out from a table read with the chip running. This game's chests read as one in eight jewels and one in eight explosives and measure about one in seven and one in ten.
+- `kit/c64/lockstep.js`, for the Play tab's port: a stand-in (the game's own code run for a routine no group has ported) now runs on the banking the port keeps in `P.cpuPort` and writes back what it changes; this game moves `$01` between `$37`, `$36`, `$26`, `$30` and `$00`, and a stand-in fixed at `$35` read the chips where the game read RAM. `standIn` passes `kernal` and `hooks` through, for a handler the KERNAL's entry at `$FF48` reaches, and `standInGen` takes `until`, the addresses where a stretch that goes on by JMP (an attract loop that jumps into the game) is stopped. `test_lockstep.js` has the cases.
+- `kit/c64/lockstep.js`: a replayed interrupt handler gets the SID values the game's handler read, as it already did for the raster, the interrupt flags and the collisions. A write-only SID register reads the data bus, which fades with time and halves with each read, so a replay that reads later reads something else: here a shot that flies off the end of the map reads the SID as tiles, and the game saw air where the port saw a wall, which the explorer's lockstep found. `test_lockstep.js` has a handler that reads the bus after it has faded, and fails without the change.
 
 ## Candidates
 
@@ -67,6 +69,16 @@ nothing compared the one with the other. A line in `70-minisite` beside
 "Draw from the memory the game draws from" would say to take each cell's
 mode from the colour memory the chip reads, and to compare one widget's
 drawing with the recorded frame.
+
+- **`forCycles` runs the game too far while interrupts come (open).** A port's routine that yields
+  `{ cycles: n }` for a long delay (here the 1.3-second `short_delay` at `$5FDA`, 255 yields while
+  the play interrupt ran 138 times) had the lockstep run the game 13,856 cycles past the 1,302,037
+  of its own work, about 100 cycles an interrupt, on into the routine after; the replay then fell
+  in the wrong place and a byte differed three delays later. The lockstep's own counters give the
+  game's work inside the delay as 1,302,031 cycles, so the overrun is in `forCycles`' count while
+  interrupts run through the KERNAL's entry, which reading the code did not explain. The port works
+  round it by yielding `{ cp, cycles }` with a checkpoint at the delay loop's head. A test that runs
+  a long `{ cycles }` yield on a machine whose interrupts go through `$FF48` would show it.
 
 ## Maintainer asks
 
