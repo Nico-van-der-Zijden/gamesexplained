@@ -1,4 +1,4 @@
-## next · 2026-10-27 · Zork I (Apple II) · air with Claude
+## 0.0.256 · 2026-10-27 · Zork I (Apple II) · air with Claude
 
 - **Check the story's decoder against an interpreter that ran it.**
   Zork I is a version 2 story under an Apple II interpreter, and the
