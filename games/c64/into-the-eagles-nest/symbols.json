@@ -722,11 +722,11 @@
   },
   {
    "start": 64789,
-   "end": 64824,
+   "end": 64815,
    "type": "Code"
   },
   {
-   "start": 64825,
+   "start": 64816,
    "end": 64847,
    "type": "Byte"
   },
@@ -816,7 +816,7 @@
   },
   {
    "address": 145,
-   "name": "zero_page_pointers",
+   "name": "zero_page_note",
    "type": "ZeroPagePointer",
    "kind": "user"
   },
@@ -1176,7 +1176,7 @@
   },
   {
    "address": 728,
-   "name": "walk_frame",
+   "name": "footstep_due",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -1320,7 +1320,7 @@
   },
   {
    "address": 759,
-   "name": "figure_moved_this_frame",
+   "name": "figure_moved_this_pass",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -2495,7 +2495,7 @@
    "kind": "auto"
   },
   {
-   "address": 3112,
+   "address": 3114,
    "name": "draw_name_entry_text",
    "type": "UserDefined",
    "kind": "user"
@@ -3180,15 +3180,15 @@
   },
   {
    "address": 5089,
-   "name": "b_13E1",
-   "type": "Branch",
-   "kind": "auto"
-  },
-  {
-   "address": 5091,
    "name": "wait_on_valuables",
    "type": "Branch",
    "kind": "user"
+  },
+  {
+   "address": 5091,
+   "name": "b_13E3",
+   "type": "Branch",
+   "kind": "auto"
   },
   {
    "address": 5093,
@@ -4902,13 +4902,13 @@
   },
   {
    "address": 18162,
-   "name": "bullet_offset_x",
+   "name": "flash_offset_x",
    "type": "Field",
    "kind": "user"
   },
   {
    "address": 18166,
-   "name": "bullet_offset_y",
+   "name": "flash_offset_y",
    "type": "Field",
    "kind": "user"
   },
@@ -7176,13 +7176,13 @@
   },
   {
    "address": 24615,
-   "name": "prisoner_block_x",
+   "name": "prisoner_tile_x",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 24616,
-   "name": "prisoner_block_y",
+   "name": "prisoner_tile_y",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -7536,7 +7536,7 @@
   },
   {
    "address": 25316,
-   "name": "redraw_figure_row1",
+   "name": "redraw_figure_op1_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -7548,7 +7548,7 @@
   },
   {
    "address": 25323,
-   "name": "redraw_figure_row2",
+   "name": "redraw_figure_op2_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -7560,7 +7560,7 @@
   },
   {
    "address": 25332,
-   "name": "redraw_figure_row3",
+   "name": "redraw_figure_op3_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -7572,7 +7572,7 @@
   },
   {
    "address": 25339,
-   "name": "redraw_figure_operands",
+   "name": "redraw_figure_op4_hi",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -9443,12 +9443,6 @@
    "kind": "user"
   },
   {
-   "address": 62282,
-   "name": "KERNAL_OPENj",
-   "type": "Predefined",
-   "kind": "system"
-  },
-  {
    "address": 64789,
    "name": "kernal_restor",
    "type": "Subroutine",
@@ -9457,12 +9451,6 @@
   {
    "address": 64816,
    "name": "kernal_vectors_shadow",
-   "type": "UserDefined",
-   "kind": "user"
-  },
-  {
-   "address": 64825,
-   "name": "kernal_vectors_shadow_rest",
    "type": "UserDefined",
    "kind": "user"
   },
@@ -9505,7 +9493,7 @@
   {
    "address": 2,
    "type": "line",
-   "text": "the low byte of the place in the castle map a lookup is about, worked out by $51CD"
+   "text": "the low byte of the map address being read or written. $51CD works it out for a tile lookup from $02B6 and $02B7 and the room's place in $FA and $FB; the map builder sets it at $6A6B and steps it through the castle map as it writes, and the tile fade at $4CCB points it into the character set at $2000 instead."
   },
   {
    "address": 3,
@@ -9515,12 +9503,12 @@
   {
    "address": 4,
    "type": "line",
-   "text": "the low byte of the block the map builder is copying from"
+   "text": "the low byte of the map builder's source, the block it is copying from; the tile fade at $4CCB uses the same pair as its pointer into the copy of the character set it keeps at $8000"
   },
   {
    "address": 5,
    "type": "line",
-   "text": "the high byte of the block the map builder is copying from"
+   "text": "the high byte of that pointer: the map builder's source block, or the tile fade's place in its copy at $8000"
   },
   {
    "address": 6,
@@ -9530,7 +9518,7 @@
   {
    "address": 7,
    "type": "line",
-   "text": "the high byte of the place the six-by-six tile grid is read from, which $5C55 steps as it works down the rows"
+   "text": "the high byte of the place the six-by-six tile grid is read from, which $5C55 steps up twice and back down twice to reach the six rows (0, 2 and 4, then 5, 3 and 1); the door openers ($50F7) and the grid write-back ($4E77) use the same pointer"
   },
   {
    "address": 8,
@@ -9555,7 +9543,7 @@
   {
    "address": 145,
    "type": "line",
-   "text": "the zero page the game works in: $02 and $03 the map address being read or written, $04 and $05 the map builder's source, $06 and $07 the tile grid's place in the map, which the door openers also walk, $08 and $09 the place a figure has just left, $0A and $0B the sixteen tiles a figure is drawn from, $FA and $FB the room's own place in the map, $FC and $FD the all-purpose pointer, and $FE and $FF the room's offset in tiles"
+   "text": "a note on the zero page; $0091 itself is not used by the game. The zero page the game works in: $02 and $03 the map address being read or written, which the tile fade at $4CCB also points into the character set at $2000; $04 and $05 the map builder's source, and the tile fade's pointer into its copy at $8000; $06 and $07 the tile grid's place in the map, which the door openers also walk; $08 and $09 the place a figure has just left; $0A and $0B the sixteen tiles a figure is drawn from; $C5 the game's flag for the SPACE key; $FA and $FB the room's own place in the map; $FC and $FD the all-purpose pointer; and $FE and $FF the room's offset in tiles, which the floor-select screen also uses as a second pointer into colour memory ($1BFC)."
   },
   {
    "address": 197,
@@ -9625,7 +9613,7 @@
   {
    "address": 682,
    "type": "line",
-   "text": "which way the player is crossing into the next room, and how far the scroll has got: the low three bits hold the direction, 1 to 4, and the top four count the scroll's steps ($4329 sets them, $4377 counts them down). The main loop at $426F reads it to run the scroll, and the four scroll routines step it."
+   "text": "which way the player is crossing into the next room, and how far the scroll has got: the low three bits hold the direction, 1 to 4, and the top four count the scroll's steps ($4329 sets them, $4377 counts them down). The interrupt's player step at $426F, called from $4B86, reads it to run the scroll, and the four scroll routines step it. Bit 3 is kept through every change ($4327, $4384), and while it is set the interrupt skips $426F ($4B7F)."
   },
   {
    "address": 683,
@@ -9640,7 +9628,7 @@
   {
    "address": 685,
    "type": "line",
-   "text": "where the door being opened lies, as an offset from the map address in $06 that the opener at $50F7 uses: 0 when a shot struck the left half of a steel door ($54D4) and 1 the right half ($54B5), so the opener knows where the other half is, and 6 or 0 when the player opens a door with a key ($5097, $50AB)"
+   "text": "where the door being opened lies, as an offset from the map address in $06 that the opener at $50F7 uses: 1 when a shot struck the left half of a steel door, tile $49 ($54B5), and 0 when it struck the right half, tile $4A ($54D4), so the opener finds the right half, $4A, either way; and 6 or 0 when the player opens a door with a key ($5097, $50AB)"
   },
   {
    "address": 686,
@@ -9725,7 +9713,7 @@
   {
    "address": 702,
    "type": "line",
-   "text": "set when \"YOU NEED A LIFT PASS !\" ($507C) or \"THIS DOOR IS LOCKED !\" ($50D8) has been printed, so it is not printed again while the player stays where he is; every step he takes clears it ($4315, $43BD, $4467, $450F). The idle nag at $5A33 does not read it."
+   "text": "set when \"YOU NEED A LIFT PASS !\" ($507C) or \"THIS DOOR IS LOCKED !\" ($50D8) has been printed, so it is not printed again while the player stays where he is. When another message is still on the line, $506C and $50C8 store the message queue's read position $592B here instead, which, unless that is 0, skips the warning rather than keeping it for later. Every step he takes clears it ($4315, $43BD, $4467, $450F). The idle nag at $5A33 does not read it."
   },
   {
    "address": 703,
@@ -9740,7 +9728,7 @@
   {
    "address": 705,
    "type": "line",
-   "text": "counted on each time $5A33 runs, which is in one pass of the interrupt's three-step rota ($4B24), so at most every third frame. It runs round all 256 values, and each time it reaches $80 the nag counters $02BF and $02C0 are stepped."
+   "text": "counted on each time $5A33 runs, which is in one pass of the interrupt's three-step rota ($4B24), so at most every third frame. It runs round all 256 values, and each time it reaches $80 the nag counters are looked at: $02BF is stepped if the stick is not pushed and no message is showing, and cleared otherwise, and $02C0 likewise with the fire button."
   },
   {
    "address": 706,
@@ -9760,7 +9748,7 @@
   {
    "address": 709,
    "type": "line",
-   "text": "points waiting to be added to the score, a plain binary count: the finds add 25, 15 or 40 at a time with binary ADC, and $6F26 adds 1. The ticker at $5AA0 takes one a frame with DEC and adds 1 to the middle score digits, so each is worth a hundred."
+   "text": "points waiting to be added to the score, a plain binary count: the finds add 25, 15 or 40 at a time with binary ADC ($4EC4, $4EEE, $4F48, $5DA6), shooting a figure adds 25 ($687A, $6904), and $6F26 adds 1. The ticker at $5AA0 takes one a frame with DEC and adds 1 to the middle score digits, so each is worth a hundred."
   },
   {
    "address": 710,
@@ -9805,7 +9793,7 @@
   {
    "address": 718,
    "type": "line",
-   "text": "which figure of the list is having its turn this frame"
+   "text": "which figure of the list the figures' turn has reached: each call of $6044 carries on from here, moving up to seven figures, and the list starts again from the first when it reaches $02CF or when $02CC comes round to 3"
   },
   {
    "address": 719,
@@ -9840,7 +9828,7 @@
   {
    "address": 725,
    "type": "line",
-   "text": "which sound to start, read once a frame by $63F3: 1 to 9, and 0 for none. Firing sets 5, a find 1, a shot that hits something it cannot harm 2, a shot at a locked door ($43 to $46, $5312) 3, healing 4, a door opened with a key 6, the explosives 7, a figure shot 8, and something shot open 9."
+   "text": "which sound to start, read once a frame by $63F3: 1 to 9, and 0 for none. Firing sets 5, a find 1, as does a shot at a detonator ($539B), a shot at a door key 2 ($53B9), a shot at a locked door ($43 to $46, $5312) 3, healing 4, a door opened with a key 6, the explosives 7, a figure shot 8, and 9 a shot that opens a door or destroys a pickup or a box of ammunition ($53CA to $5522)."
   },
   {
    "address": 726,
@@ -9860,12 +9848,12 @@
   {
    "address": 729,
    "type": "line",
-   "text": "flips with the player's step so the footsteps alternate between two pitches"
+   "text": "stepped on with each footstep ($67A0), which is every other step of the player; its lowest bit picks one of two pitches, so the footsteps alternate between them"
   },
   {
    "address": 730,
    "type": "line",
-   "text": "counts the player's steps; its lowest bit is the walking frame $02D8"
+   "text": "counts the player's steps. After each step its lowest bit is copied to $02D8, which sets off a footstep, and bit 1 picks the walking pose of the player's sprites ($4BBC)."
   },
   {
    "address": 731,
@@ -9915,12 +9903,12 @@
   {
    "address": 740,
    "type": "line",
-   "text": "counts to 1 and back, so the prisoner moves on every other frame"
+   "text": "counts to 1 and back, so the prisoner moves on every other call of $6C3B; that runs only in the third pass of the interrupt's three-step rota ($4B04, $5B72), so he moves at most once every six frames"
   },
   {
    "address": 741,
    "type": "line",
-   "text": "set while the prisoner is not to move at all, which is how a mission with no prisoner leaves him out"
+   "text": "set to 1 at $41C3 when the floor being entered does not have the prisoner on it, either because the mission has none ($4010 = $FF) or because he is on another floor; while it is set $6C3B returns at once and he does not move. Only the clear of page 2 by $404F, at the start of a mission and after each lift ride, puts it back to 0."
   },
   {
    "address": 742,
@@ -9965,7 +9953,7 @@
   {
    "address": 751,
    "type": "line",
-   "text": "which of the three phases of the interrupt's rota comes next, so the heavy work is spread over three frames"
+   "text": "which of the three phases of the interrupt's rota ran last, 1 or 2, or 0 after the third: $4AF1 steps it before choosing, so the heavy work is spread over three frames. While the room scrolls, $4AEF skips the rota and draws the room every frame, and $4278 holds it at 0."
   },
   {
    "address": 752,
@@ -10030,7 +10018,7 @@
   {
    "address": 2102,
    "type": "line",
-   "text": "which mission the player chose, 1 to 4, set by the mission-select screen and stepped on by the game at $4A45 before the next briefing; read by the mission select and the briefing ($1EB1, $1EBD)"
+   "text": "which mission the player chose, 1 to 4, set by the mission-select screen ($1D32, stepped by $1DE4 and $1DF6) and, before the next briefing, copied in at $4A4B from the game's own mission count $400F, which $4A45 has just stepped on; read by the mission select and the briefing ($1EB1, $1EBD)"
   },
   {
    "address": 2103,
@@ -10085,7 +10073,7 @@
   {
    "address": 2368,
    "type": "line",
-   "text": "draws the character the name-entry strip has under its cursor at row 23, column 10 plus twice the letter's place, taking the character from the strip position $070B and the cursor from $0CD3"
+   "text": "draws the character the name-entry strip has under its pointer at the cursor, row 23, column 10 plus twice the number of characters typed so far ($0CD3). It reads the character from the screen cell $070B, row 19 column 19, the strip's cell under the pointer, and turns the cell's code back into the character by adding 1 and shifting right twice."
   },
   {
    "address": 2397,
@@ -10205,7 +10193,7 @@
   {
    "address": 2953,
    "type": "line",
-   "text": "compares the score at $0819, digit by digit as ASCII, with each of the ten entries in the table at $0D51, twenty bytes apart. On the first entry the score beats, it goes to the name entry at $0BC1; on an equal entry it compares the next digit; otherwise it steps $0829 on by 20 and tries the next, and when that passes $C8 the score made no entry and it returns to the attract loop at $1014. Blanks the display and banks every ROM in on the way in."
+   "text": "compares the score at $0819, digit by digit as ASCII, with each of the ten entries in the table at $0D51, twenty bytes apart. On the first entry the score beats, it goes to the name entry at $0BC1; on an equal digit it compares the next, and a score equal to an entry's does not beat it; otherwise it steps $0829 on by 20 and tries the next, and when that passes $C8 the score made no entry and it returns to the attract loop at $1014. Blanks the display and banks every ROM in on the way in."
   },
   {
    "address": 3009,
@@ -10213,9 +10201,9 @@
    "text": "builds the name-entry screen. Takes $0D off $0829 to point at the entry the score beat, copies the colour memory of the plaque at the top from the tables at $EE00 and $EF00 with the KERNAL banked out, clears rows 9 to 24 with the big alphabet's space, sets the strip's position to $4F half-characters, which puts \"A\" under the pointer, colours rows 8, 19 and 20, and draws the strip and the text. The JSR at $0CD9 then installs the attract interrupt, and it waits for ten characters."
   },
   {
-   "address": 3112,
+   "address": 3114,
    "type": "line",
-   "text": "draws the text of the name-entry screen through the plotter at $0A84, from $0C2A ($0C28 is inside the JSR at $0C27): \"WELL DONE / YOU ARE A REAL HERO\" from $0B0D at row 9, adding a row and a column after its first twenty characters so the second half starts at row 12, column 1; \"ENTER YOUR NAME\" from $0B36 at row 16; the pointer, character $1E, at row 21 column 19, whose lower half $0CA2 rubs out; and the name field from $0B78 at row 23. Each has its own pair of colours."
+   "text": "draws the text of the name-entry screen through the plotter at $0A84, run on into from the strip draw at $0C27 rather than called: \"WELL DONE / YOU ARE A REAL HERO\" from $0B0D at row 9, adding a row and a column after its first twenty characters so the second half starts at row 12, column 1; \"ENTER YOUR NAME\" from $0B36 at row 16; the pointer, character $1E, at row 21 column 19, whose lower half $0CA2 rubs out; and the name field from $0B78 at row 23. Each has its own pair of colours."
   },
   {
    "address": 3283,
@@ -10275,7 +10263,7 @@
   {
    "address": 3628,
    "type": "line",
-   "text": "the high score table's heading, \"TODAYS REAL HEROES\", ASCII ending $FF at $0E3F. $106C reads it from here."
+   "text": "the high score table's heading, \" TODAYS REAL HEROES\" with a space before it, ASCII ending $FF at $0E3F. $106C reads it from here."
   },
   {
    "address": 3648,
@@ -10450,7 +10438,7 @@
   {
    "address": 4442,
    "type": "line",
-   "text": "the high byte of the colour-memory address the icon frame drawing writes. $113A stores $D9 here at $1147 and steps it on at $116F when the row's low byte carries."
+   "text": "the high byte of the colour-memory address the icon frame drawing writes. $113A stores $D9 here at $1149 and steps it on at $116F when the row's low byte carries."
   },
   {
    "address": 4471,
@@ -10500,7 +10488,7 @@
   {
    "address": 4726,
    "type": "line",
-   "text": "copies the frame cells and the pictures of the four valuables out of the play screen's character set at $2000 into the top twenty-four codes of the attract screen's set: eight cells from $2000 to $2F40 (codes $E8 to $EF, the frame), then four cells each from $20A0, $20C0, $2140 and $2330 to $2F80, $2FA0, $2FC0 and $2FE0 (codes $F0 to $FF). So the icons beside PAINTING, VASE, PENDANT and GEMSTONES are the very tiles the player picks up in the castle."
+   "text": "copies the frame cells and the pictures of the four valuables out of the play screen's character set at $2000 into the top twenty-four codes of the attract screen's set: eight cells from $2000 to $2F40 (codes $E8 to $EF, the frame), then four cells each from $20A0, $20C0, $2140 and $2330 to $2F80, $2FA0, $2FC0 and $2FE0 (codes $F0 to $FF). So the icons beside PAINTING, VASE and PENDANT are the very tiles the player picks up in the castle ($14, $18 and $28), and the one beside GEMSTONES is the chest holding jewels, tiles $66 to $69. Nothing jumps here: the credits wait at $125E runs on into it."
   },
   {
    "address": 4768,
@@ -10510,7 +10498,7 @@
   {
    "address": 4788,
    "type": "line",
-   "text": "puts the cell codes of the four valuables' pictures on the valuables screen, two by two, and takes each one's colour from the tile colour table at $8600, the same table the castle's rooms are coloured from"
+   "text": "puts the cell codes of the four valuables' pictures on the valuables screen, two by two, and takes each one's colour from the tile colour table at $8600, the same table the castle's rooms are coloured from. Nothing jumps here: the routine runs on into it from the JSR $113A at $12B1."
   },
   {
    "address": 4959,
@@ -10518,24 +10506,24 @@
    "text": "draws the valuables screen's heading and the four names, PAINTING, VASE, PENDANT and GEMSTONES, each from its own string and at its own row, through the plotter at $0A84"
   },
   {
-   "address": 5091,
+   "address": 5089,
    "type": "line",
-   "text": "holds the valuables screen for about three seconds, polling fire all the way through so a press leaves the attract screens for the game at $1566, which then shows the mission select, then builds the supplies screen"
+   "text": "holds the valuables screen for about three seconds, polling fire all the way through so a press leaves the attract screens for the game at $1566, which then shows the mission select, then builds the supplies screen. The GEMSTONES loop branches here ($13D2) when its string ends."
   },
   {
    "address": 5113,
    "type": "line",
-   "text": "copies the pictures of the four supplies out of the play screen's character set at $2000 into the top codes of the attract screen's set at $2F80, from $20E0, $2100, $2080, $2090 and $2000, so the icons beside COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID are the tiles the player picks up"
+   "text": "copies the pictures of the four supplies out of the play screen's character set at $2000 into the top codes of the attract screen's set: cold food, tiles $1C to $1F, from $20E0 to codes $F0 to $F3; the door key, $10 and $11, from $2080 to $F4 and $F5; the ammunition, $12 and $13, from $2090 to $F8 and $F9; first aid, $20 to $23, from $2100 to $FC to $FF. So the icons beside COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID are the tiles the player picks up. It also copies tile $00 from $2000 into codes $F6, $F7, $FA and $FB, which the supplies screen does not place. Nothing jumps here: the valuables wait runs on into it."
   },
   {
    "address": 5167,
    "type": "line",
-   "text": "builds the supplies screen: draws the icon frames at $113A, places the four icons' cell codes with their colours from the tile colour table at $8600, and draws the heading and the four names"
+   "text": "builds the supplies screen: draws the icon frames at $113A, places the four icons' cell codes with their colours from the tile colour table at $8600, puts the frame cells $EA to $EF round the first-aid picture ($149E to $14B4), and draws the heading and the four names. Nothing jumps here: the icon copy at $13F9 runs on into it."
   },
   {
    "address": 5303,
    "type": "line",
-   "text": "draws the supplies screen's heading \" SUPPLIES \" and the four names, COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID, each at its own row, through the plotter at $0A84"
+   "text": "draws the supplies screen's heading \" SUPPLIES \" and the four names, COLD FOOD, DOOR KEY, AMMUNITION and FIRST AID, each at its own row, through the plotter at $0A84. Nothing jumps here: the cell placement before it runs on into it."
   },
   {
    "address": 5451,
@@ -10740,7 +10728,7 @@
   {
    "address": 7577,
    "type": "line",
-   "text": "the mission-select screen's loop: up steps the mission number on, down steps it back, each wrapping round 1 to 4 and redrawing the digit, and fire shows the briefing at $1E3F and returns the chosen mission in A. Between steps it idles about a quarter of a second."
+   "text": "the mission-select screen's loop: up steps the mission number on, down steps it back, each wrapping round 1 to 4 and redrawing the digit, and fire shows the briefing at $1E3F and returns the chosen mission in A. Between steps it idles about three tenths of a second ($1DD7, in $1DBE)."
   },
   {
    "address": 7614,
@@ -10780,12 +10768,12 @@
   {
    "address": 7743,
    "type": "line",
-   "text": "the briefing the mission select shows when fire is pressed: clears colour memory, which hides what the select screen left, draws \"MISSION\", the number and then one of the two orders - \"BLOW UP THE CASTLE\" when $0836 is 4, \"RESCUE THE PRISONER\" otherwise - and holds it for about two and a quarter seconds. Because the digit drawn is five minus $0836, the screen that reads MISSION 1 is the one that orders the castle blown up."
+   "text": "the mission briefing: shown when fire is pressed on the mission select ($1DA0), and through $0833 at $4A4E when a prisoner has been brought home, for the next mission. It clears colour memory, which hides what was on the screen, draws \"MISSION\", the dashes under it, the number and then one of the two orders - \"BLOW UP THE CASTLE\" when $0836 is 4, \"RESCUE THE PRISONER\" otherwise - and holds it for about two and a quarter seconds. Because the digit drawn is five minus $0836, the screen that reads MISSION 1 is the one that orders the castle blown up."
   },
   {
    "address": 7939,
    "type": "line",
-   "text": "holds the finished briefing on screen for about two and a quarter seconds before play begins: 255 times 255 passes of a short counted loop, with no test of the joystick."
+   "text": "holds the finished briefing on screen for about two and a quarter seconds before play begins: 255 times 255 passes of a short counted loop, with no test of the joystick. Nothing jumps here: the briefing at $1E3F runs on into it."
   },
   {
    "address": 7957,
@@ -10805,7 +10793,7 @@
   {
    "address": 7996,
    "type": "line",
-   "text": "the screen that follows a mission the player finished: blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place"
+   "text": "the screen shown when the castle has been destroyed: its only caller is $4AA0, through $0837, after $4A5C. It blanks the display, puts the screen back on the big alphabet's character set at $2800 in single-colour text, clears colour memory and draws \"WELL DONE !\", \"YOUR MISSION WAS A\" and \"SUCCESS\", each in its own place, then holds it for about fifteen seconds ($1FE9) before returning to $4AA3, which goes to the high score check."
   },
   {
    "address": 8192,
@@ -10850,7 +10838,7 @@
   {
    "address": 8576,
    "type": "line",
-   "text": "more of the play screen's character set: the tiles from $30, which hold the walls and the doors"
+   "text": "more of the play screen's character set: the tiles from $30, among them the two halves of the doors, $43 and $44"
   },
   {
    "address": 9008,
@@ -10865,12 +10853,12 @@
   {
    "address": 9216,
    "type": "line",
-   "text": "the upper half of the play screen's character set, tiles $80 to $FF, which hold the panel's frame and the digits"
+   "text": "the upper half of the play screen's character set, tiles $80 to $FF: the figures up to $C0, the prisoner's sixteen tiles at $D4 to $E3, the empty tile $EF the play screen is cleared to, and the digits $F0 to $F9. The panel's frame is drawn from tiles below $80."
   },
   {
    "address": 9888,
    "type": "line",
-   "text": "the sixteen tiles of the play character set the prisoner is drawn with, rewritten from $F000 every time he moves"
+   "text": "the sixteen tiles of the play character set the prisoner is drawn with, $D4 to $E3. $6E5A copies 128 bytes over them from one of the eight frames at $F000 to $F380 each time it redraws him."
   },
   {
    "address": 9952,
@@ -10935,7 +10923,7 @@
   {
    "address": 12288,
    "type": "line",
-   "text": "the sprite shapes, 64 bytes each, which the pointers at $07F8 name as a number from $C0. The player's four are $C0 to $C3, and $E0 to $EF are the four he is drawn with for each of the four directions."
+   "text": "the sprite shapes, 64 bytes each, which the pointers at $07F8 name as a number from $C0. The player is four sprites: $C0 to $DF are his walking shapes, four for each direction and pose ($4BB8), and $E0 to $EF the four for each direction while he fires ($46A5)."
   },
   {
    "address": 12560,
@@ -10955,7 +10943,7 @@
   {
    "address": 14336,
    "type": "line",
-   "text": "more sprite shapes, numbers $E0 to $EF, the player facing each of the four ways"
+   "text": "more sprite shapes, numbers $E0 to $EF: the player firing, four shapes for each of the four directions, which $46A5 points his sprites at"
   },
   {
    "address": 15360,
@@ -10970,37 +10958,37 @@
   {
    "address": 16393,
    "type": "line",
-   "text": "where the key count waits while the lift's floor select is up ($49C8); $404F copies it back into $02AC when play resumes on the new floor. When a prisoner has been brought home $4A02 sets it to 0, so the next mission starts with no keys."
+   "text": "where the key count waits across a ride in the lift, stored once the floor select has returned ($49C8) so that it outlasts $404F's clearing of the variables; $404F copies it back into $02AC when play resumes on the new floor. When a prisoner has been brought home $4A02 sets it to 0, so the next mission starts with no keys."
   },
   {
    "address": 16394,
    "type": "line",
-   "text": "where the ammunition waits while the lift's floor select is up ($49CE). When a prisoner has been brought home $4A0A sets it to $99 for the next mission."
+   "text": "where the ammunition waits across a ride in the lift, stored once the floor select has returned ($49CE) so that it outlasts $404F's clearing of the variables. When a prisoner has been brought home $4A0A sets it to $99 for the next mission."
   },
   {
    "address": 16395,
    "type": "line",
-   "text": "where the hit count waits while the lift's floor select is up ($49D4). When a prisoner has been brought home $4A0F sets it to 0 for the next mission."
+   "text": "where the hit count waits across a ride in the lift, stored once the floor select has returned ($49D4) so that it outlasts $404F's clearing of the variables. When a prisoner has been brought home $4A0F sets it to 0 for the next mission."
   },
   {
    "address": 16396,
    "type": "line",
-   "text": "where the score's top two digits wait between two missions of the same castle"
+   "text": "where the score's top two digits wait across a ride in the lift, stored once the floor select has returned ($49DA) so that it outlasts $404F's clearing of the variables and between two missions of the same castle ($4A15); $404F copies them back"
   },
   {
    "address": 16397,
    "type": "line",
-   "text": "where the score's middle two digits wait between missions"
+   "text": "where the score's middle two digits wait during a lift ride ($49E0) and between missions ($4A1B)"
   },
   {
    "address": 16398,
    "type": "line",
-   "text": "where the score's bottom two digits wait between missions"
+   "text": "where the score's bottom two digits wait during a lift ride ($49E6) and between missions ($4A21)"
   },
   {
    "address": 16399,
    "type": "line",
-   "text": "the mission the player picked on the select screen, 1 to 4 as the game counts them"
+   "text": "the mission being played, 1 to 4 as the game counts them: the one picked on the select screen ($4969), counted on by one at $4A45 when a prisoner has been brought home"
   },
   {
    "address": 16400,
@@ -11015,7 +11003,7 @@
   {
    "address": 16402,
    "type": "line",
-   "text": "set after a lift ride when the prisoner was on the floor the player left and $02E8 was clear ($49BC), so he came along to the new floor. $4151 then leaves him at the fixed place $C914 set at $4132 instead of where the floor's description put him ($02ED). Cleared at $4963, $49B0 and $4A05."
+   "text": "set after a lift ride when the prisoner was on the floor the player left and $02E8 was clear ($49BC), so he came along to the new floor. $4151 then leaves him at the fixed place $C914 set at $4132 instead of where the floor's description put him ($02ED). Cleared at $4185, $4963, $49B2 and $4A05."
   },
   {
    "address": 16403,
@@ -11025,7 +11013,7 @@
   {
    "address": 16406,
    "type": "line",
-   "text": "the game's own first code, reached from the mission select. Sets the floor in $02A7 to 1, clears the twenty-four characters the attract screens borrowed at $2F40, blacks the border and background, clears $426E, $4011, the four floors' charge flags at $5F9A to $5F9D and $6043, sets the score to six ASCII zeros, and goes to $4946, the top of the game's own loop."
+   "text": "the game's own first code, reached from the attract screens: $1566 jumps to $4000, which jumps here. Sets the floor in $02A7 to 1, clears the twenty-four characters the attract screens borrowed at $2F40, blacks the border and background, clears $426E, $4011, the four floors' charge flags at $5F9A to $5F9D and $6043, sets the score to six ASCII zeros, and goes to $4946, the top of the game's own loop."
   },
   {
    "address": 16463,
@@ -11040,7 +11028,7 @@
   {
    "address": 16550,
    "type": "line",
-   "text": "sets the eight sprites up for play: no expansion, multicolour for the lower four, sprite 4, the flash at the barrel, yellow, the screen at $0400 with the play character set at $2000, multicolour text with the two extra backgrounds, and the three sprites of the castle emblem parked in the panel at fixed places. It then puts the player's four sprites round the player's position in $02DF and $02E0: sprites 0 and 2 on the left, 1 and 3 24 pixels further right, 0 and 1 on the top row, 2 and 3 21 lines below."
+   "text": "sets the eight sprites up for play: no expansion, multicolour for the lower four, sprite 4, the flash at the barrel, yellow, the screen at $0400 with the play character set at $2000, multicolour text with the two extra backgrounds, and the three sprites of the castle emblem parked in the panel at fixed places. It then puts the player's four sprites round the player's position in $02DF and $02E0: sprites 0 and 2 on the left, 1 and 3 24 pixels further right, 0 and 1 on the top row, 2 and 3 21 lines below. Nothing jumps here: the code runs on from $40A3, and the first store uses the A = 0 left by $409C."
   },
   {
    "address": 16776,
@@ -11055,12 +11043,12 @@
   {
    "address": 16923,
    "type": "line",
-   "text": "finishes setting the mission up: draws the status panel ($5DC8) and its numbers ($5995), and on the first mission of a castle starts the sound ($6009) and shows the greeting \"WELCOME TO THE EAGLES NEST.\" from $5694. It then draws the room ($47F1), tells the interrupt to start ($4BF1 = 1), turns all eight sprites on and waits for the interrupt to report back."
+   "text": "finishes setting the mission up: draws the status panel ($5DC8) and its numbers ($5995), and on the first mission of a castle starts the sound ($6009) and shows the greeting \"WELCOME TO THE EAGLES NEST.\" from $5694. It then draws the room ($47F1), tells the interrupt to start ($4BF1 = 1), turns all eight sprites on and waits for the interrupt to report back. Nothing jumps here: the screen clearing at $41C6 runs on into it."
   },
   {
    "address": 16976,
    "type": "line",
-   "text": "the last of the setup, part way through colouring the player's sprites: $424D has coloured sprite 0, and this colours 1 to 3, marks the mission as under way, sets the two shared sprite colours, says which floor the player is on ($5ABD) and drops into the game's main loop at $484A. Nothing jumps here."
+   "text": "the last of the setup, part way through colouring the player's sprites: $424D has coloured sprite 0, and this colours 1 to 3, marks the mission as under way, sets the two shared sprite colours, says which floor the player is on ($5ABD) and drops into $484A, which hands the machine over to the game and runs on into the main loop at $4871. Nothing jumps here."
   },
   {
    "address": 17006,
@@ -11080,7 +11068,7 @@
   {
    "address": 17122,
    "type": "line",
-   "text": "moves the player up a tile when nothing solid is in the way. The four tiles round the player, which $5C46 left in $5C23 to $5C26, must all be below $2D: a tile code of $2D or more is a wall, a door or furniture and stops the move. Otherwise it takes 8 from the player's y, clears the standing-still count, and flips the walking frame. At y = $62 the player is at the top edge of the room, so instead it asks for the room above by setting bits in $02AA."
+   "text": "moves the player up a tile when nothing solid is in the way. The four tiles round the player, which $5C46 left in $5C23 to $5C26, must all be below $2D: a tile code of $2D or more is a wall, a door or furniture and stops the move. Otherwise it takes 8 from the player's y, clears $02BE, so a \"THIS DOOR IS LOCKED !\" or \"YOU NEED A LIFT PASS !\" warning can be printed again, counts the step in $02DA, whose bit 1 picks the walking pose, and copies its lowest bit to $02D8 for the footstep. At y = $62 the player is at the top edge of the room, so instead it asks for the room above by setting bits in $02AA."
   },
   {
    "address": 17198,
@@ -11180,7 +11168,7 @@
   {
    "address": 18293,
    "type": "line",
-   "text": "moves the player's second shot one tile in its direction, the same way as $46FA does the first, except that its right edge is $F0. It counts $02B4 up on every call, before it tests whether a second shot is in the air."
+   "text": "moves the player's second shot one tile in its direction, the same way as $46FA does the first, except that it flips bit 5 of $02AF rather than bit 1 and its right edge is $F0. It counts $02B4 up on every call, before it tests whether a second shot is in the air."
   },
   {
    "address": 18416,
@@ -11200,7 +11188,7 @@
   {
    "address": 18454,
    "type": "line",
-   "text": "the high byte of the map address the room drawer reads, which it rewrites a row at a time"
+   "text": "the high byte of the map address the room drawer reads, which it steps on every second row, when adding $80 to the low byte wraps it to $00"
   },
   {
    "address": 18456,
@@ -11210,7 +11198,7 @@
   {
    "address": 18457,
    "type": "line",
-   "text": "the high byte of the screen address the room drawer writes, which it rewrites a row at a time"
+   "text": "the high byte of the screen address the room drawer writes, which it steps on when adding 40 to the low byte carries"
   },
   {
    "address": 18462,
@@ -11280,17 +11268,17 @@
   {
    "address": 19253,
    "type": "line",
-   "text": "steps the message line four pixels left, and when that has used up a whole character shifts the line's text along ($4BDC) and brings the next character in ($5951)"
+   "text": "steps the message line four pixels left, and when two steps have used up a whole cell shifts the line's text one cell along ($4BDC) and brings the next cell in ($5951). A character of the big alphabet is two cells wide, so it takes four steps."
   },
   {
    "address": 19276,
    "type": "line",
-   "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, runs the sound's frame ($600C, which goes to $63E6) and checks the hits and steps the explosion ($5BBA). Unless the game is paused it counts the flash at the barrel down after a shot is fired, turning sprite 4 yellow at 2 and parking it at (0,0) at 0, and runs the player and the room changes ($426F) unless bit 3 of $02AA says a change is under way. It then places the player's four sprites round the position in $02DF and $02E0 and, unless a shot is pending ($02E3), sets their shape pointers at $07F8 to $07FB from the direction ($02B0), the table at $4BD8 and bit 1 of the step count $02DA."
+   "text": "the interrupt's second band. Puts the screen on the big alphabet at $2800 with the message line's fine scroll in $D016, runs the sound's frame ($600C, which goes to $63E6) and checks the hits and steps the explosion ($5BBA). Unless the game is paused it counts the flash at the barrel down after a shot is fired, turning sprite 4 yellow at 2 and parking it at (0,0) at 0, and runs the player and the room changes ($426F) unless bit 3 of $02AA is set, which nothing in the code sets: the mission start clears it ($4058) and the room changes only keep it. It then places the player's four sprites round the position in $02DF and $02E0 and, unless a shot is pending ($02E3), sets their shape pointers at $07F8 to $07FB from the direction ($02B0), the table at $4BD8 and bit 1 of the step count $02DA."
   },
   {
    "address": 19416,
    "type": "line",
-   "text": "the first sprite shape of the player's walking pose for each direction: $C0 up, $C4 down, $C8 left, $CC right. $4BC4 reads it with the direction less one and adds $10 on every other step."
+   "text": "the first sprite shape of the player's walking pose for each direction: $C0 up, $C4 down, $C8 left, $CC right. $4BC4 reads it with the direction less one and adds $10 while bit 1 of the step count $02DA is set, so the pose changes after every two steps."
   },
   {
    "address": 19420,
@@ -11345,7 +11333,7 @@
   {
    "address": 19754,
    "type": "line",
-   "text": "the sixteen places in the tile grid that the player's own square covers, rows 1 to 4 and columns 1 to 4, which $4D3A tests first for anything at all"
+   "text": "the sixteen places in the tile grid that the player's own square covers, rows 1 to 4 and columns 1 to 4, which $4D3A tests first for a tile with any bit of $38 set"
   },
   {
    "address": 19770,
@@ -11435,7 +11423,7 @@
   {
    "address": 20544,
    "type": "line",
-   "text": "reached from $4D3A when the player has walked onto nothing. If the tile just below his square in the grid's third column ($5C42) is $54 or $55, the lift: with a pass ($02C8 not zero) it sets $02C8 to 2, which the main loop takes him off the floor for, and says \"YOU ARE ENTERING THE LIFT.\"; without one it says \"YOU NEED A LIFT PASS !\" when the message line is idle, the player is moving ($02BA not 0) and $02BE is clear, and sets $02BE. Otherwise it goes on at $508B to the doors a key opens: $43 to his right ($5C33) or $44 to his left ($5C2E), which $50F7 opens, and $45 below him ($5C42) or $46 above ($5C24), which $5192 opens. With a key in hand it takes one off in decimal mode and asks for sound 6; without one it says \"THIS DOOR IS LOCKED !\" on the same conditions as the lift message."
+   "text": "reached from $4D3A when the player has walked onto nothing. If the tile just below his square in the grid's third column ($5C42) is $54 or $55, the lift: with a pass ($02C8 not zero) it sets $02C8 to 2, which the main loop takes him off the floor for, and says \"YOU ARE ENTERING THE LIFT.\"; without one it says \"YOU NEED A LIFT PASS !\" when the message line is idle, the frame counter $02BA (0 to 3) is not 0 and $02BE is clear, and sets $02BE. Otherwise it goes on at $508B to the doors a key opens: $43 to his right ($5C33) or $44 to his left ($5C2E), which $50F7 opens, and $45 below him ($5C42) or $46 above ($5C24), which $5192 opens. With a key in hand it takes one off in decimal mode and asks for sound 6; without one it says \"THIS DOOR IS LOCKED !\" on the same conditions as the lift message."
   },
   {
    "address": 20941,
@@ -11450,7 +11438,7 @@
   {
    "address": 21147,
    "type": "line",
-   "text": "decides what a shot hit, by the tile code. $76 to $C0 are the figures ($6040), $D4 to $E3 the prisoner ($6021), and $30 to $3E, $C1 to $CB and $E7 to $EE go to $6015 (the routine at $67FD), which turns some of them into other tiles for 25 points and sound 8 and leaves the rest alone. $5E to $6D are a chest, $49 and $4A the two halves of a steel door, $47 and $48 a wooden door, and $43 to $46, the doors a key opens, only ask for sound 3. Anything else from $40 to $FB goes to the furniture at $542F. The rest is looked for in the six-by-six grid round the shot, where the nine places listed at $5374 are checked for the code of a pickup."
+   "text": "decides what a shot hit, by the tile code. $76 to $C0 are the figures ($6040), $D4 to $E3 the prisoner ($6021), and $30 to $3E, $C1 to $CB and $E7 to $EE go to $6015 (the routine at $67FD), which turns some of them into other tiles for 25 points and sound 8 and leaves the rest alone. $5E to $6D are a chest, $49 and $4A the two halves of a steel door, $47 and $48 a wooden door, and $43 to $46, the doors a key opens, only ask for sound 3. Anything else from $40 to $FB goes to the furniture at $542F. The rest is looked for in the six-by-six grid round the shot, where the nine places listed at $5374 are checked for the code of a pickup or of a detonator ($FC)."
   },
   {
    "address": 21364,
@@ -11575,7 +11563,7 @@
   {
    "address": 22830,
    "type": "line",
-   "text": "puts a message in the queue for the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\". It copies the characters into the buffer at $8800, masking each to six bits as the big alphabet needs, adds a space after the last, and leaves the write position in $592C. The line is only emptied by the scroll, so a routine that wants to wait for the message to finish watches $592B against $592C."
+   "text": "puts a message in the queue for the line at the bottom of the screen. $FC and $FD point at the text, which is ASCII ending \"@\". It copies the characters into the buffer at $8800, masking each to six bits as the big alphabet needs, adds a space after the last, and leaves the write position in $592C. During play the line is emptied only by the scroll ($5991), so a routine that wants to wait for the message to finish watches $592B against $592C; the mission start sets both to 0 ($40A0)."
   },
   {
    "address": 22865,
@@ -11600,7 +11588,7 @@
   {
    "address": 23200,
    "type": "line",
-   "text": "adds the points waiting in $02C5 to the score, one a frame, so the number on the panel climbs rather than jumps. Each one adds 1 to the score's middle pair of digits in decimal mode, carrying into the top pair, so one waiting point is a hundred on the panel; the bottom pair is never written, which is why every score in this game ends in two zeros."
+   "text": "adds the points waiting in $02C5 to the score, one a frame, so the number on the panel climbs rather than jumps. Each one adds 1 to the score's middle pair of digits in decimal mode, carrying into the top pair, so one waiting point is a hundred on the panel. Nothing adds to the bottom pair: it is only cleared at the mission start ($4058) and copied back from its own saved copy ($4089), which is why every score in this game ends in two zeros."
   },
   {
    "address": 23229,
@@ -11630,7 +11618,7 @@
   {
    "address": 23323,
    "type": "line",
-   "text": "writes the player into the castle map so that the figures can see him. It stamps tile $55 over the sixteen tiles the player's square covers, keeping what was there in the four buffers at $5B0B, $5B0F, $5B13 and $5B17, then runs the figures ($6000) and, unless $02F0 is 1, the prisoner before them ($601E), and puts the sixteen tiles back. With the cheat on ($603F) it then fills the ammunition back to 99. The figures only ever test whether the tile ahead is empty, so this is how walking into the player is noticed at all."
+   "text": "writes the player into the castle map so that the figures can see him. It stamps tile $55 over the sixteen tiles the player's square covers, keeping what was there in the four buffers at $5B0B, $5B0F, $5B13 and $5B17, then runs the figures ($6000) and, unless $02F0 is 1, the prisoner before them ($601E), and puts the sixteen tiles back. With the cheat on ($603F) it then fills the ammunition back to 99. A figure that finds the tile ahead taken compares it with $55 ($6193, $61DC, $6228, $6274) and hits the player on a match, so this is how walking into the player is noticed at all."
   },
   {
    "address": 23482,
@@ -11795,12 +11783,12 @@
   {
    "address": 24359,
    "type": "line",
-   "text": "asks whether the mission's job is done, and it is the routine that ends a mission. The test is the tile just below the player's square in the grid's third column ($5C42), which must read $E4; $02E7 keeps it so the test acts once for each arrival rather than on every pass. On the demolition mission, which is the one with no prisoner ($4010 = $FF), all four floors' charges must have been armed, and then it says \"THE CASTLE IS NOW DESTROYED.\" and asks the main loop for $4A5C. On a rescue mission the prisoner must be on this floor ($4010) and close by ($02E8 clear), and then it says \"WELL DONE.....YOU HAVE RESCUED A PRISONER.\" and asks for $49EC. With the job not done it says \"YOUR MISSION IS NOT YET COMPLETE !\" when the message line is idle, and nothing else happens. What tile $E4 is on the screen is open: it is the only tile of its code on the basement floor, a run of nineteen along the map's last row, and standing the player on it in the emulator did not make the test fire."
+   "text": "asks whether the mission's job is done, and it is the routine that ends a mission. The test is the tile just below the player's square in the grid's third column ($5C42), which must read $E4; $02E7 keeps it so the test acts once for each arrival rather than on every pass. On the demolition mission, which is the one with no prisoner ($4010 = $FF), all four floors' charges must have been armed, and then it says \"THE CASTLE IS NOW DESTROYED.\" and asks the main loop for $4A5C. On a rescue mission the prisoner must be on this floor ($4010) and close by ($02E8 clear), and then it says \"WELL DONE.....YOU HAVE RESCUED A PRISONER.\" and asks for $49EC. With the job not done it says \"YOUR MISSION IS NOT YET COMPLETE !\" when the message line is idle, and nothing else happens. Tile $E4 is the way out: it is found only on the ground floor (floor 1), a gap of nineteen in the outer wall on the map's last row ($CFBC to $CFCE). All three outcomes were seen in the emulator with $E4 written under the player (work/t_e4_ground.py)."
   },
   {
    "address": 24474,
    "type": "line",
-   "text": "one byte a floor, in the order basement, ground, first, second, set to 1 once that floor's charge has been armed. The demolition mission ends when all four are set."
+   "text": "one byte a floor, in the order basement, ground, first, second, set to 1 once that floor's charge has been armed ($5396). The demolition mission can end only when all four are set, and then only when the player reaches tile $E4 ($5F27)."
   },
   {
    "address": 24475,
@@ -11925,7 +11913,7 @@
   {
    "address": 24622,
    "type": "line",
-   "text": "counts the prisoner's steps; bit 1 picks which of the two frames of the walk is drawn"
+   "text": "counts the prisoner's redraws through $6BD8: each step he takes, and the drawing at $41BB when a floor with him on it is set up; bit 1 picks which of the two frames of the walk is drawn"
   },
   {
    "address": 24623,
@@ -11950,7 +11938,7 @@
   {
    "address": 24639,
    "type": "line",
-   "text": "set while the cheat is on. It stops the player taking hits at $63A6, keeps a door key in hand at $5BD1 and fills the ammunition back to 99 at $5BB4, each time the player's stamp ($5B1B) runs."
+   "text": "set while the cheat is on. It stops the player taking hits at $63A6 and fills the ammunition back to 99 at $5BB4 each time the player's stamp ($5B1B) runs, and the mission state ($5BBA), each frame while $02D3 is 0 and the hits are under $50, keeps a door key in hand at $5BD1."
   },
   {
    "address": 24640,
@@ -11965,7 +11953,7 @@
   {
    "address": 24644,
    "type": "line",
-   "text": "the figures' turn, run with the player's stamp ($5B1B) in two frames of every three. It walks the list the map builder left in $8100 to $8500, carrying on from the figure in $02CE, and gives every figure within reach of the room on screen (its corner from ten tiles left of the room to ten right of it, and from ten above to nine below) a step through $612A, until seven figures have been counted; the next call carries on from there. When the list is done, a new pass waits until $02CC has counted to three. A knocked-down figure out of reach is stood up again, one a pass, when its sixteen tiles are all empty. A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
+   "text": "the figures' turn, run with the player's stamp ($5B1B) in two frames of every three. $02CC counts its calls: on three calls in four it carries on through the list the map builder left in $8100 to $8500 from the figure in $02CE, and does nothing once that is back at 0; on the fourth, when $02CC reads 3, it sets $02CC and $02CE to 0 and starts the list again from the first figure, whether or not the walk through it had finished. It gives every figure within reach of the room on screen (its corner from ten tiles left of the room to ten right of it, and from ten above to nine below) a step through $612A, until seven figures have been counted; a call also stops at figures $40 and $80, and the end of the list ($02CF) puts $02CE back to 0. A knocked-down figure out of reach is stood up again when its sixteen tiles are all empty, one each time the walk reaches the end of the list, as $02F7 is cleared only there and at the mission start ($404F). A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
   },
   {
    "address": 24874,
@@ -12020,7 +12008,7 @@
   {
    "address": 25355,
    "type": "line",
-   "text": "turns a figure towards the player. With bit 3 of its kind byte clear it compares the figure's column ($8100) with the player's ($02CA) and sets the low three bits to 4, right, or 3, left; with bit 3 set it compares rows ($8200, $02CB) and sets 2, down, or 1, up. When the two are level on that axis it flips bit 3 and tries the other."
+   "text": "turns a figure towards the player. With bit 3 of its kind byte clear it compares the figure's column ($8100) with the player's ($02CA) and sets the low three bits to 4, right, or 3, left; with bit 3 set it compares rows ($8200, $02CB) and sets 2, down, or 1, up. When the two are level on that axis it tries the other and leaves bit 3 as it was: the column path clears it ($6354) and the row path sets it ($635F), where it already has that value."
   },
   {
    "address": 25450,
@@ -12050,12 +12038,12 @@
   {
    "address": 25676,
    "type": "line",
-   "text": "effect 1, for something found and for a charge armed by a shot: a note at $00C8 on voice 1 with the triangle and pulse waveforms together ($51), attack and decay $5A and no sustain, for $40 frames"
+   "text": "effect 1, for something found and for a charge armed by a shot: a note at $00C8 on voice 1 with the triangle and pulse waveforms together ($51), attack and decay $5A and no sustain, with $40 in the frame count $02D7, so $665A silences it 65 frames after it starts"
   },
   {
    "address": 25718,
    "type": "line",
-   "text": "effect 2, for a shot that hits something that does not matter"
+   "text": "effect 2, asked for only at $53B9, when a shot hits a door key and the game says \"YOU ARE WAISTING AMMO.\""
   },
   {
    "address": 26133,
@@ -12095,7 +12083,7 @@
   {
    "address": 26417,
    "type": "line",
-   "text": "effect 7's tail: each frame it sets voice 1's frequency from voice 3's noise oscillator ($D41B), a random pitch, until 128 frames are left, when it clears the gate so the note dies away; at 0 it silences voice 1"
+   "text": "effect 7's tail: on every frame but one it sets voice 1's frequency from voice 3's noise oscillator ($D41B), the low byte as read and the high byte its low three bits, a random pitch; on the frame the count reads 128 it writes $80 to the control instead, clearing the gate so the note dies away while its pitch goes on changing; at 0 it silences voice 1"
   },
   {
    "address": 26512,
@@ -12260,7 +12248,7 @@
   {
    "address": 32772,
    "type": "line",
-   "text": "the five bytes $C3 $C2 $CD $38 $30, which read as \"CBM80\" with the top bits set, and the filler after them"
+   "text": "the five bytes $C3 $C2 $CD $38 $30, \"CBM\" with bit 7 set on each letter and \"80\" in plain ASCII, and the filler after them"
   },
   {
    "address": 32784,
@@ -12840,12 +12828,7 @@
   {
    "address": 64816,
    "type": "line",
-   "text": "a copy of the KERNAL's table of the vectors it keeps from $0314: IRQ $EA31, BRK $FE66 and NMI $FE47, then the I/O routines' vectors from $F34A, the KERNAL's OPEN. The copy is in the RAM beneath the ROM, where the tape loads nothing, so it was there before the game loaded. No instruction in the game names it."
-  },
-  {
-   "address": 64825,
-   "type": "line",
-   "text": "the rest of that copy of the KERNAL's vector table, in the RAM beneath the ROM; this address is the high byte of the vector at $FD38. No instruction in the game names it."
+   "text": "a copy of the KERNAL's table of the vectors it keeps from $0314, 32 bytes to $FD4F: IRQ $EA31, BRK $FE66 and NMI $FE47, then the I/O routines' vectors from $F34A, the KERNAL's OPEN. The copy is in the RAM beneath the ROM, where the tape loads nothing; it is already there when the game takes over at $0810. No instruction in the game names it."
   }
  ]
 }

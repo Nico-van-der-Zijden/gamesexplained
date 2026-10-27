@@ -115,6 +115,16 @@ VICE answers the noise register with its cycle counter. Running the
 game's own table builder with the sound chip clocked gave noise, and
 odds of about one in seven for jewels and one in ten for explosives.
 
+The sample after the audit still found 5 of 60 wrong, so the
+contributor asked for a second round. Five new checkers, told the kinds
+of error the first round and the sample had found, corrected 78 more, and
+a third sample found 4 of 60, still over the mark. Two of the second
+round's findings came from running something: the floor builder in the
+simulator put tile `$E4` on the ground floor, not the basement, and the
+contributor then asked for `$E4` to be tried in the emulator there. With
+the tile under the player the game ended the mission in all three ways
+the code has, which the first pass had reported as never firing.
+
 ## The port that was a tick late
 
 The music driver, ported to JavaScript for the page, agreed with the

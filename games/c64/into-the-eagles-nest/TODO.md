@@ -17,10 +17,11 @@ the minisite with a player for the tune.
 The listing has been audited, every comment and every claim in
 `facts.md`, on `claude-opus-5-5`, and sampled again afterwards (`facts.md`,
 "The listing's error rate"). Neither carries a maintainer's login: the
-contributor is not a maintainer. The sample after the audit found 5 of 60
-wrong, over the mark of 2, so a maintainer's own sample that also comes
-out over the mark needs a full audit under their login before the game
-can be Silver.
+contributor is not a maintainer. It was audited twice. The sample after the
+first audit found 5 of 60 wrong and the sample after the second 4 of 60,
+both over the mark of 2, so a maintainer's own sample that also comes out
+over the mark needs a full audit under their login before the game can be
+Silver.
 
 Left open by the audit:
 
@@ -37,16 +38,14 @@ Left open by the audit:
 
 ## Questions only a player can answer
 
-- What tile `$E4` is on the screen. `$5F27` tests for it to decide a
-  mission is over, and it is the only tile of its code on the basement
-  floor: a run of nineteen along the map's last row. Standing the player
-  on it with every charge armed did not make the check fire.
+- What the way out looks like in its own room. Tile `$E4`, a gap of
+  nineteen tiles in the ground floor's outer wall, ends a mission when the
+  player stands on it (`facts.md`, "Live tests"); the room has not been
+  walked to.
 - Whether the second castle the manual promises exists. Nothing reads a
   second set of floor descriptions, and the tape carries none: every block
   it loads is accounted for (`orientation.md`, "The loader"). The bytes at
   `$8C00` that looked like its tiles are the title picture's colours.
-- How the demolition mission ends in play. The path through the code is
-  traced; nobody has seen it.
 - Who "Mirai" is, whom C64-Wiki credits with the music.
 
 ## Ideas for a later run
@@ -62,8 +61,9 @@ Left open by the audit:
   turns, but not how it chooses where to go. A stepper that let the reader
   watch a floor's 116 guards take their turns would show whether they
   patrol or wander.
-- **The screens the run never saw**: the end-of-mission screen, the
-  castle's own destruction, and the name entry with a real high score.
+- **The screens the run never saw**: the castle's own destruction, if it
+  has one beyond `THE CASTLE IS NOW DESTROYED.` and the success screen,
+  and the name entry with a real high score.
 - **The chests in order.** The dice restart at every mission (`$4058`
   clears `$02E1`), so within one game the chests should open the same way
   each mission when they are shot in the same order. That is read from the

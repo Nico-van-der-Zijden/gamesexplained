@@ -495,6 +495,28 @@ heading without its leading space, is not counted. 5 of 60 is 8.3 %, with
 a 95 % interval of 3.6 % to 18.1 %, over the mark of 2 in 60. All five were
 corrected, with the five other comments that said the same things.
 
+So every comment was audited again, on claude-opus-5-5, by five more
+checkers that had taken no part, each told the kinds of error found so
+far: 671 checked of 671, and 78 corrected, 77 for a wrong detail and 1 for
+a detail that could not be settled. Among them: the door halves' offsets
+the wrong way round in `$02AD`, a label on an operand byte at `$0C28`,
+another inside the vector table at `$FD39`, which is now typed as bytes,
+tile `$E4` placed on the basement when it is on the ground floor, and
+rates and callers as before. The second audit did not go over `facts.md`
+again.
+
+After it a third sample of 60 of the 670 comments was drawn with seed
+20261028 (`work/verify-3/sample.json`) and given to a checker on
+claude-opus-5-5 that took no part in writing or auditing them. It marked
+4 wrong in a detail, and all 4 held: a pointer said to step down the rows
+when it steps up and back, the values kept across a ride in the lift said
+to be stored while the floor select is up when they are stored after it
+returns, the hand-over at `$484A` called the main loop, and "CBM80"
+said to have bit 7 set on all five bytes when only the letters do. 4 of 60
+is 6.7 %, with a 95 % interval of 2.6 % to 15.9 %, over
+the mark of 2 in 60. All four were corrected, with the three other
+comments that said the same thing.
+
 ## Live tests
 
 - `work/dice_real.py`: the builder at `$67CA`, copied byte for byte, run
@@ -548,8 +570,15 @@ corrected, with the five other comments that said the same things.
 - One frame of play redrawn from memory matches the emulator's own
   picture, 104,448 pixels of 104,448 (`kit/c64/frame.py compare`).
 
-Tried and not settled: the end of the demolition mission. Arming all four
-charges and standing the player on the run of `$E4` tiles that `$5F27`
-tests for did not make the check fire (`work/t_explode3.py`), so what
-that tile is on the screen is open; the path through the code is traced
-but not observed.
+- `work/t_e4_ground.py`: tile `$E4` written under the player's square on
+  the ground floor of `work/play-mission1.vsf`, where `$5F27` reads it
+  (grid place `$5C42`). On the demolition mission with no charge armed the
+  message line says `YOUR MISSION IS NOT YET COMPLETE !` and play goes on.
+  With all four charges armed (`$5F9A`-`$5F9D`) it says `THE CASTLE IS NOW
+  DESTROYED.`, `$02E9` becomes 2, and within five seconds the screen reads
+  `WELL DONE ! YOUR MISSION WAS A SUCCESS`. With the prisoner on this floor
+  and with the player (`$4010` = 1, `$02E8` = 0) it says `WELL DONE.....YOU
+  HAVE RESCUED A PRISONER.`, `$02E9` becomes 1, and the player starts the
+  next mission. `$E4` is a multicolour tile, colour `$1D`, and its nineteen
+  places on the ground floor's last map row stand in the castle's outer
+  wall, between runs of the wall tiles `$41 $42`: it is the way out.

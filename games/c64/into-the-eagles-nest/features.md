@@ -103,11 +103,11 @@ Found in the code, not in the manual.
 
 ## Open questions
 
-- What tile `$E4` is on the screen. `$5F27` tests for it to decide that a
-  mission is over, and it is the only tile of its code on the basement
-  floor, a run of nineteen along the map's last row. Standing the player
-  on it with every charge armed did not make the check fire
-  (`work/t_explode3.py`).
+- Where the way out is drawn in a room. Tile `$E4`, which `$5F27` tests
+  to end a mission, stands in a gap of nineteen tiles in the ground
+  floor's outer wall on the map's last row, and the test was run by
+  writing it under the player (`facts.md`, "Live tests"); the room it is
+  in has not been walked to.
 - Whether the second castle the manual promises exists in this version.
   Nothing reads a second set of floor descriptions.
 - Whether the game has a two-player mode. No source mentions one, and the

@@ -134,6 +134,27 @@
         "claude-opus-5-5"
       ],
       "note": "after the audit, by a checker that took no part in it; made on the contributor's run, not by a maintainer"
+    },
+    {
+      "step": "audit",
+      "checked": 671,
+      "of": 671,
+      "fixed": 78,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "the comments again, by five new checkers told the kinds of error found; made on the contributor's run, not by a maintainer"
+    },
+    {
+      "step": "sample",
+      "size": 60,
+      "wrong": 4,
+      "fixed": 4,
+      "seed": 20261028,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "after the second audit, by a checker that took no part in it; made on the contributor's run, not by a maintainer"
     }
   ],
   "kit_version": "0.0.244",
