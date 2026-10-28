@@ -221,16 +221,6 @@
   },
   {
    "start": 30015,
-   "end": 30020,
-   "type": "Code"
-  },
-  {
-   "start": 30021,
-   "end": 30023,
-   "type": "Undefined"
-  },
-  {
-   "start": 30024,
    "end": 30505,
    "type": "Code"
   },
@@ -406,16 +396,6 @@
   },
   {
    "start": 35138,
-   "end": 35281,
-   "type": "Code"
-  },
-  {
-   "start": 35282,
-   "end": 35285,
-   "type": "Undefined"
-  },
-  {
-   "start": 35286,
    "end": 37196,
    "type": "Code"
   },
@@ -2253,6 +2233,12 @@
    "address": 30015,
    "name": "sfx_frame",
    "type": "Subroutine",
+   "kind": "user"
+  },
+  {
+   "address": 30021,
+   "name": "sfx_clear_entry",
+   "type": "UserDefined",
    "kind": "user"
   },
   {
@@ -9776,6 +9762,11 @@
    "text": "the sound effects' step, called from the play interrupt (at $888A): sets the volume to 15 ($7548), then runs the effects player ($756A)."
   },
   {
+   "address": 30021,
+   "type": "line",
+   "text": "jmp $754E, an entry to the effects' reset that no instruction calls (the game calls $754E itself)"
+  },
+  {
    "address": 30024,
    "type": "line",
    "text": "sets the SID's volume to 15 with the filter off ($D418 = $0F)."
@@ -10979,6 +10970,11 @@
    "address": 35253,
    "type": "line",
    "text": "everything in a pass of play but the monsters: $9772, $9925, $9B4F, $A43D; stores a random number from 1 to 4 in the table at $9C12 at the place $A91E, which the next city's choice and other random choices read; and adds the monsters' points owed to their scores ($93AE)."
+  },
+  {
+   "address": 35282,
+   "type": "line",
+   "text": "inc $8032 and rts, four bytes no instruction reaches"
   },
   {
    "address": 35286,
