@@ -1,4 +1,4 @@
-## next · 2026-10-28 · Green Beret (C64) · air with Claude
+## 0.0.260 · 2026-10-28 · Green Beret (C64) · air with Claude
 
 - **Test a sound driver from its source text alone.** Green Beret's
   `createDriver` read the hi-score tune's bytes from a constant beside
