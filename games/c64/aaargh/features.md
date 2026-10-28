@@ -30,8 +30,8 @@ Sources:
 
 | Feature | Status | Where |
 |---|---|---|
-| Two monsters, the ogre and the lizard (the manual's dragon); the title shows a best score for each | live (the title; a game started with one fire press is the lizard's) | title screen, rows 10-14 |
-| Joystick in port 2 | live | |
+| Two monsters, the ogre and the lizard (the manual's dragon); the title shows a best score for each | live | title screen, rows 10-14 |
+| Joystick in port 2 | differs: fire on port 2 starts the lizard, fire on port 1 the ogre (live; the check is at `$B187`). Which port then steers the ogre is open | `$B187` |
 | Up moves into the screen, down out of it, left and right along it | live (up and left from `work/play-city1.vsf`) | |
 | Fire with the stick central breathes flame, which starts when the stick is released | live (fire held 0.6 s from standing: the score went from 0 to 10) | |
 | Fire with a direction punches: up high, forward mid, down low or picks up an object; facing into or out of the screen, up punches and down picks up | open (forward scored 60 from standing; high and low scored nothing there) | |
@@ -52,10 +52,15 @@ Sources:
 
 Found in the code, not in the manual.
 
+| Feature | Status | Where |
+|---|---|---|
+| A hidden list of names on the title: bands, clubs and people (WINDOWPAINS, FLOODLANDS, NEW ORDER, MACHESTER, HACIENDA, THE VENUE, SUICIDE, RENTBOYS, ... PERFECT WAY THE ...) copied 11 characters at a time to the top left of the screen every 32 frames, in black on black | live | text `$9D9F`, copy `$B13E` |
+| Holding 1, ←, CTRL and 2 together on the title shows the list in white and renames the monsters MYRTLE (the lizard) and DILL (the ogre) | live (`work/egg.py`) | `$B161`, names `$B347` and `$B34D` |
+| A message in the program, never shown: "I'M AT PAINS TO SEE...SEE THROUGH THOSE WINDOWPAINS...SEE RENTBOYS AND GOTO 16384." | open (what reads it, if anything; `$4000` holds what looks like power-up fill) | `$B37D` |
+
 ## Open questions
 
-- Which monster the player gets, and whether the title lets them choose
-  one: one press of fire gave the lizard.
+- Which joystick steers the ogre once it is chosen with port 1's fire.
 - What the two bars at the top are (health and fire power, by the manual's
   list, is a guess until the code says).
 - Whether all twelve cities and the volcano are in the one load

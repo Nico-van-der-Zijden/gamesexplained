@@ -12,8 +12,8 @@ version 1. The first block on the tape is a standard KERNAL header: type 3
 `AARGH!` with two A's (`work/tapheader.py`). The title screen and the
 cover spell the game AAARGH!, with three.
 
-**This is not the Melbourne House release.** It is a crack by New Order,
-saved with a freezer cartridge and put back on tape:
+**This is not the Melbourne House release.** It is a crack, saved with a
+freezer cartridge and put back on tape. Who made it is not known:
 
 - The program that the tape's turbo loader leaves at `$0801` is a BASIC
   line, `SYS2075 TRILOGIC V3.1`: the restart routine of Trilogic's Expert
@@ -25,10 +25,12 @@ saved with a freezer cartridge and put back on tape:
   stack page (`$01E1`). The last stub (`$042F`) sets `$01` = `$36`, the
   stack pointer to `$F2`, the flags to `$21` and `$D011` to `$1B`, and
   jumps to `$B728`: the game was frozen there.
-- Row 0 of the screen in the frozen image (`$C800`) reads `NEW ORDER`
-  above the game's own title credits. New Order was a cracking group. The
-  game's own start-up does not draw it: restarted at its entry (below),
-  the title has an empty top row.
+- Row 0 of the screen in the frozen image (`$C800`) reads `NEW ORDER`.
+  That is the game's own text, not a cracker's: the title copies a list
+  of names from `$9D9F` (bands, clubs and people: NEW ORDER, MACHESTER,
+  HACIENDA, THE VENUE, ...) into the top left of the screen, 11
+  characters every 32 frames, in black on black (`$B13E`). The freezer
+  caught it at NEW ORDER.
 
 Two things follow (`kit/skills/c64/c64-reference`, "Freezer-cartridge
 backups"):
@@ -46,8 +48,8 @@ backups"):
   Restarted there with the stack as `SYS` leaves it, the game reaches the
   call at `$B09F` again in under a second, and all of RAM then matches the
   frozen image except 170 bytes of working state (the interrupt vector,
-  counters, the sprite pointers and screen at `$C800`-`$CD3F`, and the
-  `NEW ORDER` text, which the start-up clears).
+  counters, the sprite pointers and screen at `$C800`-`$CD3F`, among them
+  the `NEW ORDER` the title had written, which the start-up clears).
 
 A second crack was compared, from the contributor's `AAARGH.D64` (one
 file, `AARGH!+4  /X-RAY`, 155 blocks, loading at `$0801`): an intro by
@@ -60,8 +62,9 @@ and all of them but one are working state that also changes between the
 tape's own states. The one is `$2C1B`, a byte of graphics that no
 instruction names: `$01` on the disk and `$FC` on the tape, where the
 bytes around it repeat `0F C3 FC`. So both cracks come from the same
-frozen game, the tape's copy is the cleaner one, and `NEW ORDER` is not
-in the disk's memory.
+frozen game, and the tape's copy is the cleaner one. The disk's top row
+reads `FECT WAY T`: its freezer caught the same list of names at
+PERFECT WAY.
 
 The Melbourne House release itself was not available to compare with, so
 a change the crackers made to the code cannot be ruled out. None has been
