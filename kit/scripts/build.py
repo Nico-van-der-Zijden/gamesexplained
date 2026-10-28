@@ -1525,7 +1525,24 @@ def lib_versions(out_root):
 
 def version_lib(out_root):
     """Append ?v=<content hash> to every reference to a lib file, so a redeploy is never
-    paired with a stylesheet or script the browser cached from the previous one."""
+    paired with a stylesheet or script the browser cached from the previous one. A lib script
+    that loads another from beside itself (new URL('bounce.js', its own address)) names it with
+    its hash too, the one it loads first, so that a change to bounce.js changes sid.js's hash."""
+    lib = os.path.join(out_root, "lib")
+    for _ in range(8):                          # a chain of such loads is a file or two deep
+        ver = lib_versions(out_root)
+        if not ver:
+            break
+        url = re.compile(r"""(new URL\(\s*['"])(""" + "|".join(re.escape(f) for f in ver) + r""")(?:\?v=[0-9a-f]+)?(['"])""")
+        changed = False
+        for f in ver:
+            if f.endswith(".js"):
+                p = os.path.join(lib, f); src = open(p, encoding="utf-8").read()
+                new = url.sub(lambda m: f"{m.group(1)}{m.group(2)}?v={ver[m.group(2)]}{m.group(3)}", src)
+                if new != src:
+                    open(p, "w", encoding="utf-8").write(new); changed = True
+        if not changed:
+            break
     ver = lib_versions(out_root)
     pat = re.compile(r'(lib/(' + "|".join(re.escape(f) for f in ver) + r'))(["\'])')
     n = 0
