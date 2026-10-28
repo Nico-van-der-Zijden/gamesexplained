@@ -246,8 +246,18 @@
   },
   {
    "start": 43926,
-   "end": 43958,
+   "end": 43939,
+   "type": "Byte"
+  },
+  {
+   "start": 43940,
+   "end": 43942,
    "type": "Undefined"
+  },
+  {
+   "start": 43943,
+   "end": 43958,
+   "type": "Byte"
   },
   {
    "start": 43959,
@@ -5426,15 +5436,15 @@
   },
   {
    "address": 42039,
-   "name": "s_A437",
+   "name": "others_frame",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42045,
-   "name": "s_A43D",
+   "name": "others_move",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42051,
@@ -5444,9 +5454,9 @@
   },
   {
    "address": 42054,
-   "name": "s_A446",
+   "name": "hornets",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42066,
@@ -5606,9 +5616,9 @@
   },
   {
    "address": 42445,
-   "name": "j_A5CD",
+   "name": "flyer",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42482,
@@ -5702,9 +5712,9 @@
   },
   {
    "address": 42814,
-   "name": "j_A73E",
+   "name": "flyer_drop",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42892,
@@ -5738,9 +5748,9 @@
   },
   {
    "address": 42927,
-   "name": "s_A7AF",
+   "name": "drop_clear",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 42941,
@@ -5774,9 +5784,9 @@
   },
   {
    "address": 43022,
-   "name": "s_A80E",
+   "name": "drop_draw",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43061,
@@ -5804,9 +5814,9 @@
   },
   {
    "address": 43130,
-   "name": "s_A87A",
+   "name": "flyer_column",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43148,
@@ -5822,45 +5832,45 @@
   },
   {
    "address": 43171,
-   "name": "a_A8A3",
+   "name": "flyer_turn",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43172,
-   "name": "a_A8A4",
+   "name": "drop_falling",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43173,
-   "name": "a_A8A5",
+   "name": "drop_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43174,
-   "name": "a_A8A6",
+   "name": "drop_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43175,
-   "name": "a_A8A7",
+   "name": "drop_addr_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43176,
-   "name": "a_A8A8",
+   "name": "drop_addr_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43177,
-   "name": "j_A8A9",
+   "name": "people",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43178,
@@ -5912,9 +5922,9 @@
   },
   {
    "address": 43294,
-   "name": "a_A91E",
+   "name": "random_index",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43331,
@@ -5966,9 +5976,9 @@
   },
   {
    "address": 43427,
-   "name": "a_A9A3",
+   "name": "floor_char",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43434,
@@ -5990,9 +6000,9 @@
   },
   {
    "address": 43444,
-   "name": "s_A9B4",
+   "name": "cannon",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43469,
@@ -6122,9 +6132,9 @@
   },
   {
    "address": 43749,
-   "name": "s_AAE5",
+   "name": "shell_move",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43751,
@@ -6164,9 +6174,9 @@
   },
   {
    "address": 43897,
-   "name": "s_AB79",
+   "name": "shell_cell",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43908,
@@ -6182,51 +6192,51 @@
   },
   {
    "address": 43926,
-   "name": "f_AB96",
+   "name": "cannon_frames_a",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43933,
-   "name": "f_AB9D",
+   "name": "cannon_frames_b",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43940,
-   "name": "a_ABA4",
+   "name": "shell_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43941,
-   "name": "a_ABA5",
+   "name": "shell_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43942,
-   "name": "a_ABA6",
+   "name": "shell_way",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43943,
-   "name": "f_ABA7",
+   "name": "drop_mask",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43951,
-   "name": "f_ABAF",
+   "name": "drop_pattern",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43959,
-   "name": "s_ABB7",
+   "name": "cave_fight",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 43969,
@@ -6248,9 +6258,9 @@
   },
   {
    "address": 44034,
-   "name": "s_AC02",
+   "name": "cave_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44042,
@@ -6296,9 +6306,9 @@
   },
   {
    "address": 44193,
-   "name": "s_ACA1",
+   "name": "cave_step",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44195,
@@ -6452,9 +6462,9 @@
   },
   {
    "address": 44545,
-   "name": "j_AE01",
+   "name": "cave_computer",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44583,
@@ -6482,15 +6492,15 @@
   },
   {
    "address": 44622,
-   "name": "s_AE4E",
+   "name": "cave_draw",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44674,
-   "name": "s_AE82",
+   "name": "cave_win",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44680,
@@ -6584,9 +6594,9 @@
   },
   {
    "address": 44829,
-   "name": "a_AF1D",
+   "name": "cave_hits",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44830,
@@ -6596,9 +6606,9 @@
   },
   {
    "address": 44831,
-   "name": "a_AF1F",
+   "name": "cave_saved",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44832,
@@ -6608,21 +6618,21 @@
   },
   {
    "address": 44833,
-   "name": "f_AF21",
+   "name": "cave_moves",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44835,
-   "name": "s_AF23",
+   "name": "title",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44856,
-   "name": "s_AF38",
+   "name": "title_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 44889,
@@ -6662,9 +6672,9 @@
   },
   {
    "address": 45212,
-   "name": "j_B09C",
+   "name": "title_loop",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 45227,
@@ -6758,9 +6768,9 @@
   },
   {
    "address": 45479,
-   "name": "s_B1A7",
+   "name": "title_frame",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 45489,
@@ -6805,6 +6815,12 @@
    "kind": "auto"
   },
   {
+   "address": 45518,
+   "name": "irq_title_top",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 45525,
    "name": "b_B1D5",
    "type": "Branch",
@@ -6815,6 +6831,12 @@
    "name": "b_B1E0",
    "type": "Branch",
    "kind": "auto"
+  },
+  {
+   "address": 45604,
+   "name": "irq_title_monsters",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 45606,
@@ -9438,6 +9460,361 @@
    "address": 39945,
    "type": "line",
    "text": "the sprite pointers of the punching arm on the right, by the punch timer"
+  },
+  {
+   "address": 42039,
+   "type": "line",
+   "text": "the frame work for what is not a monster: the cannon ($A9B4), then the people ($A8A9)."
+  },
+  {
+   "address": 42045,
+   "type": "line",
+   "text": "the hornets ($A446), then the white flyer ($A5CD)."
+  },
+  {
+   "address": 42054,
+   "type": "line",
+   "text": "the first band's sprites 0 and 1, two hornets. Counts the animation step $8212 round 0 to 3 and the two counts at $A452 and $A456 down; then each hornet that is out ($823B,x) flies 4 pixels a pass across, left or right by $8237,x, and 2 lines down to the line in $A4E9 (or up, once $8239,x is set). There it looks at the monster higher on the screen: within two columns, a monster breathing fire ($82BB,x of 2 or more) burns it, scoring 5 with sound 2, and the hornet dies ($823D,x counts to 5 and it is taken off); otherwise it stings, hurting the monster twice ($931E) with sound 5. Either way it then flies up. A hornet that leaves the screen is taken off; one that is not out is sent in at random ($9C12) at the line in $A4E9, from the left or the right edge."
+  },
+  {
+   "address": 42066,
+   "type": "line",
+   "text": "a count kept in this load's operand, set to $50 when a city is picked ($8477) and counted down each pass by $A446"
+  },
+  {
+   "address": 42070,
+   "type": "line",
+   "text": "a count kept in this load's operand, set to $50 when a city is picked ($8474), counted down by $A446 while $A452 is 0 and it is 5 or more"
+  },
+  {
+   "address": 42217,
+   "type": "line",
+   "text": "the lowest line the hornets come down to, kept as the operand of the compare at $A4E8; $9B68 writes it (the second band's line less $15), and the white flyer turns at it too"
+  },
+  {
+   "address": 42445,
+   "type": "line",
+   "text": "the first band's sprite 2, white. Sent in at random from $9C12 above one of the monsters, it zigzags across two pixels a pass, turning at random times ($A8A3) and at the screen's edges, and comes down 3 lines a pass to the line in $A4E9, then climbs back 3 a pass. While none is falling it may drop something ($A73E). Near the bottom of its dive, a monster breathing fire at it scores 5 and sends it off (sound 2, $823F)."
+  },
+  {
+   "address": 42613,
+   "type": "line",
+   "text": "the white flyer's way across, kept in this load's operand: 1 to the right, $FF to the left"
+  },
+  {
+   "address": 42731,
+   "type": "line",
+   "text": "the white flyer's step up or down, kept in this add's operand: 3 down, $FD up"
+  },
+  {
+   "address": 42814,
+   "type": "line",
+   "text": "starts the white flyer's dropping when none is falling ($A8A4 = 0): with random chances from $9C12, at the flyer's column ($A87A) and a row below it, and then moves it ($A7AF, $A7C1)."
+  },
+  {
+   "address": 42927,
+   "type": "line",
+   "text": "puts back the character the dropping covered ($A7BD) at its place ($A8A7/$A8A8 + $A8A5)."
+  },
+  {
+   "address": 42941,
+   "type": "line",
+   "text": "the character under the dropping, kept in this load's operand by $A837"
+  },
+  {
+   "address": 42945,
+   "type": "line",
+   "text": "the dropping falls a row; at the bottom of the play field it stops ($A874); a monster just below it and within four columns is hurt twice ($931E), with sound 5, and it stops."
+  },
+  {
+   "address": 43022,
+   "type": "line",
+   "text": "draws the dropping at its place: makes character $9E from the character there (or the mark $AF over a person or a pickup), cut and filled with the pattern at $ABA7 and $ABAF, at $C4F0, and writes $9E to the cell."
+  },
+  {
+   "address": 43130,
+   "type": "line",
+   "text": "the white flyer's column on the screen, its x divided by 8 (with 32 added when its x high bit is set, up to $28), less 2, into $A88C."
+  },
+  {
+   "address": 43148,
+   "type": "line",
+   "text": "the white flyer's column, kept in this load's operand by $A87A"
+  },
+  {
+   "address": 43171,
+   "type": "line",
+   "text": "counts down to the white flyer's next turn, set at random from $9C12"
+  },
+  {
+   "address": 43172,
+   "type": "line",
+   "text": "set while the white flyer's dropping is falling"
+  },
+  {
+   "address": 43173,
+   "type": "line",
+   "text": "the column the dropping falls in"
+  },
+  {
+   "address": 43174,
+   "type": "line",
+   "text": "the row the dropping has reached"
+  },
+  {
+   "address": 43175,
+   "type": "line",
+   "text": "the low byte of the screen address of the dropping's row"
+  },
+  {
+   "address": 43176,
+   "type": "line",
+   "text": "the high byte of the screen address of the dropping's row"
+  },
+  {
+   "address": 43177,
+   "type": "line",
+   "text": "the eight people, one pass in two ($A8AA): each that is out ($821F,x) and standing on the city's floor character ($A9A3), or on a few others, takes a random step ($9C12) left, right, up or down if the cell there is floor too, and is drawn as character $96 with the floor put back behind it. One that has been eaten ($821F,x = 2) is taken off and the floor put back. One whose cell is no longer floor is lost."
+  },
+  {
+   "address": 43178,
+   "type": "line",
+   "text": "which pass in two the people move on, kept in this load's operand"
+  },
+  {
+   "address": 43294,
+   "type": "line",
+   "text": "the place in the table of random numbers at $9C12, kept in this load's operand: nearly every random choice counts it on one and reads the table there"
+  },
+  {
+   "address": 43427,
+   "type": "line",
+   "text": "the city's floor character, kept in this load's operand: $853E writes it from $B6C6. The people walk on it, the monsters walk on it, and the people's cells are put back to it"
+  },
+  {
+   "address": 43444,
+   "type": "line",
+   "text": "the second band's sprites 6 and 7, brown, a cannon on the ground with health $8242 (14 at the start of a city). While its health is 7 or more it rolls towards a monster within 30 pixels or back and forth ($8246, $8247), and fires at random: a shell ($ABA4-$ABA6) that flies up, left, right or down from it a cell a pass, hurting a monster it reaches ($931E) with sound 5. Below 7 its frames show it breaking up, a step a pass, and at 1 it is gone (sound 3). Its frames are the pointers at $AB96 and $AB9D by $8240."
+  },
+  {
+   "address": 43547,
+   "type": "line",
+   "text": "which way the cannon rolls, kept in this load's operand: $AA1A changes it each time $8246 runs out"
+  },
+  {
+   "address": 43680,
+   "type": "line",
+   "text": "the character under the cannon's shell, kept in this load's operand"
+  },
+  {
+   "address": 43749,
+   "type": "line",
+   "text": "the cannon's shell: hurts a monster within four columns of it and on its row or the two below ($931E, sound 5) and stops; otherwise draws it as character $9F, made from the character under it with the pattern at $ABA7 and $ABAF, at $C4F8. It stops on the flyer's dropping."
+  },
+  {
+   "address": 43897,
+   "type": "line",
+   "text": "the screen address of the row of the cannon's shell ($ABA5) in $FB/$FC, with its column in Y."
+  },
+  {
+   "address": 43926,
+   "type": "line",
+   "text": "the cannon's left sprite's pointer by its frame $8240, 0 for none"
+  },
+  {
+   "address": 43933,
+   "type": "line",
+   "text": "the cannon's right sprite's pointer by its frame"
+  },
+  {
+   "address": 43940,
+   "type": "line",
+   "text": "the column of the cannon's shell, 0 when there is none"
+  },
+  {
+   "address": 43941,
+   "type": "line",
+   "text": "the row of the cannon's shell"
+  },
+  {
+   "address": 43942,
+   "type": "line",
+   "text": "which way the shell flies: 1 up, 2 right, 3 down, any other left"
+  },
+  {
+   "address": 43943,
+   "type": "line",
+   "text": "the mask the dropping's and the shell's character are cut with, a square hole of four by four in the middle"
+  },
+  {
+   "address": 43951,
+   "type": "line",
+   "text": "the pattern put in the hole, in multicolour pairs of the second colour"
+  },
+  {
+   "address": 43959,
+   "type": "line",
+   "text": "the end of a city whose egg was taken ($9687 = 2): the fight in the cave. Sets it up ($AC02), then every four frames runs a step of it ($ACA1), draws the monsters ($AE4E) and adds to the scores, until one monster has been hit five times ($ABE1). The winner then walks to the middle with the egg ($AE82). Afterwards it gives back the city type and the monsters' $80E9 as they were, stops the music and the sound effects."
+  },
+  {
+   "address": 44001,
+   "type": "line",
+   "text": "set when the fight in the cave is over, kept as the operand of this load"
+  },
+  {
+   "address": 44034,
+   "type": "line",
+   "text": "sets up the fight in the cave with the screen off: picks the next city ($8444) and keeps its type in $80A7, builds city type 9, the cave ($853E, with $8691 set so that the music plays and the buildings are left out), keeps each monster's $80E9 in $AF1F and gives it 1, puts the lizard at column 8 and the ogre at column $1B on row $13, clears the hits and the sound requests, starts tune 2 and draws the egg ($8E-$91) between them."
+  },
+  {
+   "address": 44193,
+   "type": "line",
+   "text": "a step of the fight for each monster: a monster played by a person reads its stick, the other is played by the computer ($AE01). Left and right walk, as far as the other monster; fire punches; up ducks ($82BF,x = 14). A punch that finds the other within two columns and not ducking counts a hit on it ($AF1D,x), shakes it ($821D,x) and flashes the border. On the fifth hit the other monster wins, scores 50 if it is played by a person, and the fight is over."
+  },
+  {
+   "address": 44531,
+   "type": "line",
+   "text": "the ogre's frames are eight on from the lizard's in the fight's animation"
+  },
+  {
+   "address": 44545,
+   "type": "line",
+   "text": "plays a monster nobody controls in the fight: with random chances from $9C12 it walks towards the other or stands, punches when the other is within two columns, or ducks; the move goes into $8A61 as a stick would."
+  },
+  {
+   "address": 44622,
+   "type": "line",
+   "text": "draws the monsters in the fight: their frames and sprites ($9772, $9925), no arm sprites, no cannon, and the second band ($9B4F)."
+  },
+  {
+   "address": 44674,
+   "type": "line",
+   "text": "the winner ($AE88) walks to column $11 with the egg, the other is taken off the screen, and the winner holds the egg up (frame $28) five times, then stands for ten more steps."
+  },
+  {
+   "address": 44680,
+   "type": "line",
+   "text": "kept as the operand of this load: the winner of the fight; it is also the pickup flag of $914E and $91C4 and a count for $AF0D"
+  },
+  {
+   "address": 44751,
+   "type": "line",
+   "text": "the count of the winner's steps in a hold, kept in this load's operand"
+  },
+  {
+   "address": 44774,
+   "type": "line",
+   "text": "the count of the winner's holds, kept in this load's operand"
+  },
+  {
+   "address": 44780,
+   "type": "line",
+   "text": "steps the winner's animation frame on"
+  },
+  {
+   "address": 44798,
+   "type": "line",
+   "text": "one step of the winner's walk: draws ($AE4E), adds to the scores and waits three frames"
+  },
+  {
+   "address": 44829,
+   "type": "line",
+   "text": "the hits the lizard has taken in the fight"
+  },
+  {
+   "address": 44830,
+   "type": "line",
+   "text": "the hits the ogre has taken in the fight"
+  },
+  {
+   "address": 44831,
+   "type": "line",
+   "text": "the lizard's $80E9 before the fight, kept while it fights with 1; when it is 0 the computer plays the lizard"
+  },
+  {
+   "address": 44832,
+   "type": "line",
+   "text": "the ogre's $80E9 before the fight"
+  },
+  {
+   "address": 44833,
+   "type": "line",
+   "text": "the stick bits the computer gives a walk, toward the other: $08 for the lizard and $04 for the ogre"
+  },
+  {
+   "address": 44835,
+   "type": "line",
+   "text": "the title: with the screen off sets it up ($AF38), waits three frames, turns the screen on and runs the title loop ($B09C), which returns when a fire button starts a game."
+  },
+  {
+   "address": 44856,
+   "type": "line",
+   "text": "sets up the title: video bank 3, the screen at $C800 and the characters at $C000, the screen blank and in hires, black border and background; clears the screen with white colour; copies the font from $2440 and $24E0 to $C000; writes the credits from the text at $B26C and $B2D4 and LIZARD, OGRE, BEST and the two best scores from $B324-$B346 (the scores' ASCII digits less $15, the font's digits), in their colours; copies the monsters' title frames from $0EB8 and $17F8 to $CC80 and $CD00; turns all sprites on, multicoloured; starts tune 1; and installs the title's interrupt ($B1CE on line 0)."
+  },
+  {
+   "address": 45212,
+   "type": "line",
+   "text": "one pass of the title every two frames. Steps the two monsters' frames round 0 to $3F, copies their frames to the sprites ($B1A7) and points the title's interrupt at them ($B230, $B23A); every eighth pass sweeps a colour along the credit lines ($B0F5); every 32 passes writes the next eleven characters of the hidden list at $9D9F to the top left in black ($B13E); with 1, the left arrow, CTRL and 2 held it colours them white and writes MYRTLE and DILL over LIZARD and OGRE ($B161). Fire on port 1 starts the ogre, fire on port 2 the lizard ($B187): the routine returns after counting $80EB or $80EC on, stopping the music ($68F7 = 0) and the effects ($754E)."
+  },
+  {
+   "address": 45305,
+   "type": "line",
+   "text": "the column the colour sweep along the credits has reached, $0F to $1F, kept in this load's operand"
+  },
+  {
+   "address": 45366,
+   "type": "line",
+   "text": "the count of passes to the next eleven names, kept in this load's operand: $B134 adds 8 each pass, and the names move on when it comes round to 0"
+  },
+  {
+   "address": 45376,
+   "type": "line",
+   "text": "the place in the hidden list at $9D9F of the next eleven names, kept in this load's operand, stepped by 11"
+  },
+  {
+   "address": 45479,
+   "type": "line",
+   "text": "copies a monster's title frame: frame Y of the shapes at $0BB8 (64 bytes a frame) to the sprite at the address in $B1C8/$B1C9."
+  },
+  {
+   "address": 45509,
+   "type": "line",
+   "text": "the low byte of the frame's address, written by $B1A7"
+  },
+  {
+   "address": 45510,
+   "type": "line",
+   "text": "the high byte of the frame's address"
+  },
+  {
+   "address": 45512,
+   "type": "line",
+   "text": "the low byte of the sprite the frame is copied to, $CC80 or $CD00"
+  },
+  {
+   "address": 45513,
+   "type": "line",
+   "text": "the high byte of that address"
+  },
+  {
+   "address": 45518,
+   "type": "line",
+   "text": "the title's interrupt on line 0: black border, the eight sprites of the AAARGH! logo at the positions at $B353, with the pointers at $B375, light blue and expanded, the sprites' multicolours, and the music ($68F8). Chains to $B224 on line 120."
+  },
+  {
+   "address": 45604,
+   "type": "line",
+   "text": "the title's interrupt on line 120: puts the sprites at the positions at $B364 for the two monsters, two sprites each, unexpanded, the lizard green and the ogre light red, with the pointers $51 and $76 (rewritten by $B09C) and $32 and $34. Chains to $B1CE on line 0."
+  },
+  {
+   "address": 45616,
+   "type": "line",
+   "text": "the lizard's first title sprite's pointer, written into this load's operand by $B0C3"
+  },
+  {
+   "address": 45626,
+   "type": "line",
+   "text": "the ogre's first title sprite's pointer, written by $B0DD"
   },
   {
    "address": 46031,
