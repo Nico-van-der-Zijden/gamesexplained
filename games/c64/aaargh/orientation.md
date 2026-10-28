@@ -113,15 +113,18 @@ The interrupts are raster interrupts through `$0314`, chained:
 |---|---|---|---|
 | title | `$B1CE` | 0 | `$B224` on line 120 (`$78`) |
 | title | `$B224` | 120 | `$B1CE` on line 0 |
-| play | `$8810` | 0 | `$88A2` on line 192 (`$C0`) |
-| play | `$88A2` | 192 | `$8810` on line 0 |
+| play | `$8810` | 0 | `$88A2` on the line in `$889E` |
+| play | `$88A2` | `$889E` | `$8810` on line 0 |
 
 `$B6E9` installs one (line in A, handler in X and Y), and each handler
 ends by jumping to `$B714` with the next, which writes the vector and the
 line, acknowledges the interrupt and returns. `$B728` waits for the frame
-to start again (bit 7 of `$D011`). `$8810` places the play field's
-sprites and builds their pointers; `$88A2` places the sprites of the
-bottom band. A frame of play recorded with `frame.py`
+to start again (bit 7 of `$D011`). `$8810` places the first band of sprites (the hornets and the white
+flyer) and builds their pointers; `$88A2` places the second band (the
+monsters and the cannon). The second band's line moves with the monsters:
+`$9B4F` writes it into `$889E` each pass (the higher of the monsters'
+upper sprites less `$1A`), and it was `$C0`, line 192, in
+`work/play-city1.vsf`. A frame of play recorded with `frame.py`
 (`work/frame-play.json`) has its writes on lines 0 to 6 and 192 to 196,
 and the kit's drawing of it matches the emulator's picture in all
 104,448 pixels.

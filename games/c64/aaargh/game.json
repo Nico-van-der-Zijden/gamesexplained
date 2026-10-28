@@ -9,7 +9,7 @@
   "title_image": "reference/title.png",
   "build": "PAL cassette, a crack saved with a Trilogic Expert V3.1 freezer (crackers unknown); analysed from the game's own entry at $8009",
   "tier": "bronze",
-  "coverage_percent": null,
+  "coverage_percent": 100,
   "copy": "agent-draft",
   "steward": "",
   "credits": [
@@ -62,12 +62,182 @@
     "charset": ""
   },
   "coverage": {
-    "exclude": [],
+    "exclude": [
+      [
+        "$0002",
+        "$000D",
+        "not the game's: what the Expert cartridge's decruncher left in zero page; the game never runs it"
+      ],
+      [
+        "$0400",
+        "$07FF",
+        "not the game's: the screen as the Expert cartridge's restart left it (\"ALL DATA READ\"); the game shows video bank 3 only"
+      ],
+      [
+        "$0800",
+        "$0BB7",
+        "not the game's: the Expert's restart (the BASIC line SYS2075 TRILOGIC V3.1 and its decruncher) and what the tape's loader left (\"WAITING FOR DATA\" at $0A62); no instruction of the game reads it"
+      ],
+      [
+        "$2438",
+        "$243F",
+        "unused: eight bytes after the last of the monsters' lower-body frames, which no table reaches"
+      ],
+      [
+        "$2581",
+        "$2E77",
+        "leftover: an older set of the monsters' lower-body frames, on a 64-byte grid of its own; no table reaches it"
+      ],
+      [
+        "$7918",
+        "$7CD7",
+        "runtime: the copy of the city's screen that $853E keeps and $8970 reads back"
+      ],
+      [
+        "$7CD8",
+        "$7FFF",
+        "unused: zeros after the screen copy"
+      ],
+      [
+        "$9D12",
+        "$9D61",
+        "runtime: the buffer where $9772 builds a monster's lower sprite, also where $853E keeps the top two rows of the screen while it builds a city"
+      ],
+      [
+        "$9D62",
+        "$9D9D",
+        "unused: one value repeated, between the buffer and the hidden list"
+      ],
+      [
+        "$9EA5",
+        "$9EA6",
+        "unused: two bytes between the hidden list and the first building picture"
+      ],
+      [
+        "$A2A1",
+        "$A3A0",
+        "runtime: the characters' colours, written for each city by $853E"
+      ],
+      [
+        "$A3A1",
+        "$A436",
+        "unused: one value repeated, before the code at $A437"
+      ],
+      [
+        "$B7B4",
+        "$BD5E",
+        "leftover: an older build's copy of $B463-$B752 (the character animation, its tables, the city tables and the interrupt helpers), assembled about $350 higher, which nothing calls or reads"
+      ],
+      [
+        "$C000",
+        "$C7FF",
+        "runtime: the character set, built for the title ($AF38) and for each city ($853E)"
+      ],
+      [
+        "$C800",
+        "$CBFF",
+        "runtime: the screen and the sprite pointers"
+      ],
+      [
+        "$CC00",
+        "$CC7F",
+        "runtime: below the lizard's lower sprite, where the city screen's unpacker writes the records it reads past the screen's last row"
+      ],
+      [
+        "$CC80",
+        "$CCBF",
+        "runtime: the lizard's lower sprite, built each pass by $9772"
+      ],
+      [
+        "$CD00",
+        "$CD3F",
+        "runtime: the ogre's lower sprite, built each pass by $9772"
+      ]
+    ],
     "extra": [],
-    "include": []
+    "include": [
+      [
+        "$D000",
+        "$DFFF",
+        "sprite shapes in the RAM under the I/O area, for the video chip alone: the monsters' upper bodies"
+      ]
+    ]
   },
   "io": [],
-  "regions": [],
+  "regions": [
+    [
+      "$0BB8",
+      "$2437",
+      "graphics",
+      "the monsters' lower-body sprite frames"
+    ],
+    [
+      "$2440",
+      "$2580",
+      "graphics",
+      "the title font"
+    ],
+    [
+      "$2E78",
+      "$6316",
+      "levels",
+      "the eight cities: colours, characters and packed screens"
+    ],
+    [
+      "$6317",
+      "$68F6",
+      "graphics",
+      "characters the cities share"
+    ],
+    [
+      "$68F7",
+      "$7917",
+      "sound",
+      "the music driver, its tunes and the sound effects"
+    ],
+    [
+      "$8009",
+      "$B7AF",
+      "code",
+      "the game"
+    ],
+    [
+      "$9C12",
+      "$9D11",
+      "tables",
+      "the random numbers"
+    ],
+    [
+      "$9D9F",
+      "$9EA4",
+      "text",
+      "the title's hidden list of names"
+    ],
+    [
+      "$9EA7",
+      "$A2A0",
+      "graphics",
+      "the building pictures and their sizes"
+    ],
+    [
+      "$B26C",
+      "$B3CE",
+      "text",
+      "the title's credits, scores and message"
+    ],
+    [
+      "$BD5F",
+      "$BFFF",
+      "graphics",
+      "characters the last two cities share"
+    ],
+    [
+      "$CD40",
+      "$FFFF",
+      "graphics",
+      "sprite shapes"
+    ]
+  ],
   "links": {
     "wiki": {
       "title": "Aaargh!",
