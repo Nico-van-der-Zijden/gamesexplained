@@ -1,4 +1,4 @@
-# Aaargh — verified technical facts
+# Aaargh! — verified technical facts
 
 Current truth for this game. The workflow lives in `kit/skills/`; how this
 understanding developed lives in `agent-history.md`. Every fact names

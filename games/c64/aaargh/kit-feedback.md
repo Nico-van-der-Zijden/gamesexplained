@@ -1,4 +1,4 @@
-# Aaargh — kit feedback
+# Aaargh! — kit feedback
 
 Written in the retrospective (`kit/skills/core/80-retro`). Which skill text
 changed what the run did, what the skills and kit got wrong or left out,
@@ -7,10 +7,7 @@ time, operating system and tool versions.
 
 ## Skill text that changed what I did
 
-<up to five lines, the one that mattered most first, each written as
-- `<skill folder>`: "<words copied exactly from the passage>": what you did, or did not do, because of it
-or the one line "None." (80-retro, step 1). check_docs.py fails while this placeholder is here,
-once game.json has a tier (80-retro, step 7) and on any pull request.>
+- `kit/skills/c64/c64-reference`: "Read the stack the resume returns with.": the tape is a freezer backup, and the return addresses above the frozen PC led to the game's own entry, `$8009`, where the run restarts it rather than analysing the freeze.
 
 ## What was changed in the kit
 
