@@ -1,4 +1,4 @@
-## next · 2026-10-28 · Green Beret (C64) · air with Claude
+## 0.0.258 · 2026-10-28 · Green Beret (C64) · air with Claude
 
 - **Leave a polling loop's cycles out of the costs the page pays.**
   Green Beret's main loop ends each pass in `frame_wait`, which polls a
