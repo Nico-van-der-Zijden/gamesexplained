@@ -41,6 +41,36 @@
   },
   {
    "start": 14,
+   "end": 2999,
+   "type": "Undefined"
+  },
+  {
+   "start": 3000,
+   "end": 9271,
+   "type": "Byte"
+  },
+  {
+   "start": 9272,
+   "end": 9279,
+   "type": "Undefined"
+  },
+  {
+   "start": 9280,
+   "end": 9600,
+   "type": "Byte"
+  },
+  {
+   "start": 9601,
+   "end": 11895,
+   "type": "Undefined"
+  },
+  {
+   "start": 11896,
+   "end": 26870,
+   "type": "Byte"
+  },
+  {
+   "start": 26871,
    "end": 26871,
    "type": "Undefined"
   },
@@ -146,8 +176,108 @@
   },
   {
    "start": 32912,
-   "end": 33506,
+   "end": 32927,
+   "type": "Byte"
+  },
+  {
+   "start": 32928,
+   "end": 32956,
    "type": "Undefined"
+  },
+  {
+   "start": 32957,
+   "end": 32964,
+   "type": "Byte"
+  },
+  {
+   "start": 32965,
+   "end": 32965,
+   "type": "Undefined"
+  },
+  {
+   "start": 32966,
+   "end": 32973,
+   "type": "Byte"
+  },
+  {
+   "start": 32974,
+   "end": 33006,
+   "type": "Undefined"
+  },
+  {
+   "start": 33007,
+   "end": 33294,
+   "type": "Byte"
+  },
+  {
+   "start": 33295,
+   "end": 33310,
+   "type": "Undefined"
+  },
+  {
+   "start": 33311,
+   "end": 33338,
+   "type": "Byte"
+  },
+  {
+   "start": 33339,
+   "end": 33340,
+   "type": "Undefined"
+  },
+  {
+   "start": 33341,
+   "end": 33342,
+   "type": "Byte"
+  },
+  {
+   "start": 33343,
+   "end": 33351,
+   "type": "Undefined"
+  },
+  {
+   "start": 33352,
+   "end": 33379,
+   "type": "Byte"
+  },
+  {
+   "start": 33380,
+   "end": 33381,
+   "type": "Undefined"
+  },
+  {
+   "start": 33382,
+   "end": 33405,
+   "type": "Byte"
+  },
+  {
+   "start": 33406,
+   "end": 33407,
+   "type": "Undefined"
+  },
+  {
+   "start": 33408,
+   "end": 33461,
+   "type": "Byte"
+  },
+  {
+   "start": 33462,
+   "end": 33472,
+   "type": "Undefined"
+  },
+  {
+   "start": 33473,
+   "end": 33474,
+   "type": "Byte"
+  },
+  {
+   "start": 33475,
+   "end": 33478,
+   "type": "Undefined"
+  },
+  {
+   "start": 33479,
+   "end": 33506,
+   "type": "Byte"
   },
   {
    "start": 33507,
@@ -221,11 +351,41 @@
   },
   {
    "start": 39936,
-   "end": 39953,
+   "end": 40209,
    "type": "Byte"
   },
   {
-   "start": 39954,
+   "start": 40210,
+   "end": 40350,
+   "type": "Undefined"
+  },
+  {
+   "start": 40351,
+   "end": 40612,
+   "type": "Byte"
+  },
+  {
+   "start": 40613,
+   "end": 40614,
+   "type": "Undefined"
+  },
+  {
+   "start": 40615,
+   "end": 40802,
+   "type": "Byte"
+  },
+  {
+   "start": 40803,
+   "end": 40803,
+   "type": "Undefined"
+  },
+  {
+   "start": 40804,
+   "end": 41632,
+   "type": "Byte"
+  },
+  {
+   "start": 41633,
    "end": 42038,
    "type": "Undefined"
   },
@@ -395,10 +555,34 @@
    "kind": "auto"
   },
   {
+   "address": 3000,
+   "name": "lower_frames_00",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 3768,
    "name": "f_0EB8",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 4024,
+   "name": "lower_frames_16",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 5048,
+   "name": "lower_frames_32",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 6072,
+   "name": "lower_frames_48",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 6136,
@@ -413,10 +597,28 @@
    "kind": "auto"
   },
   {
+   "address": 7096,
+   "name": "lower_frames_64",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 8120,
+   "name": "lower_frames_80",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 9144,
+   "name": "lower_frames_96",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 9280,
-   "name": "f_2440",
+   "name": "title_font",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 9440,
@@ -425,10 +627,190 @@
    "kind": "auto"
   },
   {
+   "address": 11896,
+   "name": "city1_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 12024,
+   "name": "city1_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 13048,
+   "name": "city1_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 13621,
+   "name": "city2_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 13749,
+   "name": "city2_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 14773,
+   "name": "city2_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 15373,
+   "name": "city3_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 15501,
+   "name": "city3_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 15999,
    "name": "a_3E7F",
    "type": "AbsoluteAddress",
    "kind": "auto"
+  },
+  {
+   "address": 16525,
+   "name": "city3_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 17073,
+   "name": "city4_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 17201,
+   "name": "city4_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 18225,
+   "name": "city4_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 19006,
+   "name": "city5_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 19134,
+   "name": "city5_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 20158,
+   "name": "city5_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 20561,
+   "name": "city6_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 20689,
+   "name": "city6_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 21713,
+   "name": "city6_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 22132,
+   "name": "city7_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 22260,
+   "name": "city7_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 23284,
+   "name": "city7_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 23771,
+   "name": "city8_colours",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 23899,
+   "name": "city8_chars",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 24923,
+   "name": "city8_screen",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 25367,
+   "name": "shared_chars_6317",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 25727,
+   "name": "shared_chars_647F",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 25999,
+   "name": "shared_chars_658F",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 26271,
+   "name": "shared_chars_669F",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 26415,
+   "name": "shared_chars_672F",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 26591,
+   "name": "shared_chars_67DF",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 26871,
@@ -2142,147 +2524,147 @@
   },
   {
    "address": 32912,
-   "name": "f_8090",
+   "name": "bit_masks",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32920,
-   "name": "f_8098",
+   "name": "bit_masks_off",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32928,
-   "name": "a_80A0",
+   "name": "temp_a",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32929,
-   "name": "a_80A1",
+   "name": "temp_b",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32930,
-   "name": "a_80A2",
+   "name": "temp_c",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32931,
-   "name": "a_80A3",
+   "name": "temp_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32932,
-   "name": "a_80A4",
+   "name": "temp_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32933,
-   "name": "a_80A5",
+   "name": "building_index",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32934,
-   "name": "a_80A6",
+   "name": "fire_monster",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32935,
-   "name": "a_80A7",
+   "name": "city_type_saved",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32936,
-   "name": "a_80A8",
+   "name": "city_type",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32937,
-   "name": "a_80A9",
+   "name": "lizard_half_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32938,
-   "name": "a_80AA",
+   "name": "ogre_half_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32939,
-   "name": "a_80AB",
+   "name": "lizard_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32940,
-   "name": "a_80AC",
+   "name": "ogre_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32941,
-   "name": "a_80AD",
+   "name": "lizard_half_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32942,
-   "name": "a_80AE",
+   "name": "ogre_half_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32943,
-   "name": "a_80AF",
+   "name": "lizard_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32944,
-   "name": "a_80B0",
+   "name": "ogre_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32945,
-   "name": "a_80B1",
+   "name": "lizard_px",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32946,
-   "name": "a_80B2",
+   "name": "lizard_py",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32947,
-   "name": "a_80B3",
+   "name": "ogre_px",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32948,
-   "name": "a_80B4",
+   "name": "ogre_py",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32949,
-   "name": "a_80B5",
+   "name": "band1_pos",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32950,
@@ -2316,21 +2698,21 @@
   },
   {
    "address": 32965,
-   "name": "a_80C5",
+   "name": "band1_xhi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32966,
-   "name": "f_80C6",
+   "name": "band1_pointers",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32974,
-   "name": "a_80CE",
+   "name": "band2_pos",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32975,
@@ -2418,15 +2800,15 @@
   },
   {
    "address": 32990,
-   "name": "a_80DE",
+   "name": "band2_xhi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32991,
-   "name": "a_80DF",
+   "name": "band2_pointers",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32992,
@@ -2472,81 +2854,81 @@
   },
   {
    "address": 32999,
-   "name": "a_80E7",
+   "name": "lizard_owed",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33000,
-   "name": "a_80E8",
+   "name": "ogre_owed",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33001,
-   "name": "a_80E9",
+   "name": "lizard_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33002,
-   "name": "a_80EA",
+   "name": "ogre_state",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33003,
-   "name": "a_80EB",
+   "name": "lizard_fire",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33004,
-   "name": "a_80EC",
+   "name": "ogre_fire",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33005,
-   "name": "f_80ED",
+   "name": "lizard_power",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33007,
-   "name": "f_80EF",
+   "name": "lizard_upper_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33075,
-   "name": "f_8133",
+   "name": "lizard_lower_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33143,
-   "name": "f_8177",
+   "name": "ogre_upper_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33211,
-   "name": "f_81BB",
+   "name": "ogre_lower_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33279,
-   "name": "f_81FF",
+   "name": "flyer_frames",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33295,
-   "name": "a_820F",
+   "name": "hornet_dir_frames",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33297,
@@ -2556,117 +2938,117 @@
   },
   {
    "address": 33298,
-   "name": "a_8212",
+   "name": "anim_step",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33299,
-   "name": "f_8213",
+   "name": "lizard_frame",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33300,
-   "name": "a_8214",
+   "name": "ogre_frame",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33301,
-   "name": "f_8215",
+   "name": "lizard_action",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33302,
-   "name": "a_8216",
+   "name": "ogre_action",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33303,
-   "name": "a_8217",
+   "name": "lizard_facing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33304,
-   "name": "a_8218",
+   "name": "ogre_facing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33305,
-   "name": "a_8219",
+   "name": "ogre_bar1_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33306,
-   "name": "a_821A",
+   "name": "ogre_bar2_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33307,
-   "name": "a_821B",
+   "name": "lizard_bar1_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33308,
-   "name": "a_821C",
+   "name": "lizard_bar2_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33309,
-   "name": "a_821D",
+   "name": "lizard_hurt",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33310,
-   "name": "a_821E",
+   "name": "ogre_hurt",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33311,
-   "name": "f_821F",
+   "name": "people_state",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33319,
-   "name": "f_8227",
+   "name": "people_column",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33327,
-   "name": "f_822F",
+   "name": "people_row",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33335,
-   "name": "f_8237",
+   "name": "hornet_way",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33337,
-   "name": "f_8239",
+   "name": "hornet_up",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33339,
-   "name": "a_823B",
+   "name": "hornet_out",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33340,
@@ -2676,21 +3058,21 @@
   },
   {
    "address": 33341,
-   "name": "f_823D",
+   "name": "hornet_dying",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33343,
-   "name": "a_823F",
+   "name": "flyer_dying",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33344,
-   "name": "a_8240",
+   "name": "cannon_frame",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33345,
@@ -2700,9 +3082,9 @@
   },
   {
    "address": 33346,
-   "name": "a_8242",
+   "name": "cannon_health",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33347,
@@ -2712,141 +3094,141 @@
   },
   {
    "address": 33348,
-   "name": "a_8244",
+   "name": "cannon_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33349,
-   "name": "a_8245",
+   "name": "cannon_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33350,
-   "name": "a_8246",
+   "name": "cannon_roll",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33351,
-   "name": "a_8247",
+   "name": "cannon_roll_len",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33352,
-   "name": "f_8248",
+   "name": "city_cannon_x",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33361,
-   "name": "f_8251",
+   "name": "city_cannon_y",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33370,
-   "name": "f_825A",
+   "name": "city_cannon_roll",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33380,
-   "name": "a_8264",
+   "name": "lizard_near_cannon",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33381,
-   "name": "a_8265",
+   "name": "ogre_near_cannon",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33382,
-   "name": "f_8266",
+   "name": "building_column",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33390,
-   "name": "f_826E",
+   "name": "building_row",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33398,
-   "name": "f_8276",
+   "name": "building_type",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33406,
-   "name": "a_827E",
+   "name": "building_height",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33407,
-   "name": "a_827F",
+   "name": "building_width",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33408,
-   "name": "f_8280",
+   "name": "building_timer",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33416,
-   "name": "f_8288",
+   "name": "building_burn_count",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33424,
-   "name": "f_8290",
+   "name": "building_fire",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33432,
-   "name": "f_8298",
+   "name": "building_falling",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33440,
-   "name": "f_82A0",
+   "name": "building_burnt_rows",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33448,
-   "name": "f_82A8",
+   "name": "building_gone",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33456,
-   "name": "f_82B0",
+   "name": "fire_chars",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33462,
-   "name": "a_82B6",
+   "name": "buildings_fallen",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33463,
-   "name": "f_82B7",
+   "name": "lizard_misses",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33464,
@@ -2856,9 +3238,9 @@
   },
   {
    "address": 33465,
-   "name": "a_82B9",
+   "name": "lizard_punch_timer",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33466,
@@ -2868,9 +3250,9 @@
   },
   {
    "address": 33467,
-   "name": "a_82BB",
+   "name": "lizard_flame_timer",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33468,
@@ -2880,9 +3262,9 @@
   },
   {
    "address": 33469,
-   "name": "f_82BD",
+   "name": "lizard_aim",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33470,
@@ -2892,9 +3274,9 @@
   },
   {
    "address": 33471,
-   "name": "a_82BF",
+   "name": "lizard_eat_timer",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33472,
@@ -2904,39 +3286,39 @@
   },
   {
    "address": 33475,
-   "name": "a_82C3",
+   "name": "aim_row",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33476,
-   "name": "a_82C4",
+   "name": "mask_half_y",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33477,
-   "name": "a_82C5",
+   "name": "aim_column",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33478,
-   "name": "a_82C6",
+   "name": "mask_half_x",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33487,
-   "name": "f_82CF",
+   "name": "city_data_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33497,
-   "name": "f_82D9",
+   "name": "city_data_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33507,
@@ -5388,9 +5770,9 @@
   },
   {
    "address": 39954,
-   "name": "f_9C12",
+   "name": "random_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 40210,
@@ -5405,28 +5787,256 @@
    "kind": "auto"
   },
   {
+   "address": 40351,
+   "name": "hidden_names",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40615,
+   "name": "building_01",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40640,
+   "name": "building_02",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40653,
+   "name": "building_03",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40666,
+   "name": "building_04",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40687,
+   "name": "building_05",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40708,
+   "name": "building_06",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40736,
+   "name": "building_07",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40765,
+   "name": "building_08",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40778,
+   "name": "building_09",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40803,
+   "name": "building_10",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40804,
+   "name": "building_11",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40841,
+   "name": "building_12",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40860,
+   "name": "building_13",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40873,
+   "name": "building_14",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40889,
+   "name": "building_15",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40905,
+   "name": "building_16",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40948,
+   "name": "building_17",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 40994,
+   "name": "building_18",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41007,
+   "name": "building_19",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41017,
+   "name": "building_20",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41058,
+   "name": "building_21",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41084,
+   "name": "building_22",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41106,
+   "name": "building_23",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41125,
+   "name": "building_24",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41138,
+   "name": "building_25",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41155,
+   "name": "building_26",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41198,
+   "name": "building_27",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41235,
+   "name": "building_28",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41261,
+   "name": "building_29",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41271,
+   "name": "building_30",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41281,
+   "name": "building_31",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41318,
+   "name": "building_32",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41359,
+   "name": "building_33",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41400,
+   "name": "building_34",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41422,
+   "name": "building_35",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41443,
+   "name": "building_36",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 41464,
+   "name": "building_37",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 41481,
-   "name": "f_A209",
+   "name": "building_pics_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41519,
-   "name": "f_A22F",
+   "name": "building_pics_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41557,
-   "name": "f_A255",
+   "name": "building_widths",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41595,
-   "name": "f_A27B",
+   "name": "building_heights",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 41633,
@@ -7957,6 +8567,216 @@
  ],
  "comments": [
   {
+   "address": 3000,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 0 to 15, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 3768,
+   "type": "line",
+   "text": "frame 12, the lizard's first frame on the title, which $AF38 copies to $CC80"
+  },
+  {
+   "address": 4024,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 16 to 31, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 5048,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 32 to 47, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 6072,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 48 to 63, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 6136,
+   "type": "line",
+   "text": "frame 49, the ogre's first frame on the title, which $AF38 copies to $CD00"
+  },
+  {
+   "address": 6968,
+   "type": "line",
+   "text": "frame 62, where the title's frame copy at $B1C4 is assembled to read before $B1A7 rewrites its operand"
+  },
+  {
+   "address": 7096,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 64 to 79, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 8120,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 80 to 95, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 9144,
+   "type": "line",
+   "text": "the monsters' lower-body sprite frames 96 to 97, 64 bytes each (multicolour, 21 rows of three bytes and a spare byte); $9772 copies one a pass by the frame tables at $8133 and $81BB, masks it and puts it in the lizard's ($CC80) or the ogre's ($CD00) sprite"
+  },
+  {
+   "address": 9280,
+   "type": "line",
+   "text": "the title's font, 40 characters of 8 bytes from $2441: $AF38 copies $2441-$24E0 to $C001 and $24E1-$2580 to $C0A1, so characters 1 to $1A are the letters and $1B to $24 the digits, character 0 is left blank ($AF8B) and this first byte is not read"
+  },
+  {
+   "address": 9440,
+   "type": "line",
+   "text": "the font's twentieth character's last byte; $AF80 reads the second half of the font from the byte after it"
+  },
+  {
+   "address": 11896,
+   "type": "line",
+   "text": "city type 1's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 12024,
+   "type": "line",
+   "text": "city type 1's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 13048,
+   "type": "line",
+   "text": "city type 1's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 573 bytes, to $3534"
+  },
+  {
+   "address": 13621,
+   "type": "line",
+   "text": "city type 2's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 13749,
+   "type": "line",
+   "text": "city type 2's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 14773,
+   "type": "line",
+   "text": "city type 2's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 600 bytes, to $3C0C"
+  },
+  {
+   "address": 15373,
+   "type": "line",
+   "text": "city type 3's data and of type 9, the cave ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 15501,
+   "type": "line",
+   "text": "city type 3's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 16525,
+   "type": "line",
+   "text": "city type 3's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 548 bytes, to $42B0"
+  },
+  {
+   "address": 17073,
+   "type": "line",
+   "text": "city type 4's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 17201,
+   "type": "line",
+   "text": "city type 4's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 18225,
+   "type": "line",
+   "text": "city type 4's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 781 bytes, to $4A3D"
+  },
+  {
+   "address": 19006,
+   "type": "line",
+   "text": "city type 5's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 19134,
+   "type": "line",
+   "text": "city type 5's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 20158,
+   "type": "line",
+   "text": "city type 5's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 403 bytes, to $5050"
+  },
+  {
+   "address": 20561,
+   "type": "line",
+   "text": "city type 6's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 20689,
+   "type": "line",
+   "text": "city type 6's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 21713,
+   "type": "line",
+   "text": "city type 6's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 419 bytes, to $5673"
+  },
+  {
+   "address": 22132,
+   "type": "line",
+   "text": "city type 7's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 22260,
+   "type": "line",
+   "text": "city type 7's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 23284,
+   "type": "line",
+   "text": "city type 7's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 487 bytes, to $5CDA"
+  },
+  {
+   "address": 23771,
+   "type": "line",
+   "text": "city type 8's data ($82CF/$82D9 name it), first its 128 character colours, which $853E copies to $A2A1 (the colour of each of characters 0 to $7F)"
+  },
+  {
+   "address": 23899,
+   "type": "line",
+   "text": "city type 8's characters 0 to $7F, 1 KB, which $853E copies to $C000"
+  },
+  {
+   "address": 24923,
+   "type": "line",
+   "text": "city type 8's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 444 bytes, to $6316"
+  },
+  {
+   "address": 25367,
+   "type": "line",
+   "text": "characters shared by the cities: city type 1 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
+   "address": 25727,
+   "type": "line",
+   "text": "characters shared by the cities: city type 2 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
+   "address": 25999,
+   "type": "line",
+   "text": "characters shared by the cities: city type 3 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
+   "address": 26271,
+   "type": "line",
+   "text": "characters shared by the cities: city type 4 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
+   "address": 26415,
+   "type": "line",
+   "text": "characters shared by the cities: city type 5 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
+   "address": 26591,
+   "type": "line",
+   "text": "characters shared by the cities: city type 6 copies the 62 from here ($B691/$B688), 496 bytes, to $C590, characters $B2 to $EF; the windows of the cities overlap, and those of types 5 and 6 run on past $68F6 into the music driver's code"
+  },
+  {
    "address": 26871,
    "type": "line",
    "text": "the tune command, written by the game and read by $68F8: 0 silences the SID and stops the tune, 1 or 2 starts that tune, and anything from 3 up lets the tune playing go on. $68F8 writes $FF back before it returns (at $6E32), so a command acts once. The game writes it at $ABFB, $AC63, $B074 and $B1A0; the driver itself writes 0 at $69D9 when a pattern reaches its end-of-tune byte $FE."
@@ -8852,6 +9672,691 @@
    "text": "the work of one pass of play before the monsters move: waits for line $C8 ($B733), clears $3E7F and runs $A437, waits a frame, waits for line $C8, then with $3E7F at 1 runs $8942 (the buildings' timers), with $3E7F at 2 restores marked cells of the screen ($8970), animates the characters ($B463) and waits a frame. Called twice from the main loop."
   },
   {
+   "address": 32912,
+   "type": "line",
+   "text": "the eight bits by number, $01 to $80: the x high bit of each sprite in $D010's copies ($80C5)"
+  },
+  {
+   "address": 32920,
+   "type": "line",
+   "text": "the same eight bits cleared, $FE to $7F"
+  },
+  {
+   "address": 32928,
+   "type": "line",
+   "text": "a work byte: the other monster's number in $89E0, the city type times 6 in $853E, a sum in $8444 and elsewhere"
+  },
+  {
+   "address": 32929,
+   "type": "line",
+   "text": "a work byte: the run count of the screen unpacker ($853E), a saved X in the hornets and the cave"
+  },
+  {
+   "address": 32930,
+   "type": "line",
+   "text": "the row of cells the sprite mask is on ($9811)"
+  },
+  {
+   "address": 32931,
+   "type": "line",
+   "text": "Y saved by $929A"
+  },
+  {
+   "address": 32932,
+   "type": "line",
+   "text": "X saved by $92D6 and $931E"
+  },
+  {
+   "address": 32933,
+   "type": "line",
+   "text": "the building a routine works on, also Y saved by $92D6 and $931E"
+  },
+  {
+   "address": 32934,
+   "type": "line",
+   "text": "the monster whose fire $8D07 is handling"
+  },
+  {
+   "address": 32935,
+   "type": "line",
+   "text": "the city type kept while the cave is shown ($AC20), put back after the fight"
+  },
+  {
+   "address": 32936,
+   "type": "line",
+   "text": "the type of the city being played, 0 to 9 (9 the cave): it picks the city's data, colours, buildings and start places"
+  },
+  {
+   "address": 32937,
+   "type": "line",
+   "text": "the lizard's half-step across, 0 or 1"
+  },
+  {
+   "address": 32938,
+   "type": "line",
+   "text": "the ogre's half-step across"
+  },
+  {
+   "address": 32939,
+   "type": "line",
+   "text": "the lizard's column on the screen"
+  },
+  {
+   "address": 32940,
+   "type": "line",
+   "text": "the ogre's column"
+  },
+  {
+   "address": 32941,
+   "type": "line",
+   "text": "the lizard's half-step up or down, 0 or 1"
+  },
+  {
+   "address": 32942,
+   "type": "line",
+   "text": "the ogre's half-step up or down"
+  },
+  {
+   "address": 32943,
+   "type": "line",
+   "text": "the lizard's row on the screen"
+  },
+  {
+   "address": 32944,
+   "type": "line",
+   "text": "the ogre's row"
+  },
+  {
+   "address": 32945,
+   "type": "line",
+   "text": "the lizard's column times 8, a position in pixels ($9925), 0 past the edge"
+  },
+  {
+   "address": 32946,
+   "type": "line",
+   "text": "the lizard's row times 8"
+  },
+  {
+   "address": 32947,
+   "type": "line",
+   "text": "the ogre's column times 8"
+  },
+  {
+   "address": 32948,
+   "type": "line",
+   "text": "the ogre's row times 8"
+  },
+  {
+   "address": 32949,
+   "type": "line",
+   "text": "the first band's sprite positions, x then y: sprites 0 and 1 the hornets, 2 the white flyer, 3; $8810 copies them to the video chip"
+  },
+  {
+   "address": 32950,
+   "type": "line",
+   "text": "the first hornet's y"
+  },
+  {
+   "address": 32951,
+   "type": "line",
+   "text": "the second hornet's x"
+  },
+  {
+   "address": 32952,
+   "type": "line",
+   "text": "the second hornet's y"
+  },
+  {
+   "address": 32953,
+   "type": "line",
+   "text": "the white flyer's x"
+  },
+  {
+   "address": 32954,
+   "type": "line",
+   "text": "the white flyer's y, 0 while it is not out"
+  },
+  {
+   "address": 32955,
+   "type": "line",
+   "text": "the first band's sprite 3 x, which nothing but the interrupt reads"
+  },
+  {
+   "address": 32956,
+   "type": "line",
+   "text": "the first band's sprite 3 y"
+  },
+  {
+   "address": 32965,
+   "type": "line",
+   "text": "the first band's sprites' x high bits, for $D010"
+  },
+  {
+   "address": 32966,
+   "type": "line",
+   "text": "the first band's four sprite pointers, the first three built by $8810 from the hornets' and the flyer's frames, copied to $CBF8"
+  },
+  {
+   "address": 32974,
+   "type": "line",
+   "text": "the second band's six sprites' positions, x then y: the lizard's lower and upper sprite and arm, then the ogre's ($9925), swapped when the ogre is nearer ($9AF8)"
+  },
+  {
+   "address": 32975,
+   "type": "line",
+   "text": "the lizard's lower sprite's y"
+  },
+  {
+   "address": 32976,
+   "type": "line",
+   "text": "the lizard's upper sprite's x"
+  },
+  {
+   "address": 32977,
+   "type": "line",
+   "text": "the lizard's upper sprite's y"
+  },
+  {
+   "address": 32978,
+   "type": "line",
+   "text": "the lizard's arm's x"
+  },
+  {
+   "address": 32979,
+   "type": "line",
+   "text": "the lizard's arm's y"
+  },
+  {
+   "address": 32980,
+   "type": "line",
+   "text": "the ogre's lower sprite's x"
+  },
+  {
+   "address": 32981,
+   "type": "line",
+   "text": "the ogre's lower sprite's y"
+  },
+  {
+   "address": 32982,
+   "type": "line",
+   "text": "the ogre's upper sprite's x"
+  },
+  {
+   "address": 32983,
+   "type": "line",
+   "text": "the ogre's upper sprite's y"
+  },
+  {
+   "address": 32984,
+   "type": "line",
+   "text": "the ogre's arm's x"
+  },
+  {
+   "address": 32985,
+   "type": "line",
+   "text": "the ogre's arm's y"
+  },
+  {
+   "address": 32986,
+   "type": "line",
+   "text": "cleared in the cave ($AE6A) and read by nothing"
+  },
+  {
+   "address": 32987,
+   "type": "line",
+   "text": "cleared in the cave ($AE73) and read by nothing"
+  },
+  {
+   "address": 32988,
+   "type": "line",
+   "text": "cleared in the cave ($AE6D) and read by nothing"
+  },
+  {
+   "address": 32990,
+   "type": "line",
+   "text": "the second band's sprites' x high bits"
+  },
+  {
+   "address": 32991,
+   "type": "line",
+   "text": "the second band's six sprite pointers: the lizard's lower ($32), upper and arm, then the ogre's lower ($34), upper and arm"
+  },
+  {
+   "address": 32992,
+   "type": "line",
+   "text": "the lizard's upper sprite's pointer, from $80EF"
+  },
+  {
+   "address": 32993,
+   "type": "line",
+   "text": "the lizard's arm's pointer, from $9C00 or $9C09"
+  },
+  {
+   "address": 32994,
+   "type": "line",
+   "text": "the ogre's lower sprite's pointer, $34"
+  },
+  {
+   "address": 32995,
+   "type": "line",
+   "text": "the ogre's upper sprite's pointer, from $8177"
+  },
+  {
+   "address": 32996,
+   "type": "line",
+   "text": "the ogre's arm's pointer"
+  },
+  {
+   "address": 32997,
+   "type": "line",
+   "text": "the cannon's left sprite's pointer, from $AB96"
+  },
+  {
+   "address": 32998,
+   "type": "line",
+   "text": "the cannon's right sprite's pointer, from $AB9D"
+  },
+  {
+   "address": 32999,
+   "type": "line",
+   "text": "points the lizard has earned that $93AE has not added to its score yet, one a pass (10 on the screen each)"
+  },
+  {
+   "address": 33000,
+   "type": "line",
+   "text": "points the ogre is owed"
+  },
+  {
+   "address": 33001,
+   "type": "line",
+   "text": "the lizard's state: 0 not in the game, $20 playing, 1 to $1F dying (counted down a pass by $8AA9), 1 in the cave; the main loop ends the game when both are 0"
+  },
+  {
+   "address": 33002,
+   "type": "line",
+   "text": "the ogre's state"
+  },
+  {
+   "address": 33003,
+   "type": "line",
+   "text": "counted on when fire on port 2 starts the game from the title, so the lizard is set up ($8326)"
+  },
+  {
+   "address": 33004,
+   "type": "line",
+   "text": "counted on when fire on port 1 starts it, for the ogre"
+  },
+  {
+   "address": 33005,
+   "type": "line",
+   "text": "1 while the lizard has punching power, set by a $82 pickup and cleared when its second bar is empty ($92D6); a punch needs it"
+  },
+  {
+   "address": 33006,
+   "type": "line",
+   "text": "the ogre's punching power"
+  },
+  {
+   "address": 33007,
+   "type": "line",
+   "text": "the lizard's upper sprite's pointer by its animation, 68 entries: four frames ($8213) for each action ($8215): 0 walking up, 4 right, 8 down, $0C left, $10-$1C punching that way; a flame adds $10 to the facing and eating $20, and the cave holds the egg up at $28"
+  },
+  {
+   "address": 33075,
+   "type": "line",
+   "text": "the lizard's lower sprite's frame by its animation, 68 entries, a frame number of the shapes at $0BB8 ($9772)"
+  },
+  {
+   "address": 33143,
+   "type": "line",
+   "text": "the ogre's upper sprite's pointer by its animation, 68 entries"
+  },
+  {
+   "address": 33211,
+   "type": "line",
+   "text": "the ogre's lower sprite's frame by its animation, 68 entries"
+  },
+  {
+   "address": 33279,
+   "type": "line",
+   "text": "the first band's sprite pointers by $820F + $8212: four frames from 0 (which no hornet uses), from 4 a hornet flying left, from 8 the white flyer, from $0C a hornet flying right"
+  },
+  {
+   "address": 33295,
+   "type": "line",
+   "text": "the first hornet's frame base in $81FF: 4 flying left, $0C flying right ($A470, $A483)"
+  },
+  {
+   "address": 33296,
+   "type": "line",
+   "text": "the second hornet's frame base"
+  },
+  {
+   "address": 33297,
+   "type": "line",
+   "text": "the white flyer's frame base, 8 when it comes in, 0 when it climbs"
+  },
+  {
+   "address": 33298,
+   "type": "line",
+   "text": "the hornets' and the flyer's animation step, 0 to 3, counted on each pass by $A446"
+  },
+  {
+   "address": 33299,
+   "type": "line",
+   "text": "the lizard's animation frame, 0 to 3 (on the title, 0 to $3F)"
+  },
+  {
+   "address": 33300,
+   "type": "line",
+   "text": "the ogre's animation frame"
+  },
+  {
+   "address": 33301,
+   "type": "line",
+   "text": "the lizard's animation action, the base of its frames in the tables at $80EF and $8133: its facing and what it is doing"
+  },
+  {
+   "address": 33302,
+   "type": "line",
+   "text": "the ogre's animation action"
+  },
+  {
+   "address": 33303,
+   "type": "line",
+   "text": "the way the lizard faces for a flame: 0 up, 4 right, 8 down, $0C left"
+  },
+  {
+   "address": 33304,
+   "type": "line",
+   "text": "the way the ogre faces, read through $8217,x"
+  },
+  {
+   "address": 33305,
+   "type": "line",
+   "text": "the place in the ogre's first bar, the health ($C81D)"
+  },
+  {
+   "address": 33306,
+   "type": "line",
+   "text": "the place in the ogre's second bar, the punching power ($C845)"
+  },
+  {
+   "address": 33307,
+   "type": "line",
+   "text": "the place in the lizard's first bar ($C805)"
+  },
+  {
+   "address": 33308,
+   "type": "line",
+   "text": "the place in the lizard's second bar ($C82D)"
+  },
+  {
+   "address": 33309,
+   "type": "line",
+   "text": "set by $931E when the lizard is hurt, so it is drawn 3 lines lower for a pass; also the shake of a hit in the cave"
+  },
+  {
+   "address": 33310,
+   "type": "line",
+   "text": "set when the ogre is hurt"
+  },
+  {
+   "address": 33311,
+   "type": "line",
+   "text": "the eight people's states: 0 none, 1 out, 2 taken by a monster"
+  },
+  {
+   "address": 33319,
+   "type": "line",
+   "text": "the eight people's columns"
+  },
+  {
+   "address": 33327,
+   "type": "line",
+   "text": "the eight people's rows"
+  },
+  {
+   "address": 33335,
+   "type": "line",
+   "text": "each hornet's way across: 0 right, 1 left"
+  },
+  {
+   "address": 33337,
+   "type": "line",
+   "text": "set when a hornet has struck and flies up"
+  },
+  {
+   "address": 33339,
+   "type": "line",
+   "text": "set while the first hornet is out"
+  },
+  {
+   "address": 33340,
+   "type": "line",
+   "text": "set while the second hornet is out, read through $823B,x"
+  },
+  {
+   "address": 33341,
+   "type": "line",
+   "text": "a hornet's dying count, 1 to 5, its pointer $D8 more than that; the third is the white flyer's"
+  },
+  {
+   "address": 33343,
+   "type": "line",
+   "text": "the white flyer's dying count, 1 to 6 ($A662)"
+  },
+  {
+   "address": 33344,
+   "type": "line",
+   "text": "the cannon's frame, an index into $AB96 and $AB9D: 2 or 4 as it rolls, 1 to 4 as it is burnt, 5 and 6 as it breaks up"
+  },
+  {
+   "address": 33345,
+   "type": "line",
+   "text": "set to 1 when a city is picked ($849D); nothing reads it"
+  },
+  {
+   "address": 33346,
+   "type": "line",
+   "text": "the cannon's health, 14 at the start of a city ($848B), taken down by flames ($8D84); below 7 it breaks up"
+  },
+  {
+   "address": 33347,
+   "type": "line",
+   "text": "cleared when a city is picked ($84AE); nothing reads it"
+  },
+  {
+   "address": 33348,
+   "type": "line",
+   "text": "the cannon's x, sprite 6's in the second band (sprite 7 is 21 pixels right)"
+  },
+  {
+   "address": 33349,
+   "type": "line",
+   "text": "the cannon's y"
+  },
+  {
+   "address": 33350,
+   "type": "line",
+   "text": "counts down the cannon's roll before it turns, reloaded from $8247"
+  },
+  {
+   "address": 33351,
+   "type": "line",
+   "text": "how long the cannon rolls one way, from the city's $825A"
+  },
+  {
+   "address": 33352,
+   "type": "line",
+   "text": "each city type's first x of the cannon, ten entries"
+  },
+  {
+   "address": 33361,
+   "type": "line",
+   "text": "each city type's y of the cannon"
+  },
+  {
+   "address": 33370,
+   "type": "line",
+   "text": "each city type's length of the cannon's roll"
+  },
+  {
+   "address": 33380,
+   "type": "line",
+   "text": "set when the lizard is near the cannon ($89E0), so its flame burns it"
+  },
+  {
+   "address": 33381,
+   "type": "line",
+   "text": "set when the ogre is near the cannon"
+  },
+  {
+   "address": 33382,
+   "type": "line",
+   "text": "the six buildings' columns, from the city's $B5F5"
+  },
+  {
+   "address": 33390,
+   "type": "line",
+   "text": "the six buildings' rows, from $B626"
+  },
+  {
+   "address": 33398,
+   "type": "line",
+   "text": "the six buildings' types, from $B657: the index of their pictures, widths and heights at $A209-$A27B"
+  },
+  {
+   "address": 33406,
+   "type": "line",
+   "text": "the height of the building being worked on, from $A27B ($9730)"
+  },
+  {
+   "address": 33407,
+   "type": "line",
+   "text": "its width, from $A255"
+  },
+  {
+   "address": 33408,
+   "type": "line",
+   "text": "the six buildings' counts to their next stage ($8942)"
+  },
+  {
+   "address": 33416,
+   "type": "line",
+   "text": "each building's count of passes between the burns of a flame on it, 2"
+  },
+  {
+   "address": 33424,
+   "type": "line",
+   "text": "each building's stage of fire, 0 none, 1 to 5 (5 falls)"
+  },
+  {
+   "address": 33432,
+   "type": "line",
+   "text": "the rows each falling building has come down"
+  },
+  {
+   "address": 33440,
+   "type": "line",
+   "text": "the rows of each building the fire has worked down"
+  },
+  {
+   "address": 33448,
+   "type": "line",
+   "text": "set when a building has fallen and been cleared"
+  },
+  {
+   "address": 33456,
+   "type": "line",
+   "text": "the flame pictures' characters, two by stage of the fire ($948C)"
+  },
+  {
+   "address": 33462,
+   "type": "line",
+   "text": "the number of the city's buildings that have fallen; at 6 the city's end starts"
+  },
+  {
+   "address": 33463,
+   "type": "line",
+   "text": "counted on when a punch of the lizard's hits no building ($8FDD)"
+  },
+  {
+   "address": 33464,
+   "type": "line",
+   "text": "the ogre's punches that hit nothing"
+  },
+  {
+   "address": 33465,
+   "type": "line",
+   "text": "the lizard's punch, 8 passes; it cannot move while it runs"
+  },
+  {
+   "address": 33466,
+   "type": "line",
+   "text": "the ogre's punch timer"
+  },
+  {
+   "address": 33467,
+   "type": "line",
+   "text": "the lizard's flame, 6 passes (10 in the cave)"
+  },
+  {
+   "address": 33468,
+   "type": "line",
+   "text": "the ogre's flame timer"
+  },
+  {
+   "address": 33469,
+   "type": "line",
+   "text": "where the lizard's last punch went: 0 up or down, 1 right, 5 left"
+  },
+  {
+   "address": 33470,
+   "type": "line",
+   "text": "where the ogre's last punch went"
+  },
+  {
+   "address": 33471,
+   "type": "line",
+   "text": "the lizard's eating, 6 passes (14 for a duck in the cave)"
+  },
+  {
+   "address": 33472,
+   "type": "line",
+   "text": "the ogre's eating timer"
+  },
+  {
+   "address": 33475,
+   "type": "line",
+   "text": "the row a punch or flame is aimed at, two above the monster's"
+  },
+  {
+   "address": 33476,
+   "type": "line",
+   "text": "the monster's half-step up or down, for the sprite mask ($9772)"
+  },
+  {
+   "address": 33477,
+   "type": "line",
+   "text": "the column a punch or flame is aimed at"
+  },
+  {
+   "address": 33478,
+   "type": "line",
+   "text": "the monster's half-step across, for the sprite mask"
+  },
+  {
+   "address": 33487,
+   "type": "line",
+   "text": "the low bytes of each city type's data address, ten entries: $2E78, $3535, $3C0D, $42B1, $4A3E, $5051, $5674, $5CDB, and type 9, the cave, uses type 3's $3C0D; type 0 has none"
+  },
+  {
+   "address": 33497,
+   "type": "line",
+   "text": "the high bytes of each city type's data address"
+  },
+  {
    "address": 33507,
    "type": "line",
    "text": "sets up a new game: installs the play interrupt ($8426), the video chip's bank and modes ($8301) and the monsters ($8326)."
@@ -9460,6 +10965,226 @@
    "address": 39945,
    "type": "line",
    "text": "the sprite pointers of the punching arm on the right, by the punch timer"
+  },
+  {
+   "address": 39954,
+   "type": "line",
+   "text": "the table of random numbers, 256 bytes of 1 to 4: nearly every random choice counts $A91E on and reads the byte there, and each pass of play writes a new random number at the current place ($89CC), so the table keeps changing as the game runs"
+  },
+  {
+   "address": 40350,
+   "type": "line",
+   "text": "the byte before the hidden list: $B14D reads the list from $9D9E + X, with X from 1"
+  },
+  {
+   "address": 40351,
+   "type": "line",
+   "text": "the hidden list of names the title writes, eleven characters at a time, in black on black (ASCII, @ a space): WINDOWPAINS, FLOODLANDS, NEW ORDER, MACHESTER, HACIENDA, THE VENUE, SUICIDE, RENTBOYS, DAVID, TIM, AMIR, EEEEEEEEEEE, WAGNER, TOM, GARY NICK, DANNY SPACEMEN, ASYLUM, RIP INTERSTELLA, OVERDRIVE, LED ZEP, VOODOO, RAYNITZER, EBB, NME, PERFECT WAY THE THE"
+  },
+  {
+   "address": 40615,
+   "type": "line",
+   "text": "building type 1's picture, 6 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40640,
+   "type": "line",
+   "text": "building type 2's picture, 4 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40653,
+   "type": "line",
+   "text": "building type 3's picture, 4 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40666,
+   "type": "line",
+   "text": "building type 4's picture, 5 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40687,
+   "type": "line",
+   "text": "building type 5's picture, 4 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40708,
+   "type": "line",
+   "text": "building type 6's picture, 3 characters wide and 9 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40736,
+   "type": "line",
+   "text": "building type 7's picture, 7 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40765,
+   "type": "line",
+   "text": "building type 8's picture, 4 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40778,
+   "type": "line",
+   "text": "building type 9's picture, 6 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40803,
+   "type": "line",
+   "text": "building type 10's picture, 7 characters wide and 6 high, row by row ($9730 finds it through $A209/$A22F); no city uses this type, and its picture runs over type 11's, which starts a byte later"
+  },
+  {
+   "address": 40804,
+   "type": "line",
+   "text": "building type 11's picture, 9 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40841,
+   "type": "line",
+   "text": "building type 12's picture, 3 characters wide and 6 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40860,
+   "type": "line",
+   "text": "building type 13's picture, 3 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40873,
+   "type": "line",
+   "text": "building type 14's picture, 5 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40889,
+   "type": "line",
+   "text": "building type 15's picture, 3 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40905,
+   "type": "line",
+   "text": "building type 16's picture, 14 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40948,
+   "type": "line",
+   "text": "building type 17's picture, 9 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 40994,
+   "type": "line",
+   "text": "building type 18's picture, 4 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41007,
+   "type": "line",
+   "text": "building type 19's picture, 3 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41017,
+   "type": "line",
+   "text": "building type 20's picture, 8 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41058,
+   "type": "line",
+   "text": "building type 21's picture, 5 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41084,
+   "type": "line",
+   "text": "building type 22's picture, 3 characters wide and 6 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41106,
+   "type": "line",
+   "text": "building type 23's picture, 6 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41125,
+   "type": "line",
+   "text": "building type 24's picture, 4 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41138,
+   "type": "line",
+   "text": "building type 25's picture, 4 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41155,
+   "type": "line",
+   "text": "building type 26's picture, 7 characters wide and 6 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41198,
+   "type": "line",
+   "text": "building type 27's picture, 9 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41235,
+   "type": "line",
+   "text": "building type 28's picture, 5 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41261,
+   "type": "line",
+   "text": "building type 29's picture, 3 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41271,
+   "type": "line",
+   "text": "building type 30's picture, 3 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41281,
+   "type": "line",
+   "text": "building type 31's picture, 9 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41318,
+   "type": "line",
+   "text": "building type 32's picture, 10 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41359,
+   "type": "line",
+   "text": "building type 33's picture, 10 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41400,
+   "type": "line",
+   "text": "building type 34's picture, 7 characters wide and 3 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41422,
+   "type": "line",
+   "text": "building type 35's picture, 4 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41443,
+   "type": "line",
+   "text": "building type 36's picture, 4 characters wide and 5 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41464,
+   "type": "line",
+   "text": "building type 37's picture, 4 characters wide and 4 high, row by row ($9730 finds it through $A209/$A22F)"
+  },
+  {
+   "address": 41481,
+   "type": "line",
+   "text": "the building pictures' addresses, low bytes, by building type, 38 entries; type 0 is no building"
+  },
+  {
+   "address": 41519,
+   "type": "line",
+   "text": "the building pictures' addresses, high bytes, by building type"
+  },
+  {
+   "address": 41557,
+   "type": "line",
+   "text": "each building type's width in characters"
+  },
+  {
+   "address": 41595,
+   "type": "line",
+   "text": "each building type's height in characters"
   },
   {
    "address": 42039,
