@@ -211,21 +211,21 @@
   },
   {
    "start": 37198,
-   "end": 38292,
-   "type": "Code"
-  },
-  {
-   "start": 38293,
-   "end": 38357,
-   "type": "Undefined"
-  },
-  {
-   "start": 38358,
    "end": 39934,
    "type": "Code"
   },
   {
    "start": 39935,
+   "end": 39935,
+   "type": "Undefined"
+  },
+  {
+   "start": 39936,
+   "end": 39953,
+   "type": "Byte"
+  },
+  {
+   "start": 39954,
    "end": 42038,
    "type": "Undefined"
   },
@@ -4771,6 +4771,30 @@
    "kind": "auto"
   },
   {
+   "address": 38293,
+   "name": "roof_draw_unused",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 38305,
+   "name": "b_95A1",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 38316,
+   "name": "b_95AC",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
+   "address": 38325,
+   "name": "b_95B5",
+   "type": "Branch",
+   "kind": "auto"
+  },
+  {
    "address": 38358,
    "name": "b_95D6",
    "type": "Branch",
@@ -4778,9 +4802,9 @@
   },
   {
    "address": 38361,
-   "name": "j_95D9",
+   "name": "building_fall",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38380,
@@ -4862,9 +4886,9 @@
   },
   {
    "address": 38535,
-   "name": "a_9687",
+   "name": "egg_out",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38547,
@@ -4928,9 +4952,9 @@
   },
   {
    "address": 38704,
-   "name": "s_9730",
+   "name": "building_place",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38718,
@@ -4952,9 +4976,9 @@
   },
   {
    "address": 38770,
-   "name": "s_9772",
+   "name": "monster_frames",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38797,
@@ -5030,9 +5054,9 @@
   },
   {
    "address": 38929,
-   "name": "s_9811",
+   "name": "monster_mask",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38955,
@@ -5180,9 +5204,9 @@
   },
   {
    "address": 39205,
-   "name": "s_9925",
+   "name": "monster_sprites",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39206,
@@ -5318,9 +5342,9 @@
   },
   {
    "address": 39759,
-   "name": "s_9B4F",
+   "name": "band2_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39775,
@@ -5342,15 +5366,15 @@
   },
   {
    "address": 39936,
-   "name": "f_9C00",
+   "name": "arm_frames_left",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39945,
-   "name": "f_9C09",
+   "name": "arm_frames_right",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 39954,
@@ -9128,7 +9152,7 @@
   {
    "address": 35296,
    "type": "line",
-   "text": "one monster's pass, X the monster (0 the lizard, 1 the ogre). First sets $8264 when the position at $80B1/$80B2 is within 20 pixels across of the pair of sprites at $8244/$8245 and 45 to 58 lines above it, and $8265 the same for $80B3/$80B4. While its punch ($82B9,x), flame ($82BB,x) or eating ($82BF,x) timer runs, it only counts that on ($912E, $9125, $9111). Otherwise it reads its joystick (lda $DC00,x: port 2 for the lizard, port 1 for the ogre) into $8A61. If its $80E9,x is 0 (not in the game), fire joins it ($8368 or $83B2). If $80E9,x is not $20 it is dying: the count goes down a pass, with sound $10, and the animation steps every eight. Otherwise fire acts ($8D07) and up, down, left and right walk ($8ACD, $8B34, $8BA4, $8C30); with nothing pressed it only counts $A91E on."
+   "text": "one monster's pass, X the monster (0 the lizard, 1 the ogre). First sets $8264 when the lizard's position ($80B1/$80B2, in pixels) is within 20 pixels across of the pair of sprites at $8244/$8245 and 45 to 58 lines above it, and $8265 the same for the ogre's ($80B3/$80B4). While its punch ($82B9,x), flame ($82BB,x) or eating ($82BF,x) timer runs, it only counts that on ($912E, $9125, $9111). Otherwise it reads its joystick (lda $DC00,x: port 2 for the lizard, port 1 for the ogre) into $8A61. If its $80E9,x is 0 (not in the game), fire joins it ($8368 or $83B2). If $80E9,x is not $20 it is dying: the count goes down a pass, with sound $10, and the animation steps every eight. Otherwise fire acts ($8D07) and up, down, left and right walk ($8ACD, $8B34, $8BA4, $8C30); with nothing pressed it only counts $A91E on."
   },
   {
    "address": 35425,
@@ -9253,17 +9277,17 @@
   {
    "address": 37662,
    "type": "line",
-   "text": "hurts monster X: sets $821D,x and takes one from its first bar ($938D on $C805 or $C81D). For the ogre, when the bar is empty and it is in the game ($80E9,x = $20), its count starts down (dying) and its score goes to the best ($B3CF). For the lizard the code differs: the bar's place is set back to the first cell (lda #$00 where the ogre's keeps $9342) and the test of the empty bar is lda #$00, so the lizard's bar never empties past its first cell and the lizard never starts to die from a hurt; the code at $934A that would start it is reached by nothing. Saves $FB/$FC, X and Y."
+   "text": "hurts monster X: sets $821D,x and takes one from its first bar ($938D on $C805 for the lizard, $C81D for the ogre). When the bar is empty ($9347) and the monster is in the game ($80E9,x = $20), its count starts down (dying, $8AA9 counts it on) and its score goes to the best ($B3CF). The lizard's branch reads the bar's place and the empty flag through the two loads at $9341 and $9346, whose operands are those variables; the ogre's reads the same bytes with absolute loads. Saves $FB/$FC, X and Y. Seven callers."
   },
   {
    "address": 37698,
    "type": "line",
-   "text": "the place in a bar that $938D and $9284 work on, 0 to 4"
+   "text": "the place in a bar that $938D and $9284 work on, 0 to 4, kept as the operand of the load at $9341"
   },
   {
    "address": 37703,
    "type": "line",
-   "text": "set by $938D when the bar it takes from is empty"
+   "text": "set by $938D when the bar it takes from is empty, kept as the operand of the load at $9346"
   },
   {
    "address": 37773,
@@ -9299,6 +9323,121 @@
    "address": 38143,
    "type": "line",
    "text": "a flame on building X: with a random chance from $9C12 lets one of the eight people at $821F run out of it (at a random column of the building, at its foot), then works its way down the building a row ($82A0,x) and scatters one to three rubble characters ($B0) on that row; when the rows run out the building falls ($8298,x). Asks for sound $0B on the third voice and sets the building's timer to 5."
+  },
+  {
+   "address": 38209,
+   "type": "line",
+   "text": "calls $9594, the rts just before the routine at $9595, so that routine never runs"
+  },
+  {
+   "address": 38293,
+   "type": "line",
+   "text": "a routine no instruction reaches: it saves Y and $FB/$FC, moves down the building's height less one rows, draws its width in character $94 with colour 8, $93 at the left end and $95 at the right, and restores them, as the fall at $94D2 does. The only call near it, at $9541, lands on the rts at $9594, one byte before it, so it is switched off."
+  },
+  {
+   "address": 38361,
+   "type": "line",
+   "text": "the last stage of building X, its fall: asks for sound 4 on the third voice, runs $A7AF if $A8A4 is set, then moves the building's picture down a row on the screen each time ($8298,x counts the rows, the top row is filled with the mark $AF). When it is down, random numbers from $9C12 pick what the rubble holds: nothing, $82 (in colour 10), $86 (colour 8), $8A (colour 13) or, while the city's egg is not out ($9687 = 0), the egg $8E (colour 15, and $9687 becomes 1); the sixth building to fall holds the egg if it is not out yet. A pickup is four characters, two by two, two rows above the rubble. Then a row of rubble ($9C, colour 9, with $9B and $9D at the ends), the building gone ($82A8,x = 1), and one more fallen ($82B6); when six have fallen outside the fourth city type, $8032 starts counting to the end of the city. Returns 2, the time to the next stage."
+  },
+  {
+   "address": 38398,
+   "type": "line",
+   "text": "the rows the fall has to move, written into this compare's operand at $95F2"
+  },
+  {
+   "address": 38535,
+   "type": "line",
+   "text": "whether this city's egg has been left in the rubble, kept as the operand of the load at $9686: 0 not yet, 1 out (or the fourth city type, which has none, $87CC), 2 taken ($91DD). Cleared when a city is picked ($84A8)"
+  },
+  {
+   "address": 38590,
+   "type": "line",
+   "text": "the colour of the pickup, written at $9693"
+  },
+  {
+   "address": 38636,
+   "type": "line",
+   "text": "the colour of the city's own character ($A9A3), written at $96E1 from $A2A1"
+  },
+  {
+   "address": 38704,
+   "type": "line",
+   "text": "for building X ($80A5) the screen address of its top left ($C800 + 40 times its row $826E,x plus 1, plus its column $8266,x) in $FB/$FC, the address of its picture by its type ($8276,x: $A209 low bytes, $A22F high) in $FD/$FE, and its height and width ($A27B, $A255) in $827E and $827F. Six callers."
+  },
+  {
+   "address": 38770,
+   "type": "line",
+   "text": "builds the lower sprite of each monster that is in the game, every pass: the frame from the lizard's table at $8133 or the ogre's at $81BB, by its animation frame and facing ($8213 + $8215), is copied from the sprite shapes at $0BB8 (64 bytes a frame) to the buffer at $9D12, masked against the scenery ($9811), and copied to the sprite's memory, $CC80 for the lizard and $CD00 for the ogre."
+  },
+  {
+   "address": 38929,
+   "type": "line",
+   "text": "clears the pixels of the monster's frame in $9D12 that are behind scenery: it looks at the cells around the monster (from $8CC8) and, for each that holds a character below $A0, clears the matching part of the frame, so the monster seems to walk behind walls and buildings."
+  },
+  {
+   "address": 38958,
+   "type": "line",
+   "text": "the offset of the cell the mask looks at, kept in this load's operand"
+  },
+  {
+   "address": 39075,
+   "type": "line",
+   "text": "where in the frame the mask writes, kept in this operand"
+  },
+  {
+   "address": 39143,
+   "type": "line",
+   "text": "the mask's nibble, $0F or $F0, written at $98DD"
+  },
+  {
+   "address": 39205,
+   "type": "line",
+   "text": "places each monster's three sprites from its column and row: the body's two (x = column times 8 plus half-steps times 4 plus $20, the lower 21 lines below the upper), a third for the punching arm 25 pixels to the side it punches, with its frame from $9C00 or $9C09, and a hurt monster is drawn 3 lines lower for a pass ($821D, $821E). A monster not in the game is moved off the screen (y $FA). The lizard is drawn green ($0D) and the ogre light red ($0A). When the ogre stands lower on the screen than the lizard, nearer the player, it swaps the two monsters' sprites, pointers, x high bits and colours, so the nearer one is drawn in front."
+  },
+  {
+   "address": 39206,
+   "type": "line",
+   "text": "the lizard's colour, written into this load's operand at $87E8: 13 (light green) in most city types and 5 (green) in the second"
+  },
+  {
+   "address": 39286,
+   "type": "line",
+   "text": "the low byte of the lizard's x, kept in this add's operand"
+  },
+  {
+   "address": 39484,
+   "type": "line",
+   "text": "the low byte of the ogre's x, kept in this add's operand"
+  },
+  {
+   "address": 39744,
+   "type": "line",
+   "text": "the ogre's sprites' x high bits, moved into this add's operand when the sprites are swapped"
+  },
+  {
+   "address": 39754,
+   "type": "line",
+   "text": "the colour the swap gives the lizard, written into this load's operand at $87EB"
+  },
+  {
+   "address": 39759,
+   "type": "line",
+   "text": "writes the second band's sprites into the operands of the interrupt at $88A2: unless $8691 is set, its line (the higher of the monsters' upper sprites less $1A, into $889E) and $A4E9; then the six monster sprites' positions and pointers ($80CE-$80E6), the pair at $8244/$8245 as sprites 6 and 7, and the x high bits."
+  },
+  {
+   "address": 39935,
+   "type": "line",
+   "text": "the mask nibble kept by $98E0; no instruction found reads it"
+  },
+  {
+   "address": 39936,
+   "type": "line",
+   "text": "the sprite pointers of the punching arm on the left, by the punch timer"
+  },
+  {
+   "address": 39945,
+   "type": "line",
+   "text": "the sprite pointers of the punching arm on the right, by the punch timer"
   },
   {
    "address": 46031,
@@ -9343,7 +9482,7 @@
   {
    "address": 46135,
    "type": "line",
-   "text": "its high byte"
+   "text": "the high byte of the best score's address, for the copy"
   },
   {
    "address": 46140,
