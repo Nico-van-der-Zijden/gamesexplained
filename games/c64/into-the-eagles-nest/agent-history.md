@@ -140,7 +140,34 @@ page runs the game's own code for them on the kit's 6502 instead. That is
 both more faithful and less work, and the test then checks what the page
 adds: the memory it hands over and the entry points it calls.
 
+## The Play tab
+
+The port was written in nine groups, one agent at a time, each holding
+its routines alone against the game's own code and then the whole loop in
+lockstep with the rest of the game standing in. The last group ported,
+the title, the menus and the briefings, left nothing standing in: a copy
+of the harness that made every stand-in throw ran 2,000,000 passes
+identical under both players. The port's reading corrected 14 comments.
+
+Two players drove the checks. A random stick reached three rooms, so the
+explorer was written: it reads the map the game builds, searches it for
+the squares it has seen least, and walks there, which reaches 26 to 29.
+It never rides a lift, and normal play rarely meets the prisoner, so the
+page's test forces the four ends of a mission and, in a second session,
+puts the prisoner beside the player. Two kit fixes came out of the
+lockstep: stand-ins run on the banking the game keeps, and a replayed
+handler gets the SID's faded bus as the game's read it, which a shot
+flying off the end of the map had shown.
+
+The pace took three tries. Costs per state made the page 5.6 % slow with
+medians and 7.9 % with averages, because what the play interrupt does in
+a state follows the play; a fit by the routines each interrupt calls
+brought it to 1.8 % on input the fit had not seen. The page also reached
+play 28 frames early, because the wipe interrupt was installed inside
+the same stretch as the floor's build and ran through it; a checkpoint
+at the call put it 2 frames from the game.
+
 ## Not done
 
-A Play tab, a recorded route through a mission, and the questions in
-`TODO.md` that need somebody to play the game further than this run did.
+A recorded route through a mission, and the questions in `TODO.md` that
+need somebody to play the game further than this run did.

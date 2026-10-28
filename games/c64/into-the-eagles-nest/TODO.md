@@ -36,6 +36,25 @@ Left open by the audit:
 - What filter routing `$63B7`'s write of 2 to `$D417` sets, which the C64
   reference does not cover.
 
+## Platinum
+
+The Play tab is the whole game, ported routine by routine (`reference/en-g*.js`), with no
+stand-ins left, and `test_play.js` holds the published page in lockstep with the game's own code
+and against its pace; `test_screen.js` holds the scrolling message line. Platinum needs Silver
+first, so it waits on the same maintainer's check. Open in the port:
+
+- `figure_turn_to_player` (`$630B`) throws where the game would go round two branches for good
+  inside its interrupt: a guard level with the player on both axes. The guard and the player both
+  stamp their squares into the map, which should keep them apart, so it is believed unreachable;
+  no run has met it.
+- The explorer never rides a lift in normal play, and the name entry, the floor select and the
+  YOU ARE DEAD screen are reached only through the test's forced ends of a mission and the attract
+  loop's own input. A recorded route through a mission (`kit/skills/core/65-inputs`) would hold
+  them with input a player gives.
+- In the pace check the page's main loop goes round 1.5 % fewer times a frame in play than the
+  game's. It only waits there for the interrupt, which moves everything once a frame, so play keeps
+  the C64's time; the rest of the fit's error is in the interrupts' costs.
+
 ## Questions only a player can answer
 
 - What the way out looks like in its own room. Tile `$E4`, a gap of
@@ -50,10 +69,6 @@ Left open by the audit:
 
 ## Ideas for a later run
 
-- **A Play tab.** The engine is small and regular: a map built from
-  blocks, a player that moves a tile every four frames, guards that step
-  into empty tiles, two bullets. A port checked in lockstep against
-  `kit/c64/machine.js` would reach Platinum.
 - **A route through a mission**, recorded with `kit/skills/core/65-inputs`
   and replayed on the page, which would also settle the two questions
   above.

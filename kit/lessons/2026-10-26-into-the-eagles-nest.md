@@ -74,3 +74,23 @@
   not restore the SID with sound on ("Cannot initialize SID engine",
   VICE v3.13.2), so the measurement ran the game's loop on a freshly
   reset machine.
+- **A cost per state ran the Play tab at the pace of the sessions it
+  was measured on.** The play interrupt's cycles were measured per state
+  (its band and its phase of three) while an explorer walked the castle,
+  and the page, driven by a random stick, then played 5.6 % fewer passes
+  of the main loop a frame than the game with medians and 7.9 % fewer
+  with averages. The handler's work follows the play: in one state its
+  cycles ran from about 2,900 to 9,300, by the guards near enough to step
+  and the shots in the air. Counting the port's routine calls inside each
+  handler and fitting a base per state and a cost per routine, none below
+  zero, to 6,809 interrupts brought it to 1.8 %, on input the fit had not
+  seen. The main loop there only waits for the interrupt, so the play
+  itself kept the C64's time throughout; the passes showed the error.
+- **The page's clock charges a stretch after the port has run it.** The
+  page reached play 28 frames early. The mission start builds the floor
+  (568,000 cycles, about 29 frames) and then installs the wipe interrupt,
+  in one stretch, so on the page the wipe ran through the build and was
+  shut when the game's had barely begun. A checkpoint at the `JSR` that
+  installs it put the page 2 frames from the game. The same run found a
+  delay's first checkpoint charging only the delay's own cycles: the
+  22,399 cycles of the briefing's drawing before it were never charged.

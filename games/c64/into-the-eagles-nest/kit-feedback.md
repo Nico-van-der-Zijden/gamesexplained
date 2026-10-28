@@ -7,10 +7,10 @@ time, operating system and tool versions.
 
 ## Skill text that changed what I did
 
+- `70-minisite/play.md`: "Run the page's runtime in node from the cold start before opening a browser": the first such run stopped at once, the clock never moving with no costs measured, and the pace check built on the same run then found the page reaching play 28 frames early, neither of which a browser would have said anything about.
 - `30-text`: "First rule out an offset": searching for the differences between the letters of a word the game shows found its stored text in one pass, in plain ASCII, after a search for screen codes had found nothing.
 - `60-verify`: "When you measure with breakpoints, put one on a routine you know runs": the checkpoint on the interrupt proved the instrument was alive while the one on the damage routine stayed at zero, which is what let "nothing but a guard's step hurts the player" stay a measurement rather than a guess.
 - `70-minisite`: "Port the routine, then test the port against the game itself": the test caught the music driver taking the tune's first notes a tick late, after 1,802 calls that matched.
-- `60-verify`: "A wrong comment is usually one belief written down more than once": each of the sample's two serious findings was in several comments, and searching for the belief rather than for the comment is what found them.
 - `c64-reference`: "Multicolour character mode uses bit 3 of the colour nibble": in the second pass it explained what the contributor saw wrong on the pages, walls and panel letters drawn as multicolour, and gave the rule every drawing on the pages now follows, checked against the recorded frame's colour RAM, where all 588 play-area cells take their colour from the tile table.
 
 ## What was changed in the kit
@@ -24,10 +24,30 @@ time, operating system and tool versions.
 - `kit/c64/lockstep.js`, for the Play tab's port: a stand-in (the game's own code run for a routine no group has ported) now runs on the banking the port keeps in `P.cpuPort` and writes back what it changes; this game moves `$01` between `$37`, `$36`, `$26`, `$30` and `$00`, and a stand-in fixed at `$35` read the chips where the game read RAM. `standIn` passes `kernal` and `hooks` through, for a handler the KERNAL's entry at `$FF48` reaches, and `standInGen` takes `until`, the addresses where a stretch that goes on by JMP (an attract loop that jumps into the game) is stopped. `test_lockstep.js` has the cases.
 - `kit/c64/lockstep.js`: a replayed interrupt handler gets the SID values the game's handler read, as it already did for the raster, the interrupt flags and the collisions. A write-only SID register reads the data bus, which fades with time and halves with each read, so a replay that reads later reads something else: here a shot that flies off the end of the map reads the SID as tiles, and the game saw air where the port saw a wall, which the explorer's lockstep found. `test_lockstep.js` has a handler that reads the bus after it has faded, and fails without the change.
 
+
 ## Candidates
 
 The next run that meets one of these can make the edit; this run could
 name only its own game for each.
+
+**Cost an interrupt by the routines it calls, not by its state.** For
+`kit/skills/core/70-minisite/play.md`, "Pace it by the machine's clock".
+A handler whose work follows the play (the figures it steps, the shots it
+follows) costs differently in one state from one session to the next, so
+a cost per state runs the page at the pace of the sessions it was
+measured on: here 5.6 % slow with medians and 7.9 % with averages, and
+1.8 % after a fit of a base per state and a cost per routine over the
+port's calls inside each handler. In the same paragraph, a stretch that
+ends at a delay's own cycles is charged what the game took beyond them,
+or the work before the delay's first turn is lost (22,399 cycles of the
+briefing here).
+
+**Yield before a call that starts something.** For the same file. The
+page charges a stretch after the port has run all of it, so an interrupt
+installed after a long build in one stretch runs through the build's
+cycles. Here the wipe was shut before the game's had begun and the page
+reached play 28 frames early; a checkpoint at the `JSR` that installs
+it put the page 2 frames from the game.
 
 **Read a number out of memory, not off the emulator's picture.** This
 game's font draws a 9 with a flat top, and at the emulator's 384 pixels it

@@ -155,6 +155,14 @@
         "claude-opus-5-5"
       ],
       "note": "after the second audit, by a checker that took no part in it; made on the contributor's run, not by a maintainer"
+    },
+    {
+      "step": "play",
+      "fixed": 14,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "the whole game ported routine by routine and held in lockstep with its own code; 14 comments the port showed wrong were corrected"
     }
   ],
   "kit_version": "0.0.244",
@@ -314,6 +322,10 @@
     [
       "index.html",
       "How it works"
+    ],
+    [
+      "play.html",
+      "Play"
     ],
     [
       "discoveries.html",

@@ -21,8 +21,10 @@
     const print_message = H.call('print_message', 0x592E);
     const tiles_round_player = H.call('tiles_round_player', 0x5C46);
     const announce_floor = H.call('announce_floor', 0x5ABD);
-    // the two waits for the wipe interrupt to report where it has got to in $4BF1
-    for (const a of [0x4095, 0x4241]) P.checkpoints.add(a);
+    // the two waits for the wipe interrupt to report where it has got to in $4BF1, and the call that
+    // starts it: the floor's build before it takes the game about 29 frames, which a page's clock
+    // charges at the next checkpoint, so without one here the wipe would run through the build
+    for (const a of [0x4092, 0x4095, 0x4241]) P.checkpoints.add(a);
     P.irqBytes.add(0x4BF1);
 
     // ---------------------------------------------------------------- the entry and the cold start
@@ -53,6 +55,7 @@
       }
       build_floor();
       place_detonator();
+      yield { cp: 0x4092 };
       install_wipe_irq();
       do yield { cp: 0x4095 }; while (ib(0x4BF1) !== 3);           // the window has closed
       M[0x06] = 0; M[0x592B] = 0; M[0x592C] = 0;

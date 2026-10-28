@@ -10233,7 +10233,7 @@
   {
    "address": 3388,
    "type": "line",
-   "text": "a two-deep delay loop that holds the finished high score table on a blank screen before the attract loop starts again at $1014. The shift at $0CF8 reads these same bytes as its source, which is only how it addresses the table twenty bytes lower."
+   "text": "a counted delay of 846,856 cycles, about 0.86 seconds, that holds a blank screen ($D011 = $7B, set just before) once the new entry is in the table, with the interrupts off since the SEI at $0D36, so no music plays; then the attract loop starts again at $1014. Three loops deep: X and Y count 255 each, and the innermost counts A down from 1, so it runs once a turn. The shift at $0CF8 reads these same bytes as its source, which is only how it addresses the table twenty bytes lower."
   },
   {
    "address": 3408,
@@ -10518,7 +10518,7 @@
   {
    "address": 5167,
    "type": "line",
-   "text": "builds the supplies screen: draws the icon frames at $113A, places the four icons' cell codes with their colours from the tile colour table at $8600, puts the frame cells $EA to $EF round the first-aid picture ($149E to $14B4), and draws the heading and the four names. Nothing jumps here: the icon copy at $13F9 runs on into it."
+   "text": "builds the supplies screen: draws the icon frames at $113A, places the four icons' cell codes with their colours from the tile colour table at $8600, puts five of the frame cells, $EA, $EB, $EC, $ED and $EF, round the first-aid picture ($149E to $14B4), and draws the heading and the four names. Nothing jumps here: the icon copy at $13F9 runs on into it."
   },
   {
    "address": 5303,
@@ -10648,7 +10648,7 @@
   {
    "address": 6471,
    "type": "line",
-   "text": "the music, one tick at a time, called once a frame from the title and plaque interrupts. It does nothing on two frames in three, so the tune runs at about 16.7 ticks a second on a PAL machine. On the third it serves each of the three voices in turn: it counts the voice's note down, and when that runs out takes the next note number from the voice's own stream ($15E2, $1680 or $1768), looks the number up in the three note tables to get the frequency high byte, the low byte and the length, writes the frequency and the waveform to that voice, and steps the stream on. A note number of $FF ends the tune, and the driver starts all three streams again from the beginning, so the music is endless."
+   "text": "the music, one tick at a time, called once a frame from the title and plaque interrupts. It does nothing on two frames in three, so the tune runs at about 16.7 ticks a second on a PAL machine. On the third it serves each of the three voices in turn: it counts the voice's note down, and when that runs out takes the next note number from the voice's own stream ($15E2, $1680 or $1768), looks the number up in the three note tables to get the frequency high byte, the low byte and the length, writes the frequency and the waveform to that voice, and steps the stream on. When the first voice's note number is $FF the tune has ended: the driver sets all three streams back to their beginning and serves the three voices again from the first, in the same tick, so the music is endless. The test at $199E reads the first voice's note whichever voice is being served, so a $FF taken by the second or third voice is not an end: it is looked up in the note tables like any other number."
   },
   {
    "address": 6676,
@@ -11018,7 +11018,7 @@
   {
    "address": 16463,
    "type": "line",
-   "text": "sets a mission going: points $D018 at $1B, clears the game's variables at $02A8 to $02FF, sets the ammunition to 99, and when a mission is in progress restores the keys, the ammunition, the hits and the score from $4009 to $400E. Then it builds the floor's map ($601B), decides whether the floor's charge stays on the map ($5F9E), starts the game's interrupt ($4BF2), and waits for the interrupt to report itself running."
+   "text": "sets a mission going: points $D018 at $1B, clears the game's variables at $02A8 to $02FF, sets the ammunition to 99, and when a mission is in progress restores the keys, the ammunition, the hits and the score from $4009 to $400E. Then it builds the floor's map ($601B), decides whether the floor's charge stays on the map ($5F9E), starts the wipe interrupt ($4BF2), and waits for it to report the window shut ($4BF1 = 3) before it clears $06 and the message line's two counters at $592B and $592C and runs on into the sprite set-up at $40A6."
   },
   {
    "address": 16549,
@@ -11163,7 +11163,7 @@
   {
    "address": 18170,
    "type": "line",
-   "text": "moves the player's first shot one tile in its direction, if one is in the air. At the edge of the room ($3A at the top, $E2 at the bottom, $20 at the left, $F2 at the right) it flips bit 1 of $02AF instead of going on."
+   "text": "moves the player's first shot 8 pixels in its direction, if one is in the air, and counts the step in $02B2. When the new position is past the edge of the room (below $3A at the top, $E2 or more at the bottom, below $20 at the left, $F2 or more at the right) it flips bit 1 of $02AF, which $4586 reads to take the shot out. Any direction other than 1 to 3 moves it right."
   },
   {
    "address": 18293,
@@ -11413,7 +11413,7 @@
   {
    "address": 20482,
    "type": "line",
-   "text": "the player walked onto a lift pass: \"YOU HAVE FOUND\", clears it from the grid, says \"A LIFT PASS.\" and marks the pass as carried in $02C8"
+   "text": "the player walked onto a lift pass: \"YOU HAVE FOUND\", clears the one grid place the scan found it at (only that tile, where the other pickups clear two or four), says \"A LIFT PASS.\" and marks the pass as carried in $02C8"
   },
   {
    "address": 20522,
@@ -11453,7 +11453,7 @@
   {
    "address": 21412,
    "type": "line",
-   "text": "the shot hit a door key, tile $10. When the message line is idle it says \"YOU ARE WAISTING AMMO.\" (the game's own spelling); it asks for sound 2 and goes to $4DF7, which tries to move the key's two tiles one place the way the shot was going ($02D2), a grid row up or down or a tile left or right, when the tiles there are empty, and writes the grid back."
+   "text": "the shot hit a door key, tile $10. When the message line is idle it says \"YOU ARE WAISTING AMMO.\" (the game's own spelling); it asks for sound 2 and goes to $4DF7, which pushes the key the way the shot was going ($02D2) and writes the grid back. Up or down (1, 2) it moves the key's two tiles a grid row, when both places there are empty; right (4, or any other value) it moves them one tile on, when the place beyond the key is empty. Left (3) is not a move: when the map tile two left of the shot's own place ($02, $03), which is outside the grid, is empty, it writes $10 there in the map and, in the grid, $11 over the key's first tile and 0 over its second, so the key is left broken in two."
   },
   {
    "address": 21439,
@@ -11583,7 +11583,7 @@
   {
    "address": 23091,
    "type": "line",
-   "text": "the game's prodding, run on phase 2 of the rota at $4ACD, one frame in three. $02C1 is stepped on each call, and the counters below act when it reaches $80, which after the first time is once every 256 calls, because $5A3E stores the $80 back rather than clearing it. On such a turn, with no direction pushed and the message line idle, $02BF counts up, and at fourteen the game says \"COME ON ! GET ON WITH IT.....\"; then, with fire not pressed and the line idle, $02C0 counts up, and at seven it says \"LETS GET DOWN TO SOME SERIOUS DESTRUCTION !\". A counter is cleared when its message is said, and also by a push on the stick or a press of fire, or by a busy message line."
+   "text": "the game's prodding, run on phase 2 of the rota at $4ACD, one frame in three. $02C1 is stepped on each call, and the counters below act when it reaches $80, which after the first time is once every 256 calls, because $5A3E stores the $80 back rather than clearing it. On such a turn, with no direction pushed and the message line idle, $02BF counts up, and at fourteen the game says \"COME ON ! GET ON WITH IT.....\"; then, with fire not pressed and the line idle, $02C0 counts up, and at seven it says \"LETS GET DOWN TO SOME SERIOUS DESTRUCTION !\". Each counter is cleared when its message is said, and on such a turn by a busy message line; $02BF also by a push on the stick, and $02C0 by a press of fire."
   },
   {
    "address": 23200,
@@ -11623,7 +11623,7 @@
   {
    "address": 23482,
    "type": "line",
-   "text": "watched each frame. While $02D3 is 0 it reads the hits: at $50, that is fifty, the player is dead. $FF means the game is over and the screen goes black. Anything from 1 to $12 is a step of the explosion the explosives from a chest make, which walks the border and the background through the colours at $5C11 and goes round five times before setting $02D3 to $FF. The last step reads one byte past the table, which is the first byte of the tile grid at $5C22."
+   "text": "watched each frame. While $02D3 is 0 it reads the hits: at $50 or more, that is fifty, the player is dead and $02D3 becomes $FF; below that, with the cheat on ($603F), it sets the keys to 1. $FF means the game is over and the screen goes black. Anything from 1 to $12 is a step of the explosion the explosives from a chest make, which walks the border and the background through the colours at $5C11 and goes round five times before setting $02D3 to $FF. The last step reads one byte past the table, which is the first byte of the tile grid at $5C22."
   },
   {
    "address": 23569,
@@ -11953,12 +11953,12 @@
   {
    "address": 24644,
    "type": "line",
-   "text": "the figures' turn, run with the player's stamp ($5B1B) in two frames of every three. $02CC counts its calls: on three calls in four it carries on through the list the map builder left in $8100 to $8500 from the figure in $02CE, and does nothing once that is back at 0; on the fourth, when $02CC reads 3, it sets $02CC and $02CE to 0 and starts the list again from the first figure, whether or not the walk through it had finished. It gives every figure within reach of the room on screen (its corner from ten tiles left of the room to ten right of it, and from ten above to nine below) a step through $612A, until seven figures have been counted; a call also stops at figures $40 and $80, and the end of the list ($02CF) puts $02CE back to 0. A knocked-down figure out of reach is stood up again when its sixteen tiles are all empty, one each time the walk reaches the end of the list, as $02F7 is cleared only there and at the mission start ($404F). A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
+   "text": "the figures' turn, run with the player's stamp ($5B1B) in two frames of every three. $02CC counts its calls: on three calls in four it carries on through the list the map builder left in $8100 to $8500 from the figure in $02CE, and does nothing once that is back at 0; on the fourth, when $02CC reads 3, it sets $02CC and $02CE to 0 and starts the list again from the first figure, whether or not the walk through it had finished. It gives every figure within reach of the room on screen (its corner from ten tiles left of the room to ten right of it, and from ten above to nine below) a step through $612A, until seven figures have been counted; a call also stops at figures $40 and $80, and whenever A holds $C0 at $60A7, because the CMP #$C0 there tests A (the count in $02CD, or $02F7, whichever was loaded last) rather than X; the end of the list ($02CF) puts $02CE back to 0. Out of reach, the first knocked-down figure the walk meets is tried, once each time the walk reaches the end of the list, as $02F7 is set by the try and cleared only there and at the mission start ($404F); the try counts towards the seven. The figure stands up again when the sixteen tiles $60DB to $610C read are all empty. Those are its first, third, fourth and second rows when the low byte of its place is $80 or below, but from $81 to $FF the BNE at $60F6 tests the sum rather than the carry, and the four rows read are its first, third and second and the row above it. A figure moves only into four tiles that are all empty; a tile of $55 is the player, and walking into him costs a hit."
   },
   {
    "address": 24874,
    "type": "line",
-   "text": "moves one figure a tile. A knocked-down figure (bit 5 of $8500) is left alone. It first turns the figure towards the player ($630B), then steps in the direction the low three bits of its kind byte hold: 1 up, 2 down, 3 left, anything else right. It looks at the four tiles it would step into: all empty and the figure moves, its place in $8300 is written on and it is redrawn ($6284). Otherwise, when the first of them that is not empty is $55, the player, the figure hits him ($639F), and either way bit 3 of its kind byte is cleared when it was going up or down and set when it was going left or right, so that it tries the other axis next."
+   "text": "moves one figure a tile. A knocked-down figure (bit 5 of $8500) is left alone. It first turns the figure towards the player ($630B), then steps in the direction the low three bits of its kind byte hold: 1 up, 2 down, 3 left, anything else right. It looks at the four tiles it would step into: all empty and the figure moves, its place in $8300 is written on and it is redrawn ($6284). Otherwise, when the first of them that is not empty is $55, the player, the figure hits him ($639F), and either way bit 3 of its kind byte is cleared when it was going up or down and set when it was going left or right, so that it tries the other axis next. Stepping left, the DEC at $61EC takes the high byte down when the low byte comes out 0 rather than when it wraps, so from a place whose low byte is $01 or $00 the figure looks at, and moves to, a place 256 bytes off."
   },
   {
    "address": 25220,
@@ -12008,7 +12008,7 @@
   {
    "address": 25355,
    "type": "line",
-   "text": "turns a figure towards the player. With bit 3 of its kind byte clear it compares the figure's column ($8100) with the player's ($02CA) and sets the low three bits to 4, right, or 3, left; with bit 3 set it compares rows ($8200, $02CB) and sets 2, down, or 1, up. When the two are level on that axis it tries the other and leaves bit 3 as it was: the column path clears it ($6354) and the row path sets it ($635F), where it already has that value."
+   "text": "turns a figure towards the player. With bit 3 of its kind byte clear it compares the figure's column ($8100) with the player's ($02CA) and sets the low three bits to 4, right, or 3, left; with bit 3 set it compares rows ($8200, $02CB) and sets 2, down, or 1, up. When the two are level on that axis it tries the other and leaves bit 3 as it was: the column path clears it ($6354) and the row path sets it ($635F), where it already has that value. Were the figure level with the player on both axes, the two paths would send it to each other for good, inside the play interrupt."
   },
   {
    "address": 25450,
@@ -12068,7 +12068,7 @@
   {
    "address": 26345,
    "type": "line",
-   "text": "the frequency high bytes effect 5's tail at $66BE gives voice 1, and less 6 voice 3, one a frame. It reads them backwards with X from 7 down to 0, so the first two come from the code just after the table, $AD and $D7 at $66EF."
+   "text": "the frequency high bytes effect 5's tail at $66BE gives voice 1, and less 6 voice 3, one a frame. It reads them backwards with X from 7 down to 0, so the first two come from the code just after the table: $D7 at $66F0, then $AD at $66EF."
   },
   {
    "address": 26351,
@@ -12203,7 +12203,7 @@
   {
    "address": 28330,
    "type": "line",
-   "text": "a shot hit a figure, tiles $76 to $C0. It looks through the list of figures for the first whose square has its corner no more than four tiles left of and above where the bullet stopped. The first hit only sets bit 6 of that figure's kind byte, so the figure stays on its feet; the second plays sound 8, sets bit 5, clears the figure's sixteen tiles and queues a point, which the ticker turns into 100. That is the two shots each the manual asks for."
+   "text": "a shot hit a figure, tiles $76 to $C0. It looks through the list of figures for the first standing one (bit 5 of its state byte at $8500 clear) whose square has its corner no more than four tiles left of and above where the bullet stopped. The first hit only sets bit 6 of that figure's state byte, so the figure stays on its feet; the second plays sound 8, sets bit 5, clears the figure's sixteen tiles and queues a point, which the ticker turns into 100. That is the two shots each the manual asks for."
   },
   {
    "address": 28465,
