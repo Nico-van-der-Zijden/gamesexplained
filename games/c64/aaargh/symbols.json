@@ -131,8 +131,13 @@
   },
   {
    "start": 31000,
-   "end": 32776,
+   "end": 32767,
    "type": "Undefined"
+  },
+  {
+   "start": 32768,
+   "end": 32776,
+   "type": "Byte"
   },
   {
    "start": 32777,
@@ -162,7 +167,7 @@
   {
    "start": 33839,
    "end": 33859,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 33860,
@@ -172,7 +177,7 @@
   {
    "start": 34799,
    "end": 34831,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 34832,
@@ -196,36 +201,6 @@
   },
   {
    "start": 35286,
-   "end": 36036,
-   "type": "Code"
-  },
-  {
-   "start": 36037,
-   "end": 36039,
-   "type": "Undefined"
-  },
-  {
-   "start": 36040,
-   "end": 36842,
-   "type": "Code"
-  },
-  {
-   "start": 36843,
-   "end": 36851,
-   "type": "Undefined"
-  },
-  {
-   "start": 36852,
-   "end": 37093,
-   "type": "Code"
-  },
-  {
-   "start": 37094,
-   "end": 37102,
-   "type": "Undefined"
-  },
-  {
-   "start": 37103,
    "end": 37196,
    "type": "Code"
   },
@@ -311,6 +286,11 @@
   },
   {
    "start": 46271,
+   "end": 46406,
+   "type": "Byte"
+  },
+  {
+   "start": 46407,
    "end": 46824,
    "type": "Undefined"
   },
@@ -2079,10 +2059,22 @@
    "kind": "auto"
   },
   {
+   "address": 32768,
+   "name": "cbm80_text",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 32777,
+   "name": "entry",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 32781,
-   "name": "j_800D",
+   "name": "main_loop",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32790,
@@ -2116,9 +2108,9 @@
   },
   {
    "address": 32830,
-   "name": "a_803E",
+   "name": "city_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32843,
@@ -2134,9 +2126,9 @@
   },
   {
    "address": 32869,
-   "name": "s_8065",
+   "name": "frame_work",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 32912,
@@ -2938,27 +2930,27 @@
   },
   {
    "address": 33507,
-   "name": "s_82E3",
+   "name": "game_start",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33516,
-   "name": "s_82EC",
+   "name": "city_start",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33537,
-   "name": "s_8301",
+   "name": "video_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33574,
-   "name": "j_8326",
+   "name": "monsters_start",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33607,
@@ -2980,33 +2972,33 @@
   },
   {
    "address": 33638,
-   "name": "a_8366",
+   "name": "lizard_free",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33639,
-   "name": "a_8367",
+   "name": "ogre_free",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33640,
-   "name": "s_8368",
+   "name": "lizard_join",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33714,
-   "name": "j_83B2",
+   "name": "ogre_join",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33785,
-   "name": "j_83F9",
+   "name": "monster_reset",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33810,
@@ -3058,21 +3050,21 @@
   },
   {
    "address": 33830,
-   "name": "s_8426",
+   "name": "install_play_irq",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33839,
-   "name": "f_842F",
+   "name": "city_choice",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 33860,
-   "name": "s_8444",
+   "name": "city_pick",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34060,
@@ -3094,9 +3086,9 @@
   },
   {
    "address": 34110,
-   "name": "s_853E",
+   "name": "city_build",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34118,
@@ -3364,15 +3356,21 @@
   },
   {
    "address": 34799,
-   "name": "f_87EF",
+   "name": "city_colour",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 34808,
-   "name": "f_87F8",
+   "name": "char_masks",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 34832,
+   "name": "irq_play_top",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 34848,
@@ -3427,6 +3425,12 @@
    "name": "a_889E",
    "type": "AbsoluteAddress",
    "kind": "auto"
+  },
+  {
+   "address": 34978,
+   "name": "irq_play_band2",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 34979,
@@ -3604,9 +3608,9 @@
   },
   {
    "address": 35138,
-   "name": "s_8942",
+   "name": "buildings_tick",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35140,
@@ -3640,9 +3644,9 @@
   },
   {
    "address": 35184,
-   "name": "s_8970",
+   "name": "restore_marks",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35186,
@@ -3670,27 +3674,27 @@
   },
   {
    "address": 35250,
-   "name": "s_89B2",
+   "name": "play_pass",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35253,
-   "name": "s_89B5",
+   "name": "play_rest",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35286,
-   "name": "s_89D6",
+   "name": "monsters_move",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35296,
-   "name": "s_89E0",
+   "name": "monster_move",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 35321,
@@ -3958,9 +3962,9 @@
   },
   {
    "address": 36040,
-   "name": "s_8CC8",
+   "name": "monster_cell",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36059,
@@ -4006,9 +4010,9 @@
   },
   {
    "address": 36103,
-   "name": "j_8D07",
+   "name": "monster_fire",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 36213,
@@ -4300,15 +4304,15 @@
   },
   {
    "address": 37197,
-   "name": "a_914D",
+   "name": "flame_flag",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37198,
-   "name": "s_914E",
+   "name": "monster_eat",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37200,
@@ -4360,9 +4364,9 @@
   },
   {
    "address": 37316,
-   "name": "s_91C4",
+   "name": "pickup_cell",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37335,
@@ -4414,9 +4418,9 @@
   },
   {
    "address": 37508,
-   "name": "s_9284",
+   "name": "bar_add",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37529,
@@ -4444,9 +4448,9 @@
   },
   {
    "address": 37590,
-   "name": "s_92D6",
+   "name": "power_spend",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37629,
@@ -4468,21 +4472,21 @@
   },
   {
    "address": 37662,
-   "name": "s_931E",
+   "name": "monster_hurt",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37698,
-   "name": "a_9342",
+   "name": "bar_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37703,
-   "name": "a_9347",
+   "name": "bar_empty",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37722,
@@ -4498,9 +4502,9 @@
   },
   {
    "address": 37773,
-   "name": "s_938D",
+   "name": "bar_take",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37794,
@@ -4516,9 +4520,9 @@
   },
   {
    "address": 37806,
-   "name": "j_93AE",
+   "name": "scores_add",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37825,
@@ -4528,9 +4532,9 @@
   },
   {
    "address": 37841,
-   "name": "s_93D1",
+   "name": "score_digit",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37843,
@@ -4570,9 +4574,9 @@
   },
   {
    "address": 37872,
-   "name": "s_93F0",
+   "name": "building_stage",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 37892,
@@ -4708,9 +4712,9 @@
   },
   {
    "address": 38143,
-   "name": "s_94FF",
+   "name": "building_burn",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 38158,
@@ -6940,9 +6944,9 @@
   },
   {
    "address": 46031,
-   "name": "s_B3CF",
+   "name": "best_score",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46070,
@@ -7036,21 +7040,21 @@
   },
   {
    "address": 46140,
-   "name": "s_B43C",
+   "name": "colour_cell",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46154,
-   "name": "s_B44A",
+   "name": "draw_hole",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46179,
-   "name": "s_B463",
+   "name": "animate_chars",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46181,
@@ -7084,9 +7088,9 @@
   },
   {
    "address": 46271,
-   "name": "f_B4BF",
+   "name": "anim_frames_a",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46343,
@@ -7192,21 +7196,21 @@
   },
   {
    "address": 46825,
-   "name": "j_B6E9",
+   "name": "irq_install",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46868,
-   "name": "j_B714",
+   "name": "irq_chain",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46888,
-   "name": "s_B728",
+   "name": "wait_frame",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46893,
@@ -7216,9 +7220,9 @@
   },
   {
    "address": 46899,
-   "name": "s_B733",
+   "name": "wait_line",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46902,
@@ -7234,9 +7238,9 @@
   },
   {
    "address": 46910,
-   "name": "s_B73E",
+   "name": "abs_value",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46917,
@@ -7246,21 +7250,21 @@
   },
   {
    "address": 46918,
-   "name": "s_B746",
+   "name": "screen_off",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46930,
-   "name": "j_B752",
+   "name": "screen_on",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46942,
-   "name": "s_B75E",
+   "name": "random",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 46979,
@@ -7276,9 +7280,9 @@
   },
   {
    "address": 46996,
-   "name": "s_B794",
+   "name": "random_step",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 47021,
@@ -8765,6 +8769,661 @@
    "address": 30584,
    "type": "line",
    "text": "the 26 sound effects, 16 bytes each: the first frequency (two bytes), the step (two), the mode, the time, the waveform, the attack and decay, the sustain and release, the pulse width, four bytes copied to $7763-$776C, one byte not read, and the repeats ($FF for for ever)"
+  },
+  {
+   "address": 32768,
+   "type": "line",
+   "text": "the text CBM80000, nine bytes in front of the entry; nothing reads it"
+  },
+  {
+   "address": 32777,
+   "type": "line",
+   "text": "the game's entry, as BASIC's SYS 32777 reaches it: sets $01 to $36 (RAM at $A000-$BFFF, the I/O and the KERNAL in) and falls into the main loop at $800D."
+  },
+  {
+   "address": 32781,
+   "type": "line",
+   "text": "the game's outer loop. The title ($AF23) runs until a fire button starts a game; then the game is set up ($82E3) and each city is set up ($82EC) and played, one pass at a time: $8065 does each pass's frame work and $89B2 moves the monsters and everything else. When a pass ends with both monsters' $80E9 at 0 the game is over: $804B sets $8032 to 1 and runs passes of $8065 and $89B5 (everything but the monsters) until $8032 reaches $28, then goes back to the title. When $802E is set, or $8032 has reached $14, the city is over: $ABB7 runs and the city count $803E goes on (from 5 back to 1) to the next city. Otherwise the next pass starts at $8019. Never returns."
+  },
+  {
+   "address": 32814,
+   "type": "line",
+   "text": "the operand of this load, cleared at $84F9 and written in play: when it is not 0 after $89B2 returns, the city is over"
+  },
+  {
+   "address": 32818,
+   "type": "line",
+   "text": "the operand of this compare's load, cleared at $84FC and written in play: $14 after $89B2 ends the city, and the game-over loop at $8050 runs until it reaches $28"
+  },
+  {
+   "address": 32830,
+   "type": "line",
+   "text": "the number of the city in the run, 1 to 5, kept as the operand of this load: $8037 counts it on after each city and puts it back to 1 after 5. $8444 picks the next city with it."
+  },
+  {
+   "address": 32869,
+   "type": "line",
+   "text": "the work of one pass of play before the monsters move: waits for line $C8 ($B733), clears $3E7F and runs $A437, waits a frame, waits for line $C8, then with $3E7F at 1 runs $8942 (the buildings' timers), with $3E7F at 2 restores marked cells of the screen ($8970), animates the characters ($B463) and waits a frame. Called twice from the main loop."
+  },
+  {
+   "address": 33507,
+   "type": "line",
+   "text": "sets up a new game: installs the play interrupt ($8426), the video chip's bank and modes ($8301) and the monsters ($8326)."
+  },
+  {
+   "address": 33516,
+   "type": "line",
+   "text": "sets up the next city with the screen off ($B746): picks it ($8444), builds it ($853E), then $9772, $9925 and $9B4F, and turns the screen on ($B752)."
+  },
+  {
+   "address": 33537,
+   "type": "line",
+   "text": "puts the video chip in bank 3 ($DD00 = $94), the screen at $C800 and the characters at $C000 ($D018 = $20), turns the screen on ($D011 bit 4) and multicolour on, with 40 columns ($D016)."
+  },
+  {
+   "address": 33574,
+   "type": "line",
+   "text": "sets up the monsters for a new game: clears both monsters' health and the counts at $80E7 and $80E8, sets the city count $803E to 1, picks the first city type at random, 1 or 2 ($B75E with 2, plus 1, into $80A8), fills the top two rows of the screen with character $FA, and sets up the lizard ($8368) if its fire started the game ($80EB) and the ogre ($83B2) if its did ($80EC)."
+  },
+  {
+   "address": 33638,
+   "type": "line",
+   "text": "1 while the lizard has not been set up in this game; $8368 sets it up once and clears it"
+  },
+  {
+   "address": 33639,
+   "type": "line",
+   "text": "1 while the ogre has not been set up in this game; $83B2 clears it"
+  },
+  {
+   "address": 33640,
+   "type": "line",
+   "text": "sets up the lizard, once a game ($8366): points its score digits at $C80B and its two bars at $C805 and $C82D (writing them into the code at $8413, $841D and $8420), marks the ends of the bars, sets its start position from the tables at $B69A and $B6A5 by the city type, and gives it its health and power ($83F9). Called at the start of a game and from play ($8A98), so the other monster can join a game that is on."
+  },
+  {
+   "address": 33714,
+   "type": "line",
+   "text": "sets up the ogre as $8368 does the lizard, with its score at $C815 and its bars at $C81D and $C845, and its start position from $B6B0 and $B6BB."
+  },
+  {
+   "address": 33785,
+   "type": "line",
+   "text": "gives monster X (0 the lizard, 1 the ogre) $20 health ($80E9,x) and $20 power ($80ED,x), sets $8215,x to 8 and clears $80E7,x and $8213,x, then writes its seven score digits as $F0 (0 in the heavy digits) and its two bars of five cells as $FE, through the addresses $8368 or $83B2 wrote into these stores."
+  },
+  {
+   "address": 33811,
+   "type": "line",
+   "text": "the low byte of the score digits' address, written by $8368 or $83B2"
+  },
+  {
+   "address": 33812,
+   "type": "line",
+   "text": "the high byte of the score digits' address"
+  },
+  {
+   "address": 33821,
+   "type": "line",
+   "text": "the low byte of the first bar's address"
+  },
+  {
+   "address": 33822,
+   "type": "line",
+   "text": "the high byte of the first bar's address"
+  },
+  {
+   "address": 33824,
+   "type": "line",
+   "text": "the low byte of the second bar's address"
+  },
+  {
+   "address": 33825,
+   "type": "line",
+   "text": "the high byte of the second bar's address"
+  },
+  {
+   "address": 33830,
+   "type": "line",
+   "text": "installs the play interrupt, $8810 on line 0 ($B6E9)."
+  },
+  {
+   "address": 33839,
+   "type": "line",
+   "text": "the city types $8444 picks from, 21 bytes: four times the city count plus a random number index it"
+  },
+  {
+   "address": 33860,
+   "type": "line",
+   "text": "picks the next city and resets play for it: the city type ($80A8) is the byte of $842F at four times the city count ($803E) plus a byte of the table at $9C12, indexed by a counter $A91E that it counts on (and the title counts on every frame); turns all eight sprites on, multicoloured, in front and unexpanded; and clears or sets play's variables for a new city (positions, counts, the sprite colours and the tables at $821F and $8280-$82AD)."
+  },
+  {
+   "address": 34110,
+   "type": "line",
+   "text": "builds the city of type $80A8 on the screen. Fills the character colours at $A2A1 with the city's colour from $87EF and copies the first 128 from the city's data (addresses at $82CF and $82D9); saves the top two rows of the screen to $9D12; copies the next kilobyte of the data to the character set at $C000; copies 62 characters from the city's table (addresses at $B691 and $B688) to $C590; unpacks the screen from the data into $C828 up to $CBFF (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one as they are); keeps a copy of the screen at $7918; sets the border and background colours from $B6D7, $B5D7, $B5E1 and $B5EB. Unless $8691 is set it then sets the city's values ($8244-$8247 from $8248-$8262, $A9A3 from $B6C6), builds characters $96 and $9B-$9D from the city's ($C4B0-$C4EF), the monsters' start positions, and six buildings from $B5F5, $B626 and $B657 (drawn by $93F0). Last it puts the top two rows back, colours the screen from $A2A1 character by character, colours the panel, gives the fourth city type its extra characters at $C9F3-$CA1C, and sets $9926 and $9B4A to 13 for the second city type and 5 for the others."
+  },
+  {
+   "address": 34186,
+   "type": "line",
+   "text": "the low byte of where the character set is copied, $C000, written at $857B"
+  },
+  {
+   "address": 34187,
+   "type": "line",
+   "text": "the high byte of that address, stepped a page at a time"
+  },
+  {
+   "address": 34227,
+   "type": "line",
+   "text": "the low byte of the city's 62 characters' address, from $B691"
+  },
+  {
+   "address": 34228,
+   "type": "line",
+   "text": "its high byte, from $B688"
+  },
+  {
+   "address": 34449,
+   "type": "line",
+   "text": "the operand of this load, set elsewhere to skip the city's values and buildings (cleared at $84AB)"
+  },
+  {
+   "address": 34520,
+   "type": "line",
+   "text": "the operand of this load is the first byte of the character the city names in $B6C6, written at $86D2"
+  },
+  {
+   "address": 34799,
+   "type": "line",
+   "text": "each city type's character colour, written to all 256 of $A2A1 before the city's own 128 are copied over it"
+  },
+  {
+   "address": 34808,
+   "type": "line",
+   "text": "three characters' bitmaps, 24 bytes, that $853E exclusive-ors with a byte of the city's to build characters $9B to $9D at $C4D8"
+  },
+  {
+   "address": 34832,
+   "type": "line",
+   "text": "the play interrupt on line 0, the first band of sprites. Turns sprite expansion off, sets the x high bits from $80C5 and the positions of sprites 0 to 3 from $80B5-$80BC (a y below $44 is put at 0, which hides the sprite above the play field), sets sprite colours (2 white, 0 and 1 yellow, 6 and 7 brown), builds the pointers of sprites 0-2 at $80C6 (from $823D, or a frame of the table at $81FF by $820F and $8212) and writes four from there to $CBF8, then runs the music ($68F8) while $8691 is set or else the sound effects ($753F), saving and restoring $FB-$FE. Chains to $88A2 on the line in $889E."
+  },
+  {
+   "address": 34974,
+   "type": "line",
+   "text": "the line of the second band's interrupt, written by $9B4F (the higher of the second band's sprites less $1A) and at $847A ($50 when a city is picked); $C0 in work/play-city1.vsf"
+  },
+  {
+   "address": 34978,
+   "type": "line",
+   "text": "the play interrupt for the second band of sprites: writes the positions, the x high bits and the pointers that $9B4F left in its own operands ($88A3-$891B) to the video chip and to $CBF8-$CBFF, the colours of sprites 0, 1, 3 and 4 from its operands $8920 and $8928, and sprites 2 and 5 yellow. Chains to $8810 on line 0."
+  },
+  {
+   "address": 34979,
+   "type": "line",
+   "text": "the second band's sprite x high bits ($D010), written by $9B4F from $80DE"
+  },
+  {
+   "address": 34984,
+   "type": "line",
+   "text": "the second band's sprite 3 x, written by $9B4F from $80D4"
+  },
+  {
+   "address": 34989,
+   "type": "line",
+   "text": "sprite 3's y, from $80D5"
+  },
+  {
+   "address": 34994,
+   "type": "line",
+   "text": "sprite 3's pointer ($CBFB), from $80E2"
+  },
+  {
+   "address": 34999,
+   "type": "line",
+   "text": "sprite 4's x, from $80D6"
+  },
+  {
+   "address": 35004,
+   "type": "line",
+   "text": "sprite 4's y, from $80D7"
+  },
+  {
+   "address": 35009,
+   "type": "line",
+   "text": "sprite 4's pointer, from $80E3"
+  },
+  {
+   "address": 35014,
+   "type": "line",
+   "text": "sprite 0's pointer, from $80DF"
+  },
+  {
+   "address": 35019,
+   "type": "line",
+   "text": "sprite 1's pointer, from $80E0"
+  },
+  {
+   "address": 35024,
+   "type": "line",
+   "text": "sprite 1's x, from $80D0"
+  },
+  {
+   "address": 35029,
+   "type": "line",
+   "text": "sprite 1's y, from $80D1"
+  },
+  {
+   "address": 35034,
+   "type": "line",
+   "text": "sprite 0's x, from $80CE"
+  },
+  {
+   "address": 35039,
+   "type": "line",
+   "text": "sprite 0's y, from $80CF"
+  },
+  {
+   "address": 35044,
+   "type": "line",
+   "text": "sprite 2's x, from $80D2"
+  },
+  {
+   "address": 35049,
+   "type": "line",
+   "text": "sprite 2's y, from $80D3"
+  },
+  {
+   "address": 35054,
+   "type": "line",
+   "text": "sprite 6's x, from $8244"
+  },
+  {
+   "address": 35059,
+   "type": "line",
+   "text": "sprite 6's y, from $8245"
+  },
+  {
+   "address": 35064,
+   "type": "line",
+   "text": "sprite 7's x, 21 pixels right of sprite 6, so the two make one thing twice as wide"
+  },
+  {
+   "address": 35069,
+   "type": "line",
+   "text": "sprite 7's y, the same as sprite 6's"
+  },
+  {
+   "address": 35074,
+   "type": "line",
+   "text": "sprite 2's pointer, from $80E1"
+  },
+  {
+   "address": 35079,
+   "type": "line",
+   "text": "sprite 6's pointer, from $80E5"
+  },
+  {
+   "address": 35084,
+   "type": "line",
+   "text": "sprite 7's pointer, from $80E6"
+  },
+  {
+   "address": 35089,
+   "type": "line",
+   "text": "sprite 5's x, from $80D8"
+  },
+  {
+   "address": 35094,
+   "type": "line",
+   "text": "sprite 5's y, from $80D9"
+  },
+  {
+   "address": 35099,
+   "type": "line",
+   "text": "sprite 5's pointer, from $80E4"
+  },
+  {
+   "address": 35104,
+   "type": "line",
+   "text": "the colour of the second band's sprites 0 and 1, written at $9927 and $9B46"
+  },
+  {
+   "address": 35112,
+   "type": "line",
+   "text": "the colour of the second band's sprites 3 and 4, written at $992C and $9B4B"
+  },
+  {
+   "address": 35136,
+   "type": "line",
+   "text": "cleared when a city is picked ($8502) and at $AC35; nothing found yet reads it"
+  },
+  {
+   "address": 35137,
+   "type": "line",
+   "text": "cleared when a city is picked ($8505) and at $AC38; nothing found yet reads it"
+  },
+  {
+   "address": 35138,
+   "type": "line",
+   "text": "counts down the timers ($8280,x) of the buildings that stand ($82A8,x clear) and are burning or falling ($8298,x or $8290,x set), from the sixth down; the first whose count reaches 0 has its next stage drawn ($93F0) and its count reloaded with what that returns, and the rest wait for a later pass. Then, if $8032 is not 0, counts it on."
+  },
+  {
+   "address": 35184,
+   "type": "line",
+   "text": "looks at screen rows 7 to 24 for character $AF, a mark the game leaves on a cell for one pass, and puts back each one it finds from the city's copy of the screen at $7918, with its colour from $A2A1."
+  },
+  {
+   "address": 35250,
+   "type": "line",
+   "text": "one pass of play: the monsters ($89D6), then the rest ($89B5)."
+  },
+  {
+   "address": 35253,
+   "type": "line",
+   "text": "everything in a pass of play but the monsters: $9772, $9925, $9B4F, $A43D; stores a random number from 1 to 4 in the table at $9C12 at the place $A91E, which the next city's choice and other random choices read; and adds the monsters' points owed to their scores ($93AE)."
+  },
+  {
+   "address": 35286,
+   "type": "line",
+   "text": "moves the lizard (X = 0), then the ogre (X = 1), with $89E0."
+  },
+  {
+   "address": 35296,
+   "type": "line",
+   "text": "one monster's pass, X the monster (0 the lizard, 1 the ogre). First sets $8264 when the position at $80B1/$80B2 is within 20 pixels across of the pair of sprites at $8244/$8245 and 45 to 58 lines above it, and $8265 the same for $80B3/$80B4. While its punch ($82B9,x), flame ($82BB,x) or eating ($82BF,x) timer runs, it only counts that on ($912E, $9125, $9111). Otherwise it reads its joystick (lda $DC00,x: port 2 for the lizard, port 1 for the ogre) into $8A61. If its $80E9,x is 0 (not in the game), fire joins it ($8368 or $83B2). If $80E9,x is not $20 it is dying: the count goes down a pass, with sound $10, and the animation steps every eight. Otherwise fire acts ($8D07) and up, down, left and right walk ($8ACD, $8B34, $8BA4, $8C30); with nothing pressed it only counts $A91E on."
+  },
+  {
+   "address": 35425,
+   "type": "line",
+   "text": "the monster's joystick bits, written into this load's operand at $8A46: 0 for pressed, bit 0 up, 1 down, 2 left, 3 right, 4 fire"
+  },
+  {
+   "address": 35533,
+   "type": "line",
+   "text": "up: walks into the screen. Faces away (0) and moves up a row every second pass, while the cells it would move onto are walkable (from $95 up, or the city's character in $A9A3) and the other monster is not just ahead."
+  },
+  {
+   "address": 35636,
+   "type": "line",
+   "text": "down: walks out of the screen, to row $14 at most, in the same way (facing 8)."
+  },
+  {
+   "address": 35748,
+   "type": "line",
+   "text": "left: walks left to column 1 at most, half a cell a pass, while the cells there are walkable (facing $0C)."
+  },
+  {
+   "address": 35888,
+   "type": "line",
+   "text": "right: walks right to column $23 at most (facing 4)."
+  },
+  {
+   "address": 36021,
+   "type": "line",
+   "text": "the end of a step: counts the monster's animation frame $8213,x on, 0 to 3."
+  },
+  {
+   "address": 36037,
+   "type": "line",
+   "text": "three bytes no code reaches, jmp $8BA4"
+  },
+  {
+   "address": 36040,
+   "type": "line",
+   "text": "the screen address of monster X's place, $C800 + 40 times (its row $80AF,x less 1) + its column $80AB,x, in $FB/$FC. Fifteen callers."
+  },
+  {
+   "address": 36103,
+   "type": "line",
+   "text": "fire. With a direction it is a punch, with the stick in the middle a flame ($914D set, the flame timer $82BB,x to 6); first it eats what is in reach ($914E). A flame within three columns and a row of the other monster hurts it ($931E) and scores 1; one while $8264,x is set (with $8242 of 7 or more) scores 1, takes 1 from $8242, asks for sound 2 on the third voice and counts $8240 round 1 to 4. Then by the direction, or for a flame the way the monster faces, it goes to the building above ($8DB1), below ($8E75), to the left ($8F2C) or to the right ($901C)."
+  },
+  {
+   "address": 36273,
+   "type": "line",
+   "text": "fire up, or a flame facing up: looks for a standing building just above the monster within its width. A punch, while the monster has punching power ($80ED,x), knocks a hole in it ($B44A), starts it falling ($8290,x) and scores 10; a flame sets it alight ($9730, then $94FF every second pass) and scores 1."
+  },
+  {
+   "address": 36469,
+   "type": "line",
+   "text": "fire down, or a flame facing down: the same for a building just below."
+  },
+  {
+   "address": 36652,
+   "type": "line",
+   "text": "fire left, or a flame facing left: the same for a building to the left; a punch at nothing with power left counts $82B7,x."
+  },
+  {
+   "address": 36728,
+   "type": "line",
+   "text": "the height of the building less one, written into this compare's operand at $8F6D"
+  },
+  {
+   "address": 36843,
+   "type": "line",
+   "text": "nine bytes no code reaches: sta $8298,x, ldx $80A6, rts"
+  },
+  {
+   "address": 36892,
+   "type": "line",
+   "text": "fire right, or a flame facing right: the same for a building to the right."
+  },
+  {
+   "address": 36954,
+   "type": "line",
+   "text": "the height of the building less one, written into this compare's operand at $904F"
+  },
+  {
+   "address": 37054,
+   "type": "line",
+   "text": "the end of a punch or a flame: keeps where it was aimed in $82BD,x; for a flame asks for sound 3 and moves the animation to the flame frames; for a punch starts the punch timer ($82B9,x = 8), stops the monster's sound and takes a cell of punching power ($92D6)."
+  },
+  {
+   "address": 37094,
+   "type": "line",
+   "text": "nine bytes no code reaches, the same as those at $8FEB"
+  },
+  {
+   "address": 37137,
+   "type": "line",
+   "text": "the eating timer: counts it down and scores 1 when it runs out"
+  },
+  {
+   "address": 37197,
+   "type": "line",
+   "text": "1 while the fire being handled is a flame, 0 for a punch; set at $8D36"
+  },
+  {
+   "address": 37198,
+   "type": "line",
+   "text": "before a punch or a flame: if one of the eight things at $821F (people) is within four columns and two or three rows above the monster, it is taken ($821F,y = 2) and eaten: the eating timer ($82BF,x = 6), sound $0D, the eating frames, and the punch or flame is dropped. Otherwise it looks at the four cells in each of four rows around the monster for a pickup ($91C4)."
+  },
+  {
+   "address": 37316,
+   "type": "line",
+   "text": "what the character at ($FB),Y gives: $82 sets the punching power ($80ED,x = 1) and adds a cell to the second bar; $86 adds a cell to the first bar; $8A hurts the monster eight times ($931E); $8E sets $9687 to 2, asks for sound 8, scores 3 and counts $8032 on. Each taken leaves the mark $AF on its four cells ($92B9), which $8970 puts back."
+  },
+  {
+   "address": 37508,
+   "type": "line",
+   "text": "adds to a bar: the cell at ($FB) + the bar's place ($9342) is made full ($FE) and what it held moves to the next cell, up to the fifth."
+  },
+  {
+   "address": 37590,
+   "type": "line",
+   "text": "a punch spends a cell of punching power: takes one from the monster's second bar ($938D on $C82D or $C845), and when the bar is empty clears $80ED,x, so a punch does nothing more."
+  },
+  {
+   "address": 37662,
+   "type": "line",
+   "text": "hurts monster X: sets $821D,x and takes one from its first bar ($938D on $C805 or $C81D). For the ogre, when the bar is empty and it is in the game ($80E9,x = $20), its count starts down (dying) and its score goes to the best ($B3CF). For the lizard the code differs: the bar's place is set back to the first cell (lda #$00 where the ogre's keeps $9342) and the test of the empty bar is lda #$00, so the lizard's bar never empties past its first cell and the lizard never starts to die from a hurt; the code at $934A that would start it is reached by nothing. Saves $FB/$FC, X and Y."
+  },
+  {
+   "address": 37698,
+   "type": "line",
+   "text": "the place in a bar that $938D and $9284 work on, 0 to 4"
+  },
+  {
+   "address": 37703,
+   "type": "line",
+   "text": "set by $938D when the bar it takes from is empty"
+  },
+  {
+   "address": 37773,
+   "type": "line",
+   "text": "takes one from the bar at ($FB), at the place A: the cells go from $FE (full) down to $FA (empty); when the cell is empty it moves the place back one, and when the first cell is empty sets $9347."
+  },
+  {
+   "address": 37806,
+   "type": "line",
+   "text": "adds a point the monsters are owed ($80E7, $80E8) to each one's score, one a pass: the score's tens digit is counted on ($93D1), so a point is 10 on the screen."
+  },
+  {
+   "address": 37841,
+   "type": "line",
+   "text": "counts on the score digit at ($FB)+5, carrying into the digits to its left; the digits are the heavy ones, $F0-$F9."
+  },
+  {
+   "address": 37872,
+   "type": "line",
+   "text": "draws the next stage of building X, with its size from $827E/$827F and its screen place from $9730: a standing building is redrawn from its graphic; a burning one ($8290,x from 1 to 4) gets the next of its flame pictures (the characters from $82B0), with a random chance from $9C12 of going out; at stage 5 it falls ($82A0,x); a fallen one ($8298,x) is cleared away ($95D9). Returns the time to the next stage, from $9C12."
+  },
+  {
+   "address": 38050,
+   "type": "line",
+   "text": "the flame picture's first character, written at $9496 from $82B0"
+  },
+  {
+   "address": 38054,
+   "type": "line",
+   "text": "the flame picture's second character, written at $948F"
+  },
+  {
+   "address": 38143,
+   "type": "line",
+   "text": "a flame on building X: with a random chance from $9C12 lets one of the eight people at $821F run out of it (at a random column of the building, at its foot), then works its way down the building a row ($82A0,x) and scatters one to three rubble characters ($B0) on that row; when the rows run out the building falls ($8298,x). Asks for sound $0B on the third voice and sets the building's timer to 5."
+  },
+  {
+   "address": 46031,
+   "type": "line",
+   "text": "on a monster's death, compares its seven score digits ($C80B for the lizard, $C815 for the ogre, less $C0, so they are ASCII) with its best score on the title ($B332 or $B340) and copies them there if they are higher. The addresses are written into the compares at $B419-$B437."
+  },
+  {
+   "address": 46105,
+   "type": "line",
+   "text": "the low byte of the score's address, written by $B3CF"
+  },
+  {
+   "address": 46106,
+   "type": "line",
+   "text": "the high byte of the score's address"
+  },
+  {
+   "address": 46111,
+   "type": "line",
+   "text": "the low byte of the best score's address"
+  },
+  {
+   "address": 46112,
+   "type": "line",
+   "text": "the high byte of the best score's address"
+  },
+  {
+   "address": 46128,
+   "type": "line",
+   "text": "the low byte of the score's address, for the copy"
+  },
+  {
+   "address": 46129,
+   "type": "line",
+   "text": "its high byte"
+  },
+  {
+   "address": 46134,
+   "type": "line",
+   "text": "the low byte of the best score's address, for the copy"
+  },
+  {
+   "address": 46135,
+   "type": "line",
+   "text": "its high byte"
+  },
+  {
+   "address": 46140,
+   "type": "line",
+   "text": "the colour RAM address for the screen address in $FB/$FC, $1000 higher, in $FD/$FE."
+  },
+  {
+   "address": 46154,
+   "type": "line",
+   "text": "draws a punched hole at ($FB),Y: character $A9 over $AA, in colour 10."
+  },
+  {
+   "address": 46179,
+   "type": "line",
+   "text": "animates characters once a pass: three in four phases ($C498-$C4AF from $B4BF), six in four ($C548-$C577 from $B547) and four in two ($C4B8-$C4D7 from $B507). The phases are kept in the operands at $B465 and $B4A4."
+  },
+  {
+   "address": 46181,
+   "type": "line",
+   "text": "the four-phase animation's phase, 0 to 3, kept in this add's operand"
+  },
+  {
+   "address": 46244,
+   "type": "line",
+   "text": "the two-phase animation's phase, 0 or 1, kept in this add's operand"
+  },
+  {
+   "address": 46271,
+   "type": "line",
+   "text": "the four frames of three animated characters, 24 bytes a frame, copied to $C498"
+  },
+  {
+   "address": 46825,
+   "type": "line",
+   "text": "installs a raster interrupt: A is its line, X and Y the handler's address. Turns the video chip's interrupts off, writes the line and the vector $0314, clears bit 8 of the line in $D011, turns CIA 1's interrupts and timer A off, acknowledges and enables the raster interrupt and clears I."
+  },
+  {
+   "address": 46868,
+   "type": "line",
+   "text": "the end of every raster handler: writes the next handler (X and Y) to $0314 and its line (A) to $D012, acknowledges the interrupt, pulls Y, X and A as the KERNAL's entry pushed them and returns."
+  },
+  {
+   "address": 46888,
+   "type": "line",
+   "text": "waits for the raster to reach line 256 (bit 7 of $D011 set), then to leave the bottom of the screen, so it returns as the next frame starts."
+  },
+  {
+   "address": 46899,
+   "type": "line",
+   "text": "waits until the raster reaches line A: writes A into its own compare at $B73A and waits while $D012 is less."
+  },
+  {
+   "address": 46906,
+   "type": "line",
+   "text": "the line $B733 waits for, written into the compare's operand at $B733"
+  },
+  {
+   "address": 46910,
+   "type": "line",
+   "text": "makes A positive if the flags the caller's last instruction left say it is negative: if N is set it negates A (two's complement). Eight callers."
+  },
+  {
+   "address": 46918,
+   "type": "line",
+   "text": "waits for the next frame and blanks the screen ($D011 bit 4 off)."
+  },
+  {
+   "address": 46930,
+   "type": "line",
+   "text": "waits for the next frame and turns the screen on ($D011 bit 4)."
+  },
+  {
+   "address": 46942,
+   "type": "line",
+   "text": "a random number from 0 to A less one: steps the shift register at $B7B0-$B7B3 eight times ($B794), so its top byte is eight new bits, and multiplies that by A, returning the high byte of the product. X is kept. Five callers."
+  },
+  {
+   "address": 46996,
+   "type": "line",
+   "text": "steps the 32-bit shift register $B7B0-$B7B3 one bit: the new bit is bits 3 and 6 of its top byte, exclusive-ored (and #$48, adc #$38 and two shifts bring it to the carry), rotated in at the bottom. Returns the top byte."
   }
  ]
 }
