@@ -108,6 +108,10 @@ for two cells: a set bit is the room's wall character beside the same
 plus 4, a clear one two blanks (`$D6`). Each blank cell above the left
 half of a wall then gets a wall top, `$7E` beside `$7F`, in the room's
 top colour (`draw_room`). Wall characters are `$88`-`$8F`, four pairs.
+Room 18's walls spell REST ROOM in letters five rows high, each stroke
+two cells wide: REST on rows 2-6 and ROOM on rows 8-12, the two Rs
+alike, with no bar across their feet. *(live: plus4emu's screen of
+room 18)*
 
 **The player** is two columns of three rows on the screen, but drawn in
 six characters of his own, `$78`-`$7D` (`draw_player`). Each pass
@@ -282,6 +286,10 @@ a warble that jumps between a low tone and a high one at every step of
 the bar, both creeping up (`refill_energy`), and the death sequence turns on the
 noise and raises the pitch while the room's colours step round
 (`death`). `voice1_on_unused` and `voice1_off_unused` are never called.
+Taking a vitamin makes no sound: `collect_vitamin` writes no sound
+register except at the 25th, when it starts the tune. *(live: walking
+into room 22's vitamin, the only sound writes were `$FF11` = `$0F`,
+both voices off)*
 
 ## Register census
 
