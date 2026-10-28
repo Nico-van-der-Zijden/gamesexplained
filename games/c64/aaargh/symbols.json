@@ -52,7 +52,7 @@
   {
    "start": 28483,
    "end": 28672,
-   "type": "Undefined"
+   "type": "Byte"
   },
   {
    "start": 28673,
@@ -61,6 +61,46 @@
   },
   {
    "start": 28693,
+   "end": 28704,
+   "type": "Address"
+  },
+  {
+   "start": 28705,
+   "end": 28960,
+   "type": "Byte"
+  },
+  {
+   "start": 28961,
+   "end": 29022,
+   "type": "Address"
+  },
+  {
+   "start": 29023,
+   "end": 29744,
+   "type": "Byte"
+  },
+  {
+   "start": 29745,
+   "end": 29756,
+   "type": "Address"
+  },
+  {
+   "start": 29757,
+   "end": 29852,
+   "type": "Byte"
+  },
+  {
+   "start": 29853,
+   "end": 29979,
+   "type": "Undefined"
+  },
+  {
+   "start": 29980,
+   "end": 30011,
+   "type": "Byte"
+  },
+  {
+   "start": 30012,
    "end": 30014,
    "type": "Undefined"
   },
@@ -81,6 +121,16 @@
   },
   {
    "start": 30506,
+   "end": 30583,
+   "type": "Undefined"
+  },
+  {
+   "start": 30584,
+   "end": 30999,
+   "type": "Byte"
+  },
+  {
+   "start": 31000,
    "end": 32776,
    "type": "Undefined"
   },
@@ -392,15 +442,15 @@
   },
   {
    "address": 26871,
-   "name": "a_68F7",
+   "name": "music_command",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26872,
-   "name": "j_68F8",
+   "name": "music_play",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26883,
@@ -440,9 +490,9 @@
   },
   {
    "address": 26970,
-   "name": "j_695A",
+   "name": "music_voice",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 26997,
@@ -884,15 +934,15 @@
   },
   {
    "address": 28208,
-   "name": "j_6E30",
+   "name": "music_done",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28214,
-   "name": "s_6E36",
+   "name": "sid_clear",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28218,
@@ -902,15 +952,15 @@
   },
   {
    "address": 28225,
-   "name": "s_6E41",
+   "name": "voice_set_note",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28252,
-   "name": "s_6E5C",
+   "name": "arpeggio_build",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28258,
@@ -926,9 +976,9 @@
   },
   {
    "address": 28289,
-   "name": "s_6E81",
+   "name": "voice_next_pattern",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28299,
@@ -950,9 +1000,9 @@
   },
   {
    "address": 28348,
-   "name": "s_6EBC",
+   "name": "slide_setup",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28349,
@@ -1010,111 +1060,315 @@
   },
   {
    "address": 28483,
-   "name": "f_6F43",
+   "name": "note_freq_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28484,
-   "name": "f_6F44",
+   "name": "note_freq_hi_next",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28578,
-   "name": "f_6FA2",
+   "name": "note_freq_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28579,
-   "name": "f_6FA3",
+   "name": "note_freq_lo_next",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28673,
-   "name": "s_7001",
+   "name": "sid_reset",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28693,
-   "name": "f_7015",
+   "name": "tune_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28705,
-   "name": "f_7021",
+   "name": "instruments",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28706,
-   "name": "f_7022",
+   "name": "ins_ad",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28707,
-   "name": "f_7023",
+   "name": "ins_sr",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28708,
-   "name": "f_7024",
+   "name": "ins_pulse",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28709,
-   "name": "f_7025",
+   "name": "ins_drum",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28710,
-   "name": "f_7026",
+   "name": "ins_pulse_step",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28711,
-   "name": "f_7027",
+   "name": "ins_arp",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28712,
-   "name": "f_7028",
+   "name": "ins_flags",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28961,
-   "name": "f_7121",
+   "name": "pattern_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 28962,
-   "name": "f_7122",
+   "name": "pattern_table_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 29023,
+   "name": "order_t1v1",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 29044,
+   "name": "order_t1v2",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29070,
+   "name": "order_t1v3",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29088,
+   "name": "order_t2v1",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29099,
+   "name": "order_t2v2",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29114,
+   "name": "order_t2v3",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29126,
+   "name": "pattern_00",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29130,
+   "name": "pattern_01",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29141,
+   "name": "pattern_02",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29164,
+   "name": "pattern_03",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29196,
+   "name": "pattern_04",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29228,
+   "name": "pattern_05",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29232,
+   "name": "pattern_06",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29236,
+   "name": "pattern_07",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29245,
+   "name": "pattern_08",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29280,
+   "name": "pattern_09",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29292,
+   "name": "pattern_10",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29327,
+   "name": "pattern_11",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29348,
+   "name": "pattern_12",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29361,
+   "name": "pattern_13",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29389,
+   "name": "pattern_14",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29401,
+   "name": "pattern_15",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29413,
+   "name": "pattern_16",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29448,
+   "name": "pattern_17",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29458,
+   "name": "pattern_18",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29470,
+   "name": "pattern_19",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29491,
+   "name": "pattern_20",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29500,
+   "name": "pattern_21",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29559,
+   "name": "pattern_22",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29594,
+   "name": "pattern_23",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29602,
+   "name": "pattern_24",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29629,
+   "name": "pattern_25",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29678,
+   "name": "pattern_26",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29705,
+   "name": "pattern_27",
+   "type": "AbsoluteAddress",
+   "kind": "user"
   },
   {
    "address": 29745,
-   "name": "f_7431",
+   "name": "drum_table",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29746,
-   "name": "f_7432",
+   "name": "drum_wave_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29747,
@@ -1130,297 +1384,321 @@
   },
   {
    "address": 29757,
-   "name": "f_743D",
+   "name": "drum_tables",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29773,
-   "name": "f_744D",
+   "name": "drum0_waves",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 29789,
+   "name": "drum1_freqs",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29805,
+   "name": "drum1_waves",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29821,
+   "name": "drum2_freqs",
+   "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 29837,
+   "name": "drum2_waves",
+   "type": "AbsoluteAddress",
+   "kind": "user"
   },
   {
    "address": 29853,
-   "name": "f_749D",
+   "name": "voice_sid_offset",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29856,
-   "name": "f_74A0",
+   "name": "voice_arp_base",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29859,
-   "name": "f_74A3",
+   "name": "arp_steps",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29867,
-   "name": "f_74AB",
+   "name": "voice_gate",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29870,
-   "name": "f_74AE",
+   "name": "voice_note",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29873,
-   "name": "a_74B1",
+   "name": "music_voice_index",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29874,
-   "name": "a_74B2",
+   "name": "music_playing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29875,
-   "name": "a_74B3",
+   "name": "music_speed",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29876,
-   "name": "a_74B4",
+   "name": "music_speed_count",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29877,
-   "name": "f_74B5",
+   "name": "voice_order_place",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29880,
-   "name": "f_74B8",
+   "name": "voice_freq_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29883,
-   "name": "f_74BB",
+   "name": "voice_freq_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29886,
-   "name": "f_74BE",
+   "name": "voice_pulse_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29889,
-   "name": "f_74C1",
+   "name": "voice_pulse_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29892,
-   "name": "f_74C4",
+   "name": "voice_pattern_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29895,
-   "name": "f_74C7",
+   "name": "voice_pattern_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29898,
-   "name": "f_74CA",
+   "name": "voice_length",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29901,
-   "name": "f_74CD",
+   "name": "voice_length_count",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29904,
-   "name": "f_74D0",
+   "name": "voice_effect",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29907,
-   "name": "f_74D3",
+   "name": "voice_arp_mask",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29910,
-   "name": "f_74D6",
+   "name": "voice_transpose",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29913,
-   "name": "f_74D9",
+   "name": "voice_slide_target",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29916,
-   "name": "f_74DC",
+   "name": "voice_slide_speed",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29919,
-   "name": "a_74DF",
+   "name": "slide_step_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29920,
-   "name": "a_74E0",
+   "name": "slide_step_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29921,
-   "name": "a_74E1",
+   "name": "slide_divisor",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29922,
-   "name": "f_74E2",
+   "name": "voice_slide_opcode",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29925,
-   "name": "f_74E5",
+   "name": "voice_short_slide",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29928,
-   "name": "f_74E8",
+   "name": "voice_pulse_dir",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29931,
-   "name": "f_74EB",
+   "name": "voice_arp_place",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29934,
-   "name": "a_74EE",
+   "name": "vibrato_depth",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29935,
-   "name": "a_74EF",
+   "name": "vibrato_shift",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29936,
-   "name": "f_74F0",
+   "name": "voice_vibrato_dir",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29939,
-   "name": "f_74F3",
+   "name": "voice_vibrato_count",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29942,
-   "name": "f_74F6",
+   "name": "voice_vibrato_delay",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29945,
-   "name": "f_74F9",
+   "name": "voice_vibrato_wait",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29948,
-   "name": "a_74FC",
+   "name": "vibrato_freq_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29949,
-   "name": "a_74FD",
+   "name": "vibrato_freq_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29950,
-   "name": "a_74FE",
+   "name": "vibrato_step_lo",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29951,
-   "name": "a_74FF",
+   "name": "vibrato_step_hi",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29952,
-   "name": "a_7500",
+   "name": "arp_mask_work",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29953,
-   "name": "a_7501",
+   "name": "fade_volume",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29954,
-   "name": "f_7502",
+   "name": "voice_order_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29957,
-   "name": "f_7505",
+   "name": "voice_order_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29960,
-   "name": "a_7508",
+   "name": "pattern_place",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29961,
-   "name": "f_7509",
+   "name": "voice_instrument",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29964,
-   "name": "a_750C",
+   "name": "voice_effect_timer",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29965,
@@ -1436,45 +1714,45 @@
   },
   {
    "address": 29967,
-   "name": "a_750F",
+   "name": "music_sid_offset",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29968,
-   "name": "f_7510",
+   "name": "voice_keep_pulse",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29971,
-   "name": "f_7513",
+   "name": "voice_drum_started",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29974,
-   "name": "f_7516",
+   "name": "voice_sustain_full",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29977,
-   "name": "f_7519",
+   "name": "voice_vibrato_byte",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 29980,
-   "name": "f_751C",
+   "name": "arp_lists",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30012,
-   "name": "f_753C",
+   "name": "sfx_request",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30013,
@@ -1490,21 +1768,21 @@
   },
   {
    "address": 30015,
-   "name": "s_753F",
+   "name": "sfx_frame",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30024,
-   "name": "s_7548",
+   "name": "sfx_volume",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30030,
-   "name": "s_754E",
+   "name": "sfx_clear",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30043,
@@ -1520,9 +1798,9 @@
   },
   {
    "address": 30058,
-   "name": "j_756A",
+   "name": "sfx_play",
    "type": "Jump",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30064,
@@ -1544,9 +1822,9 @@
   },
   {
    "address": 30090,
-   "name": "s_758A",
+   "name": "sfx_start",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30232,
@@ -1562,9 +1840,9 @@
   },
   {
    "address": 30307,
-   "name": "s_7663",
+   "name": "sfx_step",
    "type": "Subroutine",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30323,
@@ -1628,81 +1906,81 @@
   },
   {
    "address": 30506,
-   "name": "f_772A",
+   "name": "sfx_freq_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30509,
-   "name": "f_772D",
+   "name": "sfx_freq_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30512,
-   "name": "f_7730",
+   "name": "sfx_start_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30515,
-   "name": "f_7733",
+   "name": "sfx_start_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30518,
-   "name": "f_7736",
+   "name": "sfx_repeats",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30521,
-   "name": "f_7739",
+   "name": "sfx_time_start",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30524,
-   "name": "f_773C",
+   "name": "sfx_mode",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30527,
-   "name": "f_773F",
+   "name": "sfx_step_lo",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30530,
-   "name": "f_7742",
+   "name": "sfx_step_hi",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30533,
-   "name": "f_7745",
+   "name": "sfx_waveform",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30536,
-   "name": "f_7748",
+   "name": "sfx_time",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30542,
-   "name": "f_774E",
+   "name": "sfx_swap",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30545,
-   "name": "a_7751",
+   "name": "sfx_playing",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30546,
@@ -1718,39 +1996,39 @@
   },
   {
    "address": 30548,
-   "name": "f_7754",
+   "name": "sfx_sr",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30551,
-   "name": "f_7757",
+   "name": "sfx_ad",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30554,
-   "name": "f_775A",
+   "name": "sfx_pulse",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30557,
-   "name": "f_775D",
+   "name": "sfx_sid_offset",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30560,
-   "name": "f_7760",
+   "name": "sfx_forever",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30563,
-   "name": "f_7763",
+   "name": "sfx_extra",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 30566,
@@ -1772,9 +2050,15 @@
   },
   {
    "address": 30575,
-   "name": "f_776F",
+   "name": "sfx_release",
    "type": "Field",
-   "kind": "auto"
+   "kind": "user"
+  },
+  {
+   "address": 30584,
+   "name": "sfx_records",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 31240,
@@ -7621,5 +7905,866 @@
    "kind": "auto"
   }
  ],
- "comments": []
+ "comments": [
+  {
+   "address": 26871,
+   "type": "line",
+   "text": "the tune command, written by the game and read by $68F8: 0 silences the SID and stops the tune, 1 or 2 starts that tune, and anything from 3 up lets the tune playing go on. $68F8 writes $FF back before it returns (at $6E32), so a command acts once. The game writes it at $ABFB, $AC63, $B074 and $B1A0; the driver itself writes 0 at $69D9 when a pattern reaches its end-of-tune byte $FE."
+  },
+  {
+   "address": 26872,
+   "type": "line",
+   "text": "the music driver, called from the play interrupt (at $8884) and from the title's (at $B20C). On command 0 it silences the SID ($6E36) and clears $74B2. On 1 or 2 it copies that tune's three order-list pointers from $7015 (six bytes a tune) to $7502 and $7505, clears each voice's note length, slide and order-list place, fetches each voice's first pattern ($6E81), resets the SID ($7001) and sets $74B2. Otherwise, while $74B2 is set, it counts each voice's three effect timers at $750C on and steps the three voices from the third down to the first ($695A), then counts the speed down ($74B4) and reloads it from $74B3 when it passes 0. Every way out writes $FF to the command."
+  },
+  {
+   "address": 26898,
+   "type": "line",
+   "text": "the operand of this add, which $690D writes with twice the tune number less one, so the add makes it six times: the offset of the tune's entry in $7015"
+  },
+  {
+   "address": 26970,
+   "type": "line",
+   "text": "one voice's step of the driver, with X the voice (0 to 2) and $750F its SID register offset from $749D. While the speed count $74B4 is not 0 it only carries on a slide ($74E5 counts down while the note number $74AE steps down). When the count is 0 it counts the note's length $74CD down, and while the note lasts it applies the slide set by command $7E or $7F: $74E2 holds an opcode ($FE, inc, or $DE, dec), which $6972 writes over the instruction at $6975, so the note steps up or down a semitone each time. When the length runs out it reads the pattern at $A7/$A8 from the place $7508: bytes $00-$5F are notes, $60-$7F commands ($7F slide down, $7E slide up, $7D and $7C an arpeggio with a mask byte, $7B a slide to a note with a speed byte, $7A a vibrato delay byte), $80-$BF set the length (low six bits, $74CA), $C0-$DF the instrument (low five bits, times 8, $7509), $F0-$FB the speed (low four bits, $74B3), $FC the volume to 15, $FD a step of a fade (the volume from $7501, which it counts down), $FE ends the tune and $FF the pattern, which fetches the next from the order list ($6E81). A note is transposed by $74D6, gated with its instrument's waveform, envelope and pulse ($6AEA-$6B42), and then the voice's arpeggio, vibrato, slide to a note, drum and pulse sweep are applied from $6B6E on. Ends at $6E1D, where it goes on to the next voice down."
+  },
+  {
+   "address": 26997,
+   "type": "line",
+   "text": "the opcode here is rewritten by $6972 from $74E2: $FE (inc $74AE,x) makes a slide step the note up a semitone, $DE (dec $74AE,x) down"
+  },
+  {
+   "address": 27379,
+   "type": "line",
+   "text": "the operand of this load is the instrument's first pulse width ($7024), written at $6AB4, so a new note starts its pulse there"
+  },
+  {
+   "address": 27581,
+   "type": "line",
+   "text": "the low byte of the drum's waveform table, written at $6B9E from the drum table at $7431"
+  },
+  {
+   "address": 27582,
+   "type": "line",
+   "text": "the high byte of the drum's waveform table, written at $6BA4"
+  },
+  {
+   "address": 27592,
+   "type": "line",
+   "text": "the low byte of the drum's frequency table, written at $6BAA"
+  },
+  {
+   "address": 27593,
+   "type": "line",
+   "text": "the high byte of the drum's frequency table, written at $6BB0. The drum reads one byte of each table for each of its first 15 steps ($750C counts them) and plays the frequency as a high byte with $0D added"
+  },
+  {
+   "address": 28002,
+   "type": "line",
+   "text": "the operand of this add is the low four bits of the slide speed, written at $6D4D"
+  },
+  {
+   "address": 28023,
+   "type": "line",
+   "text": "rewritten by $6EBC: $18 (clc) when the slide goes up, $38 (sec) when it goes down"
+  },
+  {
+   "address": 28024,
+   "type": "line",
+   "text": "rewritten by $6EBC with the opcode $6D (adc) or $ED (sbc), so this line adds or subtracts the slide's step from the low byte of the frequency"
+  },
+  {
+   "address": 28036,
+   "type": "line",
+   "text": "rewritten by $6EBC with the same opcode as $6D78, for the high byte of the frequency"
+  },
+  {
+   "address": 28208,
+   "type": "line",
+   "text": "the driver's common exit: writes $FF to the tune command $68F7, so a command is acted on once."
+  },
+  {
+   "address": 28214,
+   "type": "line",
+   "text": "writes 0 to SID registers $D400-$D418, every voice's frequency, pulse, waveform and envelope, the filter and the volume."
+  },
+  {
+   "address": 28225,
+   "type": "line",
+   "text": "takes the note number $74AE,x and writes its frequency from the table at $6F43 (high bytes) and $6FA2 (low bytes) to the voice's SID registers, keeping a copy in $74B8,x and $74BB,x for the vibrato and the slides."
+  },
+  {
+   "address": 28252,
+   "type": "line",
+   "text": "builds a voice's arpeggio list from the mask in $7500: for each of its eight bits that is set, from bit 0 up, the semitone step from $74A3 (3, 4, 5, 7, 8, 9, 10, 12) is added to the list at $751C, starting one place after the voice's base from $74A0, and the list is ended with $FF. Clears the voice's slide to a note ($74D9)."
+  },
+  {
+   "address": 28289,
+   "type": "line",
+   "text": "fetches a voice's next pattern from its order list (pointer $7502,x/$7505,x, place $74B5,x). A byte below $80 is a pattern number, looked up in the pattern table at $7121 and left in $A7/$A8 and $74C4,x/$74C7,x; $FF sends the list back to its start; any other byte from $80 up is a transpose, $40 added to it into $74D6,x (so $C0 is none and $BD is three semitones down), and the next byte is read."
+  },
+  {
+   "address": 28348,
+   "type": "line",
+   "text": "sets up a slide from the note in Y to the target note $6EBD (the command $7B wrote it there): rewrites the add at $6D77 to add ($18 clc, $6D adc) or subtract ($38 sec, $ED sbc), takes the difference between the two notes' frequencies from the tables at $6F43 and $6FA2, and divides it by one more than the speed $74B3 ($6F06 on, a 16-bit division), so the slide arrives in that many steps. The step is left in $74DF/$74E0."
+  },
+  {
+   "address": 28349,
+   "type": "line",
+   "text": "the slide's target note, written into this compare's operand at $6D44"
+  },
+  {
+   "address": 28429,
+   "type": "line",
+   "text": "the operand of this add is the low four bits of the slide speed, written at $6D50"
+  },
+  {
+   "address": 28483,
+   "type": "line",
+   "text": "the high bytes of the notes' SID frequencies, one per note number, read with the low bytes at $6FA2"
+  },
+  {
+   "address": 28484,
+   "type": "line",
+   "text": "the note frequency table's high bytes read one note on, by the vibrato at $6C6D to find a semitone's difference"
+  },
+  {
+   "address": 28578,
+   "type": "line",
+   "text": "the low bytes of the notes' SID frequencies, beside the high bytes at $6F43"
+  },
+  {
+   "address": 28579,
+   "type": "line",
+   "text": "the note frequency table's low bytes read one note on, by the vibrato at $6C63"
+  },
+  {
+   "address": 28673,
+   "type": "line",
+   "text": "clears the SID ($6E36), sets the volume to 15 with the filter on the low pass ($D418 = $5F), and clears the speed count $74B4, the playing flag $74B2 and the filter resonance $D417. Called when a tune starts ($693C)."
+  },
+  {
+   "address": 28693,
+   "type": "line",
+   "text": "the two tunes, six bytes each: the addresses of the three voices' order lists, low byte then high. Tune 1's are $715F, $7174 and $718E, tune 2's $71A0, $71AB and $71BA."
+  },
+  {
+   "address": 28705,
+   "type": "line",
+   "text": "32 instruments of eight bytes, picked by a pattern's $C0-$DF byte: the waveform with its gate ($7021), attack and decay ($7022), sustain and release ($7023), the pulse width's first value ($7024), the drum and arpeggio byte ($7025: the low four bits name a drum at $7431, bit 4 plays it as notes), the pulse sweep's step ($7026), an arpeggio mask ($7027) and flags ($7028: bit 0 a drum, bit 1 a short slide up, bit 2 an eight-bit pulse sweep, bit 3 a drum played by $6C04, bit 7 the pulse width kept from note to note)"
+  },
+  {
+   "address": 28706,
+   "type": "line",
+   "text": "an instrument's attack and decay byte, the second of its eight"
+  },
+  {
+   "address": 28707,
+   "type": "line",
+   "text": "an instrument's sustain and release byte, the third; a sustain of 15 sets $7516"
+  },
+  {
+   "address": 28708,
+   "type": "line",
+   "text": "an instrument's first pulse width, the fourth byte: high four bits the low byte, low four bits the high"
+  },
+  {
+   "address": 28709,
+   "type": "line",
+   "text": "an instrument's fifth byte: the low four bits name a drum at $7431 (with flag bit 0 of the eighth byte), bit 4 plays the drum's frequencies as notes, and the whole byte is the vibrato byte $7519"
+  },
+  {
+   "address": 28710,
+   "type": "line",
+   "text": "an instrument's sixth byte, the step its pulse width sweeps by, 0 for no sweep"
+  },
+  {
+   "address": 28711,
+   "type": "line",
+   "text": "an instrument's seventh byte, an arpeggio mask the note takes when the pattern gives none"
+  },
+  {
+   "address": 28712,
+   "type": "line",
+   "text": "an instrument's eighth byte, its flags: bit 0 a drum, bit 1 a short slide up at the note's start, bit 2 an eight-bit pulse sweep, bit 3 a drum played as a waveform (at $6C04), bit 7 the pulse width kept from note to note"
+  },
+  {
+   "address": 28961,
+   "type": "line",
+   "text": "the patterns' addresses, low byte then high, by pattern number. The last three entries are $7431, the drum table's address."
+  },
+  {
+   "address": 28962,
+   "type": "line",
+   "text": "the pattern table's high bytes, read one byte on from its low bytes at $7121"
+  },
+  {
+   "address": 29023,
+   "type": "line",
+   "text": "tune 1's order list for the first voice, 21 bytes to its $FF: 17 patterns (1, 1, 2, 3, 6, 4, 8, 10, 13, 15, 19, 21, 15, 8, 10, 8, 10), with the transposes +0, -3 semitones"
+  },
+  {
+   "address": 29044,
+   "type": "line",
+   "text": "tune 1's order list for the second voice, 26 bytes to its $FF: 20 patterns (1, 1, 2, 3, 5, 7, 9, 11, 12, 14, 14, 18, 20, 20, 20, 9, 11, 12, 11, 12), with the transposes +0, +5, -3, -2 semitones"
+  },
+  {
+   "address": 29070,
+   "type": "line",
+   "text": "tune 1's order list for the third voice, 18 bytes to its $FF: 16 patterns (16, 16, 16, 16, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16), with the transposes +0 semitones"
+  },
+  {
+   "address": 29088,
+   "type": "line",
+   "text": "tune 2's order list for the first voice, 11 bytes to its $FF: 9 patterns (23, 22, 22, 22, 22, 22, 22, 22, 22), with the transposes +0 semitones"
+  },
+  {
+   "address": 29099,
+   "type": "line",
+   "text": "tune 2's order list for the second voice, 15 bytes to its $FF: 9 patterns (23, 24, 26, 24, 26, 27, 24, 26, 27), with the transposes +0, +5, +12 semitones"
+  },
+  {
+   "address": 29114,
+   "type": "line",
+   "text": "tune 2's order list for the third voice, 12 bytes to its $FF: 9 patterns (23, 25, 25, 25, 25, 25, 25, 25, 25), with the transposes +0, +12 semitones"
+  },
+  {
+   "address": 29126,
+   "type": "line",
+   "text": "pattern 0, 4 bytes, played by no order list"
+  },
+  {
+   "address": 29130,
+   "type": "line",
+   "text": "pattern 1, 11 bytes, played by tune 1's voice 1; tune 1's voice 2"
+  },
+  {
+   "address": 29141,
+   "type": "line",
+   "text": "pattern 2, 23 bytes, played by tune 1's voice 1; tune 1's voice 2"
+  },
+  {
+   "address": 29164,
+   "type": "line",
+   "text": "pattern 3, 32 bytes, played by tune 1's voice 1; tune 1's voice 2"
+  },
+  {
+   "address": 29196,
+   "type": "line",
+   "text": "pattern 4, 32 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29228,
+   "type": "line",
+   "text": "pattern 5, 4 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29232,
+   "type": "line",
+   "text": "pattern 6, 4 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29236,
+   "type": "line",
+   "text": "pattern 7, 9 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29245,
+   "type": "line",
+   "text": "pattern 8, 35 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29280,
+   "type": "line",
+   "text": "pattern 9, 12 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29292,
+   "type": "line",
+   "text": "pattern 10, 35 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29327,
+   "type": "line",
+   "text": "pattern 11, 21 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29348,
+   "type": "line",
+   "text": "pattern 12, 13 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29361,
+   "type": "line",
+   "text": "pattern 13, 28 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29389,
+   "type": "line",
+   "text": "pattern 14, 12 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29401,
+   "type": "line",
+   "text": "pattern 15, 12 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29413,
+   "type": "line",
+   "text": "pattern 16, 35 bytes, played by tune 1's voice 3"
+  },
+  {
+   "address": 29448,
+   "type": "line",
+   "text": "pattern 17, 10 bytes, played by tune 1's voice 3"
+  },
+  {
+   "address": 29458,
+   "type": "line",
+   "text": "pattern 18, 12 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29470,
+   "type": "line",
+   "text": "pattern 19, 21 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29491,
+   "type": "line",
+   "text": "pattern 20, 9 bytes, played by tune 1's voice 2"
+  },
+  {
+   "address": 29500,
+   "type": "line",
+   "text": "pattern 21, 59 bytes, played by tune 1's voice 1"
+  },
+  {
+   "address": 29559,
+   "type": "line",
+   "text": "pattern 22, 35 bytes, played by tune 2's voice 1"
+  },
+  {
+   "address": 29594,
+   "type": "line",
+   "text": "pattern 23, 8 bytes, played by tune 2's voice 1; tune 2's voice 2; tune 2's voice 3"
+  },
+  {
+   "address": 29602,
+   "type": "line",
+   "text": "pattern 24, 27 bytes, played by tune 2's voice 2"
+  },
+  {
+   "address": 29629,
+   "type": "line",
+   "text": "pattern 25, 49 bytes, played by tune 2's voice 3"
+  },
+  {
+   "address": 29678,
+   "type": "line",
+   "text": "pattern 26, 27 bytes, played by tune 2's voice 2"
+  },
+  {
+   "address": 29705,
+   "type": "line",
+   "text": "pattern 27, 40 bytes, played by tune 2's voice 2"
+  },
+  {
+   "address": 29745,
+   "type": "line",
+   "text": "three drums, four bytes each: the address of a table of 16 waveform bytes, then of 16 frequency bytes, which $6B90 writes into the code at $6BBD and $6BC8 so the drum plays one byte of each a step"
+  },
+  {
+   "address": 29746,
+   "type": "line",
+   "text": "the high byte of a drum's waveform table address, the second byte of its entry, written into the code at $6BBE"
+  },
+  {
+   "address": 29747,
+   "type": "line",
+   "text": "the low byte of a drum's frequency table, the third byte of its entry, written into the code at $6BC8"
+  },
+  {
+   "address": 29748,
+   "type": "line",
+   "text": "the high byte of a drum's frequency table"
+  },
+  {
+   "address": 29757,
+   "type": "line",
+   "text": "the first drum's 16 frequencies, one a step, each played as the SID's frequency high byte with $0D added (or, with the instrument's bit 4, as a note above the voice's note)"
+  },
+  {
+   "address": 29773,
+   "type": "line",
+   "text": "the first drum's 16 waveform bytes, one a step, written to the voice's control register"
+  },
+  {
+   "address": 29789,
+   "type": "line",
+   "text": "the second drum's 16 frequencies, one a step"
+  },
+  {
+   "address": 29805,
+   "type": "line",
+   "text": "the second drum's 16 waveform bytes"
+  },
+  {
+   "address": 29821,
+   "type": "line",
+   "text": "the third drum's 16 frequencies, one a step"
+  },
+  {
+   "address": 29837,
+   "type": "line",
+   "text": "the third drum's 16 waveform bytes"
+  },
+  {
+   "address": 29853,
+   "type": "line",
+   "text": "each voice's offset into the SID's registers: 0, 7 and 14"
+  },
+  {
+   "address": 29856,
+   "type": "line",
+   "text": "where each voice's arpeggio list starts in $751C: 0, 10 and 20"
+  },
+  {
+   "address": 29859,
+   "type": "line",
+   "text": "the semitone steps an arpeggio mask's eight bits pick, bit 0 first: 3, 4, 5, 7, 8, 9, 10 and 12"
+  },
+  {
+   "address": 29867,
+   "type": "line",
+   "text": "for each voice, whether a new note restarts the waveform and envelope ($6B09: non-zero) or only changes the pitch. No instruction writes it, and all three bytes are 1, so every note restarts them"
+  },
+  {
+   "address": 29870,
+   "type": "line",
+   "text": "each voice's note number, the index into the frequency tables at $6F43 and $6FA2"
+  },
+  {
+   "address": 29873,
+   "type": "line",
+   "text": "the voice the driver is on, counted from 2 down to 0"
+  },
+  {
+   "address": 29874,
+   "type": "line",
+   "text": "set while a tune plays; $68F8 does nothing else while it is 0"
+  },
+  {
+   "address": 29875,
+   "type": "line",
+   "text": "the tune's speed, the number of frames from one step of the voices to the next less one, set by a pattern's $F0-$FB byte"
+  },
+  {
+   "address": 29876,
+   "type": "line",
+   "text": "counts the frames to the voices' next step, down from $74B3"
+  },
+  {
+   "address": 29877,
+   "type": "line",
+   "text": "each voice's place in its order list"
+  },
+  {
+   "address": 29880,
+   "type": "line",
+   "text": "the low byte of the frequency each voice is playing, kept for the vibrato and the slides"
+  },
+  {
+   "address": 29883,
+   "type": "line",
+   "text": "the high byte of the frequency each voice is playing"
+  },
+  {
+   "address": 29886,
+   "type": "line",
+   "text": "the low byte of each voice's pulse width, as the sweep moves it"
+  },
+  {
+   "address": 29889,
+   "type": "line",
+   "text": "the high byte of each voice's pulse width"
+  },
+  {
+   "address": 29892,
+   "type": "line",
+   "text": "the low byte of the address of each voice's pattern"
+  },
+  {
+   "address": 29895,
+   "type": "line",
+   "text": "the high byte of the address of each voice's pattern"
+  },
+  {
+   "address": 29898,
+   "type": "line",
+   "text": "the length of each voice's notes, set by a pattern's $80-$BF byte"
+  },
+  {
+   "address": 29901,
+   "type": "line",
+   "text": "counts down the length of the note a voice is playing"
+  },
+  {
+   "address": 29904,
+   "type": "line",
+   "text": "which effect a voice's note has: 0 none, 1 or 2 an arpeggio (commands $7D and $7C), or the opcode of a slide ($DE or $FE, commands $7F and $7E)"
+  },
+  {
+   "address": 29907,
+   "type": "line",
+   "text": "the arpeggio mask of each voice, from command $7D or $7C or the instrument's $7027"
+  },
+  {
+   "address": 29910,
+   "type": "line",
+   "text": "each voice's transpose, added to every note it reads, from its order list"
+  },
+  {
+   "address": 29913,
+   "type": "line",
+   "text": "the note a voice is sliding to (command $7B), 0 for none"
+  },
+  {
+   "address": 29916,
+   "type": "line",
+   "text": "the speed byte of a voice's slide to a note"
+  },
+  {
+   "address": 29919,
+   "type": "line",
+   "text": "the low byte of the step a slide to a note moves the frequency by, from $6EBC"
+  },
+  {
+   "address": 29920,
+   "type": "line",
+   "text": "the high byte of that step"
+  },
+  {
+   "address": 29921,
+   "type": "line",
+   "text": "one more than the speed, the number of steps a slide to a note takes, from $6F06"
+  },
+  {
+   "address": 29922,
+   "type": "line",
+   "text": "the opcode a slide writes over $6975, $DE to step the note down or $FE up; 0 for no slide"
+  },
+  {
+   "address": 29925,
+   "type": "line",
+   "text": "the count of a voice's short slide, set from the instrument's flag bit 1"
+  },
+  {
+   "address": 29928,
+   "type": "line",
+   "text": "which way each voice's pulse width sweeps: 0 up, 1 down"
+  },
+  {
+   "address": 29931,
+   "type": "line",
+   "text": "each voice's place in its arpeggio list at $751C"
+  },
+  {
+   "address": 29934,
+   "type": "line",
+   "text": "the depth of the vibrato being worked out, the instrument's $7025 high four bits"
+  },
+  {
+   "address": 29935,
+   "type": "line",
+   "text": "how far the note's frequency step is shifted right for the vibrato, the low four bits"
+  },
+  {
+   "address": 29936,
+   "type": "line",
+   "text": "which way each voice's vibrato is going"
+  },
+  {
+   "address": 29939,
+   "type": "line",
+   "text": "each voice's place in its vibrato's swing"
+  },
+  {
+   "address": 29942,
+   "type": "line",
+   "text": "the vibrato delay of each voice, from command $7A"
+  },
+  {
+   "address": 29945,
+   "type": "line",
+   "text": "counts down a voice's vibrato delay before the vibrato starts"
+  },
+  {
+   "address": 29948,
+   "type": "line",
+   "text": "the low byte of the frequency the vibrato is building"
+  },
+  {
+   "address": 29949,
+   "type": "line",
+   "text": "the high byte of the frequency the vibrato is building, beside the low byte at $74FC"
+  },
+  {
+   "address": 29950,
+   "type": "line",
+   "text": "the low byte of the vibrato's step, a semitone's difference shifted right"
+  },
+  {
+   "address": 29951,
+   "type": "line",
+   "text": "the high byte of the vibrato's step, beside the low byte at $74FE"
+  },
+  {
+   "address": 29952,
+   "type": "line",
+   "text": "the mask $6E5C shifts as it builds an arpeggio list"
+  },
+  {
+   "address": 29953,
+   "type": "line",
+   "text": "the volume a fade has reached, which each $FD byte writes to $D418 and counts down"
+  },
+  {
+   "address": 29954,
+   "type": "line",
+   "text": "the low byte of the address of each voice's order list"
+  },
+  {
+   "address": 29957,
+   "type": "line",
+   "text": "the high byte"
+  },
+  {
+   "address": 29960,
+   "type": "line",
+   "text": "the place in the voice's pattern the driver reads next"
+  },
+  {
+   "address": 29961,
+   "type": "line",
+   "text": "each voice's instrument, times 8, the index into the instrument records at $7021"
+  },
+  {
+   "address": 29964,
+   "type": "line",
+   "text": "the first voice's effect timer; $750D and $750E are the others. $68F8 counts all three on each frame, and a new note sets its voice's to $FF"
+  },
+  {
+   "address": 29965,
+   "type": "line",
+   "text": "the second voice's effect timer"
+  },
+  {
+   "address": 29966,
+   "type": "line",
+   "text": "the third voice's effect timer"
+  },
+  {
+   "address": 29967,
+   "type": "line",
+   "text": "the SID register offset of the voice the driver is on, from $749D"
+  },
+  {
+   "address": 29968,
+   "type": "line",
+   "text": "set when a voice's instrument keeps the pulse width from note to note (flag bit 7 of $7028)"
+  },
+  {
+   "address": 29971,
+   "type": "line",
+   "text": "set once a voice's drum has started (the drum at $6C04)"
+  },
+  {
+   "address": 29974,
+   "type": "line",
+   "text": "set when a voice's instrument has its sustain at 15, so $6D8D does not let the gate go halfway through the note"
+  },
+  {
+   "address": 29977,
+   "type": "line",
+   "text": "the vibrato byte of each voice's instrument, from $7025"
+  },
+  {
+   "address": 29980,
+   "type": "line",
+   "text": "the three voices' arpeggio lists, ten bytes each from $74A0, each ended with $FF, built by $6E5C"
+  },
+  {
+   "address": 30012,
+   "type": "line",
+   "text": "the sound effect asked for on the first voice, $FF for none; $753D and $753E are the second and third voices'. $756A starts it and writes $FF back. The first two are written only together, at $AC58; the third at $8D89, $958B, $95DB, $A9E5, $AA8E and $AC5E."
+  },
+  {
+   "address": 30013,
+   "type": "line",
+   "text": "the sound effect asked for on the second voice"
+  },
+  {
+   "address": 30014,
+   "type": "line",
+   "text": "the sound effect asked for on the third voice"
+  },
+  {
+   "address": 30015,
+   "type": "line",
+   "text": "the sound effects' step, called from the play interrupt (at $888A): sets the volume to 15 ($7548), then runs the effects player ($756A)."
+  },
+  {
+   "address": 30024,
+   "type": "line",
+   "text": "sets the SID's volume to 15 with the filter off ($D418 = $0F)."
+  },
+  {
+   "address": 30030,
+   "type": "line",
+   "text": "stops every sound effect: clears $7751-$7753 and $7760-$7762, and writes 0 to the SID's voice registers $D400-$D412."
+  },
+  {
+   "address": 30058,
+   "type": "line",
+   "text": "the sound effects player, for the three voices from the third down. Starts an effect asked for in $753C,x ($758A), then steps one that is playing ($7663). Saves and restores X and Y."
+  },
+  {
+   "address": 30090,
+   "type": "line",
+   "text": "starts sound effect A on voice X: copies its 16-byte record from $7778 + 16 * A into the voice's variables at $772A-$776F, writes $FF to the request, and writes the record's pulse, envelope, frequency and waveform to the voice's SID registers ($775D,x is its offset). A record's last byte, the repeats, of $FF makes the effect repeat until it is stopped ($7760)."
+  },
+  {
+   "address": 30307,
+   "type": "line",
+   "text": "one step of the effect on voice X. While its time $7748 lasts it moves the frequency by the step $773F/$7742 by its mode ($773C: 1 up, 2 down, 3 swapping between the two frequencies each step, 0 none). When the time runs out it starts the effect again from its first frequency while repeats are left ($7736), or else lets the gate go and counts the release ($776F) down, after which the effect is over. A bug: at $76FC it writes the sustain and release with X, the voice number, as the index, not with Y, its register offset, so for the second and third voices the byte lands in $D407 and $D408, the second voice's frequency."
+  },
+  {
+   "address": 30506,
+   "type": "line",
+   "text": "the low byte of each voice's effect frequency as it moves"
+  },
+  {
+   "address": 30509,
+   "type": "line",
+   "text": "the high byte of each voice's effect frequency as it moves, beside $772A"
+  },
+  {
+   "address": 30512,
+   "type": "line",
+   "text": "the low byte of each effect's first frequency, for a repeat"
+  },
+  {
+   "address": 30515,
+   "type": "line",
+   "text": "the high byte of each effect's first frequency, beside $7730, kept for a repeat"
+  },
+  {
+   "address": 30518,
+   "type": "line",
+   "text": "the repeats left of each voice's effect"
+  },
+  {
+   "address": 30521,
+   "type": "line",
+   "text": "each effect's time, for a repeat"
+  },
+  {
+   "address": 30524,
+   "type": "line",
+   "text": "each effect's mode: 0 none, 1 the frequency rises, 2 falls, 3 swaps between two values"
+  },
+  {
+   "address": 30527,
+   "type": "line",
+   "text": "the low byte of each effect's frequency step"
+  },
+  {
+   "address": 30530,
+   "type": "line",
+   "text": "the high byte of each effect's frequency step, beside $773F"
+  },
+  {
+   "address": 30533,
+   "type": "line",
+   "text": "each effect's waveform and gate byte"
+  },
+  {
+   "address": 30536,
+   "type": "line",
+   "text": "counts down each effect's time"
+  },
+  {
+   "address": 30542,
+   "type": "line",
+   "text": "which of the two frequencies a swapping effect (mode 3) is on"
+  },
+  {
+   "address": 30545,
+   "type": "line",
+   "text": "set while the first voice plays an effect; $7752 and $7753 are the others"
+  },
+  {
+   "address": 30546,
+   "type": "line",
+   "text": "set while the second voice plays an effect"
+  },
+  {
+   "address": 30547,
+   "type": "line",
+   "text": "set while the third voice plays an effect"
+  },
+  {
+   "address": 30548,
+   "type": "line",
+   "text": "each effect's sustain and release"
+  },
+  {
+   "address": 30551,
+   "type": "line",
+   "text": "each effect's attack and decay"
+  },
+  {
+   "address": 30554,
+   "type": "line",
+   "text": "each effect's pulse width, high four bits the low byte and low four bits the high"
+  },
+  {
+   "address": 30557,
+   "type": "line",
+   "text": "each voice's SID register offset for the effects: 0, 7 and 14"
+  },
+  {
+   "address": 30560,
+   "type": "line",
+   "text": "$FF when the effect on a voice repeats until it is stopped"
+  },
+  {
+   "address": 30563,
+   "type": "line",
+   "text": "four bytes of each effect's record ($7763, $7766, $7769, $776C) that $758A copies and that no instruction reads"
+  },
+  {
+   "address": 30566,
+   "type": "line",
+   "text": "the second of the four copied bytes of each voice's effect, its record's eleventh byte, which no instruction reads"
+  },
+  {
+   "address": 30569,
+   "type": "line",
+   "text": "the third of the four copied bytes, the record's twelfth byte, which no instruction reads"
+  },
+  {
+   "address": 30572,
+   "type": "line",
+   "text": "the fourth of the four copied bytes, the record's thirteenth byte, which no instruction reads"
+  },
+  {
+   "address": 30575,
+   "type": "line",
+   "text": "counts down each effect's release once its gate is let go"
+  },
+  {
+   "address": 30584,
+   "type": "line",
+   "text": "the 26 sound effects, 16 bytes each: the first frequency (two bytes), the step (two), the mode, the time, the waveform, the attack and decay, the sustain and release, the pulse width, four bytes copied to $7763-$776C, one byte not read, and the repeats ($FF for for ever)"
+  }
+ ]
 }
