@@ -6,7 +6,7 @@
   "year": 1989,
   "publisher": "Melbourne House",
   "developer": "Binary Design",
-  "title_image": "",
+  "title_image": "reference/title.png",
   "build": "PAL cassette, a crack by New Order saved with a Trilogic Expert V3.1 freezer; analysed from the game's own entry at $8009",
   "tier": "bronze",
   "coverage_percent": null,
@@ -40,6 +40,9 @@
   "step_models": {
     "10-orient": [
       "claude-opus-5-5"
+    ],
+    "20-features": [
+      "claude-opus-5-5"
     ]
   },
   "accuracy": [],
@@ -58,8 +61,8 @@
   "regions": [],
   "links": {
     "wiki": {
-      "title": "",
-      "url": ""
+      "title": "Aaargh!",
+      "url": "https://en.wikipedia.org/wiki/Aaargh!"
     },
     "manual": {
       "title": "",

@@ -49,9 +49,23 @@ backups"):
   counters, the sprite pointers and screen at `$C800`-`$CD3F`, and the
   `NEW ORDER` text, which the start-up clears).
 
-No other release was available to compare with, so a change the crackers
-made to the code cannot be ruled out. None has been found; anything that
-is found is marked as theirs.
+A second crack was compared, from the contributor's `AAARGH.D64` (one
+file, `AARGH!+4  /X-RAY`, 155 blocks, loading at `$0801`): an intro by
+X-Ray of The Fleet, then a trainer screen headed "NOTE: THIS GAME WAS
+ALREADY FROZEN !!!" that offers unlimited energy and endless fire for both
+players ("CHEAT BY X-RAY GERMANY"). With the trainer declined and the
+title on the screen (`work/disk-title.vsf`), its program area
+(`$0800`-`$BFFF`) differs from the tape's restarted title in 51 bytes,
+and all of them but one are working state that also changes between the
+tape's own states. The one is `$2C1B`, a byte of graphics that no
+instruction names: `$01` on the disk and `$FC` on the tape, where the
+bytes around it repeat `0F C3 FC`. So both cracks come from the same
+frozen game, the tape's copy is the cleaner one, and `NEW ORDER` is not
+in the disk's memory.
+
+The Melbourne House release itself was not available to compare with, so
+a change the crackers made to the code cannot be ruled out. None has been
+found; anything that is found is marked as theirs.
 
 ## The emulator
 
