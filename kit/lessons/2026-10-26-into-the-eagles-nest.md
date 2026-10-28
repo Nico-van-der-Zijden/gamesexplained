@@ -1,4 +1,4 @@
-## next · 2026-10-26 · Into the Eagle's Nest (C64) · Vai with Claude
+## 0.0.262 · 2026-10-26 · Into the Eagle's Nest (C64) · Vai with Claude
 
 - **An inverted character set read as a text dump looks like no letters
   at all.** The status panel plainly says KEYS, AMMO and HITS, and the
