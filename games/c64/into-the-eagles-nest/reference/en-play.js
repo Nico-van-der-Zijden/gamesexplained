@@ -19,6 +19,15 @@
 //             frame they came in, until the page takes them
 //   clock, frames, passes, vic, colour, sid, P
 //
+// EaglePlay.cheats(S, on) puts the Play tab's cheats round the port's own routines of machine S,
+// each looking its switch up in on ({ word, hits, ammo, key }) when it is called, so they can be
+// switched at any moment and, all off, leave the game as it is. word keeps the game's own flag $603F
+// set, as a name of %MAGGOTS!& sets it when a floor is built ($6F3B); the other three each do one of
+// the three things the game does with the flag set: hits, hit_the_player ($639F) adds nothing; ammo,
+// the rounds ($02BD) put back to 99 at the end of $5B1B; key, a door key ($02AC) in hand in play,
+// written in $5BBA. set(name, value) switches one, setting the flag at once or, for word off,
+// running the game's own check of the last name typed.
+//
 // The clock. Nothing here runs 6502 code: the port is JavaScript, so its main program moves the clock
 // on by the cycles a yield names ({ cycles } or { cp, cycles }, a delay loop's turn) and, at each
 // checkpoint, by what the game took between it and the one before beyond the cycles the port named
@@ -271,6 +280,25 @@ globalThis.EaglePlay = (function () {
     spend(0);
     return S;
   }
-  return { create, COST, irqKey, stretch, countCalls, LINE, LINES, FRAME, SLICES };
+  function cheats(S, on) {
+    const P = S.P, M = S.M;
+    const check = P.check_cheat_word, hit = P.hit_the_player, stamp = P.stamp_player_in_map, state = P.mission_state;
+    P.check_cheat_word = function (r) { const v = check.call(this, r); if (on.word) M[0x603F] = 1; return v; };
+    P.hit_the_player = function (r) { if (on.hits) return; return hit.call(this, r); };
+    P.stamp_player_in_map = function (r) { const v = stamp.call(this, r); if (on.ammo) M[0x02BD] = 0x99; return v; };
+    P.mission_state = function (r) {
+      const v = state.call(this, r);
+      if (on.key && M[0x02D3] === 0 && M[0x02C6] < 0x50) M[0x02AC] = 1;
+      return v;
+    };
+    if (on.word) M[0x603F] = 1;
+    return {
+      set(k, v) {
+        on[k] = !!v;
+        if (k === 'word') { if (on.word) M[0x603F] = 1; else check.call(P, {}); }
+      },
+    };
+  }
+  return { create, cheats, COST, irqKey, stretch, countCalls, LINE, LINES, FRAME, SLICES };
 })();
 if (typeof module !== 'undefined') module.exports = globalThis.EaglePlay;

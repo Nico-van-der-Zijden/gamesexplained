@@ -167,6 +167,16 @@ play 28 frames early, because the wipe interrupt was installed inside
 the same stretch as the floor's build and ran through it; a checkpoint
 at the call put it 2 frames from the game.
 
+The contributor asked for cheats on the Play tab. The game has one, the
+name `%MAGGOTS!&`, so the page offers it whole and in its three parts,
+each wrapped round the port's routine that reads the flag `$603F`
+(`EaglePlay.cheats`). Random play was never walked into by a guard, so
+`test_cheats.js` makes the hits through `hit_the_player` itself. It also
+found a frame after a door with no key in hand, under the game's own
+cheat as well as the page's: both write the key in the interrupt. The
+same pass fixed the Maps tab's Size buttons, which the canvas's
+`max-width` held to the plate's width.
+
 ## Not done
 
 A recorded route through a mission, and the questions in `TODO.md` that

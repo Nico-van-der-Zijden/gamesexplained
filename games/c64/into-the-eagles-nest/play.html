@@ -40,6 +40,8 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
 .en-btn[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
 .en-btn:hover{border-color:var(--ink-mute)}
 .en-out{font-family:var(--fm);font-size:13.5px;color:var(--ink-soft)}
+.en-cheats{margin:14px 0 0}
+.en-lab{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute)}
 .en-note{font-family:var(--fm);font-size:13px;color:var(--coral);margin:8px 0 0}
 #en-screen{display:block;width:100%;max-width:768px;height:auto;image-rendering:pixelated;background:#000;border-radius:4px;touch-action:none}
 .en-pad{display:none;gap:8px;margin:14px 0 0;user-select:none;-webkit-user-select:none;touch-action:none}
@@ -79,6 +81,13 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
       <button type="button" data-k="60">SPACE</button>
       <button type="button" data-r="1">RESTORE</button>
     </div>
+    <div class="en-bar en-cheats" id="en-cheats" aria-label="Cheats">
+      <span class="en-lab">Cheats</span>
+      <button class="en-btn" type="button" data-cheat="word" aria-pressed="false" title="The game's own cheat: its flag $603F set, as a name of %MAGGOTS!& sets it when a floor is built">%MAGGOTS!&amp;</button>
+      <button class="en-btn" type="button" data-cheat="hits" aria-pressed="false" title="hit_the_player ($639F) adds nothing, as it does with the cheat flag set">No hits</button>
+      <button class="en-btn" type="button" data-cheat="ammo" aria-pressed="false" title="The rounds ($02BD) are put back to 99 where the game's cheat does it, at the end of $5B1B">Full ammunition</button>
+      <button class="en-btn" type="button" data-cheat="key" aria-pressed="false" title="A door key in hand ($02AC = 1) every frame of play, where the game's cheat writes it in $5BBA">Always a key</button>
+    </div>
     <table class="en-tab">
       <tr><th>Keys</th><th>On the C64</th><th>Does</th></tr>
       <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>the joystick in port 2</td><td>walk, a tile every four frames, and aim</td></tr>
@@ -90,8 +99,22 @@ table.en-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-t
   </div>
 </section>
 
+<section id="cheats">
+  <p class="fig">02 · Cheats</p>
+  <h2 class="t">The game's own cheat, whole or a part at a time</h2>
+  <p class="lede">Into the Eagle's Nest has one cheat of its own: type <code>%MAGGOTS!&amp;</code> as your name on the high score screen. The buttons give it to you without the high score, and split it into its three parts. Each can be switched on and off at any moment. With all four off, the game is the original again.</p>
+  <p>When a floor is built, <code>check_cheat_word</code> (<code>$6F3B</code>) compares the ten characters of the last name typed, at <code>$081F</code>, with the word at <code>$6F31</code>, and sets the flag <code>$603F</code> to 1 if they match or 0 if not. Three places in the game read the flag, and each of the three part buttons does what one of them does with the flag set.</p>
+  <table class="en-tab">
+    <tr><th>Cheat</th><th>How</th></tr>
+    <tr><td><code>%MAGGOTS!&amp;</code></td><td>Sets <code>$603F</code> to 1 at once, and keeps it set when the next floor is built. The game then does the other three itself. Switched off, the page runs the game's own check again, so a name typed as the cheat word still counts.</td></tr>
+    <tr><td>No hits</td><td><code>hit_the_player</code> (<code>$639F</code>) returns without adding a hit, as it does when the flag is set. A guard who walks into you does no harm, and you never reach the fifty hits that end a mission.</td></tr>
+    <tr><td>Full ammunition</td><td>After the game stamps the player into the map (<code>$5B1B</code>), the rounds at <code>$02BD</code> are put back to 99, which is where the game's cheat writes them.</td></tr>
+    <tr><td>Always a key</td><td>The game's state routine (<code>$5BBA</code>), which the interrupt runs every frame of play, puts a door key in hand (<code>$02AC</code> = 1), as it does when the flag is set. A door uses the key up and the next frame brings it back, so every locked door opens.</td></tr>
+  </table>
+</section>
+
 <section id="port">
-  <p class="fig">02 · The port</p>
+  <p class="fig">03 · The port</p>
   <h2 class="t">Every pass checked against the game's own code</h2>
   <p>Nothing on this page emulates a 6502. The game is written out in JavaScript, one function for each routine of the listing, in nine files under <code>reference/</code>: the main loop and its interrupt, the attract screens and the high score table, the title, menus and briefings, the mission's set-up, the pickups, the game's state and messages, the guards and the prisoner, and the floor builder. It runs on the game's own 64 KB, loaded from the bytes the Source code tab shows, and every variable stays where the game keeps it: the floor's map at <code>$9000</code>, the guards' list at <code>$8100</code>, the tile grid at <code>$5C22</code>, the score at <code>$02C2</code>.</p>
   <p id="en-test"><code>test_play.js</code> runs the port beside the game's own code on the kit's model of the C64, from the hand-over, with the same input to both. The port has no stand-ins: a call to any routine of the game's that it had not written would throw. At the start of every pass of the main loop at <code>$4871</code> the two memories are compared, and so are colour RAM and every register written to the video chip and the SID. Out of play, where no pass begins, the comparison is made at checkpoints in the title, the menus, the briefings and the end screens. In play the input comes from a player that searches the floor breadth first for the squares it has seen least, heads for a key, a pickup or the lift, and fires at a guard or a chest ahead. Every so often the test forces one of the four ends of a mission, in both at once: a lift ride, a prisoner brought home, the castle destroyed and the game over. In a second session the mission's prisoner is put on the floor play starts on and moved beside the player, so that his own code runs.</p>
@@ -128,13 +151,22 @@ const STICK = { ArrowUp: 1, ArrowDown: 2, ArrowLeft: 4, ArrowRight: 8, KeyZ: 16,
 const KEYS = { Space: 60 };
 
 function start(D) {
-  let play, target, keep;
+  let play, target, keep, cheat;
+  const cheats = { word: false, hits: false, ammo: false, key: false };   // the cheat switches, kept over a reset
   function boot() {
     keep = {};
     play = EaglePlay.create({ M: D.ram.slice(), groups: window.EN_GROUPS, keep });
+    cheat = EaglePlay.cheats(play, cheats);
     target = 0;
   }
   boot();
+  $('en-cheats').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-cheat]'); if (!b) return;
+    const k = b.dataset.cheat;
+    cheat.set(k, !cheats[k]);
+    b.setAttribute('aria-pressed', String(cheats[k]));
+    b.blur();
+  });
 
   // ---- the keys and the joystick, while the game is on the screen
   const cv = $('en-screen'), held = new Set(), pad = { joy: 0, keys: new Set() };
@@ -195,7 +227,7 @@ function start(D) {
     const M = play.M;
     if (M[0x0315] !== 0x4A) return '';
     const score = (hex(M[0x02C2]) + hex(M[0x02C3]) + hex(M[0x02C4])).replace(/^0+(?=.)/, '');
-    return `mission ${M[0x400F]} · ${FLOORS[M[0x02A7] & 3]} · score ${score} · ${hex(M[0x02BD])} rounds · ${hex(M[0x02C6])} hits · ${hex(M[0x02AC]).replace(/^0(?=.)/, '')} keys` + (M[0x02C9] && M[0x02C8] < 2 && !M[0x02D3] ? ' · paused' : '');
+    return `mission ${M[0x400F]} · ${FLOORS[M[0x02A7] & 3]} · score ${score} · ${hex(M[0x02BD])} rounds · ${hex(M[0x02C6])} hits · ${hex(M[0x02AC]).replace(/^0(?=.)/, '')} keys` + (M[0x603F] ? ' · cheat on' : '') + (M[0x02C9] && M[0x02C8] < 2 && !M[0x02D3] ? ' · paused' : '');
   }
 
   // ---- the clock: a target one frame on for each frame shown, and the port run up to it

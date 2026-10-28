@@ -186,8 +186,10 @@ C64.load('listing.json').then((m) => {
     .map(([k, label]) => '<span><i class="en-sw" style="background:transparent;border:3px solid ' + MARK[k] + '"></i> ' + label + '</span>').join('');
   buttons($('lv-floor-bar'), FLOORS.map((name, i) => [name, () => { floor = i; draw(); }]));
   buttons($('lv-mark-bar'), [['What the builder picks out', () => { mark = true; draw(); }], ['Nothing', () => { mark = false; draw(); }]]);
-  buttons($('lv-zoom-bar'), [['The whole floor', () => { cv.style.width = '100%'; }],
-    ['Actual size', () => { cv.style.width = '1024px'; }], ['Twice', () => { cv.style.width = '2048px'; }]]);
+  // the canvas is held to the plate's width (.en-cv), so the two larger sizes lift that and scroll
+  const size = (w) => { cv.style.width = w; cv.style.maxWidth = w === '100%' ? '' : 'none'; };
+  buttons($('lv-zoom-bar'), [['The whole floor', () => size('100%')],
+    ['Actual size', () => size('1024px')], ['Twice', () => size('2048px')]]);
   function point(ev) {
     const r = cv.getBoundingClientRect(), k = cv.width / r.width;
     const tx = Math.floor((ev.clientX - r.left) * k / 8), ty = Math.floor((ev.clientY - r.top) * k / 8);

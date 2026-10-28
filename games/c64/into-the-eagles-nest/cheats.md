@@ -6,6 +6,9 @@ labelled as candidates.
 
 ## The game's own cheat
 
+The Play tab has it as a switch, with its three parts as switches of
+their own (`play.html`, "Cheats"; `test_cheats.js` holds them).
+
 The game has one of its own, and it is not a poke. When a floor is built,
 `$6F3B` compares the ten characters of the name last typed on the high
 score screen with the word stored at `$6F31` and, if every one matches,
