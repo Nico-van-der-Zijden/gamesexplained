@@ -57,7 +57,32 @@
       "claude-opus-5-5"
     ]
   },
-  "accuracy": [],
+  "accuracy": [
+    {
+      "step": "research",
+      "web": true,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "annotate",
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "sample",
+      "size": 60,
+      "wrong": 17,
+      "fixed": 17,
+      "seed": 20261029,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "Drawn from 587 handwritten and 159 generated comments: 40 handwritten (9 wrong) and 20 generated (8 wrong). Unweighted rate 28%; stratum-weighted estimate 26%. Every wrong comment was corrected, with every other comment holding the same belief, and the generated ones by template (the city screens, the order lists, the hidden list and all 39 colour RAM comments). No full audit. Recommend a full audit."
+    }
+  ],
   "kit_version": "0.0.259",
   "created": "2026-10-28",
   "video": {
@@ -133,8 +158,23 @@
       ],
       [
         "$C000",
-        "$C7FF",
-        "runtime: the character set, built for the title ($AF38) and for each city ($853E)"
+        "$C3FF",
+        "runtime: the character set's first 128 characters, built for the title ($AF38) and copied from each city's data ($853E)"
+      ],
+      [
+        "$C498",
+        "$C4FF",
+        "runtime: characters $93-$9F, animated each pass ($B463) or built ($86E2, $86F0, $A80E, $AAE5)"
+      ],
+      [
+        "$C548",
+        "$C57F",
+        "runtime: characters $A9-$AF, animated each pass ($B463) and the mark $AF cleared by $86DC"
+      ],
+      [
+        "$C588",
+        "$C77F",
+        "runtime: character $B1, cleared by $86D9, and the 62 characters each city copies to $C590"
       ],
       [
         "$C800",

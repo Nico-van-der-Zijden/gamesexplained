@@ -78,8 +78,23 @@
    ],
    [
     49152,
-    51199,
-    "runtime: the character set, built for the title ($AF38) and for each city ($853E)"
+    50175,
+    "runtime: the character set's first 128 characters, built for the title ($AF38) and copied from each city's data ($853E)"
+   ],
+   [
+    50328,
+    50431,
+    "runtime: characters $93-$9F, animated each pass ($B463) or built ($86E2, $86F0, $A80E, $AAE5)"
+   ],
+   [
+    50504,
+    50559,
+    "runtime: characters $A9-$AF, animated each pass ($B463) and the mark $AF cleared by $86DC"
+   ],
+   [
+    50568,
+    51071,
+    "runtime: character $B1, cleared by $86D9, and the 62 characters each city copies to $C590"
    ],
    [
     51200,
@@ -541,6 +556,46 @@
   },
   {
    "start": 49152,
+   "end": 50175,
+   "type": "Undefined"
+  },
+  {
+   "start": 50176,
+   "end": 50327,
+   "type": "Byte"
+  },
+  {
+   "start": 50328,
+   "end": 50431,
+   "type": "Undefined"
+  },
+  {
+   "start": 50432,
+   "end": 50503,
+   "type": "Byte"
+  },
+  {
+   "start": 50504,
+   "end": 50559,
+   "type": "Undefined"
+  },
+  {
+   "start": 50560,
+   "end": 50567,
+   "type": "Byte"
+  },
+  {
+   "start": 50568,
+   "end": 51071,
+   "type": "Undefined"
+  },
+  {
+   "start": 51072,
+   "end": 51199,
+   "type": "Byte"
+  },
+  {
+   "start": 51200,
    "end": 52415,
    "type": "Undefined"
   },
@@ -8122,6 +8177,12 @@
    "kind": "auto"
   },
   {
+   "address": 50176,
+   "name": "chars_loaded_80",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 50328,
    "name": "f_C498",
    "type": "Field",
@@ -8158,6 +8219,12 @@
    "kind": "auto"
   },
   {
+   "address": 50432,
+   "name": "chars_loaded_A0",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 50504,
    "name": "f_C548",
    "type": "Field",
@@ -8170,10 +8237,22 @@
    "kind": "auto"
   },
   {
+   "address": 50560,
+   "name": "char_rubble",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 50568,
    "name": "f_C588",
    "type": "Field",
    "kind": "auto"
+  },
+  {
+   "address": 51072,
+   "name": "chars_digits",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 51200,
@@ -8909,7 +8988,7 @@
   {
    "address": 13048,
    "type": "line",
-   "text": "city type 1's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 573 bytes, to $3534"
+   "text": "city type 1's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). Its last record fills the cells below the screen's last row, and the unpacker stops at $CC00 inside this block. 573 bytes, to $3534"
   },
   {
    "address": 13621,
@@ -8924,7 +9003,7 @@
   {
    "address": 14773,
    "type": "line",
-   "text": "city type 2's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 600 bytes, to $3C0C"
+   "text": "city type 2's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 29 bytes into the next block, which land below the screen's last row. 600 bytes, to $3C0C"
   },
   {
    "address": 15373,
@@ -8949,7 +9028,7 @@
   {
    "address": 16525,
    "type": "line",
-   "text": "city type 3's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 548 bytes, to $42B0"
+   "text": "city type 3's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 2 bytes into the next block, which land below the screen's last row. 548 bytes, to $42B0"
   },
   {
    "address": 17073,
@@ -8964,7 +9043,7 @@
   {
    "address": 18225,
    "type": "line",
-   "text": "city type 4's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 781 bytes, to $4A3D"
+   "text": "city type 4's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 124 bytes into the next block, which land below the screen's last row. 781 bytes, to $4A3D"
   },
   {
    "address": 19006,
@@ -8979,7 +9058,7 @@
   {
    "address": 20158,
    "type": "line",
-   "text": "city type 5's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 403 bytes, to $5050"
+   "text": "city type 5's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 62 bytes into the next block, which land below the screen's last row. 403 bytes, to $5050"
   },
   {
    "address": 20561,
@@ -8994,7 +9073,7 @@
   {
    "address": 21713,
    "type": "line",
-   "text": "city type 6's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 419 bytes, to $5673"
+   "text": "city type 6's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 27 bytes into the next block, which land below the screen's last row. 419 bytes, to $5673"
   },
   {
    "address": 22132,
@@ -9009,7 +9088,7 @@
   {
    "address": 23284,
    "type": "line",
-   "text": "city type 7's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 487 bytes, to $5CDA"
+   "text": "city type 7's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). Its last record fills the cells below the screen's last row, and the unpacker stops at $CC00 inside this block. 487 bytes, to $5CDA"
   },
   {
    "address": 23771,
@@ -9024,7 +9103,7 @@
   {
    "address": 24923,
    "type": "line",
-   "text": "city type 8's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on past this block into the next one's first bytes, which land below the screen's last row. 444 bytes, to $6316"
+   "text": "city type 8's screen, packed, which $853E unpacks into rows 1 to 24 at $C828 (a byte with bit 7 set repeats the next byte its low seven bits plus one times, any other copies that many bytes plus one; each record moves on one byte less than it writes). The unpacker stops only when it reaches $CC00, so it reads on 63 bytes into the next block, which land below the screen's last row. 444 bytes, to $6316"
   },
   {
    "address": 25367,
@@ -9249,32 +9328,32 @@
   {
    "address": 29023,
    "type": "line",
-   "text": "tune 1's order list for the first voice, 21 bytes to its $FF: 17 patterns (1, 1, 2, 3, 6, 4, 8, 10, 13, 15, 19, 21, 15, 8, 10, 8, 10), with the transposes +0, -3 semitones"
+   "text": "tune 1's order list for the first voice, 21 bytes to its $FF: 17 patterns (1, 1, 2, 3, 6, 4, 8, 10, 13, 15, 19, 21, 15, 8, 10, 8, 10), with the transposes, in order, +0, -3, +0 semitones"
   },
   {
    "address": 29044,
    "type": "line",
-   "text": "tune 1's order list for the second voice, 26 bytes to its $FF: 20 patterns (1, 1, 2, 3, 5, 7, 9, 11, 12, 14, 14, 18, 20, 20, 20, 9, 11, 12, 11, 12), with the transposes +0, +5, -3, -2 semitones"
+   "text": "tune 1's order list for the second voice, 26 bytes to its $FF: 20 patterns (1, 1, 2, 3, 5, 7, 9, 11, 12, 14, 14, 18, 20, 20, 20, 9, 11, 12, 11, 12), with the transposes, in order, +0, +5, -2, -3, +0 semitones"
   },
   {
    "address": 29070,
    "type": "line",
-   "text": "tune 1's order list for the third voice, 18 bytes to its $FF: 16 patterns (16, 16, 16, 16, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16), with the transposes +0 semitones"
+   "text": "tune 1's order list for the third voice, 18 bytes to its $FF: 16 patterns (16, 16, 16, 16, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16), with the transposes, in order, +0 semitones"
   },
   {
    "address": 29088,
    "type": "line",
-   "text": "tune 2's order list for the first voice, 11 bytes to its $FF: 9 patterns (23, 22, 22, 22, 22, 22, 22, 22, 22), with the transposes +0 semitones"
+   "text": "tune 2's order list for the first voice, 11 bytes to its $FF: 9 patterns (23, 22, 22, 22, 22, 22, 22, 22, 22), with the transposes, in order, +0 semitones"
   },
   {
    "address": 29099,
    "type": "line",
-   "text": "tune 2's order list for the second voice, 15 bytes to its $FF: 9 patterns (23, 24, 26, 24, 26, 27, 24, 26, 27), with the transposes +0, +5, +12 semitones"
+   "text": "tune 2's order list for the second voice, 15 bytes to its $FF: 9 patterns (23, 24, 26, 24, 26, 27, 24, 26, 27), with the transposes, in order, +5, +12, +0, +12, +12 semitones"
   },
   {
    "address": 29114,
    "type": "line",
-   "text": "tune 2's order list for the third voice, 12 bytes to its $FF: 9 patterns (23, 25, 25, 25, 25, 25, 25, 25, 25), with the transposes +0, +12 semitones"
+   "text": "tune 2's order list for the third voice, 12 bytes to its $FF: 9 patterns (23, 25, 25, 25, 25, 25, 25, 25, 25), with the transposes, in order, +12, +0 semitones"
   },
   {
    "address": 29126,
@@ -9894,22 +9973,22 @@
   {
    "address": 30563,
    "type": "line",
-   "text": "four bytes of each effect's record ($7763, $7766, $7769, $776C) that $758A copies and that no instruction reads"
+   "text": "four bytes of each effect's record, its eleventh to fourteenth (offsets 10 to 13), which $758A copies into $7763, $7766, $7769 and $776C and no instruction reads"
   },
   {
    "address": 30566,
    "type": "line",
-   "text": "the second of the four copied bytes of each voice's effect, its record's eleventh byte, which no instruction reads"
+   "text": "the second of the four copied bytes of each voice's effect, its record's twelfth byte (offset 11), which no instruction reads"
   },
   {
    "address": 30569,
    "type": "line",
-   "text": "the third of the four copied bytes, the record's twelfth byte, which no instruction reads"
+   "text": "the third of the four copied bytes, the record's thirteenth byte (offset 12), which no instruction reads"
   },
   {
    "address": 30572,
    "type": "line",
-   "text": "the fourth of the four copied bytes, the record's thirteenth byte, which no instruction reads"
+   "text": "the fourth of the four copied bytes, the record's fourteenth byte (offset 13), which no instruction reads"
   },
   {
    "address": 30575,
@@ -10129,62 +10208,62 @@
   {
    "address": 32974,
    "type": "line",
-   "text": "the second band's six sprites' positions, x then y: the lizard's lower and upper sprite and arm, then the ogre's ($9925), swapped when the ogre is nearer ($9AF8)"
+   "text": "the second band's six sprites' positions, x then y: the lower and upper sprite and the arm of one monster, then the other's ($9925 writes the lizard's first). $9AF8 swaps the two halves whenever the ogre's y is not less than the lizard's, which is every pass while the ogre is out of the game (its y is $FA), so then the first half holds the ogre's"
   },
   {
    "address": 32975,
    "type": "line",
-   "text": "the lizard's lower sprite's y"
+   "text": "the first monster's lower sprite's y (the lizard's unless the halves are swapped, $9AF8)"
   },
   {
    "address": 32976,
    "type": "line",
-   "text": "the lizard's upper sprite's x"
+   "text": "the first monster's upper sprite's x"
   },
   {
    "address": 32977,
    "type": "line",
-   "text": "the lizard's upper sprite's y"
+   "text": "the first monster's upper sprite's y"
   },
   {
    "address": 32978,
    "type": "line",
-   "text": "the lizard's arm's x"
+   "text": "the first monster's arm's x"
   },
   {
    "address": 32979,
    "type": "line",
-   "text": "the lizard's arm's y"
+   "text": "the first monster's arm's y"
   },
   {
    "address": 32980,
    "type": "line",
-   "text": "the ogre's lower sprite's x"
+   "text": "the second monster's lower sprite's x (the ogre's unless the halves are swapped, $9AF8)"
   },
   {
    "address": 32981,
    "type": "line",
-   "text": "the ogre's lower sprite's y"
+   "text": "the second monster's lower sprite's y"
   },
   {
    "address": 32982,
    "type": "line",
-   "text": "the ogre's upper sprite's x"
+   "text": "the second monster's upper sprite's x"
   },
   {
    "address": 32983,
    "type": "line",
-   "text": "the ogre's upper sprite's y"
+   "text": "the second monster's upper sprite's y"
   },
   {
    "address": 32984,
    "type": "line",
-   "text": "the ogre's arm's x"
+   "text": "the second monster's arm's x"
   },
   {
    "address": 32985,
    "type": "line",
-   "text": "the ogre's arm's y"
+   "text": "the second monster's arm's y"
   },
   {
    "address": 32986,
@@ -10209,32 +10288,32 @@
   {
    "address": 32991,
    "type": "line",
-   "text": "the second band's six sprite pointers: the lizard's lower ($32), upper and arm, then the ogre's lower ($34), upper and arm"
+   "text": "the second band's six sprite pointers: the first monster's lower ($32), upper and arm, then the second's (the lower $34); $9AF8 swaps the halves with the positions"
   },
   {
    "address": 32992,
    "type": "line",
-   "text": "the lizard's upper sprite's pointer, from $80EF"
+   "text": "the first monster's upper sprite's pointer (the lizard's, from $80EF, unless swapped)"
   },
   {
    "address": 32993,
    "type": "line",
-   "text": "the lizard's arm's pointer, from $9C00 or $9C09"
+   "text": "the first monster's arm's pointer"
   },
   {
    "address": 32994,
    "type": "line",
-   "text": "the ogre's lower sprite's pointer, $34"
+   "text": "the second monster's lower sprite's pointer"
   },
   {
    "address": 32995,
    "type": "line",
-   "text": "the ogre's upper sprite's pointer, from $8177"
+   "text": "the second monster's upper sprite's pointer (the ogre's, from $8177, unless swapped)"
   },
   {
    "address": 32996,
    "type": "line",
-   "text": "the ogre's arm's pointer"
+   "text": "the second monster's arm's pointer"
   },
   {
    "address": 32997,
@@ -10334,12 +10413,12 @@
   {
    "address": 33299,
    "type": "line",
-   "text": "the lizard's animation frame, 0 to 3 (on the title, 0 to $3F)"
+   "text": "the lizard's animation frame, 0 to 3 in play, and counted on without a wrap while it dies ($8AC9), so it reaches 4; on the title 0 to $3F"
   },
   {
    "address": 33300,
    "type": "line",
-   "text": "the ogre's animation frame"
+   "text": "the ogre's animation frame, as $8213 is the lizard's"
   },
   {
    "address": 33301,
@@ -10999,17 +11078,17 @@
   {
    "address": 35636,
    "type": "line",
-   "text": "down: walks out of the screen, to row $14 at most, in the same way (facing 8)."
+   "text": "down: walks out of the screen while the row is below $15, so to row $15 at most, in the same way (facing 8)"
   },
   {
    "address": 35748,
    "type": "line",
-   "text": "left: walks left to column 1 at most, half a cell a pass, while the cells there are walkable (facing $0C)."
+   "text": "left: walks left while the column is 1 or more, so to column 0, half a cell a pass, while the cells there are walkable (facing $0C)"
   },
   {
    "address": 35888,
    "type": "line",
-   "text": "right: walks right to column $23 at most (facing 4)."
+   "text": "right: walks right while the column is below $24, so to column $24 at most (facing 4)"
   },
   {
    "address": 36021,
@@ -11179,7 +11258,7 @@
   {
    "address": 38535,
    "type": "line",
-   "text": "whether this city's egg has been left in the rubble, kept as the operand of the load at $9686: 0 not yet, 1 out (or the fourth city type, which has none, $87CC), 2 taken ($91DD). Cleared when a city is picked ($84A8)"
+   "text": "whether this city's egg is out, kept as the operand of the load at $9686: 0 not yet, 1 out, 2 taken ($91DD). Cleared when a city is picked ($84A8); the volcano sets it to 1 at once ($87CC), its golden egg drawn on the screen ($87A8), so its rubble holds none"
   },
   {
    "address": 38590,
@@ -11284,7 +11363,7 @@
   {
    "address": 40351,
    "type": "line",
-   "text": "the hidden list of names the title writes, eleven characters at a time, in black on black (ASCII, @ a space): WINDOWPAINS, FLOODLANDS, NEW ORDER, MACHESTER, HACIENDA, THE VENUE, SUICIDE, RENTBOYS, DAVID, TIM, AMIR, EEEEEEEEEEE, WAGNER, TOM, GARY NICK, DANNY SPACEMEN, ASYLUM, RIP INTERSTELLA, OVERDRIVE, LED ZEP, VOODOO, RAYNITZER, EBB, NME, PERFECT WAY THE THE"
+   "text": "the hidden list of names the title writes, eleven characters at a time, in black on black (ASCII, @ a space): WINDOWPAINS, FLOODLANDS, NEW ORDER, MACHESTER, HACIENDA, THE VENUE, SUICIDE, RENTBOYS, DAVID, TIM, AMIR, EEEEEEEEEEE, WAGNER, TOM, GARY NICK, DANNY SPACEMEN 3 (the 3 is the font's digit $1E, not ASCII), ASYLUM, RIP INTERSTELLA, OVERDRIVE, LED ZEP, VOODOO, RAYNITZER, EBB, NME, PERFECT WAY, THE THE. The place in the list ($B140) steps by 11 to 253 and then wraps to 0, so the last characters, THE THE, are never shown"
   },
   {
    "address": 40615,
@@ -11509,7 +11588,7 @@
   {
    "address": 42054,
    "type": "line",
-   "text": "the first band's sprites 0 and 1, two hornets. Counts the animation step $8212 round 0 to 3 and the two counts at $A452 and $A456 down; then each hornet that is out ($823B,x) flies 4 pixels a pass across, left or right by $8237,x, and 2 lines down to the line in $A4E9 (or up, once $8239,x is set). There it looks at the monster higher on the screen: within two columns, a monster breathing fire ($82BB,x of 2 or more) burns it, scoring 5 with sound 2, and the hornet dies ($823D,x counts to 5 and it is taken off); otherwise it stings, hurting the monster twice ($931E) with sound 5. Either way it then flies up. A hornet that leaves the screen is taken off; one that is not out is sent in at random ($9C12) at the line in $A4E9, from the left or the right edge."
+   "text": "the first band's sprites 0 and 1, two hornets. Counts the animation step $8212 round 0 to 3 and the two counts at $A452 and $A456 down; then each hornet that is out ($823B,x) flies 4 pixels a pass across, left or right by $8237,x, and 2 lines down to the line in $A4E9 (or up, once $8239,x is set). There it looks at the monster higher on the screen: when the hornet's column (its x divided by 8, less 3) is the monster's column or one more, a monster breathing fire ($82BB,x of 2 or more) burns it, scoring 5 with sound 2, and the hornet dies ($823D,x counts to 5 and it is taken off); otherwise it stings, hurting the monster twice ($931E) with sound 5. Either way it then flies up. A hornet that leaves the screen is taken off; one that is not out is sent in at random ($9C12) at the line in $A4E9, from the left or the right edge."
   },
   {
    "address": 42066,
@@ -11544,7 +11623,7 @@
   {
    "address": 42814,
    "type": "line",
-   "text": "starts the white flyer's dropping when none is falling ($A8A4 = 0): with random chances from $9C12, at the flyer's column ($A87A) and a row below it, and then moves it ($A7AF, $A7C1)."
+   "text": "starts the white flyer's dropping when none is falling ($A8A4 = 0): with random chances from $9C12, at the flyer's column ($A87A) and the row its y divided by 8, less 5, gives, and then moves it ($A7AF, $A7C1)."
   },
   {
    "address": 42927,
@@ -12049,7 +12128,7 @@
   {
    "address": 46271,
    "type": "line",
-   "text": "the four frames of three animated characters, 24 bytes a frame, copied to $C498"
+   "text": "the frames of the three characters $93-$95 that animate in four phases, copied to $C498 by $B463, which reads them backwards from $B4BF + 24 times the phase: phases 1 to 3 take $B4C0-$B507 (the last of them takes the next table's first byte), and for phase 0 the index wraps, so that phase's frame is $B4BF and $B5A8-$B5BE"
   },
   {
    "address": 46343,
@@ -12237,6 +12316,26 @@
    "text": "city type 8 copies its 62 characters from here, 496 bytes, to $C590: the window runs on past $BFFF into $C000-$C13E, where that city's own characters were copied a moment before, so its last ones are copies of its first"
   },
   {
+   "address": 50176,
+   "type": "line",
+   "text": "characters $80 to $92 as they came with the load, which no routine rewrites: among them the pickups, four characters each from $82 (the lightning), $86 (the hamburger), $8A (the box that hurts) and $8E (the egg)"
+  },
+  {
+   "address": 50432,
+   "type": "line",
+   "text": "characters $A0 to $A8 as they came with the load, which no routine rewrites"
+  },
+  {
+   "address": 50560,
+   "type": "line",
+   "text": "character $B0, which a burning building's rows are scattered with ($956F), as it came with the load"
+  },
+  {
+   "address": 51072,
+   "type": "line",
+   "text": "characters $F0 to $FF as they came with the load: the heavy digits 0 to 9 ($F0-$F9) of the scores and the cells of the bars, $FA (empty) to $FE (full)"
+  },
+  {
    "address": 52416,
    "type": "line",
    "text": "a sprite shape in video bank 3, pointer $33, between the two built lower sprites; no table or instruction names it"
@@ -12264,197 +12363,197 @@
   {
    "address": 55296,
    "type": "line",
-   "text": "colour RAM row 0, column 0, written by $8755, $8783, $AF5B, $B157, $B16C; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
+   "text": "colour RAM row 0, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
   },
   {
    "address": 55300,
    "type": "line",
-   "text": "colour RAM row 0, column 4, written by $8790; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
+   "text": "colour RAM row 0, column 4, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
   },
   {
    "address": 55324,
    "type": "line",
-   "text": "colour RAM row 0, column 28, written by $8793; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
+   "text": "colour RAM row 0, column 28, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
   },
   {
    "address": 55340,
    "type": "line",
-   "text": "colour RAM row 1, column 4, written by $8798; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
+   "text": "colour RAM row 1, column 4, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $60"
   },
   {
    "address": 55364,
    "type": "line",
-   "text": "colour RAM row 1, column 28, written by $879B; the RAM under it, which the CPU never reaches, holds part of sprite shape $61"
+   "text": "colour RAM row 1, column 28, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $61"
   },
   {
    "address": 55552,
    "type": "line",
-   "text": "colour RAM row 6, column 16, written by $875E, $AF5E; the RAM under it, which the CPU never reaches, holds part of sprite shape $64"
+   "text": "colour RAM row 6, column 16, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $64"
   },
   {
    "address": 55576,
    "type": "line",
-   "text": "colour RAM row 7, column 0, written by $8983; the RAM under it, which the CPU never reaches, holds part of sprite shape $64"
+   "text": "colour RAM row 7, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $64"
   },
   {
    "address": 55692,
    "type": "line",
-   "text": "colour RAM row 9, column 36, written by $B122; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
+   "text": "colour RAM row 9, column 36, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
   },
   {
    "address": 55694,
    "type": "line",
-   "text": "colour RAM row 9, column 38, written by $B114; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
+   "text": "colour RAM row 9, column 38, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
   },
   {
    "address": 55696,
    "type": "line",
-   "text": "colour RAM row 10, column 0, written by $B106; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
+   "text": "colour RAM row 10, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
   },
   {
    "address": 55738,
    "type": "line",
-   "text": "colour RAM row 11, column 2, written by $B03D; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
+   "text": "colour RAM row 11, column 2, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $66"
   },
   {
    "address": 55768,
    "type": "line",
-   "text": "colour RAM row 11, column 32, written by $B048; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
+   "text": "colour RAM row 11, column 32, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
   },
   {
    "address": 55778,
    "type": "line",
-   "text": "colour RAM row 12, column 2, written by $B040; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
+   "text": "colour RAM row 12, column 2, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
   },
   {
    "address": 55795,
    "type": "line",
-   "text": "colour RAM row 12, column 19, written by $87BE; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
+   "text": "colour RAM row 12, column 19, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
   },
   {
    "address": 55796,
    "type": "line",
-   "text": "colour RAM row 12, column 20, written by $87C1; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
+   "text": "colour RAM row 12, column 20, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $67"
   },
   {
    "address": 55808,
    "type": "line",
-   "text": "colour RAM row 12, column 32, written by $8767, $AF61, $B04B; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 12, column 32, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55812,
    "type": "line",
-   "text": "colour RAM row 12, column 36, written by $B127; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 12, column 36, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55814,
    "type": "line",
-   "text": "colour RAM row 12, column 38, written by $B117; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 12, column 38, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55816,
    "type": "line",
-   "text": "colour RAM row 13, column 0, written by $8997, $B109; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 13, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55818,
    "type": "line",
-   "text": "colour RAM row 13, column 2, written by $B043; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 13, column 2, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55835,
    "type": "line",
-   "text": "colour RAM row 13, column 19, written by $87C4; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 13, column 19, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55836,
    "type": "line",
-   "text": "colour RAM row 13, column 20, written by $87C7; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 13, column 20, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55848,
    "type": "line",
-   "text": "colour RAM row 13, column 32, written by $B04E; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
+   "text": "colour RAM row 13, column 32, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $68"
   },
   {
    "address": 55892,
    "type": "line",
-   "text": "colour RAM row 14, column 36, written by $B12C; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
+   "text": "colour RAM row 14, column 36, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
   },
   {
    "address": 55894,
    "type": "line",
-   "text": "colour RAM row 14, column 38, written by $B11A; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
+   "text": "colour RAM row 14, column 38, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
   },
   {
    "address": 55896,
    "type": "line",
-   "text": "colour RAM row 15, column 0, written by $B10C; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
+   "text": "colour RAM row 15, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $69"
   },
   {
    "address": 55972,
    "type": "line",
-   "text": "colour RAM row 16, column 36, written by $B131; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
+   "text": "colour RAM row 16, column 36, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
   },
   {
    "address": 55974,
    "type": "line",
-   "text": "colour RAM row 16, column 38, written by $B11D; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
+   "text": "colour RAM row 16, column 38, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
   },
   {
    "address": 55976,
    "type": "line",
-   "text": "colour RAM row 17, column 0, written by $B10F; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
+   "text": "colour RAM row 17, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
   },
   {
    "address": 55995,
    "type": "line",
-   "text": "colour RAM row 17, column 19, written by $AC7C; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
+   "text": "colour RAM row 17, column 19, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
   },
   {
    "address": 55996,
    "type": "line",
-   "text": "colour RAM row 17, column 20, written by $AC7F; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
+   "text": "colour RAM row 17, column 20, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6A"
   },
   {
    "address": 56035,
    "type": "line",
-   "text": "colour RAM row 18, column 19, written by $AC82; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
+   "text": "colour RAM row 18, column 19, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
   },
   {
    "address": 56036,
    "type": "line",
-   "text": "colour RAM row 18, column 20, written by $AC85; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
+   "text": "colour RAM row 18, column 20, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
   },
   {
    "address": 56056,
    "type": "line",
-   "text": "colour RAM row 19, column 0, written by $89AB; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
+   "text": "colour RAM row 19, column 0, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6B"
   },
   {
    "address": 56064,
    "type": "line",
-   "text": "colour RAM row 19, column 8, written by $8770, $AF64; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
+   "text": "colour RAM row 19, column 8, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
   },
   {
    "address": 56066,
    "type": "line",
-   "text": "colour RAM row 19, column 10, written by $AFF7; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
+   "text": "colour RAM row 19, column 10, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
   },
   {
    "address": 56106,
    "type": "line",
-   "text": "colour RAM row 20, column 10, written by $AFFA; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
+   "text": "colour RAM row 20, column 10, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6C"
   },
   {
    "address": 56146,
    "type": "line",
-   "text": "colour RAM row 21, column 10, written by $AFFD; the RAM under it, which the CPU never reaches, holds part of sprite shape $6D"
+   "text": "colour RAM row 21, column 10, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6D"
   },
   {
    "address": 56226,
    "type": "line",
-   "text": "colour RAM row 23, column 10, written by $B002; the RAM under it, which the CPU never reaches, holds part of sprite shape $6E"
+   "text": "colour RAM row 23, column 10, which the routines that colour the screen write, most through an index; the RAM under it, which the CPU never reaches, holds part of sprite shape $6E"
   },
   {
    "address": 56320,

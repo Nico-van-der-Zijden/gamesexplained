@@ -1,0 +1,182 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aaargh!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#23262d; --paper:#e9e7e1; --surface:#ffffff; --surface-2:#f1efea; --line:#d5d3cc; --line-soft:#e0ded8;
+  --ink:#2f3136; --ink-soft:#55585f; --ink-mute:#80838a;
+  --link:#1f5fa8; --link-hover:#154480; --accent:#1f5fa8;
+  --amber:#c25a00; --cyan:#1f5fa8; --coral:#d04a3a; --green:#2a8a4a; --violet:#4a5bd6; --hl:#fff0c2;
+  --chip:#2f3136; --chip-ink:#ffffff;
+  --c64blue:#40318d; --c64grey:#686868;
+  --fd:'Lato',system-ui,sans-serif; --fb:'Lato',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --col:1080px; --gx:68px; --fs:17px; --lh:1.6; --hw:900; --h1:46px; --h2:26px; --sy:48px; --pp:26px; --r:10px;
+  --plate-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:var(--fs);line-height:var(--lh);max-width:var(--col);margin:0 auto;min-height:100vh;padding:0 0 4rem}
+h1,h2,h3{font-weight:var(--hw);letter-spacing:-.01em;text-wrap:balance;color:var(--ink);margin:0}
+.wrap{padding:0 var(--gx)}
+.hero{padding:48px var(--gx) 8px;text-align:left}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+.hero h1{font-size:var(--h1);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.hero .sub{margin:0 0 .6em;color:var(--ink-soft)}
+section{padding:var(--sy) 0 24px}
+section:last-of-type{border-bottom:none}
+.fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
+h2.t{font-size:var(--h2);margin-bottom:12px}
+.lede{color:var(--ink-soft);margin:0 0 30px}
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
+.cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
+.cap b{color:var(--ink);font-weight:700}
+code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
+.ag-cv{display:block;width:100%;max-width:768px;height:auto;image-rendering:pixelated;background:#000;border-radius:4px}
+.ag-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.ag-tab{border-collapse:collapse;width:100%;font-size:14px;margin-top:14px}
+.ag-tab th,.ag-tab td{border-bottom:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
+.ag-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+.ag-note{font-family:var(--fm);font-size:13px;color:var(--coral)}
+.ag-gallery{display:flex;flex-wrap:wrap;gap:10px}
+.ag-gallery figure{margin:0;font-family:var(--fm);font-size:12px;color:var(--ink-mute);text-align:center}
+.ag-gallery canvas{display:block;image-rendering:pixelated;background:#000;border-radius:3px}
+@media (max-width:760px){:root{--gx:20px;--h1:34px;--pp:16px}}
+</style>
+<!-- tabs -->
+<header class="hero">
+  <p class="eyebrow">1989 · Melbourne House</p>
+  <h1>Aaargh!</h1>
+  <p class="sub">Every place a monster can wreck, drawn by the game's own builder from the bytes it loads: eight cities, the volcano and the cave.</p>
+</header>
+<main class="wrap">
+
+<section id="places">
+  <p class="fig">01 · The places</p>
+  <h2 class="t">Ten places, each built by the game's own code</h2>
+  <p class="lede">Pick a place. The picture is the screen the game builds when a monster arrives, before anything moves.</p>
+  <div class="plate">
+    <div class="pick" id="ag-pick"><button type="button" class="step" data-d="-1" aria-label="Previous place">‹</button><select id="ag-sel" aria-label="Place"></select><button type="button" class="step" data-d="1" aria-label="Next place">›</button></div>
+    <canvas id="ag-city" class="ag-cv" width="768" height="544" aria-label="The place as the game builds it"></canvas>
+    <p class="cap" id="ag-cap"></p>
+    <table class="ag-tab" id="ag-facts"></table>
+  </div>
+  <p>Each place's data starts at the address in the tables at <code>$82CF</code> and <code>$82D9</code>. It holds 128 colours, one for each of the place's own characters, then the 128 characters, a kilobyte, then the screen, packed. The builder at <code>$853E</code> copies the colours to <code>$A2A1</code> and the characters to <code>$C000</code>, takes 62 more characters from a pool the places share (the window at <code>$B691</code>), and unpacks the screen into rows 1 to 24. In the packing, a byte with its top bit set repeats the next byte, and any other byte copies that many bytes as they are.</p>
+  <p>Then it puts up the six buildings. Each place has six entries in three tables, a column at <code>$B5F5</code>, a row at <code>$B626</code> and a type at <code>$B657</code>, and the type picks one of 37 pictures with its width and height (<code>$A209</code>, <code>$A255</code>, <code>$A27B</code>). The cave has no buildings, and the volcano's are not there to be knocked down for an egg: its golden egg sits in the mountain's mouth from the start.</p>
+</section>
+
+<section id="rounds">
+  <p class="fig">02 · The order</p>
+  <h2 class="t">Three cities, then the volcano, then round again</h2>
+  <p class="lede">The game picks each city from a short list, by how far into the round the monsters are.</p>
+  <div class="plate"><table class="ag-tab" id="ag-order"></table>
+  <p class="cap">The city count at <code>$803E</code> goes 1, 2, 3, 4 and back to 1. The picker at <code>$8444</code> reads the table at <code>$842F</code> at four times the count plus a random number from 1 to 4, so each slot has its own short list. Checked in the emulator: ending city after city, the fourth was the volcano each time, and the count went back to 1 after it.</p></div>
+</section>
+
+<section id="buildings">
+  <p class="fig">03 · The buildings</p>
+  <h2 class="t">Thirty-seven building pictures</h2>
+  <p class="lede">Every building type, drawn with the characters of the first place that uses it.</p>
+  <div class="plate"><div class="ag-gallery" id="ag-gallery"></div>
+  <p class="cap">Each picture is a block of character codes, row by row, at the address the tables <code>$A209</code> and <code>$A22F</code> give for its type. Type 10 is used by no place, and its picture runs over the next type's, which starts a byte later.</p></div>
+</section>
+
+</main>
+<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors</footer>
+<script src="../../lib/c64.js"></script>
+<script src="../../lib/cpu6502.js"></script>
+<script>
+/* ag-city */
+// agCity(ram, type, C64Cpu): place `type` (1 to 9) as the game builds it, on the kit's 6502 over a
+// copy of the listing's memory. Sets the city type ($80A8), and for the cave (9) $8691, as
+// cave_setup does, so the builder leaves the buildings out; then runs city_build ($853E) and one
+// step of the character animation ($B463), with the chips answered here: colour RAM, the video
+// chip's registers the builder writes (the border and the three background colours) and nothing
+// else. Returns { mem, colour, vic }: the memory as the video chip would read it, the 1,000 colour
+// nibbles, and the 64 video registers with the game's play settings ($D011 = $1B, $D016 = $D8,
+// $D018 = $21, sprites off).
+function agCity(ram, type, C64Cpu) {
+  const mem = ram.slice(), colour = new Uint8Array(1024), vic = new Uint8Array(64);
+  const io = {
+    read(a) {
+      if (a >= 0xD800 && a < 0xDC00) return colour[a - 0xD800] | 0xF0;
+      if (a >= 0xD000 && a < 0xD040) return vic[a & 63];
+      throw new Error('read $' + a.toString(16));
+    },
+    write(a, v) {
+      if (a >= 0xD800 && a < 0xDC00) { colour[a - 0xD800] = v & 15; return; }
+      if (a >= 0xD000 && a < 0xD040) { vic[a & 63] = v; return; }
+      throw new Error('write $' + a.toString(16));
+    },
+  };
+  mem[0x80A8] = type;
+  mem[0x8691] = type === 9 ? 1 : 0;
+  const cpu = new C64Cpu.CPU(mem, { port: 0x35, io });
+  cpu.call(0x853E, {}, { maxSteps: 2000000 });
+  cpu.call(0xB463, {}, { maxSteps: 100000 });
+  vic[0x11] = 0x1B; vic[0x16] = 0xD8; vic[0x18] = 0x21; vic[0x15] = 0;
+  return { mem, colour, vic };
+}
+// end of ag-city
+</script>
+<script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const PLACES = [
+    [1, 'City type 1'], [2, 'City type 2'], [3, 'City type 3'], [5, 'City type 5'], [6, 'City type 6'],
+    [7, 'City type 7'], [8, 'City type 8'], [4, 'The volcano (type 4)'], [9, 'The cave (type 9)'],
+  ];
+  if (!window.C64 || !window.C64Cpu) { $('ag-city').replaceWith(Object.assign(document.createElement('p'), { className: 'ag-note', textContent: 'The places are drawn by the site\'s shared scripts; they work in the built site.' })); return; }
+  C64.load('listing.json').then((L) => {
+    const built = new Map();
+    const city = (t) => { if (!built.has(t)) built.set(t, agCity(L.ram, t, C64Cpu)); return built.get(t); };
+    const draw = (cv, c) => C64.drawFrame(cv, { vic: Array.from(c.vic.subarray(0, 47)), cia2: [0x94, 0x3F], writes: [], mem: c.mem, colourMem: c.colour }, 2);
+    const sel = $('ag-sel');
+    PLACES.forEach(([t, n], i) => sel.add(new Option(n, String(i))));
+    const hx = (v) => C64.hex(v, 2), r = L.ram;
+    function show(i) {
+      const [t, n] = PLACES[i]; sel.value = String(i);
+      const c = city(t); draw($('ag-city'), c);
+      const data = r[0x82CF + t] | r[0x82D9 + t] << 8, win = r[0xB691 + t] | r[0xB688 + t] << 8;
+      $('ag-cap').innerHTML = `<b>${n}</b>, built by <code>$853E</code> from its data at <code>${C64.hex(data)}</code>, with its 62 shared characters from <code>${C64.hex(win)}</code>.`;
+      const rows = [['Colours', `background ${r[0xB5D7 + t]}, multicolours ${r[0xB5E1 + t]} and ${r[0xB5EB + t]}, border ${r[0xB6D7 + t]}`],
+        ['Floor character', hx(r[0xB6C6 + t])], ['Lizard starts at', `column ${r[0xB69A + t]}, row ${r[0xB6A5 + t]}`], ['Ogre starts at', `column ${r[0xB6B0 + t]}, row ${r[0xB6BB + t]}`]];
+      if (t !== 9) {
+        const b = [];
+        for (let k = 0; k < 6; k++) { const e = 6 * t - k; b.push(`type ${r[0xB657 + e]} at column ${r[0xB5F5 + e]}, row ${r[0xB626 + e]}`); }
+        rows.push(['Buildings', b.reverse().join('; ')]);
+      }
+      $('ag-facts').innerHTML = rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('');
+    }
+    sel.onchange = () => show(+sel.value);
+    for (const b of $('ag-pick').querySelectorAll('.step')) b.onclick = () => show((+sel.value + +b.dataset.d + PLACES.length) % PLACES.length);
+    show(0);
+    // the order: the picker's list for each slot of the round
+    const name = (t) => (PLACES.find((p) => p[0] === t) || [t, 'type ' + t])[1];
+    let html = '<tr><th>City in the round</th><th>Random number 1 to 4 gives</th></tr>';
+    for (let c = 1; c <= 4; c++) html += `<tr><td>${c}</td><td>${[1, 2, 3, 4].map((k) => name(r[0x842F + 4 * c + k])).join(', ')}</td></tr>`;
+    $('ag-order').innerHTML = html;
+    // the buildings, each with the characters of the first place that uses it
+    const gal = $('ag-gallery');
+    for (let ty = 1; ty < 38; ty++) {
+      let place = 0;
+      for (let t = 1; t <= 8 && !place; t++) for (let k = 0; k < 6; k++) if (r[0xB657 + 6 * t - k] === ty) { place = t; break; }
+      const c = city(place || 1), w = r[0xA255 + ty], h = r[0xA27B + ty], pic = r[0xA209 + ty] | r[0xA22F + ty] << 8;
+      const fig = document.createElement('figure'), cv = document.createElement('canvas');
+      const ctx = C64.canvas(cv, w * 16, h * 16);
+      const bg = C64.PAL[r[0xB5D7 + (place || 1)] & 15];
+      const cols = [bg, C64.PAL[r[0xB5E1 + (place || 1)] & 15], C64.PAL[r[0xB5EB + (place || 1)] & 15]];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const ch = c.mem[pic + y * w + x + 1], col = c.mem[0xA2A1 + ch] & 15;
+        ctx.fillStyle = bg; ctx.fillRect(x * 16, y * 16, 16, 16);
+        if (col >= 8) C64.drawGlyphMC(ctx, c.mem.subarray(0xC000), ch, x * 16, y * 16, 2, cols.concat([C64.PAL[col & 7]]));
+        else C64.drawGlyph(ctx, c.mem.subarray(0xC000), ch, x * 16, y * 16, 2, C64.PAL[col], null);
+      }
+      fig.append(cv, Object.assign(document.createElement('figcaption'), { textContent: `${ty}${place ? '' : ' (unused)'}` }));
+      gal.appendChild(fig);
+    }
+  }).catch((e) => { console.error(e); $('ag-cap').textContent = 'The places could not be drawn: ' + e.message; });
+})();
+</script>

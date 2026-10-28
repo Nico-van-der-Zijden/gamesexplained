@@ -204,6 +204,25 @@ characters, just below the music driver.
 
 ## The listing's error rate
 
+One sample, seed 20261029, drawn in two strata from the 746 line comments: 40 of the 587 written
+by hand and 20 of the 159 written by the generators (the music's patterns and order lists, the
+cities' data, the building pictures, the hidden list and the colour RAM). A checker on
+claude-opus-5-5 that wrote none of them marked 17 wrong in a detail and one doubtful; all 17 were
+confirmed against the code: 9 of the 40 handwritten and 8 of the 20 generated. That is 28 % of
+the sample, and about 26 % of the listing weighted by the strata's sizes; a checker misses some,
+so these are lower bounds. 95 % range, unweighted: 18 % to 41 %.
+
+What was wrong: the second band's sprite slots, described as one monster's each when `$9AF8`
+swaps the two halves whenever the ogre is lower on the screen or out of the game; the edges of
+the walks (column `$24`, column 0, row `$15`); the volcano's egg, which the code draws on its
+screen at the start; the hornet's column test, which is one-sided; an effect record's byte
+numbers; the animation table's frames, read backwards with a wrap; the order of one order list's
+transposes; and two whole templates: the city screens' unpacker reads on past only some of its
+blocks, and the colour RAM comments listed only the stores that name an address, missing the
+indexed ones. The hidden list also holds SPACEMEN 3 with the font's digit, and its last
+characters are never shown. All 17 were corrected, with every comment that said the same, and the
+generated ones by template. The listing has had no full audit; one is recommended.
+
 ## Live tests
 
 - The easter egg on the title (`work/egg.py`): holding 1, ←, CTRL and 2
