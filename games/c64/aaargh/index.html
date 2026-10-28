@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}}</title>
+<title>Aaargh!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -28,39 +28,278 @@ section{padding:var(--sy) 0 24px}
 section:last-of-type{border-bottom:none}
 .fig{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 10px}
 h2.t{font-size:var(--h2);margin-bottom:12px}
+h3{font-size:19px;margin:26px 0 8px}
 .lede{color:var(--ink-soft);margin:0 0 30px}
 .plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--pp);box-shadow:var(--plate-shadow)}
 .cap{font-size:14px;color:var(--ink-mute);margin-top:14px;line-height:1.55}
 .cap b{color:var(--ink);font-weight:700}
 code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--chip-ink);border-radius:4px;padding:2px 6px;white-space:nowrap}
-
+.ag-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.ag-shots figure{margin:0}
+.ag-shots img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px}
+.ag-shots figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px}
+.ag-cv{display:block;width:100%;max-width:768px;height:auto;image-rendering:pixelated;background:#000;border-radius:4px}
+.ag-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.ag-btn{font-family:var(--fm);font-size:13px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 11px;cursor:pointer;color:var(--ink)}
+.ag-btn[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
+.ag-sel{font-family:var(--fm);font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.ag-tab{border-collapse:collapse;width:100%;font-size:14px;margin-top:14px}
+.ag-tab th,.ag-tab td{border-bottom:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
+.ag-tab th{font-family:var(--fm);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);font-weight:500}
+.ag-round{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ag-round div{border:1px solid var(--line);border-radius:8px;padding:10px;font-size:14px;background:var(--surface-2)}
+.ag-round b{display:block;font-family:var(--fm);font-size:12px;color:var(--ink-mute);font-weight:500}
+.ag-note{font-family:var(--fm);font-size:13px;color:var(--coral)}
+@media (max-width:760px){:root{--gx:20px;--h1:34px;--pp:16px}.ag-round{grid-template-columns:repeat(2,1fr)}}
 </style>
-<!--
-  Template for a game article. Keep it self-contained: inline CSS and JS,
-  fonts are the only external resource, opens from disk. The section below
-  shows the parts a section is made of, not which section comes first: the
-  kinds of section are listed in kit/skills/core/70-minisite, in no order,
-  and this page's order is its own. The best thing to press or hear goes
-  as high as the explanation lets it, and every section should have
-  something the reader can press. Copy follows kit/style.md and is written
-  last.
--->
 <!-- tabs -->
 <header class="hero">
-  <p class="eyebrow">{{year}} · {{publisher}}</p>
-  <h1>{{title}}</h1>
-  <p class="sub">The standfirst, which the agent writes: the most interesting thing inside this game, in a sentence or two.</p>
+  <p class="eyebrow">1989 · Melbourne House</p>
+  <h1>Aaargh!</h1>
+  <p class="sub">Two monsters smash cities for eggs, and on the Commodore 64 two players can smash them at once. The game never counts the eggs: every fourth city is the volcano, and then the round starts again.</p>
 </header>
 <main class="wrap">
-<section>
-  <p class="fig">01 · What this section explains</p>
-  <h2 class="t">The finding, spelled out</h2>
-  <p class="lede">What a player would notice, in a sentence or two.</p>
-  <div class="plate"><canvas id="cv" width="320" height="200"></canvas><p class="cap">Caption: what the reader is looking at, and where the bytes came from.</p></div>
-  <p>The explanation, with the bytes, the table or the register beside each claim.</p>
+
+<section id="game">
+  <p class="fig">01 · The game</p>
+  <h2 class="t">A giant monster against a small city</h2>
+  <p class="lede">You are a giant monster on an island of small cities. You knock the buildings down, burn them, eat the people, and look for an egg in the rubble.</p>
+  <div class="ag-shots">
+    <figure><img src="reference/title.png" alt="The title screen" width="384" height="272"><figcaption>The title. Fire on joystick port 2 starts the lizard, fire on port 1 the ogre.</figcaption></figure>
+    <figure><img src="reference/play-village.png" alt="The lizard in the jungle village" width="384" height="272"><figcaption>The lizard in the first city, a jungle village.</figcaption></figure>
+    <figure><img src="reference/play-volcano.png" alt="The volcano" width="384" height="272"><figcaption>The volcano, with its golden egg in the mountain's mouth.</figcaption></figure>
+  </div>
+  <p>Each city has six buildings, a few people, two hornets, a white flyer, and a cannon that rolls along the ground and shoots. A monster punches a building with fire and a direction, or breathes flame with fire alone. A building that falls can leave something in its rubble: a lightning bolt, a hamburger, a box that hurts, or the city's egg. Taking the egg ends the city, and the two monsters fight for it in a cave.</p>
+  <p>Aaargh! was a Mastertronic arcade game in 1987. Binary Design made this version for Melbourne House in 1989: written by Vicious Fish, with art by Eric Casey and the Picturelement and sound by Wally Beben.</p>
 </section>
+
+<section id="two">
+  <p class="fig">02 · Two players</p>
+  <h2 class="t">The ogre joins a game that is already on</h2>
+  <p class="lede">The manual says the C64 version takes one joystick, in port 2. The code reads both.</p>
+  <div class="plate">
+    <div class="ag-shots"><figure><img src="reference/play-two-players.png" alt="The lizard and the ogre in the same city" width="384" height="272"><figcaption>A game of the lizard's, a moment after fire on port 1. The ogre has walked in from the right, and both scores and both pairs of bars are up.</figcaption></figure>
+    <figure><img src="reference/title-easter-egg.png" alt="The title with the hidden names showing" width="384" height="272"><figcaption>The title with 1, ←, CTRL, and 2 held: the monsters are renamed Myrtle and Dill. <a href="discoveries.html#names">The hidden names</a> are on the Discoveries tab.</figcaption></figure></div>
+  </div>
+  <p>Every routine that moves a monster takes its number in X: 0 for the lizard and 1 for the ogre. The stick is read with one instruction, <code>lda $DC00,x</code> at <code>$8A43</code>. With X at 0 that is port 2, and with X at 1 it is the next address, <code>$DC01</code>, which is port 1. So the lizard is always on port 2 and the ogre always on port 1.</p>
+  <p>While a monster is out of the game, fire on its port brings it in (<code>$8A94</code>), at its place for that city and with full bars. That works once a game: the flags at <code>$8366</code> and <code>$8367</code> stop a monster that has died from coming back. The game is over when both are out.</p>
+  <table class="ag-tab">
+    <tr><th>Stick</th><th>Without fire</th><th>With fire</th></tr>
+    <tr><td>Up</td><td>walk into the screen</td><td>punch the building above</td></tr>
+    <tr><td>Down</td><td>walk out of the screen</td><td>punch the building below</td></tr>
+    <tr><td>Left, right</td><td>walk that way</td><td>punch the building that way</td></tr>
+    <tr><td>Middle</td><td>stand</td><td>breathe flame the way the monster faces</td></tr>
+  </table>
+</section>
+
+<section id="sound">
+  <p class="fig">03 · Music</p>
+  <h2 class="t">Music: Wally Beben's tunes, played by the game's own driver</h2>
+  <p class="lede">The title tune and the cave's tune, played by the game's own music driver.</p>
+  <div class="plate"><div id="ag-sid"></div>
+  <p class="cap">The game's own driver runs on the site's model of the 6502, from the listing's bytes: a button writes the tune's number to <code>$68F7</code>, as the title does, and then calls <code>$68F8</code> once a frame, as the title's interrupt does. <code>test_music.js</code> runs the game's own code beside it and compares every write to the sound chip, frame by frame.</p></div>
+  <p>The driver plays three voices, each reading an order list of patterns. A pattern byte below <code>$60</code> is a note; others set the note's length, its instrument (32 of them, eight bytes each at <code>$7021</code>), the speed, a slide or an arpeggio. A few instruments are drums, which step through a short table of waveforms and pitches. In play the same interrupt runs the sound effects instead of the music, so a city is silent but for its effects.</p>
+  <h3>Sound: the effects</h3>
+  <div class="plate"><div id="ag-sfx"></div>
+  <p class="cap">Each effect is a 16-byte record at <code>$7778</code>: a frequency, a step and a mode (rising, falling or swapping), a time, an envelope and a number of repeats. A button asks for it on the third voice, as the game does with <code>$753E</code>, and runs the effects player (<code>$753F</code>) once a frame, as the play interrupt does. Ten of the 26 are used; the names say where.</p></div>
+</section>
+
+<section id="frame">
+  <p class="fig">04 · One frame</p>
+  <h2 class="t">Sixteen sprites, by splitting the screen in two</h2>
+  <p class="lede">A frame of play drawn from memory by the page, not a screenshot. Press a button to see what each band of sprites adds.</p>
+  <div class="plate">
+    <div class="ag-bar" id="ag-frame-bar">
+      <button class="ag-btn" type="button" data-v="all" aria-pressed="true">Everything</button>
+      <button class="ag-btn" type="button" data-v="none" aria-pressed="false">No sprites</button>
+    </div>
+    <canvas id="ag-frame" class="ag-cv" width="768" height="544" aria-label="A frame of play, drawn from memory"></canvas>
+    <p class="cap">The frame was recorded in the emulator (every write to the video chip, with its line and cycle) and is drawn here with the site's model of the chip. The drawing matches the emulator's own picture of the same frame in all 104,448 pixels.</p>
+  </div>
+  <p>The video chip shows eight sprites at a time. The game shows sixteen by moving them half-way down the frame. The interrupt on line 0 (<code>$8810</code>) places the first band: the two hornets and the white flyer. A second interrupt (<code>$88A2</code>) comes just above the monsters and places the second band: each monster as three sprites (its legs, its body and a punching arm) and the cannon as two side by side. Its line moves with the monsters: each pass <code>$9B4F</code> writes it into <code>$889E</code>, 26 lines above the higher monster's legs, which is just above its body.</p>
+  <p>When the ogre stands lower on the screen than the lizard, nearer the player, <code>$9AF8</code> swaps the two monsters' sprites. The nearer one then has the lower sprite numbers, and the video chip draws those in front.</p>
+</section>
+
+<section id="monsters">
+  <p class="fig">05 · The monsters</p>
+  <h2 class="t">A monster's legs are rebuilt every pass, to walk behind walls</h2>
+  <p class="lede">Each monster is two sprites, legs and body, with 17 animations of four frames. Pick one.</p>
+  <div class="plate">
+    <div class="ag-bar"><select class="ag-sel" id="ag-who" aria-label="Monster"><option value="0">The lizard</option><option value="1">The ogre</option></select><select class="ag-sel" id="ag-act" aria-label="Animation"></select><span class="cap" id="ag-act-cap"></span></div>
+    <canvas id="ag-mon" width="288" height="168" style="image-rendering:pixelated;background:#555;border-radius:4px" aria-label="The monster's animation"></canvas>
+    <p class="cap">The body's frame is a sprite pointer from <code>$80EF</code> (the lizard) or <code>$8177</code> (the ogre); the legs' frame is one of 98 shapes at <code>$0BB8</code>, by the tables at <code>$8133</code> and <code>$81BB</code>. Both come from the listing's bytes.</p>
+  </div>
+  <p>The bodies are ordinary sprite shapes, most of them in memory under the input and output chips and under the KERNAL, where the processor never reads but the video chip does. The legs are not shown from where they are kept. Each pass, <code>$9772</code> copies the legs' frame into a buffer at <code>$9D12</code>, and <code>$9811</code> looks at the screen cells around the monster's feet. Where a cell holds a wall or a building's front (a character below <code>$A0</code>), it clears that part of the frame. The result goes to the sprite at <code>$CC80</code> or <code>$CD00</code>, so a monster's legs disappear behind a wall as it walks past.</p>
+  <p>A monster moves a cell every second pass. The cells under its feet must hold characters from <code>$A0</code> up, and the cell ahead one from <code>$95</code> up or the city's floor character. It cannot walk into the other monster.</p>
+</section>
+
+<section id="cities">
+  <p class="fig">06 · The cities</p>
+  <h2 class="t">Three cities, then the volcano, for ever</h2>
+  <p class="lede">The manual promises twelve cities and the volcano after five eggs. Roll a round to see what the code picks.</p>
+  <div class="plate">
+    <div class="ag-bar"><button class="ag-btn" type="button" id="ag-roll">Roll a round</button></div>
+    <div class="ag-round" id="ag-round"></div>
+    <p class="cap">The picker at <code>$8444</code> reads the table at <code>$842F</code> at four times the city count plus a random number from 1 to 4. The roll here uses the same table, read from the listing; <code>test_rounds.js</code> checks it against the game's own picker for every count and number. Every place is drawn on the <a href="levels.html">Maps / levels</a> tab.</p>
+  </div>
+  <p>The city count at <code>$803E</code> goes 1, 2, 3, 4, and back to 1. The first city is the jungle village or the temple in the mountains, the second the castle or the wild west town, the third the town by the water, the city in the cave or the pyramids, and the fourth always the volcano. That makes seven cities, not twelve. Nothing counts the eggs, so the volcano comes every fourth city, whether or not a monster has taken one. Its golden egg is drawn on the screen from the start (<code>$87A1</code>). Taking it leads to the cave, as any egg does, and the next city starts a new round. The game has no ending: it goes on until both monsters are dead.</p>
+</section>
+
+<section id="smash">
+  <p class="fig">07 · Smashing</p>
+  <h2 class="t">Punches cost power, flames are free</h2>
+  <p class="lede">Each monster has two bars beside its score: the top one is its health, the second its punching power.</p>
+  <div class="plate"><div class="ag-shots"><figure><img src="reference/pickups.png" alt="The four pickups" width="544" height="128"><figcaption>The four things a fallen building can leave, drawn into the screen in their own colours: the lightning, the hamburger, the box that hurts, and the egg.</figcaption></figure></div></div>
+  <p>A punch knocks a hole in the building that way (<code>$B44A</code>), scores 100 and starts it on its way down, but only while the monster has punching power (<code>$80ED</code>), and each punch spends a cell of the second bar (<code>$92D6</code>). With the bar empty, a punch does nothing. A flame needs no power: it burns the building a little every second pass for 10 points a time, and burns the hornets, the white flyer, the cannon, and the other monster too.</p>
+  <p>A building goes through stages of fire (<code>$93F0</code>), its rows burning down, and then falls (<code>$95D9</code>). What it leaves in its rubble is picked at random from the table at <code>$9C12</code>: nothing, the lightning, the hamburger, the box or, if the city's egg is not out yet, the egg. The sixth building to fall holds the egg if no other has. The lightning fills the punching bar, which the manual says makes the flames stronger. The hamburger adds health, and so does a person eaten; the box hurts eight times. Before a punch or a flame the monster eats a person in reach or takes a pickup under it (<code>$914E</code>).</p>
+  <p>A hurt takes a step off the health bar, five cells from full to empty, and an empty bar starts the monster's death (<code>$931E</code>). Points are added to the score one a pass, 10 on the screen each (<code>$93AE</code>), and a monster's best score goes onto the title when it dies.</p>
+</section>
+
+<section id="enemies">
+  <p class="fig">08 · The city fights back</p>
+  <h2 class="t">What a city sends against a monster</h2>
+  <p class="lede">Everything that hurts a monster calls one routine, <code>$931E</code>.</p>
+  <table class="ag-tab">
+    <tr><th>What</th><th>How it moves</th><th>How it hurts</th><th>How it is beaten</th></tr>
+    <tr><td>Two hornets (<code>$A446</code>)</td><td>fly in from either side at the monsters' height, 4 pixels a pass</td><td>sting the monster higher on the screen, two hurts</td><td>a flame as it comes in, for 50 points</td></tr>
+    <tr><td>The white flyer (<code>$A5CD</code>)</td><td>zigzags across and dives, 3 lines a pass</td><td>drops something that falls a row a pass, two hurts</td><td>a flame at the bottom of its dive, for 50 points</td></tr>
+    <tr><td>The cannon (<code>$A9B4</code>)</td><td>rolls along the ground, towards a monster that comes near</td><td>fires a shell up, down, left or right, one hurt</td><td>flames take its health of 14 down; below 7 it breaks up</td></tr>
+  </table>
+</section>
+
+<section id="cave">
+  <p class="fig">09 · The cave</p>
+  <h2 class="t">With one player, the computer fights for the egg</h2>
+  <p class="lede">Taking a city's egg ends the city in the cave, where the two monsters fight to five hits.</p>
+  <div class="plate"><div class="ag-shots"><figure><img src="reference/cave-fight.png" alt="The two monsters fighting in the cave" width="384" height="272"><figcaption>The cave. Nobody steered the lizard here, and the computer's ogre won five hits to none.</figcaption></figure></div></div>
+  <p>The cave is a place of its own, type 9, built from the same data as the city in the cave but without buildings (<code>$AC02</code>). The monsters stand at fixed places either side of the egg, and the cave's tune plays. Left and right walk, fire punches and up ducks. A punch that finds the other monster within two columns, not ducking, counts a hit; on the fifth the other monster wins, and scores 500 if a person plays it.</p>
+  <p>A monster nobody steers is played by the computer (<code>$AE01</code>): with random chances it walks towards the other monster or stands, punches when it is close, or ducks. The winner walks to the middle and holds the egg up, and the next city follows.</p>
+</section>
+
+<section id="random">
+  <p class="fig">10 · Chance</p>
+  <h2 class="t">A table of random numbers that rewrites itself</h2>
+  <p class="lede">Most of the game's choices read one table of 256 numbers from 1 to 4.</p>
+  <p>The table at <code>$9C12</code> is read at a place kept in an instruction's own operand, the <code>ldx #</code> at <code>$A91D</code>. Nearly every choice counts the place on by one and reads the number there: which way a person steps, when a hornet comes, what the rubble holds, which city comes next. Each pass of play writes a new number at the current place (<code>$89CC</code>), from a 32-bit shift register at <code>$B7B0</code> that a routine steps eight times for each number (<code>$B75E</code>). The title counts the place on every pass too, so how long the title runs before fire is pressed changes the game.</p>
+</section>
+
 </main>
-<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>
+<footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors</footer>
+<script src="../../lib/c64.js"></script>
+<script src="../../lib/cpu6502.js"></script>
+<script src="../../lib/sid.js"></script>
 <script>
-// Inline everything. Data extracted from the snapshot goes here as arrays.
+/* ag-music */
+// createDriver for C64Sid: runs Wally Beben's music driver and effects player, the game's own code
+// and tables taken from the listing over AG_DRIVER_RANGES, on the kit's 6502 (C64Cpu, from
+// ../../lib/cpu6502.js, which sid.js passes to createDriver). A tune's button starts it as the
+// title and the cave do, writing its number to $68F7, then calls $68F8 once a frame, as their
+// interrupts do; it stops when the driver clears its playing flag ($74B2). An effect's button
+// clears the effects (sfx_clear, $754E), asks for the effect on the third voice ($753E) and calls
+// the effects player ($753F) once a frame, as the play interrupt does; it stops when the third
+// voice has no effect playing or asked for ($7753, $753E).
+const AG_DRIVER_RANGES = [[0x00A7, 0x00AA], [0x68F7, 0x7917]];
+const AG_TUNES = [{ name: 'The title', tune: 1 }, { name: 'The cave', tune: 2 }];
+const AG_SFX_USE = { 0: 'A punch', 1: 'The cannon fires', 2: 'A flame hits the cannon, a hornet or the flyer', 3: 'A flame; the cannon gone', 4: 'A building falls',
+  5: 'A monster is hurt', 8: 'The egg taken', 11: 'A building burns', 13: 'Eating', 16: 'Dying' };
+const AG_EFFECTS = Array.from({ length: 26 }, (_, n) => ({ name: (AG_SFX_USE[n] || 'Unused') + ' (' + n + ')', sfx: n }));
+function createDriver(D, C64Cpu) {
+  const base = new Uint8Array(0x10000);
+  for (const [ad, bytes] of D.mem) base.set(bytes, ad);
+  const sid = new Uint8Array(25);
+  let m, cpu, c, writes = [], over = false;
+  const io = {
+    read(ad) { throw new Error('read $' + ad.toString(16)); },
+    write(ad, val) {
+      if (ad >= 0xD400 && ad < 0xD419) { sid[ad - 0xD400] = val; writes.push(ad - 0xD400, val); return; }
+      throw new Error('write $' + ad.toString(16));
+    },
+  };
+  const run = (ad) => cpu.call(ad, {}, { maxSteps: 100000 });
+  return {
+    sid,
+    get writes() { return writes; },
+    get mem() { return m; },
+    init(t) {
+      c = D.list[t];
+      m = base.slice(); cpu = new C64Cpu.CPU(m, { port: 0x35, io });
+      sid.fill(0); over = false; writes = [];
+      if (c.tune) m[0x68F7] = c.tune;
+      else { run(0x754E); m[0x753E] = c.sfx; }
+    },
+    stop() { over = true; writes = []; },
+    play() {
+      writes = [];
+      if (over) return;
+      if (c.tune) { run(0x68F8); if (!m[0x74B2]) over = true; }
+      else { run(0x753F); if (!m[0x7753] && m[0x753E] === 0xFF) over = true; }
+    },
+    playing() { return !over; },
+  };
+}
+// end of ag-music
+</script>
+<script>
+/* ag-rounds */
+// agCityType(ram, count, r): the city type the picker at $8444 chooses for the city count `count`
+// (1 to 4, kept at $803E) and the random number r (1 to 4) it reads from $9C12: the byte of the
+// table at $842F at four times the count plus r.
+function agCityType(ram, count, r) { return ram[0x842F + 4 * count + r]; }
+const AG_PLACES = { 1: 'the temple in the mountains', 2: 'the castle', 3: 'the city in the cave', 4: 'the volcano',
+  5: 'the wild west town', 6: 'the jungle village', 7: 'the pyramids', 8: 'the town by the water' };
+// end of ag-rounds
+</script>
+<script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const FRAME = {"lines":312,"cycles":63,"vic":[192,250,192,250,48,0,192,218,192,197,48,0,217,150,238,150,0,27,0,0,0,255,216,0,33,247,241,0,255,0,255,199,255,255,249,240,243,242,240,250,250,247,245,245,247,249,249],"cia2":[148,59],"writes":[[0,57,53264,6,6],[1,21,53255,0,0],[1,32,53254,0,0],[2,10,53252,26,26],[2,29,53251,171,171],[2,40,53250,28,28],[3,1,53249,75,75],[3,16,53248,4,4],[3,26,53289,241,1],[3,32,53287,247,7],[3,36,53288,247,7],[5,53,52219,200,200],[6,14,52218,168,168],[6,28,52217,158,158],[6,42,52216,158,158],[192,43,53264,0,0],[192,49,53254,192,192],[192,55,53255,218,218],[192,61,52219,50,50],[193,22,52216,50,50],[193,28,52217,70,70],[193,34,53250,192,192],[193,40,53251,250,250],[193,46,53248,192,192],[193,52,53249,250,250],[193,58,53252,48,48],[194,31,52218,48,48],[195,4,53287,250,10],[195,8,53288,250,10],[196,4,53289,247,7]],"colour":"AAAAAA8PDw8PDw8AAAAAAAAAAAAAAAAAAAAAAA8PDw8PDw8AAAAAAAAAAAAKCgoKCgoKAAAAAAAAAAAAAAAAAAAAAAAKCgoKCgoKAAAAAAALCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLDAsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsMCwsLCwsLCwsLDAwJCQwLDAwLCwwLCwsLCwsLCwsLCwsMDAsLDAsMCQwNDQ0MDQ0NDQ0JCQ0NDQkMCQoNDQ0JDAkNCwsMDAwMCwkLDQ0NDQ0JDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDw8PDw8PDw8PDw8PDw8PDw8PDw8NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw0NDQ0NDQ0NDQ0NDQ0PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8NDQ0NDQkNDQ0NDQ0NDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDQ0NDQ0NDQ0NDQ0NCA8PDw8PDw8PDwkJCQkJCQkPCg8PDw8PDw8PDw8IDQgNDQ0NDQ0NDQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkPCAoNDQ8NDQ0NDQ0JDw8PDw8PDwkJCQkJCQkJCQkJCQkJCQkJCQkPDw8PDQ0NDQ0NDwkJCQ8PDw8PDw8JCQkJCQkJCQkJDw8PDw8JCQkJDw8PDw8NDQ0NCQkJCQkPDw8PDw8PCQkJCQkJCQkJCQ8PDw8PCQkJCQ8PDw8NDQ0PDwkJCQkJDw8PDw8PDwkJCQkJCQkJCQkPDw8PDwkJCQkPDw8PCA8NCQkJCQkJCQ8PDw8PDw8JCQkJCQkJCQkJDw8PDw8JCQkJCQkJCQkKCAkJCQkJCQkPDw8PDw8PCQkJCQkJCQkJCQ8PDw8PCQkJCQkJCQkJCQ8JCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkPDwkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJDw8LCwsNCwsKCwsLCwsLCwsLCwsPDQ0NDQ==","ram":[{"a":49160,"b":"RHdEd0R3RJk="},{"a":49176,"b":"3//3/3///f9VVVVVVVVVVaqqqqqqqqqq/fXVVVaaaqr////99VVWmv////////VV/19XZZWmqqr/////f1+XZf///////99X//////////+qqqru+//v96qqqqqq6v7/qur7+2v67b9mmaZqqqqqqmqrppmmuq6qv+36a/v75pn37//77qpmm18fXx9fH18flkaWhZZGlobH18fXR9fH18fXx9dHF0cXVaaqqqqqqqqGloaWxtfH16qqqquuv6uq//////6+uqpVZVVZVZRTT6ppVllVAfw/j4+vo6Ora2j/P09PU5MTz1VlVFNPP0NUmWYJ8vz////8/Pz8vK2trWaZVWVWFcXxVVlVZVVAP//q+/+/v//39quvv/7qr7uqvv/66qqq/r+/vr66ubunb/+/v+/r6/q+6r7/fvvu77+u+56627r+/////tvv77+//uu/7fv+/v+f7+////vut3l+d3l9d31/VZRllGWYZVRlkJWgpaClYP//z/w6qqqqPy8rysrK6qrV+77p/btmVmZZJsny/MEVQTz/////z9S/uuq+/6+rrquvv66qq6//VeWWqrruq6r/AzDPAAwD///DPAAADDDD///8MADM8////zMADD/////PMwAMM//////88Mz/8//////M8Mwz//////PAP/P/////M8z///9EZ0S1RHdEmWZ2RHdEd0SZqqqqZlmVZVZZVZVZVZVVVQ=="},{"a":49728,"b":"ZpllVpVZVVaqquq7qqqqqqqrrrruqrqq"},{"a":49760,"b":"/f933fff9/8="},{"a":49784,"b":"qqmppZmVZVmqampaZlZZZb////rr7+67+u6q+v5+bmr777///7+v+r/v7+/v7++/qmqaZlWVVlVlVVZlVVZVVQ=="},{"a":49856,"b":"ZpVZZlWZVWb//wMMMP///8MM/////////wz///////8="},{"a":50568,"b":"VVVVVVVVVVWq/1VVqv9VVarvZWWq72VlqvtZWar7WVmq/lZap/pWVqr/VZVqv1VVqv9pvpaW633fee91273vVma5dt3tf/dtmW6dd3v933mZuZq6mbmbu+buZm6mrmZu"},{"a":50672,"b":"mbmaupm5m6rm7mZupm5mqtnZdnaenmaq2dm2tp2dp6ppqqqqqqqqqmqmmaebp52nqmaZds0/M8+pmmbaZtp22g=="},{"a":50744,"b":"FtqmWuZa1vpqppucp52maqma5jbadpqpz8ADzAPAzDOqZtk/DHmWqtnZdnadnWdn"},{"a":51072,"b":"PGZmZmZmPAA="},{"a":51152,"b":"AAAAAAAAAAA="},{"a":51168,"b":"oKDw8PCgoAA="},{"a":51184,"b":"qqr///+qqgACAgICAgICAPr6+vr//v7+/vz68PDw8PDw8Pr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6//7+/v7++vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEFAPj08Ojs+WQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw/Pjs6PD0MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMPD1APgwMDAwMDAwMDAwMDAwMDAwMP0JBDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMQQwLDAwMDAwMDAwMCAgHBhAJCgsMDAsMDAxaWwwMDAwMDAwICwwMCAcGOQkKCwgICAsIBxA5BQUQSRERCQY5CQoIBwoLDAwICAcGEDkJBhBJEAURJiUnOSYPAyorBQUmJScFEQVKOCUnGBAFKwkGEDkQEUkFSRorDQ0OBRoZDhpTLC4nDw8DKisPDwMPD0MBAUMBs7KytbaysrS0AUQBQwFDAw8PFFJRJSgUKRIsLi0pAxIBQwEBAQEBAbO3srW2srK0tAEBAQEBAQEBAUMPAxRMFicTKBYpVBMNAQG6uLi5AQGzt7K1trKytLQBAQEBAUO6uLi5A0wUNBUFLAMWAxMDD0MBu8zMvEQBs7eytbaysrS0AUMBAQEBu8zMvBMSFDQXNwNMF0wTNFBFRb7Awb9FRU9GBAQEBAQEVlVFRUVFRb7Awb9FUBVQFDcTEhc0JCMEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEVkhVMS9FDzAUMzIiBLq4uLi4uLkEBAQEBAQEBAQEBAQEBAQEBAQEuri4uSAhHTQxL09GBAS4uLi4uLi4BAQEBAQEBAQEBMjDxMXIBAQEBLi4uLgcHwM2NUYEBAQEuLi4uLi4uAQEBAQEBAQEBATIw8rHyQQEBAS7zMy8Gx5MRU8EBAQEBLu7zMzMu7sEBAQEBAQEBAQEscPKx7EEBAQEvsDBv1BFG0YEBAQEBAS7u8zMzLu7BAQEBAQEBAQEBLHDysexBAQEBAQEBAQEWFBGBAQEBAQEu7vMwsy7uwQEBAQEBAQEBATIy8vLyQQEBAQEBAQEBARWRgQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEVlYEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBFY="},{"a":52216,"b":"MkYwMkYwtzcI/////////////////////wsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCws="},{"a":52352,"b":"Du17P618C7kAC7kAO7oA6+oAK6oAK6qAr4qAroqArgKArgKArgKguAKguACguACAuACAuACgLgOgLgCoC4Ar"},{"a":52672,"b":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"a":53632,"b":"AAAAAAAAAAAAAiAAAIoAAKqAACeAA+mgAOqgAKq4D66oA6eoAKn4A+kAAOpAAApAAApQAOqQD+pQA7t8AOtr"},{"a":59264,"b":"AAAAAAAAAAAAAAAAAAAAAADwAAPwAD8AA/AAD78ADr/8CgbwCBKAAEGgAEBgAQBoAABoAABYAAAUAAAAAAAA"},{"a":59922,"b":"AAAAAAAAAAAAAAAAAooACqqAKCCggAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"a":60864,"b":"AAAAADwAAOsAAOsAAP8AAOsAA6rAA6rAA77AA+vAD6rwDmmwDmmwD2nwDH0wDH0wDcNwDcNwAcNAAcNAAcNA"},{"a":65535,"b":"AA=="}]};
+  if (!window.C64) { for (const id of ['ag-frame', 'ag-mon']) $(id).replaceWith(Object.assign(document.createElement('p'), { className: 'ag-note', textContent: 'This widget is drawn by the site\'s shared scripts; it works in the built site.' })); return; }
+  // the frame, with or without its sprites
+  function frame(v) {
+    const F = JSON.parse(JSON.stringify(FRAME));
+    if (v === 'none') { F.vic[0x15] = 0; F.writes = F.writes.filter((w) => w[2] !== 0xD015); }
+    C64.drawFrame($('ag-frame'), F, 2);
+  }
+  for (const b of document.querySelectorAll('#ag-frame-bar button')) b.onclick = () => {
+    for (const o of document.querySelectorAll('#ag-frame-bar button')) o.setAttribute('aria-pressed', String(o === b));
+    frame(b.dataset.v);
+  };
+  frame('all');
+  C64.load('listing.json').then((L) => {
+    const r = L.ram;
+    // the music and the effects
+    if (window.C64Sid && window.C64Cpu) {
+      const mem = AG_DRIVER_RANGES.map(([a, b]) => [a, Array.from(r.subarray(a, b + 1))]);
+      C64Sid.mount($('ag-sid'), { driver: createDriver, data: { mem, list: AG_TUNES }, tunes: AG_TUNES.map((t) => t.name) });
+      C64Sid.mount($('ag-sfx'), { driver: createDriver, data: { mem, list: AG_EFFECTS }, tunes: AG_EFFECTS.map((t) => t.name), rows: [] });
+    }
+    // the monsters' animations
+    const ACTS = ['walking up', 'walking right', 'walking down', 'walking left', 'punching up', 'punching right', 'punching down', 'punching left',
+      'a flame up', 'a flame right', 'a flame down', 'a flame left', 'eating, up', 'eating, right', 'eating, down', 'eating, left', 'dying'];
+    const act = $('ag-act');
+    ACTS.forEach((n, i) => act.add(new Option(n, String(4 * i))));
+    const cv = $('ag-mon'), ctx = C64.canvas(cv, 288, 168);
+    let f = 0;
+    function draw() {
+      const who = +$('ag-who').value, a = +act.value, k = a + f;
+      const up = r[(who ? 0x8177 : 0x80EF) + k], low = r[(who ? 0x81BB : 0x8133) + k];
+      const col = C64.PAL[who ? 10 : 13];
+      ctx.fillStyle = '#555'; ctx.fillRect(0, 0, 288, 168);
+      C64.drawSpriteMC(ctx, r.subarray(0xC000 + 64 * up, 0xC000 + 64 * up + 63), 96, 0, 4, col, C64.PAL[2], C64.PAL[0]);
+      C64.drawSpriteMC(ctx, r.subarray(0x0BB8 + 64 * low, 0x0BB8 + 64 * low + 63), 96, 84, 4, col, C64.PAL[2], C64.PAL[0]);
+      $('ag-act-cap').textContent = `frame ${f}: body pointer ${C64.hex(up, 2)}, legs frame ${low}`;
+      f = (f + 1) & 3;
+    }
+    setInterval(draw, 160); draw();
+    // a round of cities
+    function roll() {
+      $('ag-round').innerHTML = [1, 2, 3, 4].map((c) => {
+        const n = 1 + Math.floor(Math.random() * 4), t = agCityType(r, c, n);
+        return `<div><b>City ${c}, number ${n}</b>${AG_PLACES[t] || 'type ' + t}</div>`;
+      }).join('');
+    }
+    $('ag-roll').onclick = roll; roll();
+  }).catch((e) => { console.error(e); });
+})();
 </script>

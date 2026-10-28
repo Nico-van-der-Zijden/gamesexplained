@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // Hold the Maps tab's places against the game's own code. levels.html's ag-city block (agCity)
-// builds each place on the site's 6502 (site/lib/cpu6502.js, as C64Cpu): it sets the city type
-// ($80A8), and $8691 for the cave as cave_setup ($AC2B) does, then runs city_build ($853E) and one
+// builds each place on the site's 6502 (site/lib/cpu6502.js, as C64Cpu): it runs city_pick ($8444),
+// sets the city type ($80A8), and $8691 for the cave as cave_setup ($AC2B) does, then runs city_build ($853E) and one
 // step of animate_chars ($B463). Here the game does the same on the kit's simulator
-// (kit/cpu/cpu6502.js) over the listing, with the chips answered by a model of its own: the same
-// two calls, from the same memory. The character set ($C000-$C7FF), the screen and its sprite
+// (kit/cpu/cpu6502.js) over the listing, with the chips answered by a model of its own: city_pick
+// ($8444), the type set, and the same two calls, from the same memory. The character set ($C000-$C7FF), the screen and its sprite
 // pointers ($C800-$CBFF), the copy of the screen ($7918-$7CD7), the characters' colours
 // ($A2A1-$A3A0), the colour RAM and the four colour registers must then match for all nine places,
 // and each place must have a screen, more than 50 different characters on it.
@@ -34,8 +34,9 @@ for (const t of [1, 2, 3, 4, 5, 6, 7, 8, 9]) {
       throw new Error('the game wrote $' + a.toString(16));
     },
   };
-  m[0x80A8] = t; if (t === 9) m[0x8691] = 1; else m[0x8691] = 0;
   const cpu = new CPU(m, { port: 0x35, io });
+  cpu.call(0x8444, {}, { maxSteps: 100000 });
+  m[0x80A8] = t; if (t === 9) m[0x8691] = 1; else m[0x8691] = 0;
   cpu.call(0x853E, {}, { maxSteps: 2000000 });
   cpu.call(0xB463, {}, { maxSteps: 100000 });
   const at = differ(m, page.mem, [[0x7918, 0x7CD7], [0xA2A1, 0xA3A0], [0xC000, 0xCBFF]]);

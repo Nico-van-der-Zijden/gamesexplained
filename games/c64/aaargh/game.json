@@ -55,6 +55,9 @@
     ],
     "60-verify": [
       "claude-opus-5-5"
+    ],
+    "70-minisite": [
+      "claude-opus-5-5"
     ]
   },
   "accuracy": [
