@@ -1,4 +1,4 @@
-## next · 2026-10-28 · Zork I (Apple II) · air with Claude
+## 0.0.259 · 2026-10-28 · Zork I (Apple II) · air with Claude
 
 - **A story is a part of the game, listed at its own addresses.** Zork
   I's interpreter keeps the story's first 72 pages in memory and reads the
