@@ -119,8 +119,13 @@
   },
   {
    "start": 65530,
-   "end": 65535,
+   "end": 65534,
    "type": "Undefined"
+  },
+  {
+   "start": 65535,
+   "end": 65535,
+   "type": "Code"
   }
  ],
  "symbols": [
@@ -138,8 +143,8 @@
   },
   {
    "address": 16,
-   "name": "zpa_10",
-   "type": "ZeroPageAbsoluteAddress",
+   "name": "zpp_10",
+   "type": "ZeroPagePointer",
    "kind": "auto"
   },
   {
@@ -150,13 +155,43 @@
   },
   {
    "address": 18,
-   "name": "zpa_12",
-   "type": "ZeroPageAbsoluteAddress",
+   "name": "zpp_12",
+   "type": "ZeroPagePointer",
    "kind": "auto"
   },
   {
    "address": 19,
    "name": "zpa_13",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 20,
+   "name": "zpa_14",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 21,
+   "name": "zpa_15",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 22,
+   "name": "zpa_16",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 23,
+   "name": "zpa_17",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 24,
+   "name": "zpa_18",
    "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
@@ -199,12 +234,6 @@
   {
    "address": 156,
    "name": "zpa_9C",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 162,
-   "name": "zpa_A2",
    "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
@@ -269,56 +298,140 @@
    "kind": "auto"
   },
   {
-   "address": 240,
-   "name": "zpa_F0",
+   "address": 224,
+   "name": "f_00E0",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 225,
+   "name": "zpa_E1",
    "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 226,
+   "name": "zpf_E2",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 229,
+   "name": "zpf_E5",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 232,
+   "name": "zpf_E8",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 235,
+   "name": "zpf_EB",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 238,
+   "name": "zpf_EE",
+   "type": "ZeroPageField",
    "kind": "auto"
   },
   {
    "address": 241,
-   "name": "zpa_F1",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 242,
-   "name": "f_00F2",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 245,
-   "name": "f_00F5",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 248,
-   "name": "zpf_F8",
+   "name": "zpf_F1",
    "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 251,
-   "name": "zpf_FB",
+   "address": 244,
+   "name": "zpf_F4",
    "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 254,
-   "name": "zpa_FE",
-   "type": "ZeroPageAbsoluteAddress",
+   "address": 247,
+   "name": "zpf_F7",
+   "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 255,
-   "name": "zpa_FF",
-   "type": "ZeroPageAbsoluteAddress",
+   "address": 250,
+   "name": "zpf_FA",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 253,
+   "name": "zpf_FD",
+   "type": "ZeroPageField",
+   "kind": "auto"
+  },
+  {
+   "address": 894,
+   "name": "a_037E",
+   "type": "AbsoluteAddress",
    "kind": "auto"
   },
   {
    "address": 895,
    "name": "a_037F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 896,
+   "name": "a_0380",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 897,
+   "name": "a_0381",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 898,
+   "name": "a_0382",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 899,
+   "name": "a_0383",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 900,
+   "name": "a_0384",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 901,
+   "name": "a_0385",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 902,
+   "name": "a_0386",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 903,
+   "name": "a_0387",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 904,
+   "name": "a_0388",
    "type": "AbsoluteAddress",
    "kind": "auto"
   },

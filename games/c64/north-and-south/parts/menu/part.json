@@ -6,7 +6,13 @@
     "charset": ""
   },
   "coverage": {
-    "exclude": [],
+    "exclude": [
+      [
+        "$63F8",
+        "$63FF",
+        "runtime: the menu's sprite pointers, written every frame by $1653, $16AF and $15AA"
+      ]
+    ],
     "extra": [],
     "include": []
   },
