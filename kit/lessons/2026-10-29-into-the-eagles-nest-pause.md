@@ -1,4 +1,4 @@
-## next · 2026-10-29 · Into the Eagle's Nest (C64) · air with Claude
+## 0.0.266 · 2026-10-29 · Into the Eagle's Nest (C64) · air with Claude
 
 - **A stretch the costs never measured freezes the page in any wait along
   it.** The Play tab's port passed its lockstep for 18 minutes of play,
