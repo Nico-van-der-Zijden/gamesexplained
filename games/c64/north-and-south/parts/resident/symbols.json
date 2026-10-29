@@ -142,60 +142,6 @@
    "kind": "auto"
   },
   {
-   "address": 16,
-   "name": "zpp_10",
-   "type": "ZeroPagePointer",
-   "kind": "auto"
-  },
-  {
-   "address": 17,
-   "name": "zpa_11",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 18,
-   "name": "zpp_12",
-   "type": "ZeroPagePointer",
-   "kind": "auto"
-  },
-  {
-   "address": 19,
-   "name": "zpa_13",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 20,
-   "name": "zpa_14",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 21,
-   "name": "zpa_15",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 22,
-   "name": "zpa_16",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 23,
-   "name": "zpa_17",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 24,
-   "name": "zpa_18",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
    "address": 25,
    "name": "a_0019",
    "type": "AbsoluteAddress",
@@ -205,6 +151,168 @@
    "address": 26,
    "name": "a_001A",
    "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 27,
+   "name": "zpa_1B",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 28,
+   "name": "zpa_1C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 29,
+   "name": "zpa_1D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 30,
+   "name": "zpp_1E",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 31,
+   "name": "zpa_1F",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 32,
+   "name": "zpp_20",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 33,
+   "name": "zpa_21",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 34,
+   "name": "zpp_22",
+   "type": "ZeroPagePointer",
+   "kind": "auto"
+  },
+  {
+   "address": 35,
+   "name": "zpa_23",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 36,
+   "name": "zpa_24",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 37,
+   "name": "zpa_25",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 38,
+   "name": "zpa_26",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 39,
+   "name": "zpa_27",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 40,
+   "name": "zpa_28",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 41,
+   "name": "zpa_29",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 42,
+   "name": "zpa_2A",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 43,
+   "name": "zpa_2B",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 44,
+   "name": "zpa_2C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 45,
+   "name": "zpa_2D",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 46,
+   "name": "zpa_2E",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 47,
+   "name": "zpa_2F",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 48,
+   "name": "zpa_30",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 49,
+   "name": "zpa_31",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 50,
+   "name": "zpa_32",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 51,
+   "name": "zpa_33",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 52,
+   "name": "zpa_34",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 53,
+   "name": "zpa_35",
+   "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
   {
@@ -234,6 +342,12 @@
   {
    "address": 156,
    "name": "zpa_9C",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 162,
+   "name": "zpa_A2",
    "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
@@ -298,81 +412,51 @@
    "kind": "auto"
   },
   {
-   "address": 224,
-   "name": "f_00E0",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 225,
-   "name": "zpa_E1",
+   "address": 240,
+   "name": "zpa_F0",
    "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
   {
-   "address": 226,
-   "name": "zpf_E2",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 229,
-   "name": "zpf_E5",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 232,
-   "name": "zpf_E8",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 235,
-   "name": "zpf_EB",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 238,
-   "name": "zpf_EE",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
    "address": 241,
-   "name": "zpf_F1",
+   "name": "zpa_F1",
+   "type": "ZeroPageAbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 242,
+   "name": "f_00F2",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 245,
+   "name": "zpf_F5",
    "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 244,
-   "name": "zpf_F4",
+   "address": 248,
+   "name": "zpf_F8",
    "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 247,
-   "name": "zpf_F7",
+   "address": 251,
+   "name": "zpf_FB",
    "type": "ZeroPageField",
    "kind": "auto"
   },
   {
-   "address": 250,
-   "name": "zpf_FA",
-   "type": "ZeroPageField",
+   "address": 254,
+   "name": "zpa_FE",
+   "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
   {
-   "address": 253,
-   "name": "zpf_FD",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 894,
-   "name": "a_037E",
-   "type": "AbsoluteAddress",
+   "address": 255,
+   "name": "zpa_FF",
+   "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
   {
@@ -383,14 +467,8 @@
   },
   {
    "address": 896,
-   "name": "a_0380",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 897,
-   "name": "a_0381",
-   "type": "AbsoluteAddress",
+   "name": "f_0380",
+   "type": "Field",
    "kind": "auto"
   },
   {
@@ -438,6 +516,102 @@
   {
    "address": 905,
    "name": "a_0389",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 906,
+   "name": "f_038A",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 907,
+   "name": "a_038B",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 908,
+   "name": "f_038C",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 909,
+   "name": "a_038D",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 910,
+   "name": "f_038E",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 911,
+   "name": "a_038F",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 912,
+   "name": "f_0390",
+   "type": "Field",
+   "kind": "auto"
+  },
+  {
+   "address": 914,
+   "name": "a_0392",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 915,
+   "name": "a_0393",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 916,
+   "name": "a_0394",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 917,
+   "name": "a_0395",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 918,
+   "name": "a_0396",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 919,
+   "name": "a_0397",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 920,
+   "name": "a_0398",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 921,
+   "name": "a_0399",
+   "type": "AbsoluteAddress",
+   "kind": "auto"
+  },
+  {
+   "address": 922,
+   "name": "a_039A",
    "type": "AbsoluteAddress",
    "kind": "auto"
   },
