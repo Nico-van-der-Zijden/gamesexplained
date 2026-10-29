@@ -79,6 +79,11 @@ Found in the code, not in the manual.
   counts the war in months (ending `$847B`-`$86E3`).
 - The battle file holds a monitor that talks over the user port, which
   nothing calls (battle `$CE00`).
+- The levels count two ways: in the arcade parts and the map computer's
+  thinking a captain (2) is the strongest, in the strategic odds the
+  weakest (map `$2DBB`, `$32B0`; game `facts.md`, "Mechanics").
+- The computer's plan 2, for South Virginia when the reinforcements are
+  on, changes no score and plays as plan 4 (map `$3D09`, `$3E11`).
 
 ## Open questions
 

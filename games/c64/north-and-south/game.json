@@ -8,8 +8,8 @@
   "developer": "Probe Software",
   "title_image": "reference/title.png",
   "build": "PAL cassette, four sides, Cyberload fast loader; the original release as the Ultimate Tape Archive V4.0 has it (entry 7562)",
-  "tier": "bronze",
-  "coverage_percent": null,
+  "tier": "silver",
+  "coverage_percent": 100,
   "copy": "agent-draft",
   "steward": "",
   "credits": [
@@ -28,7 +28,9 @@
   ],
   "tools": {
     "emulator": "own build of github.com/barryw/vice-mcp, release v3.13.2, commit 1e83aab134; driven through kit/c64/vice.py; check-emulator 57 of 57",
-    "disassembler": "regenerator2000, live, through kit/c64/r2000.py"
+    "disassembler": "regenerator2000, live, through kit/c64/r2000.py",
+    "host": "Windows 11 Pro on x86_64, the kit in WSL2 (Ubuntu 26.04.1 LTS)",
+    "node": "24.21.0"
   },
   "model": "claude-opus-5-5",
   "step_models": {
@@ -40,9 +42,61 @@
     ],
     "20-features": [
       "claude-opus-5-5"
+    ],
+    "30-text": [
+      "claude-opus-5-5"
+    ],
+    "40-sweep": [
+      "claude-opus-5-5"
+    ],
+    "50-coverage": [
+      "claude-opus-5-5"
+    ],
+    "60-verify": [
+      "claude-opus-5-5",
+      "claude-fable-5-1"
+    ],
+    "70-minisite": [
+      "claude-opus-5-5"
+    ],
+    "80-retro": [
+      "claude-opus-5-5"
     ]
   },
-  "accuracy": [],
+  "accuracy": [
+    {
+      "step": "research",
+      "web": true,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "annotate",
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "step": "sample",
+      "size": 65,
+      "wrong": 6,
+      "fixed": 6,
+      "seed": 20261029,
+      "models": [
+        "claude-fable-5-1"
+      ],
+      "note": "45 of the 2,195 hand-written comments and 20 of the 751 written from templates, over the eight parts, checked by a fresh agent against the code; all six wrong were hand-written and wrong in a detail"
+    },
+    {
+      "step": "port",
+      "fixed": 0,
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "note": "the pages' tests against the game's code: the music and effects players, the battlefield unpacker, and the year map against VICE's picture of 1861, which matches but for the cursor; no comment needed correcting"
+    }
+  ],
   "kit_version": "0.0.268",
   "created": "2026-10-29",
   "video": {
@@ -58,7 +112,7 @@
   "regions": [],
   "links": {
     "wiki": {
-      "title": "North & South \u2013 C64-Wiki",
+      "title": "North & South – C64-Wiki",
       "url": "https://www.c64-wiki.de/wiki/North_%26_South"
     },
     "manual": {

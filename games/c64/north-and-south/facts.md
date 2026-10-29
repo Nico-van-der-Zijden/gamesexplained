@@ -13,8 +13,8 @@ rate and the live tests.
 The PAL cassette release on four sides with the Cyberload fast loader, as
 the Ultimate Tape Archive V4.0 has it (entry 7562), checked against
 `orientation.md`'s table of files. No version string was found; the
-loader's code carries the text "HACKERS, FUCK OFF AND DIE..." (menu part,
-`$F2CC`).
+loader carries the text "HACKERS, FUCK OFF AND DIE..." (at `$F2CC` while the menu
+runs, outside every part's files).
 
 ## Memory layout
 
@@ -103,6 +103,25 @@ fort and the train.
 The rules are in the parts' facts: the war in `parts/map/facts.md`, the
 battle, fort and train in theirs. What each part reads from the others is
 in "How the parts connect".
+
+The levels (resident `$0380`, `$0381`) count two ways. Where the arcade
+parts and the map's computer read them, level 2 is the strongest for the
+side that has it: the computer acts on every pass of a battle (battle
+`$9D14`), a defender's fort and train are the longest with the most guards
+and the dog runs most (fort `$89B7`, `$92EF`; train `$8B50`), and the
+computer's map scores get no noise (map `$3ECA`). The strategic odds read
+the defender's level for a fort or a train and the firing side's for a
+battle's round, and there level 0 is the strongest: a defender at level 0
+loses with a random number from `$7F` up, at level 2 from `$3F` (map
+`$2DBB`); a side at level 0 makes the other lose a unit with one from `$3F`
+up, at level 2 from `$7F` (map `$32B0`). The manual calls the corporal,
+level 0, the hardest.
+
+The computer's plan (map `$3C98`) is 0 to 4, but only plans 0, 1 and 3
+change anything: `ai_plan_scores` (map `$3D09`) returns for 2 and 4, and
+the only other reader of `$0F10`, `ai_occupied` (map `$3E11`), tests for 3.
+Plan 2, set when the European reinforcements are on and South Virginia is
+not the computer's, plays as plan 4.
 
 ## Data tables
 
@@ -222,5 +241,7 @@ All in VICE v3.13.2 (barryw/vice-mcp build), 29 October 2026, through
   (`reference/train.png`).
 - The map of January 1861 that the map's own code draws for year 0 in the
   kit's simulator (`$23DC`, `$23E7`, `$28D3`, `$3B97`) is the emulator's
-  picture (`reference/map-1861.png`) less the cursor sprite: the How it
-  works page's map widget, held by `test_map.js`.
+  picture (`reference/map-1861.png`) in all but the 184 pixels under the
+  cursor sprite, once the month band's three routines (`$39B3`, `$3B0D`,
+  `$1E84`) are run too: the How it works page's map widget, held by
+  `test_map.js`.
