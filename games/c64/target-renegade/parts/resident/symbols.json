@@ -1835,7 +1835,7 @@
   },
   {
    "address": 1556,
-   "name": "player_draw_y",
+   "name": "player_ground_y",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -1943,7 +1943,7 @@
   },
   {
    "address": 1577,
-   "name": "player_floor_y",
+   "name": "player_sprite_y",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -12928,32 +12928,32 @@
   {
    "address": 5607,
    "type": "line",
-   "text": "Low pointer bytes for voice 1 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $84/$85."
+   "text": "Low pointer bytes for voice 1 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $84/$85."
   },
   {
    "address": 5616,
    "type": "line",
-   "text": "High pointer bytes for voice 1 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $84/$85."
+   "text": "High pointer bytes for voice 1 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $84/$85."
   },
   {
    "address": 5625,
    "type": "line",
-   "text": "Low pointer bytes for voice 2 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $86/$87."
+   "text": "Low pointer bytes for voice 2 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $86/$87."
   },
   {
    "address": 5634,
    "type": "line",
-   "text": "High pointer bytes for voice 2 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $86/$87."
+   "text": "High pointer bytes for voice 2 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $86/$87."
   },
   {
    "address": 5643,
    "type": "line",
-   "text": "Low pointer bytes for voice 3 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $88/$89."
+   "text": "Low pointer bytes for voice 3 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $88/$89."
   },
   {
    "address": 5652,
    "type": "line",
-   "text": "High pointer bytes for voice 3 in the nine cues 0\u20138. $0700 selects X and stores the combined pointer into $88/$89."
+   "text": "High pointer bytes for voice 3 in the nine cues 0\u20138. $0700 indexes this table with the cue number its caller passes in X and stores the combined pointer into $88/$89."
   },
   {
    "address": 5661,
@@ -14293,7 +14293,7 @@
   {
    "address": 11152,
    "type": "line",
-   "text": "HUD colour cells 64\u201395 of 160. $A803 copies them to $DB20\u2013$DBBF. Colour RAM retains the low nibble; character-template data follows at $2BF0."
+   "text": "HUD colour cells 64\u201395 of 160. $A803 copies them to colour RAM $DB60\u2013$DB7F as part of its $DB20\u2013$DBBF copy. Colour RAM retains the low nibble; character-template data follows at $2BF0."
   },
   {
    "address": 11184,
@@ -14538,7 +14538,7 @@
   {
    "address": 22848,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 37, VIC bank-$4000 sprite number $65. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 37, VIC bank-$4000 sprite number $65. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $6D) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 22912,
@@ -14688,62 +14688,62 @@
   {
    "address": 24768,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 67, VIC bank-$4000 sprite number $83. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 67, VIC bank-$4000 sprite number $83. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 24832,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 68, VIC bank-$4000 sprite number $84. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 68, VIC bank-$4000 sprite number $84. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 24896,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 69, VIC bank-$4000 sprite number $85. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 69, VIC bank-$4000 sprite number $85. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 24960,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 70, VIC bank-$4000 sprite number $86. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 70, VIC bank-$4000 sprite number $86. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25024,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 71, VIC bank-$4000 sprite number $87. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 71, VIC bank-$4000 sprite number $87. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25088,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 72, VIC bank-$4000 sprite number $88. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 72, VIC bank-$4000 sprite number $88. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25152,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 73, VIC bank-$4000 sprite number $89. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 73, VIC bank-$4000 sprite number $89. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25216,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 74, VIC bank-$4000 sprite number $8A. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 74, VIC bank-$4000 sprite number $8A. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25280,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 75, VIC bank-$4000 sprite number $8B. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 75, VIC bank-$4000 sprite number $8B. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25344,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 76, VIC bank-$4000 sprite number $8C. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 76, VIC bank-$4000 sprite number $8C. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25408,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 77, VIC bank-$4000 sprite number $8D. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 77, VIC bank-$4000 sprite number $8D. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25472,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 78, VIC bank-$4000 sprite number $8E. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 78, VIC bank-$4000 sprite number $8E. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25536,
@@ -14758,97 +14758,97 @@
   {
    "address": 25664,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 81, VIC bank-$4000 sprite number $91. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 81, VIC bank-$4000 sprite number $91. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $6D) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25728,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 82, VIC bank-$4000 sprite number $92. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 82, VIC bank-$4000 sprite number $92. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not shown by the VIC and no instruction reads it by address. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25792,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 83, VIC bank-$4000 sprite number $93. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 83, VIC bank-$4000 sprite number $93. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25856,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 84, VIC bank-$4000 sprite number $94. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 84, VIC bank-$4000 sprite number $94. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25920,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 85, VIC bank-$4000 sprite number $95. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 85, VIC bank-$4000 sprite number $95. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 25984,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 86, VIC bank-$4000 sprite number $96. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 86, VIC bank-$4000 sprite number $96. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26048,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 87, VIC bank-$4000 sprite number $97. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 87, VIC bank-$4000 sprite number $97. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26112,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 88, VIC bank-$4000 sprite number $98. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 88, VIC bank-$4000 sprite number $98. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26176,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 89, VIC bank-$4000 sprite number $99. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 89, VIC bank-$4000 sprite number $99. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26240,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 90, VIC bank-$4000 sprite number $9A. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 90, VIC bank-$4000 sprite number $9A. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26304,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 91, VIC bank-$4000 sprite number $9B. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 91, VIC bank-$4000 sprite number $9B. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26368,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 92, VIC bank-$4000 sprite number $9C. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 92, VIC bank-$4000 sprite number $9C. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26432,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 93, VIC bank-$4000 sprite number $9D. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 93, VIC bank-$4000 sprite number $9D. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $67) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26496,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 94, VIC bank-$4000 sprite number $9E. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 94, VIC bank-$4000 sprite number $9E. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $65) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26560,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 95, VIC bank-$4000 sprite number $9F. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 95, VIC bank-$4000 sprite number $9F. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $F0) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26624,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 96, VIC bank-$4000 sprite number $A0. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 96, VIC bank-$4000 sprite number $A0. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $F0) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26688,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 97, VIC bank-$4000 sprite number $A1. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 97, VIC bank-$4000 sprite number $A1. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $F0) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 26752,
    "type": "line",
-   "text": "Shared fighter and object graphics, source component 98, VIC bank-$4000 sprite number $A2. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte is alignment padding. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
+   "text": "Shared fighter and object graphics, source component 98, VIC bank-$4000 sprite number $A2. The first 63 bytes are 24-by-21 hires bits or 12-by-21 two-bit pixels (the VIC mode decides); the 64th byte (here $6D) is not displayed by the VIC. The playfield sprite writer at $AD10\u2013$AD15 reads frame pointers from $6A,X and stores them in both screen sprite-pointer tables. Horizontal reflection uses the routines beginning at $FD42. This label identifies a stored shape; its fighting pose is not named."
   },
   {
    "address": 32768,
    "type": "line",
-   "text": "Select RAM beneath BASIC and KERNAL with I/O visible ($01=$35). Store five in the lives byte $020C and clear stage and score bytes $0206/$0202/$0201 before calling game setup. Set the first extra-life threshold bytes to $05,$00 at $020A/$020B, copy $0200 to $0205, and enter the main loop after $803A. This describes the supplied EasyFlash edition."
+   "text": "Select RAM beneath BASIC and KERNAL with I/O visible ($01=$35). Store five in the lives byte $020C and clear stage and score bytes $0206/$0202/$0201 before calling game setup. Set entrance offset $0678 to $0A, the first extra-life threshold bytes to $05,$00 at $020A/$020B, copy $0200 to $0205, request sound 9 and fall into the scripted entrance loop at $803A. This describes the supplied EasyFlash edition."
   },
   {
    "address": 32829,
@@ -15763,7 +15763,7 @@
   {
    "address": 40176,
    "type": "line",
-   "text": "Entries 32\u201358 of the allocation based at $9CD0. Signed raw-X object offsets relative to the owning enemy, reflected by facing in $8AC0."
+   "text": "Entries 32\u201333 of the allocation based at $9CD0; entries 34\u201358 continue at $9CF2\u2013$9D0A. Signed raw-X object offsets relative to the owning enemy, reflected by facing in $8AC0."
   },
   {
    "address": 40178,
