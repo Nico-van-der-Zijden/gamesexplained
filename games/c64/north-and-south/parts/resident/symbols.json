@@ -23,6 +23,16 @@
     "runtime: the screen of the text modes (the loading banner, the tape prompts, the year's text), written by the boot, $09A9, $092E and each year's file"
    ],
    [
+    0,
+    255,
+    "runtime: the zero page, the processor port at $00/$01 and each part's own pointers and counters, set before they are read: the loader's ($93-$BC), the unpacker's ($10-$17), the scroll's ($04, $05, $10, $11, $20-$23), the music drivers' ($F0-$FF)"
+   ],
+   [
+    65530,
+    65535,
+    "runtime: the NMI, reset and IRQ vectors, which each part and the loader set for themselves"
+   ],
+   [
     3072,
     53246,
     "7 parts: The strategic map, The menu, The title and others"
@@ -142,180 +152,6 @@
    "kind": "auto"
   },
   {
-   "address": 25,
-   "name": "a_0019",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 26,
-   "name": "a_001A",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 27,
-   "name": "zpa_1B",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 28,
-   "name": "zpa_1C",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 29,
-   "name": "zpa_1D",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 30,
-   "name": "zpp_1E",
-   "type": "ZeroPagePointer",
-   "kind": "auto"
-  },
-  {
-   "address": 31,
-   "name": "zpa_1F",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 32,
-   "name": "zpp_20",
-   "type": "ZeroPagePointer",
-   "kind": "auto"
-  },
-  {
-   "address": 33,
-   "name": "zpa_21",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 34,
-   "name": "zpp_22",
-   "type": "ZeroPagePointer",
-   "kind": "auto"
-  },
-  {
-   "address": 35,
-   "name": "zpa_23",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 36,
-   "name": "zpa_24",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 37,
-   "name": "zpa_25",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 38,
-   "name": "zpa_26",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 39,
-   "name": "zpa_27",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 40,
-   "name": "zpa_28",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 41,
-   "name": "zpa_29",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 42,
-   "name": "zpa_2A",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 43,
-   "name": "zpa_2B",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 44,
-   "name": "zpa_2C",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 45,
-   "name": "zpa_2D",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 46,
-   "name": "zpa_2E",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 47,
-   "name": "zpa_2F",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 48,
-   "name": "zpa_30",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 49,
-   "name": "zpa_31",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 50,
-   "name": "zpa_32",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 51,
-   "name": "zpa_33",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 52,
-   "name": "zpa_34",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 53,
-   "name": "zpa_35",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
    "address": 144,
    "name": "zpa_90",
    "type": "ZeroPageAbsoluteAddress",
@@ -342,12 +178,6 @@
   {
    "address": 156,
    "name": "zpa_9C",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 162,
-   "name": "zpa_A2",
    "type": "ZeroPageAbsoluteAddress",
    "kind": "auto"
   },
@@ -412,214 +242,142 @@
    "kind": "auto"
   },
   {
-   "address": 240,
-   "name": "zpa_F0",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 241,
-   "name": "zpa_F1",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 242,
-   "name": "f_00F2",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 245,
-   "name": "zpf_F5",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 248,
-   "name": "zpf_F8",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 251,
-   "name": "zpf_FB",
-   "type": "ZeroPageField",
-   "kind": "auto"
-  },
-  {
-   "address": 254,
-   "name": "zpa_FE",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 255,
-   "name": "zpa_FF",
-   "type": "ZeroPageAbsoluteAddress",
-   "kind": "auto"
+   "address": 894,
+   "name": "year_kept",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 895,
-   "name": "a_037F",
+   "name": "menu_seen",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 896,
-   "name": "f_0380",
-   "type": "Field",
-   "kind": "auto"
+   "name": "level",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 898,
-   "name": "a_0382",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "cpu_union",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 899,
-   "name": "a_0383",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "cpu_confed",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 900,
-   "name": "a_0384",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "opt_indians",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 901,
-   "name": "a_0385",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "opt_storm",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 902,
-   "name": "a_0386",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "opt_reinforcements",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 903,
-   "name": "a_0387",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "opt_arcade",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 904,
-   "name": "a_0388",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "opt_keyboard",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 905,
-   "name": "a_0389",
+   "name": "start_year",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 906,
-   "name": "f_038A",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 907,
-   "name": "a_038B",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "units_inf",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 908,
-   "name": "f_038C",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 909,
-   "name": "a_038D",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "units_cav",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 910,
-   "name": "f_038E",
-   "type": "Field",
-   "kind": "auto"
-  },
-  {
-   "address": 911,
-   "name": "a_038F",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "units_cannon",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 912,
-   "name": "f_0390",
-   "type": "Field",
-   "kind": "auto"
+   "name": "retreat_to",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 914,
-   "name": "a_0392",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 915,
-   "name": "a_0393",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "fell_back",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 916,
-   "name": "a_0394",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
-  },
-  {
-   "address": 917,
-   "name": "a_0395",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "side_out",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 918,
-   "name": "a_0396",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "attacker",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 919,
-   "name": "a_0397",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "arcade_result",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 920,
-   "name": "a_0398",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "winner",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 921,
-   "name": "a_0399",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "months_tens",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 922,
-   "name": "a_039A",
-   "type": "AbsoluteAddress",
-   "kind": "auto"
+   "name": "months_units",
+   "type": "UserDefined",
+   "kind": "user"
   },
   {
    "address": 923,
-   "name": "a_039B",
+   "name": "no_ending",
    "type": "AbsoluteAddress",
-   "kind": "auto"
+   "kind": "user"
   },
   {
    "address": 1022,
@@ -856,6 +614,12 @@
    "kind": "auto"
   },
   {
+   "address": 2760,
+   "name": "loader_irq_vec",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 2761,
    "name": "a_0AC9",
    "type": "AbsoluteAddress",
@@ -1056,6 +820,156 @@
  ],
  "comments": [
   {
+   "address": 894,
+   "type": "line",
+   "text": "the start year the menu chose, kept for redrawing the menu's calendar ($11BB) when the game comes back to the menu."
+  },
+  {
+   "address": 895,
+   "type": "line",
+   "text": "0 until the menu has run once: then it sets the defaults and makes it 1 ($1878), so later visits keep the settings."
+  },
+  {
+   "address": 896,
+   "type": "line",
+   "text": "each side's level, 0 to 2, set on the menu: corporal, sergeant, captain, the rank the ending's messages give; the computer's chances in the battle ($9D14 there) and the fort's and train's lengths and guards follow it."
+  },
+  {
+   "address": 897,
+   "type": "line",
+   "text": "level, continued: the Confederacy's."
+  },
+  {
+   "address": 898,
+   "type": "line",
+   "text": "1 when the computer plays the Union."
+  },
+  {
+   "address": 899,
+   "type": "line",
+   "text": "1 when the computer plays the Confederacy."
+  },
+  {
+   "address": 900,
+   "type": "line",
+   "text": "1 with the Indians and the Mexican on."
+  },
+  {
+   "address": 901,
+   "type": "line",
+   "text": "1 with the storm on."
+  },
+  {
+   "address": 902,
+   "type": "line",
+   "text": "1 with the European reinforcements on."
+  },
+  {
+   "address": 903,
+   "type": "line",
+   "text": "1 for the arcade sequences (battle, fort, train), 0 for the strategic game, which decides them at random."
+  },
+  {
+   "address": 904,
+   "type": "line",
+   "text": "1 for the keys instead of the joystick, when one person plays."
+  },
+  {
+   "address": 905,
+   "type": "line",
+   "text": "the start year, 0 to 3 for 1861 to 1864; the map moves it on each December."
+  },
+  {
+   "address": 906,
+   "type": "line",
+   "text": "the infantry of each side in the battle: the Union's here, the Confederacy's at $038B; the map fills these and reads back what is left."
+  },
+  {
+   "address": 907,
+   "type": "line",
+   "text": "units_inf, continued: the Confederacy's."
+  },
+  {
+   "address": 908,
+   "type": "line",
+   "text": "each side's cavalry in the battle."
+  },
+  {
+   "address": 909,
+   "type": "line",
+   "text": "units_cav, continued: the Confederacy's."
+  },
+  {
+   "address": 910,
+   "type": "line",
+   "text": "each side's cannons in the battle."
+  },
+  {
+   "address": 911,
+   "type": "line",
+   "text": "units_cannon, continued: the Confederacy's."
+  },
+  {
+   "address": 912,
+   "type": "line",
+   "text": "each side's territory to fall back to from the battle, $FF for none."
+  },
+  {
+   "address": 913,
+   "type": "line",
+   "text": "retreat_to, continued: the Confederacy's."
+  },
+  {
+   "address": 914,
+   "type": "line",
+   "text": "set for a side that fell back in the battle."
+  },
+  {
+   "address": 915,
+   "type": "line",
+   "text": "fell_back, continued: the Confederacy's."
+  },
+  {
+   "address": 916,
+   "type": "line",
+   "text": "$FF for a side that is out of the battle, beaten or gone."
+  },
+  {
+   "address": 917,
+   "type": "line",
+   "text": "side_out, continued: the Confederacy's."
+  },
+  {
+   "address": 918,
+   "type": "line",
+   "text": "the side that attacks in the fort or the train (0 the Union, 1 the Confederacy)."
+  },
+  {
+   "address": 919,
+   "type": "line",
+   "text": "the fort's or the train's result: 1 the attacker won, 0 it lost."
+  },
+  {
+   "address": 920,
+   "type": "line",
+   "text": "the side that won the war, which the ending reads: 0 the Union, 1 the Confederacy."
+  },
+  {
+   "address": 921,
+   "type": "line",
+   "text": "the months the war has lasted, tens digit, 0 shown as a space by the ending."
+  },
+  {
+   "address": 922,
+   "type": "line",
+   "text": "its units digit, counted on each month by the map ($0C7F)."
+  },
+  {
+   "address": 923,
+   "type": "line",
+   "text": "1 so that the script loads no ending: the map sets it ($1173) when the Commodore key stops a game the computer plays on both sides, and clears it when the war is won ($0CE0)."
+  },
+  {
    "address": 2048,
    "type": "line",
    "text": "the game's own start, reached once by the Cyberload boot: jumps over the next vector to the script at $0806."
@@ -1184,6 +1098,21 @@
    "address": 2752,
    "type": "line",
    "text": "the loader's pass-through of a raster interrupt: acknowledges it, interrupts on, and jumps through the vector at $03FE."
+  },
+  {
+   "address": 2760,
+   "type": "line",
+   "text": "a jmp $0ACB that nothing runs: the loader reads its operand as the address of its interrupt ($0A83, $0A89) and puts it in $FFFE/$FFFF."
+  },
+  {
+   "address": 2761,
+   "type": "line",
+   "text": "loader_irq_vec, continued: the interrupt's address, low byte."
+  },
+  {
+   "address": 2762,
+   "type": "line",
+   "text": "loader_irq_vec, continued: its high byte."
   },
   {
    "address": 2763,
