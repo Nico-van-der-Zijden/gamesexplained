@@ -1,7 +1,7 @@
 # Aaargh! — TODO
 
-Current tier and what is missing for the next one. Coverage gaps from
-`coverage.py`. Article ideas.
+Tier: **silver**. Gold needs a person to curate the pages section by
+section; Platinum needs a Play tab that is the whole game (`kit/skills/core/70-minisite/play.md`).
 
 ## The listing
 

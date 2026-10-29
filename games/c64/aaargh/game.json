@@ -8,7 +8,7 @@
   "developer": "Binary Design",
   "title_image": "reference/title.png",
   "build": "PAL cassette, a crack saved with a Trilogic Expert V3.1 freezer (crackers unknown); analysed from the game's own entry at $8009",
-  "tier": "bronze",
+  "tier": "silver",
   "coverage_percent": 100,
   "copy": "agent-draft",
   "steward": "",
@@ -57,6 +57,9 @@
       "claude-opus-5-5"
     ],
     "70-minisite": [
+      "claude-opus-5-5"
+    ],
+    "80-retro": [
       "claude-opus-5-5"
     ]
   },
