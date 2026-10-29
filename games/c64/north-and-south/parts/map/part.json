@@ -1,0 +1,26 @@
+{
+  "title": "The strategic map",
+  "order": 3,
+  "over": "menu",
+  "ranges": [
+    [
+      "$0C00",
+      "$C4FF"
+    ],
+    [
+      "$E000",
+      "$FFF9"
+    ]
+  ],
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}

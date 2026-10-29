@@ -1,0 +1,22 @@
+{
+  "title": "The battle",
+  "order": 4,
+  "over": "map",
+  "ranges": [
+    [
+      "$3000",
+      "$CFFE"
+    ]
+  ],
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}

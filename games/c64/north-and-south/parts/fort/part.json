@@ -1,0 +1,22 @@
+{
+  "title": "The fort",
+  "order": 5,
+  "over": "map",
+  "ranges": [
+    [
+      "$2000",
+      "$9FFF"
+    ]
+  ],
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}

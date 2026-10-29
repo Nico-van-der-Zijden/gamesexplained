@@ -1,0 +1,22 @@
+{
+  "title": "The train",
+  "order": 6,
+  "over": "map",
+  "ranges": [
+    [
+      "$2000",
+      "$9FFF"
+    ]
+  ],
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}

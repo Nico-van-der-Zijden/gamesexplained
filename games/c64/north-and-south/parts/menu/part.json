@@ -1,0 +1,26 @@
+{
+  "title": "The menu",
+  "order": 2,
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": [],
+  "over": "title",
+  "ranges": [
+    [
+      "$1000",
+      "$ABFF"
+    ],
+    [
+      "$F632",
+      "$FFF9"
+    ]
+  ]
+}
