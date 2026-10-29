@@ -1,0 +1,21 @@
+{
+  "title": "The loader and the script",
+  "order": 1,
+  "video": {
+    "screen": "",
+    "charset": ""
+  },
+  "coverage": {
+    "exclude": [
+      [
+        "$0400",
+        "$07FF",
+        "runtime: the screen of the text modes (the loading banner, the tape prompts, the year's text), written by the boot, $09A9, $092E and each year's file"
+      ]
+    ],
+    "extra": [],
+    "include": []
+  },
+  "io": [],
+  "regions": []
+}
