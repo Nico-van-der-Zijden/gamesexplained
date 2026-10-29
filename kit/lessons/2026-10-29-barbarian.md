@@ -1,4 +1,4 @@
-## next · 2026-10-29 · Barbarian: The Ultimate Warrior (C64) · air with Claude
+## 0.0.268 · 2026-10-29 · Barbarian: The Ultimate Warrior (C64) · air with Claude
 
 - **A state reached by a poke shows what the code does from there, not
   the way a player gets there.** To reach side 2's ending, the live test
