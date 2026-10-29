@@ -74,6 +74,26 @@
  "blocks": [
   {
    "start": 0,
+   "end": 678,
+   "type": "Undefined"
+  },
+  {
+   "start": 679,
+   "end": 893,
+   "type": "Byte"
+  },
+  {
+   "start": 894,
+   "end": 923,
+   "type": "Undefined"
+  },
+  {
+   "start": 924,
+   "end": 1021,
+   "type": "Byte"
+  },
+  {
+   "start": 1022,
    "end": 2047,
    "type": "Undefined"
   },
@@ -242,6 +262,18 @@
    "kind": "auto"
   },
   {
+   "address": 679,
+   "name": "boot_stage1",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 828,
+   "name": "boot_header",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
    "address": 894,
    "name": "year_kept",
    "type": "UserDefined",
@@ -377,6 +409,18 @@
    "address": 923,
    "name": "no_ending",
    "type": "AbsoluteAddress",
+   "kind": "user"
+  },
+  {
+   "address": 924,
+   "name": "boot_header_end",
+   "type": "UserDefined",
+   "kind": "user"
+  },
+  {
+   "address": 1020,
+   "name": "boot_after",
+   "type": "UserDefined",
    "kind": "user"
   },
   {
@@ -820,6 +864,16 @@
  ],
  "comments": [
   {
+   "address": 679,
+   "type": "line",
+   "text": "what is left of the tape's first file ($029F-$033A, as its header at $033C says), the boot the KERNAL loads: from $02AC it draws the loading banner, \"CYBERLOAD NOW LOADING NORTH & SOUTH\" (35 screen codes at $02EE) between stripes of colour, decodes the code in the tape header after it by an XOR chain ($02DC), and runs it. It lies over the KERNAL's vectors at $0300-$0333. Nothing runs it again once the game has started."
+  },
+  {
+   "address": 828,
+   "type": "line",
+   "text": "the KERNAL's cassette buffer as the boot left it: the boot file's header (type 3, start $029F, end $033B, the name \"NORTH & SOUTH\" at $0341) and from $0351 the decoded code that reads the fast loader from tape with CIA 1's timer ($0357); the game's settings at $037E-$039B are written over the rest of it."
+  },
+  {
    "address": 894,
    "type": "line",
    "text": "the start year the menu chose, kept for redrawing the menu's calendar ($11BB) when the game comes back to the menu."
@@ -968,6 +1022,16 @@
    "address": 923,
    "type": "line",
    "text": "1 so that the script loads no ending: the map sets it ($1173) when the Commodore key stops a game the computer plays on both sides, and clears it when the war is won ($0CE0)."
+  },
+  {
+   "address": 924,
+   "type": "line",
+   "text": "the rest of the boot's code in the cassette buffer, after the game's settings, with its subroutines at $03AE (a byte) and $03BF (a bit, timed by CIA 1's timer A)."
+  },
+  {
+   "address": 1020,
+   "type": "line",
+   "text": "two bytes after the cassette buffer, 0, that nothing reads."
   },
   {
    "address": 2048,
