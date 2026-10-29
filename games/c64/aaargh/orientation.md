@@ -66,6 +66,19 @@ frozen game, and the tape's copy is the cleaner one. The disk's top row
 reads `FECT WAY T`: its freezer caught the same list of names at
 PERFECT WAY.
 
+A third copy, the one-file program `Aaaargh! (1989)(Melbourne House).prg`
+(38,134 bytes, loading at `$0801`), is the same backup again. Its BASIC
+line reads `1988 SYS2066 V5.1`, and its code unpacks itself through a copy
+at `$0100`, as a cruncher's does. Run to the title (`work/prgboot.py`,
+saved as `work/prg-title.vsf`), it reaches the same title loop (PC `$B728`-`$B730`) with
+the same interrupt at `$B1CE`. The freezer's restart at `$0800`-`$0BB7`
+is byte for byte the tape's, `$2C1B` holds the tape's `$FC`, and
+`$E000`-`$FFFF` is the same. Of `$0800`-`$BFFF`, 43 bytes differ from the
+tape's restarted title (`work/cmpp2.py`), all working state: the music
+driver's notes and timers (`$74AE`-`$751A`), the place in the table of
+random numbers (`$A91E`), the title's frame copies (`$B1C5`, `$B230`,
+`$B23A`), and bytes that also change between the tape's own two states.
+
 The Melbourne House release itself was not available to compare with, so
 a change the crackers made to the code cannot be ruled out. None has been
 found; anything that is found is marked as theirs.

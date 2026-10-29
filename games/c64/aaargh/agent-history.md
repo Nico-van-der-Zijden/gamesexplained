@@ -21,6 +21,10 @@ on the frozen title's top row. The string sweep then found the game's own
 list of names, and the title's code that copies it there in black on black;
 the correction went into `orientation.md` and the next commit said so.
 
+A one-file program the contributor added later, named as Melbourne House's,
+turned out to be the same backup crunched into one file: the freezer's
+restart and every byte but working state are the tape's (`orientation.md`).
+
 ## The annotation
 
 One agent, in address order: the music driver and effects first, then the
