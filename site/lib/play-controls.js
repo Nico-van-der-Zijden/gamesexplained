@@ -3,13 +3,17 @@
 // big as the phone allows. No dependencies. Exposes PlayControls (window.PlayControls on a page;
 // globalThis.PlayControls in node, for tests).
 //
-//   const pc = PlayControls.attach({ screen, canvas, bar, button, fire, dock, onPad, onChange })
+//   const pc = PlayControls.attach({ screen, canvas, above, bar, button, fire, dock, onPad, onChange })
 //     screen    the page's game screen: the element that holds the canvas (and the CRT screen's
 //               canvas and any overlay laid over it); full screen carries it whole
 //     canvas    the game's canvas, whose width and height give the picture's shape
+//     above     the page's row of buttons just above the screen, <div data-above>, holding the CRT
+//               screen and Full screen switches at its right; full screen carries it above the
+//               picture, so the two stay where they were against the picture (optional)
 //     bar       the page's bar of buttons, carried into full screen with them (optional)
 //     button    the page's switch, <button type="button" data-fullscreen aria-pressed="false">⛶
-//               Full screen</button>, whose aria-pressed this keeps (optional)
+//               Full screen</button>, whose aria-pressed this keeps and whose ⛶ is ✕ while full
+//               screen lasts (optional)
 //     fire      the fire buttons, left to right: [{ label, bit }] (default one, 'Fire', bit 16); two
 //               for a game with two, such as [{ label: 'B', bit: 32 }, { label: 'A', bit: 16 }]
 //     dock      the element the docked controller is put at the end of (default: just after screen)
@@ -27,15 +31,16 @@
 // scrolls nor zooms the page (touch-action: none); one anywhere else scrolls it as usual. The
 // docked controller shows only on a screen that has touch; a mouse and the keyboard play as before.
 //
-// Full screen lays the page's screen, its bar and the controller over the whole window. Upright,
-// the picture is under a row of icons (✕, and ⇄ on a touch screen), the page's bar under the
-// picture and the controller at the bottom; on its side, the picture is at full height between
-// two bands, the icons and the pad in the left one, the bar and the fire buttons in the right.
-// The browser's own full screen is asked for too where it has one (a phone's browser hides its
-// bars then), and the window is covered where it has none (an iPhone's Safari). Every way out works and puts the page back as it
-// was: ✕, Escape, the browser leaving its full screen, and the phone's Back, which full screen
-// adds a step to the page's history for. While it lasts the screen is kept from dimming (the Screen
-// Wake Lock API, where there is one).
+// Full screen lays the page's screen, the row above it, its bar and the controller over the whole
+// window. The row stays just above the picture, as wide as it, with ⇄ at its left on a touch
+// screen. Upright, the page's bar is under the picture and the controller at the bottom; on its
+// side, the row and the picture fill the height between two bands, the pad at the foot of the
+// left one, the bar and the fire buttons in the right. The browser's own full screen is asked for
+// too where it has one (a phone's browser hides its bars then), and the window is covered where it
+// has none (an iPhone's Safari). Every way out works and puts the page back as it was: the switch
+// again, Escape, the browser leaving its full screen, and the phone's Back, which full screen adds
+// a step to the page's history for. A page whose switch is not in the row gets a ✕ in its place.
+// While it lasts the screen is kept from dimming (the Screen Wake Lock API, where there is one).
 (function (root) {
   'use strict';
   const KEY = 'gamesexplained.hand';
@@ -74,29 +79,33 @@
 .pc-fire+.pc-fire{margin-bottom:calc(var(--pc-fire) * .5)}
 .pc-fire.on{transform:translateY(3px);box-shadow:0 1px 0 #8e2f26;filter:brightness(1.15)}
 .pc-mid{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pc-above{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:flex-end;gap:8px;margin-bottom:10px}
+.pc-glyph{display:inline-block;width:1.2em;text-align:center}
 .pc-icon{font:700 14px/1 Lato,system-ui,sans-serif;min-width:40px;height:40px;padding:0 12px;border-radius:20px;border:1px solid rgba(127,127,127,.45);background:rgba(127,127,127,.12);color:inherit;cursor:pointer;touch-action:manipulation}
 html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
 .pc-full{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;background:#000;color:#e9e7e1;touch-action:none;overscroll-behavior:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
   padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .pc-full:fullscreen{width:100%;height:100%}
-.pc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px}
-.pc-stage{display:flex;justify-content:center;align-items:center;padding:0 8px}
+.pc-top{display:flex;align-items:flex-end;gap:8px;margin:0 auto;padding:8px 0 10px;max-width:100%}
+.pc-top>.pc-above,.pc-top>.pc-close{margin:0 0 0 auto}
+.pc-top>.pc-above~.pc-close{margin:0}
+.pc-stage{display:flex;justify-content:center;align-items:flex-start;padding:0 8px}
 .pc-stage>*{box-shadow:none!important;outline:none!important}
 .pc-slot{display:flex;justify-content:center;padding:10px 8px 0}
 .pc-slot>*{margin:0!important;justify-content:center}
 .pc-slot>*>[aria-hidden="true"]{display:none}
 .pc-slot>*>[aria-live]{margin:0!important;flex-basis:100%;text-align:center;color:#a9abb0}
-.pc-full [data-fullscreen]{display:none!important}
+.pc-slot [data-fullscreen]{display:none!important}
 .pc-full .pc{margin:auto 0 0;padding:12px 18px 22px}
 .pc-full .pc-mid{display:none}
 .pc-full .pc-pad{color:rgba(233,231,225,.6);background:radial-gradient(circle,rgba(255,255,255,.03) 0 24%,rgba(255,255,255,.08) 25% 100%);border-color:rgba(233,231,225,.32)}
 .pc-full .pc-knob{background:#e9e7e1}
 .pc-wide{display:grid;grid-template-columns:var(--pc-band) minmax(0,1fr) var(--pc-band);grid-template-rows:auto minmax(0,1fr) auto;
-  grid-template-areas:"top stage bar" ". stage bar" "pad stage fire"}
-.pc-wide.pc-left{grid-template-areas:"top stage bar" ". stage bar" "fire stage pad"}
-.pc-wide .pc-top{grid-area:top;justify-content:flex-start;flex-wrap:wrap}
+  grid-template-areas:". top bar" ". stage bar" "pad stage fire"}
+.pc-wide.pc-left{grid-template-areas:". top bar" ". stage bar" "fire stage pad"}
+.pc-wide .pc-top{grid-area:top;justify-self:center;padding-top:4px}
 .pc-wide .pc-top .pc-label{display:none}
-.pc-wide .pc-stage{grid-area:stage;padding:8px 0}
+.pc-wide .pc-stage{grid-area:stage;padding:0 0 4px}
 .pc-wide .pc-slot{grid-area:bar;padding:8px;align-items:flex-start;overflow:auto}
 .pc-wide .pc-slot>*{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px}
 .pc-wide .pc-slot button{font-size:12px;padding:5px 8px}
@@ -116,7 +125,7 @@ html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
   const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement || null;
 
   function attach(o) {
-    const doc = document, screen = o.screen, canvas = o.canvas, bar = o.bar || null, button = o.button || null;
+    const doc = document, screen = o.screen, canvas = o.canvas, above = o.above || null, bar = o.bar || null, button = o.button || null;
     const fires = o.fire && o.fire.length ? o.fire : [{ label: 'Fire', bit: 16 }];
     if (!doc.getElementById('pc-css')) { const s = doc.createElement('style'); s.id = 'pc-css'; s.textContent = CSS; doc.head.appendChild(s); }
     const el = (tag, cls, html) => { const e = doc.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; };
@@ -179,11 +188,27 @@ html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
     // --- full screen
     const full = el('div', 'pc-full'), top = el('div', 'pc-top'), stage = el('div', 'pc-stage'), slot = el('div', 'pc-slot');
     full.setAttribute('role', 'dialog'); full.setAttribute('aria-label', 'The game, full screen');
-    const close = el('button', 'pc-icon', '✕<span class="pc-label"> Exit full screen</span>');
-    close.type = 'button'; close.setAttribute('aria-label', 'Exit full screen'); close.onclick = () => exit();
-    top.appendChild(close);
     if (touch) top.appendChild(swap());
+    let close = null;
+    if (!(above && button && above.contains(button))) {
+      close = el('button', 'pc-icon pc-close', '✕<span class="pc-label"> Exit full screen</span>');
+      close.type = 'button'; close.setAttribute('aria-label', 'Exit full screen'); close.onclick = () => exit();
+      top.appendChild(close);
+    }
     full.append(top, stage, slot);
+    // the row above the screen: its buttons hand the keyboard back to the game, as the bar's do
+    if (above) {
+      above.classList.add('pc-above');
+      above.addEventListener('click', () => { try { screen.focus({ preventScroll: true }); } catch (e) { /* not focusable */ } });
+    }
+    // the switch's ⛶, which is ✕ while full screen lasts, in a box of its own width so that
+    // nothing beside it moves
+    let glyph = null;
+    const text = button && button.firstChild;
+    if (text && text.nodeType === 3 && text.data.charAt(0) === '⛶') {
+      glyph = el('span', 'pc-glyph'); glyph.textContent = '⛶'; glyph.setAttribute('aria-hidden', 'true');
+      text.data = text.data.slice(1); button.insertBefore(glyph, text);
+    }
     for (const t of ['contextmenu']) full.addEventListener(t, e => e.preventDefault());
     full.addEventListener('touchmove', e => { if (!slot.contains(e.target)) e.preventDefault(); }, { passive: false });
     showHand();
@@ -208,16 +233,19 @@ html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
       pc.style.setProperty('--pc-fire', Math.round(size * (fires.length > 1 ? 0.48 : 0.6)) + 'px');
       // the picture: as big as its shape allows in what the rest leaves
       const pw = wide ? stage.clientWidth : W - 16;
-      const ph = wide ? stage.clientHeight - 16 : H - top.offsetHeight - slot.offsetHeight - (touch ? pc.offsetHeight : 0) - 24;
-      screen.style.width = Math.max(64, Math.floor(Math.min(pw, ph * aspect))) + 'px';
+      const ph = wide ? stage.clientHeight - 4 : H - top.offsetHeight - slot.offsetHeight - (touch ? pc.offsetHeight : 0) - 24;
+      const w = Math.max(64, Math.floor(Math.min(pw, ph * aspect)));
+      screen.style.width = w + 'px';
+      top.style.width = w + 'px';   // the row above as wide as the picture, so its buttons keep their places
       showKnob();
     }
     function enter() {
       if (on) return;
       on = true; letGo();
       // each node carried leaves a mark where it was, to go back to
-      marks = [screen, bar, pc].filter(Boolean).map(n => { const m = doc.createComment('full screen'); n.before(m); return [n, m]; });
+      marks = [screen, above, bar, pc].filter(Boolean).map(n => { const m = doc.createComment('full screen'); n.before(m); return [n, m]; });
       stage.appendChild(screen);
+      if (above) { if (close) close.before(above); else top.appendChild(above); }
       if (bar) slot.appendChild(bar);
       full.appendChild(pc);
       doc.documentElement.classList.add('pc-lock');
@@ -232,6 +260,7 @@ html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
       ro = new ResizeObserver(layout); ro.observe(full);
       layout(); wake();
       if (button) button.setAttribute('aria-pressed', 'true');
+      if (glyph) glyph.textContent = '✕';
       try { screen.focus({ preventScroll: true }); } catch (e) { /* not focusable */ }
       if (o.onChange) o.onChange(true);
     }
@@ -251,6 +280,7 @@ html.pc-lock,html.pc-lock body{overflow:hidden;overscroll-behavior:none}
       pushed = false;
       if (lock) { lock.release().catch(() => {}); lock = null; }
       if (button) button.setAttribute('aria-pressed', 'false');
+      if (glyph) glyph.textContent = '⛶';
       try { screen.focus({ preventScroll: true }); } catch (e) { /* not focusable */ }
       if (o.onChange) o.onChange(false);
     }

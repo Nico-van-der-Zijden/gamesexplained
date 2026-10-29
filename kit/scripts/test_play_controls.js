@@ -4,10 +4,12 @@
 // direction to the next without lifting, off the disc too; fire buttons take a finger each, each on
 // the nearest button; a touch on the controller is the page's (the browser neither scrolls nor
 // moves the focus), and everything lets go when the window loses the focus. Full screen carries the
-// page's screen, bar and controller and puts each back where it was, by ✕, Escape or Back, adding
-// one step to the history and taking it off again. Each Play page that loads it has a full screen
-// switch and attaches it, and keeps no touch pad of its own beside it. Runs in node, on a stand-in
-// for the page's document.
+// page's screen, the row of buttons above it, its bar and the controller, keeps the row above the
+// picture with the switch in it showing ✕, and puts each back where it was, by the switch, ✕,
+// Escape or Back, adding one step to the history and taking it off again. Each Play page that
+// loads it has a full screen switch beside its CRT screen switch in a row above the screen,
+// attaches it, and keeps no touch pad of its own beside it. Runs in node, on a stand-in for the
+// page's document.
 //   node kit/scripts/test_play_controls.js
 const fs = require('fs');
 const path = require('path');
@@ -21,7 +23,7 @@ const check = (ok, what) => { if (!ok) { failed++; console.log('FAIL ' + what); 
 let listeners = {};
 function El(tag) {
   const e = {
-    tagName: tag, id: '', className: '', textContent: '', innerHTML: '', children: [], parentElement: null, attrs: {}, on: {},
+    tagName: tag, nodeType: 1, id: '', className: '', textContent: '', innerHTML: '', children: [], parentElement: null, attrs: {}, on: {},
     rect: { left: 0, top: 0, width: 390, height: 844 }, focused: 0, captured: new Set(),
     style: { setProperty(k, v) { this[k] = v; } },
     classList: {
@@ -40,6 +42,8 @@ function El(tag) {
     detach() { if (e.parentElement) { const s = e.parentElement.children; s.splice(s.indexOf(e), 1); e.parentElement = null; } },
     appendChild(n) { n.detach(); n.parentElement = e; e.children.push(n); return n; },
     append(...ns) { for (const n of ns) e.appendChild(n); },
+    get firstChild() { return e.children[0] || null; },
+    insertBefore(n, ref) { n.detach(); e.children.splice(e.children.indexOf(ref), 0, n); n.parentElement = e; return n; },
     before(n) { n.detach(); const s = e.parentElement.children; s.splice(s.indexOf(e), 0, n); n.parentElement = e.parentElement; },
     insertAdjacentElement(where, n) { n.detach(); const s = e.parentElement.children; s.splice(s.indexOf(e) + 1, 0, n); n.parentElement = e.parentElement; },
     replaceWith(n) { n.detach(); const p = e.parentElement, s = p.children; s.splice(s.indexOf(e), 1, n); n.parentElement = p; e.parentElement = null; },
@@ -89,11 +93,16 @@ check(PC.direction(...at(-33, 40), 50, RIGHT) === (UP | RIGHT), 'and further pas
 check(PC.nearest(10, 10, [[0, 0], [50, 0]]) === 0 && PC.nearest(30, 0, [[0, 0], [50, 0]]) === 1, 'a finger is on the nearest fire button');
 
 // --- the controller on the page
-const plate = El('div'), screen = El('div'), bar = El('div'), button = El('button'), canvas = { width: 384, height: 272 };
-plate.append(screen, bar); body.appendChild(plate);
+const plate = El('div'), above = El('div'), screen = El('div'), bar = El('div'), button = El('button'), crtButton = El('button'), canvas = { width: 384, height: 272 };
+const label = { nodeType: 3, data: '⛶ Full screen', detach() {}, find: () => null };   // the switch's text
+button.children.push(label);
+above.append(crtButton, button);
+plate.append(above, screen, bar); body.appendChild(plate);
 screen.id = 'screen'; bar.id = 'bar';
 let got = [];
-const pc = PC.attach({ screen, canvas, bar, button, onPad: b => got.push(b) });
+const pc = PC.attach({ screen, canvas, above, bar, button, onPad: b => got.push(b) });
+const glyph = button.children[0];
+check(glyph.className === 'pc-glyph' && glyph.textContent === '⛶' && label.data === ' Full screen', 'the switch\'s ⛶ is in a box of its own');
 const ctl = pc.el, pad = ctl.find(n => n.className === 'pc-pad'), fires = ctl.find(n => n.className === 'pc-fires');
 check(plate.children.indexOf(ctl) === plate.children.indexOf(screen) + 1, 'the controller is docked just under the screen');
 check(ctl.classList.contains('pc-touch') && pc.touch, 'and shows on a screen with touch');
@@ -148,15 +157,20 @@ pc.hand('right');
   const len = history.length;
   button.fire('click');
   const full = body.children.find(n => n.className.split(' ').includes('pc-full'));
-  check(!!full && full.contains(screen) && full.contains(bar) && full.contains(ctl), 'full screen carries the screen, the bar and the controller');
+  check(!!full && full.contains(screen) && full.contains(above) && full.contains(bar) && full.contains(ctl), 'full screen carries the screen, the row above it, the bar and the controller');
+  const top = full.children[0];
+  check(top.className === 'pc-top' && top.children.length === 2 && top.children[0].className === 'pc-icon' && top.children[1] === above && full.children[1].children[0] === screen,
+    'the row stays above the picture, ⇄ at its left, and with the switch in it there is no ✕ of its own');
+  check(top.style.width === screen.style.width, 'the row is as wide as the picture, so its buttons keep their places');
+  check(glyph.textContent === '✕', 'the switch shows ✕ while full screen lasts');
   check(html.classList.contains('pc-lock') && pc.on && button.attrs['aria-pressed'] === 'true', 'holds the page under it still, and the switch shows it on');
   check(history.length === len + 1 && history.state && history.state.playControls, 'and adds a step to the history, for Back');
   check(/^\d+px$/.test(screen.style.width), 'the picture is sized to the window (' + screen.style.width + ')');
   const esc = fireDoc('keydown', { key: 'Escape' });
   await new Promise(r => setTimeout(r, 5));
   const order = plate.children.filter(n => n.tagName !== '#comment');
-  check(!pc.on && esc.defaultPrevented && order[0] === screen && order[1] === ctl && order[2] === bar, 'Escape puts each back where it was');
-  check(!html.classList.contains('pc-lock') && screen.style.width === '' && button.attrs['aria-pressed'] === 'false', 'and the page as it was');
+  check(!pc.on && esc.defaultPrevented && order[0] === above && order[1] === screen && order[2] === ctl && order[3] === bar, 'Escape puts each back where it was');
+  check(!html.classList.contains('pc-lock') && screen.style.width === '' && button.attrs['aria-pressed'] === 'false' && glyph.textContent === '⛶', 'and the page as it was');
   check(backs === 1 && !body.children.some(n => n.className.includes('pc-full')), 'taking its step off the history again');
   check(plate.children.every(n => n.tagName !== '#comment'), 'and leaving no marks behind');
   pc.enter();
@@ -164,9 +178,18 @@ pc.hand('right');
   await new Promise(r => setTimeout(r, 5));
   check(!pc.on && backs === 1, 'Back leaves full screen, and stays on the page');
   pc.enter();
-  full.children[0].children[0].onclick();
+  button.fire('click');
   await new Promise(r => setTimeout(r, 5));
-  check(!pc.on && backs === 2, '✕ leaves it too');
+  check(!pc.on && backs === 2, 'the switch again leaves it too');
+  check(['click'].every(t => { const f = screen.focused; above.fire(t, { target: crtButton }); return screen.focused === f + 1; }), 'a button in the row hands the keyboard back to the game');
+  // a page with no switch in a row above the screen gets a ✕
+  pc2.enter();
+  const full2 = body.children.find(n => n.className.split(' ').includes('pc-full') && n.contains(s2));
+  const close = full2.children[0].children.find(n => n.className.includes('pc-close'));
+  check(!!close, 'with no switch in the row, full screen has a ✕ of its own');
+  close.onclick();
+  await new Promise(r => setTimeout(r, 5));
+  check(!pc2.on && backs === 3, '✕ leaves it');
 
   // --- the Play pages that use it
   let pages = 0;
@@ -180,7 +203,11 @@ pc.hand('right');
       if (!page.includes('lib/play-controls.js')) continue;
       pages++;
       check((page.match(/<button\b[^>]*\bdata-fullscreen\b[^>]*aria-pressed="false"[^>]*>⛶ Full screen<\/button>/g) || []).length === 1, name + ' has one "⛶ Full screen" button with data-fullscreen, unpressed');
-      check(/\bPlayControls\.attach\(/.test(page), name + ' calls PlayControls.attach');
+      const row = page.match(/<div\b[^>]*\bdata-above\b[^>]*>((?:(?!<\/div>)[\s\S])*)<\/div>/);
+      check(!!row && /\bdata-fullscreen\b/.test(row[1]) && (!/\bdata-crt\b/.test(page) || /\bdata-crt\b[\s\S]*\bdata-fullscreen\b/.test(row[1])),
+        name + ' has the CRT screen and Full screen switches, in that order, in a row with data-above');
+      check(!!row && row.index < page.indexOf('<canvas'), name + ' has that row above the screen');
+      check(/\bPlayControls\.attach\(\{[^}]*\babove\s*:/.test(page), name + ' calls PlayControls.attach with the row as above');
       check(!/id="pl-pad"/.test(page), name + ' keeps no touch pad of its own beside it');
     }
   })(games);
