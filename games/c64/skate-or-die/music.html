@@ -19,13 +19,18 @@
   <p>The guitars are a fourth channel the SID does not have. The SID has no way to play recorded sound, but it does have a master volume, and changing the volume quickly enough makes a wave of its own. The title loads seven short recordings, four bits a sample (<code>$49F1</code> holds where each starts and loops), and a timer interrupt writes them to the volume register one value at a time (<code>$5106</code>), between 2,200 and 6,700 times a second. The music sets the timer's speed for each note, so the same recording plays at different pitches.</p>
   <div class="plate">
     <div id="samples" class="row"></div>
-    <p class="cap"><b>The seven recordings, from the title's own bytes.</b> Each plays once from its start to its end mark at one fixed rate, a timer of 256 cycles, about 3,850 samples a second; the tune plays them at many rates and loops them while the note lasts. The tune's SID voices are not played here: the page's player cannot model sound made through the volume register, so it would play the tune without its guitars.</p>
+    <p class="cap"><b>The seven recordings, from the title's own bytes.</b> Each plays once from its start to its end mark at one fixed rate, a timer of 256 cycles, about 3,850 samples a second; the tune plays them at many rates and loops them while the note lasts.</p>
+  </div>
+  <p>The whole tune, guitars and all, plays below. The page runs the title's own code: <code>$457C</code> once a frame for the three voices, and, in between, the timer counted down cycle by cycle, with <code>$5106</code> run at each underflow to write the next four bits to the volume. The chip model gives every voice the small steady level a 6581 adds to its output, which is what a change of volume moves, so the volume writes are heard as the recording.</p>
+  <div class="plate">
+    <div id="sid-title"></div>
+    <p class="cap"><b>The title tune, played by the title's own driver and sample interrupt.</b> Checked against the kit's simulated C64 over 3,000 frames from the same memory, with music_play called from a raster interrupt as the title calls it: the voices' register writes are the same, in order. The volume writes are the same values in the same order for the first 6,787, and 202,632 here against 202,659 there over the whole run; after the first recording the music stops in mid-frame they drift by a sample or so, because the page plays each frame's music_play at the frame's start, where the machine lets the timer's interrupts fall inside it.</p>
   </div>
 </section>
 <section id="music">
   <p class="fig">High Jump's music</p>
   <h2 class="t">Nine phrases, chosen as it goes</h2>
-  <p class="lede">The <a href="highjump.html">High Jump</a> music is not one long tune. The music is nine phrases for two voices, and each time one ends, the game picks the next at random from a short list (<code>$3549</code>). Press the music to hear it, played by the game's own code.</p>
+  <p class="lede">The <a href="levels.html#highjump">High Jump</a> music is not one long tune. The music is nine phrases for two voices, and each time one ends, the game picks the next at random from a short list (<code>$3549</code>). Press the music to hear it, played by the game's own code.</p>
   <div class="plate">
     <div id="sid"></div>
     <p class="cap"><b>The game's own driver, run in the page.</b> The kit's 6502 simulator runs High Jump's sound code and scripts, <code>$2000</code>-<code>$3CFF</code> as the game loads them: <code>init_sound_driver</code> (<code>$22B7</code>), then <code>queue_sound_id</code> (<code>$22F5</code>) with the sound's number, then <code>update_sid_voices</code> (<code>$232C</code>) once a frame, as the main loop does. Checked against the game itself running in the kit's 6502 simulator from the High Jump snapshot: every one of 16,917 SID writes over five minutes matched, in order. The page starts the music from the random state the event's file brings from the disk (<code>$35AB</code>-<code>$35AD</code> = <code>$8F</code> <code>$D0</code> <code>$FF</code>), so it plays the phrases in the order the game plays them the first time after loading.</p>
@@ -43,7 +48,7 @@
 <section id="events" data-part="">
   <p class="fig">Every event</p>
   <h2 class="t">One driver, moved around memory</h2>
-  <p>Every event plays its sound through the same driver, moved to wherever its program has room: High Jump at <span data-part="highjump"><code>$22B7</code></span>, the <a href="freestyle.html">Freestyle ramp</a> at <span data-part="ramp"><code>$271E</code></span>, the <a href="race.html">Downhill Race</a> at <span data-part="downhill"><code>$2FAC</code></span>, the <a href="jam.html">Downhill Jam</a> at <span data-part="jam"><code>$E000</code></span>, and the <a href="joust.html">Pool Joust</a> at <span data-part="joust"><code>$22C8</code></span>. Only the shop is silent: it never writes to the SID.</p>
+  <p>Every event plays its sound through the same driver, moved to wherever its program has room: High Jump at <span data-part="highjump"><code>$22B7</code></span>, the <a href="levels.html#freestyle">Freestyle ramp</a> at <span data-part="ramp"><code>$271E</code></span>, the <a href="levels.html#race">Downhill Race</a> at <span data-part="downhill"><code>$2FAC</code></span>, the <a href="levels.html#jam">Downhill Jam</a> at <span data-part="jam"><code>$E000</code></span>, and the <a href="levels.html#joust">Pool Joust</a> at <span data-part="joust"><code>$22C8</code></span>. Only the shop is silent: it never writes to the SID.</p>
   <p>Each event brings its own music, built the way High Jump's is: phrases for two voices, the next chosen at random from a list of the phrases that may follow, never straight back to a phrase just heard. The ramp has sixteen phrases with drums on one voice (<span data-part="ramp"><code>$E000</code></span>), the race and the Jam sixteen each (<span data-part="downhill"><code>$75D0</code></span>, <span data-part="jam"><code>$AADC</code></span>), and the joust sixteen (<span data-part="joust"><code>$3355</code></span>). In every one, the random numbers come from bytes loaded with the event that nothing seeds (<a href="discoveries.html">Discoveries</a>).</p>
 </section>
 <section id="eventmusic" data-part="">
@@ -51,13 +56,13 @@
   <h2 class="t">Four more tunes, as they first play</h2>
   <p class="lede">Each player runs that event's own copy of the driver over the event's memory, and starts its music from the random bytes the disk brings, so each tune takes the phrases it takes the first time it plays after the event loads.</p>
   <div class="plate">
-    <p class="cap"><b><a href="freestyle.html">Freestyle ramp</a></b>, sound 1, random bytes <span data-part="ramp"><code>$E13B</code></span> = <code>$99</code> <code>$C1</code> <code>$03</code>.</p>
+    <p class="cap"><b><a href="levels.html#freestyle">Freestyle ramp</a></b>, sound 1, random bytes <span data-part="ramp"><code>$E13B</code></span> = <code>$99</code> <code>$C1</code> <code>$03</code>.</p>
     <div id="sid-ramp"></div>
-    <p class="cap"><b><a href="race.html">Downhill Race</a></b>, sound 4, random bytes <span data-part="downhill"><code>$7638</code></span> = <code>$38</code> <code>$F4</code> <code>$01</code>.</p>
+    <p class="cap"><b><a href="levels.html#race">Downhill Race</a></b>, sound 4, random bytes <span data-part="downhill"><code>$7638</code></span> = <code>$38</code> <code>$F4</code> <code>$01</code>.</p>
     <div id="sid-downhill"></div>
-    <p class="cap"><b><a href="jam.html">Downhill Jam</a></b>, sound <code>$15</code>, random bytes <span data-part="jam"><code>$AB3E</code></span> = <code>$0B</code> <code>$11</code> <code>$4C</code>.</p>
+    <p class="cap"><b><a href="levels.html#jam">Downhill Jam</a></b>, sound <code>$15</code>, random bytes <span data-part="jam"><code>$AB3E</code></span> = <code>$0B</code> <code>$11</code> <code>$4C</code>.</p>
     <div id="sid-jam"></div>
-    <p class="cap"><b><a href="joust.html">Pool Joust</a></b>, sound 1, random bytes <span data-part="joust"><code>$3493</code></span> = <code>$00</code> <code>$FF</code> <code>$00</code>, as the joust starts against Poseur Pete.</p>
+    <p class="cap"><b><a href="levels.html#joust">Pool Joust</a></b>, sound 1, random bytes <span data-part="joust"><code>$3493</code></span> = <code>$00</code> <code>$FF</code> <code>$00</code>, as the joust starts against Poseur Pete.</p>
     <div id="sid-joust"></div>
     <p class="cap"><b>Checked against the game.</b> Each event ran in the kit's 6502 simulator from the moment it asks for its music, and its SID writes were compared, in order, with the page's over three minutes: 28,627 for the ramp, 7,297 for the race, 7,805 for the Jam, and 10,382 for the joust, every one the same. The simulator drops some of the Jam's frames, so that comparison covers the writes the game made. The race's listing is missing one byte the driver runs, the <code>RTS</code> at <span data-part="downhill"><code>$3329</code></span>, so the page puts it back.</p>
   </div>
@@ -91,7 +96,7 @@
   const M = T.ram, starts = [0x1000, 0x13F8, 0x17E4, 0x1BF8, 0x1FF4, 0x23E0, 0x27E8], ends = [0x13F0, 0x17E1, 0x1BF6, 0x1FEF, 0x23D9, 0x27E5, 0x30EC];
   let ac = null;
   starts.forEach((a, i) => {
-    const b = document.createElement('button'); b.textContent = 'Sample ' + i; root.appendChild(b);
+    const b = document.createElement('button'); b.className = 'b'; b.textContent = 'Sample ' + i; root.appendChild(b);
     b.onclick = () => {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       const v = []; for (let p = a; p < ends[i]; p++) { v.push(M[p] >> 4, M[p] & 15); }
@@ -100,6 +105,19 @@
       for (let k = 0; k < n; k++) d[k] = (v[Math.floor(k * step)] - 7.5) / 9;
       const src = ac.createBufferSource(); src.buffer = buf; src.connect(ac.destination); src.start();
     };
+  });
+})();
+</script>
+<script>
+(async function () {
+  const root = document.getElementById('sid-title');
+  if (!window.C64Sid || !window.C64Cpu) { root.textContent = 'This player needs the site’s shared scripts, lib/sid.js and lib/cpu6502.js.'; return; }
+  let T; try { T = await SOD.load('title'); } catch (e) { root.textContent = e.message; return; }
+  C64Sid.mount(root, {
+    driver: SODMUSIC.createTitleDriver,
+    data: { base: 0, bytes: Array.from(T.ram), period: 32 },
+    tunes: ['The title tune'],
+    filter: '6581', period: 32, digi: 2,
   });
 })();
 </script>
