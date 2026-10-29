@@ -1,4 +1,4 @@
-## next · 2026-10-29 · Into the Eagle's Nest, Jet Set Willy, Master of Magic, The Sacred Armour of Antiriad (C64) · air with Claude
+## 0.0.267 · 2026-10-29 · Into the Eagle's Nest, Jet Set Willy, Master of Magic, The Sacred Armour of Antiriad (C64) · air with Claude
 
 - **Let the kit's C64 take a game's interrupts.** The machine now takes
   them as the processor does by default: inside a handler that has run
