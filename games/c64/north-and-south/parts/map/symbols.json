@@ -9997,7 +9997,7 @@
   {
    "address": 3871,
    "type": "line",
-   "text": "a random number in A, as the title's $82BC: $0F4C + $0F4F + $0F50 + 1, pushed into the shift register $0F4B-$0F50. Seeded at $0C10."
+   "text": "a random number in A, as the title's $82BC: 1 + $0F4C + $0F4F (sec, then adc), then + $0F50 with the carry out of that first sum, pushed into the shift register $0F4B-$0F50. Seeded at $0C10."
   },
   {
    "address": 3915,
@@ -10875,6 +10875,11 @@
    "text": "saves the map's bytes under territory A's flag place into its store ($C2A7), at picture 20's size ($332B)."
   },
   {
+   "address": 9167,
+   "type": "line",
+   "text": "stores A (8, the window); the $14 just loaded into X goes unused, so save_window takes picture 8."
+  },
+  {
    "address": 9178,
    "type": "line",
    "text": "the territory save_flag_bg works on: the operand of the lda at $23D9, written at $239F."
@@ -10893,6 +10898,11 @@
    "address": 9202,
    "type": "line",
    "text": "saves the map's bytes under territory A's army place into its store ($C2DB), at picture 21's size."
+  },
+  {
+   "address": 9250,
+   "type": "line",
+   "text": "stores A (8, the window); the $15 just loaded into X goes unused, so save_window takes picture 8."
   },
   {
    "address": 9261,
@@ -11222,7 +11232,7 @@
   {
    "address": 13082,
    "type": "line",
-   "text": "saves the bytes of window X (its place, $C3B6/$C3C8) at picture A's size into the buffer at $B8D0, as picture 16, which $340C draws back."
+   "text": "saves the bytes of window A (its place, $C3B6/$C3C8) at picture X's size into the buffer at $B8D0, as picture 16, which $340C draws back."
   },
   {
    "address": 13099,
@@ -11317,7 +11327,7 @@
   {
    "address": 14358,
    "type": "line",
-   "text": "once the bag is past x 70 it falls ($0EB9 = 1) for six frames."
+   "text": "the bag placed at x 85 (one time in eight, bag_start $3767; cmp #$46 tells it from the one at x 46) falls ($0EB9 = 1) for six frames; the one at x 46 does not. Nothing moves the bag across."
   },
   {
    "address": 14385,
@@ -11472,7 +11482,7 @@
   {
    "address": 15625,
    "type": "line",
-   "text": "the plan's changes: plan 0 multiplies by four the scores of the territories listed for the army's territory ($BF42, $BF5C); plan 1 triples those of the rail territories the enemy holds; plan 3 multiplies those of the enemy's armies by 4 minus their steps ($3D9B): an army of three steps or more starts the count at 0, which the loop takes as 256, and its score wraps to 0."
+   "text": "the plan's changes: plan 0 multiplies by four the scores of the territories listed for the army's territory ($BF42, $BF5C); plan 1 triples those of the rail territories the enemy holds; plan 3 multiplies those of the enemy's armies by 4 less their steps ($3D9B): by 4 an army one loss wipes out, by 3 one that survives one loss, by 2 the largest an army can be (18, 9 and 3). A count that started at 0 (an army bigger than that) would leave the score as it was: the loop would add it 256 more times, 257 times the score, the same byte."
   },
   {
    "address": 15771,

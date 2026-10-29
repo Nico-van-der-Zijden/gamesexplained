@@ -5945,7 +5945,7 @@
   {
    "address": 37130,
    "type": "line",
-   "text": "a person's attacker on a ladder: first sidles to the ladder's column ($8109) and brings the fine scroll to 0; then up climbs ($940B), down climbs down ($9426), the stick still holds."
+   "text": "a person's attacker on a ladder: sidles to the ladder's column ($8109); the frame it is reached the climb starts ($9121), and from then each pass steps the fine scroll toward 0 ($9127) and reads the stick in the same pass: up climbs ($940B), down climbs down ($9426), the stick still holds."
   },
   {
    "address": 37201,

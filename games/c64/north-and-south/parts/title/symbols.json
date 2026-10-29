@@ -2375,7 +2375,7 @@
   {
    "address": 16192,
    "type": "line",
-   "text": "192 bytes after the first picture's bitmap, outside what the video chip shows: $7B, and from $3FEF the start of other bytes nothing reads."
+   "text": "192 bytes after the first picture's bitmap, outside what the video chip shows: $7B up to $3F5B, then other bytes nothing reads."
   },
   {
    "address": 16384,
@@ -2420,7 +2420,7 @@
   {
    "address": 24384,
    "type": "line",
-   "text": "192 bytes after the title scene's bitmap, outside the picture: a $CF and then the power-on pattern of RAM the file was saved with."
+   "text": "192 bytes after the title scene's bitmap, outside the picture: a $CF and then the power-on pattern of RAM the file was saved with (00 00 FF FF), broken at $5F6E, $5FC0 and $5FEE."
   },
   {
    "address": 25136,
@@ -2570,7 +2570,7 @@
   {
    "address": 33468,
    "type": "line",
-   "text": "a random number in A: $82E9 + $82EC + $82ED + 1, pushed into the shift register $82E8-$82ED (each byte moves one place up). Seeded at $8077 from $A2 (the low byte of the KERNAL's jiffy clock), the raster line and $D011."
+   "text": "a random number in A: 1 + $82E9 + $82EC (sec, then adc), then + $82ED with the carry out of that first sum, pushed into the shift register $82E8-$82ED (each byte moves one place up). Seeded at $8077 from $A2 (the low byte of the KERNAL's jiffy clock), the raster line and $D011."
   },
   {
    "address": 33512,
