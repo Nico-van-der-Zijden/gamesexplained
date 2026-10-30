@@ -20,7 +20,7 @@ G.bat = function (P) {
   for (const n of ['bat_battle_main', 'bat_battle_keys', 'bat_battle_pause', 'bat_battle_irq_on']) P.GEN.add(n);
   const LOOP = [0x8064, 0x8067, 0x806D, 0x8070, 0x8073, 0x8076, 0x8079, 0x807C, 0x807F, 0x8082, 0x8085, 0x8088, 0x808B, 0x808E, 0x8091, 0x8094];
   P.PASS.bat = 0x805C;
-  P.CPS.bat = [0x8007, 0x805C, ...LOOP];
+  P.CPS.bat = [0x8007, 0x805C, ...LOOP, 0x80F9];
   P.IRQS.bat = { 0x89D5: 'bat_battle_irq', 0x8A2B: 'bat_bmux_first', 0x8A9A: 'bat_bmux_next' };
   const range = (a, n) => Array.from({ length: n }, (_, i) => a + i);
   P.IRQ_BYTES.bat = [...range(S.choose_wait, 15), ...range(S.shot_x, 8), ...range(S.shot_y, 8), ...range(S.shot_live, 8),
@@ -78,6 +78,8 @@ G.bat = function (P) {
       }
     } catch (e) {
       if (!(e instanceof BattleExit)) throw e;
+      yield* cp(0x80F9);
+      P.bat_battle_exit();
     }
     return {};
   };
@@ -114,7 +116,7 @@ G.bat = function (P) {
     io.vicWrite(0x19, io.vicRead(0x19));
     io.vicWrite(0x11, io.vicRead(0x11) & 0xEF);
     P.spend(30);
-    throw new BattleExit();
+    return {};
   };
   P.bat_battle_timers = function () {
     for (let x = 0x0E; x >= 0; x--) { P.spend(9); if (M[S.choose_wait + x]) { M[S.choose_wait + x]--; P.spend(7); } }
@@ -199,7 +201,7 @@ G.bat = function (P) {
     P.spend(20);
     return { a: 0xFF };
   };
-  P.batWaitZero = function* (a, cost = 7) { for (let v = P.irqByte(a); v; v = M[a]) { P.spend(cost); yield; } };
+  P.batWaitZero = function* (a, cost = 7) { for (let v = P.pollFirst(a); v; v = M[a]) { P.spend(cost); yield; } };
   // key_scan ($8940)
   P.bat_key_scan = function () {
     const io = P.io;

@@ -93,7 +93,17 @@ demonstration.
   game read from each in the same stretch, in order (`kit/c64/lockstep.js`
   says how, and what it cannot see). On the page, `irqByte` is
   `a => M[a]`. Handing the port only the first value leaves every later
-  read stale.
+  read stale. Read each such byte as many times as the game does, on the
+  same paths: a read the game skips (a low byte read only when the high
+  one is 0) or makes twice (a byte loaded again after it was stored)
+  hands every later read in the stretch another read's value. A random
+  number generator the interrupt also calls is such a byte, and so is a
+  screen cell an interrupt redraws.
+- **A checkpoint where an exit reads the raster.** A part that leaves by
+  writing `$D011` back as it stands (to blank the screen) agrees with the
+  game only when the port's clock does, and the clock meets the game's
+  exactly only at a checkpoint: give the exit's own instruction one,
+  rather than leaving the register out of the comparison.
 - **Pace it by the machine's clock.** A game that moves a fixed step per
   pass is only the same game at the same passes per second. The port
   executes no instructions, so fit their cost: the lockstep's `timing`

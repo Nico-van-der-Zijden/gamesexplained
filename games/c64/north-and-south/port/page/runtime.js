@@ -25,11 +25,13 @@
 // The clock. A PAL machine: 312 lines of 63 cycles. Each stretch of the program moves the clock on
 // by its cost, and the raster interrupts that fall due on the way run on their lines, their own
 // time added; a turn of a polling loop moves it to the next line, a raster wait to its line. In
-// the map, the battle, the fort, the train and the ending a stretch costs what it cost the game:
-// the stretch's own cycles (seg, by the checkpoints it runs between) and each routine the port
-// called in it at its own (call), fitted on the game's passes from moments of play; the title, the
-// menu and the script count their own cycles with each yield (P.spend), and the sound drivers'
-// 6502 counts its own. Each interrupt takes the median of the game's handler's cycles (irq).
+// the battle, the fort, the train and the ending a stretch costs what it cost the game: the
+// stretch's own cycles (seg, by the checkpoints it runs between), each routine the port called in
+// it at its own (call), and the port's own count of the work (P.spend) at the fit's rate for the
+// part (est), fitted on the game's passes from moments of play. The map, the title, the menu and
+// the script count their own cycles (P.spend), times the game's cycles over that count (scale),
+// and the sound drivers' 6502 counts its own. Each interrupt takes the mean of the game's
+// handler's cycles (irq).
 //
 // The tapes. A load takes the file at once (src/g-res.js, fast_load), as a tape loader that never
 // fails would, and no tape is played: the prompts to turn the tape over still wait for fire.
@@ -47,8 +49,8 @@ const KEY = {
   '£': 0x30, '*': 0x31, ';': 0x32, HOME: 0x33, RSHIFT: 0x34, '=': 0x35, UP: 0x36, '/': 0x37,
   '1': 0x38, LEFT: 0x39, CTRL: 0x3A, '2': 0x3B, SPACE: 0x3C, CBM: 0x3D, Q: 0x3E, STOP: 0x3F,
 };
-// the parts whose stretches the fit prices; the others count their own cycles
-const FITTED = new Set(['map', 'bat', 'frt', 'trn', 'end']);
+// the parts whose stretches the fit prices; the others count their own cycles, scaled to the game's
+const FITTED = new Set(['bat', 'frt', 'trn', 'end']);
 // the least a stretch between two checkpoints costs, whatever the fit gave it
 const MIN_STRETCH = 10;
 // the frames kept ahead of the one shown: more than the longest stretch (a load's)
@@ -192,6 +194,8 @@ function create(o) {
   // a part the fit has no stretches of counts its own cycles, as the title does
   const inModel = new Set(Object.keys(model.seg).map(k => k.split(':')[0]));
   const fitted = () => FITTED.has(P.part) && inModel.has(P.part);
+  // a part the fit has no stretches of: the port's own count, times the game's cycles over it (scale)
+  const counted = () => Math.round(P.take() * ((model.scale && model.scale[P.part]) || 1));
   // a routine called: what was called before it is paid for once it comes to a line's time
   function called(name, c) {
     if (!fitted()) return;
@@ -199,10 +203,12 @@ function create(o) {
     owed += c;
     if (owed >= LINE) { const d = callsCost(); if (d >= 1) advance(Math.round(d)); }
   }
+  // and in a fitted part, the port's own count of the stretch so far (P.spend) times the fit's est
   function callsCost() {
-    const c = owed;
+    let c = owed;
     owed = 0;
     calls = Object.create(null);
+    if (fitted()) { const e = P.take(), k = model.est && model.est[P.part]; if (k) c += k * e; }
     return c;
   }
   function cost(from, to) {
@@ -212,7 +218,7 @@ function create(o) {
   // the stretch has cost so far, so that the interrupts due in that time have run
   function irqByte(a) {
     if (counting) {
-      const c = fitted() ? callsCost() : P.take();
+      const c = fitted() ? callsCost() : counted();
       if (c >= 1) advance(Math.round(c));
     }
     return M[a];
@@ -270,13 +276,14 @@ function create(o) {
     const y = r.value;
     if (y && y.cp !== undefined) {
       let dt;
-      if (fitted() && lastCp !== null) { P.take(); dt = Math.max(MIN_STRETCH, cost(lastCp, y.cp)); }
-      else { callsCost(); dt = y.cycles || 0; }
+      // (the checkpoint carries the rest of the port's count of the stretch: its cp took it)
+      if (fitted() && lastCp !== null) { dt = Math.max(MIN_STRETCH, Math.round(cost(lastCp, y.cp) + ((model.est && model.est[P.part]) || 0) * (y.cycles || 0)));if (o.onStretch) o.onStretch(lastCp, y.cp, dt); }
+      else { callsCost(); P.cost = y.cycles || 0; dt = counted(); }
       lastCp = y.cp;
       advance(dt);
     } else if (y && y.wait !== undefined) {
       // a raster wait: what the stretch has cost so far, then on to the line
-      const c = fitted() ? callsCost() : P.take();
+      const c = fitted() ? callsCost() : counted();
       if (c >= 1) advance(Math.round(c));
       const ln = lineNow() % LINES, to = y.wait % LINES;
       const d = (to - ln + LINES) % LINES;
@@ -287,7 +294,7 @@ function create(o) {
       advance(Math.round(c) + y.cycles);
     } else {
       // a turn of a polling loop: what the stretch has cost so far, then on to the next line
-      const c = fitted() ? callsCost() : P.take();
+      const c = fitted() ? callsCost() : counted();
       if (c >= 1) advance(Math.round(c));
       advance(LINE - t % LINE, true);
     }
@@ -344,6 +351,8 @@ function create(o) {
     get shown() { return target === null ? frameIdx - 1 : Math.floor(target / FRAME) - 1; },
     runFrame, now, runUntil, restore, lastFrame: () => (target === null ? done[done.length - 1] : frameAt(Math.floor(target / FRAME) - 1)),
     onSid: f => sidListeners.push(f),
+    // for the tests: the raster interrupt's state and the last checkpoint
+    get state() { return { enable, cmp, latch, lastCp, vector: M[0xFFFE] | M[0xFFFF] << 8, line: lineNow() % LINES }; },
   };
 }
 root.NSPage = { create, LINE, LINES, FRAME, KEY };

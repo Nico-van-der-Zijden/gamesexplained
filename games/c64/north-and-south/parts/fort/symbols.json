@@ -5970,7 +5970,7 @@
   {
    "address": 37319,
    "type": "line",
-   "text": "every 100 frames the end countdown ($8139) goes down; at 3 the music fades ($F134); at 0 the fort ends: the raster interrupt off, the screen blanked, and the two pla go back to the map."
+   "text": "every 100 frames the end countdown ($8139) goes down; at 3 the music fades ($F134); at 0 the fort ends: the interrupt enable register set to A, still the timer's $64 (the raster interrupt off, the sprites' collision interrupt on), the screen blanked, and the two pla go back to the map."
   },
   {
    "address": 37368,

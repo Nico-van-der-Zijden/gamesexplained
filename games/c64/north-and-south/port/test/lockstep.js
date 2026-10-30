@@ -120,6 +120,11 @@ function run(o) {
   const model = o.cost === undefined ? COST() : o.cost;
   const priced = model ? new Set(Object.keys(model.seg).map(k => k.split(':')[0])) : new Set();
   let owed = 0, inIrq = 0, lastCp = null;
+  // the interrupt handlers' own counts kept out of the main program's, as the page keeps them
+  for (const part of Object.keys(P.IRQS)) for (const name of new Set(Object.values(P.IRQS[part]))) {
+    const fn = P[name];
+    P[name] = function (...a) { const before = P.cost; P.cost = 0; try { return fn.apply(this, a); } finally { P.cost = before; } };
+  }
   if (model) {
     const GENERATOR = Object.getPrototypeOf(function* () {}).constructor;
     for (const name of Object.keys(model.call)) {
@@ -142,11 +147,16 @@ function run(o) {
       let y = r.value;
       if (y && y.cp !== undefined && ls && P.STEP_PASSES && (P.STEP_PASSES[P.part] || []).includes(y.cp)) { ls.passAt = y.cp; resync(); }
       if (y && y.cp !== undefined && priced.has(P.part)) {
-        const seg = lastCp === null ? y.cycles : Math.max(10, (model.seg[P.part + ':' + lastCp.toString(16) + '>' + y.cp.toString(16)] || 0) + owed);
+        const est = ((model.est || {})[P.part] || 0) * (y.cycles || 0);
+        const seg = lastCp === null ? y.cycles : Math.max(10, (model.seg[P.part + ':' + lastCp.toString(16) + '>' + y.cp.toString(16)] || 0) + owed + est);
         y = Object.assign({}, y, { cycles: Math.round(seg) });
+      } else if (y && y.cp !== undefined && model && model.scale && model.scale[P.part] && y.cycles) {
+        y = Object.assign({}, y, { cycles: Math.round(y.cycles * model.scale[P.part]) });
       }
       if (y && y.cp !== undefined) { lastCp = y.cp; owed = 0; }
       else if (y && y.wait !== undefined) { lastCp = null; owed = 0; }
+      // a polling loop's turn: the interrupts have run to the game's line, and later first reads are M's
+      P.polled = !(y && (y.cp !== undefined || y.wait !== undefined)) && !(y && y.cycles !== undefined);
       v = yield y;
     }
   })(program0(P2));
@@ -202,7 +212,7 @@ function fromMoment(what, f, o = {}) {
   const DIRS = what === 'map' ? [0, 1, 2, 4, 8, 16, 0] : [0, 1, 2, 4, 8, 16, 0, 5, 9];
   const human = (A2, m) => { if (hold-- <= 0) { held = 0x1F & ~DIRS[rnd(DIRS.length)]; hold = 2 + rnd(30); } m.joy = held; };
   const input = (fr, m, l) => { if (!A) A = pilot(m, { cc: s.mode === 'cc', part: () => l.P.part, input: s.mode === 'cc' ? null : human }); A.update(); };
-  const common = { state: f, part: what, frames: o.frames || 3000, input, timing: o.timing, onMachine: o.onMachine, port: o.port };
+  const common = { state: f, part: what, frames: o.frames || 3000, input, timing: o.timing, onMachine: o.onMachine, port: o.port, cost: o.cost };
   if (what === 'map') {
     return run(Object.assign(common, { from: 'clear3',
       resume: function* (P) { P.enter('map'); yield* P.map_map_main({ from: s.from }); P.enter('res'); } }));

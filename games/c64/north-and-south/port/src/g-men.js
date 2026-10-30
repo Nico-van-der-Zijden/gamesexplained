@@ -186,7 +186,7 @@ G.men = function (P) {
     io.vicWrite(0x20, 1);
     io.vicWrite(0x11, io.vicRead(0x11) & 0x6F);
     P.spend(24);
-    for (let v = P.irqByte(FRAME_WAIT); v; v = M[FRAME_WAIT]) { P.spend(7); yield; }
+    for (let v = P.pollFirst(FRAME_WAIT); v; v = M[FRAME_WAIT]) { P.spend(7); yield; }
     io.vicWrite(0x11, 0x38); io.vicWrite(0x20, 0); io.vicWrite(0x25, 0x0F); io.vicWrite(0x26, 0x00);
     io.vicWrite(0x28, 0x0C); io.vicWrite(0x29, 0x0C); io.vicWrite(0x2A, 0x0C); io.vicWrite(0x2B, 0x0C);
     P.spend(50);
@@ -211,7 +211,7 @@ G.men = function (P) {
     }
     M[FRAME_WAIT] = 0xC8;
     P.spend(6);
-    for (let v = P.irqByte(FRAME_WAIT); v; v = M[FRAME_WAIT]) { P.spend(7); yield; }
+    for (let v = P.pollFirst(FRAME_WAIT); v; v = M[FRAME_WAIT]) { P.spend(7); yield; }
     io.vicWrite(0x1A, 0);
     io.vicWrite(0x19, io.vicRead(0x19));
     P.spend(20);

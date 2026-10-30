@@ -51,7 +51,7 @@ function pilot(f) {
   if (part === 'men' && !inMenu) { step = 0; wait = 60; }
   inMenu = part === 'men';
   if (fire > 0) { fire--; rt.input.joy = fire ? 0x0F : 0x1F; return; }
-  if ((part === 'tit' && f % 300 === 299) || (part === 'res' && waiting)) { fire = 4; rt.input.joy = 0x0F; return; }
+  if ((part === 'tit' && f % 300 === 299) || waiting) { fire = 4; rt.input.joy = 0x0F; return; }
   if (part === 'men' && step < clicks.length) {
     if (wait > 0) { wait--; rt.input.joy = 0x1F; return; }
     const [x, y] = clicks[step], cx = M[0x101E] | M[0x101F] << 8, cy = M[0x1020];
@@ -78,7 +78,7 @@ for (; f < FRAMES; f++) {
     if (ARCADE.has(last) && rt.part === 'map') arcadeBack = true;
     seen.push(rt.part); last = rt.part;
   }
-  if (rt.part === 'map') months.add(rt.M[0x0399] * 10 + rt.M[0x039A]);
+  if (rt.part === "map") { const mo = rt.M[0x0399] * 10 + rt.M[0x039A]; if (!months.has(mo) && process.env.PACE) console.log("month " + mo + " at frame " + f); months.add(mo); }
   if (arcadeBack && months.size > 3) break;
 }
 const shown = new Set(seen);

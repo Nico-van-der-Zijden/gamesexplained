@@ -39,6 +39,11 @@ function makePort(M, io, opts = {}) {
   Object.defineProperty(P, 'io', { enumerable: true, get: () => IO,
     set: v => { for (const k of Object.keys(IO)) delete IO[k]; Object.assign(IO, v); } });
   P.irqByte = a => (IO.irqByte ? IO.irqByte(a) : M[a]);
+  // A polling loop's first read: through irqByte while the stretch has not yet polled, and from M
+  // once it has, when the lockstep has run the interrupts to the line the game is on (P.polled is
+  // the lockstep's to set: on at a turn of a polling loop, off at a checkpoint or a raster wait)
+  P.polled = false;
+  P.pollFirst = a => (P.polled ? M[a] : P.irqByte(a));
   P.spend = n => { P.cost += n; };
   P.take = () => { const n = P.cost; P.cost = 0; return n; };
   // the chips at $D000-$DFFF while $01 shows them, RAM under them otherwise (no ROMs: the parts

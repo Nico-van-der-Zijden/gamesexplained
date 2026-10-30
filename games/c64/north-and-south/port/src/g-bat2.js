@@ -1165,7 +1165,8 @@ G.bat2 = function (P) {
     M[S.end_steps] = (M[S.end_steps] - 1) & 255;
     P.spend(20);
     if (M[S.end_steps]) return {};
-    return P.bat_battle_exit();
+    // battle_exit ($80F9) is the main loop's, after a checkpoint there
+    throw new P.BattleExit();
   };
   P.bat_fallback_done = function () {
     const y = side();

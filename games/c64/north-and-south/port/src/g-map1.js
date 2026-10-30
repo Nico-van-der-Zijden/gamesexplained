@@ -27,14 +27,15 @@ G.map = function (P) {
   P.IRQS.map = { 0x10C6: 'map_map_irq_frame', 0x1182: 'map_mux_first', 0x11E7: 'map_mux_next' };
   const T = { train_wait: S.train_wait, line_wait: S.line_wait, anim_frames: S.anim_frames, frame_wait: S.frame_wait,
     ship_wave_wait: S.ship_wave_wait, ship_wait: S.ship_wait, bomb_wait: S.bomb_wait, anim_wait: S.anim_wait, flash_wait: S.flash_wait };
-  P.IRQ_BYTES.map = (P.IRQ_BYTES.map || []).concat(Object.values(T));
+  // and the random numbers' six bytes, which the frame interrupt draws from too ($10C6)
+  P.IRQ_BYTES.map = (P.IRQ_BYTES.map || []).concat(Object.values(T), [S.map_rnd_seeds, S.rnd_2, S.rnd_3, S.rnd_4, S.rnd_5, S.rnd_6]);
   // the operands that keep a register: mux_next's A, X and Y (the interrupted program's), play_sound's
   // X and Y, panel_scroll's A, X and Y, reinforce's Y
   P.IGNORE.map = [0x1255, 0x1257, 0x1259, 0x3FB0, 0x3FB2, 0x20EA, 0x20EC, 0x20EE, 0x344E];
   const cp = function* (a) { yield { cp: a, cycles: P.take() }; };
   // a polling loop on a timer the interrupt counts down: its first read is the stretch's, later
   // turns read what the interrupts the lockstep runs at each yield leave
-  P.mapWaitZero = function* (a, cost = 7) { for (let v = P.irqByte(a); v; v = M[a]) { P.spend(cost); yield; } };
+  P.mapWaitZero = function* (a, cost = 7) { for (let v = P.pollFirst(a); v; v = M[a]) { P.spend(cost); yield; } };
   // a generator that must not wait, run to its end (a march from a territory to itself)
   P.now = function (g) { const r = g.next(); if (!r.done) throw new Error('P.now: the routine waited'); return r.value; };
   const sound = a => P.map_play_sound({ a });
@@ -174,14 +175,17 @@ G.map = function (P) {
   };
   P.GEN.add('map_map_restore');
   // map_rnd ($0F1F), the title's generator on the map's bytes
-  P.map_map_rnd = function () {
-    let s = 1 + M[S.rnd_2] + M[S.rnd_5];
-    s = (s & 255) + M[S.rnd_6] + (s > 255 ? 1 : 0);
-    const a = s & 255;
-    M[S.map_rnd_seeds] = a;
-    M[S.rnd_6] = M[S.rnd_5]; M[S.rnd_5] = M[S.rnd_4]; M[S.rnd_4] = M[S.rnd_3]; M[S.rnd_3] = M[S.rnd_2]; M[S.rnd_2] = a;
+  // every byte read as often and in the order the game reads it: the frame interrupt draws from the
+  // same bytes, and a read in the main program is the value the game's read there
+  P.map_map_rnd = function (r = {}) {
+    const rd = r.irq ? (a => M[a]) : P.irqByte;
+    let s = 1 + rd(S.rnd_2) + rd(S.rnd_5);
+    s = (s & 255) + rd(S.rnd_6) + (s > 255 ? 1 : 0);
+    M[S.map_rnd_seeds] = s & 255;
+    M[S.rnd_6] = rd(S.rnd_5); M[S.rnd_5] = rd(S.rnd_4); M[S.rnd_4] = rd(S.rnd_3); M[S.rnd_3] = rd(S.rnd_2);
+    M[S.rnd_2] = rd(S.map_rnd_seeds);
     P.spend(50);
-    return { a, c: s > 255 ? 1 : 0 };
+    return { a: M[S.rnd_2], c: s > 255 ? 1 : 0 };
   };
   // check_win ($0F51): a side with no army has lost
   P.map_check_win = function* () {
@@ -296,7 +300,7 @@ G.map = function (P) {
       P.mapQuit = true;
       return;
     }
-    P.map_map_rnd();
+    P.map_map_rnd({ irq: true });
     P.spend(20);
   };
   // mux_first ($1182), at line 0: the first seven virtual sprites on hardware sprites 1 to 7

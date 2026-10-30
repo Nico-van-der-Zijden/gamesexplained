@@ -32,8 +32,8 @@ for (const f of lib.states('cp-' + what + '-' + filter)) {
     const r = fromMoment(what, f, { frames: +frames, seed: +seed, onMachine, timing: s => {
       n++;
       fs.writeSync(fd, JSON.stringify({ st: f, part: P.part, from: s.from, to: s.to, wait: s.wait, polls: s.polls,
-        cycles: s.cycles, calls: s.calls }) + '\n');
-    }, port: P });
+        cycles: s.cycles, estimate: s.estimate, calls: s.calls }) + '\n');
+    }, port: P, cost: null });   // the port's own counts, which the fit is made from
     console.log(f, n, 'stretches', r.res.ok ? 'ok' : 'differs at pass ' + r.res.passes);
   } catch (e) { console.log(f, 'threw', e.message.slice(0, 200)); }
 }

@@ -10,7 +10,7 @@ G.end = function (P) {
   for (const n of ['end_ending_main', 'end_victory_screen', 'end_defeat_screen', 'end_ending_wait', 'end_ending_irq_on']) P.GEN.add(n);
   const TIMER = S.ending_timer, STEPS = S.ending_steps, DONE = S.message_done, FADE = S.end_music_fade;
   P.PASS.end = 0x815D;
-  P.CPS.end = [0x815D];
+  P.CPS.end = [0x815D, 0x8183];
   P.IRQS.end = { 0x8380: 'end_ending_irq_text', 0x83CF: 'end_ending_irq_picture' };
   P.IRQ_BYTES.end = [TIMER, STEPS, DONE];
   const cp = function* (a) { yield { cp: a, cycles: P.take() }; };
@@ -110,13 +110,13 @@ G.end = function (P) {
       const s = (P.irqByte(STEPS) - 1) & 255;
       M[STEPS] = s;
       P.spend(14);
-      if (!s) return P.end_ending_exit();
+      if (!s) { yield* cp(0x8183); return P.end_ending_exit(); }
     }
     M[FADE] = 0x14; M[STEPS] = 3; M[TIMER] = 0x64;
     P.spend(18);
     // a polling loop: its first read is the stretch's, later turns read what the interrupts the
     // lockstep runs at each yield leave
-    let v = P.irqByte(TIMER);
+    let v = P.pollFirst(TIMER);
     for (;;) {
       while (v) { P.spend(7); yield; v = M[TIMER]; }
       M[TIMER] = 0x64;
@@ -125,6 +125,7 @@ G.end = function (P) {
       if (!M[STEPS]) break;
       v = M[TIMER];
     }
+    yield* cp(0x8183);
     return P.end_ending_exit();
   };
   // ending_exit ($8183)

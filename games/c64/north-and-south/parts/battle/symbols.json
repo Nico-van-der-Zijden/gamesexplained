@@ -8198,7 +8198,7 @@
   {
    "address": 40914,
    "type": "line",
-   "text": "arrival first ($867E): the cavalry stands and has arrived; then each rider: a riderless horse (counter 8 or more) runs on, 3 pixel pairs a step, the Union's right and the Confederacy's left; a standing rider, when the cavalry walks, charges or falls back: by its direction ($8678) up 3 lines (above $10, $870E), right, down 3 (to $AA, $8710) or left, 2 pixel pairs a step walking and 3 charging, with the edges checked ($A462, $A495); then a turn's step ($A0AA)."
+   "text": "arrival first ($867E): the cavalry stands and has arrived; then each rider: a riderless horse (counter 8 or more) runs on, 3 pixel pairs a step, the Union's right and the Confederacy's left; a standing rider, when the cavalry walks, charges or falls back: by its direction ($8678) up 3 lines (above $10, $870E), right, down 3 (to $AA, $8710) or left, 2 pixel pairs a step walking and 3 charging, with the edges checked ($A462, $A495); then a turn's step ($A0AA). An edge that starts the turn leaves X where $A3FD's count does, and the loop goes on from there: the Confederacy's step moves the Union's riders 2 and 1, the Union's bytes below the riders' tables (Discoveries)."
   },
   {
    "address": 41130,
@@ -8278,7 +8278,7 @@
   {
    "address": 41981,
    "type": "line",
-   "text": "unless turning already: counts the side's riders drawn on the field ($8512 or $8515, into the operand at $A42A); none: the two pla end the caller's pass; one: returns, as one rider has no formation; two or three: the turn starts ($867A = 1, step 0) and the two pla end the caller's pass."
+   "text": "unless turning already: counts the side's riders drawn on the field ($8512 or $8515, into the operand at $A42A) with X, which it leaves two below the side's first rider (3 or 0); none: the two pla end the caller's pass; one: returns, as one rider has no formation; two or three: the turn starts ($867A = 1, step 0) and the two pla end the caller's pass."
   },
   {
    "address": 42026,
@@ -8348,7 +8348,7 @@
   {
    "address": 42451,
    "type": "line",
-   "text": "each ball marked landed: the crater or the bridge's damage ($A6A5); then every object with a picture and standing, of either side, within 9 pixel pairs across and 8 lines up or down of where it landed, falls (counter 1); a cannon hit noted."
+   "text": "each ball marked landed (slots 6 and 7; the bullets are marked too when they run out, at $A5CC, and their marks are never cleared): the crater or the bridge's damage ($A6A5); then every object with a picture and standing, of either side, within 9 pixel pairs across and 8 lines up or down of where it landed, falls (counter 1); a cannon hit noted. After a hit on the bridge X comes back as $FF, and the loop goes on from slot 0, landing every spent bullet as a ball (Discoveries)."
   },
   {
    "address": 42540,
@@ -8363,7 +8363,7 @@
   {
    "address": 42661,
    "type": "line",
-   "text": "sound 15; on the canyon and the river, a ball that lands in the hazard (its row's column and the 5 after it) leaves no mark; one on a bridge row between columns 16 and 22 hits the bridge ($8262): the first two hits draw its damage (pictures 7 and 8 on the canyon at place 11, 10 and 11 on the river at place 12), the third breaks it (9 or 12, and $A794), later ones nothing; anywhere else, and anywhere on the open field, a crater (picture 14, or 13 on the canyon) at place 10, set to the cell below where it landed ($822E, $8248)."
+   "text": "sound 15; on the canyon and the river, a ball that lands in the hazard (its row's column and the 5 after it) leaves no mark; one on a bridge row between columns 16 and 22 hits the bridge ($8262): the first two hits draw its damage (pictures 7 and 8 on the canyon at place 11, 10 and 11 on the river at place 12), the third breaks it (9 or 12, and $A794), later ones nothing; anywhere else, and anywhere on the open field, a crater (picture 14, or 13 on the canyon) at place 10, set to the cell below where it landed ($822E, $8248). The bridge's damage is drawn through bat_picture with the picture in X, which comes back as $FF in place of the shot's number."
   },
   {
    "address": 42898,

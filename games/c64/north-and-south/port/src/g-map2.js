@@ -438,11 +438,9 @@ G.map2 = function (P) {
   const shipWait = function* (n) {
     M[S.ship_wait] = n;
     P.spend(6);
-    let first = true;
     for (;;) {
-      P.map_ship_wave(first);
-      const v = first ? P.irqByte(S.ship_wait) : M[S.ship_wait];
-      first = false;
+      P.map_ship_wave();
+      const v = P.pollFirst(S.ship_wait);
       P.spend(8);
       if (!v) return;
       yield;
@@ -458,8 +456,8 @@ G.map2 = function (P) {
     } while (M[S.ship_y] !== 0x85);
     return {};
   };
-  P.map_ship_wave = function (first) {
-    const v = first === true ? P.irqByte(S.ship_wave_wait) : M[S.ship_wave_wait];
+  P.map_ship_wave = function () {
+    const v = P.pollFirst(S.ship_wave_wait);
     P.spend(6);
     if (v) return {};
     M[S.ship_wave_wait] = 6;
@@ -585,13 +583,12 @@ G.map2 = function (P) {
       P.map_territory_blink();
       P.map_flash_list();
       P.spend(10);
-      let first = true, pressed = false;
+      let pressed = false;
       for (;;) {
-        const f = first ? P.irqByte(S.map_joy_fire) : M[S.map_joy_fire];
+        const f = P.pollFirst(S.map_joy_fire);
         P.spend(8);
         if (!f) { pressed = true; break; }
-        const w = first ? P.irqByte(S.flash_wait) : M[S.flash_wait];
-        first = false;
+        const w = P.pollFirst(S.flash_wait);
         P.spend(8);
         if (!w) break;
         yield;
@@ -600,7 +597,7 @@ G.map2 = function (P) {
     }
     P.spend(6);
     if (M[S.flash_phase]) { P.map_territory_blink(); P.map_flash_list(); }
-    for (let f = P.irqByte(S.map_joy_fire); !f; f = M[S.map_joy_fire]) { P.spend(8); yield; }
+    for (let f = P.pollFirst(S.map_joy_fire); !f; f = M[S.map_joy_fire]) { P.spend(8); yield; }
     M[S.choosing] = (M[S.choosing] - 1) & 255;
     return {};
   };
@@ -761,7 +758,7 @@ G.map2 = function (P) {
     M[S.indians_delay] = ((r.a & 0x0F) + 0x0A + r.c) & 255;
     M[S.indians_wait] = 0x0A;
     P.spend(30);
-    for (let v = P.irqByte(S.indians_go); !v; v = M[S.indians_go]) { P.spend(7); yield; }
+    for (let v = P.pollFirst(S.indians_go); !v; v = M[S.indians_go]) { P.spend(7); yield; }
     yield* P.map_indian_ride_in();
     P.map_indian_to_army();
     yield* P.map_indian_ride_away();
@@ -841,10 +838,8 @@ G.map2 = function (P) {
   };
   // the rider moves a step each time the interrupt counts indians_wait down, six to a frame step
   const waitChange = function* (a) {
-    let first = true;
     for (;;) {
-      const v = first ? P.irqByte(S.indians_wait) : M[S.indians_wait];
-      first = false;
+      const v = P.pollFirst(S.indians_wait);
       P.spend(8);
       if (v !== a) return;
       yield;

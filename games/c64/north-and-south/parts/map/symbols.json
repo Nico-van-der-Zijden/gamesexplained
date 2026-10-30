@@ -10877,7 +10877,7 @@
   {
    "address": 9167,
    "type": "line",
-   "text": "stores A (8, the window); the $14 just loaded into X goes unused, so save_window takes picture 8."
+   "text": "stores A (8, the window), with X the $14 just loaded, which save_bytes ($3330) reads: the bytes under a flag place are saved at picture 20's size, a flag place's."
   },
   {
    "address": 9178,
@@ -10902,7 +10902,7 @@
   {
    "address": 9250,
    "type": "line",
-   "text": "stores A (8, the window); the $15 just loaded into X goes unused, so save_window takes picture 8."
+   "text": "stores A (8, the window), with X the $15 just loaded, which save_bytes ($3330) reads: the bytes under an army place are saved at picture 21's size."
   },
   {
    "address": 9261,
@@ -11527,7 +11527,7 @@
   {
    "address": 16100,
    "type": "line",
-   "text": "A, a score, moved at random by up to half of a number below it at difficulty 1, an eighth at difficulty 0."
+   "text": "A, a score, moved at random by up to half of a number below it at difficulty 1, an eighth at difficulty 0; when the amount rounds down to 0 the routine returns that 0 in A (the beq at $3EFF), and the score becomes 0: every score from 4 to 8 at difficulty 0, about half of the higher ones (Discoveries)."
   },
   {
    "address": 16152,

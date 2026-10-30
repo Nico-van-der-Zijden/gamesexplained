@@ -62,7 +62,7 @@ G.tit = function (P) {
     P.spend(12);
     // a polling loop: its first read is the stretch's, later turns read what the interrupts the
     // lockstep runs at each yield leave (kit/c64/lockstep.js, standInGen)
-    for (let v = P.irqByte(DELAY); v !== 0; v = M[DELAY]) { P.spend(7); yield; }
+    for (let v = P.pollFirst(DELAY); v !== 0; v = M[DELAY]) { P.spend(7); yield; }
     return P.tit_b_80B9();
   };
   // $80B9: the raster interrupt off and acknowledged, the screen blanked

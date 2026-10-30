@@ -89,12 +89,12 @@
       "note": "45 of the 2,195 hand-written comments and 20 of the 751 written from templates, over the eight parts, checked by a fresh agent against the code; all six wrong were hand-written and wrong in a detail"
     },
     {
-      "step": "port",
-      "fixed": 0,
+      "step": "play",
+      "fixed": 9,
       "models": [
         "claude-opus-5-5"
       ],
-      "note": "the pages' tests against the game's code: the music and effects players, the battlefield unpacker, and the year map against VICE's picture of 1861, which matches but for the cursor; no comment needed correcting"
+      "note": "every routine of the eight parts ported and checked against the game's code, alone on the kit's 6502 and each part in lockstep; nine comments the port showed wrong or short corrected (port/corrections.md)"
     }
   ],
   "kit_version": "0.0.268",

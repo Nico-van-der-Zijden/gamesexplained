@@ -18,7 +18,7 @@ G.trn = function (P) {
   const STEP_AT = [0x806F, 0x8072, 0x8075, 0x8078, 0x807B, 0x807E, 0x8081, 0x8084, 0x8087, 0x808A, 0x808D, 0x8090, 0x8093,
     0x8096, 0x8099];
   P.PASS.trn = 0x803C;
-  P.CPS.trn = [0x8024, 0x803C, ...STEP_AT, 0x80AE, 0x8050, 0x8057, 0x805E];
+  P.CPS.trn = [0x8024, 0x803C, ...STEP_AT, 0x80AE, 0x8050, 0x8057, 0x805E, 0x9347];
   P.IRQS.trn = { 0x830D: 'trn_train_irq_bottom', 0x8347: 'trn_train_irq_bar', 0x83AA: 'trn_train_irq_top', 0x8445: 'trn_train_irq_sky',
     0x8475: 'trn_train_irq_far', 0x849B: 'trn_train_irq_train', 0x84DE: 'trn_train_mux' };
   const range = (a, n) => Array.from({ length: n }, (_, i) => a + i);
@@ -85,6 +85,13 @@ G.trn = function (P) {
       }
     } catch (e) {
       if (!(e instanceof TrainExit)) throw e;
+      yield* cp(0x9347);
+      const io = P.io;
+      io.vicWrite(0x1A, 0x64);    // A is still the timer's $64: the raster interrupt off, bit 2 on
+      io.vicWrite(0x19, io.vicRead(0x19));
+      io.vicWrite(0x11, io.vicRead(0x11) & 0xEF);
+      P.spend(30);
+
     }
     return {};
   };
@@ -739,11 +746,7 @@ G.trn = function (P) {
     M[S.end_count] = (M[S.end_count] - 1) & 255;
     P.spend(14);
     if (!M[S.end_count]) {
-      const io = P.io;
-      io.vicWrite(0x1A, 0x64);    // A is still the timer's $64: the raster interrupt off, bit 2 on
-      io.vicWrite(0x19, io.vicRead(0x19));
-      io.vicWrite(0x11, io.vicRead(0x11) & 0xEF);
-      P.spend(30);
+      // the rest at the main loop, after a checkpoint at the sei ($9347): the screen blanked there
       throw new TrainExit();
     }
     if (M[S.end_count] === 3) M[0xF134] = 0x13;    // mapsfx_fade, the map's

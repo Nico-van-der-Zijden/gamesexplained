@@ -44,7 +44,7 @@ function pilot(rt, cc) {
     inMenu = part === 'men';
     if (fire > 0) { fire--; rt.input.joy = fire ? 0x1F & ~0x10 : 0x1F; return; }
     if (part === 'tit' && f % 300 === 299) { fire = 4; rt.input.joy = 0x0F; return; }
-    if (part === 'res' && rt.P.waitingFire) { fire = 4; rt.input.joy = 0x0F; return; }
+    if (rt.P.waitingFire) { fire = 4; rt.input.joy = 0x0F; return; }
     if (part === 'men' && step < clicks.length) {
       if (wait > 0) { wait--; rt.input.joy = 0x1F; return; }
       const [x, y] = clicks[step], cx = M[0x101E] | M[0x101F] << 8, cy = M[0x1020];
