@@ -17,7 +17,9 @@
 //   for a delay loop, { cp: a } at a checkpoint), and is called with yield*. P.GEN names them;
 //   each group adds its own. P.CPS[part] lists the places its routines yield { cp }, P.PASS[part]
 //   the start of its main loop's pass, P.IRQS[part] its interrupt handlers by address and
-//   P.IRQ_BYTES[part] the bytes they write that its main program reads.
+//   P.IRQ_BYTES[part] the bytes they write that its main program reads, P.IGNORE[part] the
+//   bytes where a routine keeps a register the port's caller does not hand it (the operands a
+//   routine saves A, X or Y in), which the tests leave out (kit/skills/core/70-minisite/play.md).
 // - P.spend(n) counts the cycles a routine takes, as the page's clock charges them; P.take()
 //   hands the count over at a yield and clears it.
 // - A byte an interrupt writes and the main program reads is read through P.irqByte(a): on the
@@ -28,7 +30,7 @@
 'use strict';
 const G = root.NSGroups = root.NSGroups || {};
 function makePort(M, io, opts = {}) {
-  const P = { M, GEN: new Set(), CPS: {}, IRQS: {}, IRQ_BYTES: {}, PASS: {}, cost: 0 };
+  const P = { M, GEN: new Set(), CPS: {}, IRQS: {}, IRQ_BYTES: {}, PASS: {}, IGNORE: {}, cost: 0 };
   // every part's checkpoints together (each part's are P.CPS[part])
   Object.defineProperty(P, 'CHECKPOINTS', { get: () => [].concat(...Object.values(P.CPS)) });
   // P.io is one object for good, so that a routine may keep it (const io = P.io): giving P a new

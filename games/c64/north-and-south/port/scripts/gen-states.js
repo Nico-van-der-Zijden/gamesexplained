@@ -4,6 +4,8 @@
 // every so often in each part with the files whose bytes are still where they loaded.
 //   node port/scripts/gen-states.js <name> <frames> [cc|human] [years] [every] [seed]
 // cc: the computer on both sides; human: the Union a person, the stick moved at random.
+// NS_TRAIN=1 loads the train (file 6) wherever the map asks for the fort (file 5), for the train's
+// moments, which a war seldom reaches; NS_ONLY=<part> saves that part's moments alone.
 const lib = require('../test/lib.js');
 const { drive } = require('../test/drive.js');
 const [name, frames, mode, years, every, seed] = [process.argv[2] || 'g1', +(process.argv[3] || 40000), process.argv[4] || 'cc',
@@ -28,7 +30,7 @@ const D = drive(m, { cc: mode === 'cc', years, input: (D, mm) => {
   mm.joy = held;
 } });
 const lh = m.hooks[0x0A63];
-m.hooks[0x0A63] = c => { const r = lh(c); put(lib.fileAsked(c.m)); return r; };
+m.hooks[0x0A63] = c => { if (process.env.NS_TRAIN && c.m[0x08CB] === 5) c.m[0x08CB] = 6; const r = lh(c); put(lib.fileAsked(c.m)); return r; };
 const loaded = () => {
   const names = new Set(), whole = [];
   for (let a = 0; a < 65536; a++) if (owner[a]) names.add(owner[a]);
@@ -41,7 +43,7 @@ for (let f = 0; f < frames; f++) {
   D.step();
   // the short parts (the title, the menu, the ending) every 25 frames
   const short = D.part === 'tit' || D.part === 'men' || D.part === 'end';
-  if (f % (short ? 25 : every) === (short ? 24 : every - 1) && !m.depth) {
+  if (f % (short ? 25 : every) === (short ? 24 : every - 1) && !m.depth && (!process.env.NS_ONLY || D.part === process.env.NS_ONLY)) {
     const p = D.part, k = counts[p] = (counts[p] || 0) + 1;
     lib.save(`${p}-${name}-${String(k).padStart(3, '0')}`, m, { part: p, loaded: loaded(), frame: m.frames, mode });
     saved++;

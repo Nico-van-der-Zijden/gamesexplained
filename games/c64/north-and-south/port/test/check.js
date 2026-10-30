@@ -83,12 +83,14 @@ function check(o) {
   const skip = new Uint8Array(65536);
   skip.fill(1, 0, 2); skip.fill(1, 0x100, 0x200);
   for (const x of o.ignore || []) if (Array.isArray(x)) skip.fill(1, x[0], x[1] + 1); else skip[x] = 1;
+  const P0 = makePort({ groups: o.groups });
+  for (const a of [].concat(...Object.values(P0.IGNORE))) skip[a] = 1;
   const rnd = makeRnd(o.seed || 1);
   const all = moments(part, o.states);
   if (!all.length) throw new Error('check: no moments of ' + part);
   const cases = o.cases || 1000;
   let fails = 0, shown = 0;
-  const P = makePort({ groups: o.groups });
+  const P = P0;
   if (o.onPort) o.onPort(P);
   for (let n = 0; n < cases; n++) {
     const st = all[rnd(all.length)];
@@ -104,11 +106,14 @@ function check(o) {
     const cpu = new CPU(MA, { port: { dir: 0x2F, data: port }, io: { read: a => ioA.read(a), write: (a, v) => ioA.write(a, v) } });
     const set = { d: 0 };
     for (const k of ['a', 'x', 'y', 'c', 'z', 'n', 'v']) if (regs[k] !== undefined) set[k] = regs[k];
-    cpu.setRegs(set); cpu.sp = 0xFF;
+    // a caller's return under the routine's, so that one which ends its caller's pass (pla pla, rts)
+    // comes back to the sentinel too, the stack two bytes higher; the port's says so with up
+    MA[0x1FF] = 0xFF; MA[0x1FE] = 0xFE;
+    cpu.setRegs(set);
     const hooks = Object.assign({}, lib.HOOKS, o.hooks || {});
     let gerr = null;
-    try { cpu.call(entry, {}, { maxSteps: o.maxSteps || 5e6, hooks }); } catch (e) { gerr = e; }
-    const rA = { a: cpu.a, x: cpu.x, y: cpu.y, c: cpu.c, z: cpu.z, n: cpu.n, v: cpu.v };
+    try { cpu.call(entry, { sp: 0xFD }, { maxSteps: o.maxSteps || 5e6, hooks }); } catch (e) { gerr = e; }
+    const rA = { up: cpu.sp === 0xFF, a: cpu.a, x: cpu.x, y: cpu.y, c: cpu.c, z: cpu.z, n: cpu.n, v: cpu.v };
     // the port
     const MB = M0.slice(), cB = cloneChips(c0, game), logB = logWrites(cB);
     P.M.set(MB);
@@ -132,6 +137,7 @@ function check(o) {
       for (let i = 0; i < 0x400; i++) if ((cA.colour[i] & 15) !== (cB.colour[i] & 15)) { diffs.push('colour ' + hex(0xD800 + i) + ' game ' + cA.colour[i] + ' port ' + cB.colour[i]); break; }
       const la = logA.map(w => hex(w[0]) + '=' + hex2(w[1])).join(' '), lb = logB.map(w => hex(w[0]) + '=' + hex2(w[1])).join(' ');
       if (la !== lb) diffs.push('chip writes: game [' + la.slice(0, 300) + '] port [' + lb.slice(0, 300) + ']');
+      if (rA.up !== !!rB.up) diffs.push("the caller's pass: game " + (rA.up ? 'ended' : 'went on') + ', port ' + (rB.up ? 'ended' : 'went on'));
       for (const k of outs) if (rB[k] === undefined || ((+rB[k]) & 0xFF) !== (rA[k] & 0xFF)) diffs.push('register ' + k + ': game ' + rA[k] + ' port ' + rB[k]);
     }
     if (diffs.length) {
