@@ -379,7 +379,10 @@ G.bat = function (P) {
     return { x: 0xFF };
   };
   // unpack ($8E1E): from ($10) to ($12), one byte more than the count at $14/$15
-  P.bat_unpack = function () {
+  // the flags are shifted out with rol: the carry goes in at the bottom, 0 at the start (the asl of the
+  // field type before each call) and then 1, what the count's subtraction leaves while it goes on
+  P.bat_unpack = function (r = {}) {
+    let carry = r.c ? 1 : 0;
     const ptr = a => M[a] | M[a + 1] << 8;
     const inc = a => { const v = ptr(a) + 1; M[a] = v & 255; M[a + 1] = (v >> 8) & 255; };
     const add = (a, d) => { const v = ptr(a) + d; M[a] = v & 255; M[a + 1] = (v >> 8) & 255; };
@@ -390,7 +393,8 @@ G.bat = function (P) {
       P.spend(20);
       for (let x = 8; x > 0; x--) {
         const c = M[0x16] & 0x80;
-        M[0x16] = (M[0x16] << 1) & 255;
+        M[0x16] = ((M[0x16] << 1) | carry) & 255;
+        carry = 1;
         if (c) {
           const v = P.rd(ptr(0x10));
           P.wr(ptr(0x12), v); M[0x18] = v;
@@ -530,7 +534,8 @@ G.bat = function (P) {
     set(0x4000, 0x1F40, S.field_bitmaps);
     set(0x6000, 0x03E8, S.field_screens);
     if (f) { set(0xD800, 0x03E8, S.field_colours); return {}; }
-    for (let i = 0; i < 0x400; i++) P.io.colourWrite(i, 5);
+    // through the processor port as the game's sta does: colour RAM with the chips in, RAM under them otherwise
+    for (let i = 0; i < 0x400; i++) P.wr(0xD800 + i, 5);
     P.spend(256 * 22);
     return { a: 5, x: 0 };
   };
@@ -693,7 +698,8 @@ G.bat = function (P) {
         }
       }
     }
-    return { y: 0 };
+    // the sty at the start wrote Y into the operand of the closing ldy ($93A1): Y comes back as it came in
+    return { y: M[0x93A2] };
   };
   P.bat_draw_mask = function () {
     M[0x22] = M[0x20]; M[0x23] = M[0x21];
@@ -721,7 +727,7 @@ G.bat = function (P) {
   P.bat_cover_sprite = function (r) {
     const io = P.io, ox = M[S.obj_x + r.y];
     P.spend(10);
-    if (ox >= 0x94) return P.bat_cover_off();
+    if (ox >= 0x94) return Object.assign({ y: r.y }, P.bat_cover_off());
     M[S.cover_x] = (ox << 1) & 255; M[S.cover_x_hi] = ox >> 7;
     const v = M[S.cover_x] + 0x18;
     io.vicWrite(0x00, v & 255);

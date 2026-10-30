@@ -316,7 +316,7 @@ G.trn2 = function (P) {
     return {};
   };
   // the floors under the feet, the cell's character in the operand of the list's cmp
-  const onList = (base, y, op, list) => { const c = M[(base + y) & 0xFFFF]; M[op] = c; P.spend(20); return inList(list, c); };
+  const onList = (base, y, op, list) => { const c = IR((base + y) & 0xFFFF); M[op] = c; P.spend(20); return inList(list, c); };
   P.trn_attacker_ground = function () {
     P.spend(6);
     if (!M[S.fighter_floor]) { M[S.on_ground] = 1; return {}; }
@@ -376,7 +376,7 @@ G.trn2 = function (P) {
     M[S.fighter_state + y] = 4; M[S.fighter_frame + y] = 0; M[S.fighter_moving + y] = 0; M[S.tfighter_timer + y] = 5;
     M[S.knife_on + y] = 1;
     M[S.knives_left + y] = (M[S.knives_left + y] - 1) & 255;
-    M[S.knife_x + y] = M[S.fighter_x + y]; M[S.knife_x_hi + y] = M[S.fighter_x_hi + y];
+    M[S.knife_x + y] = IR(S.fighter_x + y); M[S.knife_x_hi + y] = IR(S.fighter_x_hi + y);
     M[S.knife_y + y] = (M[S.fighter_y + y] + 0x10) & 255;
     M[S.knife_dir + y] = M[S.fighter_facing + y];
     P.spend(90);
@@ -477,7 +477,7 @@ G.trn2 = function (P) {
       const dy = M[S.fighter_y + y] + 0x28 - M[S.knife_y + x];
       P.spend(20);
       if (((M[S.fighter_y + y] + 0x28) & 255) < M[S.knife_y + x] || ((dy) & 255) >= 0x28) continue;
-      const d = diff(M[S.fighter_x + y] | M[S.fighter_x_hi + y] << 8, M[S.knife_x + x] | M[S.knife_x_hi + x] << 8);
+      const d = diff(IR(S.fighter_x + y) | IR(S.fighter_x_hi + y) << 8, M[S.knife_x + x] | M[S.knife_x_hi + x] << 8);
       M[0x983F] = d & 255;
       P.spend(20);
       const hi = (d >> 8) & 255;
@@ -505,7 +505,8 @@ G.trn2 = function (P) {
     P.spend(6);
     if (IR(S.tguard_timer)) return {};
     if (P.trn_guard_ground().up) return {};
-    const gx = IR(S.a_8D76);
+    // the high byte first: with it set the game never reads the low one
+    let gx = -1;
     P.spend(14);
     const walkLeft = () => {
       if (M[S.a_8D80]) return {};
@@ -513,7 +514,7 @@ G.trn2 = function (P) {
       P.spend(30);
       return {};
     };
-    if (IR(S.a_8D78) || gx >= 0x7F) {
+    if (IR(S.a_8D78) || (gx = IR(S.a_8D76)) >= 0x7F) {
       // a stroke ends the pass here (its two pla, reached by jmp, take guard_fight's return)
       if (P.trn_guard_fight().up) return {};
       if (M[S.a_8D6C] === 3) return {};
@@ -718,7 +719,7 @@ G.trn2 = function (P) {
   P.trn_attacker_climb = function () {
     P.spend(6);
     if (M[S.to_ladder]) {
-      const c = M[(ptr(0x10) + M[S.ladder_col]) & 0xFFFF];
+      const c = IR((ptr(0x10) + M[S.ladder_col]) & 0xFFFF);
       P.spend(14);
       if (c !== M[S.ladder_char]) return {};
       M[S.to_ladder] = 0; M[S.fighter_moving] = 0; M[S.climb_dir] = 1;
@@ -747,7 +748,7 @@ G.trn2 = function (P) {
   // ladder_up ($9433): a ladder in the first two cells of the row at the attacker's head
   P.trn_ladder_up = function () {
     let y = 1;
-    for (; y >= 0; y--) { P.spend(14); if (M[(ptr(0x10) + y) & 0xFFFF] === 0x12) break; }
+    for (; y >= 0; y--) { P.spend(14); if (IR((ptr(0x10) + y) & 0xFFFF) === 0x12) break; }
     if (y < 0) return { y: 0xFF };
     M[S.fighter_moving] = 0; M[S.to_ladder] = 0; M[S.fighter_state] = 5; M[S.fighter_frame] = 0; M[S.on_ground] = 0;
     M[S.climb_dir] = 1;
@@ -834,7 +835,7 @@ G.trn2 = function (P) {
     M[S.attacker_bounced] = 0; M[S.on_ground] = 0;
     P.spend(10);
     if (M[S.to_ladder]) {
-      const c = M[(ptr(0x10) + M[S.ladder_col]) & 0xFFFF];
+      const c = IR((ptr(0x10) + M[S.ladder_col]) & 0xFFFF);
       P.spend(14);
       if (c !== M[S.ladder_char]) return {};
       M[S.to_ladder] = 0; M[S.fighter_moving] = 0; M[S.climb_dir] = 1;

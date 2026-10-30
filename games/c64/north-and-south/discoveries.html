@@ -130,6 +130,24 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <p>While the menu runs, memory at <code>$F2CC</code> holds code of the Cyberload loader with a line of text in it telling hackers, in rude words, to go away and die. It is left over from the loads before the menu; the menu's files load around it and the map's file over it, so it is in none of the listings. Nothing prints it. It is there for whoever disassembles the loader to copy the game.</p>
 </section>
 
+<section data-part="menu">
+  <p class="fig">11 · The second war</p>
+  <h2 class="t">Bug: a second war started without a click on the calendar never loads</h2>
+  <p>The menu's calendar sets the war's first year (<code>start_year</code>, <code>$0389</code>) and keeps a copy of it (<code>year_kept</code>, <code>$037E</code>), which only the click writes (<code>$1146</code>). The first time the menu runs it clears the settings from <code>$0380</code> to <code>$0389</code>, but not the copy, which still holds <code>$93</code>, a byte of the boot's tape header left in the cassette buffer. Each later time it puts the copy back as the year (<code>$18BB</code>). So after a war in which nobody clicked the calendar, the next war's year is <code>$93</code>, and the script asks for the year's file by the year plus 9: file 156. No tape has a file 156, and the loader waits for its header for ever. The port found it: the game's code and the port's both stopped there, on the kit's machine, in a war the computer played against itself to its end.</p>
+</section>
+
+<section data-part="map">
+  <p class="fig">12 · The computer's choices</p>
+  <h2 class="t">Bug: the computer's random nudge wipes out its own plans</h2>
+  <p>Below its hardest difficulty the computer adds some chance to its plans: each territory's score of 4 or more moves up or down by a random amount, up to an eighth of a number below it at difficulty 0 and up to half at difficulty 1 (<code>noise</code>, <code>$3EE4</code>). When the amount rounds down to nothing, the routine returns at once (the <code>beq</code> at <code>$3EFF</code>) with the amount, 0, in place of the score, and the score becomes 0. Run on the game's own code 2,000 times for each score, it zeroes every score from 4 to 8 at difficulty 0, and about half of the higher ones; at difficulty 1 about one score in eight, and half of the 4s. The computer's easier levels are less a plan with some chance in it than a plan with most of its targets crossed out.</p>
+</section>
+
+<section data-part="battle">
+  <p class="fig">13 · The bridge</p>
+  <h2 class="t">Bug: a ball on the bridge brings down every spent bullet</h2>
+  <p>Every shot whose time runs out is marked as landed (<code>shot_landed</code>, set at <code>$A5CC</code>), the six bullets as well as the two cannon balls. <code>balls_land</code> (<code>$A5D3</code>) looks only at the balls, slots 6 and 7, so the bullets' marks are never cleared. A ball that lands on a bridge has its damage drawn through <code>bat_picture</code>, which leaves X, the shot's number, at <code>$FF</code> (<code>ball_crater</code>, <code>$A6A5</code>). Back in <code>balls_land</code> the next shot is X + 1, slot 0, and the loop goes through the bullets: each spent bullet lands as a cannon ball would, with a crater where it ran out and every soldier, rider or cannon there knocked over. Run on the game's own code from 228 moments of battles on the canyon and the river, a soldier where a bullet had run out fell every time a ball hit the bridge, and never when the ball landed elsewhere.</p>
+</section>
+
 </main>
 <footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>
 <script>

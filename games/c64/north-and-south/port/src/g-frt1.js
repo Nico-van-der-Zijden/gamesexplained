@@ -22,7 +22,10 @@ G.frt = function (P) {
     0x8485: 'frt_fort_mux' };
   const range = (a, n) => Array.from({ length: n }, (_, i) => a + i);
   P.IRQ_BYTES.frt = [...range(S.flag_timer, 13), S.fine_scroll, S.view_col, S.scroll_moved, S.scroll_steps, S.tiles_drawn,
-    0x04, 0x05, ...range(S.fighter_x, 4), S.a_8BF2, S.dog_x, S.dog_x_hi, S.barrel_x, S.barrel_x_hi];
+    0x04, 0x05, ...range(S.fighter_x, 4), S.a_8BF2, S.dog_x, S.dog_x_hi, S.barrel_x, S.barrel_x_hi,
+    // the fort's rows on the screen, which the bottom interrupt redraws as the view scrolls and the
+    // fighters' floors, walls and ladders are read from
+    ...range(0x4878, 18 * 40)];
   P.IGNORE.frt = [0x84F3, 0x84F5, 0x84F7, 0x9EAA, 0x9EAC];
   const IRSET = new Set(P.IRQ_BYTES.frt);
   const IR = a => (IRSET.has(a) ? P.irqByte(a) : M[a]);

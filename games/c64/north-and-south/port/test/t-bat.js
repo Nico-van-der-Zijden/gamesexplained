@@ -36,6 +36,8 @@ const war = (M, c, rnd) => {
   M[S.field_type] = rnd(4) ? M[S.field_type] : rnd(3);
   const t = M[S.field_type] === 1 ? S.canyon_hazard : S.river_hazard;
   M[0x50] = t & 255; M[0x51] = t >> 8;
+  // the routines of a side are entered with Y the side, as their callers have it
+  return { y: M[S.side] };
 };
 const T = (name, setup = war, o = {}) => Object.assign({ name, setup, outs: [] }, o);
 const list = [
@@ -50,7 +52,9 @@ const list = [
   T('bat_bat_random', war, { outs: ['a'] }), T('bat_field_unpack', war, { cases: 30 }), T('bat_field_scenery', war, { cases: 100 }),
   T('bat_unit_icons'),
   T('bat_draw_objects', (M, c, rnd) => { war(M, c, rnd); for (let x = 0; x < 20; x++) if (rnd(3) === 0) M[S.obj_redraw + x] = 1; }, { cases: 400 }),
-  T('bat_place_object', (M, c, rnd) => ({ y: rnd(20) }), { outs: ['y'] }),
+  // an object off the field's right edge leaves through its caller's code (pla, pla, jmp $91F7),
+  // which draw_objects' check holds
+  T('bat_place_object', (M, c, rnd) => { const y = rnd(20); return M[S.obj_x + y] >= 0x94 ? { skip: true } : { y }; }, { outs: ['y'] }),
   T('bat_build_mask', (M, c, rnd) => { M[S.draw_pic_no] = rnd(78); return { y: rnd(20) }; }, { outs: ['y'] }),
   T('bat_cover_sprite', (M, c, rnd) => ({ y: rnd(20) }), { outs: ['y'] }), T('bat_cover_off'),
   T('bat_pick_lane', (M, c, rnd) => { war(M, c, rnd); for (let x = 0; x < 8; x++) M[S.lanes_taken + x] = rnd(4) ? 0 : 1;
@@ -62,24 +66,26 @@ const list = [
   T('bat_battle_orders', war, { cases: 1500 }), T('bat_cavalry_orders'), T('bat_cannon_orders'),
   T('bat_computer_orders', war, { cases: 1500 }), T('bat_computer_fallback'), T('bat_computer_infantry'), T('bat_computer_cavalry'),
   T('bat_computer_cannon'), T('bat_own_soldier', war, { outs: ['x'] }), T('bat_own_rider', war, { outs: ['x'] }),
-  T('bat_nearest_by_y', (M, c, rnd) => { war(M, c, rnd); return { a: rnd(256) }; }, { outs: ['a', 'x'] }),
-  T('bat_nearest_by_x', (M, c, rnd) => { war(M, c, rnd); return { a: rnd(256) }; }, { outs: ['a', 'x'] }),
+  T('bat_nearest_by_y', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { a: rnd(256) }); }, { outs: ['a', 'x'] }),
+  T('bat_nearest_by_x', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { a: rnd(256) }); }, { outs: ['a', 'x'] }),
   T('bat_cannon_anim'), T('bat_infantry_tick', war, { cases: 400 }), T('bat_cannon_move_tick'), T('bat_cannon_move'),
   T('bat_infantry_move'), T('bat_infantry_reform'), T('bat_cavalry_move'), T('bat_cavalry_turn'), T('bat_hazards'),
-  T('bat_bullet_hits', (M, c, rnd) => { war(M, c, rnd); return { x: rnd(8) }; }, { outs: ['x'] }),
+  T('bat_bullet_hits', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { x: rnd(8) }); }, { outs: ['x'] }),
   T('bat_cannon_left_field'), T('bat_cannon_arrived'), T('bat_infantry_arrived'), T('bat_infantry_gone'),
   T('bat_infantry_reform_start', war, { outs: ['a'] }), T('bat_infantry_fire'),
   T('bat_bullet_start', (M, c, rnd) => ({ x: rnd(12), y: rnd(6) }), { outs: ['x', 'y'] }),
-  T('bat_infantry_go', (M, c, rnd) => { war(M, c, rnd); return { a: rnd(4) }; }),
-  T('bat_cavalry_charge'), T('bat_cavalry_rear'), T('bat_cavalry_go', (M, c, rnd) => { war(M, c, rnd); return { a: rnd(4) }; }),
-  T('bat_cannon_aim'), T('bat_cannon_go', (M, c, rnd) => { war(M, c, rnd); return { a: rnd(4) }; }),
+  T('bat_infantry_go', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { a: rnd(4) }); }),
+  T('bat_cavalry_charge'), T('bat_cavalry_rear'), T('bat_cavalry_go', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { a: rnd(4) }); }),
+  T('bat_cannon_aim'), T('bat_cannon_go', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { a: rnd(4) }); }),
   T('bat_shots_to_sprites'), T('bat_cannon_fire'), T('bat_shots_move'), T('bat_balls_land', war, { outs: ['x'] }),
   T('bat_cannon_hit_gauge', (M, c, rnd) => { war(M, c, rnd); M[S.cannon_hit] = rnd(2); M[S.cannon_hit_slot] = pick(rnd, [0x12, 0x13, rnd(20)]); }),
-  T('bat_charge_hits', (M, c, rnd) => { war(M, c, rnd); return { x: rnd(6) }; }, { outs: ['x', 'y'] }),
+  T('bat_charge_hits', (M, c, rnd) => { return Object.assign(war(M, c, rnd), { x: rnd(6) }); }, { outs: ['x', 'y'] }),
   T('bat_ball_crater', (M, c, rnd) => { war(M, c, rnd); M[S.bridge_hits] = rnd(5); return { x: 6 + rnd(2) }; }, { outs: ['x'] }),
   T('bat_bridge_break'), T('bat_fall_back'), T('bat_bring_reserves'),
   T('bat_fallback_done'), T('bat_wiped_out'),
 ];
 const filter = process.argv[2] || '', cases = +(process.argv[3] || 800);
-const f = checks(list.filter(o => o.name.includes(filter)), { part: 'bat', cases });
+// the processor port as the main loop has it: a few moments were saved inside a drawing routine with
+// the chips switched out ($01 = $34), which those routines set for themselves
+const f = checks(list.filter(o => o.name.includes(filter)), { part: 'bat', cases, port: 0x35 });
 process.exitCode = f ? 1 : 0;

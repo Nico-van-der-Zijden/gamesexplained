@@ -23,7 +23,10 @@ G.trn = function (P) {
     0x8475: 'trn_train_irq_far', 0x849B: 'trn_train_irq_train', 0x84DE: 'trn_train_mux' };
   const range = (a, n) => Array.from({ length: n }, (_, i) => a + i);
   P.IRQ_BYTES.trn = [...range(S.wheel_timer, 13), S.fine_scroll, S.view_col, S.scroll_moved, S.scroll_steps, S.tiles_drawn,
-    S.rear_columns, S.scroll_speed, 0x04, 0x05, ...range(S.fighter_x, 4)];
+    S.rear_columns, S.scroll_speed, 0x04, 0x05, ...range(S.fighter_x, 4),
+    // the screen's rows 4 to 20, which the bottom interrupt redraws as the view and the scenery move
+    // (the bands, the train, the track) and the fighters' roofs, ground and ladders are read from
+    ...range(0x48A0, 17 * 40)];
   P.IGNORE.trn = [0x854C, 0x854E, 0x8550, 0x9C22, 0x9C24];
   const IRSET = new Set(P.IRQ_BYTES.trn);
   const IR = a => (IRSET.has(a) ? P.irqByte(a) : M[a]);

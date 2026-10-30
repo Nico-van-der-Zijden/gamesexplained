@@ -47,17 +47,26 @@ function makePort(o = {}) {
   return P;
 }
 
+// the page's pacing, when the fit has written it
+function COST() {
+  const p = path.join(lib.GAME, 'port/cost.json');
+  if (!fs.existsSync(p)) return null;
+  const c = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return Object.keys(c.seg).length ? c : null;
+}
+
 function run(o) {
   const P = o.port || makePort(o);
   let m, loaded, from;
   if (o.state) {
     const s = lib.readState(o.state);
     m = lib.restore(s.machine);
-    loaded = s.loaded; from = s.from;
+    loaded = s.loaded; from = o.from !== undefined ? o.from : s.from;
   } else {
     m = lib.machine(o.vsf, { part: o.vsfPart });
     loaded = o.loaded; from = o.from;
   }
+  if (o.onMachine) o.onMachine(m);
   // which part's file is where
   const owner = new Array(65536).fill('res');
   const F = lib.files();
@@ -103,13 +112,41 @@ function run(o) {
   })());
   // each step of a main loop that takes long (the map's, a month) is a pass of its own, so that
   // memory is compared at each: P.STEP_PASSES[part], the steps' checkpoints
+  // With o.cost (port/cost.json, the page's pacing) the port's time between two checkpoints, in a
+  // part the fit has stretches of, is what the page charges for it (page/runtime.js): the stretch's
+  // own cycles and each routine called outside an interrupt at its own; the port's own count
+  // otherwise. The lockstep reads the raster at the port's time, so the exits that read $D011
+  // agree with the game only with the game's costs.
+  const model = o.cost === undefined ? COST() : o.cost;
+  const priced = model ? new Set(Object.keys(model.seg).map(k => k.split(':')[0])) : new Set();
+  let owed = 0, inIrq = 0, lastCp = null;
+  if (model) {
+    const GENERATOR = Object.getPrototypeOf(function* () {}).constructor;
+    for (const name of Object.keys(model.call)) {
+      const fn = P[name];
+      if (typeof fn !== 'function') continue;
+      const c = model.call[name];
+      P[name] = fn instanceof GENERATOR ? function* (...a) { if (!inIrq) owed += c; return yield* fn.apply(this, a); }
+        : function (...a) { if (!inIrq) owed += c; return fn.apply(this, a); };
+    }
+    for (const part of Object.keys(P.IRQS)) for (const name of new Set(Object.values(P.IRQS[part]))) {
+      const fn = P[name];
+      P[name] = function (...a) { inIrq++; try { return fn.apply(this, a); } finally { inIrq--; } };
+    }
+  }
   const program = P2 => (function* (g) {
     let v;
     for (;;) {
       const r = g.next(v);
       if (r.done) return r.value;
-      const y = r.value;
+      let y = r.value;
       if (y && y.cp !== undefined && ls && P.STEP_PASSES && (P.STEP_PASSES[P.part] || []).includes(y.cp)) { ls.passAt = y.cp; resync(); }
+      if (y && y.cp !== undefined && priced.has(P.part)) {
+        const seg = lastCp === null ? y.cycles : Math.max(10, (model.seg[P.part + ':' + lastCp.toString(16) + '>' + y.cp.toString(16)] || 0) + owed);
+        y = Object.assign({}, y, { cycles: Math.round(seg) });
+      }
+      if (y && y.cp !== undefined) { lastCp = y.cp; owed = 0; }
+      else if (y && y.wait !== undefined) { lastCp = null; owed = 0; }
       v = yield y;
     }
   })(program0(P2));
@@ -150,6 +187,41 @@ function fireAt(frames, hold = 4) {
   };
 }
 
+
+// A run from a moment stopped at a checkpoint (port/scripts/gen-cps.js), the autopilot playing (a
+// person's moment with the stick moved at random): the map's on through the months, an arcade
+// part's to its return to the map, the ending's to the script's prompt. o.frames, o.seed, and
+// o.timing and o.onMachine as run's.
+const MAIN = { bat: 'bat_battle_main', frt: 'frt_fort_main', trn: 'trn_train_main', end: 'end_ending_main' };
+function fromMoment(what, f, o = {}) {
+  const { pilot } = require('./drive.js');
+  const s = lib.readState(f);
+  let A = null, rs = o.seed || 1;
+  const rnd = k => { rs ^= rs << 13; rs >>>= 0; rs ^= rs >>> 17; rs ^= rs << 5; rs >>>= 0; return Math.floor(rs / 4294967296 * k); };
+  let held = 0x1F, hold = 0;
+  const DIRS = what === 'map' ? [0, 1, 2, 4, 8, 16, 0] : [0, 1, 2, 4, 8, 16, 0, 5, 9];
+  const human = (A2, m) => { if (hold-- <= 0) { held = 0x1F & ~DIRS[rnd(DIRS.length)]; hold = 2 + rnd(30); } m.joy = held; };
+  const input = (fr, m, l) => { if (!A) A = pilot(m, { cc: s.mode === 'cc', part: () => l.P.part, input: s.mode === 'cc' ? null : human }); A.update(); };
+  const common = { state: f, part: what, frames: o.frames || 3000, input, timing: o.timing, onMachine: o.onMachine, port: o.port };
+  if (what === 'map') {
+    return run(Object.assign(common, { from: 'clear3',
+      resume: function* (P) { P.enter('map'); yield* P.map_map_main({ from: s.from }); P.enter('res'); } }));
+  }
+  const arcade = what !== 'end';
+  return run(Object.assign(common, { from: arcade ? null : 'clear4',
+    resume: function* (P) {
+      P.enter(what);
+      yield* P[MAIN[what]]({ resume: s.from });
+      if (!arcade) { P.enter('res'); return; }
+      // the last pass where the part has returned to the map
+      P.enter('map');
+      P.lsPass(P.ARCADE_BACK[what]);
+      yield* P.map_arcade_back(what);
+      P.lsStop();
+      yield { cycles: 0 };
+    } }));
+}
+
 if (require.main === module) {
   const what = process.argv[2] || 'title';
   let r;
@@ -161,64 +233,16 @@ if (require.main === module) {
       resume: function* (P) { P.enter('tit'); yield* P.tit_title_main(); P.enter('res'); }, from: 'after_title',
       frames: +(process.argv[3] || 3000),
       input: (f, m, l) => { if (!A) A = pilot(m, { cc: true, years: +(process.argv[4] || 4), part: () => l.P.part }); A.update(); } });
-  } else if (what === 'map') {
-    // from the map's moments stopped at a checkpoint (port/scripts/gen-cps.js), the autopilot playing
-    const { pilot } = require('./drive.js');
-    const filter = process.argv[3] || '', frames = +(process.argv[4] || 2000), seed = +(process.argv[5] || 1);
-    let ok = 0, n = 0;
-    for (const f of lib.states('cp-map-' + filter)) {
-      n++;
-      const s = lib.readState(f);
-      let A = null, rs = seed;
-      const rnd = k => { rs ^= rs << 13; rs >>>= 0; rs ^= rs >>> 17; rs ^= rs << 5; rs >>>= 0; return Math.floor(rs / 4294967296 * k); };
-      let held = 0x1F, hold = 0;
-      const human = (A2, m) => { if (hold-- <= 0) { held = 0x1F & ~[0, 1, 2, 4, 8, 16, 0][rnd(7)]; hold = 2 + rnd(30); } m.joy = held; };
-      let out;
-      try {
-        out = run({ state: f, part: 'map', frames,
-          resume: function* (P) { P.enter('map'); yield* P.map_map_main({ from: s.from }); P.enter('res'); }, from: 'clear3',
-          input: (fr, m, l) => { if (!A) A = pilot(m, { cc: s.mode === 'cc', part: () => l.P.part, input: s.mode === 'cc' ? null : human }); A.update(); } });
-      } catch (e) { console.log(f + ': ' + (e.stack || e.message).split('\n').slice(0, 5).join('\n  ')); continue; }
-      console.log(f + ' (from $' + s.from.toString(16) + '): ' + describe(out.res).split('\n').join('\n  '));
-      if (out.res.ok) ok++;
-      if (process.argv[6] === 'stop' && !out.res.ok) break;
-    }
-    console.log(ok + '/' + n + ' moments in step');
-    process.exitCode = ok === n ? 0 : 1;
-    return;
-  } else if (['bat', 'frt', 'trn', 'end'].includes(what)) {
-    // from a part's moments stopped at a checkpoint (port/scripts/gen-cps.js), the autopilot playing,
-    // to the part's return: for an arcade part the map where it goes back to, for the ending the
-    // script's prompt
-    const { pilot } = require('./drive.js');
-    const MAIN = { bat: 'bat_battle_main', frt: 'frt_fort_main', trn: 'trn_train_main', end: 'end_ending_main' };
-    const filter = process.argv[3] || '', frames = +(process.argv[4] || 3000), seed = +(process.argv[5] || 1);
+  } else if (['map', 'bat', 'frt', 'trn', 'end'].includes(what)) {
+    //   node lockstep.js <map|bat|frt|trn|end> [moment filter] [frames] [seed] [stop]
+    const filter = process.argv[3] || '', frames = +(process.argv[4] || (what === 'map' ? 2000 : 3000)), seed = +(process.argv[5] || 1);
     let ok = 0, n = 0;
     for (const f of lib.states('cp-' + what + '-' + filter)) {
       n++;
-      const s = lib.readState(f);
-      let A = null, rs = seed;
-      const rnd = k => { rs ^= rs << 13; rs >>>= 0; rs ^= rs >>> 17; rs ^= rs << 5; rs >>>= 0; return Math.floor(rs / 4294967296 * k); };
-      let held = 0x1F, hold = 0;
-      const human = (A2, m) => { if (hold-- <= 0) { held = 0x1F & ~[0, 1, 2, 4, 8, 16, 0, 5, 9][rnd(9)]; hold = 2 + rnd(30); } m.joy = held; };
-      const arcade = what !== 'end';
       let out;
-      try {
-        out = run({ state: f, part: what, frames,
-          resume: function* (P) {
-            P.enter(what);
-            yield* P[MAIN[what]]({ resume: s.from });
-            if (!arcade) { P.enter('res'); return; }
-            // the last pass where the part has returned to the map
-            P.enter('map');
-            P.lsPass(P.ARCADE_BACK[what]);
-            yield* P.map_arcade_back(what);
-            P.lsStop();
-            yield { cycles: 0 };
-          }, from: arcade ? null : 'clear4',
-          input: (fr, m, l) => { if (!A) A = pilot(m, { cc: s.mode === 'cc', part: () => l.P.part, input: s.mode === 'cc' ? null : human }); A.update(); } });
-      } catch (e) { console.log(f + ': ' + (e.stack || e.message).split('\n').slice(0, 5).join('\n  ')); continue; }
-      console.log(f + ' (from $' + s.from.toString(16) + '): ' + describe(out.res).split('\n').join('\n  '));
+      try { out = fromMoment(what, f, { frames, seed }); }
+      catch (e) { console.log(f + ': ' + (e.stack || e.message).split('\n').slice(0, 5).join('\n  ')); continue; }
+      console.log(f + ' (from $' + lib.readState(f).from.toString(16) + '): ' + describe(out.res).split('\n').join('\n  '));
       if (out.res.ok) ok++;
       if (process.argv[6] === 'stop' && !out.res.ok) break;
     }
@@ -232,4 +256,4 @@ if (require.main === module) {
   process.exitCode = r.res.ok ? 0 : 1;
 }
 
-module.exports = { run, loadPort, makePort, portIO, fireAt, FILE_PART };
+module.exports = { run, fromMoment, loadPort, makePort, portIO, fireAt, FILE_PART };
