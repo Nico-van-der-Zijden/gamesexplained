@@ -64,19 +64,20 @@ function run(o) {
   const put = name => { const f = F[name]; for (let i = 0; i < f.bytes.length; i++) owner[(f.addr + i) & 0xFFFF] = FILE_PART[name]; };
   for (const n of loaded || []) put(n);
   let ls = null;
+  // the checkpoints of the parts whose code is in memory: the game stops only at those (each
+  // part's stops are installed on the machine for good, and pass the game on while their part's
+  // code is not there)
   const cpsOf = () => {
     const set = new Set(P.CPS.res);
     for (const p of PARTS) if (p !== 'res') for (const a of P.CPS[p] || []) if (owner[a] === p) set.add(a);
     return set;
   };
-  const passOf = part => (P.PASS[part] !== undefined && !(P[{ tit: 'tit_title_main', men: 'men_menu_main', map: 'map_map_main', end: 'end_ending_main' }[part]] || {}).standIn
-    ? P.PASS[part] : ENTRY_CP[part]);
-  let passAt = o.passAt || passOf(o.part || 'tit') || 0x080B;
-  const resync = () => {
-    if (!ls) return;
-    ls.cps = cpsOf();
-    ls.cps.add(ls.passAt);
-  };
+  const MAINS = { tit: 'tit_title_main', men: 'men_menu_main', map: 'map_map_main', end: 'end_ending_main',
+    bat: 'bat_battle_main', frt: 'frt_fort_main', trn: 'trn_train_main' };
+  const passOf = part => (P.PASS[part] !== undefined && P[MAINS[part]] && !P[MAINS[part]].standIn ? P.PASS[part] : ENTRY_CP[part]);
+  const passAt = o.passAt || passOf(o.part || 'tit') || 0x080B;
+  let active = new Set();
+  const resync = () => { if (ls) { active = cpsOf(); active.add(ls.passAt); } };
   P.onLoad = (name) => { put(name); resync(); };
   P.onEnter = (part) => {
     const a = passOf(part);
@@ -99,10 +100,19 @@ function run(o) {
     yield* P2.res_script({ from: from || null });
   })());
   const irqBytes = [].concat(...Object.values(P.IRQ_BYTES));
-  ls = new Lockstep({ machine: m, port: P, program, checkpoints: [...cpsOf(), passAt], passAt,
+  const all = new Set([...[].concat(...Object.values(P.CPS)), ...Object.values(ENTRY_CP), ...Object.values(P.PASS), passAt]);
+  ls = new Lockstep({ machine: m, port: P, program, checkpoints: [...all], passAt,
     irqs, irqBytes, hooks: lib.HOOKS, chips: ['colour', 'vic', 'sid'], ignore: o.ignore || [], maxFrames: o.maxFrames || 3000,
     timing: o.timing });
-  ls.cps = cpsOf(); ls.cps.add(passAt);
+  resync();
+  const attach = ls.attach.bind(ls);
+  ls.attach = function () {
+    attach();
+    for (const a of all) {
+      const h = m.hooks[a], prev = ls.saved.hooks[a];
+      m.hooks[a] = c => (active.has(a) ? h(c) : prev ? prev(c) : false);
+    }
+  };
   P.M[0] = m.cpu.pdir; P.M[1] = m.cpu.pdata;
   const res = ls.run({ passes: o.passes || 1e9, stopOnDiff: o.stopOnDiff !== false,
     onPass: o.onPass, onFrame: (f, mm, l) => {
@@ -124,7 +134,15 @@ function fireAt(frames, hold = 4) {
 if (require.main === module) {
   const what = process.argv[2] || 'title';
   let r;
-  if (what === 'title') r = run({ vsf: 'entry.vsf', vsfPart: 'title', loaded: ['TP'], part: 'tit', resume: function* (P) { P.enter('tit'); yield* P.tit_title_main(); P.enter('res'); },
+  if (what === 'game') {
+    // the whole game from the title's hand-over, the autopilot playing the computer against itself
+    const { pilot } = require('./drive.js');
+    let A = null;
+    r = run({ vsf: 'entry.vsf', vsfPart: 'title', loaded: ['TP'], part: 'tit',
+      resume: function* (P) { P.enter('tit'); yield* P.tit_title_main(); P.enter('res'); }, from: 'after_title',
+      frames: +(process.argv[3] || 3000),
+      input: (f, m, l) => { if (!A) A = pilot(m, { cc: true, years: +(process.argv[4] || 4), part: () => l.P.part }); A.update(); } });
+  } else if (what === 'title') r = run({ vsf: 'entry.vsf', vsfPart: 'title', loaded: ['TP'], part: 'tit', resume: function* (P) { P.enter('tit'); yield* P.tit_title_main(); P.enter('res'); },
     from: 'after_title', frames: +(process.argv[3] || 1500), input: fireAt([700]) });
   console.log(describe(r.res));
   console.log('frames', r.m.frames, 'passes', r.res.passes, 'stand-ins used', [...r.P.standIns].length);

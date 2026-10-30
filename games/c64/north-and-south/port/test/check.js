@@ -21,10 +21,16 @@ const { PortChips } = require(path.join(lib.REPO, 'kit/c64/lockstep.js'));
 const { makePort, portIO } = require('./lockstep.js');
 const PARTS = { res: 'resident', tit: 'title', men: 'menu', map: 'map', bat: 'battle', frt: 'fort', trn: 'train', end: 'ending' };
 
+// the files a part's code is in: a moment counts for the part only when they are all in memory
+// (one saved between GO and the map's start has the map's files in the menu's place)
+const NEEDS = { res: [], tit: ['TP'], men: ['OC', 'OM'], map: ['M1', 'M2', 'M3'], bat: ['BS'], frt: ['S1'], trn: ['S2'], end: ['CS'] };
 const STATES = {};
 function moments(part, filter) {
   if (!STATES[part]) {
-    STATES[part] = lib.states(part + '-').map(f => {
+    STATES[part] = lib.states(part + '-').filter(f => {
+      const s = lib.readState(f);
+      return NEEDS[part].every(n => (s.loaded || []).includes(n));
+    }).map(f => {
       const s = lib.readState(f);
       return { name: f, ram: new Uint8Array(Buffer.from(s.machine.ram, 'base64')), colour: new Uint8Array(Buffer.from(s.machine.colour, 'base64')), s: s.machine, loaded: s.loaded };
     });
