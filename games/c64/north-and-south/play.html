@@ -102,7 +102,16 @@ section table{margin:6px 0 18px}
 <section id="differences">
   <p class="fig">02 · Differences</p>
   <h2 class="t">What differs from a C64</h2>
-  <!-- differences -->
+  <p class="lede">The game plays as it does on a C64, at the C64's pace. These are the places where the page cannot be the machine, and what it does instead.</p>
+<table>
+  <tr><th>On a C64</th><th>On this page</th></tr>
+  <tr><td>The game came on four tape sides. Each part loaded from tape as it was needed, the map again after every battle, fort and train, and a load took from a few seconds to a minute or more. The screen asked for the tape to be turned over or rewound, and waited for fire.</td><td>A load is instant: the port takes the file the game asks for from the fourteen it carries and puts it where the game's loader would. The prompts to turn the tape still show and still wait for fire, as the game's script has them. A load never fails, so the game's retry after a bad load never runs.</td></tr>
+  <tr><td>The tape's own loader plays the tape through an interrupt of its own and checks each block.</td><td>There is no tape, and no loader's interrupt: the port's load leaves memory as a good load leaves it, the loader's own bytes included.</td></tr>
+  <tr><td>An interrupt can fall between any two instructions of the main program.</td><td>The interrupts run between two of the port's routines, at the clock's time for them. A byte an interrupt changes and the main program reads in the middle of a routine (a timer, the guard's place as the view scrolls, the characters under a fighter's feet) is read after the interrupts due by then have run, so the game's races come out the way the clock says rather than the way the beam would.</td></tr>
+  <tr><td>Each instruction takes its cycles.</td><td>The port executes no instructions. In the map, the battle, the fort, the train and the ending each stretch of the main program and each routine it calls cost what they cost the game, fitted on the game's own timings (01); the title, the menu and the script count their own. Each interrupt takes what the game's handler took.</td></tr>
+  <tr><td>The SID plays the tunes and the effects.</td><td>The game's own sound drivers (the title's and the ending's tunes, the menu's and the map's effects, which the battle, the fort and the train use too) run on the site's 6502 in the port, and the site's model of the SID plays what they write, each frame as the frame is shown.</td></tr>
+  <tr><td>The video chip draws the screen.</td><td>The site's model of the video chip draws each frame from the port's memory, with each change the port makes during the frame applied where the beam meets it.</td></tr>
+</table>
 </section>
 </main>
 <script src="../../lib/c64.js"></script>
@@ -1286,7 +1295,10 @@ G.bat = function (P) {
     return { x: 0xFF };
   };
   // unpack ($8E1E): from ($10) to ($12), one byte more than the count at $14/$15
-  P.bat_unpack = function () {
+  // the flags are shifted out with rol: the carry goes in at the bottom, 0 at the start (the asl of the
+  // field type before each call) and then 1, what the count's subtraction leaves while it goes on
+  P.bat_unpack = function (r = {}) {
+    let carry = r.c ? 1 : 0;
     const ptr = a => M[a] | M[a + 1] << 8;
     const inc = a => { const v = ptr(a) + 1; M[a] = v & 255; M[a + 1] = (v >> 8) & 255; };
     const add = (a, d) => { const v = ptr(a) + d; M[a] = v & 255; M[a + 1] = (v >> 8) & 255; };
@@ -1297,7 +1309,8 @@ G.bat = function (P) {
       P.spend(20);
       for (let x = 8; x > 0; x--) {
         const c = M[0x16] & 0x80;
-        M[0x16] = (M[0x16] << 1) & 255;
+        M[0x16] = ((M[0x16] << 1) | carry) & 255;
+        carry = 1;
         if (c) {
           const v = P.rd(ptr(0x10));
           P.wr(ptr(0x12), v); M[0x18] = v;
@@ -1413,15 +1426,18 @@ G.bat = function (P) {
   // bat_random ($9073): from the main program, its bytes are read as the game's code read them
   // (the frame interrupt steps them too)
   P.bat_bat_random = function (r = {}) {
+    // every byte read as often and in the order the game reads it: the frame interrupt draws from the
+    // same bytes, and a read in the main program is the value the game's read there
     const rd = r.irq ? (a => M[a]) : IR;
-    const s0 = rd(S.rnd_seed), s3 = rd(S.a_90A3), s4 = rd(S.a_90A4);
-    let s = 1 + s0 + s3;
-    s = (s & 255) + s4 + (s > 255 ? 1 : 0);
+    let s = 1 + rd(S.rnd_seed) + rd(S.a_90A3);
+    s = (s & 255) + rd(S.a_90A4) + (s > 255 ? 1 : 0);
     const a = s & 255;
     M[S.rnd_sum] = a;
-    M[S.a_90A4] = s3; M[S.a_90A3] = rd(S.a_90A2); M[S.a_90A2] = rd(S.a_90A1); M[S.a_90A1] = s0; M[S.rnd_seed] = a;
+    M[S.a_90A4] = rd(S.a_90A3); M[S.a_90A3] = rd(S.a_90A2); M[S.a_90A2] = rd(S.a_90A1); M[S.a_90A1] = rd(S.rnd_seed);
+    M[S.rnd_seed] = rd(S.rnd_sum);
+    const out = M[S.rnd_seed];
     P.spend(56);
-    return { a, c: s > 255 ? 1 : 0 };
+    return { a: out, c: s > 255 ? 1 : 0 };
   };
   // field_unpack ($90A5): one of the three fields at random
   P.bat_field_unpack = function () {
@@ -1437,7 +1453,8 @@ G.bat = function (P) {
     set(0x4000, 0x1F40, S.field_bitmaps);
     set(0x6000, 0x03E8, S.field_screens);
     if (f) { set(0xD800, 0x03E8, S.field_colours); return {}; }
-    for (let i = 0; i < 0x400; i++) P.io.colourWrite(i, 5);
+    // through the processor port as the game's sta does: colour RAM with the chips in, RAM under them otherwise
+    for (let i = 0; i < 0x400; i++) P.wr(0xD800 + i, 5);
     P.spend(256 * 22);
     return { a: 5, x: 0 };
   };
@@ -1600,7 +1617,8 @@ G.bat = function (P) {
         }
       }
     }
-    return { y: 0 };
+    // the sty at the start wrote Y into the operand of the closing ldy ($93A1): Y comes back as it came in
+    return { y: M[0x93A2] };
   };
   P.bat_draw_mask = function () {
     M[0x22] = M[0x20]; M[0x23] = M[0x21];
@@ -1628,7 +1646,7 @@ G.bat = function (P) {
   P.bat_cover_sprite = function (r) {
     const io = P.io, ox = M[S.obj_x + r.y];
     P.spend(10);
-    if (ox >= 0x94) return P.bat_cover_off();
+    if (ox >= 0x94) return Object.assign({ y: r.y }, P.bat_cover_off());
     M[S.cover_x] = (ox << 1) & 255; M[S.cover_x_hi] = ox >> 7;
     const v = M[S.cover_x] + 0x18;
     io.vicWrite(0x00, v & 255);
@@ -2332,6 +2350,8 @@ G.bat2 = function (P) {
     M[S.inf_formation + y] ^= 1; M[S.inf_reforming + y] = 0;
     return {};
   };
+  // an edge that starts the cavalry turning leaves X where the count of riders left it ($A3FD)
+  const edged = (r, x) => (r.x !== undefined ? r.x : x);
   P.bat_cavalry_move = function () {
     const y = side();
     if (M[S.cav_arrived + y]) { M[S.cav_arrived + y] = 0; M[S.cav_state + y] = 0; M[S.cav_arriving + y] = 0; }
@@ -2345,8 +2365,8 @@ G.bat2 = function (P) {
         const walk = M[S.cav_state + y] === 1;
         if (f) {
           if (f >= 8) {
-            if (y === 0) { M[S.f_8367 + x] = (M[S.f_8367 + x] + 3) & 255; P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }); }
-            else { M[S.f_8367 + x] = (M[S.f_8367 + x] - 3) & 255; P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }); }
+            if (y === 0) { M[S.f_8367 + x] = (M[S.f_8367 + x] + 3) & 255; x = edged(P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }), x); }
+            else { M[S.f_8367 + x] = (M[S.f_8367 + x] - 3) & 255; x = edged(P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }), x); }
           }
         } else if (M[S.cav_fallback + y] || (M[S.cav_state + y] && M[S.cav_state + y] !== 3)) {
           const d = M[S.cav_dir + y];
@@ -2354,12 +2374,12 @@ G.bat2 = function (P) {
             if (!M[S.cav_at_top + y]) { const v = (M[S.f_838F + x] - 3) & 255; M[S.f_838F + x] = v; if (v < 0x10) M[S.cav_at_top + y] = 1; }
           } else if (d === 1) {
             M[S.f_8367 + x] = (M[S.f_8367 + x] + (walk ? 2 : 3)) & 255;
-            P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x });
+            x = edged(P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }), x);
           } else if (d === 2) {
             if (!M[S.cav_at_bottom + y]) { const v = (M[S.f_838F + x] + 3) & 255; M[S.f_838F + x] = v; if (v >= 0xAA) M[S.cav_at_bottom + y] = 1; }
           } else {
             M[S.f_8367 + x] = (M[S.f_8367 + x] - (walk ? 2 : 3)) & 255;
-            P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x });
+            x = edged(P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }), x);
           }
         }
         P.spend(30);
@@ -2560,11 +2580,12 @@ G.bat2 = function (P) {
     const x0 = y === 1 ? 5 : 2;
     for (let k = 0; k < 3; k++) if (!(M[S.f_8512 + x0 - k] & 0x80)) M[0xA42A]++;
     P.spend(40);
-    const n = M[0xA42A];
-    if (n === 0) return { up: true };
-    if (n === 1) return {};
+    // the count leaves X two below where it started, and the riders' loop that called the edge goes on from there
+    const n = M[0xA42A], x = x0 - 2;
+    if (n === 0) return { up: true, x };
+    if (n === 1) return { x };
     M[S.cav_turning + y] = 1; M[S.cav_turn_step + y] = 0;
-    return { up: true };
+    return { up: true, x };
   };
   P.bat_cavalry_charge = function () {
     const y = side();
@@ -2590,7 +2611,7 @@ G.bat2 = function (P) {
     if (P.bat_horse_gone({ x }).up) return {};
     M[S.cav_arriving + y] = 1; M[S.ai_cav_plan + y] = 0;
     P.spend(20);
-    if (M[S.cav_formation + y]) P.bat_cavalry_turn_start();
+    if (M[S.cav_formation + y]) return { x: P.bat_cavalry_turn_start().x };
     return {};
   };
   P.bat_cavalry_right_edge = function (r) {
@@ -2603,7 +2624,7 @@ G.bat2 = function (P) {
     if (P.bat_horse_gone({ x }).up) return {};
     M[S.cav_arriving + y] = 1; M[S.ai_cav_plan + y] = 0;
     P.spend(20);
-    if (M[S.cav_formation + y]) P.bat_cavalry_turn_start();
+    if (M[S.cav_formation + y]) return { x: P.bat_cavalry_turn_start().x };
     return {};
   };
   // horse_gone ($A4CC): up when a riderless horse goes for good (its two pla end the edge check)
@@ -2831,7 +2852,7 @@ G.bat2 = function (P) {
     if (!M[S.battle_done]) return P.bat_fallback_done();
     if (IR(S.end_timer)) return {};
     M[S.end_timer] = 0x64;
-    if (!M[S.mapsfx_fade]) M[S.mapsfx_fade] = 9;
+    if (!M[0xF134]) M[0xF134] = 9;            // mapsfx_fade, the map's sound player's
     M[S.end_steps] = (M[S.end_steps] - 1) & 255;
     P.spend(20);
     if (M[S.end_steps]) return {};
@@ -4475,7 +4496,9 @@ G.frt2 = function (P) {
     P.spend(6);
     if (!M[S.dog_on] || IR(S.dog_move_timer)) return {};
     M[S.dog_move_timer] = 5;
-    add16(S.dog_x, S.dog_x_hi, M[S.dog_dir] & 0x80 ? -10 : 10);
+    // the scroll moves the dog too, from the interrupt: its place read as the game read it
+    const v = (IR(S.dog_x) | IR(S.dog_x_hi) << 8) + (M[S.dog_dir] & 0x80 ? -10 : 10);
+    M[S.dog_x] = v & 255; M[S.dog_x_hi] = (v >> 8) & 255;
     let a = M[S.dog_frame] + 1;
     if (a >= 3) a = 0;
     M[S.dog_frame] = a;

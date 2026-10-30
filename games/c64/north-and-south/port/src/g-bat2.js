@@ -659,6 +659,8 @@ G.bat2 = function (P) {
     M[S.inf_formation + y] ^= 1; M[S.inf_reforming + y] = 0;
     return {};
   };
+  // an edge that starts the cavalry turning leaves X where the count of riders left it ($A3FD)
+  const edged = (r, x) => (r.x !== undefined ? r.x : x);
   P.bat_cavalry_move = function () {
     const y = side();
     if (M[S.cav_arrived + y]) { M[S.cav_arrived + y] = 0; M[S.cav_state + y] = 0; M[S.cav_arriving + y] = 0; }
@@ -672,8 +674,8 @@ G.bat2 = function (P) {
         const walk = M[S.cav_state + y] === 1;
         if (f) {
           if (f >= 8) {
-            if (y === 0) { M[S.f_8367 + x] = (M[S.f_8367 + x] + 3) & 255; P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }); }
-            else { M[S.f_8367 + x] = (M[S.f_8367 + x] - 3) & 255; P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }); }
+            if (y === 0) { M[S.f_8367 + x] = (M[S.f_8367 + x] + 3) & 255; x = edged(P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }), x); }
+            else { M[S.f_8367 + x] = (M[S.f_8367 + x] - 3) & 255; x = edged(P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }), x); }
           }
         } else if (M[S.cav_fallback + y] || (M[S.cav_state + y] && M[S.cav_state + y] !== 3)) {
           const d = M[S.cav_dir + y];
@@ -681,12 +683,12 @@ G.bat2 = function (P) {
             if (!M[S.cav_at_top + y]) { const v = (M[S.f_838F + x] - 3) & 255; M[S.f_838F + x] = v; if (v < 0x10) M[S.cav_at_top + y] = 1; }
           } else if (d === 1) {
             M[S.f_8367 + x] = (M[S.f_8367 + x] + (walk ? 2 : 3)) & 255;
-            P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x });
+            x = edged(P.bat_cavalry_right_edge({ a: M[S.f_8367 + x], x }), x);
           } else if (d === 2) {
             if (!M[S.cav_at_bottom + y]) { const v = (M[S.f_838F + x] + 3) & 255; M[S.f_838F + x] = v; if (v >= 0xAA) M[S.cav_at_bottom + y] = 1; }
           } else {
             M[S.f_8367 + x] = (M[S.f_8367 + x] - (walk ? 2 : 3)) & 255;
-            P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x });
+            x = edged(P.bat_cavalry_left_edge({ a: M[S.f_8367 + x], x }), x);
           }
         }
         P.spend(30);
@@ -887,11 +889,12 @@ G.bat2 = function (P) {
     const x0 = y === 1 ? 5 : 2;
     for (let k = 0; k < 3; k++) if (!(M[S.f_8512 + x0 - k] & 0x80)) M[0xA42A]++;
     P.spend(40);
-    const n = M[0xA42A];
-    if (n === 0) return { up: true };
-    if (n === 1) return {};
+    // the count leaves X two below where it started, and the riders' loop that called the edge goes on from there
+    const n = M[0xA42A], x = x0 - 2;
+    if (n === 0) return { up: true, x };
+    if (n === 1) return { x };
     M[S.cav_turning + y] = 1; M[S.cav_turn_step + y] = 0;
-    return { up: true };
+    return { up: true, x };
   };
   P.bat_cavalry_charge = function () {
     const y = side();
@@ -917,7 +920,7 @@ G.bat2 = function (P) {
     if (P.bat_horse_gone({ x }).up) return {};
     M[S.cav_arriving + y] = 1; M[S.ai_cav_plan + y] = 0;
     P.spend(20);
-    if (M[S.cav_formation + y]) P.bat_cavalry_turn_start();
+    if (M[S.cav_formation + y]) return { x: P.bat_cavalry_turn_start().x };
     return {};
   };
   P.bat_cavalry_right_edge = function (r) {
@@ -930,7 +933,7 @@ G.bat2 = function (P) {
     if (P.bat_horse_gone({ x }).up) return {};
     M[S.cav_arriving + y] = 1; M[S.ai_cav_plan + y] = 0;
     P.spend(20);
-    if (M[S.cav_formation + y]) P.bat_cavalry_turn_start();
+    if (M[S.cav_formation + y]) return { x: P.bat_cavalry_turn_start().x };
     return {};
   };
   // horse_gone ($A4CC): up when a riderless horse goes for good (its two pla end the edge check)
@@ -1158,7 +1161,7 @@ G.bat2 = function (P) {
     if (!M[S.battle_done]) return P.bat_fallback_done();
     if (IR(S.end_timer)) return {};
     M[S.end_timer] = 0x64;
-    if (!M[S.mapsfx_fade]) M[S.mapsfx_fade] = 9;
+    if (!M[0xF134]) M[0xF134] = 9;            // mapsfx_fade, the map's sound player's
     M[S.end_steps] = (M[S.end_steps] - 1) & 255;
     P.spend(20);
     if (M[S.end_steps]) return {};

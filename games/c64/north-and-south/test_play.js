@@ -29,6 +29,16 @@ const FRAMES = +process.argv[2] || 60000;
 
 let fails = 0;
 const fail = (...w) => { fails++; console.log('FAIL', ...w); };
+// every label a part's routines name (S. its own part's, R. the resident's) is one of the part's
+// labels: a name only another part has is undefined there, and M[undefined] writes nowhere
+const PART_OF = { 'g-res': 'res', 'g-tit': 'tit', 'g-men': 'men', 'g-map': 'map', 'g-bat': 'bat', 'g-frt': 'frt', 'g-trn': 'trn', 'g-end': 'end' };
+for (const m of page.matchAll(/^\/\* port\/src\/(g-[a-z]+)\d*\.js \*\/$([\s\S]*?)<\/script>/gm)) {
+  const part = PART_OF[m[1]], S = globalThis.NSSyms[part], R = globalThis.NSSyms.res;
+  if (!S) { fail('port/src/' + m[1] + '*.js: no part of that name'); continue; }
+  for (const n of m[2].matchAll(/\b([SR])\.([A-Za-z_]\w*)/g)) {
+    if ((n[1] === 'S' ? S : R)[n[2]] === undefined) fail('port/src/' + m[1] + ': ' + n[0] + ' is no label of the ' + (n[1] === 'S' ? part : 'res'));
+  }
+}
 const rt = NSPage.create({ data, cost });
 // the prompts wait for fire (res_wait_fire): the autopilot presses it while one waits
 let waiting = false;

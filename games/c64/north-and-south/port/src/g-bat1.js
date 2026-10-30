@@ -510,15 +510,18 @@ G.bat = function (P) {
   // bat_random ($9073): from the main program, its bytes are read as the game's code read them
   // (the frame interrupt steps them too)
   P.bat_bat_random = function (r = {}) {
+    // every byte read as often and in the order the game reads it: the frame interrupt draws from the
+    // same bytes, and a read in the main program is the value the game's read there
     const rd = r.irq ? (a => M[a]) : IR;
-    const s0 = rd(S.rnd_seed), s3 = rd(S.a_90A3), s4 = rd(S.a_90A4);
-    let s = 1 + s0 + s3;
-    s = (s & 255) + s4 + (s > 255 ? 1 : 0);
+    let s = 1 + rd(S.rnd_seed) + rd(S.a_90A3);
+    s = (s & 255) + rd(S.a_90A4) + (s > 255 ? 1 : 0);
     const a = s & 255;
     M[S.rnd_sum] = a;
-    M[S.a_90A4] = s3; M[S.a_90A3] = rd(S.a_90A2); M[S.a_90A2] = rd(S.a_90A1); M[S.a_90A1] = s0; M[S.rnd_seed] = a;
+    M[S.a_90A4] = rd(S.a_90A3); M[S.a_90A3] = rd(S.a_90A2); M[S.a_90A2] = rd(S.a_90A1); M[S.a_90A1] = rd(S.rnd_seed);
+    M[S.rnd_seed] = rd(S.rnd_sum);
+    const out = M[S.rnd_seed];
     P.spend(56);
-    return { a, c: s > 255 ? 1 : 0 };
+    return { a: out, c: s > 255 ? 1 : 0 };
   };
   // field_unpack ($90A5): one of the three fields at random
   P.bat_field_unpack = function () {
