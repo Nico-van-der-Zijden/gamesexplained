@@ -29,7 +29,7 @@
   "tools": {
     "emulator": "own build of github.com/barryw/vice-mcp, release v3.13.2, commit 1e83aab134; driven through kit/c64/vice.py; check-emulator 57 of 57",
     "disassembler": "regenerator2000, live, through kit/c64/r2000.py",
-    "host": "Windows 11 Pro on x86_64, the kit in WSL2 (Ubuntu 26.04.1 LTS)",
+    "host": "Linux 6.18 x86_64 (WSL2) on Windows 11, Ubuntu 26.04.1, Intel Core i7-3770, eight threads, display through WSLg",
     "node": "24.21.0"
   },
   "model": "claude-opus-5-5",

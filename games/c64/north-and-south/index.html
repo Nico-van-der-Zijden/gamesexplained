@@ -70,7 +70,8 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
     <figure><img src="reference/train.png" alt="The train"><figcaption>Stopping the enemy's train.</figcaption></figure>
   </div>
   <p>Each turn a side moves its armies, one territory each. An army that walks onto an enemy army starts a battle. One that walks into an enemy town has to take its fort. Cutting the railway between two enemy towns lets a side stop the enemy's supply train, which carries the gold that buys new armies. The war ends when one side has no army left.</p>
-  <p>The battle, the fort and the train are arcade games, each loaded from tape when it is needed. With the arcade turned off in the menu, chance decides them instead. Every picture on this page apart from these six is drawn from the game's own bytes, from the listings behind the Source code tab.</p>
+  <p>The battle, the fort and the train are arcade games, each loaded from tape when it is needed. With the arcade turned off in the menu, chance decides them instead. Every picture on this page apart from these six is drawn from the game's own bytes, from the listings behind the Source code tab: every byte of the game, with a note on what each one does.</p>
+  <p>Numbers written like <code>$9000</code> are places in the C64's 64 kilobytes of memory, counted in hexadecimal (base 16, with the digits 0 to 9 and A to F). Each one links to that place in the Source code tab. A name beside it, like <code>year_setup</code>, is the name the listing gives the routine or table there.</p>
 </section>
 
 <section data-part="">
@@ -78,8 +79,8 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <h2 class="t">Music: Jeroen Tel's three tunes, played by the game's own player</h2>
   <p class="lede">The title has one tune, and the ending has two: one for the winner's screen and one for the loser's.</p>
   <div class="plate"><div id="ns-music"></div>
-    <p class="cap">The buttons run the game's own music players on the kit's 6502, through the site's model of the SID sound chip, once a frame as the game's raster interrupt calls them: the title's player (<code>$9000</code> starts, <code>$9003</code> plays a frame, title part) and the ending's (<code>$3000</code> and <code>$3003</code>, tune 0 for the victory and 1 for the defeat, ending part). <code>test_music.js</code> checks every write to the chip, frame by frame, against the same code run over each part's whole memory.</p></div>
-  <p>The ending's player is a later build of the title's. It keeps the same variables and adds three things: a glide between notes (pattern byte <code>$FD</code>), an arpeggio base taken from the order list, and a detune from the instrument added to every frequency (<span data-part="ending"><code>$3107</code></span>). The two ending tunes share 22 of their patterns, and the defeat's is played a semitone higher (its transpose is 1).</p>
+    <p class="cap">The buttons run the game's own music players on a simulator of the C64's processor, the 6502, and play what they write through the site's model of the C64's sound chip, the SID. They run once a frame, 50 times a second, as the game's screen interrupt (code the video chip sets off at a line of the screen) calls them: the title's player (<code>$9000</code> starts, <code>$9003</code> plays a frame, title part) and the ending's (<code>$3000</code> and <code>$3003</code>, tune 0 for the victory and 1 for the defeat, ending part). <code>test_music.js</code> checks every write to the chip, frame by frame, against the same code run over each part's whole memory.</p></div>
+  <p>Each of the SID's three voices plays an order list, a list of patterns, and each pattern is a short run of notes. The ending's player is a later build of the title's. It keeps the same variables and adds three things. A glide slides from one note to the next (pattern byte <code>$FD</code>). An arpeggio, a fast run of notes that sounds like a chord, can take its base note from the order list. And a small detune from the instrument is added to every frequency (<span data-part="ending"><code>$3107</code></span>). The two ending tunes share 22 of their patterns, and the defeat's is played a semitone higher (its transpose is 1).</p>
 </section>
 
 <section data-part="map">
@@ -132,6 +133,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <p class="fig">06 · The levels</p>
   <h2 class="t">The levels count one way in the arcade and the other way in strategic mode</h2>
   <p class="lede">Clicking a character's head on the menu steps that side's level: corporal, sergeant, captain (<span data-part="menu"><code>$1193</code></span>, kept in <span data-part="resident"><code>$0380</code></span> and <span data-part="resident"><code>$0381</code></span>). Each part of the game reads the level for itself, and they do not agree on which end is strong.</p>
+  <p>Where the table says "a random number from <code>$7F</code>", the game draws a number from 0 to 255 and the thing happens when it comes out at <code>$7F</code> (127) or more.</p>
   <table class="ns-tab">
     <tr><th>What the level changes</th><th>Corporal (0)</th><th>Sergeant (1)</th><th>Captain (2)</th><th>Code</th></tr>
     <tr><td>a computer side's chance to act in a battle, each pass</td><td class="n">12 in 256</td><td class="n">25 in 256</td><td class="n">always</td><td><span data-part="battle"><code>$9D14</code></span></td></tr>
@@ -150,13 +152,13 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 <section data-part="battle">
   <p class="fig">07 · The battle</p>
   <h2 class="t">Each battle is fought on one of three fields, picked at random</h2>
-  <p class="lede">Each battle is fought on one of three fields picked at random (<code>field_unpack</code>, <code>$90A5</code>): the canyon with a wooden bridge or the river with a stone bridge, 85 chances in 256 each, or the open field, 86 in 256.</p>
+  <p class="lede">A random number from 0 to 255 picks the field (<code>field_unpack</code>, <code>$90A5</code>): the canyon with a wooden bridge or the river with a stone bridge, 85 chances in 256 each, or the open field, 86 in 256.</p>
   <div class="plate">
     <div class="ns-bar"><span id="ns-fields"></span><label><input type="checkbox" id="ns-hz"> Show where soldiers fall in</label></div>
     <canvas id="ns-field" class="ns-cv" width="320" height="200"></canvas>
     <p class="cap">Each field unpacked from the battle file by the page's port of the game's unpacker (<code>unpack</code>, <code>$8E1E</code>): the bitmap from <code>$826E</code>'s pointers, the screen from <code>$8274</code>'s and the colours from <code>$827A</code>'s, or green everywhere on the open field. <code>test_fields.js</code> checks the port against the game's own <code>$90C5</code> on all three. The overlay marks, for each character row, the four columns where an object's position counts as in the river or the canyon (<code>hazards</code>, <code>$A113</code>; the river's table <code>$8752</code>, the canyon's <code>$876C</code>). The houses and trees the game adds at the edges are not drawn here.</p>
   </div>
-  <p>Twenty objects fight: six soldiers, three riders and a cannon for each side. They are cut into the bitmap as black masks, not drawn as sprites, and the background under each is kept and put back before the next draw (<code>save_under</code>, <code>$9247</code>; <code>restore_under</code>, <code>$92BF</code>). Only the shots are sprites. A cannonball that lands on a bridge row three times breaks the bridge, and its rows become river or canyon too (<code>ball_crater</code>, <code>$A6A5</code>; <code>bridge_break</code>, <code>$A794</code>).</p>
+  <p>Twenty objects fight: six soldiers, three riders and a cannon for each side. The field is a bitmap, a picture held in memory that the video chip shows, and the objects are cut into it as black shapes. The background under each is kept and put back before the next draw (<code>save_under</code>, <code>$9247</code>; <code>restore_under</code>, <code>$92BF</code>). Only the shots are sprites, the small pictures the video chip lays over the screen by itself. A cannonball that lands on a bridge row three times breaks the bridge, and its rows become river or canyon too (<code>ball_crater</code>, <code>$A6A5</code>; <code>bridge_break</code>, <code>$A794</code>).</p>
   <p>On the canyon the table's bottom five rows hold <code>$FF</code>, the value the bridge rows have. Nothing falls in there, though the picture shows the canyon running to the bottom edge.</p>
 </section>
 
@@ -165,7 +167,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <h2 class="t">The three kinds of unit</h2>
   <p>A player picks which of the three units the stick moves (RUN/STOP for the Union, F5 for the Confederacy).</p>
   <ul>
-    <li><b>Infantry</b> walk in any direction. In a pair of soldiers the first one standing fires, so a full line of six fires three bullets. A bullet flies 3 pixel pairs a frame for 15 frames and hits an enemy within 8 pixel pairs across and 4 lines up or down (<code>infantry_fire</code>, <code>$A384</code>; <code>bullet_hits</code>, <code>$A18F</code>).</li>
+    <li><b>Infantry</b> walk in any direction. In a pair of soldiers the first one standing fires, so a full line of six fires three bullets. Across the field the game counts in pixel pairs, since its pixels are two wide. A bullet flies 3 pixel pairs a frame for 15 frames and hits an enemy within 8 pixel pairs across and 4 lines up or down (<code>infantry_fire</code>, <code>$A384</code>; <code>bullet_hits</code>, <code>$A18F</code>).</li>
     <li><b>Cavalry</b> charge on fire. A rider who charges off the far edge comes back from his own side (<code>$A462</code>, <code>$A495</code>). Pulling back turns the line of riders into a file over eight steps (<code>cavalry_turn</code>, <code>$A0AA</code>).</li>
     <li><b>Cannon</b> move only up and down. Holding fire raises the range on a gauge, one step every four frames up to 31, and the ball lands where the slider below says (<code>cannon_fire</code>, <code>$A567</code>). Every standing object within 9 pixel pairs and 8 lines of it falls, of either side (<code>balls_land</code>, <code>$A5D3</code>). After nine shots the cannon leaves the field and the next comes on.</li>
   </ul>
@@ -182,7 +184,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <h2 class="t">The train is the fort's engine on a moving floor</h2>
   <p>To take a town, the attacker runs through its fort to the flag at the far end before the clock runs out: about 76 seconds, 3,780 frames (<code>fort_clock</code>, <code>$8945</code>). Guards come one at a time, a dog runs out now and then, and barrels roll in. Fire next to a guard swings the sabre; farther away it throws a knife, four in all (<code>fighter_strike</code>, <code>$957F</code>; <code>fighter_throw</code>, <code>$95D3</code>). A knife passes over a fighter who ducks (<code>knife_hits</code>, <code>$9A63</code>).</p>
   <p>The train's file holds the same code, rebuilt at other addresses: the fighters, their poses, the knives and the guards. It takes away the walls, the dog and the barrels, and adds scenery in three bands that scroll at different speeds, wheels that turn and a driver in the cab. The attacker has 43 seconds (<span data-part="train"><code>train_clock</code>, <code>$8ADE</code></span>) to reach the locomotive. A fighter who climbs down to the ground is left behind as the train pulls away, and is beaten 30 columns later unless he climbs back on (<span data-part="train"><code>left_behind</code>, <code>$8D4D</code></span>).</p>
-  <p>Both are maps of tiles of 2 by 2 characters: the fort nine rows of 400 tiles (<code>fort_map</code>, <code>$2718</code>), the train six rows of 240 (<span data-part="train"><code>train_map</code>, <code>$2610</code></span>). The <a href="levels.html">Maps / levels</a> tab draws both whole.</p>
+  <p>Both are maps of tiles. A tile is 2 by 2 characters, and a character is a block of 8 by 8 pixels drawn from a set of shapes in memory: the fort nine rows of 400 tiles (<code>fort_map</code>, <code>$2718</code>), the train six rows of 240 (<span data-part="train"><code>train_map</code>, <code>$2610</code></span>). The <a href="levels.html">Maps / levels</a> tab draws both whole.</p>
 </section>
 
 <section data-part="map">
@@ -203,7 +205,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 <section data-part="resident">
   <p class="fig">12 · The tapes</p>
   <h2 class="t">Fourteen files on four sides of tape</h2>
-  <p>A short program stays in memory from the boot to the end (<code>script</code>, <code>$0806</code>). It loads every file by number through one routine (<code>load_file</code>, <code>$0803</code>) with the Cyberload fast loader, and asks for the right side first: "REWIND TAPE 1 SIDE 2, HIT FIRE THEN PLAY" (<code>rewind_prompt</code>, <code>$092E</code>).</p>
+  <p>A short program stays in memory from the boot to the end (<code>script</code>, <code>$0806</code>). It loads every file by number through one routine (<code>load_file</code>, <code>$0803</code>) with Cyberload, a fast loader that reads the tape with routines of its own in place of the C64's slow built-in ones, and asks for the right side first: "REWIND TAPE 1 SIDE 2, HIT FIRE THEN PLAY" (<code>rewind_prompt</code>, <code>$092E</code>).</p>
   <table class="ns-tab">
     <tr><th>Tape, side</th><th>Files</th><th>What they are</th></tr>
     <tr><td>1, 1</td><td>TP, OC, OM, T1-T4</td><td>the title; the menu and the sound player; the four start years' texts</td></tr>
