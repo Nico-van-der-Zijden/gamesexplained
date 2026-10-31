@@ -4780,12 +4780,12 @@
   {
    "address": 28864,
    "type": "line",
-   "text": "the flag's two frames ($C3, $C4) and two pictures nothing uses ($C5, $C6, a soldier with a rifle)."
+   "text": "the flag's two frames ($C3, $C4) and two the fort does not show ($C5, $C6): the train's driver, the same 128 bytes as the train file's, since the two files share one set of sprite images."
   },
   {
    "address": 29120,
    "type": "line",
-   "text": "a picture nothing uses ($C7) and the dog's twelve ($C8-$D3): three frames of its front and back half, facing right and facing left."
+   "text": "a picture nothing uses in the fort or the train ($C7, a soldier's head from the front) and the dog's twelve ($C8-$D3): three frames of its front and back half, facing right and facing left."
   },
   {
    "address": 29952,
@@ -4795,7 +4795,7 @@
   {
    "address": 30400,
    "type": "line",
-   "text": "the knife flying right ($DB) and left ($DC), and two longer ones nothing uses ($DD, $DE)."
+   "text": "the knife flying right ($DB) and left ($DC), and two the fort does not show ($DD, $DE): the train's locomotive rods, the same bytes as the train file's."
   },
   {
    "address": 30656,

@@ -37,6 +37,13 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 .ns-shots figure{margin:0}
 .ns-shots img,.ns-cv{width:100%;height:auto;image-rendering:pixelated;display:block;border-radius:4px;background:#000}
 .ns-shots figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px}
+.ns-anim{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:14px 0 0}
+.ns-anim.wide{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.ns-anim figure{margin:0}
+.ns-anim canvas{width:100%;height:auto;image-rendering:pixelated;display:block;border-radius:4px}
+.ns-anim figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px;line-height:1.4}
+.ns-n{font-family:var(--fm);font-size:12px;color:var(--ink-soft)}
+.ns-cv.ns-small{max-width:300px}
 .ns-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
 .ns-bar button{font:500 13px var(--fm);padding:6px 12px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:6px;cursor:pointer}
 .ns-bar button[aria-pressed="true"]{background:var(--chip);color:var(--chip-ink);border-color:var(--chip)}
@@ -109,10 +116,35 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
     <tr><td>one of the side's own armies</td><td>the two join, while each total stays within 18 infantry, 9 cavalry and 3 cannon</td><td><code>join_armies</code>, <code>$2CCF</code></td></tr>
   </table>
   <p>After the moves, an enemy territory with no army and no town that the side's armies surround changes sides (<code>surround</code>, <code>$32CF</code>). Then the side's supply train runs along a railway between two of its towns, through its own territories, and brings one bag of gold for every five territories the side owns or occupies, and one more (<code>count_gold</code>, <code>$3896</code>). Five bags buy a new army of 6 infantry, 3 cavalry and a cannon, placed on the side's railway (<code>new_army</code>, <code>$38D5</code>).</p>
+  <p>Each of these events plays a short scene in the panel at the map's bottom left. The panel is drawn from a table of 20 pictures, each a block of bitmap cells with its colours (<code>draw_picture</code>, <code>$1447</code>; <code>picture_table</code>, <code>$C30F</code>), and a scene draws small pictures over part of a big one, in turn.</p>
+  <div class="plate">
+    <div class="ns-bar" id="ns-panels"></div>
+    <canvas id="ns-panel" class="ns-cv" width="128" height="80" style="max-width:384px"></canvas>
+    <p class="cap" id="ns-panel-cap"></p>
+  </div>
 </section>
 
 <section data-part="map">
-  <p class="fig">05 · The computer</p>
+  <p class="fig">05 · The disasters</p>
+  <h2 class="t">Three disasters the menu turns on, and a Mexican asleep in the corner</h2>
+  <p>The menu turns on three disasters (<span data-part="resident"><code>$0384</code>-<code>$0386</code></span>). Each has its place in the map's main loop, which goes round once a month, and each moves 6 infantry, 3 cavalry and a cannon, taking them from an army or bringing them.</p>
+  <table class="ns-tab">
+    <tr><th>Disaster</th><th>What sets it off</th><th>What happens</th><th>Code</th></tr>
+    <tr><td>The Indians</td><td>an army of either side in territory 3 or 8, in the northwest, at the second month in a row, and every second month while one stays</td><td>ten smoke signals rise at the map's left edge and a figure waits there for a random while; then a rider comes down on the army, which loses 6 infantry, 3 cavalry and a cannon</td><td><code>indians</code>, <code>$2678</code></td></tr>
+    <tr><td>The Mexican, with the Indians</td><td>an army of either side in territory 19, Texas, the same way</td><td>the Mexican asleep at the bottom left wakes, walks out and throws a bomb, and the army loses the same</td><td><code>mexican</code>, <code>$178B</code></td></tr>
+    <tr><td>The storm</td><td>always, once it is on</td><td>a cloud sits over a territory, and the army under it cannot move; twice a month it moves on to a neighbouring territory picked at random</td><td><code>storm_move</code>, <code>$1602</code></td></tr>
+    <tr><td>European reinforcements</td><td>every fourth month</td><td>a ship sails in to territory 18, South Virginia on the east coast, and lands 6 infantry, 3 cavalry and a cannon there when it has an army or an owner</td><td><code>reinforcements</code>, <code>$227A</code></td></tr>
+  </table>
+  <p>The Mexican is a sprite of 17 frames that sleeps in his sombrero while the Indians are on. When he wakes, he gets up, walks up and to the right and throws his bomb at the 17th of his 33 steps, then walks back the same way and lies down again. Only then does the army lose its men. The bomb is not aimed: it flies 72 pixels to the right and a little up, 18 frames from where he stands, which lands it on Texas, the place of territory 19.</p>
+  <div class="plate">
+    <canvas id="ns-mex" class="ns-cv" width="128" height="48" style="max-width:512px"></canvas>
+    <p class="cap" id="ns-mex-cap"></p>
+  </div>
+  <p>The map has other figures of its own, all sprites over the bitmap (<code>$65C0</code>): the supply train on the railway, the soldier who marches an army from territory to territory, the bags of gold, the ship and its sails, the cloud and its lightning, the Indians' smoke, figure and rider, the interception's figures and the waving flag in the panel.</p>
+</section>
+
+<section data-part="map">
+  <p class="fig">06 · The computer</p>
   <h2 class="t">The computer general picks one of five plans each turn</h2>
   <p class="lede">Before it moves, the computer sets a plan number from four questions (<code>ai_plan</code>, <code>$3C98</code>). The plan changes how much each territory is worth to its armies.</p>
   <div class="plate">
@@ -130,7 +162,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 </section>
 
 <section data-part="">
-  <p class="fig">06 · The levels</p>
+  <p class="fig">07 · The levels</p>
   <h2 class="t">The levels count one way in the arcade and the other way in strategic mode</h2>
   <p class="lede">Clicking a character's head on the menu steps that side's level: corporal, sergeant, captain (<span data-part="menu"><code>$1193</code></span>, kept in <span data-part="resident"><code>$0380</code></span> and <span data-part="resident"><code>$0381</code></span>). Each part of the game reads the level for itself, and they do not agree on which end is strong.</p>
   <p>Where the table says "a random number from <code>$7F</code>", the game draws a number from 0 to 255 and the thing happens when it comes out at <code>$7F</code> (127) or more.</p>
@@ -150,7 +182,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 </section>
 
 <section data-part="battle">
-  <p class="fig">07 · The battle</p>
+  <p class="fig">08 · The battle</p>
   <h2 class="t">Each battle is fought on one of three fields, picked at random</h2>
   <p class="lede">A random number from 0 to 255 picks the field (<code>field_unpack</code>, <code>$90A5</code>): the canyon with a wooden bridge or the river with a stone bridge, 85 chances in 256 each, or the open field, 86 in 256.</p>
   <div class="plate">
@@ -163,7 +195,7 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 </section>
 
 <section data-part="battle">
-  <p class="fig">08 · The units</p>
+  <p class="fig">09 · The units</p>
   <h2 class="t">The three kinds of unit</h2>
   <p>A player picks which of the three units the stick moves (RUN/STOP for the Union, F5 for the Confederacy).</p>
   <ul>
@@ -177,18 +209,33 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
     <canvas id="ns-shot" class="ns-cv" width="320" height="40"></canvas>
     <p class="cap">The ball flies (range + 2) × 2 frames at 2 pixel pairs a frame, so it lands (range + 2) × 8 pixels from where it starts: 16 pixels at range 0 and 264 at 31, across a field 320 pixels wide. Held for the full 124 frames, the gauge reaches 31.</p>
   </div>
+  <p>Every unit is one of 78 pictures of 24 by 21 pixels, in the layout of a sprite (<code>shapes</code>, <code>$6400</code>), which the battle draws into the field's bitmap in black. The Confederacy's are the Union's facing the other way. Which picture a unit shows comes from a table for each side and each kind of unit:</p>
+  <div class="plate">
+    <div class="ns-bar"><span id="ns-ukind"></span><span id="ns-uside"></span></div>
+    <div class="ns-anim" id="ns-units"></div>
+    <p class="cap" id="ns-units-cap"></p>
+  </div>
 </section>
 
 <section data-part="fort">
-  <p class="fig">09 · The fort and the train</p>
+  <p class="fig">10 · The fort and the train</p>
   <h2 class="t">The train is the fort's engine on a moving floor</h2>
   <p>To take a town, the attacker runs through its fort to the flag at the far end before the clock runs out: about 76 seconds, 3,780 frames (<code>fort_clock</code>, <code>$8945</code>). Guards come one at a time, a dog runs out now and then, and barrels roll in. Fire next to a guard swings the sabre; farther away it throws a knife, four in all (<code>fighter_strike</code>, <code>$957F</code>; <code>fighter_throw</code>, <code>$95D3</code>). A knife passes over a fighter who ducks (<code>knife_hits</code>, <code>$9A63</code>).</p>
   <p>The train's file holds the same code, rebuilt at other addresses: the fighters, their poses, the knives and the guards. It takes away the walls, the dog and the barrels, and adds scenery in three bands that scroll at different speeds, wheels that turn and a driver in the cab. The attacker has 43 seconds (<span data-part="train"><code>train_clock</code>, <code>$8ADE</code></span>) to reach the locomotive. A fighter who climbs down to the ground is left behind as the train pulls away, and is beaten 30 columns later unless he climbs back on (<span data-part="train"><code>left_behind</code>, <code>$8D4D</code></span>).</p>
   <p>Both are maps of tiles. A tile is 2 by 2 characters, and a character is a block of 8 by 8 pixels drawn from a set of shapes in memory: the fort nine rows of 400 tiles (<code>fort_map</code>, <code>$2718</code>), the train six rows of 240 (<span data-part="train"><code>train_map</code>, <code>$2610</code></span>). The <a href="levels.html">Maps / levels</a> tab draws both whole.</p>
+  <p>A fighter is two sprites, one above the other, or side by side when he is down. <code>fighter_pictures</code> (<code>$8CA0</code>) picks the pair for his state and the offsets between them, and the Confederacy's are the Union's, 60 pointers on. The viewer below runs that routine of the game on the kit's 6502, once a frame, over the fort's memory.</p>
+  <div class="plate">
+    <div class="ns-bar" id="ns-poses"></div>
+    <div class="ns-bar"><span id="ns-fside"></span><span id="ns-fface"></span></div>
+    <canvas id="ns-fighter" class="ns-cv ns-small" width="96" height="110"></canvas>
+    <p class="cap" id="ns-fighter-cap"></p>
+    <p class="cap">The attacker stays at x <code>$64</code> while the fort scrolls under him, so a walk or a jump moves only his legs and his height here. The guard is the same fighter in the other side's colours.</p>
+    <div class="ns-anim wide" id="ns-fort-sprites"></div>
+  </div>
 </section>
 
 <section data-part="map">
-  <p class="fig">10 · Sound</p>
+  <p class="fig">11 · Sound</p>
   <h2 class="t">Sound: 31 effects from one player</h2>
   <p class="lede">The menu loads a sound player that stays in memory for the rest of the game. The map, the battle, the fort and the train all start their sounds through it by number.</p>
   <div class="plate"><div id="ns-sfx"></div>
@@ -197,13 +244,20 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 </section>
 
 <section data-part="ending">
-  <p class="fig">11 · The ending</p>
+  <p class="fig">12 · The ending</p>
   <h2 class="t">The ending names a rank and counts the months</h2>
   <p>When one side has no army left, the map loads the ending. It shows the winner's screen with the victory tune, the loser's with the defeat, or both when two people played (<code>ending_main</code>, <code>$8000</code>). A message scrolls along a text row above the picture. It names the player's rank, CORPORAL, SERGEANT or CAPTAIN, from the level picked on the menu (<code>rank_words</code>, <code>$86C0</code>), and puts the number of months the war lasted over its XX (<span data-part="resident"><code>$0399</code></span>, <span data-part="resident"><code>$039A</code></span>). There are four messages, one for each side winning and losing (<code>$847B</code>-<code>$86BF</code>).</p>
+  <p>There are two pictures: the victory, a soldier in blue home with his family, and the defeat, a fallen soldier, a horse and a wrecked cannon, the same for either side (<code>defeat_screen</code>, <code>$80BF</code>). The message row is text in the title's font, set by the raster interrupt at line <code>$0A</code>, and the picture a multicolour bitmap from line <code>$50</code> (<code>$8380</code>, <code>$83CF</code>).</p>
+  <div class="plate">
+    <div class="ns-bar" id="ns-end-who"></div>
+    <div class="ns-bar"><span id="ns-end-rank"></span><label>Months <input type="range" id="ns-end-months" min="1" max="99" value="14"> <b id="ns-end-mv">14</b></label></div>
+    <canvas id="ns-end" class="ns-cv" width="320" height="200"></canvas>
+    <p class="cap" id="ns-end-text"></p>
+  </div>
 </section>
 
 <section data-part="resident">
-  <p class="fig">12 · The tapes</p>
+  <p class="fig">13 · The tapes</p>
   <h2 class="t">Fourteen files on four sides of tape</h2>
   <p>A short program stays in memory from the boot to the end (<code>script</code>, <code>$0806</code>). It loads every file by number through one routine (<code>load_file</code>, <code>$0803</code>) with Cyberload, a fast loader that reads the tape with routines of its own in place of the C64's slow built-in ones, and asks for the right side first: "REWIND TAPE 1 SIDE 2, HIT FIRE THEN PLAY" (<code>rewind_prompt</code>, <code>$092E</code>).</p>
   <table class="ns-tab">
@@ -242,9 +296,9 @@ const NS_TUNES = [
 ];
 const NS_EFFECTS = [
   'A fort or train taken', "The map's battle panel", 'Cavalry moves off', 'The cavalry charge', 'A cannon fires',
-  'A unit chosen', 'Rifles fire', 'The dog bites', 'Smoke after the bomb', 'Unused 9', 'Unused 10',
+  'A unit chosen', 'Rifles fire', 'The dog bites', 'The bomb lands', 'Unused 9', 'Unused 10',
   'A bag of gold counted', 'The supply arrives', 'A hit', 'Unused 14', 'A ball lands', 'The fort panel',
-  'An interception, the ship', 'The bomb bursts', 'An army lost', 'A knife thrown', 'Unused 21',
+  'An interception, the ship', 'The Mexican throws his bomb', 'An army lost', 'A knife thrown', 'Unused 21',
   "The reinforcements' ship", 'The supply train', 'An army moves', 'Unused 25', 'Time is up',
   'An army reinforced', 'A knife hits', 'A bark', 'A sabre stroke',
 ].map((name, n) => ({ name: n + ' · ' + name, src: 'effects', reset: 0xF128, init: 0xF12B, play: 0xF12E, a: n, on: [0xF13B, 0xF13C, 0xF13D] }));
@@ -450,4 +504,340 @@ function gauge() {
   ctx.fillStyle = '#000'; ctx.fillRect(0, 26, 8, 8); ctx.beginPath(); ctx.arc(4 + x, 30, 3, 0, 7); ctx.fill();
 }
 $('ns-gauge').addEventListener('input', gauge); gauge();
+</script>
+<script>
+// ---- 04, 08 and 09 the pictures, played at the game's pace: one step every 20 ms, the PAL frame
+const NS_ANIMS = [];
+(function () {
+  let last = 0, acc = 0;
+  const loop = (t) => {
+    if (last) acc += Math.min(t - last, 200);
+    last = t;
+    for (; acc >= 20; acc -= 20) for (const a of NS_ANIMS) a();
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+function nsFill(img, c) {
+  const rgb = RGB[c], d = img.data;
+  for (let o = 0; o < d.length; o += 4) { d[o] = rgb[0]; d[o + 1] = rgb[1]; d[o + 2] = rgb[2]; d[o + 3] = 255; }
+}
+// one multicolour sprite image of 64 bytes at a, its top left at (ox, oy): pixel pairs %01, %10 and
+// %11 in the colours cols[0], cols[1] and cols[2]
+function nsSprite(img, ram, a, ox, oy, cols) {
+  const d = img.data, W = img.width, H = img.height;
+  for (let y = 0; y < 21; y++) for (let x = 0; x < 24; x++) {
+    const p = (ram[a + y * 3 + (x >> 3)] >> (6 - 2 * ((x & 7) >> 1))) & 3, px = ox + x, py = oy + y;
+    if (!p || px < 0 || py < 0 || px >= W || py >= H) continue;
+    const rgb = RGB[cols[p - 1]], o = (py * W + px) * 4;
+    d[o] = rgb[0]; d[o + 1] = rgb[1]; d[o + 2] = rgb[2]; d[o + 3] = 255;
+  }
+}
+// a grid of small canvases, each playing a list of steps: { name, steps, every (frames), from (the
+// step it goes back to at the end), draw(img, step) }
+function nsAnimGrid(el, w, h, list) {
+  el.innerHTML = '';
+  const cells = list.map((o) => {
+    const f = document.createElement('figure'), cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    f.append(cv); f.insertAdjacentHTML('beforeend', '<figcaption>' + o.name + '</figcaption>'); el.append(f);
+    return { o, ctx: cv.getContext('2d'), img: cv.getContext('2d').createImageData(w, h), i: 0, t: 0 };
+  });
+  const draw = (c) => { c.o.draw(c.img, c.o.steps[c.i]); c.ctx.putImageData(c.img, 0, 0); };
+  cells.forEach(draw);
+  return () => {
+    if (!el.isConnected) return;
+    for (const c of cells) {
+      if (c.o.steps.length < 2 || ++c.t < c.o.every) continue;
+      c.t = 0; c.i++;
+      if (c.i >= c.o.steps.length) c.i = c.o.from || 0;
+      draw(c);
+    }
+  };
+}
+
+// ---- 08 the units' pictures, from the battle's own tables
+if (typeof C64 === 'undefined') missing($('ns-units'), 'The pictures');
+else C64.load('parts/battle/listing.json').then((L) => {
+  const m = L.ram, at = (n) => m[0x82E5 + n] | m[0x8297 + n] << 8;   // shape_lo, shape_hi
+  const p = (a, i) => m[a + i];
+  // the pictures each routine picks, by the side y: infantry_pictures ($9519) and cavalry_pictures
+  // ($95A0) from the tables at $8640-$8672, cannon_pictures ($966E) from $8682-$868A
+  const KINDS = (y) => [
+    [{ name: 'Standing', steps: [p(0x8640, y)] },
+     { name: 'Walking', steps: [p(0x8642, y), p(0x8642, y) + 1], every: 10 },
+     { name: 'Firing, the first of a pair', steps: [p(0x8654, 6 * y), p(0x8660, 6 * y)], every: 10 },
+     { name: 'Firing, the second', steps: [p(0x8654, 6 * y + 1), p(0x8660, 6 * y + 1)], every: 10 },
+     { name: 'Hit', steps: [p(0x8644, y), p(0x8644, y) + 1, null], every: 10 }],
+    [{ name: 'Standing', steps: [p(0x866C, y)] },
+     { name: 'Walking', steps: [p(0x866E, y), p(0x866E, y) + 1], every: 6 },
+     { name: 'Charging', steps: [1, 2, 3].map((i) => p(0x8670, y) + i), every: 6, from: 1 },
+     { name: 'Rearing', steps: [p(0x8672, y), p(0x8672, y) + 1], every: 6 },
+     { name: 'Hit: the rider falls, the horse runs on', steps: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => p(0x8672, y) + i), every: 6, from: 6 },
+     { name: 'Falling back', steps: [p(0x866E, y ^ 1), p(0x866E, y ^ 1) + 1], every: 6 }],
+    [{ name: 'Standing', steps: [p(0x8682, y)] },
+     { name: 'Moving sideways', steps: [p(0x8684, y), p(0x8684, y) + 1], every: 10 },
+     { name: 'Moving end-on', steps: [p(0x8686, y), p(0x8686, y) + 1], every: 10 },
+     { name: 'Firing', steps: [p(0x8688, y), p(0x8688, y) + 1], every: 10 },
+     { name: 'Hit', steps: [p(0x868A, y), p(0x868A, y) + 1, p(0x868A, y) + 2], every: 6, from: 2 }],
+  ];
+  const NOTES = [
+    'A soldier\'s picture changes every 10 frames (<code>infantry_tick</code>, <code>$9E0D</code>). The six of a side fire in pairs, the first standing and the second kneeling (the tables at <code>$8654</code> and <code>$8660</code>). A soldier who is hit falls and lies, and at the next step he is taken off the field, what was under him put back (<code>draw_objects</code>, <code>$91B1</code>), and counted out of the side\'s infantry.',
+    'Every 6 frames (<code>cavalry_pictures</code>, <code>$95A0</code>). A charge plays its first three pictures once, then the last two over and over. A rider who is hit falls in six pictures, and his horse runs on in the last two. Riders falling back use the other side\'s walking pictures, facing home.',
+    'Every 10 frames (<code>cannon_anim</code>, <code>$9DE0</code>). A cannon that is hit goes through three pictures, one each time the battle\'s loop comes round to it, and is then counted out of the side\'s cannon; this viewer shows each for 6 frames.',
+  ];
+  let kind = 0, side = 0, tick = null;
+  const show = () => {
+    tick = nsAnimGrid($('ns-units'), 28, 25, KINDS(side)[kind].map((o) => Object.assign({}, o, {
+      name: o.name + ' <span class="ns-n">' + o.steps.map((s) => s === null ? '-' : hex(s, 2)).join(' ') + '</span>',
+      draw: (img, s) => { nsFill(img, 5); if (s !== null) nsSprite(img, m, at(s), 2, 2, [0, 0, 0]); },
+    })));
+    $('ns-units-cap').innerHTML = NOTES[kind];
+  };
+  buttons($('ns-ukind'), ['Infantry', 'Cavalry', 'Cannon'], (i) => { kind = i; show(); })(0);
+  buttons($('ns-uside'), ['Union', 'Confederacy'], (i) => { side = i; show(); })(0);
+  NS_ANIMS.push(() => tick && tick());
+});
+
+// ---- 09 the fighter, posed by the fort's own code: fighter_pictures ($8CA0) on the kit's 6502
+// over the fort's memory, once a frame, with the fighter's timer counted down before it as the top
+// interrupt's fort_timers does ($8934). Only the attacker (fighter 0) is posed.
+if (typeof C64 === 'undefined' || typeof C64Cpu === 'undefined') missing($('ns-fighter').parentNode, 'The fighter');
+else C64.load('parts/fort/listing.json').then((L) => {
+  const m = L.ram.slice(), cpu = new C64Cpu.CPU(m, { port: 0x35, io: { read: () => 0, write() {} } });
+  const F = { state: 0x8BDD, frame: 0x8BDB, top: 0x8BDF, bottom: 0x8BE1, y: 0x8BE3, dy: 0x8BEB, dx2: 0x8BED, dy2: 0x8BEF,
+    moving: 0x8BF1, facing: 0x8BF3, climb: 0x8BF7, arc: 0x8C12, timer: 0x80DA };
+  // how the orders start each pose (the fort's port, port/src/g-frt2.js, as checked against the game)
+  const POSES = [
+    ['Standing', { state: 0 }, 60],
+    ['Walking', { state: 1, moving: 'facing' }, 120],
+    ['Jumping', { state: 2, frame: 0, arc: 0, moving: 0 }, 0],
+    ['Ducking', { state: 2, frame: 4, timer: 0x19, moving: 0 }, 0],
+    ['The sabre', { state: 3, frame: 0, timer: 5, moving: 0 }, 0],
+    ['Throwing: the stroke\'s pictures', { state: 4, frame: 0, timer: 5, moving: 0 }, 0],
+    ['Climbing', { state: 5, frame: 0, climb: 1 }, 36],
+    ['Knocked over', { state: 9, frame: 0, arc: 0, moving: 'back' }, 140],
+    ['Beaten', { state: 7, frame: 0 }, 120],
+  ];
+  const cv = $('ns-fighter'), ctx = cv.getContext('2d'), img = ctx.createImageData(cv.width, cv.height);
+  let pose = 1, side = 0, facing = 1, t = 0, rest = 0;
+  const start = () => {
+    m[0x8122] = 0; m[0x0396] = side;                    // no guard; the attacker's side
+    m[F.y] = 0x80; m[F.timer] = 0; m[F.frame] = 0; m[F.arc] = 0; m[F.climb] = 0; m[F.facing] = facing ? 1 : 0xFF;
+    for (const [k, v] of Object.entries(POSES[pose][1]))
+      m[F[k]] = v === 'facing' ? m[F.facing] : v === 'back' ? (facing ? 0xFF : 1) : v;
+    t = 0; rest = 0;
+  };
+  const s8 = (v) => (v & 0x80 ? v - 256 : v);
+  const step = () => {
+    if (rest) { if (!--rest) start(); }
+    else {
+      if (m[F.timer]) m[F.timer]--;
+      cpu.call(0x8CA0, { a: 0, x: 0, y: 0 }, { maxSteps: 100000, hooks: { 0xF12B: (c) => { c.rts(); } } });   // the sound driver is the resident file's
+      t++;
+      const len = POSES[pose][2];
+      if ((len && t >= len) || (!len && t > 2 && m[F.state] === 0)) rest = 25;
+    }
+    // fighters_to_sprites ($8C15): the upper sprite at the fighter's y + dy, the lower dy2 below it
+    // and dx2 to the right; the attacker at x $64, where the scroll keeps him
+    const col = m[0x80FC + side], y1 = s8((m[F.y] + m[F.dy] - 0x80) & 255), y2 = s8((y1 + m[F.dy2]) & 255);
+    nsFill(img, 8);
+    const d = img.data, g = RGB[7];
+    for (let o = (cv.height - 6) * cv.width * 4; o < d.length; o += 4) { d[o] = g[0]; d[o + 1] = g[1]; d[o + 2] = g[2]; }
+    const base = cv.height - 6 - 42, x0 = 20;
+    // the playfield's sprite colours: $D025 yellow, $D026 black (fort_irq_top, $83A8)
+    nsSprite(img, m, 0x4000 + 64 * m[F.bottom], x0 + m[F.dx2], base + y2, [7, col, 0]);
+    nsSprite(img, m, 0x4000 + 64 * m[F.top], x0, base + y1, [7, col, 0]);
+    ctx.putImageData(img, 0, 0);
+    $('ns-fighter-cap').textContent = `State ${m[F.state]}, frame ${m[F.frame]}: sprites ${hex(m[F.top], 2)} and ${hex(m[F.bottom], 2)}`;
+  };
+  buttons($('ns-poses'), POSES.map((p) => p[0]), (i) => { pose = i; start(); })(1);
+  buttons($('ns-fside'), ['Union', 'Confederacy'], (i) => { side = i; start(); })(0);
+  buttons($('ns-fface'), ['Facing right', 'Facing left'], (i) => { facing = i ? 0 : 1; start(); })(0);
+  NS_ANIMS.push(step);
+  // the other sprites of the fort, their pointers, colours and steps as the code sets them
+  const one = (ptrs, cols, every, from) => ({ steps: ptrs, every, from,
+    draw: (img, s) => { nsFill(img, 8); for (const [p, x] of s) nsSprite(img, m, 0x4000 + 64 * p, 2 + x, 2, cols); } });
+  const dog = [0, 1, 2].map((f) => [[0xC8 + f, 0], [0xCB + f, 24]]);
+  NS_ANIMS.push(nsAnimGrid($('ns-fort-sprites'), 52, 25, [
+    Object.assign(one(dog, [7, 11, 0], 5), { name: 'The dog, two sprites side by side, a step every 5 frames (<code>dog_run</code>)' }),
+    Object.assign(one([[[0xB8, 14]]].concat([1, 2, 3, 4, 5, 6, 7, 8, 9].map((f) => [[0xB8 + f, 14]])), [7, 2, 0], 3), { name: 'The barrel, and its explosion when it hits a fighter, a picture every 3 frames (<code>barrel_hits</code>)' }),
+    Object.assign(one([[[0xC3, 14]], [[0xC4, 14]]], [7, 12, 0], 8), { name: 'The flag at the far end, in the defender\'s colour, every 8 frames (<code>fort_flag_wave</code>)' }),
+    Object.assign(one([[[0xDB, 0], [0xDC, 26]]], [7, 1, 0]), { name: 'The knife, flying right and left (<code>knives_to_sprites</code>)' }),
+    Object.assign(one([0, 1, 2].map((f) => [[0xD4 + f, 14]]), [10, 1, 9], 5), { name: 'The clock, ringing when the time is up, every 5 frames (<code>fort_clock</code>)' }),
+    Object.assign(one([0, 1, 2, 3].map((f) => [[0xD7 + f, 14]]), [10, 1, 9], 5), { name: 'The boot running along the bar, every 5 frames (<code>boot_run</code>)' }),
+  ]));
+});
+
+// ---- 04 the panel's scenes: draw_picture ($1447) from the picture table ($C30F), into the
+// windows of $C3B6; a scene's small pictures are drawn over the big one in turn
+if (typeof C64 === 'undefined') missing($('ns-panel').parentNode, 'The panel');
+else C64.load('parts/map/listing.json').then((L) => {
+  const m = L.ram, w16 = (t, i) => m[t + 2 * i] | m[t + 2 * i + 1] << 8;
+  const cv = $('ns-panel'), ctx = cv.getContext('2d');
+  let img = null;
+  // a window's cell on the screen, from its bitmap place
+  const cell = (w) => { const c = (w16(0xC3B6, w) - 0x4000) >> 3; return [c % 40, (c / 40) | 0]; };
+  const pic = (n, ox, oy) => {
+    const w = m[0xC38A + n], h = m[0xC3A0 + n], bm = w16(0xC30F, n), sc = w16(0xC337, n), co = w16(0xC35F, n), d = img.data;
+    for (let cy = 0; cy < h; cy++) for (let cx = 0; cx < w; cx++) {
+      const c = cy * w + cx, s = m[sc + c], cl = [0, s >> 4, s & 15, m[co + c] & 15];
+      for (let r = 0; r < 8; r++) {
+        const b = m[bm + c * 8 + r];
+        for (let k = 0; k < 8; k++) {
+          const px = (ox + cx) * 8 + k, py = (oy + cy) * 8 + r;
+          if (px >= cv.width || py >= cv.height) continue;
+          const rgb = RGB[cl[(b >> (6 - 2 * (k >> 1))) & 3]], o = (py * cv.width + px) * 4;
+          d[o] = rgb[0]; d[o + 1] = rgb[1]; d[o + 2] = rgb[2]; d[o + 3] = 255;
+        }
+      }
+    }
+  };
+  // a scene: the big picture in window bw, then the small ones in window sw in turn, a step every
+  // `every` frames; a small picture equal to the big one redraws it whole
+  const SCENES = [
+    { name: 'Before a fort, the Union defending', big: [0, 0], small: [1, 2], sw: 2, every: 10,
+      cap: '<code>panel_fort</code> (<code>$1EFA</code>) draws picture 0, the fort. Then <code>fort_anim</code> (<code>$2E66</code>) draws the defender\'s two flags, pictures 1 and 2 for the Union, in window 2 in turn, 35 steps of ten frames.' },
+    { name: 'Before a fort, the Confederacy defending', big: [0, 0], small: [3, 4], sw: 2, every: 10,
+      cap: 'The same, with pictures 3 and 4, the Confederacy\'s flag.' },
+    { name: 'The train intercepted', big: [5, 1], small: [6, 7, 8], sw: 3, every: 5,
+      cap: '<code>panel_intercept</code> (<code>$1F05</code>) draws picture 5, the carriage, in window 1. Then <code>intercept_anim</code> (<code>$1F27</code>) turns the wheels: pictures 6 to 8 in window 3 in turn, 50 steps of five frames.' },
+    { name: 'The supply train', big: [13, 1], small: [13, 14, 15], sw: 6, every: 4,
+      cap: '<code>panel_anim</code> (<code>$1816</code>), at the start of a supply phase: picture 13, the locomotive, in window 1, then 14 and 15 in window 6, the three in turn for 60 steps of four frames.' },
+    { name: 'The bank, at the end of the train\'s ride', big: [9, 4], small: [9, 10], sw: 4, every: 50,
+      cap: 'Pictures 9 and 10 in window 4, the safe shut and open, drawn one after the other ($365A, $366A). This viewer holds each for a second.' },
+    { name: 'Before a battle, the Union', big: [11, 5], small: [], every: 0,
+      cap: '<code>battle_panel</code> (<code>$1F76</code>) draws the side\'s battle picture, 11 for the Union and 12 for the Confederacy, in window 5. In the game it then scrolls a cell to the left a step, the new columns drawn from the scenery at <code>$A454</code>; this viewer shows the first picture only.' },
+    { name: 'Before a battle, the Confederacy', big: [12, 5], small: [], every: 0, cap: 'Picture 12.' },
+  ];
+  let sc = 0, i = 0, t = 0;
+  const draw = () => {
+    const S = SCENES[sc], [bx, by] = cell(S.big[1]), W = m[0xC38A + S.big[0]] * 8, H = m[0xC3A0 + S.big[0]] * 8;
+    if (!img || img.width !== W || img.height !== H) { cv.width = W; cv.height = H; img = ctx.createImageData(W, H); }
+    nsFill(img, 0);
+    pic(S.big[0], 0, 0);
+    if (S.small.length) {
+      const n = S.small[i % S.small.length];
+      if (n !== S.big[0]) { const [x, y] = cell(S.sw); pic(n, x - bx, y - by); }
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+  buttons($('ns-panels'), SCENES.map((s) => s.name), (k) => { sc = k; i = 0; t = 0; $('ns-panel-cap').innerHTML = SCENES[k].cap; draw(); })(0);
+  NS_ANIMS.push(() => { const S = SCENES[sc]; if (!S.every || ++t < S.every) return; t = 0; i++; draw(); });
+});
+</script>
+<script>
+// ---- 11 the ending's screens: the picture, and the message scrolled in over it as message_scroll
+// ($8420) does: two pixels a frame, and at each character the row (screen row 2, $6050) moves one
+// left and the message's next character comes in at column 39
+if (typeof C64 === 'undefined') missing($('ns-end'), 'The ending');
+else C64.load('parts/ending/listing.json').then((L) => {
+  const m = L.ram, cv = $('ns-end'), ctx = cv.getContext('2d'), img = ctx.createImageData(320, 200);
+  // each screen's message, the ten characters the rank goes over and the months' two digits
+  const SCREENS = [
+    { name: 'The Union wins', win: true, msg: 0x858A, rank: 0x8594, months: 0x85DD, side: 0 },
+    { name: 'The Confederacy wins', win: true, msg: 0x850E, rank: 0x8514, months: 0x856D, side: 1 },
+    { name: 'The Union loses', win: false, msg: 0x847B, rank: 0x8487, months: 0x84C5, side: 0 },
+    { name: 'The Confederacy loses', win: false, msg: 0x862D, rank: 0x8639, months: 0x8679, side: 1 },
+  ];
+  let sc = 0, rank = 0, months = 14, text = [], row = [], next = 0, fine = 0, done = 0;
+  const start = () => {
+    const S = SCREENS[sc], b = m.slice(0, 0x10000);
+    // the rank's ten screen codes from rank_words ($86C0), the months as the ending writes them ($8000):
+    // the tens a space when 0, then the digits as screen codes
+    const r = b[0x86C0 + 2 * rank] | b[0x86C1 + 2 * rank] << 8;
+    for (let i = 0; i < 10; i++) b[S.rank + i] = b[r + i];
+    b[S.months] = months >= 10 ? 0x30 + ((months / 10) | 0) : 0x20; b[S.months + 1] = 0x30 + months % 10;
+    text = [];
+    for (let a = S.msg; b[a] !== 0xFF; a++) text.push(b[a]);
+    row = new Array(40).fill(0x20); next = 0; fine = 0; done = 0;
+    // the picture: the victory's from $4000 with its screen at $6000 and colours at $86E4; the
+    // defeat's copied in from $9000, $2800 and $2C00 (defeat_screen, $80BF)
+    const bm = S.win ? 0x4000 : 0x9000, scr = S.win ? 0x6000 : 0x2800, col = S.win ? 0x86E4 : 0x2C00;
+    drawBitmap(cv, m.subarray(bm, bm + 8000), m.subarray(scr, scr + 1000), m.subarray(col, col + 1000), 0);
+    pic = ctx.getImageData(0, 0, 320, 200).data;
+    $('ns-end-text').textContent = text.map((c) => (c < 0x20 ? String.fromCharCode(c + 0x40) : String.fromCharCode(c))).join('');
+  };
+  let pic = null;
+  const draw = () => {
+    const S = SCREENS[sc], d = img.data;
+    d.set(pic);
+    // lines $0A to $50 ($8380, $83CF): text mode, the font at $7800, the background yellow on the
+    // victory screen and light blue on the defeat, the message in dark grey or yellow ($841C)
+    const bg = RGB[S.win ? 7 : 14], fg = RGB[S.win ? 11 : 7];
+    for (let y = 0; y < 29; y++) for (let x = 0; x < 320; x++) {
+      let on = false;
+      if (y >= 16 && y < 24) {
+        const sx = x - fine;
+        if (sx >= 0) { const ch = row[sx >> 3]; on = (m[0x7800 + ch * 8 + (y - 16)] >> (7 - (sx & 7))) & 1; }
+      }
+      const c = on ? fg : bg, o = (y * 320 + x) * 4;
+      d[o] = c[0]; d[o + 1] = c[1]; d[o + 2] = c[2]; d[o + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+  let wait = 0;
+  NS_ANIMS.push(() => {
+    if (!pic || !cv.isConnected) return;
+    if (wait) { if (!--wait) start(); return; }
+    const f = fine - 2;
+    fine = f & 7;
+    if (f < 0) {
+      row.shift(); row.push(0x20);
+      if (next < text.length) row[39] = text[next++];
+      else if (!done) { done = 1; wait = 300; }      // the wait's three steps of 100 frames ($8448)
+    }
+    draw();
+  });
+  const go = () => { start(); draw(); };
+  buttons($('ns-end-who'), SCREENS.map((s) => s.name), (i) => { sc = i; go(); })(0);
+  buttons($('ns-end-rank'), ['Corporal', 'Sergeant', 'Captain'], (i) => { rank = i; go(); })(0);
+  $('ns-end-months').addEventListener('input', () => { months = +$('ns-end-months').value; $('ns-end-mv').textContent = months; go(); });
+});
+</script>
+<script>
+// ---- 05 the Mexican, as mexican ($178B) moves him and the frame's work moves his bomb: asleep,
+// then sound 26 and 80 frames, then 32 steps of seven frames along $C0BF/$C0E0/$C102, the bomb
+// thrown at the 17th ($1870) and flown 18 frames ($18A1), and its explosion, five frames of five
+// ($188C)
+if (typeof C64 === 'undefined') missing($('ns-mex').parentNode, 'The Mexican');
+else C64.load('parts/map/listing.json').then((L) => {
+  const m = L.ram, cv = $('ns-mex'), ctx = cv.getContext('2d'), img = ctx.createImageData(cv.width, cv.height);
+  const X0 = 0x20, Y0 = 0xB0;                       // the canvas's top left, in sprite coordinates
+  let mode = 'asleep', t = 0, wait = 0, step = 0, mx = 0x28, my = 0xC8, frame = 0, bomb = null, boom = null;
+  const say = (s) => { $('ns-mex-cap').textContent = s; };
+  const tick = () => {
+    t++;
+    if (mode === 'asleep') { if (t >= 150) { mode = 'woken'; wait = 80; say('Woken: sound 26, then 80 frames before he moves.'); } }
+    else if (!--wait) {
+      if (mode === 'woken') { mode = 'out'; say('Up and out: a step every seven frames.'); }
+      {
+        const x = step;
+        frame = m[0xC0BF + x];
+        if (x < 0x11) { mx = (mx + m[0xC0E0 + x]) & 255; my = (my - m[0xC102 + x]) & 255; }
+        else { mx = (mx - m[0xC0E0 + x]) & 255; my = (my + m[0xC102 + x]) & 255; }
+        step++;
+        if (x === 0x10) { bomb = { x: mx, y: my, left: 18 }; say('The bomb, thrown at the 17th step, flies 18 frames.'); }
+        if (x === 0x11) say('Back the way he came.');
+        wait = 7;
+        // the last step, the 33rd, ends the walk: the army is hit at once
+        if (x === 0x20) { mode = 'asleep'; t = 0; step = 0; say('Back asleep. The army in Texas loses 6 infantry, 3 cavalry and a cannon (army_hit, $349B).'); }
+      }
+    }
+    if (bomb) {
+      bomb.x += 4; if (t & 1) bomb.y--;
+      if (!--bomb.left) { boom = { x: bomb.x, y: bomb.y, f: 0, w: 5 }; bomb = null; }
+    }
+    if (boom && !--boom.w) { boom.w = 5; if (++boom.f === 5) boom = null; }
+    nsFill(img, 8);
+    // the map's sprite colours: $D025 light red, $D026 black ($0F6B); the Mexican white, the bomb
+    // black, the explosion red
+    nsSprite(img, m, 0x4000 + 64 * (0xA6 + frame), mx - X0, my - Y0, [10, 1, 0]);
+    if (bomb) nsSprite(img, m, 0x4000 + 64 * 0xB9, bomb.x - X0, bomb.y - Y0, [10, 0, 0]);
+    if (boom) nsSprite(img, m, 0x4000 + 64 * (0xF8 + boom.f), boom.x - X0, boom.y - Y0, [10, 2, 0]);
+    ctx.putImageData(img, 0, 0);
+  };
+  say('Asleep, sprite $A6, at x 40, y 200: the map\'s bottom left.');
+  NS_ANIMS.push(() => { if (cv.isConnected) tick(); });
+});
 </script>

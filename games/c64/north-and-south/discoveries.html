@@ -53,39 +53,32 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
 <header class="hero">
   <p class="eyebrow">1991 · Infogrames</p>
   <h1>North & South</h1>
-  <p class="sub">Two rules that undo each other, a plan the code never acts on, guards with endless knives, and a developer's remote monitor left in the battle file. Each one is traced in the code, with the addresses beside it.</p>
+  <p class="sub">Five bugs shown on the game's own code and two more read in it, three oddities that may be meant, a developer's remote monitor left in the battle file and a Mexican asleep in a corner of the map. Each one is traced in the code, with the addresses beside it.</p>
 </header>
 <main class="wrap">
 
-<section data-part="map">
-  <p class="fig">01 · The levels</p>
-  <h2 class="t">Bug: with the arcade off, a captain is the weakest level</h2>
-  <p class="lede">In the arcade games a captain makes a side strongest. When chance decides instead, the same captain makes it weakest.</p>
-  <div class="plate">
-    <div class="ns-bar" id="dc-level"></div>
-    <table class="ns-tab" id="dc-level-tab"></table>
-    <p class="cap">The fort's start column and guards from <span data-part="fort"><code>fort_setup</code>, <code>$89B7</code></span>; the strategic chance from <code>fort_attack</code> (<code>$2DBB</code>), which compares a random number with <code>$7F</code>, <code>$55</code> or <code>$3F</code> by the defender's level. The same random numbers decide an interception of the train.</p>
-  </div>
-  <p>Each side's level is one byte, 0 for a corporal to 2 for a captain (<span data-part="resident"><code>$0380</code></span>, <span data-part="resident"><code>$0381</code></span>). The arcade parts read it as strength: a captain defending a fort makes the attacker cross 375 columns past 12 guards, and a computer captain acts on every pass of a battle (<span data-part="battle"><code>$9D14</code></span>). The strategic code reads it the other way. A captain's fort falls with a random number from <code>$3F</code> up, three times in four, and a corporal's only half the time. In a strategic battle a corporal's fire takes a unit three times in four, a captain's half the time (<code>hit_chance</code>, <code>$32B0</code>). A player who turns the arcade off does best as a corporal, the level the manual calls the hardest.</p>
+<section data-part="menu">
+  <p class="fig">01 · The second war</p>
+  <h2 class="t">Bug: a second war started without a click on the calendar never loads</h2>
+  <p>The menu's calendar sets the war's first year (<code>start_year</code>, <code>$0389</code>) and keeps a copy of it (<code>year_kept</code>, <code>$037E</code>), which only the click writes (<code>$1146</code>). The first time the menu runs it clears the settings from <code>$0380</code> to <code>$0389</code>, but not the copy, which still holds <code>$93</code>, a byte of the boot's tape header left in the cassette buffer. Each later time it puts the copy back as the year (<code>$18BB</code>). So after a war in which nobody clicked the calendar, the next war's year is <code>$93</code>, and the script asks for the year's file by the year plus 9: file 156. No tape has a file 156, and the loader waits for its header for ever. The port found it: the game's code and the port's both stopped there, on the kit's machine, in a war the computer played against itself to its end.</p>
 </section>
 
 <section data-part="map">
-  <p class="fig">02 · The computer's plans</p>
-  <h2 class="t">Bug: the computer's plan for South Virginia has no code</h2>
-  <p>Each turn the computer sets a plan number from 0 to 4 (<code>ai_plan</code>, <code>$3C98</code>, kept at <code>$0F10</code>). Plan 2 is set when the European reinforcements are on and South Virginia, where their ship lands, is not the computer's. Two routines read the plan. <code>ai_plan_scores</code> (<code>$3D09</code>) has steps for plans 0, 1 and 3 and returns for any other, and <code>ai_occupied</code> (<code>$3E11</code>) asks only whether it is 3. So plan 2 changes nothing, and the computer plays it exactly as plan 4, the plan for a side with fewer armies than the enemy. Nothing makes the computer go for the territory where the reinforcements land.</p>
-  <p>The <a href="index.html">How it works</a> page lets you set the four questions and see the plan.</p>
+  <p class="fig">02 · The computer's choices</p>
+  <h2 class="t">Bug: the computer's random nudge wipes out its own plans</h2>
+  <p>Below its hardest difficulty the computer adds some chance to its plans: each territory's score of 4 or more moves up or down by a random amount, up to an eighth of a number below it at difficulty 0 and up to half at difficulty 1 (<code>noise</code>, <code>$3EE4</code>). When the amount rounds down to nothing, the routine returns at once (the <code>beq</code> at <code>$3EFF</code>) with the amount, 0, in place of the score, and the score becomes 0. Run on the game's own code 2,000 times for each score, it zeroes every score from 4 to 8 at difficulty 0, and about half of the higher ones; at difficulty 1 about one score in eight, and half of the 4s. The computer's easier levels are less a plan with some chance in it than a plan with most of its targets crossed out.</p>
 </section>
 
-<section data-part="fort">
-  <p class="fig">03 · Knives</p>
-  <h2 class="t">Bug: the computer's guards never run out of knives</h2>
-  <p>In the fort the attacker has four knives (<code>knives_left</code>, <code>$8115</code>) and the guards ten between them (<code>guard_knives</code>, <code>$8116</code>). A person's guard checks that count before it throws. A computer guard throws whenever its own knife is not in the air and the attacker is 40 pixels or more away, and never looks at the count (<code>guard_fight</code>, <code>$9BAA</code>), so its knives never run out. The train runs the same code (<span data-part="train"><code>$9937</code></span>, which leaves <code>$8113</code> alone).</p>
+<section data-part="battle">
+  <p class="fig">03 · The bridge</p>
+  <h2 class="t">Bug: a ball on the bridge brings down every spent bullet</h2>
+  <p>Every shot whose time runs out is marked as landed (<code>shot_landed</code>, set at <code>$A5CC</code>), the six bullets as well as the two cannon balls. <code>balls_land</code> (<code>$A5D3</code>) looks only at the balls, slots 6 and 7, so the bullets' marks are never cleared. A ball that lands on a bridge has its damage drawn through <code>bat_picture</code>, which leaves X, the shot's number, at <code>$FF</code> (<code>ball_crater</code>, <code>$A6A5</code>). Back in <code>balls_land</code> the next shot is X + 1, slot 0, and the loop goes through the bullets: each spent bullet lands as a cannon ball would, with a crater where it ran out and every soldier, rider or cannon there knocked over. Run on the game's own code from 228 moments of battles on the canyon and the river, a soldier where a bullet had run out fell every time a ball hit the bridge, and never when the ball landed elsewhere.</p>
 </section>
 
-<section data-part="fort">
-  <p class="fig">04 · Ducking</p>
-  <h2 class="t">Secret: duck, and a knife flies over</h2>
-  <p>A knife knocks a fighter over only when he is standing, walking, striking, throwing, or in a jump before its last crouch (<code>knife_hits</code>, <code>$9A63</code>). Pulling down on the stick away from a ladder ducks, and a knife passes a ducking fighter without touching him. That is the defence against the guards' endless knives.</p>
+<section data-part="battle">
+  <p class="fig">04 · The cavalry's turn</p>
+  <h2 class="t">Bug: cavalry that turns at the edge rides on with the wrong horses</h2>
+  <p>Each step, <code>cavalry_move</code> (<code>$9FD2</code>) goes through the side's three riders with X, from rider 5 down for the Confederacy and from rider 2 down for the Union. A rider who rides out past the edge comes back in on the far side, and when the riders are in file this starts the cavalry turning back into line (<code>cavalry_turn_start</code>, <code>$A3FD</code>, through <code>cavalry_right_edge</code> or <code>cavalry_left_edge</code>). That routine counts the riders still on the field with X, and leaves X two lower than it started. The loop then goes on from there. For the Confederacy that is rider 2 down: the Union's riders, which move a second time that step. For the Union X goes below 0, and the "riders" it moves are bytes of other tables: run on the game's own code, the step changed the last entry of the order the sprites' masks are built in (<code>mask_order</code>) and the high byte of <code>store_hi</code>. The port found it when, beside the game, a Confederate charge left two Union riders a step further on than the port had them.</p>
 </section>
 
 <section data-part="battle">
@@ -94,68 +87,90 @@ code{font-family:var(--fm);font-size:.82em;background:var(--chip);color:var(--ch
   <p>RUN/STOP and F5 step a side's choice between infantry, cavalry and cannon, and <code>unit_skip</code> (<code>$9748</code>) passes over a unit the side has none of. For the cannon it asks whether a cannon is still waiting in reserve, and it reads the Union's reserve at <code>$8610</code> for both sides (<code>lda $8610</code> at <code>$975B</code>, where the side's own would be indexed). While the Union has a cannon to come, the Confederacy's choice stays on a cannon that has gone, and the stick then moves nothing (<code>$9982</code>).</p>
 </section>
 
+<section data-part="map">
+  <p class="fig">06 · The computer's plans</p>
+  <h2 class="t">Bug: the computer's plan for South Virginia has no code</h2>
+  <p>Each turn the computer sets a plan number from 0 to 4 (<code>ai_plan</code>, <code>$3C98</code>, kept at <code>$0F10</code>). Plan 2 is set when the European reinforcements are on and South Virginia, where their ship lands, is not the computer's. Two routines read the plan. <code>ai_plan_scores</code> (<code>$3D09</code>) has steps for plans 0, 1 and 3 and returns for any other, and <code>ai_occupied</code> (<code>$3E11</code>) asks only whether it is 3. So plan 2 changes nothing, and the computer plays it exactly as plan 4, the plan for a side with fewer armies than the enemy. Nothing makes the computer go for the territory where the reinforcements land.</p>
+  <p>The <a href="index.html">How it works</a> page lets you set the four questions and see the plan.</p>
+</section>
+
 <section data-part="battle">
-  <p class="fig">06 · The developers' link</p>
+  <p class="fig">07 · The canyon</p>
+  <h2 class="t">Bug: nothing falls into the bottom of the canyon</h2>
+  <p>On the canyon field an object falls in when its row of the hazard table has a column within four of its position (<code>hazards</code>, <code>$A113</code>; the canyon's table <code>$876C</code>). The table's bottom five rows, 20 to 24, hold <code>$FF</code>, as the bridge's rows do, so a soldier or rider low enough on the field crosses where the picture shows the canyon. A ball that lands there counts as a hit on the bridge (<code>ball_crater</code>, <code>$A6D0</code>). A unit is checked by the row of its top (<code>obj_y</code> divided by 8, as <code>place_object</code> draws it), and infantry and cavalry walk down until their y reaches <code>$AA</code>, row 21, so they reach two of those rows. Run on the game's own code with a soldier in the canyon's column, he falls with his top in rows 14 to 19 and walks on in rows 20 and 21. The <a href="levels.html">Maps / levels</a> tab shows the cells.</p>
+</section>
+
+<section data-part="map">
+  <p class="fig">08 · The levels</p>
+  <h2 class="t">Oddity: with the arcade off, a captain is the weakest level</h2>
+  <p class="lede">In the arcade games a captain makes a side strongest. When chance decides instead, the same captain makes it weakest.</p>
+  <div class="plate">
+    <div class="ns-bar" id="dc-level"></div>
+    <table class="ns-tab" id="dc-level-tab"></table>
+    <p class="cap">The fort's start column and guards from <span data-part="fort"><code>fort_setup</code>, <code>$89B7</code></span>; the strategic chance from <code>fort_attack</code> (<code>$2DBB</code>), which compares a random number with <code>$7F</code>, <code>$55</code> or <code>$3F</code> by the defender's level. The same random numbers decide an interception of the train.</p>
+  </div>
+  <p>Each side's level is one byte, 0 for a corporal to 2 for a captain (<span data-part="resident"><code>$0380</code></span>, <span data-part="resident"><code>$0381</code></span>). The arcade parts read it as strength: a captain defending a fort makes the attacker cross 375 columns past 12 guards, and a computer captain acts on every pass of a battle (<span data-part="battle"><code>$9D14</code></span>). The strategic code reads it the other way. A captain's fort falls with a random number from <code>$3F</code> up, three times in four, and a corporal's only half the time. In a strategic battle a corporal's fire takes a unit three times in four, a captain's half the time (<code>hit_chance</code>, <code>$32B0</code>). A player who turns the arcade off does best as a corporal, the level the manual calls the hardest. It may be meant: a handicap that helps the weaker side by chance rather than by skill. The code cannot say which.</p>
+</section>
+
+<section data-part="fort">
+  <p class="fig">09 · Knives</p>
+  <h2 class="t">Oddity: the computer's guards never run out of knives</h2>
+  <p>In the fort the attacker has four knives (<code>knives_left</code>, <code>$8115</code>) and the guards ten between them (<code>guard_knives</code>, <code>$8116</code>). A person's guard checks that count before it throws. A computer guard throws whenever its own knife is not in the air and the attacker is 40 pixels or more away, and never looks at the count (<code>guard_fight</code>, <code>$9BAA</code>), so its knives never run out. The train runs the same code (<span data-part="train"><code>$9937</code></span>, which leaves <code>$8113</code> alone). It may be on purpose, a guard that never stands empty-handed; the code cannot say.</p>
+</section>
+
+<section data-part="map">
+  <p class="fig">10 · The map's soldiers</p>
+  <h2 class="t">Oddity: every army on the map looks the same, and its cannon balls are drawn but never shown</h2>
+  <p>The manual says the soldier standing for an army has more or fewer cannon balls at his feet by the army's size. The map has two soldiers, one for each side (<code>army_pictures</code>, <code>$8410</code>), and <code>draw_army</code> (<code>$3BE7</code>) chooses between them by the army's side alone; the army's counts are not read. A full army of 18, 9 and 3 looks like one of a single soldier, and the only way to see an army's strength is to click it.</p>
+  <p>The balls are there all the same. Among the map's sprite images, between the Mexican's last frame and his bomb, are two piles of cannon balls, a large and a small (sprite pointers <code>$B7</code> and <code>$B8</code>, at <code>$6DC0</code>). No routine in the listing points a sprite at either: every pointer the map's figures use is a fixed base plus a frame, and none of those reaches them. They read as the manual's piles, drawn and then left out.</p>
+  <div class="plate">
+    <canvas id="dc-soldiers" class="ns-cv" width="92" height="24" style="max-width:552px"></canvas>
+    <p class="cap">The two soldiers as <code>draw_army</code> copies them: three rows of two cells of bitmap, then six screen bytes and six colour bytes each (<code>$8410</code>, <code>$844C</code>). Then the two piles, in the map's sprite colours (<code>$D025</code> light red, <code>$D026</code> black) and white for the sprite's own, since no routine gives them one.</p>
+  </div>
+</section>
+
+<section data-part="battle">
+  <p class="fig">11 · The developers' link</p>
   <h2 class="t">Secret: the battle file carries a remote monitor</h2>
   <p>At <code>$CE00</code> the battle file holds 478 bytes of code that nothing in the game calls (<code>devlink</code>). It turns the border and background grey, keeps a copy of the processor's registers (the few values it is working on), and takes commands one byte at a time over the user port, the connector at the back of the C64: <code>$B4</code> writes bytes into memory, <code>$B6</code> sends them back, <code>$B5</code> calls a routine, <code>$BA</code> runs any one instruction, and <code>$B7</code> to <code>$B9</code> set the memory map and the registers. A routine at <code>$8110</code>, also never called, jumps into it when two lines of the port differ (<code>devlink_check</code>). It reads as the tool the developers used to inspect and change the game from another computer while it ran, saved into the file with the rest of memory.</p>
 </section>
 
+<section data-part="map">
+  <p class="fig">12 · The Mexican</p>
+  <h2 class="t">Secret: a Mexican sleeps in the corner of the map</h2>
+  <p>With the Indians turned on in the menu, a Mexican in a sombrero lies asleep at the map's bottom left (sprite <code>$A6</code>, <code>mexican_show</code>, <code>$1C79</code>). Nothing on the map says what he is for. An army of either side that stands in Texas, territory 19, at the second month in a row wakes him: he gets up, walks out, throws a bomb that lands on Texas, walks back and lies down again, and the army loses 6 infantry, 3 cavalry and a cannon (<code>mexican</code>, <code>$178B</code>). He does it every second month while an army stays there. The <a href="index.html">How it works</a> page plays him.</p>
+</section>
+
+<section data-part="fort">
+  <p class="fig">13 · Ducking</p>
+  <h2 class="t">Tip: duck, and a knife flies over</h2>
+  <p>A knife knocks a fighter over only when he is standing, walking, striking, throwing, or in a jump before its last crouch (<code>knife_hits</code>, <code>$9A63</code>). Pulling down on the stick away from a ladder ducks, and a knife passes a ducking fighter without touching him. That is the defence against the guards' endless knives.</p>
+</section>
+
 <section data-part="">
-  <p class="fig">07 · Leftovers</p>
+  <p class="fig">14 · Leftovers</p>
   <h2 class="t">Secret: the files carry pieces of each other</h2>
   <p>Each file was saved from memory as it stood, so some carry what an earlier load or an earlier build left there, which the game never reads:</p>
   <ul>
     <li>The fort's file holds the battle's packed canyon (<span data-part="fort"><code>$3540</code>-<code>$3FFF</code></span>) and an earlier build of the battle's code (<span data-part="fort"><code>$9EB2</code>-<code>$9FFF</code></span>): 326 of its 334 bytes are the battle's <span data-part="battle"><code>$9EC8</code>-<code>$A015</code></span>.</li>
     <li>The train's file holds the fort's map and code (<span data-part="train"><code>$2E28</code>-<code>$3FFF</code></span>, <span data-part="train"><code>$9C2A</code>-<code>$9FFF</code></span>).</li>
     <li>After the ending's tunes come the bytes of a picture (<span data-part="ending"><code>$3BE9</code>-<code>$3FFF</code></span>).</li>
+    <li>The title's file ends with five letters, <code>DCE00</code> (<span data-part="title"><code>$9FFB</code></span>). <code>$CE00</code> is where the battle file keeps its remote monitor; whether the letters are a command typed to reach it, the bytes alone cannot say.</li>
+    <li>The fort and the train share one set of sprite images, so each file carries the other's: the fort holds the train's driver and its locomotive's rods, the train the fort's dog, barrel and flag. Both hold a soldier's head seen from the front that neither shows (<span data-part="fort"><code>$71C0</code></span>).</li>
+    <li>The fort and the train each have a few instructions that nothing calls, which would switch off the guard's checks of the floor under him (<span data-part="fort"><code>$93B4</code></span>, <span data-part="train"><code>$942D</code></span>): a switch, it seems, for trying the guards out.</li>
     <li>Where the files hold nothing else, they hold the pattern a C64's memory has at power-on, two bytes of <code>$00</code> and two of <code>$FF</code> in turn.</li>
   </ul>
 </section>
 
-<section data-part="battle">
-  <p class="fig">08 · The canyon</p>
-  <h2 class="t">Secret: nothing falls into the bottom of the canyon</h2>
-  <p>On the canyon field an object falls in when its row of the hazard table has a column within four of its position (<code>hazards</code>, <code>$A113</code>; the canyon's table <code>$876C</code>). The table's bottom five rows, 20 to 24, hold <code>$FF</code>, as the bridge's rows do, so a soldier or rider low enough on the field crosses where the picture shows the canyon. A ball that lands there counts as a hit on the bridge (<code>ball_crater</code>, <code>$A6D0</code>). This comes from the code; it was not tried in play, and whether a unit can reach those rows depends on how low the lanes go. The <a href="levels.html">Maps / levels</a> tab shows the cells.</p>
-</section>
-
-<section data-part="map">
-  <p class="fig">09 · The map's soldiers</p>
-  <h2 class="t">Bug: every army on the map looks the same</h2>
-  <p>The manual says the soldier standing for an army has more or fewer cannon balls at his feet by the army's size. The map has two soldiers, one for each side (<code>army_pictures</code>, <code>$8410</code>), and <code>draw_army</code> (<code>$3BE7</code>) chooses between them by the army's side alone; the army's counts are not read. A full army of 18, 9 and 3 looks like one of a single soldier, and the only way to see an army's strength is to click it.</p>
-</section>
-
 <section data-part="">
-  <p class="fig">10 · The loader</p>
+  <p class="fig">15 · The loader</p>
   <h2 class="t">Secret: the loader has a message for crackers</h2>
   <p>While the menu runs, memory at <code>$F2CC</code> holds code of the Cyberload loader with a line of text in it telling hackers, in rude words, to go away and die. It is left over from the loads before the menu; the menu's files load around it and the map's file over it, so it is in none of the listings. Nothing prints it. It is there for whoever disassembles the loader to copy the game.</p>
 </section>
 
-<section data-part="menu">
-  <p class="fig">11 · The second war</p>
-  <h2 class="t">Bug: a second war started without a click on the calendar never loads</h2>
-  <p>The menu's calendar sets the war's first year (<code>start_year</code>, <code>$0389</code>) and keeps a copy of it (<code>year_kept</code>, <code>$037E</code>), which only the click writes (<code>$1146</code>). The first time the menu runs it clears the settings from <code>$0380</code> to <code>$0389</code>, but not the copy, which still holds <code>$93</code>, a byte of the boot's tape header left in the cassette buffer. Each later time it puts the copy back as the year (<code>$18BB</code>). So after a war in which nobody clicked the calendar, the next war's year is <code>$93</code>, and the script asks for the year's file by the year plus 9: file 156. No tape has a file 156, and the loader waits for its header for ever. The port found it: the game's code and the port's both stopped there, on the kit's machine, in a war the computer played against itself to its end.</p>
-</section>
-
-<section data-part="map">
-  <p class="fig">12 · The computer's choices</p>
-  <h2 class="t">Bug: the computer's random nudge wipes out its own plans</h2>
-  <p>Below its hardest difficulty the computer adds some chance to its plans: each territory's score of 4 or more moves up or down by a random amount, up to an eighth of a number below it at difficulty 0 and up to half at difficulty 1 (<code>noise</code>, <code>$3EE4</code>). When the amount rounds down to nothing, the routine returns at once (the <code>beq</code> at <code>$3EFF</code>) with the amount, 0, in place of the score, and the score becomes 0. Run on the game's own code 2,000 times for each score, it zeroes every score from 4 to 8 at difficulty 0, and about half of the higher ones; at difficulty 1 about one score in eight, and half of the 4s. The computer's easier levels are less a plan with some chance in it than a plan with most of its targets crossed out.</p>
-</section>
-
-<section data-part="battle">
-  <p class="fig">13 · The bridge</p>
-  <h2 class="t">Bug: a ball on the bridge brings down every spent bullet</h2>
-  <p>Every shot whose time runs out is marked as landed (<code>shot_landed</code>, set at <code>$A5CC</code>), the six bullets as well as the two cannon balls. <code>balls_land</code> (<code>$A5D3</code>) looks only at the balls, slots 6 and 7, so the bullets' marks are never cleared. A ball that lands on a bridge has its damage drawn through <code>bat_picture</code>, which leaves X, the shot's number, at <code>$FF</code> (<code>ball_crater</code>, <code>$A6A5</code>). Back in <code>balls_land</code> the next shot is X + 1, slot 0, and the loop goes through the bullets: each spent bullet lands as a cannon ball would, with a crater where it ran out and every soldier, rider or cannon there knocked over. Run on the game's own code from 228 moments of battles on the canyon and the river, a soldier where a bullet had run out fell every time a ball hit the bridge, and never when the ball landed elsewhere.</p>
-</section>
-
-<section data-part="battle">
-  <p class="fig">14 · The cavalry's turn</p>
-  <h2 class="t">Bug: cavalry that turns at the edge rides on with the wrong horses</h2>
-  <p>Each step, <code>cavalry_move</code> (<code>$9FD2</code>) goes through the side's three riders with X, from rider 5 down for the Confederacy and from rider 2 down for the Union. A rider who rides out past the edge comes back in on the far side, and when the riders are in file this starts the cavalry turning back into line (<code>cavalry_turn_start</code>, <code>$A3FD</code>, through <code>cavalry_right_edge</code> or <code>cavalry_left_edge</code>). That routine counts the riders still on the field with X, and leaves X two lower than it started. The loop then goes on from there. For the Confederacy that is rider 2 down: the Union's riders, which move a second time that step. For the Union X goes below 0, and the "riders" it moves are bytes of other tables: run on the game's own code, the step changed the last entry of the order the sprites' masks are built in (<code>mask_order</code>) and the high byte of <code>store_hi</code>. The port found it when, beside the game, a Confederate charge left two Union riders a step further on than the port had them.</p>
-</section>
-
 </main>
 <footer style="margin:16px 0 0;padding:22px var(--gx) 0;border-top:1px solid #e0ded8;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;color:#80838a"><a href="https://github.com/gamesexplained/gamesexplained" style="color:#1f5fa8;text-decoration:none">GitHub</a> · <a href="https://discord.gg/3V9GWyRDWV" style="color:#1f5fa8;text-decoration:none">Discord</a><br>© Games Explained contributors. Write-ups, facts and symbol maps are available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:#1f5fa8;text-decoration:none">CC BY-SA 4.0</a>; code under <a href="https://opensource.org/licenses/MIT" style="color:#1f5fa8;text-decoration:none">MIT</a></footer>
+<script src="../../lib/c64.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
 const LEVELS = [
@@ -177,5 +192,29 @@ const LEVELS = [
   };
   bs.forEach((b, i) => b.addEventListener('click', () => show(i)));
   show(2);
+})();
+
+// 10 the map's two soldiers, from army_pictures ($8410): rows of 16 bitmap bytes, then the screen and
+// colour bytes, as draw_army ($3BE7) copies them
+(function () {
+  const cv = $('dc-soldiers');
+  if (typeof C64 === 'undefined') { cv.insertAdjacentHTML('afterend', '<p class="cap">The picture needs the site\'s shared scripts. Open it from the built site.</p>'); return; }
+  C64.load('parts/map/listing.json').then((L) => {
+    const m = L.ram, W = cv.width, ctx = cv.getContext('2d'), img = ctx.createImageData(W, 24), d = img.data;
+    const RGB = C64.PAL.map((h) => [1, 3, 5].map((i) => parseInt(h.substr(i, 2), 16)));
+    const put = (x, y, v) => { const o = (y * W + x) * 4, rgb = RGB[v]; d[o] = rgb[0]; d[o + 1] = rgb[1]; d[o + 2] = rgb[2]; d[o + 3] = 255; };
+    for (let s = 0; s < 2; s++) for (let y = 0; y < 24; y++) for (let x = 0; x < 16; x++) {
+      const a = 0x8410 + 60 * s, c = (y >> 3) * 2 + (x >> 3), sc = m[a + 48 + c];
+      put(24 * s + x, y, [0, sc >> 4, sc & 15, m[a + 54 + c] & 15][(m[a + c * 8 + (y & 7)] >> (6 - 2 * ((x & 7) >> 1))) & 3]);
+    }
+    // the two piles: sprite images $B7 and $B8 of the map's bank at $4000, multicolour
+    [0xB7, 0xB8].forEach((p, k) => {
+      for (let y = 0; y < 21; y++) for (let x = 0; x < 24; x++) {
+        const v = (m[0x4000 + 64 * p + 3 * y + (x >> 3)] >> (6 - 2 * ((x & 7) >> 1))) & 3;
+        if (v) put(44 + 24 * k + x, y + 2, [10, 1, 0][v - 1]);
+      }
+    });
+    ctx.putImageData(img, 0, 0);
+  });
 })();
 </script>

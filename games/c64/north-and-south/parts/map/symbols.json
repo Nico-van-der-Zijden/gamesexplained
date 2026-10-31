@@ -903,31 +903,31 @@
   },
   {
    "address": 3469,
-   "name": "bomb_x",
+   "name": "mexican_x",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3470,
-   "name": "bomb_y",
+   "name": "mexican_y",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3471,
-   "name": "bomb_step",
+   "name": "mexican_step",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3474,
-   "name": "bomb_frame",
+   "name": "mexican_frame",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3475,
-   "name": "bomb_wait",
+   "name": "mexican_wait",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -939,25 +939,25 @@
   },
   {
    "address": 3478,
-   "name": "burst_x",
+   "name": "bomb_x",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3479,
-   "name": "burst_y",
+   "name": "bomb_y",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3480,
-   "name": "burst_on",
+   "name": "bomb_on",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
   {
    "address": 3481,
-   "name": "burst_left",
+   "name": "bomb_left",
    "type": "AbsoluteAddress",
    "kind": "user"
   },
@@ -2769,7 +2769,7 @@
   },
   {
    "address": 6256,
-   "name": "bomb_burst",
+   "name": "mexican_throw",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -2781,7 +2781,7 @@
   },
   {
    "address": 6305,
-   "name": "burst_step",
+   "name": "bomb_step",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -2799,7 +2799,7 @@
   },
   {
    "address": 6349,
-   "name": "burst_show",
+   "name": "bomb_show",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -3123,7 +3123,7 @@
   },
   {
    "address": 7289,
-   "name": "bomb_show",
+   "name": "mexican_show",
    "type": "Subroutine",
    "kind": "user"
   },
@@ -7233,19 +7233,19 @@
   },
   {
    "address": 49343,
-   "name": "bomb_path",
+   "name": "mexican_frames",
    "type": "Field",
    "kind": "user"
   },
   {
    "address": 49376,
-   "name": "bomb_path_c0e0",
+   "name": "mexican_dx",
    "type": "Field",
    "kind": "user"
   },
   {
    "address": 49410,
-   "name": "bomb_path_c102",
+   "name": "mexican_dy",
    "type": "Field",
    "kind": "user"
   },
@@ -9162,27 +9162,27 @@
   {
    "address": 3469,
    "type": "line",
-   "text": "the bomb's x."
+   "text": "the Mexican's x."
   },
   {
    "address": 3470,
    "type": "line",
-   "text": "the bomb's y."
+   "text": "the Mexican's y."
   },
   {
    "address": 3471,
    "type": "line",
-   "text": "the bomb's step along its path, 0 to 32."
+   "text": "the Mexican's step on his way out and back, 0 to 32."
   },
   {
    "address": 3474,
    "type": "line",
-   "text": "the bomb's frame, from $C0BF."
+   "text": "the Mexican's frame, from $C0BF: 0 asleep."
   },
   {
    "address": 3475,
    "type": "line",
-   "text": "frames to the bomb's next step, also the burst's half-step."
+   "text": "frames to the Mexican's next step; its low bit also times the bomb's rise."
   },
   {
    "address": 3477,
@@ -9192,22 +9192,22 @@
   {
    "address": 3478,
    "type": "line",
-   "text": "the explosion's x."
+   "text": "the bomb's x."
   },
   {
    "address": 3479,
    "type": "line",
-   "text": "the explosion's y."
+   "text": "the bomb's y."
   },
   {
    "address": 3480,
    "type": "line",
-   "text": "1 while the explosion shows."
+   "text": "1 while the bomb flies."
   },
   {
    "address": 3481,
    "type": "line",
-   "text": "frames left of the explosion, 18."
+   "text": "frames left of the bomb's flight, 18."
   },
   {
    "address": 3482,
@@ -9977,7 +9977,7 @@
   {
    "address": 3867,
    "type": "line",
-   "text": "1 while the smoke after a burst shows."
+   "text": "1 while the explosion where the bomb lands shows."
   },
   {
    "address": 3868,
@@ -10102,7 +10102,7 @@
   {
    "address": 4294,
    "type": "line",
-   "text": "the raster interrupt at line 224, the frame's work: arms line 0 for the multiplexer ($1182), copies this frame's sprite list into the multiplexer's and sorts it ($1762, $13FC), and with interrupts back on (a busy flag $0E69 keeps it from running twice) the cursor ($1ACE), the sound ($F12E, unless a sound is being started, $3FB7), the timers ($1C30) and, unless the map is being drawn ($0EC0), the frame's figures into the list: the bomb, the Indians, the ship, the marching army, the explosion, the supply train, the smoke ($1C79 to $18F2, skipped while $0E68 says an animation in the panel runs), then the ship's sail, the interception's figures, the flag, the fort's figures and the reinforcements' figures ($21FE to $3775); then the animations' steps, the keyboard ($1031 into $10C5) and the stick or keys of the side to play ($24A2), the cursor's move ($254C, $25D1), the flags ($3B97) and the army counts under the cursor ($3A0E). The Commodore key in a game the computer plays alone ends it ($0CE3)."
+   "text": "the raster interrupt at line 224, the frame's work: arms line 0 for the multiplexer ($1182), copies this frame's sprite list into the multiplexer's and sorts it ($1762, $13FC), and with interrupts back on (a busy flag $0E69 keeps it from running twice) the cursor ($1ACE), the sound ($F12E, unless a sound is being started, $3FB7), the timers ($1C30) and, unless the map is being drawn ($0EC0), the frame's figures into the list: the Mexican, the Indians, the ship, the marching army, the explosion, the supply train, the smoke ($1C79 to $18F2, skipped while $0E68 says an animation in the panel runs), then the ship's sail, the interception's figures, the flag, the fort's figures and the reinforcements' figures ($21FE to $3775); then the animations' steps, the keyboard ($1031 into $10C5) and the stick or keys of the side to play ($24A2), the cursor's move ($254C, $25D1), the flags ($3B97) and the army counts under the cursor ($3A0E). The Commodore key in a game the computer plays alone ends it ($0CE3)."
   },
   {
    "address": 4482,
@@ -10392,7 +10392,7 @@
   {
    "address": 6027,
    "type": "line",
-   "text": "with the Indians on ($0384), and while an army of either side stands in territory 19 ($0DF3; the manual's Mexican bombs Texas): every second pass of the main loop a bomb is thrown there: sound 26, a pause, and the bomb's flight along the 32 steps of $C0E0/$C102 (frames from $C0BF), its burst at the 17th ($1870); the army loses 6 infantry, 3 cavalry and a cannon ($349B)."
+   "text": "with the Indians on ($0384), and while an army of either side stands in territory 19 ($0DF3; Texas in the manual) at two passes of the main loop running (a pass is a month: this is its last step but one), the Mexican asleep at the map's bottom left wakes: sound 26, 80 frames, then 32 steps of seven frames, his frames from $C0BF and his moves from $C0E0/$C102: he sits up, stands, walks up and to the right, throws his bomb at the 17th step ($1870), walks back and lies down again; then the army loses 6 infantry, 3 cavalry and a cannon ($349B)."
   },
   {
    "address": 6166,
@@ -10407,22 +10407,22 @@
   {
    "address": 6256,
    "type": "line",
-   "text": "the Mexican's bomb bursts: sound 18 and the explosion's figure ($0D96-$0D99) for 18 frames."
+   "text": "the Mexican throws his bomb: sound 18, and the bomb ($0D96-$0D99) starts at his place for 18 frames of flight ($18A1)."
   },
   {
    "address": 6284,
    "type": "line",
-   "text": "the smoke after the burst: sound 8 and five frames of it ($0F1B-$0F1D)."
+   "text": "the explosion where the bomb lands: sound 8 and five frames of it ($0F1B-$0F1D)."
   },
   {
    "address": 6305,
    "type": "line",
-   "text": "moves the explosion's figure four pixels right and half a pixel up a frame, for 18 frames, then the smoke ($188C)."
+   "text": "moves the bomb four pixels right and half a pixel up a frame, for 18 frames, then the explosion ($188C)."
   },
   {
    "address": 6349,
    "type": "line",
-   "text": "adds the explosion's figure to the frame's list (pointer $B9)."
+   "text": "adds the bomb to the frame's list (pointer $B9)."
   },
   {
    "address": 6386,
@@ -10517,7 +10517,7 @@
   {
    "address": 7289,
    "type": "line",
-   "text": "with the Indians on (so the Mexican too), adds the bomb to the list at $0D8D/$0D8E, pointer $A6 + its frame $0D92."
+   "text": "with the Indians on (so the Mexican too), adds the Mexican to the list at $0D8D/$0D8E, pointer $A6 + his frame $0D92: asleep ($A6) while he is not throwing."
   },
   {
    "address": 7332,
@@ -11672,7 +11672,7 @@
   {
    "address": 26048,
    "type": "line",
-   "text": "the map's other sprite frames, pointers $97 to $FC: the marching soldiers ($97-$9D), the Indians' rider ($9E-$A5), the bomb ($A6-$B6), the explosion ($B9), the cloud and its lightning ($BA-$C1), the Indians' smoke ($C2-$CD) and their figure ($CE-$D2), the ship ($D3-$D8), the bags of gold ($D9-$E3), the cursor ($E4), the interception's figures ($E5-$EC), the waving flag's two figures ($EF-$F7) and the smoke after a burst ($F8-$FC); the rest unused."
+   "text": "the map's other sprite frames, pointers $97 to $FC: the marching soldiers ($97-$9D), the Indians' rider ($9E-$A5), the Mexican ($A6-$B6: asleep, waking, walking and throwing), two piles of cannon balls, large and small, that nothing shows ($B7, $B8), his bomb ($B9), the cloud and its lightning ($BA-$C1), the Indians' smoke ($C2-$CD) and their figure ($CE-$D2), the ship ($D3-$D8), the bags of gold ($D9-$E3), the cursor ($E4), the interception's figures ($E5-$ED, and $EE, a pose nothing shows), the waving flag's two figures ($EF-$F7) and the explosion where the bomb lands ($F8-$FC); the rest unused."
   },
   {
    "address": 27072,
@@ -11962,7 +11962,7 @@
   {
    "address": 49343,
    "type": "line",
-   "text": "the bomb's flight: its frame for each of its 33 steps ($C0BF, up to 16 and back), and its moves in x ($C0E0) and y ($C102), 34 steps each."
+   "text": "the Mexican's way out and back: his frame for each of its 33 steps ($C0BF, up to 16 and back), and his moves in x ($C0E0) and y ($C102), 34 steps each."
   },
   {
    "address": 49376,

@@ -114,3 +114,11 @@ agent's benefit. This is the only file that narrates; `facts.md` and
 - The battle's picture check drew a place the battle had given no address,
   so the copy went over the processor port; such a place is now left out.
 - The routine check of `bat_pick_lane` hung at 800 cases. Its setup meant to leave the side one free lane, but drew a new random number for each lane, so some cases left none, and the game's search for a free lane never ends. The setup now frees one lane chosen once, and the check passes 800 of 800 in under a second.
+
+## Pictures, the Mexican and the cheats (31 October 2026)
+
+- The contributor asked whether the discoveries were real, for more graphics, and about cheats. The Discoveries page now leads with the bugs shown on the game's own code. The level reading, the guards' knives and the map's one soldier per side are relabelled oddities that may be meant, and ducking is a tip.
+- The canyon's bottom rows were a claim read from the table and never tried. `work/canyon.js` runs `hazards` ($A113) on a soldier in the canyon's column: he falls with his top in rows 14 to 19 and crosses in rows 20 and 21, which units reach because they walk down to y $AA.
+- The contributor asked about a sleeping figure at the map's bottom left. The listing called sprite frames $A6-$B6 the bomb and $B9 the explosion. Drawn in order along the path at $C0BF/$C0E0/$C102, the frames are the Mexican: asleep, waking, walking out and throwing. $B9 is his bomb, which flies 18 frames from his hand ($18A1), and $F8-$FC are its explosion. The labels `bomb_*` became `mexican_*` and `burst_*` became `bomb_*`, the comments were corrected in `parts/map/symbols.json`, and the port's names followed.
+- The How it works page gained viewers drawn from the game's data: the map panel's scenes, the battle units' pictures from their tables, the fort fighter posed by `fighter_pictures` ($8CA0) run on the kit's 6502, the fort's other sprites, the Mexican, and the ending's two screens with the scrolling message.
+- The cheats were tried on the kit's machine from saved moments (`work/cheats.js`, `work/cheats2.js`). Holding the knives at 4 gave the computer's attacker 6 knives in a fort and 9 or 10 on a train, against 4 or fewer without the poke. Holding the train's clock at its start turned a lost train into a won one.

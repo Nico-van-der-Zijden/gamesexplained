@@ -35,10 +35,10 @@ const moves = (M, rnd) => {
   for (; y < 26; y++) M[S.may_move + y] = 0xFF;
 };
 const figures = (M, c, rnd) => {
-  for (const k of ['march_on', 'burst_on', 'after_smoke_on', 'intercept_on', 'flag_wave_on', 'train_on', 'train_moving', 'ship_on',
+  for (const k of ['march_on', 'bomb_on', 'after_smoke_on', 'intercept_on', 'flag_wave_on', 'train_on', 'train_moving', 'ship_on',
     'smoke_on', 'bag_on', 'bank_on', 'indians_attack', 'indians_rider']) M[S[k]] = rnd(3) ? 0 : 1;
   for (const k of ['cloud_frame', 'after_smoke_frame', 'intercept_frame1', 'intercept_frame2', 'figure_frame', 'train_frame', 'bag_stage']) M[S[k]] = rnd(3);
-  for (const k of ['burst_left', 'after_smoke_wait', 'intercept_wait', 'intercept_steps', 'flag_wave_wait_1', 'flag_wave_wait_2', 'cloud_wait',
+  for (const k of ['bomb_left', 'after_smoke_wait', 'intercept_wait', 'intercept_steps', 'flag_wave_wait_1', 'flag_wave_wait_2', 'cloud_wait',
     'smoke_frame_wait', 'smoke_wait', 'bag_fall_wait', 'indians_wait', 'indians_delay', 'train_wait', 'count_wait']) M[S[k]] = rnd(4);
   M[S.list_length] = rnd(20);
   M[S.banks] = rnd(9); M[S.banks + 1] = rnd(9); M[S.gold_side] = rnd(2);
@@ -64,7 +64,7 @@ const list = [
   T('map_draw_picture', (M, c, rnd) => ({ a: rnd(9), x: rnd(22) }), { cases: 600 }),
   T('map_storm_start'), T('map_storm_show'), T('map_storm_step'), T('map_storm_step_place'), T('map_storm_next', all, { outs: ['x', 'y'] }),
   T('map_march_step_place'), T('map_march_show'), T('map_list_to_mux', (M, c, rnd) => { M[S.map_drawing] = rnd(4) ? 0 : 1; }),
-  T('map_bomb_burst'), T('map_smoke_start'), T('map_burst_step'), T('map_burst_show'), T('map_smoke_show'),
+  T('map_mexican_throw'), T('map_smoke_start'), T('map_bomb_step'), T('map_bomb_show'), T('map_smoke_show'),
   T('map_intercept_start', all, { outs: ['x'] }), T('map_intercept_show'), T('map_intercept_step'), T('map_flag_wave'),
   T('map_cursor_sprite', all, { outs: ['a'] }),
   // battle_round is checked inside auto_battle: when a side falls back its two pla leave its caller
@@ -73,7 +73,7 @@ const list = [
     // a list new_army flashes is never empty
     if (M[S.may_move] & 0x80) M[S.may_move] = rnd(26); }),
   T('map_map_show', all, { cases: 60 }), T('map_map_colour', all, { cases: 60 }), T('map_list_clear', all, { outs: ['a', 'y'] }),
-  T('map_train_show'), T('map_train_anim'), T('map_map_timers'), T('map_bomb_show'),
+  T('map_train_show'), T('map_train_anim'), T('map_map_timers'), T('map_mexican_show'),
   T('map_train_start', (M, c, rnd) => { all(M, c, rnd); return { x: rnd(15) }; }, { outs: ['x'] }),
   T('map_line_setup', (M, c, rnd) => { for (const k of ['point_x', 'line_x_hi', 'point_y', 'line_to_x', 'line_to_x_hi', 'line_to_y']) M[S[k]] = k.endsWith('hi') ? rnd(2) : rnd(256);
     M[S.line_x_done] = 0; M[S.line_y_done] = 0; }),

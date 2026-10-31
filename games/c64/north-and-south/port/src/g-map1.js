@@ -26,7 +26,7 @@ G.map = function (P) {
   P.ARCADE_BACK = { frt: 0x0C95, trn: 0x0CA3, bat: 0x0CB1 };
   P.IRQS.map = { 0x10C6: 'map_map_irq_frame', 0x1182: 'map_mux_first', 0x11E7: 'map_mux_next' };
   const T = { train_wait: S.train_wait, line_wait: S.line_wait, anim_frames: S.anim_frames, frame_wait: S.frame_wait,
-    ship_wave_wait: S.ship_wave_wait, ship_wait: S.ship_wait, bomb_wait: S.bomb_wait, anim_wait: S.anim_wait, flash_wait: S.flash_wait };
+    ship_wave_wait: S.ship_wave_wait, ship_wait: S.ship_wait, mexican_wait: S.mexican_wait, anim_wait: S.anim_wait, flash_wait: S.flash_wait };
   // and the random numbers' six bytes, which the frame interrupt draws from too ($10C6)
   P.IRQ_BYTES.map = (P.IRQ_BYTES.map || []).concat(Object.values(T), [S.map_rnd_seeds, S.rnd_2, S.rnd_3, S.rnd_4, S.rnd_5, S.rnd_6]);
   // the operands that keep a register: mux_next's A, X and Y (the interrupted program's), play_sound's
@@ -275,15 +275,15 @@ G.map = function (P) {
         M[S.map_drawing]++;
         P.map_list_clear();
         if (!M[S.panel_busy]) {
-          P.map_bomb_show(); P.map_indians_show(); P.map_ship_show(); P.map_storm_show();
-          P.map_march_show(); P.map_burst_show(); P.map_train_show(); P.map_smoke_show();
+          P.map_mexican_show(); P.map_indians_show(); P.map_ship_show(); P.map_storm_show();
+          P.map_march_show(); P.map_bomb_show(); P.map_train_show(); P.map_smoke_show();
         }
         P.map_cannon_smoke_show(); P.map_intercept_show(); P.map_flag_wave(); P.map_bags_show(); P.map_bag_show();
         M[S.map_drawing]--;
         P.spend(70);
       }
       P.map_smoke_anim(); P.map_storm_step(); P.map_train_anim(); P.map_intercept_step(); P.map_indians_anim();
-      P.map_bag_step(); P.map_burst_step();
+      P.map_bag_step(); P.map_bomb_step();
       M[S.map_key] = P.map_read_key_map().a;
       P.map_map_input(); P.map_cursor_aim(); P.map_cursor_glide(); P.map_draw_changes(); P.map_army_counts();
       M[S.frame_busy]--;
@@ -587,29 +587,29 @@ G.map = function (P) {
     M[S.mexican_passes]++;
     P.spend(14);
     if (M[S.mexican_passes] !== 2) return {};
-    M[S.mexican_passes] = 0; M[S.bomb_step] = 0;
+    M[S.mexican_passes] = 0; M[S.mexican_step] = 0;
     sound(0x1A);
-    M[S.bomb_wait] = 0x50;
+    M[S.mexican_wait] = 0x50;
     P.spend(20);
-    yield* P.mapWaitZero(S.bomb_wait);
+    yield* P.mapWaitZero(S.mexican_wait);
     for (;;) {
-      M[S.bomb_wait] = 7;
+      M[S.mexican_wait] = 7;
       P.spend(6);
-      yield* P.mapWaitZero(S.bomb_wait);
-      const x = M[S.bomb_step];
-      M[S.bomb_frame] = M[S.bomb_path + x];
+      yield* P.mapWaitZero(S.mexican_wait);
+      const x = M[S.mexican_step];
+      M[S.mexican_frame] = M[S.mexican_frames + x];
       P.spend(20);
       if (x < 0x11) {
-        M[S.bomb_x] = (M[S.bomb_x] + M[S.bomb_path_c0e0 + x]) & 255;
-        M[S.bomb_y] = (M[S.bomb_y] - M[S.bomb_path_c102 + x]) & 255;
-        M[S.bomb_step]++;
+        M[S.mexican_x] = (M[S.mexican_x] + M[S.mexican_dx + x]) & 255;
+        M[S.mexican_y] = (M[S.mexican_y] - M[S.mexican_dy + x]) & 255;
+        M[S.mexican_step]++;
         P.spend(30);
-        if (x === 0x10) P.map_bomb_burst();
+        if (x === 0x10) P.map_mexican_throw();
         continue;
       }
-      M[S.bomb_x] = (M[S.bomb_x] - M[S.bomb_path_c0e0 + x]) & 255;
-      M[S.bomb_y] = (M[S.bomb_y] + M[S.bomb_path_c102 + x]) & 255;
-      M[S.bomb_step]++;
+      M[S.mexican_x] = (M[S.mexican_x] - M[S.mexican_dx + x]) & 255;
+      M[S.mexican_y] = (M[S.mexican_y] + M[S.mexican_dy + x]) & 255;
+      M[S.mexican_step]++;
       P.spend(30);
       if (x === 0x20) break;
     }
@@ -643,9 +643,9 @@ G.map = function (P) {
     P.spend(10);
     return {};
   };
-  P.map_bomb_burst = function () {
+  P.map_mexican_throw = function () {
     sound(0x12);
-    M[S.burst_on] = 1; M[S.burst_x] = M[S.bomb_x]; M[S.burst_y] = M[S.bomb_y]; M[S.burst_left] = 0x12;
+    M[S.bomb_on] = 1; M[S.bomb_x] = M[S.mexican_x]; M[S.bomb_y] = M[S.mexican_y]; M[S.bomb_left] = 0x12;
     P.spend(30);
     return {};
   };
@@ -655,23 +655,23 @@ G.map = function (P) {
     P.spend(24);
     return {};
   };
-  P.map_burst_step = function () {
+  P.map_bomb_step = function () {
     P.spend(6);
-    if (!M[S.burst_on]) return {};
-    M[S.burst_x] = (M[S.burst_x] + 4) & 255;
-    if (!(M[S.bomb_wait] & 1)) M[S.burst_y] = (M[S.burst_y] - 1) & 255;
-    M[S.burst_left] = (M[S.burst_left] - 1) & 255;
+    if (!M[S.bomb_on]) return {};
+    M[S.bomb_x] = (M[S.bomb_x] + 4) & 255;
+    if (!(M[S.mexican_wait] & 1)) M[S.bomb_y] = (M[S.bomb_y] - 1) & 255;
+    M[S.bomb_left] = (M[S.bomb_left] - 1) & 255;
     P.spend(40);
-    if (M[S.burst_left]) return {};
-    M[S.burst_on] = 0;
+    if (M[S.bomb_left]) return {};
+    M[S.bomb_on] = 0;
     return P.map_smoke_start();
   };
-  P.map_burst_show = function () {
+  P.map_bomb_show = function () {
     P.spend(6);
-    if (!M[S.burst_on]) return {};
+    if (!M[S.bomb_on]) return {};
     const x = M[S.list_length];
     M[S.list_ptr + x] = 0xB9; M[S.list_colour + x] = 0; M[S.list_x_hi + x] = 0;
-    M[S.list_x + x] = M[S.burst_x]; M[S.list_y + x] = M[S.burst_y];
+    M[S.list_x + x] = M[S.bomb_x]; M[S.list_y + x] = M[S.bomb_y];
     M[S.list_length] = (M[S.list_length] + 1) & 255;
     P.spend(50);
     return {};
@@ -681,7 +681,7 @@ G.map = function (P) {
     if (!M[S.after_smoke_on]) return {};
     const x = M[S.list_length];
     M[S.list_ptr + x] = (0xF8 + M[S.after_smoke_frame]) & 255; M[S.list_colour + x] = 2; M[S.list_x_hi + x] = 0;
-    M[S.list_x + x] = M[S.burst_x]; M[S.list_y + x] = M[S.burst_y];
+    M[S.list_x + x] = M[S.bomb_x]; M[S.list_y + x] = M[S.bomb_y];
     M[S.list_length] = (M[S.list_length] + 1) & 255;
     M[S.after_smoke_wait] = (M[S.after_smoke_wait] - 1) & 255;
     P.spend(60);
@@ -881,12 +881,12 @@ G.map = function (P) {
     for (const a of Object.values(T)) { P.spend(7); if (M[a]) { M[a]--; P.spend(6); } }
     return {};
   };
-  P.map_bomb_show = function () {
+  P.map_mexican_show = function () {
     P.spend(6);
     if (!M[R.opt_indians]) return {};
     const x = M[S.list_length];
-    M[S.list_ptr + x] = (M[S.bomb_frame] + 0xA6) & 255;
-    M[S.list_x + x] = M[S.bomb_x]; M[S.list_y + x] = M[S.bomb_y]; M[S.list_x_hi + x] = 0; M[S.list_colour + x] = 1;
+    M[S.list_ptr + x] = (M[S.mexican_frame] + 0xA6) & 255;
+    M[S.list_x + x] = M[S.mexican_x]; M[S.list_y + x] = M[S.mexican_y]; M[S.list_x_hi + x] = 0; M[S.list_colour + x] = 1;
     M[S.list_length] = (M[S.list_length] + 1) & 255;
     P.spend(60);
     return {};
