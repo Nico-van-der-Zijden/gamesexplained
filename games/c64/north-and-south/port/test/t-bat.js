@@ -45,7 +45,13 @@ const list = [
   T('bat_stick_port2', war, { outs: ['a', 'x', 'y'] }), T('bat_stick_port1', war, { outs: ['a', 'x', 'y'] }),
   T('bat_key_scan', (M, c, rnd) => { c.game.keys = new Set(rnd(2) ? [pick(rnd, [0x0C, 0x17, 0x29, 0x2A, 0x3C, 0x0E])] : []); }, { outs: ['a', 'x', 'y'] }),
   T('bat_sprite_sort', (M, c, rnd) => { for (let i = 0; i < 32; i++) { M[S.sort_order + i] = i; M[S.live_y + i] = rnd(256); } }),
-  T('bat_bat_picture', (M, c, rnd) => ({ a: rnd(13), x: pick(rnd, [0, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26]) }), { cases: 400 }),
+  // (a place the battle has not given an address is left out: the copy would go to $0000 on, over
+  // the processor port, which the game never asks for)
+  T('bat_bat_picture', (M, c, rnd) => {
+    const a = rnd(13);
+    if (!(M[S.place_bitmaps + 2 * a] | M[S.place_bitmaps + 2 * a + 1])) return { skip: true };
+    return { a, x: pick(rnd, [0, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26]) };
+  }, { cases: 400 }),
   T('bat_sprite_copy', war, { outs: ['x'] }), T('bat_sprite_clear', war, { outs: ['a'] }),
   T('bat_gauge_places', war, { outs: ['x'] }), T('bat_gauge_save'), T('bat_gauge_clear'), T('bat_gauge_draw'),
   T('bat_gauge_restore_side', war, { outs: ['x'] }),
@@ -58,7 +64,8 @@ const list = [
   T('bat_build_mask', (M, c, rnd) => { M[S.draw_pic_no] = rnd(78); return { y: rnd(20) }; }, { outs: ['y'] }),
   T('bat_cover_sprite', (M, c, rnd) => ({ y: rnd(20) }), { outs: ['y'] }), T('bat_cover_off'),
   T('bat_pick_lane', (M, c, rnd) => { war(M, c, rnd); for (let x = 0; x < 8; x++) M[S.lanes_taken + x] = rnd(4) ? 0 : 1;
-    for (let x = 0; x < 4; x++) M[S.lanes_taken + 4 * M[S.side] + x] = x === rnd(4) ? 0 : M[S.lanes_taken + 4 * M[S.side] + x]; }, { outs: ['x'] }),
+    // (one of the side's lanes is left free: with none, the game's search goes round for good)
+    M[S.lanes_taken + 4 * M[S.side] + rnd(4)] = 0; }, { outs: ['x'] }),
   T('bat_lanes_clear', war, { outs: ['a', 'x'] }), T('bat_bat_sound', (M, c, rnd) => ({ a: rnd(31) }), { outs: ['x', 'y'] }),
   T('bat_bring_infantry'), T('bat_bring_cavalry'), T('bat_bring_cannon_first'), T('bat_bring_cannon'),
   T('bat_infantry_pictures', war, { cases: 400 }), T('bat_cavalry_pictures', war, { cases: 400 }), T('bat_cannon_pictures', war, { cases: 400 }),

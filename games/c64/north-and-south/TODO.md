@@ -5,7 +5,9 @@ Current tier and what is missing for the next one. Coverage gaps from
 
 ## Tier
 
-Silver: 100 % coverage over the eight parts (258,485 bytes), a sample of
+Platinum: the Play tab is the whole game, the eight parts' 606 routines
+ported to JavaScript and held in lockstep with the game's code
+(`port/`, `test_play.js`), on a Silver run of 100 % coverage over the eight parts (258,485 bytes), a sample of
 65 comments checked and corrected, every feature confirmed, traced, live
 or open, and the minisite built with a player for each of the three tunes
 and the 31 sound effects.
@@ -24,12 +26,19 @@ recommended before the listing is relied on
   cannon while the Union has one in reserve; a strategic game with a
   corporal against a captain; a unit on the canyon's bottom rows.
 
-## For Platinum
+## For Diamond
 
-- A Play tab: a port of the game, routine by routine, held in lockstep
-  with the game (`kit/skills/core/70-minisite/play.md`). The strategic map
-  is the natural first part: the year set-up, the moves and the computer's
-  plan already run on the page or have their rules on it.
+- Gold, above: the page's curation by a person. The Play tab is Platinum
+  already.
+
+## The Play tab
+
+- The page plays at the game's pace to within a few per cent, by a model
+  fitted on the game's timings (`port/cost.json`, `port/test/t-pace.js`);
+  it does not count the game's cycles. A battle whose redraws are set off
+  by a byte the interrupt writes can draw on different passes from the
+  game. Counting each routine's cycles from the instructions it would run
+  would make the pace exact.
 
 ## Article ideas
 

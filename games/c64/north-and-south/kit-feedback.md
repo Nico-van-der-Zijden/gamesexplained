@@ -74,7 +74,29 @@ Skill text that changed what I did:
   port's `irqByte` reads of one address side by side; each race above
   was found with it in one run.
 
-What was changed in the kit: the first entry under that heading above.
+What was changed in the kit: the first entry under that heading above,
+and a fix in `kit/c64/lockstep.js`.
+
+- **A copy run ahead with old input.** When the port reads a byte the
+  interrupt writes before the game has read it, the lockstep makes a copy
+  of the machine and runs it on to the next stop, to learn what the game
+  will read. The copy keeps the stick as it was when the copy was made. On
+  the map the computer's turn is one long stretch, and in a moment where
+  a person holds the other side the stick moves during it. The map's
+  interrupt draws from the same random generator, and once the stick had
+  moved the copy's random numbers drifted from the game's (a copy made
+  later, with the stick as it then stood, agreed with the game). The port
+  was handed `$29` where the
+  game read `$0C`, and the computer chose another march
+  (`cp-map-hu62-090`, the one map moment of 79 out of step). The lockstep
+  now drops the copy's reads still to come when the input changes, and the
+  next read past the game's own makes a new copy from where the game
+  stands. It also keeps recording the game's own reads while a copy's list
+  is in use, which the new copy starts from. `kit/c64/test_lockstep.js`
+  has a case that fails without the fix: the interrupt keeps the stick in
+  a byte, and the port's second read of it comes after the stick has
+  moved. It would matter for any game whose interrupt reads the input, or
+  draws from a generator the input steers, during a long stretch.
 
 Candidates, not made:
 

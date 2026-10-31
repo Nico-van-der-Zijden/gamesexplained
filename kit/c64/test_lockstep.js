@@ -681,4 +681,38 @@ const TICK = (() => {
   check('a handler\'s read of the SID\'s faded bus: the game read $' + m.ram[0x2010].toString(16) + ', and so did the port, 3000 passes identical', r.ok && r.passes === 3000 && m.ram[0x2010] !== 0xFF, true);
 }
 
+// irqBytes with the input changed inside a stretch: the interrupt at line $20 keeps the stick in
+// $A2, and the main program reads $A2, counts for about four frames and reads it again. The port
+// reads first, so its first read comes from a copy run on ahead; it then waits a frame and more,
+// in which the stick moves, and its second read must be the game's, made with the stick as it
+// stands then, not the copy's, made with the stick as it was.
+{
+  const { Machine } = require('./machine.js');
+  const ram = new Uint8Array(65536);
+  // $1000: SEI; the vector $FFFE to $1100; a raster interrupt on line $20; CLI; then at $1020:
+  // LDA $A2; STA $2010; LDY #$40; a count of 256 X for each Y; LDA $A2; STA $2012; JMP $1020
+  ram.set([0x78, 0xA9, 0x00, 0x8D, 0xFE, 0xFF, 0xA9, 0x11, 0x8D, 0xFF, 0xFF, 0xA9, 0x20, 0x8D, 0x12, 0xD0,
+    0xA9, 0x1B, 0x8D, 0x11, 0xD0, 0xA9, 0x01, 0x8D, 0x1A, 0xD0, 0x58, 0xEA, 0xEA, 0xEA, 0xEA, 0xEA,
+    0xA5, 0xA2, 0x8D, 0x10, 0x20, 0xA0, 0x40, 0xA2, 0x00, 0xCA, 0xD0, 0xFD, 0x88, 0xD0, 0xF8,
+    0xA5, 0xA2, 0x8D, 0x12, 0x20, 0x4C, 0x20, 0x10], 0x1000);
+  // $1100: PHA; LDA $DC00; AND #$1F; STA $A2; LDA #$01 STA $D019; PLA; RTI
+  ram.set([0x48, 0xAD, 0x00, 0xDC, 0x29, 0x1F, 0x85, 0xA2, 0xA9, 0x01, 0x8D, 0x19, 0xD0, 0x68, 0x40], 0x1100);
+  const m = new Machine({ ram, pc: 0x1000, port: { dir: 0x2F, data: 0x35 } });
+  const P = { M: new Uint8Array(65536) };
+  P.irq = function () { P.M[0xA2] = P.io.read(0xDC00) & 0x1F; P.io.write(0xD019, 1); };
+  P.program = function* () {
+    P.io.write(0xD012, 0x20); P.io.write(0xD011, 0x1B); P.io.write(0xD01A, 1);
+    for (;;) {
+      yield { cp: 0x1020 };
+      P.M[0x2010] = P.io.irqByte(0xA2);
+      for (let i = 0; i < 400; i++) yield;
+      P.M[0x2012] = P.io.irqByte(0xA2);
+    }
+  };
+  const r = new Lockstep({ machine: m, port: P, program: (p) => p.program(), passAt: 0x1020, irqs: { 0x1100: 'irq' },
+    irqBytes: [0xA2], compare: [[0x2010, 0x2012]] })
+    .run({ passes: 40, onFrame: (n, mm) => { mm.joy = 0x1F & ~(n & 15); } });
+  check('irqBytes, the stick moved inside the stretch: 40 passes identical', r.ok && r.passes === 40, true);
+}
+
 process.exit(fails ? 1 : 0);

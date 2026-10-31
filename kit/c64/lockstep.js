@@ -130,8 +130,11 @@
 //   checkpoint or wait's exit: its class's restore(save(), { rom }), with the input as it stands
 //   and the ROMs the machine was given. A machine
 //   class that keeps more than Machine does extends save() and restore(), or the copy is not the
-//   game. Input onFrame gives inside the stretch, after the copy is made, is not in it, and a copy
-//   made at the head of a raster wait's loop stops at that head the first time round. With nest,
+//   game. Input onFrame gives inside the stretch, after the copy is made, is not in it: when the
+//   input changes, the copy's reads still to come are dropped, and the next read past the game's
+//   own makes another copy from where the game stands. A read the port made before the change
+//   keeps the old copy's value. A copy made at the head of a raster wait's loop stops at that head
+//   the first time round. With nest,
 //   a handler being run reads them so too, from what its game's handler read (irqs above). On the
 //   page, outside the lockstep, the port's io gives irqByte: a => M[a]. With nest the lockstep's
 //   io gives the list too, as irqBytes, a Set.
@@ -596,7 +599,7 @@ class Lockstep {
           if (m.nest && (a < 0x100 ? a > 1 : cpu.rk[a >>> 8] === RAM_R) && !q.seen.has(a) && !q.wrote.has(a)) q.seen.set(a, cpu.m[a]);
           if (m.nest && B.has(a)) { if (!q.ib.has(a)) q.ib.set(a, []); q.ib.get(a).push(cpu.m[a]); }
         }
-        else if (B.has(a) && !ls.ib.list) { const L = live(); if (!L.has(a)) L.set(a, []); L.get(a).push(cpu.m[a]); }
+        else if (B.has(a)) { const L = live(); if (!L.has(a)) L.set(a, []); L.get(a).push(cpu.m[a]); }
         return true;
       } });
       const writes = new Proxy({}, { set(t, k) {
@@ -816,10 +819,15 @@ class Lockstep {
     return this.poll();
   }
   // onFrame for every frame the game has begun since the last call: input changes only at a yield,
-  // where the game and the port stand at the same place, so both read the same.
+  // where the game and the port stand at the same place, so both read the same. A copy run ahead for
+  // the stretch's reads of irqBytes (lookahead) had the input as it stood, so when the input changes
+  // its reads still to come are dropped, and the next read past the game's own makes a new one.
   frameInput() {
     if (!this.onFrame) return;
-    while (this.lastFrame < this.m.frames && !this.halted) this.onFrame(++this.lastFrame, this.m, this);
+    const m = this.m, input = () => m.joy + ',' + m.joy1 + ',' + [...(m.keys || [])].join(' ');
+    const before = this.ib.list ? input() : null;
+    while (this.lastFrame < m.frames && !this.halted) this.onFrame(++this.lastFrame, m, this);
+    if (before !== null && input() !== before) this.ib.list = null;
   }
   checkpoint(a, y) {
     if (!this.cps.has(a)) throw this.annotate(new Error('Lockstep: the port yielded checkpoint ' + hex(a) + ', which is not in checkpoints'));

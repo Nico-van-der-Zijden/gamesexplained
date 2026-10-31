@@ -59,16 +59,19 @@ function install(P, parts, o = {}) {
   }
   const irqBytes = o.irqBytes || [];
   let hooks = null, cpu = null, depth = 0;
+  // every label the port has no function for, and those of them the game's code was run for
   P.standIns = new Set();
+  P.standInsRun = new Set();
   for (const [label, a] of names) {
     if (typeof P[label] === 'function') continue;
     P.standIns.add(label);
     if (P.GEN.has(label) || (o.gen && o.gen.includes(label))) {
       P.GEN.add(label);
       const g = standInGen(P, a, { polls: o.polls || [], port: P.M[1] });
-      P[label] = function* (r) { return yield* g(r); };
+      P[label] = function* (r) { P.standInsRun.add(label); return yield* g(r); };
     } else {
       P[label] = function (r) {
+        P.standInsRun.add(label);
         if (!cpu) cpu = standInCpu(P, irqBytes);
         if (!hooks) hooks = portHooks(P, names);
         const regs = { d: 0 };

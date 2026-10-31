@@ -93,3 +93,24 @@ agent's benefit. This is the only file that narrates; `facts.md` and
   every raster line, and a test of 60,000 frames took hours; the page
   draws every frame, which narrows the comparison to what the picture
   reads, and the tests now draw now and then.
+- The page's pace was fitted per part on the game's stretches, with a
+  rate for the work the port counts as it goes (`P.spend`). The fort,
+  the train and the battle then ran far too fast on the page, though the
+  fit was close: the port's checkpoints hand that count over as they
+  yield, and the page charged only what had been taken before them. The
+  page now charges the checkpoint's own count too. Measured against the
+  game over 500 frames from each moment, the median difference in steps
+  of the main loop is 0.0 % on the map and the ending, -0.7 % on the
+  train, -2.6 % on the battle and -4.2 % on the fort. The battle's mean is
+  larger: its redraws are set off by a byte the interrupt writes, and a
+  few cycles either way move one by a pass, after which the two runs
+  draw on different passes.
+- One map moment of 79, a person against the computer, fell out of step
+  in the computer's turn. Every routine agreed with the game's code on
+  the port's memory, and the computer's random numbers parted at one
+  draw. The lockstep had handed the port that value from a copy of the
+  machine made at the turn's start, before the stick moved. The fix is in
+  `kit/c64/lockstep.js` (`kit-feedback.md`).
+- The battle's picture check drew a place the battle had given no address,
+  so the copy went over the processor port; such a place is now left out.
+- The routine check of `bat_pick_lane` hung at 800 cases. Its setup meant to leave the side one free lane, but drew a new random number for each lane, so some cases left none, and the game's search for a free lane never ends. The setup now frees one lane chosen once, and the check passes 800 of 800 in under a second.

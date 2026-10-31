@@ -253,6 +253,7 @@ if (require.main === module) {
       try { out = fromMoment(what, f, { frames, seed }); }
       catch (e) { console.log(f + ': ' + (e.stack || e.message).split('\n').slice(0, 5).join('\n  ')); continue; }
       console.log(f + ' (from $' + lib.readState(f).from.toString(16) + '): ' + describe(out.res).split('\n').join('\n  '));
+      if (out.P.standInsRun && out.P.standInsRun.size) console.log('  stand-ins run: ' + [...out.P.standInsRun].join(' '));
       if (out.res.ok) ok++;
       if (process.argv[6] === 'stop' && !out.res.ok) break;
     }
@@ -262,7 +263,7 @@ if (require.main === module) {
   } else if (what === 'title') r = run({ vsf: 'entry.vsf', vsfPart: 'title', loaded: ['TP'], part: 'tit', resume: function* (P) { P.enter('tit'); yield* P.tit_title_main(); P.enter('res'); },
     from: 'after_title', frames: +(process.argv[3] || 1500), input: fireAt([700]) });
   console.log(describe(r.res));
-  console.log('frames', r.m.frames, 'passes', r.res.passes, 'stand-ins used', [...r.P.standIns].length);
+  console.log('frames', r.m.frames, 'passes', r.res.passes, 'stand-ins run', [...r.P.standInsRun].join(' ') || 'none');
   process.exitCode = r.res.ok ? 0 : 1;
 }
 
