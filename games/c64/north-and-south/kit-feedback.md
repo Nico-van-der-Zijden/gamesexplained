@@ -107,6 +107,17 @@ Candidates, not made:
   compared the stack's height. A helper in `kit/c64/lockstep.js` or
   `kit/cpu` could do the same for every game; only this game's checker has
   it, so it is not made here.
+- **The SID player's ball misses notes whose gate comes before their
+  frequency.** We played the three tunes on How it works with the ball
+  view on. We expected a ball for each voice. The view stayed on "Choose
+  a tune to start". `site/lib/sid.js` takes a note where a voice's gate
+  bit rises with a frequency already set (its default `mark`), and these
+  players switch the gate on a frame before they write the frequency,
+  which is still 0 then: run on the page, every one of the title's 1,964
+  gate edges had a frequency of 0, so the score had no notes and the view
+  no lanes. The page now passes a `mark` of its own that takes the first
+  frame with both. A possible fix in the site: make the default `mark` do
+  the same, which leaves a driver that sets both at once unchanged.
 - **A raster wait inside an interrupt handler.** The menu's handler waits
   for a line, and a page clock that stands still in a handler hangs there
   for good. This page moves the beam by the handler's own spent cycles;

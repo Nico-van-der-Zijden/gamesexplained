@@ -433,7 +433,10 @@ const ranges = (ram, list) => list.map(([a, b]) => [a, ram.slice(a, b + 1)]);
 if (typeof C64 === 'undefined' || typeof C64Sid === 'undefined' || typeof C64Cpu === 'undefined') { missing($('ns-music'), 'The tune player'); missing($('ns-sfx'), 'The sound player'); }
 else Promise.all(['parts/title/listing.json', 'parts/ending/listing.json', 'parts/map/listing.json'].map((u) => C64.load(u))).then(([ti, en, mp]) => {
   const mem = { title: ranges(ti.ram, NS_DRIVER_RANGES.title), ending: ranges(en.ram, NS_DRIVER_RANGES.ending), effects: ranges(mp.ram, NS_DRIVER_RANGES.effects) };
-  C64Sid.mount($('ns-music'), { driver: createDriver, data: { mem, tunes: NS_TUNES }, tunes: NS_TUNES.map((c) => c.name) });
+  // A note starts where a voice's gate comes on. These players set the gate a frame before the
+  // note's frequency, which is still 0 then, so the note is taken at the first frame with both.
+  const mark = (v, p) => !!(v.ctrl & 1) && !!v.freq && (!p || !(p.ctrl & 1) || !p.freq);
+  C64Sid.mount($('ns-music'), { driver: createDriver, data: { mem, tunes: NS_TUNES }, tunes: NS_TUNES.map((c) => c.name), mark });
   C64Sid.mount($('ns-sfx'), { driver: createDriver, data: { mem, tunes: NS_EFFECTS }, tunes: NS_EFFECTS.map((c) => c.name), bounce: false });
 });
 
